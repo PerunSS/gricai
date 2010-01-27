@@ -4,7 +4,7 @@ import model.monster.Monster;
 
 public class AttacCalculator {
 
-	private static AttacCalculator instance;
+	private static AttacCalculator instance = new AttacCalculator();
 
 	public static AttacCalculator getInstance() {
 		return instance;
