@@ -1,5 +1,7 @@
 package model.monster.human;
 
+import view.painters.monster.human.FootmanPainter;
+
 
 public class Footman extends Human {
 
@@ -17,5 +19,6 @@ public class Footman extends Human {
 		setFireResistance(-5);
 		setEarthResistance(30);
 		setAirResistance(25);
+		setPainter(new FootmanPainter());
 	}
 }
