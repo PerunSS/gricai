@@ -3,7 +3,7 @@ package model.monster;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.AttacCalculator;
+import utils.AttackCalculator;
 import view.painters.monster.MonsterPainter;
 
 import model.board.Board;
@@ -35,7 +35,7 @@ public abstract class Monster {
 	}
 
 	public void attack(Field field) {
-		AttacCalculator.getInstance().attack(this, field.getMonster());
+		AttackCalculator.getInstance().attack(this, field.getMonster());
 	}
 
 	public void endTurn() {

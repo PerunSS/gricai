@@ -2,11 +2,11 @@ package utils;
 
 import model.monster.Monster;
 
-public class AttacCalculator {
+public class AttackCalculator {
 
-	private static AttacCalculator instance = new AttacCalculator();
+	private static AttackCalculator instance = new AttackCalculator();
 
-	public static AttacCalculator getInstance() {
+	public static AttackCalculator getInstance() {
 		return instance;
 	}
 
