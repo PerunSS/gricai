@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utils.AttacCalculator;
+import view.painters.monster.MonsterPainter;
 
 import model.board.Board;
 import model.board.Field;
@@ -26,6 +27,7 @@ public abstract class Monster {
 	private int airResistance;
 	private List<Effect> effects = new ArrayList<Effect>();
 	private boolean dead;
+	private MonsterPainter painter;
 
 	public void move(Field field) {
 		Board.getInstance().removeMonster(this);
@@ -162,6 +164,14 @@ public abstract class Monster {
 
 	public boolean isDead() {
 		return dead;
+	}
+
+	public void setPainter(MonsterPainter painter) {
+		this.painter = painter;
+	}
+
+	public MonsterPainter getPainter() {
+		return painter;
 	}
 
 }
