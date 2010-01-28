@@ -5,7 +5,7 @@ import view.painters.monster.human.FootmanPainter;
 
 public class Footman extends Human {
 
-	public Footman(){
+	Footman(){
 		setStrength(65);
 		setInteligence(38);
 		setAgility(51);
