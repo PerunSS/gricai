@@ -6,7 +6,7 @@ public abstract class Magic {
 
 	private int actionPoints;
 	
-	public Magic(int actionPoints){
+	protected Magic(int actionPoints){
 		this.actionPoints = actionPoints;
 	}
 	

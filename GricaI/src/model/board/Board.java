@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.monster.Monster;
-import utils.log.Log;
+import utils.log.LogFactory;
 
 public class Board {
 
@@ -41,7 +41,7 @@ public class Board {
 		try{
 			reader = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			Log.logException(e);
+			LogFactory.getLog("board").logException(e);
 			throw e;
 		}
 		String line = null;
@@ -55,13 +55,13 @@ public class Board {
 				}
 			}
 		} catch (IOException e) {
-			Log.logException(e);
+			LogFactory.getLog("board").logException(e);
 			throw e;
 		}
 		try{
 			reader.close();
 		}catch (IOException e) {
-			Log.logException(e);
+			LogFactory.getLog("board").logException(e);
 			throw e;
 		}
 	}
