@@ -2,7 +2,7 @@ package model.monster;
 
 import java.lang.reflect.Constructor;
 
-import utils.log.Log;
+import utils.log.LogFactory;
 
 import model.monster.human.HumanFactory;
 
@@ -25,7 +25,7 @@ public class MonsterFactory {
 			humanFactory = constructor.newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
-			Log.logException(e);
+			LogFactory.getLog("monsterFactory").logException(e);
 		}
 	}
 
