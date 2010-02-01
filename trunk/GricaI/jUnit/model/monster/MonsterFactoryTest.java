@@ -1,10 +1,10 @@
 package model.monster;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotSame;
+import game.model.monster.MonsterFactory;
+import game.model.monster.human.HumanFactory;
 
 import org.junit.Test;
-
-import model.monster.human.HumanFactory;
 
 public class MonsterFactoryTest {
 

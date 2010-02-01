@@ -18,7 +18,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import utils.log.LogFactory;
+//import utils.log.LogFactory;
 
 public class Crypt {
 
@@ -31,7 +31,7 @@ public class Crypt {
 		try {
 			kgen = KeyGenerator.getInstance("Blowfish");
 		} catch (NoSuchAlgorithmException e) {
-			LogFactory.getLog("crypt").logException(e);
+		//	LogFactory.getLog("crypt").logException(e);
 			throw e;
 		}
 		SecretKey skey = kgen.generateKey();
@@ -43,7 +43,7 @@ public class Crypt {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				LogFactory.getLog("crypt").logException(e);
+			//	LogFactory.getLog("crypt").logException(e);
 				throw e;
 			}
 		FileOutputStream out;
@@ -55,10 +55,10 @@ public class Crypt {
 			out.write("\r\n".getBytes());
 			out.close();
 		} catch (FileNotFoundException e) {
-			LogFactory.getLog("crypt").logException(e);
+		//	LogFactory.getLog("crypt").logException(e);
 			throw e;
 		} catch (IOException e) {
-			LogFactory.getLog("crypt").logException(e);
+		//	LogFactory.getLog("crypt").logException(e);
 			throw e;
 		}
 
@@ -114,7 +114,7 @@ public class Crypt {
 				keys.put(alias, skeySpec);
 			}
 		} catch (IOException e) {
-			LogFactory.getLog("crypt").logException(e);
+		//	LogFactory.getLog("crypt").logException(e);
 			throw e;
 		}
 		
