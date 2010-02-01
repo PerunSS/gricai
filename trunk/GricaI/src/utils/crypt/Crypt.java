@@ -18,7 +18,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-//import utils.log.LogFactory;
+import utils.log.LogChooser;
+
 
 public class Crypt {
 
@@ -31,7 +32,7 @@ public class Crypt {
 		try {
 			kgen = KeyGenerator.getInstance("Blowfish");
 		} catch (NoSuchAlgorithmException e) {
-		//	LogFactory.getLog("crypt").logException(e);
+			LogChooser.getLog("crypt").logException(e);
 			throw e;
 		}
 		SecretKey skey = kgen.generateKey();
@@ -43,7 +44,7 @@ public class Crypt {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-			//	LogFactory.getLog("crypt").logException(e);
+				LogChooser.getLog("crypt").logException(e);
 				throw e;
 			}
 		FileOutputStream out;
@@ -55,16 +56,15 @@ public class Crypt {
 			out.write("\r\n".getBytes());
 			out.close();
 		} catch (FileNotFoundException e) {
-		//	LogFactory.getLog("crypt").logException(e);
+			LogChooser.getLog("crypt").logException(e);
 			throw e;
 		} catch (IOException e) {
-		//	LogFactory.getLog("crypt").logException(e);
+			LogChooser.getLog("crypt").logException(e);
 			throw e;
 		}
 
 	}
 
-	// TODO modify
 	public static byte[] cryptData(byte[] data, String alias)
 			throws IOException, NoSuchAlgorithmException,
 			NoSuchPaddingException, InvalidKeyException,
@@ -80,7 +80,7 @@ public class Crypt {
 		return encrypted;
 	}
 	
-	public static byte[] deCryptData(byte[] data, String alias)
+	public static byte[] decryptData(byte[] data, String alias)
 			throws IOException, NoSuchAlgorithmException,
 			NoSuchPaddingException, InvalidKeyException,
 			IllegalBlockSizeException, BadPaddingException{
