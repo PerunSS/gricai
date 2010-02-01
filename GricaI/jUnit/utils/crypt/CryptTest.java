@@ -31,7 +31,7 @@ public class CryptTest {
 		byte data[] = "test message".getBytes();
 		try {
 			byte crypted[] = Crypt.cryptData(data, alias);
-			byte decrypted[] = Crypt.deCryptData(crypted, alias);
+			byte decrypted[] = Crypt.decryptData(crypted, alias);
 			assertEquals(new String(data), new String(decrypted));
 		} catch (InvalidKeyException e) {
 			e.printStackTrace();
