@@ -4,8 +4,6 @@ import game.model.monster.human.HumanFactory;
 
 import java.lang.reflect.Constructor;
 
-import utils.log.LogFactory;
-
 
 /**
  * Class is used for monster generation
@@ -26,7 +24,6 @@ public class MonsterFactory {
 			humanFactory = constructor.newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
-			LogFactory.getLog("monsterFactory").logException(e);
 		}
 	}
 
