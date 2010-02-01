@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import utils.log.LogChooser;
+
 
 
 public class Board {
@@ -42,7 +44,7 @@ public class Board {
 		try{
 			reader = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-//			LogFactory.getLog("board").logException(e);
+			LogChooser.getLog("board").logException(e);
 			throw e;
 		}
 		String line = null;
@@ -56,13 +58,13 @@ public class Board {
 				}
 			}
 		} catch (IOException e) {
-//			LogFactory.getLog("board").logException(e);
+			LogChooser.getLog("board").logException(e);
 			throw e;
 		}
 		try{
 			reader.close();
 		}catch (IOException e) {
-//			LogFactory.getLog("board").logException(e);
+			LogChooser.getLog("board").logException(e);
 			throw e;
 		}
 	}
