@@ -3,6 +3,7 @@ package game.model.monster;
 import game.model.board.Board;
 import game.model.board.Field;
 import game.model.effect.Effect;
+import game.model.magic.Magic;
 import game.view.painters.monster.MonsterPainter;
 
 import java.util.ArrayList;
@@ -27,9 +28,10 @@ public abstract class Monster {
 	private int waterResistance;
 	private int airResistance;
 	private List<Effect> effects = new ArrayList<Effect>();
+	private List<Magic> magics = new ArrayList<Magic>();
 	private boolean dead;
 	private MonsterPainter painter;
-
+	
 	public void move(Field field) {
 		Board.getInstance().removeMonster(this);
 		field.setMonster(this);
@@ -45,6 +47,10 @@ public abstract class Monster {
 	
 	public void addEffect(Effect effect){
 		effects.add(effect);
+	}
+	
+	public void addMagic(Magic magic){
+		magics.add(magic);
 	}
 
 	public int getStrength() {
@@ -154,9 +160,9 @@ public abstract class Monster {
 	public List<Effect> getEffects() {
 		return effects;
 	}
-
-	public void setEffects(List<Effect> effects) {
-		this.effects = effects;
+	
+	public List<Magic> getMagics() {
+		return magics;
 	}
 
 	public void setDead(boolean dead) {
