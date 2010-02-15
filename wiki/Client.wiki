@@ -1,6 +1,6 @@
 = Introduction =
 
-Client for our game will be browser based, for this we need to learn few new techniques, and also to recapitalize old ones. Things that will be needed for client are: HTML5, JavaScript and AJAX
+Client for our game will be browser based, for this we need to learn few new techniques, and also to recapitalize old ones. Things that will be needed for client are: HTML5, Javascript and AJAX
 
 = Details =
 
@@ -10,4 +10,4 @@ AJAX:   http://www.w3schools.com/Ajax/default.asp
 
 HTML5: http://www.whatwg.org/specs/web-apps/current-work/multipage/
 
-JavaScript:  http://www.java2s.com/Tutorial/JavaScript/CatalogJavaScript.htm
+Javascript:  http://www.java2s.com/Tutorial/JavaScript/CatalogJavaScript.htm
