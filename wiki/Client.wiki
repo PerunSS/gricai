@@ -1,0 +1,12 @@
+
+= Introduction =
+
+Client for our game will be browser based, for this we need to learn few new techniques, and also to recapitalize old ones. Things that will be needed for client are: HTML5, JavaScript and AJAX
+
+= Details =
+
+So, here i will post some links to this things.
+
+AJAX:   http://www.w3schools.com/Ajax/default.asp
+HTML5:
+JavaScript:  http://www.java2s.com/Tutorial/JavaScript/CatalogJavaScript.htm
