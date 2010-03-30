@@ -1,4 +1,4 @@
-package server;
+package game.server;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

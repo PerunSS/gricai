@@ -1,6 +1,6 @@
 package game;
 
-import server.User;
+import game.server.User;
 
 public class Player {
 	
