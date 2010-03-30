@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Echo</title>
+<script type="text/javascript">
+var ws = new WebSocket("ws://localhost:12345");
+
+ws.onopen = function (event) {
+	document.getElementByName("chatArea").value += "connected ...\n";
+	alert("connected");
+}
+
+ws.onmessage = function (event) {
+	document.getElementByName("chatArea").value += event.data;
+	alert("recieved");
+}
+
+ws.onclose = function (event) {
+	document.getElementByName("chatArea").value += "closed ... \n";
+	alert("closed");
+}
+function sendText(){
+	var text = document.getElementByName("chatText").value;
+	ws.send(text);
+}
+
+</script>
+</head>
+<body>
+<textarea rows="10" cols="40" disabled name = "chatArea"></textarea>
+<br></br>
+<input type = "text" name = "chatText" onsubmit = "sendText();"></input>
+
+
+</body>
+</html>
