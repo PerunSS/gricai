@@ -1,11 +1,9 @@
-package server;
+package game.server;
+
 import messages.Message;
 
-
-
-
-public interface ConnectionUser
-{
+public interface ConnectionUser{
+	
         public void receive(Message msg);
         public void stateChange(int state);
 }
