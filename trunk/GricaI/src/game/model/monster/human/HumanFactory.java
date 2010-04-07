@@ -12,11 +12,16 @@ public class HumanFactory {
 	}
 	
 	/**
-	 * creates Footman
-	 * @return new Footman
+	 * creates Footman, Peasant
+	 * @return new Footman, Peasant
 	 */
+	
 	public Footman createFootman(){
 		return new Footman();
+	}
+	
+	public Peasant createPeasant(){
+		return new Peasant();
 	}
 
 }
