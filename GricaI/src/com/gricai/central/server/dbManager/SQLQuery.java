@@ -1,6 +1,6 @@
 package com.gricai.central.server.dbManager;
 
-public interface SQLQuery {
+public abstract class SQLQuery {
 
-	public String evaluate();
+	public abstract String evaluate();
 }
