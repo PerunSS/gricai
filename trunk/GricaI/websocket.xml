@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<websocket xmlns="http://dev.w3.org/html5/websockets/">
+        <configurations>
+                <host>websocket-server</host>
+                <port>8080</port>
+                <documentRoot>html/</documentRoot>
+        </configurations>
+        <handlers>
+                <handler>
+                        <handlerName>chat1.sale.WebSocketHandlerSale</handlerName>
+                        <properties>
+                                <property>
+                                        <key>appName</key>
+                                        <value>WebSocketHandlerSale</value>
+                                </property>
+                        </properties>
+                </handler>
+        </handlers>
+</websocket>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_e9sj8BpxEd-XLY8_3t_zhQ" name="UseCase">
+  <elementImport xmi:id="_e-o_IBpxEd-XLY8_3t_zhQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_e-pmMBpxEd-XLY8_3t_zhQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_e-pmMRpxEd-XLY8_3t_zhQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_e-pmMhpxEd-XLY8_3t_zhQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_g7qFcBpxEd-XLY8_3t_zhQ" name="Client"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_kVZBYBpxEd-XLY8_3t_zhQ" name="Log on web server">
+    <extend xmi:id="_wBbxwBpxEd-XLY8_3t_zhQ" extendedCase="_qU1bUBpxEd-XLY8_3t_zhQ"/>
+    <extend xmi:id="_xFVewBpxEd-XLY8_3t_zhQ" extendedCase="_sH8-wBpxEd-XLY8_3t_zhQ"/>
+    <extend xmi:id="_x7ayMBpxEd-XLY8_3t_zhQ" extendedCase="_tpOkQBpxEd-XLY8_3t_zhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ojCtkBpxEd-XLY8_3t_zhQ" memberEnd="_ojD7sBpxEd-XLY8_3t_zhQ _ojEiwhpxEd-XLY8_3t_zhQ" navigableOwnedEnd="_ojEiwhpxEd-XLY8_3t_zhQ">
+    <ownedEnd xmi:id="_ojD7sBpxEd-XLY8_3t_zhQ" name="src" type="_g7qFcBpxEd-XLY8_3t_zhQ" association="_ojCtkBpxEd-XLY8_3t_zhQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ojEiwRpxEd-XLY8_3t_zhQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ojEiwBpxEd-XLY8_3t_zhQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ojEiwhpxEd-XLY8_3t_zhQ" name="dst" type="_kVZBYBpxEd-XLY8_3t_zhQ" association="_ojCtkBpxEd-XLY8_3t_zhQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ojFJ0RpxEd-XLY8_3t_zhQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ojFJ0BpxEd-XLY8_3t_zhQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_qU1bUBpxEd-XLY8_3t_zhQ" name="join chat room"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_sH8-wBpxEd-XLY8_3t_zhQ" name="get game list">
+    <include xmi:id="_BCHEgBpyEd-XLY8_3t_zhQ" addition="__YNugBpxEd-XLY8_3t_zhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_tpOkQBpxEd-XLY8_3t_zhQ" name="host game">
+    <include xmi:id="_8KsCkBpxEd-XLY8_3t_zhQ" addition="_5r2BkBpxEd-XLY8_3t_zhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_5r2BkBpxEd-XLY8_3t_zhQ" name="create game server"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="__YNugBpxEd-XLY8_3t_zhQ" name="join game"/>
+</uml:Package>
