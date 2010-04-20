@@ -3,35 +3,53 @@ package com.gricai.central.server.dbManager.impl;
 import com.gricai.central.server.dbManager.SQLSelect;
 
 public class SQLSelectImpl extends SQLSelect {
-
+	
 	@Override
 	public SQLSelect from(String tablename) {
-		// TODO Auto-generated method stub
+		setFromString(getFromString()+ " "+ tablename);
 		return null;
 	}
 
 	@Override
 	public SQLSelect orderBy(String condition) {
-		// TODO Auto-generated method stub
+		setOrderByString(getOrderByString()+ " "+ condition);
 		return null;
 	}
 
 	@Override
 	public SQLSelect select(String columnName) {
-		// TODO Auto-generated method stub
+		setSelectString(getSelectString()+ " "+ columnName);
 		return null;
 	}
 
 	@Override
 	public SQLSelect where(String condition) {
-		// TODO Auto-generated method stub
+		setWhereString(getWhereString()+ " "+ condition);
 		return null;
 	}
 
+	
+	
+	//Making SELECT query from select,from,where,orderby strings throws exception if select and/or from are empty
 	@Override
-	public String evaluate() {
-		// TODO Auto-generated method stub
-		return null;
+	public String evaluate() throws NullPointerException{
+		String selectQuery = null;
+		try {
+			if ( getSelectString() != null){
+				selectQuery = getSelectString();
+				if ( getFromString() != null){
+					selectQuery = selectQuery + getFromString();
+					if ( getWhereString() != null){
+						selectQuery = selectQuery + getWhereString();
+					}
+					if ( getOrderByString() != null){
+						selectQuery = selectQuery + getOrderByString();
+					}
+				} else throw new NullPointerException("empty FROM string");
+			} else throw new NullPointerException("empty SELECT string");
+		}catch (NullPointerException e){
+			System.err.println("Null pointer exception:"+e.getMessage());
+		}
+		return selectQuery;
 	}
-
 }
