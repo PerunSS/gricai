@@ -39,8 +39,11 @@ public class SQLSelectImpl extends SQLSelect {
 	
 	@Override
 	public SQLSelect from(String tablename) {
-
-		setFromString(getFromString()+ " "+ tablename);
+		if ( getFromString() == null){
+			setFromString(tablename);
+		} else {
+			setFromString(getFromString()+ ","+ tablename);
+		}
 		return this;
 
 
@@ -48,24 +51,33 @@ public class SQLSelectImpl extends SQLSelect {
 
 	@Override
 	public SQLSelect orderBy(String condition) {
-
-		setOrderByString(getOrderByString()+ " "+ condition);
+		if ( getOrderByString() == null){
+			setOrderByString(condition);
+		} else {
+			setOrderByString(getOrderByString()+ ","+ condition);
+		}
 		return this;
 
 	}
 
 	@Override
 	public SQLSelect select(String columnName) {
-
-		setSelectString(getSelectString()+ " "+ columnName);
+		if ( getSelectString() == null){
+			setSelectString(columnName);
+		} else {
+			setSelectString(getSelectString()+ ","+ columnName);
+		}	
 		return this;
 
 	}
 
 	@Override
 	public SQLSelect where(String condition) {
-
-		setWhereString(getWhereString()+ " "+ condition);
+		if ( getWhereString() == null){
+			setWhereString(condition);
+		} else {
+			setWhereString(getWhereString()+ ","+ condition);
+		}	
 		return this;
 
 	}
@@ -79,14 +91,14 @@ public class SQLSelectImpl extends SQLSelect {
 		String selectQuery = null;
 		try {
 			if ( getSelectString() != null){
-				selectQuery = getSelectString();
+				selectQuery = "SELECT "+ getSelectString();
 				if ( getFromString() != null){
-					selectQuery = selectQuery + getFromString();
+					selectQuery = selectQuery+ " FROM "+ getFromString();
 					if ( getWhereString() != null){
-						selectQuery = selectQuery + getWhereString();
+						selectQuery = selectQuery+ " WHERE "+ getWhereString();
 					}
 					if ( getOrderByString() != null){
-						selectQuery = selectQuery + getOrderByString();
+						selectQuery = selectQuery+ " ORDER BY "+ getOrderByString();
 					}
 				} else throw new NullPointerException("empty FROM string");
 			} else throw new NullPointerException("empty SELECT string");
