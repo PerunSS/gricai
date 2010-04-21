@@ -1,69 +1,29 @@
 package com.gricai.central.server.dbManager.impl;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.gricai.central.server.dbManager.SQLSelect;
+import com.gricai.central.server.dbManager.exception.InvalidParameterException;
 
 public class SQLSelectImpl extends SQLSelect {
 
 	// strings for saving select procedure arguments
-	private String selectString = null;
-	private String fromString = null;
-	private String whereString = null;
-	private String orderByString = null;
+	private String selectString;
+	private String fromString;
+	//private String whereString;
+	private String orderByString;
 	private Map<String, Object> whereArguments = new HashMap<String, Object>();
 
 
-	public Map<String, Object> getWhereArguments() {
-		return whereArguments;
-	}
-
-	public void setWhereArguments(Map<String, Object> whereArguments) {
-		this.whereArguments = whereArguments;
-	}
-
-	private SQLSelectImpl() {
-	}
-
-	public String getOrderByString() {
-		return orderByString;
-	}
-
-	public void setOrderByString(String orderByString) {
-		this.orderByString = orderByString;
-	}
-
-	public String getSelectString() {
-		return selectString;
-	}
-
-	public void setSelectString(String selectString) {
-		this.selectString = selectString;
-	}
-
-	public String getFromString() {
-		return fromString;
-	}
-
-	public void setFromString(String fromString) {
-		this.fromString = fromString;
-	}
-
-	public String getWhereString() {
-		return whereString;
-	}
-
-	public void setWhereString(String whereString) {
-		this.whereString = whereString;
-	}
 
 	@Override
 	public SQLSelect from(String tablename) {
-		if (getFromString() == null) {
-			setFromString(tablename);
+		if (fromString == null) {
+			fromString = tablename;
 		} else {
-			setFromString(getFromString() + "," + tablename);
+			fromString+=","+tablename;
 		}
 		return this;
 
@@ -71,10 +31,10 @@ public class SQLSelectImpl extends SQLSelect {
 
 	@Override
 	public SQLSelect orderBy(String condition) {
-		if (getOrderByString() == null) {
-			setOrderByString(condition);
+		if (orderByString == null) {
+			orderByString = condition;
 		} else {
-			setOrderByString(getOrderByString() + "," + condition);
+			orderByString+=","+condition;
 		}
 		return this;
 
@@ -82,18 +42,25 @@ public class SQLSelectImpl extends SQLSelect {
 
 	@Override
 	public SQLSelect select(String columnName) {
-		if (getSelectString() == null) {
-			setSelectString(columnName);
+		if (selectString == null) {
+			selectString = columnName;
 		} else {
-			setSelectString(getSelectString() + "," + columnName);
+			selectString+=","+columnName;
 		}
 		return this;
 
 	}
 
+	//TODO napravi svoje exceptione i stavi ih u paket exception (vec imas jedan kao primer)
+	//i ubaci svugde umesto exception i nullPointerException da izbacuje tvoje exceptione
 	@Override
 	public SQLSelect where(String condition) throws Exception{
 		// puts WHERE arguments in whereArguments 
+		//TODO 1.promeniti jer onaj and i or bas nemaju smisla nego ce where da bude a=:a and b=:b or c=:c
+		// pa to malo sredi :)
+		//TODO 2. sta cemo sa <,<=, >,>= <>, between, like, in :)
+		//where izgleda ovako: columnName operator value
+		//pri cemu operator moze biti gore navedeno i jednako :)
 		try{
 			String parameterDelimiter = "=:";
 			if (condition.indexOf(parameterDelimiter) != -1){
@@ -115,20 +82,19 @@ public class SQLSelectImpl extends SQLSelect {
 	}
 	
 	@Override
-	public SQLSelect and() {
-		// TODO Auto-generated method stub
-		return this;
-	}
-
-	@Override
-	public SQLSelect or() {
-		// TODO Auto-generated method stub
-		return this;
-	}
-
-	@Override
-	public SQLSelect parameter(String paramName, Object paramValue) {
-		// TODO Auto-generated method stub
+	public SQLSelect parameter(String paramName, Object paramValue) throws InvalidParameterException{
+		boolean contains = false;
+		for(Map.Entry<String, Object> entry: whereArguments.entrySet()){
+			if(entry.getKey().equals(paramName)){
+				contains = true;
+				break;
+			}
+				
+		}
+		if(contains)
+			whereArguments.put(paramName, paramValue);
+		else
+			throw new InvalidParameterException("invalid parameter: "+paramName);
 		return this;
 	}
 
@@ -143,19 +109,22 @@ public class SQLSelectImpl extends SQLSelect {
 	// select a,b,c from table1,table2 where a=234 and b='test' or a=c
 	@Override
 	public String evaluate() throws Exception {
-		String selectQuery = null;
+		StringBuffer selectQuery = new StringBuffer();
 		try {
-			if (getSelectString() != null) {
-				selectQuery = "SELECT " + getSelectString();
-				if (getFromString() != null) {
-					selectQuery = selectQuery + " FROM " + getFromString();
-					if (getWhereString() != null) {
-						selectQuery = selectQuery + " WHERE "
-								+ getWhereString();
+			if (selectString != null) {
+				selectQuery.append("SELECT " + selectString);
+				if (fromString != null) {
+					selectQuery.append(" FROM " + fromString);
+					if (whereArguments.size()>0) {
+						
+						//TODO ovo ne valja, mora da se sredi
+						selectQuery.append(" WHERE ");
+						for(Map.Entry<String, Object> entry:whereArguments.entrySet() ){
+							selectQuery.append( entry.getKey() +" = "+ (entry.getValue()==null?"?":entry.getValue()));
+						}
 					}
-					if (getOrderByString() != null) {
-						selectQuery = selectQuery + " ORDER BY "
-								+ getOrderByString();
+					if (orderByString != null) {
+						selectQuery.append(" ORDER BY " + orderByString);
 					}
 				} else
 					throw new Exception("cant execute query without FROM arguments");
@@ -166,7 +135,13 @@ public class SQLSelectImpl extends SQLSelect {
 			System.err.println("Error :" + e.getMessage());
 			throw e;
 		}
-		return selectQuery;
+		return selectQuery.toString();
+	}
+
+	@Override
+	public Object execute() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
