@@ -1,5 +1,8 @@
 package com.gricai.central.server.dbManager.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.gricai.central.server.dbManager.SQLSelect;
 
 public class SQLSelectImpl extends SQLSelect {
@@ -9,6 +12,16 @@ public class SQLSelectImpl extends SQLSelect {
 	private String fromString = null;
 	private String whereString = null;
 	private String orderByString = null;
+	private Map<String, Object> whereArguments = new HashMap<String, Object>();
+
+
+	public Map<String, Object> getWhereArguments() {
+		return whereArguments;
+	}
+
+	public void setWhereArguments(Map<String, Object> whereArguments) {
+		this.whereArguments = whereArguments;
+	}
 
 	private SQLSelectImpl() {
 	}
@@ -79,17 +92,44 @@ public class SQLSelectImpl extends SQLSelect {
 	}
 
 	@Override
-	public SQLSelect where(String condition) {
-		// TODO ovo mora da se ispravi, where se ne rastavlja zarezom :)
-		// TODO imas nove dve metode - and i or koje sluse za sastavljanje where
-		// klauzule
-		if (getWhereString() == null) {
-			setWhereString(condition);
-		} else {
-			setWhereString(getWhereString() + "," + condition);
+	public SQLSelect where(String condition) throws Exception{
+		// puts WHERE arguments in whereArguments 
+		try{
+			String parameterDelimiter = "=:";
+			if (condition.indexOf(parameterDelimiter) != -1){
+				String[] tokens = condition.split(parameterDelimiter);
+				whereArguments.put(tokens[0], null);
+			} else {
+				parameterDelimiter = "=";
+				if (condition.indexOf(parameterDelimiter) != -1){
+					String[] tokens = condition.split(parameterDelimiter);
+					whereArguments.put(tokens[0], tokens[1]);
+				} else throw new Exception("invalid WHERE argument");
+			}
+		} catch (Exception e){
+			//TODO log
+			System.err.println("Error:" + e.getMessage());
+			throw e;
 		}
 		return this;
+	}
+	
+	@Override
+	public SQLSelect and() {
+		// TODO Auto-generated method stub
+		return this;
+	}
 
+	@Override
+	public SQLSelect or() {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	@Override
+	public SQLSelect parameter(String paramName, Object paramValue) {
+		// TODO Auto-generated method stub
+		return this;
 	}
 
 	// Making SELECT query from select,from,where,orderby strings throws
@@ -102,7 +142,7 @@ public class SQLSelectImpl extends SQLSelect {
 	// izgleda ovako:
 	// select a,b,c from table1,table2 where a=234 and b='test' or a=c
 	@Override
-	public String evaluate() throws NullPointerException {
+	public String evaluate() throws Exception {
 		String selectQuery = null;
 		try {
 			if (getSelectString() != null) {
@@ -118,30 +158,16 @@ public class SQLSelectImpl extends SQLSelect {
 								+ getOrderByString();
 					}
 				} else
-					throw new NullPointerException("empty FROM string");
+					throw new Exception("cant execute query without FROM arguments");
 			} else
-				throw new NullPointerException("empty SELECT string");
-		} catch (NullPointerException e) {
-			System.err.println("Null pointer exception:" + e.getMessage());
+				throw new Exception("cant execute query without SELECT arguments");
+		} catch (Exception e) {
+			//TODO log
+			System.err.println("Error :" + e.getMessage());
+			throw e;
 		}
 		return selectQuery;
 	}
 
-	@Override
-	public SQLSelect and() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SQLSelect or() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SQLSelect parameter(String paramName, Object paramValue) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }
