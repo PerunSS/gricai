@@ -53,6 +53,8 @@ public class SQLSelectTest {
 			select.select("nesto").evaluate();
 		} catch ( NullPointerException e){
 			assertEquals("Null pointer exception:empty FROM string", e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		System.out.println("Test 2 completed successfully.");
 	}
