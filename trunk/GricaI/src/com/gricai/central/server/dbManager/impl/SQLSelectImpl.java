@@ -77,7 +77,7 @@ public class SQLSelectImpl extends SQLSelect {
 	}
 	
 	@Override
-	public SQLSelect having ( String condition) throws SQLException{
+	public SQLSelect having ( String condition) throws MultipleHavingException{
 		if (havingString != null) throw new MultipleHavingException("only one having is permited");
 		else havingString = condition;						
 		return this;
@@ -86,7 +86,7 @@ public class SQLSelectImpl extends SQLSelect {
 	//TODO napravi svoje exceptione i stavi ih u paket exception (vec imas jedan kao primer)
 	//i ubaci svugde umesto exception i nullPointerException da izbacuje tvoje exceptione
 	@Override
-	public SQLSelect where(String condition) throws SQLException{
+	public SQLSelect where(String condition) throws MultipleWhereException{
 		// puts WHERE arguments in whereArguments 
 		//TODO 1.promeniti jer onaj and i or bas nemaju smisla nego ce where da bude a=:a and b=:b or c=:c
 		// pa to malo sredi :)
