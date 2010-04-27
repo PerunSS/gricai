@@ -12,21 +12,26 @@ public class DBManager {
 	private static final String USERNAME = "";
 	private static final String password = "";
 	*/
-// ja bi da u konnekt uzima koja je baza user u pass cisto ako imamo vishe baza da ne mora za svaku poseban connect
+
 	
 	private static DBManager instance = new DBManager();
 
 	private DBManager(){
+		try{
+			Class c = Class.forName("com.mysql.jdbc.Driver");
+            c.newInstance();
+		} catch ( Exception e){
+			throw new RuntimeException("Cannot initialize database drivers");
+		}
 	}
 	
 	public static DBManager getInstance(){
 		return instance;
 	}
-	
+	// ja bi da u konnekt uzima koja je baza user u pass cisto ako imamo vishe baza da ne mora za svaku poseban connect	
 	public Connection connect ( String DB_LOCATION, String USERNAME, String password){
         try{
-            Class c = Class.forName("com.mysql.jdbc.Driver");
-            c.newInstance();
+            
             return DriverManager.getConnection(DB_LOCATION,USERNAME,password);
         } catch ( Exception ex){
         	// nama ne treba runtime al ajd kad pogledas da vidimo sta treba il ne treba nista
@@ -34,7 +39,6 @@ public class DBManager {
         }
     }
 	
-	//TODO finish this
 	public final void closeAll(Connection conn, PreparedStatement ps, ResultSet rs){
 		try {
 			if(conn!=null)

@@ -13,6 +13,8 @@ import com.gricai.central.server.dbManager.DBManager;
 import com.gricai.central.server.dbManager.SQLSelect;
 import com.gricai.central.server.dbManager.exception.InvalidParameterException;
 import com.gricai.central.server.dbManager.exception.MultipleWhereException;
+import com.gricai.central.server.dbManager.exception.NoFromParameterException;
+import com.gricai.central.server.dbManager.exception.NoSelectParameterException;
 
 public class SQLSelectImpl extends SQLSelect {
 
@@ -27,6 +29,7 @@ public class SQLSelectImpl extends SQLSelect {
 
 	@Override
 	public SQLSelect from(String tablename) {
+		 
 		if (fromString == null) {
 			fromString = tablename;
 		} else {
@@ -38,6 +41,7 @@ public class SQLSelectImpl extends SQLSelect {
 
 	@Override
 	public SQLSelect orderBy(String condition) {
+		
 		if (orderByString == null) {
 			orderByString = condition;
 		} else {
@@ -133,6 +137,11 @@ public class SQLSelectImpl extends SQLSelect {
 			throw new InvalidParameterException("invalid parameter: "+paramName);
 		return this;
 	}
+	
+	@Override
+	public SQLSelect groupBy (String condition){
+		return this;
+	}
 
 	// Making SELECT query from select,from,where,orderby strings throws
 	// exception if select and/or from are empty
@@ -161,9 +170,9 @@ public class SQLSelectImpl extends SQLSelect {
 						selectQuery.append(" ORDER BY " + orderByString);
 					}
 				} else
-					throw new SQLException("cant execute query without FROM arguments");
+					throw new NoFromParameterException("cant execute query without FROM parameters");
 			} else
-				throw new SQLException("cant execute query without SELECT arguments");
+				throw new NoSelectParameterException("cant execute query without SELECT parameters");
 		} catch (SQLException e) {
 			//TODO log
 			System.err.println("Error :" + e.getMessage());
@@ -174,7 +183,8 @@ public class SQLSelectImpl extends SQLSelect {
 
 	@Override
 	public Object execute() throws SQLException {
-		Connection conn = DBManager.getInstance().connect();
+		//DB name user and pass needed!!!
+		Connection conn = DBManager.getInstance().connect("test_baza_negde", "user", "pass");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try{
