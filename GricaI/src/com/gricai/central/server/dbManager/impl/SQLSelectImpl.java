@@ -11,7 +11,9 @@ import java.util.Map;
 
 import com.gricai.central.server.dbManager.DBManager;
 import com.gricai.central.server.dbManager.SQLSelect;
+import com.gricai.central.server.dbManager.exception.HavingWithoutGroupByException;
 import com.gricai.central.server.dbManager.exception.InvalidParameterException;
+import com.gricai.central.server.dbManager.exception.MultipleHavingException;
 import com.gricai.central.server.dbManager.exception.MultipleWhereException;
 import com.gricai.central.server.dbManager.exception.NoFromParameterException;
 import com.gricai.central.server.dbManager.exception.NoSelectParameterException;
@@ -23,6 +25,8 @@ public class SQLSelectImpl extends SQLSelect {
 	private String fromString;
 	private String whereString;
 	private String orderByString;
+	private String groupByString;
+	private String havingString;
 	private Map<String, Object> whereArguments = new HashMap<String, Object>();
 	private Map<String,List<Integer>> wherePositions = new HashMap<String, List<Integer>>();
 
@@ -60,6 +64,23 @@ public class SQLSelectImpl extends SQLSelect {
 		}
 		return this;
 
+	}
+	
+	@Override
+	public SQLSelect groupBy (String condition){
+		if (groupByString == null) {
+			groupByString = condition;
+		} else {
+			groupByString+=","+condition;
+		}
+		return this;
+	}
+	
+	@Override
+	public SQLSelect having ( String condition) throws SQLException{
+		if (havingString != null) throw new MultipleHavingException("only one having is permited");
+		else havingString = condition;						
+		return this;
 	}
 
 	//TODO napravi svoje exceptione i stavi ih u paket exception (vec imas jedan kao primer)
@@ -138,10 +159,7 @@ public class SQLSelectImpl extends SQLSelect {
 		return this;
 	}
 	
-	@Override
-	public SQLSelect groupBy (String condition){
-		return this;
-	}
+	
 
 	// Making SELECT query from select,from,where,orderby strings throws
 	// exception if select and/or from are empty
@@ -169,6 +187,15 @@ public class SQLSelectImpl extends SQLSelect {
 					if (orderByString != null) {
 						selectQuery.append(" ORDER BY " + orderByString);
 					}
+					if (groupByString != null) {
+						selectQuery.append(" GROUP BY " + groupByString);
+						if (havingString != null){
+							selectQuery.append(" HAVING " + havingString);
+						}
+					} else if (havingString != null){
+						throw new HavingWithoutGroupByException("cant call HAVING without GROPU BY");
+					}
+					
 				} else
 					throw new NoFromParameterException("cant execute query without FROM parameters");
 			} else

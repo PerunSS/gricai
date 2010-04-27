@@ -45,6 +45,10 @@ public abstract class SQLSelect extends SQLQuery{
 	 * @throws InvalidParameterException
 	 */
 	public abstract SQLSelect parameter(String paramName, Object paramValue) throws InvalidParameterException;
+
+	public abstract SQLSelect groupBy( String condition);
+	public abstract SQLSelect having( String condition)throws Exception;
+
 	
 	/**
 	 * 
