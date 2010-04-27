@@ -86,7 +86,7 @@ public class SQLSelectImpl extends SQLSelect {
 //			throw e;
 //		}
 		if(whereString!=null)
-			throw new MultipleWhereException("only one where is premited");
+			throw new MultipleWhereException("only one where is permited");
 		whereString = condition;
 //		System.out.println("before: "+whereString);
 		int endIndex = 0;
