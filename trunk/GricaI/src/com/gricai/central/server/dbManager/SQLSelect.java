@@ -61,4 +61,11 @@ public abstract class SQLSelect extends SQLQuery{
 			throw e;
 		}
 	}
+
+	/**
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	public abstract SQLSelect groupBy(String condition);
 }
