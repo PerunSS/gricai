@@ -17,12 +17,15 @@ public class DBManager {
 	private static DBManager instance = new DBManager();
 
 	private DBManager(){
-		try{
-			Class c = Class.forName("com.mysql.jdbc.Driver");
-            c.newInstance();
-		} catch ( Exception e){
-			throw new RuntimeException("Cannot initialize database drivers");
-		}
+			try {
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public static DBManager getInstance(){
