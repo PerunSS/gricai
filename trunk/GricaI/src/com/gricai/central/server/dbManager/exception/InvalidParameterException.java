@@ -7,6 +7,7 @@ public class InvalidParameterException extends SQLException {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	public InvalidParameterException(String reason){
