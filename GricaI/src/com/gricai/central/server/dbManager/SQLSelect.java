@@ -4,6 +4,8 @@ import java.lang.reflect.Constructor;
 import java.sql.SQLException;
 
 import com.gricai.central.server.dbManager.exception.InvalidParameterException;
+import com.gricai.central.server.dbManager.exception.MultipleHavingException;
+import com.gricai.central.server.dbManager.exception.MultipleWhereException;
 import com.gricai.central.server.dbManager.impl.SQLSelectImpl;
 
 public abstract class SQLSelect extends SQLQuery{
@@ -28,12 +30,13 @@ public abstract class SQLSelect extends SQLQuery{
 	 * @return
  * @throws SQLException
 	 */
-	public abstract SQLSelect where(String condition) throws SQLException;
+	public abstract SQLSelect where(String condition) throws MultipleWhereException;
 	
 	/**
 	 * 
 	 * @param condition
 	 * @return
+	 * throws MultipleWhereException
 	 */
 	public abstract SQLSelect orderBy(String condition);
 	
@@ -46,8 +49,20 @@ public abstract class SQLSelect extends SQLQuery{
 	 */
 	public abstract SQLSelect parameter(String paramName, Object paramValue) throws InvalidParameterException;
 
+	/**
+	 * 
+	 * @param condition
+	 * @return
+	 */
 	public abstract SQLSelect groupBy( String condition);
-	public abstract SQLSelect having( String condition)throws Exception;
+	
+	/**
+	 * 
+	 * @param condition
+	 * @return
+	 * throws MultipleHavingException
+	 */
+	public abstract SQLSelect having( String condition)throws MultipleHavingException;
 
 	
 	/**
@@ -66,10 +81,6 @@ public abstract class SQLSelect extends SQLQuery{
 		}
 	}
 
-	/**
-	 * 
-	 * @param condition
-	 * @return
-	 */
-	public abstract SQLSelect groupBy(String condition);
+	
+	
 }
