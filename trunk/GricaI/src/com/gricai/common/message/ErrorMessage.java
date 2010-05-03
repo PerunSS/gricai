@@ -10,8 +10,7 @@ public class ErrorMessage implements Message {
 	
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		byte[] bytes =  new byte[data.capacity()];
-		data.get(bytes, 0, bytes.length);
+		byte[] bytes =  data.array();
 		String fullMessage = new String(bytes);
 		int indexOfErrorCode = fullMessage.indexOf('&')+1;
 		String ErrorCodeString = fullMessage.substring(indexOfErrorCode);
