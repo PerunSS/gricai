@@ -1,8 +1,6 @@
 package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ChatMessage implements Message {
 	

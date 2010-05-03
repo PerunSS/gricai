@@ -4,10 +4,18 @@ import java.nio.ByteBuffer;
 
 public class ErrorMessage implements Message {
 
+	private static final String ERROR_CODE= "error_code";
+	
+	int errorCode;
+	
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		// TODO Auto-generated method stub
-
+		byte[] bytes =  new byte[data.capacity()];
+		data.get(bytes, 0, bytes.length);
+		String fullMessage = new String(bytes);
+		int indexOfErrorCode = fullMessage.indexOf('&')+1;
+		String ErrorCodeString = fullMessage.substring(indexOfErrorCode);
+		setErrorCode(new Integer(ErrorCodeString.substring(ErrorCodeString.indexOf('=') + 1)).intValue());
 	}
 
 	@Override
@@ -18,8 +26,16 @@ public class ErrorMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		// TODO Auto-generated method stub
-		return null;
+		byte[] bytes = new String("class=ErrorMessage&"+ERROR_CODE+"=" + new Integer(getErrorCode()).toString()).getBytes();
+		return ByteBuffer.wrap(bytes);
+	}
+
+	public int getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(int errorCode) {
+		this.errorCode = errorCode;
 	}
 
 }

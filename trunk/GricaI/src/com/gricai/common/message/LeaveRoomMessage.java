@@ -18,8 +18,8 @@ public class LeaveRoomMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		// TODO Auto-generated method stub
-		return null;
+		byte[] bytes = new String("class=LeaveRoomMessage&").getBytes();
+		return ByteBuffer.wrap(bytes);
 	}
 
 }
