@@ -19,10 +19,8 @@ public class JoinRoomResponseMessage implements Message {
 		String roomNameString = fullMessage.substring(indexOfRoom,indexOfCanJoin-1);
 		setRoomName(roomNameString.substring(roomNameString.indexOf('=') + 1));
 		String canJoinString = fullMessage.substring(indexOfCanJoin);
-		String canJoin = canJoinString.substring(canJoinString.indexOf('=') + 1);
-		if (canJoin.equals("true")){
-			setCanJoin(true);
-		} else setCanJoin(false);
+		setCanJoin(Boolean.parseBoolean(canJoinString.substring(canJoinString.indexOf('=') + 1)));
+		
 	}
 
 	@Override
@@ -33,12 +31,8 @@ public class JoinRoomResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes;
-		if (isCanJoin()){
-			bytes = new String("class=JoinRoomResponseMessage&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + "true").getBytes();
-		} else {
-			bytes = new String("class=JoinRoomResponseMessage&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + "false").getBytes();
-		}
+		byte[] bytes = new String("class=JoinRoomResponseMessage&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + canJoin).getBytes();
+		
 		return ByteBuffer.wrap(bytes);
 	}
 
