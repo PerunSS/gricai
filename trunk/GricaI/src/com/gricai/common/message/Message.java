@@ -6,5 +6,5 @@ public interface Message {
 
 	public String getUsername();
 	public ByteBuffer toByteBuffer();
-	public void fillMessage(byte[] data);
+	public void fillMessage(ByteBuffer data);
 }

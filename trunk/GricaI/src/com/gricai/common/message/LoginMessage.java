@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 public class LoginMessage implements Message {
 
 	@Override
-	public void fillMessage(byte[] data) {
+	public void fillMessage(ByteBuffer data) {
 		// TODO Auto-generated method stub
 
 	}

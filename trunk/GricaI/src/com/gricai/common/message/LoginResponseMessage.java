@@ -7,7 +7,7 @@ public class LoginResponseMessage implements Message {
 	private boolean logged;
 
 	@Override
-	public void fillMessage(byte[] data) {
+	public void fillMessage(ByteBuffer data) {
 		// TODO Auto-generated method stub
 
 	}

@@ -7,7 +7,7 @@ public class JoinRoomResponseMessage implements Message {
 	private boolean canJoin;
 
 	@Override
-	public void fillMessage(byte[] data) {
+	public void fillMessage(ByteBuffer data) {
 		// TODO Auto-generated method stub
 
 	}
