@@ -19,20 +19,21 @@ public class MessageFactory {
 		data.get(bytes, 0, bytes.length);
 		String fullMessage = new String(bytes);
 		String messageType = fullMessage.substring(fullMessage.indexOf('=') + 1,fullMessage.indexOf('&'));
+		System.out.println(messageType);
 		Message message;
-		if ( messageType == CHAT_MESSAGE){
+		if ( messageType.equals(CHAT_MESSAGE)){
 			message = new ChatMessage();
-		} else if ( messageType == ERROR_MESSAGE){
+		} else if ( messageType.equals(ERROR_MESSAGE)){
 			message = new ErrorMessage();
-		} else if ( messageType == JOIN_ROOM_MESSAGE){
+		} else if ( messageType.equals(JOIN_ROOM_MESSAGE)){
 			message = new JoinRoomMessage();
-		} else if ( messageType == JOIN_ROOM_RESPONSE_MESSAGE){
+		} else if ( messageType.equals(JOIN_ROOM_RESPONSE_MESSAGE)){
 			message = new JoinRoomResponseMessage();
-		} else if ( messageType == LEAVE_ROOM_MESSAGE){
+		} else if ( messageType.equals(LEAVE_ROOM_MESSAGE)){
 			message = new LeaveRoomMessage();
-		} else if ( messageType == LOGIN_MESSAGE){
+		} else if ( messageType.equals(LOGIN_MESSAGE)){
 			message = new LoginMessage();
-		} else if ( messageType == LOGIN_RESPONSE_MESSAGE){
+		} else if ( messageType.equals(LOGIN_RESPONSE_MESSAGE)){
 			message = new LoginResponseMessage();
 		} else {
 			throw new WrongMessageTypeException("Wrong message type!");
