@@ -16,7 +16,7 @@ public class LoginResponseMessage implements Message {
 		int indexOfLogged = fullMessage.indexOf('&')+1;
 		String loggedString = fullMessage.substring(indexOfLogged);
 		String logged = loggedString.substring(loggedString.indexOf('=') + 1);
-		if (logged == "true"){
+		if (logged.equals("true")){
 			setLogged(true);
 		} else setLogged(false);
 	}

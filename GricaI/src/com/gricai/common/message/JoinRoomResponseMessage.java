@@ -21,7 +21,7 @@ public class JoinRoomResponseMessage implements Message {
 		setRoomName(roomNameString.substring(roomNameString.indexOf('=') + 1));
 		String canJoinString = fullMessage.substring(indexOfCanJoin);
 		String canJoin = canJoinString.substring(canJoinString.indexOf('=') + 1);
-		if (canJoin == "true"){
+		if (canJoin.equals("true")){
 			setCanJoin(true);
 		} else setCanJoin(false);
 	}
