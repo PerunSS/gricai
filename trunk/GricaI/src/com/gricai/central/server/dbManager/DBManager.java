@@ -35,7 +35,7 @@ public class DBManager {
 	public Connection connect ( String DB_LOCATION, String USERNAME, String password){
         try{
             
-            return DriverManager.getConnection(DB_LOCATION,USERNAME,password);
+            return DriverManager.getConnection(DB_LOCATION, USERNAME, password);
         } catch ( Exception ex){
         	// nama ne treba runtime al ajd kad pogledas da vidimo sta treba il ne treba nista
           throw new RuntimeException("DB connection failure");
