@@ -32,20 +32,20 @@ public class ChatHandler implements InputHandler{
 			inputQueue.discardBytes(2); // eat CR/NL by itself
 			return null;
 		}
-
+		System.out.println("next message");
 		return (inputQueue.dequeueBytes(nlPos + 1));
 	}
 
 	@Override
 	public void started(ChannelFacade channelFacade) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("started");
 	}
 
 	@Override
 	public void starting(ChannelFacade channelFacade) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("starting");
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import com.gricai.central.server.nio.ChannelFacade;
 import com.gricai.central.server.nio.InputHandler;
 import com.gricai.central.server.nio.impl.InputHandlerFactory;
@@ -18,6 +17,7 @@ import com.gricai.common.message.LoginMessage;
 import com.gricai.common.message.LoginResponseMessage;
 import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
+import com.gricai.common.message.exception.WrongMessageTypeException;
 
 public class Loby implements InputHandlerFactory {
 
@@ -33,45 +33,57 @@ public class Loby implements InputHandlerFactory {
 	}
 
 	void handleMessage(ByteBuffer message, ChannelFacade facade) {
-		Message msg = MessageFactory.createMessage(message);
-		String username = msg.getUsername();
-		if (username == null)
-			return;
-		if (msg instanceof LoginMessage) {
-			ChatUser user = new ChatUser();
-			user.setUsername(username);
-			user.setFacade(facade);
-			LoginResponseMessage messageResponse = new LoginResponseMessage();
-			boolean checkLog = true;
-			// TODO check log in database
-			if (checkLog) {
-				user.setLogged(true);
-				users.put(username, user);
-			}
-			messageResponse.setLogged(checkLog);
-			user.send(messageResponse.toByteBuffer());
-		} else {
-			ChatUser user = users.get(username);
-			if (!user.isLogged()) {
+		Message msg = null;
+		try {
+			msg = MessageFactory.createMessage(message);
+		} catch (WrongMessageTypeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (msg != null) {
+			System.out.println("message: " + msg);
+			String username = msg.getUsername();
+			if (username == null)
 				return;
-			}
-			if (msg instanceof JoinRoomMessage) {
-				JoinRoomMessage jrm = (JoinRoomMessage) msg;
-				String roomName = jrm.getRoomName();
-				ChatRoom room = rooms.get(roomName);
-				if (room == null) {
-					room = new ChatRoom(roomName);
-					rooms.put(roomName, room);
+			if (msg instanceof LoginMessage) {
+				ChatUser user = new ChatUser();
+				user.setUsername(username);
+				user.setFacade(facade);
+				LoginResponseMessage messageResponse = new LoginResponseMessage();
+				boolean checkLog = true;
+				// TODO check log in database
+				if (checkLog) {
+					user.setLogged(true);
+					users.put(username, user);
 				}
-				boolean canJoin = room.addUser(user);
-				JoinRoomResponseMessage jrrm = new JoinRoomResponseMessage();
-				jrrm.setCanJoin(canJoin);
-				user.send(jrrm.toByteBuffer());
-			} else if ((msg instanceof ChatMessage || msg instanceof LeaveRoomMessage)
-					&& user.getRoom() != null) {
-				user.getRoom().recieveMessage(msg);
+				messageResponse.setLogged(checkLog);
+				user.send(messageResponse.toByteBuffer());
 			} else {
-				user.send(new ErrorMessage().toByteBuffer());
+				ChatUser user = users.get(username);
+				if(user==null){
+					return;
+				}
+				if (!user.isLogged()) {
+					return;
+				}
+				if (msg instanceof JoinRoomMessage) {
+					JoinRoomMessage jrm = (JoinRoomMessage) msg;
+					String roomName = jrm.getRoomName();
+					ChatRoom room = rooms.get(roomName);
+					if (room == null) {
+						room = new ChatRoom(roomName);
+						rooms.put(roomName, room);
+					}
+					boolean canJoin = room.addUser(user);
+					JoinRoomResponseMessage jrrm = new JoinRoomResponseMessage();
+					jrrm.setCanJoin(canJoin);
+					user.send(jrrm.toByteBuffer());
+				} else if ((msg instanceof ChatMessage || msg instanceof LeaveRoomMessage)
+						&& user.getRoom() != null) {
+					user.getRoom().recieveMessage(msg);
+				} else {
+					user.send(new ErrorMessage().toByteBuffer());
+				}
 			}
 		}
 	}

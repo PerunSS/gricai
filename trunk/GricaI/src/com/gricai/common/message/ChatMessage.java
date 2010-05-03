@@ -13,8 +13,7 @@ public class ChatMessage implements Message {
 
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		byte[] bytes =  new byte[data.capacity()];
-		data.get(bytes, 0, bytes.length);
+		byte[] bytes =  data.array();
 		String fullMessage = new String(bytes);
 		int indexOfUser = fullMessage.indexOf('&')+1;
 		int indexOfText = fullMessage.indexOf('&', indexOfUser);
