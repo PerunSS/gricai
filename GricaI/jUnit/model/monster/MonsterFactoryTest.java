@@ -1,8 +1,9 @@
 package model.monster;
 
 import static org.junit.Assert.assertNotSame;
-import game.model.monster.MonsterFactory;
-import game.model.monster.human.HumanFactory;
+
+import old.game.model.monster.MonsterFactory;
+import old.game.model.monster.human.HumanFactory;
 
 import org.junit.Test;
 

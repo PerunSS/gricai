@@ -10,6 +10,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import old.utils.crypt.Crypt;
+
 import org.junit.Test;
 
 public class CryptTest {
