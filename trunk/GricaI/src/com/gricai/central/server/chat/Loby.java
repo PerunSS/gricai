@@ -60,7 +60,7 @@ public class Loby implements InputHandlerFactory {
 				user.send(messageResponse.toByteBuffer());
 			} else {
 				ChatUser user = users.get(username);
-				if(user==null){
+				if(user == null){
 					return;
 				}
 				if (!user.isLogged()) {
