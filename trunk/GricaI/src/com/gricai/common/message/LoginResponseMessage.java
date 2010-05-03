@@ -14,10 +14,11 @@ public class LoginResponseMessage implements Message {
 		String fullMessage = new String(bytes);
 		int indexOfLogged = fullMessage.indexOf('&')+1;
 		String loggedString = fullMessage.substring(indexOfLogged);
-		String logged = loggedString.substring(loggedString.indexOf('=') + 1);
-		if (logged.equals("true")){
+		setLogged(Boolean.parseBoolean(loggedString.substring(loggedString.indexOf('=') + 1)));
+	/*	if (logged.equals("true")){
 			setLogged(true);
-		} else setLogged(false);
+		} else setLogged(false);*/
+		
 	}
 
 	@Override
@@ -28,12 +29,8 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes;
-		if ( isLogged()){
-			bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+"true").getBytes();
-		} else {
-			bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+"false").getBytes();
-		}
+		byte[] bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+logged).getBytes();
+		
 		return ByteBuffer.wrap(bytes);
 	}
 
