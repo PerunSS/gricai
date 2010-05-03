@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.gricai.common.message.LeaveRoomMessage;
 import com.gricai.common.message.Message;
 
 public class ChatRoom {
@@ -15,7 +16,7 @@ public class ChatRoom {
 	private static int ROOM_SIZE;
 
 	private String roomName;
-	private List< ChatUser> users = new ArrayList<ChatUser>();
+	private List<ChatUser> users = new ArrayList<ChatUser>();
 	
 	public ChatRoom(String roomName){
 		this.roomName = roomName;
@@ -27,29 +28,33 @@ public class ChatRoom {
 			ROOM_SIZE = (Integer) props.get("ROOM_SIZE");
 		} catch (FileNotFoundException e) {
 			ROOM_SIZE = 40;
-			e.printStackTrace();
 		} catch (IOException e) {
 			ROOM_SIZE = 40;
-			e.printStackTrace();
 		}
 		
 	}
 	
 	public boolean addUser(ChatUser user) {
 		if (users.size() - 1 > ROOM_SIZE){
-			//TODO
 			return false;
 		}
 		users.add(user);
 		user.setRoom(this);
-		
-		//TODO
 		return true;
 	}
 	
-	public void removeUser(ChatUser user) {
-		user.setRoom(null);
-		users.remove(user);
+	public void removeUser(String username) {
+		ChatUser user = null;
+		for(ChatUser u:users){
+			if(u.getUsername().equalsIgnoreCase(username)){
+				user = u;
+				break;
+			}
+		}
+		if(user!=null){
+			user.setRoom(null);
+			users.remove(user);
+		}
 	}
 	
 	public String getRoomName() {
@@ -57,7 +62,10 @@ public class ChatRoom {
 	}
 
 	public void recieveMessage(Message message) {
-		broadcast(message.toByteBuffer(), null);
+		if(message instanceof LeaveRoomMessage){
+			removeUser(message.getUsername());
+		}else
+			broadcast(message.toByteBuffer(), null);
 	}
 
 	private void broadcast(ByteBuffer message, ChatUser user) {
