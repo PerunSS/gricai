@@ -12,8 +12,7 @@ public class LoginMessage implements Message {
 	
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		byte[] bytes =  new byte[data.capacity()];
-		data.get(bytes, 0, bytes.length);
+		byte[] bytes =  data.array();
 		String fullMessage = new String(bytes);
 		int indexOfUser = fullMessage.indexOf('&')+1;
 		int indexOfPassword = fullMessage.indexOf('&', indexOfUser);

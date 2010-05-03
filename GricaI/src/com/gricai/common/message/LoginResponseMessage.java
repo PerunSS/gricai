@@ -10,8 +10,7 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		byte[] bytes =  new byte[data.capacity()];
-		data.get(bytes, 0, bytes.length);
+		byte[] bytes =  data.array();
 		String fullMessage = new String(bytes);
 		int indexOfLogged = fullMessage.indexOf('&')+1;
 		String loggedString = fullMessage.substring(indexOfLogged);
