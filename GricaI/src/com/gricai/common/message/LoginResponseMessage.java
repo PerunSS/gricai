@@ -4,12 +4,21 @@ import java.nio.ByteBuffer;
 
 public class LoginResponseMessage implements Message {
 	
+	private static final String TEXT_ISLOGGED = "logged";
+	
 	private boolean logged;
 
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		// TODO Auto-generated method stub
-
+		byte[] bytes =  new byte[data.capacity()];
+		data.get(bytes, 0, bytes.length);
+		String fullMessage = new String(bytes);
+		int indexOfLogged = fullMessage.indexOf('&')+1;
+		String loggedString = fullMessage.substring(indexOfLogged);
+		String logged = loggedString.substring(loggedString.indexOf('=') + 1);
+		if (logged == "true"){
+			setLogged(true);
+		} else setLogged(false);
 	}
 
 	@Override
@@ -20,8 +29,13 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		// TODO Auto-generated method stub
-		return null;
+		byte[] bytes;
+		if ( isLogged()){
+			bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+"true").getBytes();
+		} else {
+			bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+"false").getBytes();
+		}
+		return ByteBuffer.wrap(bytes);
 	}
 
 	public void setLogged(boolean logged) {
