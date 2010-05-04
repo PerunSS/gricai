@@ -1,11 +1,13 @@
 package com.gricai.central.client;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
+import java.util.Properties;
 
 import com.gricai.common.message.ChatMessage;
 import com.gricai.common.message.Message;
@@ -14,13 +16,18 @@ import com.gricai.common.message.exception.WrongMessageTypeException;
 
 public class Client {
 
-	InputStream is;
-	OutputStream os;
-	Socket socket;
+	private InputStream is;
+	private OutputStream os;
+	private Socket socket;
+	private static final String propertiesFile = "server.properties";
 	
 	public Client(){
 		try {
-			socket = new Socket("localhost", 12345);
+			Properties props = new Properties();
+			props.load(new FileReader(propertiesFile));
+			String host = props.getProperty("host");
+			int port = Integer.getInteger(props.getProperty("port"));
+			socket = new Socket(host, port);
 			is = socket.getInputStream();
 			os = socket.getOutputStream();
 		} catch (UnknownHostException e) {

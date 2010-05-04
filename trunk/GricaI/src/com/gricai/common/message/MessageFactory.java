@@ -15,8 +15,7 @@ public class MessageFactory {
 	private static final String LOGIN_RESPONSE_MESSAGE = "LoginResponseMessage";
 	
 	public static Message createMessage(ByteBuffer data) throws WrongMessageTypeException{
-		byte[] bytes =  new byte[data.capacity()];
-		data.get(bytes, 0, bytes.length);
+		byte[] bytes =  data.array();
 		String fullMessage = new String(bytes);
 		String messageType = fullMessage.substring(fullMessage.indexOf('=') + 1,fullMessage.indexOf('&'));
 		System.out.println(messageType);
