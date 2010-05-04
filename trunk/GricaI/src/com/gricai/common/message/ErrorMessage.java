@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 
 public class ErrorMessage implements Message {
 
-	private static final String ERROR_CODE= "error_code";
+	private static final String ERROR_CODE= "errorCode";
 	public static final int NULL_USERNAME = 1;
 	public static final int NULL_USER = 2;
 	public static final int NOT_LOGGED = 3;
