@@ -5,8 +5,18 @@ import java.nio.ByteBuffer;
 public class ErrorMessage implements Message {
 
 	private static final String ERROR_CODE= "error_code";
+	public static final int NULL_USERNAME = 1;
+	public static final int NULL_USER = 2;
+	public static final int NOT_LOGGED = 3;
+	public static final int UNKNOWN_MESSAGE = 4;
 	
-	int errorCode;
+	private int errorCode;
+	
+	public ErrorMessage(){}
+	
+	public ErrorMessage(int errorCode){
+		this.errorCode = errorCode;
+	}
 	
 	@Override
 	public void fillMessage(ByteBuffer data) {

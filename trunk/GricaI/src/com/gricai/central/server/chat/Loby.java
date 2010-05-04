@@ -37,14 +37,17 @@ public class Loby implements InputHandlerFactory {
 		try {
 			msg = MessageFactory.createMessage(message);
 		} catch (WrongMessageTypeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (msg != null) {
 			System.out.println("message: " + msg);
 			String username = msg.getUsername();
-			if (username == null)
+			if (username == null) {
+				facade.outputQueue().enqueue(
+						new ErrorMessage(ErrorMessage.NULL_USERNAME)
+								.toByteBuffer());
 				return;
+			}
 			if (msg instanceof LoginMessage) {
 				ChatUser user = new ChatUser();
 				user.setUsername(username);
@@ -60,10 +63,15 @@ public class Loby implements InputHandlerFactory {
 				user.send(messageResponse.toByteBuffer());
 			} else {
 				ChatUser user = users.get(username);
-				if(user == null){
+				if (user == null) {
+					facade.outputQueue().enqueue(
+							new ErrorMessage(ErrorMessage.NULL_USER)
+									.toByteBuffer());
 					return;
 				}
 				if (!user.isLogged()) {
+					user.send(new ErrorMessage(ErrorMessage.NOT_LOGGED)
+							.toByteBuffer());
 					return;
 				}
 				if (msg instanceof JoinRoomMessage) {
@@ -82,7 +90,8 @@ public class Loby implements InputHandlerFactory {
 						&& user.getRoom() != null) {
 					user.getRoom().recieveMessage(msg);
 				} else {
-					user.send(new ErrorMessage().toByteBuffer());
+					user.send(new ErrorMessage(ErrorMessage.UNKNOWN_MESSAGE)
+							.toByteBuffer());
 				}
 			}
 		}
