@@ -4,8 +4,8 @@ import java.nio.ByteBuffer;
 
 public class JoinRoomResponseMessage implements Message {
 	
-	private static final String TEXT_CANJOIN = "can_join";
-	private static final String TEXT_ROOMNAME = "room_name";
+	private static final String TEXT_CANJOIN = "canJoin";
+	private static final String TEXT_ROOMNAME = "roomName";
 	
 	private String roomName;
 	private boolean canJoin;
