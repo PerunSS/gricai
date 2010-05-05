@@ -2,6 +2,8 @@ package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
 
+import net.sf.json.JSONObject;
+
 public class LoginResponseMessage implements Message {
 	
 	private static final String TEXT_ISLOGGED = "logged";
@@ -40,6 +42,12 @@ public class LoginResponseMessage implements Message {
 
 	public boolean isLogged() {
 		return logged;
+	}
+
+	@Override
+	public void fillMessage(JSONObject jsonMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

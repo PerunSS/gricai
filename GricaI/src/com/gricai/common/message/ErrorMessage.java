@@ -2,6 +2,8 @@ package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
 
+import net.sf.json.JSONObject;
+
 public class ErrorMessage implements Message {
 
 	private static final String ERROR_CODE= "errorCode";
@@ -45,6 +47,12 @@ public class ErrorMessage implements Message {
 
 	public void setErrorCode(int errorCode) {
 		this.errorCode = errorCode;
+	}
+
+	@Override
+	public void fillMessage(JSONObject jsonMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

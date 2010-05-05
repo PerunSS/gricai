@@ -2,6 +2,8 @@ package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
 
+import net.sf.json.JSONObject;
+
 public class JoinRoomResponseMessage implements Message {
 	
 	private static final String TEXT_CANJOIN = "canJoin";
@@ -50,6 +52,12 @@ public class JoinRoomResponseMessage implements Message {
 
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
+	}
+
+	@Override
+	public void fillMessage(JSONObject jsonMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
