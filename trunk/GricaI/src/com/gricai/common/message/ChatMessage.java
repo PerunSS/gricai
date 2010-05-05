@@ -2,6 +2,8 @@ package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
 
+import net.sf.json.JSONObject;
+
 public class ChatMessage implements Message {
 	
 	private static final String TEXT_USERNAME = "username";
@@ -44,5 +46,11 @@ public class ChatMessage implements Message {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	@Override
+	public void fillMessage(JSONObject jsonMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 }

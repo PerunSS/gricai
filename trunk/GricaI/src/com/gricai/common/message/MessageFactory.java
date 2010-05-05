@@ -2,6 +2,8 @@ package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
 
+import net.sf.json.JSONObject;
+
 import com.gricai.common.message.exception.WrongMessageTypeException;
 
 public class MessageFactory {
@@ -41,5 +43,9 @@ public class MessageFactory {
 		message.fillMessage(data);
 		
 		return message;
+	}
+	//TODO
+	public static Message createMessage(JSONObject jsonMessage) throws WrongMessageTypeException{
+		return null;
 	}
 }
