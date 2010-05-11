@@ -25,6 +25,7 @@ public class DBManager {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
+			} finally {
 			}
 	}
 	
