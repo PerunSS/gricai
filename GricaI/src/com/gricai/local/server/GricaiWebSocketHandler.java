@@ -17,6 +17,11 @@ import com.gricai.common.message.exception.WrongMessageTypeException;
 public class GricaiWebSocketHandler implements WebSocketHandler {
 	
 	private Client client;
+	private String username;
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	@Override
 	public void init(Properties props) {
@@ -47,7 +52,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 	public void onMessage(WebSocket webSocket, Object message) {
 		if(message instanceof JSONObject){
 			try {
-				Message msg = MessageFactory.createMessage((JSONObject)message);
+				Message msg = MessageFactory.createMessage((JSONObject)message, username);
 				client.sendMessage(msg);
 				Message response = client.recieveMessage();
 				webSocket.send(response.toByteBuffer().array());
