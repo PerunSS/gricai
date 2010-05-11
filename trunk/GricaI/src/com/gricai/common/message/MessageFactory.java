@@ -45,7 +45,7 @@ public class MessageFactory {
 		return message;
 	}
 	//TODO
-	public static Message createMessage(JSONObject jsonMessage) throws WrongMessageTypeException{
+	public static Message createMessage(JSONObject jsonMessage, String username) throws WrongMessageTypeException{
 		return null;
 	}
 }
