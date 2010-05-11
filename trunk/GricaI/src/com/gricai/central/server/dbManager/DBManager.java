@@ -7,11 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBManager {
-/*	
-	private static final String DB_LOCATION = "localhost:xxxx/db_gricai";
-	private static final String USERNAME = "";
-	private static final String password = "";
-	*/
+
+	public static final String DB_LOCATION = "localhost:xxxx/db_gricai";
+	public static final String USERNAME = "";
+	public static final String PASSWORD = "";
+	
 
 	
 	private static DBManager instance = new DBManager();
