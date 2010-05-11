@@ -213,7 +213,7 @@ public class SQLSelectImpl extends SQLSelect {
 	// sh ti mislis nakucaj ovde
 	public Object execute() throws SQLException {
 		//DB name user and pass needed!!!
-		Connection conn = DBManager.getInstance().connect("test_baza_negde", "user", "pass");
+		Connection conn = DBManager.getInstance().connect(DBManager.DB_LOCATION, DBManager.USERNAME, DBManager.PASSWORD);
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try{
