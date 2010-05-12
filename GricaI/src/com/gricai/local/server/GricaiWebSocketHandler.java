@@ -10,6 +10,7 @@ import org.jwebsocket.api.WebSocketException;
 import org.jwebsocket.api.WebSocketHandler;
 
 import com.gricai.central.client.Client;
+import com.gricai.common.message.LoginResponseMessage;
 import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
 import com.gricai.common.message.exception.WrongMessageTypeException;
@@ -18,6 +19,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 	
 	private Client client;
 	private String username;
+	private boolean logged = false;
 
 	public void setUsername(String username) {
 		this.username = username;
@@ -55,6 +57,11 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 				Message msg = MessageFactory.createMessage((JSONObject)message, username);
 				client.sendMessage(msg);
 				Message response = client.recieveMessage();
+				if(!logged && response instanceof LoginResponseMessage){
+					LoginResponseMessage lrm = (LoginResponseMessage)response;
+					username = lrm.getUsername();
+					logged = true;
+				}
 				webSocket.send(response.toByteBuffer().array());
 			} catch (WrongMessageTypeException e) {
 				e.printStackTrace();

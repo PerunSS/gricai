@@ -52,7 +52,7 @@ public class Loby implements InputHandlerFactory {
 				ChatUser user = new ChatUser();
 				user.setUsername(username);
 				user.setFacade(facade);
-				LoginResponseMessage messageResponse = new LoginResponseMessage();
+				LoginResponseMessage messageResponse = new LoginResponseMessage(username);
 				boolean checkLog = true;
 				// TODO check log in database
 				if (checkLog) {
