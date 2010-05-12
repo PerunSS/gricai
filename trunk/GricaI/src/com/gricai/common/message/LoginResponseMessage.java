@@ -7,16 +7,21 @@ import net.sf.json.JSONObject;
 public class LoginResponseMessage implements Message {
 	
 	private static final String TEXT_ISLOGGED = "logged";
+	private static final String TEXT_USERNAME = "username";
 	
 	private boolean logged;
+	private String username;
 
+	public LoginResponseMessage(String username){
+		this.username = username;
+	}
 	@Override
 	public void fillMessage(ByteBuffer data) {
-		byte[] bytes =  data.array();
-		String fullMessage = new String(bytes);
-		int indexOfLogged = fullMessage.indexOf('&')+1;
-		String loggedString = fullMessage.substring(indexOfLogged);
-		setLogged(Boolean.parseBoolean(loggedString.substring(loggedString.indexOf('=') + 1)));
+//		byte[] bytes =  data.array();
+//		String fullMessage = new String(bytes);
+//		int indexOfLogged = fullMessage.indexOf('&')+1;
+//		String loggedString = fullMessage.substring(indexOfLogged);
+//		setLogged(Boolean.parseBoolean(loggedString.substring(loggedString.indexOf('=') + 1)));
 	/*	if (logged.equals("true")){
 			setLogged(true);
 		} else setLogged(false);*/
@@ -31,7 +36,7 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+logged).getBytes();
+		byte[] bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+logged+"&"+TEXT_USERNAME+"="+username).getBytes();
 		
 		return ByteBuffer.wrap(bytes);
 	}
