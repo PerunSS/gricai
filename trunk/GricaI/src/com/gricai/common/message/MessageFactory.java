@@ -51,7 +51,8 @@ public class MessageFactory {
 	
 	
 	public static Message createMessage(JSONObject jsonMessage, String username) throws WrongMessageTypeException{
-
+		String messageType = jsonMessage.names().getString(0);
+		
 		return null;
 	}
 }
