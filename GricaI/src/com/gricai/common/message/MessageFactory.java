@@ -1,6 +1,7 @@
 package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
+import java.sql.SQLException;
 
 import net.sf.json.JSONObject;
 
@@ -21,6 +22,12 @@ public class MessageFactory {
 		String fullMessage = new String(bytes);
 		String messageType = fullMessage.substring(fullMessage.indexOf('=') + 1,fullMessage.indexOf('&'));
 		System.out.println(messageType);
+		Message message = createMessageFromString(messageType);
+		message.fillMessage(data);
+		return message;
+		}
+
+	private static Message createMessageFromString( String messageType) throws WrongMessageTypeException{
 		Message message;
 		if ( messageType.equals(CHAT_MESSAGE)){
 			message = new ChatMessage();
@@ -39,13 +46,12 @@ public class MessageFactory {
 		} else {
 			throw new WrongMessageTypeException("Wrong message type!");
 		}
-		
-		message.fillMessage(data);
-		
 		return message;
 	}
-	//TODO
+	
+	
 	public static Message createMessage(JSONObject jsonMessage, String username) throws WrongMessageTypeException{
+
 		return null;
 	}
 }
