@@ -3,8 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Index</title>
+<script type="text/javascript" src="client/MessageFactory.js"></script>
+<script type="text/javascript" src="client/Message.js"></script>
 </head>
+
 <body>
 Welcomen
+<script>
+	var values = ["pera","1234"];
+	var factory = new MessageFactory();
+	var msg = factory.createLoginMessage(values);
+	msg.getJSONMessage();
+</script>
+blabla
 </body>
 </html>
