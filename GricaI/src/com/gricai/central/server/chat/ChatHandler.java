@@ -9,9 +9,9 @@ import com.gricai.central.server.nio.InputQueue;
 
 public class ChatHandler implements InputHandler{
 	
-	private Loby loby;
+	private Lobby loby;
 	
-	public ChatHandler(Loby loby){
+	public ChatHandler(Lobby loby){
 		this.loby = loby;
 	}
 
