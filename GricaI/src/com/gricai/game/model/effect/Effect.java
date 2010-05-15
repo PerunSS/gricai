@@ -1,6 +1,6 @@
-package old.game.model.effect;
+package com.gricai.game.model.effect;
 
-import old.game.model.monster.Monster;
+import com.gricai.game.model.monster.Monster;
 
 public abstract class Effect {
 

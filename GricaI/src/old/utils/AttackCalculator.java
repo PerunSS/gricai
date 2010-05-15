@@ -1,6 +1,6 @@
 package old.utils;
 
-import old.game.model.monster.Monster;
+import com.gricai.game.model.monster.Monster;
 
 public class AttackCalculator {
 

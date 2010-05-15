@@ -1,4 +1,4 @@
-package old.game.model.monster.human;
+package com.gricai.game.model.monster.human;
 
 import old.game.view.painters.monster.human.FootmanPainter;
 

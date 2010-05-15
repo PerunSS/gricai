@@ -1,4 +1,4 @@
-package old.game.model.board;
+package com.gricai.game.model.board;
 
 
 import java.io.BufferedReader;
@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import old.game.model.monster.Monster;
+import com.gricai.game.model.monster.Monster;
+
 import old.utils.log.LogChooser;
 
 

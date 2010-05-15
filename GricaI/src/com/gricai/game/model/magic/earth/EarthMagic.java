@@ -1,6 +1,6 @@
-package old.game.model.magic.earth;
+package com.gricai.game.model.magic.earth;
 
-import old.game.model.magic.Magic;
+import com.gricai.game.model.magic.Magic;
 
 public abstract class EarthMagic extends Magic {
 

@@ -1,7 +1,8 @@
-package old.game.model.board;
+package com.gricai.game.model.board;
 
-import old.game.model.monster.Monster;
-import old.game.model.obstacle.Obstacle;
+import com.gricai.game.model.monster.Monster;
+import com.gricai.game.model.obstacle.Obstacle;
+
 
 public class Field {
 
