@@ -19,7 +19,14 @@ import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
 import com.gricai.common.message.exception.WrongMessageTypeException;
 
-public class Loby implements InputHandlerFactory {
+/**
+ * Lobby is used to store all users and all rooms. It is handler factory and it
+ * work and distributes all messages
+ * 
+ * @author aleksandarvaricak
+ * 
+ */
+public class Lobby implements InputHandlerFactory {
 
 	private Map<String, ChatUser> users = Collections
 			.synchronizedMap(new HashMap<String, ChatUser>());
@@ -32,6 +39,11 @@ public class Loby implements InputHandlerFactory {
 		return new ChatHandler(this);
 	}
 
+	/**
+	 * method handles message and send answer to the client
+	 * @param message
+	 * @param facade
+	 */
 	void handleMessage(ByteBuffer message, ChannelFacade facade) {
 		Message msg = null;
 		try {
@@ -52,7 +64,8 @@ public class Loby implements InputHandlerFactory {
 				ChatUser user = new ChatUser();
 				user.setUsername(username);
 				user.setFacade(facade);
-				LoginResponseMessage messageResponse = new LoginResponseMessage(username);
+				LoginResponseMessage messageResponse = new LoginResponseMessage(
+						username);
 				boolean checkLog = true;
 				// TODO check log in database
 				if (checkLog) {

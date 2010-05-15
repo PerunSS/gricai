@@ -9,11 +9,14 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.Properties;
 
-import com.gricai.common.message.ChatMessage;
 import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
 import com.gricai.common.message.exception.WrongMessageTypeException;
-
+/**
+ * client is used to communicate between central server and local server
+ * @author aleksandarvaricak
+ *
+ */
 public class Client {
 
 	private InputStream is;
@@ -37,6 +40,10 @@ public class Client {
 		}
 	}
 	
+	/**
+	 * method sends message object to central server
+	 * @param message
+	 */
 	public void sendMessage(Message message){
 		try {
 			os.write(message.toByteBuffer().array());
@@ -47,13 +54,16 @@ public class Client {
 		}
 	}
 	
+	/**
+	 * method receives message object from central server
+	 * @return message
+	 */
 	public Message recieveMessage(){
 		byte[] buffer = new byte[1024];
 		try {
 			is.read(buffer);
 			return MessageFactory.createMessage(ByteBuffer.wrap(buffer));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WrongMessageTypeException e) {
 			e.printStackTrace();
@@ -61,18 +71,14 @@ public class Client {
 		return null;
 	}
 	
+	/**
+	 * this method need to be called when client is exiting
+	 * @throws IOException
+	 */
 	public void close() throws IOException{
 		is.close();
 		os.close();
 		socket.close();
 	}
 	
-	public static void main(String[] args) {
-		Client c = new Client();
-		System.out.println("sending...");
-		c.sendMessage(new ChatMessage());
-		System.out.println("sent");
-		Message msg = c.recieveMessage();
-		System.out.println(msg);
-	}
 }

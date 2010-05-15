@@ -25,7 +25,7 @@ public class ChatServer {
 		Executor executor = Executors.newCachedThreadPool();
 		BufferFactory bufFactory = new DumbBufferFactory(1024);
 		NioDispatcher dispatcher = new NioDispatcher(executor, bufFactory);
-		InputHandlerFactory factory = new Loby();
+		InputHandlerFactory factory = new Lobby();
 		int port = Integer.parseInt(props.getProperty("prop"));
 		StandardAcceptor acceptor = new StandardAcceptor(port, dispatcher,
 				factory);
