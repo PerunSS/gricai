@@ -1,6 +1,6 @@
-package old.game.model.magic;
+package com.gricai.game.model.magic;
 
-import old.game.model.board.Field;
+import com.gricai.game.model.board.Field;
 
 public abstract class Magic {
 

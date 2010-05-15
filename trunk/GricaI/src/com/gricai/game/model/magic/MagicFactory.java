@@ -1,4 +1,4 @@
-package old.game.model.magic;
+package com.gricai.game.model.magic;
 
 public class MagicFactory {
 

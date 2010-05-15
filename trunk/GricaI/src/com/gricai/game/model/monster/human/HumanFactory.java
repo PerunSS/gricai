@@ -1,4 +1,4 @@
-package old.game.model.monster.human;
+package com.gricai.game.model.monster.human;
 
 /**
  * Factory for creating Human monster types
@@ -12,16 +12,11 @@ public class HumanFactory {
 	}
 	
 	/**
-	 * creates Footman, Peasant
-	 * @return new Footman, Peasant
-	 */
-	
+	 * creates Footman
+	 * @return new Footman
+	 */	
 	public Footman createFootman(){
 		return new Footman();
 	}
 	
-	public Peasant createPeasant(){
-		return new Peasant();
-	}
-
 }
