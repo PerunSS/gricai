@@ -17,14 +17,15 @@ public class LoginResponseMessage implements Message {
 	}
 	@Override
 	public void fillMessage(ByteBuffer data) {
-//		byte[] bytes =  data.array();
-//		String fullMessage = new String(bytes);
-//		int indexOfLogged = fullMessage.indexOf('&')+1;
-//		String loggedString = fullMessage.substring(indexOfLogged);
-//		setLogged(Boolean.parseBoolean(loggedString.substring(loggedString.indexOf('=') + 1)));
-	/*	if (logged.equals("true")){
-			setLogged(true);
-		} else setLogged(false);*/
+		byte[] bytes =  data.array();
+		String fullMessage = new String(bytes);
+		int indexOfUser = fullMessage.indexOf('&')+1;
+		int indexOfLogged =  fullMessage.indexOf('&', indexOfUser);
+		String userString = fullMessage.substring(indexOfUser,indexOfLogged-1);
+		setUsername(userString.substring(userString.indexOf('=') + 1));
+		String loggedString = fullMessage.substring(indexOfLogged);
+		setLogged(Boolean.parseBoolean(loggedString.substring(loggedString.indexOf('=') + 1)));
+	
 		
 	}
 
@@ -36,9 +37,15 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=LeaveRoomMessage&"+TEXT_ISLOGGED+"="+logged+"&"+TEXT_USERNAME+"="+username).getBytes();
+		byte[] bytes = new String("class=LeaveRoomMessage&"+TEXT_USERNAME+"="+username+"&"+TEXT_ISLOGGED+"="+logged).getBytes();
 		
 		return ByteBuffer.wrap(bytes);
+	}
+	
+	@Override
+	public void fillMessage(JSONObject jsonMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void setLogged(boolean logged) {
@@ -49,10 +56,9 @@ public class LoginResponseMessage implements Message {
 		return logged;
 	}
 
-	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

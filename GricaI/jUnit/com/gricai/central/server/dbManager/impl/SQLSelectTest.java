@@ -68,8 +68,7 @@ public class SQLSelectTest {
 //		}
 //	}
 
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		org.junit.runner.JUnitCore.main("SQLSelectTest");
 	}
 
