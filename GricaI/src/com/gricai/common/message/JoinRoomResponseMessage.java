@@ -18,7 +18,7 @@ public class JoinRoomResponseMessage implements Message {
 		String fullMessage = new String(bytes);
 		int indexOfRoom = fullMessage.indexOf('&')+1;
 		int indexOfCanJoin = fullMessage.indexOf('&', indexOfRoom);
-		String roomNameString = fullMessage.substring(indexOfRoom,indexOfCanJoin-1);
+		String roomNameString = fullMessage.substring(indexOfRoom,indexOfCanJoin);
 		setRoomName(roomNameString.substring(roomNameString.indexOf('=') + 1));
 		String canJoinString = fullMessage.substring(indexOfCanJoin);
 		setCanJoin(Boolean.parseBoolean(canJoinString.substring(canJoinString.indexOf('=') + 1)));

@@ -18,7 +18,7 @@ public class LoginMessage implements Message {
 		String fullMessage = new String(bytes);
 		int indexOfUser = fullMessage.indexOf('&')+1;
 		int indexOfPassword = fullMessage.indexOf('&', indexOfUser);
-		String userString = fullMessage.substring(indexOfUser,indexOfPassword-1);
+		String userString = fullMessage.substring(indexOfUser,indexOfPassword);
 		setUsername(userString.substring(userString.indexOf('=') + 1));
 		String passwordString = fullMessage.substring(indexOfPassword);
 		setPassword(passwordString.substring(passwordString.indexOf('=') + 1));

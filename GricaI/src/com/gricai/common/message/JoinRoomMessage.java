@@ -18,7 +18,7 @@ public class JoinRoomMessage implements Message {
 		String fullMessage = new String(bytes);
 		int indexOfUser = fullMessage.indexOf('&')+1;
 		int indexOfRoom = fullMessage.indexOf('&', indexOfUser);
-		String userString = fullMessage.substring(indexOfUser,indexOfRoom-1);
+		String userString = fullMessage.substring(indexOfUser,indexOfRoom);
 		setUsername(userString.substring(userString.indexOf('=') + 1));
 		String roomNameString = fullMessage.substring(indexOfRoom);
 		setRoomName(roomNameString.substring(roomNameString.indexOf('=') + 1));
