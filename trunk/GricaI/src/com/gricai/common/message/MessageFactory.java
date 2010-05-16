@@ -1,8 +1,8 @@
 package com.gricai.common.message;
 
 import java.nio.ByteBuffer;
-import java.sql.SQLException;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.gricai.common.message.exception.WrongMessageTypeException;
@@ -51,8 +51,13 @@ public class MessageFactory {
 	
 	
 	public static Message createMessage(JSONObject jsonMessage, String username) throws WrongMessageTypeException{
-		String messageType = jsonMessage.names().getString(0);
-		
-		return null;
+		String message = "class=" + jsonMessage.names().getString(0);
+		JSONObject parameters = jsonMessage.getJSONObject(jsonMessage.names().getString(0));
+		JSONArray parametersKeys = parameters.names();
+		for (int i = 0; i < parametersKeys.size(); i ++){
+			message =  message + "&" + parametersKeys.getString(i) + "=" + parameters.getString(parametersKeys.getString(i));
+		}
+		byte[] bytes = message.getBytes();
+		return createMessage(ByteBuffer.wrap(bytes));
 	}
 }
