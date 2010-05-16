@@ -21,7 +21,7 @@ public class LoginResponseMessage implements Message {
 		String fullMessage = new String(bytes);
 		int indexOfUser = fullMessage.indexOf('&')+1;
 		int indexOfLogged =  fullMessage.indexOf('&', indexOfUser);
-		String userString = fullMessage.substring(indexOfUser,indexOfLogged-1);
+		String userString = fullMessage.substring(indexOfUser,indexOfLogged);
 		setUsername(userString.substring(userString.indexOf('=') + 1));
 		String loggedString = fullMessage.substring(indexOfLogged);
 		setLogged(Boolean.parseBoolean(loggedString.substring(loggedString.indexOf('=') + 1)));

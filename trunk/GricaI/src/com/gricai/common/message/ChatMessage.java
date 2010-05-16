@@ -19,7 +19,7 @@ public class ChatMessage implements Message {
 		String fullMessage = new String(bytes);
 		int indexOfUser = fullMessage.indexOf('&')+1;
 		int indexOfText = fullMessage.indexOf('&', indexOfUser);
-		String userString = fullMessage.substring(indexOfUser,indexOfText-1);
+		String userString = fullMessage.substring(indexOfUser,indexOfText);
 		setUsername(userString.substring(userString.indexOf('=') + 1));
 		String textString = fullMessage.substring(indexOfText);
 		setText(textString.substring(textString.indexOf('=') + 1));
