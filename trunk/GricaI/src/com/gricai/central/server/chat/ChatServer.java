@@ -26,7 +26,7 @@ public class ChatServer {
 		BufferFactory bufFactory = new DumbBufferFactory(1024);
 		NioDispatcher dispatcher = new NioDispatcher(executor, bufFactory);
 		InputHandlerFactory factory = new Lobby();
-		int port = Integer.parseInt(props.getProperty("prop"));
+		int port = Integer.parseInt(props.getProperty("port"));
 		StandardAcceptor acceptor = new StandardAcceptor(port, dispatcher,
 				factory);
 

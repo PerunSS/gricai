@@ -27,17 +27,17 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 
 	@Override
 	public void init(Properties props) {
-		client = new Client();
+		client = new Client(this);
 	}
 
 	@Override
 	public void onClose(WebSocket webSocket) {
 		try {
-			client.close();
+			//client.close();
 			webSocket.close();
-		} catch (IOException e) {
-			//TODO log err
-			e.printStackTrace();
+//		} catch (IOException e) {
+//			//TODO log err
+//			e.printStackTrace();
 		} catch (WebSocketException e) {
 			// TODO log err
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 			try {
 				Message msg = MessageFactory.createMessage((JSONObject)message, username);
 				client.sendMessage(msg);
-				Message response = client.recieveMessage();
+				Message response = null;//client.recieveMessage();
 				if(!logged && response instanceof LoginResponseMessage){
 					LoginResponseMessage lrm = (LoginResponseMessage)response;
 					username = lrm.getUsername();
