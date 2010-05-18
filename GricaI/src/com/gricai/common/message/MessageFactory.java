@@ -50,7 +50,7 @@ public class MessageFactory {
 	}
 	
 	
-	public static Message createMessage(JSONObject jsonMessage, String username) throws WrongMessageTypeException{
+	public static Message createMessage(JSONObject jsonMessage,String username) throws WrongMessageTypeException{
 		String message = "class=" + jsonMessage.names().getString(0);
 		JSONObject parameters = jsonMessage.getJSONObject(jsonMessage.names().getString(0));
 		JSONArray parametersKeys = parameters.names();

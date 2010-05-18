@@ -36,6 +36,7 @@ public class Lobby implements InputHandlerFactory {
 	@Override
 	public InputHandler newHandler() throws IllegalAccessException,
 			InstantiationException {
+		System.out.println("new handler");
 		return new ChatHandler(this);
 	}
 
