@@ -1,6 +1,5 @@
 package com.gricai.local.server;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import net.sf.json.JSONObject;
@@ -19,6 +18,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 	
 	private Client client;
 	private String username;
+	private WebSocket webSocket;
 	private boolean logged = false;
 
 	public void setUsername(String username) {
@@ -62,7 +62,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 					username = lrm.getUsername();
 					logged = true;
 				}
-				webSocket.send(response.toByteBuffer().array());
+				sendMessage(response);
 			} catch (WrongMessageTypeException e) {
 				e.printStackTrace();
 			} catch (WebSocketException e) {
@@ -73,8 +73,16 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 
 	@Override
 	public void onOpen(WebSocket webSocket) {
-		// TODO Auto-generated method stub
-
+		this.webSocket = webSocket;
+	}
+	
+	public void sendMessage(Message msg) throws WebSocketException{
+		try {
+			webSocket.send(msg.toByteBuffer().array());
+		} catch (WebSocketException e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 }

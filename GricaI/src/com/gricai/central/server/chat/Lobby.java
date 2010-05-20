@@ -42,6 +42,7 @@ public class Lobby implements InputHandlerFactory {
 
 	/**
 	 * method handles message and send answer to the client
+	 * 
 	 * @param message
 	 * @param facade
 	 */
@@ -52,6 +53,7 @@ public class Lobby implements InputHandlerFactory {
 		} catch (WrongMessageTypeException e) {
 			e.printStackTrace();
 		}
+		System.out.println("msg: "+msg);
 		if (msg != null) {
 			System.out.println("message: " + msg);
 			String username = msg.getUsername();
@@ -108,6 +110,10 @@ public class Lobby implements InputHandlerFactory {
 							.toByteBuffer());
 				}
 			}
+		} else {
+			facade.outputQueue().enqueue(
+					new ErrorMessage(ErrorMessage.UNKNOWN_MESSAGE)
+							.toByteBuffer());
 		}
 	}
 
