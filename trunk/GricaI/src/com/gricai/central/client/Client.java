@@ -1,20 +1,14 @@
 package com.gricai.central.client;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import java.net.UnknownHostException;
+import java.nio.channels.SocketChannel;
 import java.util.Properties;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-import com.gricai.central.server.nio.BufferFactory;
-import com.gricai.central.server.nio.InputHandler;
-import com.gricai.central.server.nio.impl.DumbBufferFactory;
-import com.gricai.central.server.nio.impl.InputHandlerFactory;
-import com.gricai.central.server.nio.impl.NioDispatcher;
-import com.gricai.central.server.nio.impl.StandardAcceptor;
+import org.jwebsocket.api.WebSocketException;
+
 import com.gricai.common.message.Message;
 import com.gricai.local.server.GricaiWebSocketHandler;
 /**
@@ -26,31 +20,52 @@ public class Client {
 
 	private static final String propertiesFile = "server.properties";
 	private GricaiWebSocketHandler gricaiWebSocketHandler;
-	private InputHandlerFactory factory;
-	private InputHandler handler;
+	private SocketChannel channel;
+	private ClientListener listener;
 	
+	public SocketChannel getChannel() {
+		return channel;
+	}
+
 	public Client(GricaiWebSocketHandler gricaiWebSocketHandler){
 		this.gricaiWebSocketHandler = gricaiWebSocketHandler;
+		Properties props = new Properties();
 		try {
-			Executor executor = Executors.newCachedThreadPool();
-			BufferFactory bufFactory = new DumbBufferFactory(1024);
-			NioDispatcher dispatcher = new NioDispatcher(executor, bufFactory);
-			Properties props = new Properties();
 			props.load(new FileReader(propertiesFile));
-			String host = props.getProperty("host");
-			int port = Integer.parseInt(props.getProperty("port"));
-			handler = new ClientHandler(this);
-			
-			dispatcher.start();
-		} catch (UnknownHostException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		int port = Integer.parseInt(props.getProperty("port"));
+		String host = props.getProperty("host");
+		try {
+			channel = SocketChannel.open();
+			channel.configureBlocking(false);
+			channel.connect(new InetSocketAddress(host, port));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		listener = new ClientListener(this);
+		listener.start();
 	}
 	
 	public void sendMessage(Message msg){
+		if(channel!=null && channel.isOpen()){
+			try {
+				channel.write(msg.toByteBuffer());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
+	void recieve(Message msg){
+		try {
+			gricaiWebSocketHandler.sendMessage(msg);
+		} catch (WebSocketException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
