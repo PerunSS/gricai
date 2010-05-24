@@ -21,7 +21,7 @@ public class MessageFactory {
 		byte[] bytes =  data.array();
 		String fullMessage = new String(bytes);
 		String messageType = fullMessage.substring(fullMessage.indexOf('=') + 1,fullMessage.indexOf('&'));
-		System.out.println(messageType);
+		//System.out.println(messageType);
 		Message message = createMessageFromString(messageType);
 		message.fillMessage(data);
 		return message;
