@@ -62,7 +62,7 @@ public class Client {
 	
 	void recieve(Message msg){
 		try {
-			gricaiWebSocketHandler.sendMessage(msg);
+			gricaiWebSocketHandler.sendMessageToWebClient(msg);
 		} catch (WebSocketException e) {
 			e.printStackTrace();
 		}
