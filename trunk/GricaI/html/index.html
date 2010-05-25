@@ -5,16 +5,20 @@
 <title>Index</title>
 <script type="text/javascript" src="client/MessageFactory.js"></script>
 <script type="text/javascript" src="client/Message.js"></script>
+<script type="text/javascript" src="client/Login.js"></script>
 </head>
 
 <body>
-Welcomen
-<script>
-	var values = ["pera","1234"];
-	var factory = new MessageFactory();
-	var msg = factory.createLoginMessage(values);
-	msg.getJSONMessage();
-</script>
-blabla
+<h2>Welcome</h2>
+
+<form action = "welcome.html" name="loginForm" onSubmit="return login(this);">
+<table>
+<tr><td>Username:</td><td><input type="text" id="username" name="username"></input></td></tr>
+<tr><td>Password:</td><td><input type="password" id="password" name="password"></input></td></tr>
+<tr><td><input type="reset" value="reset"></input></td><td><input type="submit" value="Log in"></input></td></tr>
+<tr><td colspan = "2"><span id="text"></span></td></tr>
+</table>
+</form>
+
 </body>
 </html>
