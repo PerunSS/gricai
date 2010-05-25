@@ -56,17 +56,17 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 			try {
 				Message msg = MessageFactory.createMessage((JSONObject)message, username);
 				client.sendMessage(msg);
-				Message response = null;//client.recieveMessage();
-				if(!logged && response instanceof LoginResponseMessage){
-					LoginResponseMessage lrm = (LoginResponseMessage)response;
-					username = lrm.getUsername();
-					logged = true;
-				}
-				sendMessage(response);
+//				Message response = null;//client.recieveMessage();
+//				if(!logged && response instanceof LoginResponseMessage){
+//					LoginResponseMessage lrm = (LoginResponseMessage)response;
+//					username = lrm.getUsername();
+//					logged = true;
+//				}
+//				sendMessageToWebClient(response);
 			} catch (WrongMessageTypeException e) {
 				e.printStackTrace();
-			} catch (WebSocketException e) {
-				e.printStackTrace();
+//			} catch (WebSocketException e) {
+//				e.printStackTrace();
 			}
 		}
 	}
@@ -76,8 +76,13 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 		this.webSocket = webSocket;
 	}
 	
-	public void sendMessage(Message msg) throws WebSocketException{
+	public void sendMessageToWebClient(Message msg) throws WebSocketException{
 		try {
+			if(!logged && msg instanceof LoginResponseMessage){
+				LoginResponseMessage lrm = (LoginResponseMessage)msg;
+				username = lrm.getUsername();
+				logged = true;
+			}
 			webSocket.send(msg.toByteBuffer().array());
 		} catch (WebSocketException e) {
 			e.printStackTrace();
