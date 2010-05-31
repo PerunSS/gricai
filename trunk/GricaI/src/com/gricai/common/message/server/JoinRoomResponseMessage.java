@@ -1,6 +1,8 @@
-package com.gricai.common.message;
+package com.gricai.common.message.server;
 
 import java.nio.ByteBuffer;
+
+import com.gricai.common.message.Message;
 
 import net.sf.json.JSONObject;
 

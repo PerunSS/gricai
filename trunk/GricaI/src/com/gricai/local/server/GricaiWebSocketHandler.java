@@ -9,10 +9,10 @@ import org.jwebsocket.api.WebSocketException;
 import org.jwebsocket.api.WebSocketHandler;
 
 import com.gricai.central.client.Client;
-import com.gricai.common.message.LoginResponseMessage;
 import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
 import com.gricai.common.message.exception.WrongMessageTypeException;
+import com.gricai.common.message.server.LoginResponseMessage;
 
 public class GricaiWebSocketHandler implements WebSocketHandler {
 	

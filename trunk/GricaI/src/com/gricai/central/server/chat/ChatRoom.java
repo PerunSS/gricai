@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.gricai.common.message.LeaveRoomMessage;
 import com.gricai.common.message.Message;
+import com.gricai.common.message.server.LeaveRoomMessage;
 
 public class ChatRoom {
 
