@@ -6,6 +6,11 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.gricai.common.message.exception.WrongMessageTypeException;
+import com.gricai.common.message.server.ChatMessage;
+import com.gricai.common.message.server.ErrorMessage;
+import com.gricai.common.message.server.JoinRoomMessage;
+import com.gricai.common.message.server.LeaveRoomMessage;
+import com.gricai.common.message.server.LoginMessage;
 
 public class MessageFactory {
 

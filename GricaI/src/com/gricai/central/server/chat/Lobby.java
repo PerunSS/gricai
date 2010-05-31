@@ -8,16 +8,16 @@ import java.util.Map;
 import com.gricai.central.server.nio.ChannelFacade;
 import com.gricai.central.server.nio.InputHandler;
 import com.gricai.central.server.nio.impl.InputHandlerFactory;
-import com.gricai.common.message.ChatMessage;
-import com.gricai.common.message.ErrorMessage;
-import com.gricai.common.message.JoinRoomMessage;
-import com.gricai.common.message.JoinRoomResponseMessage;
-import com.gricai.common.message.LeaveRoomMessage;
-import com.gricai.common.message.LoginMessage;
-import com.gricai.common.message.LoginResponseMessage;
 import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
 import com.gricai.common.message.exception.WrongMessageTypeException;
+import com.gricai.common.message.server.ChatMessage;
+import com.gricai.common.message.server.ErrorMessage;
+import com.gricai.common.message.server.JoinRoomMessage;
+import com.gricai.common.message.server.JoinRoomResponseMessage;
+import com.gricai.common.message.server.LeaveRoomMessage;
+import com.gricai.common.message.server.LoginMessage;
+import com.gricai.common.message.server.LoginResponseMessage;
 
 /**
  * Lobby is used to store all users and all rooms. It is handler factory and it
