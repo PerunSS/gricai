@@ -8,6 +8,8 @@ import net.sf.json.JSONObject;
 
 public class LeaveRoomMessage implements Message {
 
+	private static final String TEXT_MESSAGE = "LeaveRoomMessage";
+	
 	@Override
 	public void fillMessage(ByteBuffer data) {
 		// TODO Auto-generated method stub
@@ -22,14 +24,15 @@ public class LeaveRoomMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=LeaveRoomMessage&").getBytes();
+		byte[] bytes = new String("class="+TEXT_MESSAGE+"&").getBytes();
 		return ByteBuffer.wrap(bytes);
 	}
 
 	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
+	public JSONObject toJsonObject() {
+		JSONObject outer = new JSONObject();
+		outer.put(TEXT_MESSAGE, null);
+		return outer;
 	}
 
 }

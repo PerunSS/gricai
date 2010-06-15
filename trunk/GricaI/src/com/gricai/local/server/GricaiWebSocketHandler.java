@@ -28,6 +28,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 	@Override
 	public void init(Properties props) {
 		client = new Client(this);
+		
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 	public void onMessage(WebSocket webSocket, Object message) {
 		if(message instanceof JSONObject){
 			try {
+				System.out.println(message);
 				Message msg = MessageFactory.createMessage((JSONObject)message, username);
 				client.sendMessage(msg);
 //				Message response = null;//client.recieveMessage();
@@ -83,7 +85,7 @@ public class GricaiWebSocketHandler implements WebSocketHandler {
 				username = lrm.getUsername();
 				logged = true;
 			}
-			webSocket.send(msg.toByteBuffer().array());
+			webSocket.send(msg.toJsonObject());
 		} catch (WebSocketException e) {
 			e.printStackTrace();
 			throw e;

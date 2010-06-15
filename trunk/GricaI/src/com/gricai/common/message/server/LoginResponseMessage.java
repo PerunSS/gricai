@@ -8,6 +8,7 @@ import net.sf.json.JSONObject;
 
 public class LoginResponseMessage implements Message {
 	
+	private static final String TEXT_MESSAGE = "LoginResponseMessage";
 	private static final String TEXT_ISLOGGED = "logged";
 	private static final String TEXT_USERNAME = "username";
 	
@@ -33,8 +34,7 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		return username;
 	}
 
 	@Override
@@ -44,12 +44,6 @@ public class LoginResponseMessage implements Message {
 		return ByteBuffer.wrap(bytes);
 	}
 	
-	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void setLogged(boolean logged) {
 		this.logged = logged;
 	}
@@ -61,6 +55,15 @@ public class LoginResponseMessage implements Message {
 	
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	@Override
+	public JSONObject toJsonObject() {
+		JSONObject outer = new JSONObject();
+		JSONObject inner = new JSONObject();
+		outer.put(TEXT_MESSAGE, inner);
+		inner.put(TEXT_USERNAME, username);
+		inner.put(TEXT_ISLOGGED, logged);
+		return outer;
 	}
 
 }

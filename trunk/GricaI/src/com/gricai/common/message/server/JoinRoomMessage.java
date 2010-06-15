@@ -8,6 +8,7 @@ import net.sf.json.JSONObject;
 
 public class JoinRoomMessage implements Message {
 	
+	private static final String TEXT_MESSAGE = "JoinRoomMessage";
 	private static final String TEXT_USERNAME = "username";
 	private static final String TEXT_ROOMNAME = "text";
 	
@@ -33,7 +34,7 @@ public class JoinRoomMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=JoinRoomMessage&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_ROOMNAME+"=" + getRoomName()).getBytes();
+		byte[] bytes = new String("class="+TEXT_MESSAGE+"&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_ROOMNAME+"=" + getRoomName()).getBytes();
 		return ByteBuffer.wrap(bytes);
 	}
 
@@ -50,9 +51,13 @@ public class JoinRoomMessage implements Message {
 	}
 
 	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
+	public JSONObject toJsonObject() {
+		JSONObject outer = new JSONObject();
+		JSONObject inner = new JSONObject();
+		outer.put(TEXT_MESSAGE, inner);
+		inner.put(TEXT_USERNAME, username);
+		inner.put(TEXT_ROOMNAME, roomName);
+		return outer;
 	}
 
 }
