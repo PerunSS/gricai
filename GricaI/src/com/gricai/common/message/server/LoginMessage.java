@@ -8,6 +8,7 @@ import net.sf.json.JSONObject;
 
 public class LoginMessage implements Message {
 	
+	private static final String TEXT_MESSAGE = "LoginMessage";
 	private static final String TEXT_USERNAME = "username";
 	private static final String TEXT_PASSWORD = "password";
 
@@ -51,9 +52,13 @@ public class LoginMessage implements Message {
 	}
 
 	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
+	public JSONObject toJsonObject() {
+		JSONObject outer = new JSONObject();
+		JSONObject inner = new JSONObject();
+		outer.put(TEXT_MESSAGE, inner);
+		inner.put(TEXT_USERNAME, username);
+		inner.put(TEXT_PASSWORD, password);
+		return outer;
 	}
 
 }

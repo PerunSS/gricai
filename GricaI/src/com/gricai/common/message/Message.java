@@ -9,5 +9,5 @@ public interface Message {
 	public String getUsername();
 	public ByteBuffer toByteBuffer();
 	public void fillMessage(ByteBuffer data);
-	public void fillMessage(JSONObject jsonMessage);
+	public JSONObject toJsonObject();
 }

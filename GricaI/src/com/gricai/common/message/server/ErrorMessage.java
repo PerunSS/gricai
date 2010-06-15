@@ -8,6 +8,7 @@ import net.sf.json.JSONObject;
 
 public class ErrorMessage implements Message {
 
+	private static final String TEXT_MESSAGE = "ErrorMessage";
 	private static final String ERROR_CODE= "errorCode";
 	public static final int NULL_USERNAME = 1;
 	public static final int NULL_USER = 2;
@@ -39,7 +40,7 @@ public class ErrorMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=ErrorMessage&"+ERROR_CODE+"=" + new Integer(getErrorCode()).toString()).getBytes();
+		byte[] bytes = new String("class="+TEXT_MESSAGE+"&"+ERROR_CODE+"=" + new Integer(getErrorCode()).toString()).getBytes();
 		return ByteBuffer.wrap(bytes);
 	}
 
@@ -52,9 +53,12 @@ public class ErrorMessage implements Message {
 	}
 
 	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
+	public JSONObject toJsonObject() {
+		JSONObject outer = new JSONObject();
+		JSONObject inner = new JSONObject();
+		outer.put(TEXT_MESSAGE, inner);
+		inner.put(ERROR_CODE, new Integer(getErrorCode()).toString());
+		return outer;
 	}
 
 }

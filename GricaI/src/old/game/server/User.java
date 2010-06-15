@@ -6,7 +6,6 @@ import old.messages.Message;
 public class User implements ConnectionUser {
 	private Connection conn;
 	private Player player;
-	private static int count = 1;
 	private int number;
 
 	public User(Connection c, MessageReceiver mrec) {
@@ -18,7 +17,6 @@ public class User implements ConnectionUser {
 		conn.attach(this);
 		player = new Player();
 		player.setUser(this);
-		this.number = count++;
 	}
 
 	// public void receive(Message msg) {

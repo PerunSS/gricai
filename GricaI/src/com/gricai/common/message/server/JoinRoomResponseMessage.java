@@ -8,6 +8,7 @@ import net.sf.json.JSONObject;
 
 public class JoinRoomResponseMessage implements Message {
 	
+	private static final String TEXT_MESSAGE = "JoinRoomResponseMessage";
 	private static final String TEXT_CANJOIN = "canJoin";
 	private static final String TEXT_ROOMNAME = "roomName";
 	
@@ -35,7 +36,7 @@ public class JoinRoomResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=JoinRoomResponseMessage&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + canJoin).getBytes();
+		byte[] bytes = new String("class="+TEXT_MESSAGE+"&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + canJoin).getBytes();
 		
 		return ByteBuffer.wrap(bytes);
 	}
@@ -57,9 +58,13 @@ public class JoinRoomResponseMessage implements Message {
 	}
 
 	@Override
-	public void fillMessage(JSONObject jsonMessage) {
-		// TODO Auto-generated method stub
-		
+	public JSONObject toJsonObject() {
+		JSONObject outer = new JSONObject();
+		JSONObject inner = new JSONObject();
+		outer.put(TEXT_MESSAGE, inner);
+		inner.put(TEXT_ROOMNAME, roomName);
+		inner.put(TEXT_CANJOIN, canJoin);
+		return outer;
 	}
 
 }

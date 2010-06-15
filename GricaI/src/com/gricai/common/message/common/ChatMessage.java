@@ -1,4 +1,4 @@
-package com.gricai.common.message.server;
+package com.gricai.common.message.common;
 
 import java.nio.ByteBuffer;
 
@@ -51,8 +51,9 @@ public class ChatMessage implements Message {
 	}
 
 	@Override
-	public void fillMessage(JSONObject jsonMessage) {
+	public JSONObject toJsonObject() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
 }
