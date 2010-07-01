@@ -18,25 +18,23 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2;
+package old1.central.server.nioMark2;
 
-import java.io.IOException;
-import java.nio.channels.SelectableChannel;
+import java.nio.ByteBuffer;
 
 /**
  * Created by IntelliJ IDEA.
  * User: ron
- * Date: Apr 7, 2006
- * Time: 11:56:30 AM
+ * Date: Apr 5, 2006
+ * Time: 4:20:44 PM
  */
-public interface Dispatcher
+public interface InputHandler
 {
-	public void dispatch() throws IOException;
+	public ByteBuffer nextMessage (ChannelFacade channelFacade);
+	public void handleInput (ByteBuffer message, ChannelFacade channelFacade);
 
-	public void shutdown();
-
-	public ChannelFacade registerChannel (SelectableChannel channel, InputHandler handler)
-		throws IOException;
-
-	public void unregisterChannel (ChannelFacade key);
+	public void starting (ChannelFacade channelFacade);
+	public void started (ChannelFacade channelFacade);
+	public void stopping (ChannelFacade channelFacade);
+	public void stopped (ChannelFacade channelFacade);
 }

@@ -18,7 +18,7 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2.impl;
+package old1.central.server.nioMark2.impl;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -29,11 +29,12 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.Callable;
 
-import com.gricai.central.server.nioMark2.BufferFactory;
-import com.gricai.central.server.nioMark2.ChannelFacade;
-import com.gricai.central.server.nioMark2.InputHandler;
-import com.gricai.central.server.nioMark2.InputQueue;
-import com.gricai.central.server.nioMark2.OutputQueue;
+import old1.central.server.nioMark2.BufferFactory;
+import old1.central.server.nioMark2.ChannelFacade;
+import old1.central.server.nioMark2.InputHandler;
+import old1.central.server.nioMark2.InputQueue;
+import old1.central.server.nioMark2.OutputQueue;
+
 
 /**
  * Created by IntelliJ IDEA. User: ron Date: Apr 5, 2006 Time: 4:29:00 PM

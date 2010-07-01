@@ -18,19 +18,18 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2;
+package old1.central.server.nioMark2;
 
 import java.nio.ByteBuffer;
-import java.nio.channels.ByteChannel;
-import java.io.IOException;
 
 /**
- * Created by IntelliJ IDEA. User: ron Date: Apr 5, 2006 Time: 4:20:23 PM
+ * Created by IntelliJ IDEA.
+ * User: ron
+ * Date: Apr 5, 2006
+ * Time: 4:19:05 PM
  */
-public interface OutputQueue {
-
-	public boolean isEmpty();
-	public int drainTo(ByteChannel channel) throws IOException;
-	public boolean enqueue(ByteBuffer byteBuffer);
-
+public interface BufferFactory
+{
+	public ByteBuffer newBuffer();
+	public void returnBuffer (ByteBuffer buffer);
 }

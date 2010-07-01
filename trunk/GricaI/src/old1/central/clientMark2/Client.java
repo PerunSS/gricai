@@ -1,4 +1,4 @@
-package com.gricai.central.clientMark2;
+package old1.central.clientMark2;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,14 +1,15 @@
-package com.gricai.central.server.nioMark2.nadaChat;
+package old1.central.server.nioMark2.nadaChat;
 
 import java.io.IOException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import com.gricai.central.server.nioMark2.BufferFactory;
-import com.gricai.central.server.nioMark2.impl.DumbBufferFactory;
-import com.gricai.central.server.nioMark2.impl.InputHandlerFactory;
-import com.gricai.central.server.nioMark2.impl.NioDispatcher;
-import com.gricai.central.server.nioMark2.impl.StandardAcceptor;
+import old1.central.server.nioMark2.BufferFactory;
+import old1.central.server.nioMark2.impl.DumbBufferFactory;
+import old1.central.server.nioMark2.impl.InputHandlerFactory;
+import old1.central.server.nioMark2.impl.NioDispatcher;
+import old1.central.server.nioMark2.impl.StandardAcceptor;
+
 
 /**
  * Created by IntelliJ IDEA. User: ron Date: May 15, 2006 Time: 6:20:59 PM

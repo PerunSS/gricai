@@ -1,4 +1,4 @@
-package com.gricai.central.server.nioMark2.impl;
+package old1.central.server.nioMark2.impl;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.gricai.central.server.nioMark2.Dispatcher;
+import old1.central.server.nioMark2.Dispatcher;
+
 
 /**
  * Created by IntelliJ IDEA. User: ron Date: Mar 17, 2007 Time: 6:07:38 PM

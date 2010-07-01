@@ -1,4 +1,4 @@
-package com.gricai.central.server.nioMark2.impl;
+package old1.central.server.nioMark2.impl;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -6,9 +6,10 @@ import java.nio.channels.ByteChannel;
 import java.nio.channels.SelectionKey;
 import java.util.LinkedList;
 
-import com.gricai.central.server.nioMark2.BufferFactory;
-import com.gricai.central.server.nioMark2.ChannelFacade;
-import com.gricai.central.server.nioMark2.OutputQueue;
+import old1.central.server.nioMark2.BufferFactory;
+import old1.central.server.nioMark2.ChannelFacade;
+import old1.central.server.nioMark2.OutputQueue;
+
 
 /**
  * Created by IntelliJ IDEA.

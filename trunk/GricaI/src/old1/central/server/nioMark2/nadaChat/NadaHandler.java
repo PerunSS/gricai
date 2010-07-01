@@ -1,10 +1,11 @@
-package com.gricai.central.server.nioMark2.nadaChat;
+package old1.central.server.nioMark2.nadaChat;
 
 import java.nio.ByteBuffer;
 
-import com.gricai.central.server.nioMark2.ChannelFacade;
-import com.gricai.central.server.nioMark2.InputHandler;
-import com.gricai.central.server.nioMark2.InputQueue;
+import old1.central.server.nioMark2.ChannelFacade;
+import old1.central.server.nioMark2.InputHandler;
+import old1.central.server.nioMark2.InputQueue;
+
 
 /**
  * Created by IntelliJ IDEA. User: ron Date: Apr 8, 2006 Time: 5:49:36 PM

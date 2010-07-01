@@ -18,19 +18,25 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2;
+package old1.central.server.nioMark2;
+
+import java.io.IOException;
+import java.nio.channels.SelectableChannel;
 
 /**
  * Created by IntelliJ IDEA.
  * User: ron
- * Date: Apr 6, 2006
- * Time: 12:11:09 PM
+ * Date: Apr 7, 2006
+ * Time: 11:56:30 AM
  */
-public interface ChannelFacade
+public interface Dispatcher
 {
-	public InputQueue inputQueue();
-	public OutputQueue outputQueue();
-	public void setHandler (InputHandler handler);
-	public int getInterestOps();
-	public void modifyInterestOps (int opsToSet, int opsToReset);
+	public void dispatch() throws IOException;
+
+	public void shutdown();
+
+	public ChannelFacade registerChannel (SelectableChannel channel, InputHandler handler)
+		throws IOException;
+
+	public void unregisterChannel (ChannelFacade key);
 }

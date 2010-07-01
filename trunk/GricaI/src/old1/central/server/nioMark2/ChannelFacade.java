@@ -18,18 +18,19 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2;
-
-import java.nio.ByteBuffer;
+package old1.central.server.nioMark2;
 
 /**
  * Created by IntelliJ IDEA.
  * User: ron
- * Date: Apr 5, 2006
- * Time: 4:19:05 PM
+ * Date: Apr 6, 2006
+ * Time: 12:11:09 PM
  */
-public interface BufferFactory
+public interface ChannelFacade
 {
-	public ByteBuffer newBuffer();
-	public void returnBuffer (ByteBuffer buffer);
+	public InputQueue inputQueue();
+	public OutputQueue outputQueue();
+	public void setHandler (InputHandler handler);
+	public int getInterestOps();
+	public void modifyInterestOps (int opsToSet, int opsToReset);
 }

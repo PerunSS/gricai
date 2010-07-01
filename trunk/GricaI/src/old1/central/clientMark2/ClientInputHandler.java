@@ -1,9 +1,10 @@
-package com.gricai.central.clientMark2;
+package old1.central.clientMark2;
 
 import java.nio.ByteBuffer;
 
-import com.gricai.central.server.nioMark2.ChannelFacade;
-import com.gricai.central.server.nioMark2.InputHandler;
+import old1.central.server.nioMark2.ChannelFacade;
+import old1.central.server.nioMark2.InputHandler;
+
 
 public class ClientInputHandler implements InputHandler {
 
