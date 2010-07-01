@@ -1,4 +1,4 @@
-package com.gricai.central.server.chat;
+package com.gricai.central.server.chatNioMark2;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,11 +6,11 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import com.gricai.central.server.nio.BufferFactory;
-import com.gricai.central.server.nio.impl.DumbBufferFactory;
-import com.gricai.central.server.nio.impl.InputHandlerFactory;
-import com.gricai.central.server.nio.impl.NioDispatcher;
-import com.gricai.central.server.nio.impl.StandardAcceptor;
+import com.gricai.central.server.nioMark2.BufferFactory;
+import com.gricai.central.server.nioMark2.impl.DumbBufferFactory;
+import com.gricai.central.server.nioMark2.impl.InputHandlerFactory;
+import com.gricai.central.server.nioMark2.impl.NioDispatcher;
+import com.gricai.central.server.nioMark2.impl.StandardAcceptor;
 
 public class ChatServer {
 

@@ -1,8 +1,8 @@
-package com.gricai.central.server.nio.impl;
+package com.gricai.central.server.nioMark2.impl;
 
 import java.nio.ByteBuffer;
 
-import com.gricai.central.server.nio.BufferFactory;
+import com.gricai.central.server.nioMark2.BufferFactory;
 
 /**
  * Created by IntelliJ IDEA.

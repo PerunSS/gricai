@@ -18,19 +18,23 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nio;
+package com.gricai.central.server.nioMark2;
+
+import java.nio.ByteBuffer;
 
 /**
  * Created by IntelliJ IDEA.
  * User: ron
- * Date: Apr 6, 2006
- * Time: 12:11:09 PM
+ * Date: Apr 5, 2006
+ * Time: 4:20:44 PM
  */
-public interface ChannelFacade
+public interface InputHandler
 {
-	public InputQueue inputQueue();
-	public OutputQueue outputQueue();
-	public void setHandler (InputHandler handler);
-	public int getInterestOps();
-	public void modifyInterestOps (int opsToSet, int opsToReset);
+	public ByteBuffer nextMessage (ChannelFacade channelFacade);
+	public void handleInput (ByteBuffer message, ChannelFacade channelFacade);
+
+	public void starting (ChannelFacade channelFacade);
+	public void started (ChannelFacade channelFacade);
+	public void stopping (ChannelFacade channelFacade);
+	public void stopped (ChannelFacade channelFacade);
 }
