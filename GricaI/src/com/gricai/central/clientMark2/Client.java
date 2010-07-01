@@ -1,4 +1,4 @@
-package com.gricai.central.client;
+package com.gricai.central.clientMark2;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,10 +7,7 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import java.util.Properties;
 
-import org.jwebsocket.api.WebSocketException;
-
 import com.gricai.common.message.Message;
-import com.gricai.local.server.GricaiWebSocketHandler;
 /**
  * client is used to communicate between central server and local server
  * @author aleksandarvaricak
@@ -19,7 +16,6 @@ import com.gricai.local.server.GricaiWebSocketHandler;
 public class Client {
 
 	private static final String propertiesFile = "server.properties";
-	private GricaiWebSocketHandler gricaiWebSocketHandler;
 	private SocketChannel channel;
 	private ClientListener listener;
 	
@@ -27,8 +23,7 @@ public class Client {
 		return channel;
 	}
 
-	public Client(GricaiWebSocketHandler gricaiWebSocketHandler){
-		this.gricaiWebSocketHandler = gricaiWebSocketHandler;
+	public Client(){
 		Properties props = new Properties();
 		try {
 			props.load(new FileReader(propertiesFile));
@@ -62,14 +57,13 @@ public class Client {
 	
 	void recieve(Message msg){
 		try {
-			gricaiWebSocketHandler.sendMessageToWebClient(msg);
-		} catch (WebSocketException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void main(String[] args) {
-		new Client(null);
+		new Client();
 	}
 	
 

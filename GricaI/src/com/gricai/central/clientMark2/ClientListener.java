@@ -1,4 +1,4 @@
-package com.gricai.central.client;
+package com.gricai.central.clientMark2;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
