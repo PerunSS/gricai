@@ -1,13 +1,13 @@
-package com.gricai.central.server.chat;
+package com.gricai.central.server.chatNioMark2;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gricai.central.server.nio.ChannelFacade;
-import com.gricai.central.server.nio.InputHandler;
-import com.gricai.central.server.nio.impl.InputHandlerFactory;
+import com.gricai.central.server.nioMark2.ChannelFacade;
+import com.gricai.central.server.nioMark2.InputHandler;
+import com.gricai.central.server.nioMark2.impl.InputHandlerFactory;
 import com.gricai.common.message.Message;
 import com.gricai.common.message.MessageFactory;
 import com.gricai.common.message.common.ChatMessage;

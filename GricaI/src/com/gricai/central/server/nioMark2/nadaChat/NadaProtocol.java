@@ -1,13 +1,13 @@
-package com.gricai.central.server.nio.nadaChat;
+package com.gricai.central.server.nioMark2.nadaChat;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gricai.central.server.nio.ChannelFacade;
-import com.gricai.central.server.nio.InputHandler;
-import com.gricai.central.server.nio.impl.InputHandlerFactory;
+import com.gricai.central.server.nioMark2.ChannelFacade;
+import com.gricai.central.server.nioMark2.InputHandler;
+import com.gricai.central.server.nioMark2.impl.InputHandlerFactory;
 
 /**
  * Created by IntelliJ IDEA. User: ron Date: Mar 19, 2007 Time: 3:22:29 PM

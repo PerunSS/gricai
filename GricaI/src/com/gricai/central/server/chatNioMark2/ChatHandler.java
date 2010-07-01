@@ -1,10 +1,10 @@
-package com.gricai.central.server.chat;
+package com.gricai.central.server.chatNioMark2;
 
 import java.nio.ByteBuffer;
 
-import com.gricai.central.server.nio.ChannelFacade;
-import com.gricai.central.server.nio.InputHandler;
-import com.gricai.central.server.nio.InputQueue;
+import com.gricai.central.server.nioMark2.ChannelFacade;
+import com.gricai.central.server.nioMark2.InputHandler;
+import com.gricai.central.server.nioMark2.InputQueue;
 
 
 public class ChatHandler implements InputHandler{

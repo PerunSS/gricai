@@ -1,11 +1,11 @@
-package com.gricai.central.server.nio.impl;
+package com.gricai.central.server.nioMark2.impl;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.ByteChannel;
 
-import com.gricai.central.server.nio.BufferFactory;
-import com.gricai.central.server.nio.InputQueue;
+import com.gricai.central.server.nioMark2.BufferFactory;
+import com.gricai.central.server.nioMark2.InputQueue;
 
 /**
  * Created by IntelliJ IDEA.
