@@ -1,6 +1,6 @@
-package com.gricai.central.server.nioMark2.impl;
+package old1.central.server.nioMark2.impl;
 
-import com.gricai.central.server.nioMark2.InputHandler;
+import old1.central.server.nioMark2.InputHandler;
 
 /**
  * Created by IntelliJ IDEA.

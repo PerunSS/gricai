@@ -18,23 +18,19 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2;
+package old1.central.server.nioMark2;
 
 import java.nio.ByteBuffer;
+import java.nio.channels.ByteChannel;
+import java.io.IOException;
 
 /**
- * Created by IntelliJ IDEA.
- * User: ron
- * Date: Apr 5, 2006
- * Time: 4:20:44 PM
+ * Created by IntelliJ IDEA. User: ron Date: Apr 5, 2006 Time: 4:20:23 PM
  */
-public interface InputHandler
-{
-	public ByteBuffer nextMessage (ChannelFacade channelFacade);
-	public void handleInput (ByteBuffer message, ChannelFacade channelFacade);
+public interface OutputQueue {
 
-	public void starting (ChannelFacade channelFacade);
-	public void started (ChannelFacade channelFacade);
-	public void stopping (ChannelFacade channelFacade);
-	public void stopped (ChannelFacade channelFacade);
+	public boolean isEmpty();
+	public int drainTo(ByteChannel channel) throws IOException;
+	public boolean enqueue(ByteBuffer byteBuffer);
+
 }

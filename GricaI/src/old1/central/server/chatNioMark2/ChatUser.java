@@ -1,8 +1,9 @@
-package com.gricai.central.server.chatNioMark2;
+package old1.central.server.chatNioMark2;
 
 import java.nio.ByteBuffer;
 
-import com.gricai.central.server.nioMark2.ChannelFacade;
+import old1.central.server.nioMark2.ChannelFacade;
+
 
 public class ChatUser {
 

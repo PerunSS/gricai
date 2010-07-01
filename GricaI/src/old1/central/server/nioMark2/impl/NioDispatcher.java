@@ -18,7 +18,7 @@
  * affiliated with the Apache Software Foundation.
  */
 
-package com.gricai.central.server.nioMark2.impl;
+package old1.central.server.nioMark2.impl;
 
 import java.io.IOException;
 import java.nio.channels.SelectableChannel;
@@ -35,10 +35,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.gricai.central.server.nioMark2.BufferFactory;
-import com.gricai.central.server.nioMark2.ChannelFacade;
-import com.gricai.central.server.nioMark2.Dispatcher;
-import com.gricai.central.server.nioMark2.InputHandler;
+import old1.central.server.nioMark2.BufferFactory;
+import old1.central.server.nioMark2.ChannelFacade;
+import old1.central.server.nioMark2.Dispatcher;
+import old1.central.server.nioMark2.InputHandler;
+
 
 /**
  * Created by IntelliJ IDEA. User: ron Date: Mar 19, 2006 Time: 7:23:20 PM
