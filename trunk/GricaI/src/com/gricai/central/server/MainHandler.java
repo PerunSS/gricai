@@ -1,14 +1,20 @@
 package com.gricai.central.server;
 
 import java.io.IOException;
+import java.nio.channels.SocketChannel;
 
 import ch.unifr.nio.framework.AbstractChannelHandler;
 
 public class MainHandler extends AbstractChannelHandler {
 
-	public MainHandler() {
+	private SocketChannel socketChannel;
+	
+	public MainHandler(SocketChannel socketChannel) {
+		this.socketChannel = socketChannel;
 		MainForwarder forwarder = new MainForwarder();
+		
 		reader.setNextForwarder(forwarder);
+		
 		forwarder.setNextForwarder(writer);
 	}
 
@@ -32,6 +38,14 @@ public class MainHandler extends AbstractChannelHandler {
 			ex.printStackTrace();
 		}
 
+	}
+
+	public void setSocketChannel(SocketChannel socketChannel) {
+		this.socketChannel = socketChannel;
+	}
+
+	public SocketChannel getSocketChannel() {
+		return socketChannel;
 	}
 
 }

@@ -14,24 +14,24 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import ch.unifr.nio.framework.AbstractChannelHandler;
 import ch.unifr.nio.framework.Dispatcher;
-import ch.unifr.nio.framework.transform.ByteBufferToStringTransformer;
-import ch.unifr.nio.framework.transform.StringToByteBufferTransformer;
+
+import com.gricai.common.message.common.ChatMessage;
 
 public class MainClient extends AbstractChannelHandler {
 
 	private final Lock lock = new ReentrantLock();
 	private final Condition inputArrived = lock.newCondition();
 	private static final String propertiesFile = "server.properties";
+	private static final String username = "PERA";
 
 	public MainClient() {
-		ByteBufferToStringTransformer byteBufferToStringTransformer = new ByteBufferToStringTransformer();
-		reader.setNextForwarder(byteBufferToStringTransformer);
-		MainClientForwarder echoTransformer = new MainClientForwarder(this);
-		byteBufferToStringTransformer.setNextForwarder(echoTransformer);
+		MainClientReceiver mainClientReciever = new MainClientReceiver(this);
+		reader.setNextForwarder(mainClientReciever);
+		
 
 		// setup output chain
-		StringToByteBufferTransformer stringToByteBufferTransformer = new StringToByteBufferTransformer();
-		stringToByteBufferTransformer.setNextForwarder(writer);
+		MainClientSender mainClientSender = new MainClientSender();
+		mainClientSender.setNextForwarder(writer);
 
 		try {
 			// connect to server
@@ -66,7 +66,10 @@ public class MainClient extends AbstractChannelHandler {
 					continue;
 				}
 				System.out.println("[CLIENT] " + "sending \"" + userInput + "\"");
-				stringToByteBufferTransformer.forward(userInput);
+				ChatMessage message = new ChatMessage();
+				message.setText(userInput);
+				message.setUsername(username);
+				mainClientSender.forward(message.toByteBuffer());
 				// wait until we get an echo from the server...
 				lock.lock();
 				try {

@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
+import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 
 import ch.unifr.nio.framework.AbstractAcceptor;
 import ch.unifr.nio.framework.ChannelHandler;
@@ -16,6 +18,8 @@ public class MainServer extends AbstractAcceptor {
 
 	private static final String propertiesFile = "server.properties";
 	private static MainServer instance;
+	
+	private Map<SocketChannel, MainHandler> handlers = new TreeMap<SocketChannel, MainHandler>();
 
 	public MainServer(Dispatcher dispatcher, SocketAddress socketAddress)
 			throws IOException {
@@ -24,7 +28,11 @@ public class MainServer extends AbstractAcceptor {
 
 	@Override
 	protected ChannelHandler getHandler(SocketChannel socketChannel) {
-		return new MainHandler();
+		MainHandler handler = handlers.get(socketChannel);
+		if(handler == null)
+			handler = new MainHandler(socketChannel);
+		handlers.put(socketChannel, handler);
+		return handler;
 	}
 
 	public static void startServer() throws IOException {
