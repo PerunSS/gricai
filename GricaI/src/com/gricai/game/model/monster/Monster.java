@@ -4,13 +4,13 @@ package com.gricai.game.model.monster;
 import java.util.ArrayList;
 import java.util.List;
 
+import old.game.view.painters.monster.MonsterPainter;
+import old.utils.AttackCalculator;
+
 import com.gricai.game.model.board.Board;
 import com.gricai.game.model.board.Field;
 import com.gricai.game.model.effect.Effect;
 import com.gricai.game.model.magic.Magic;
-
-import old.game.view.painters.monster.MonsterPainter;
-import old.utils.AttackCalculator;
 
 
 

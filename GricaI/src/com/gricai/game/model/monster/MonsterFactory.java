@@ -3,9 +3,9 @@ package com.gricai.game.model.monster;
 
 import java.lang.reflect.Constructor;
 
-import com.gricai.game.model.monster.human.HumanFactory;
-
 import old.utils.log.LogChooser;
+
+import com.gricai.game.model.monster.human.HumanFactory;
 
 
 

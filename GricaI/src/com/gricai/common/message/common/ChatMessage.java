@@ -2,9 +2,9 @@ package com.gricai.common.message.common;
 
 import java.nio.ByteBuffer;
 
-import com.gricai.common.message.Message;
-
 import net.sf.json.JSONObject;
+
+import com.gricai.common.message.Message;
 
 public class ChatMessage implements Message {
 	

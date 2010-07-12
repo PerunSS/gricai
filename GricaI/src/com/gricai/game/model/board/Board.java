@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gricai.game.model.monster.Monster;
-
 import old.utils.log.LogChooser;
+
+import com.gricai.game.model.monster.Monster;
 
 
 

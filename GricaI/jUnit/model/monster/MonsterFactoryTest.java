@@ -2,7 +2,6 @@ package model.monster;
 
 import static org.junit.Assert.assertNotSame;
 
-
 import org.junit.Test;
 
 import com.gricai.game.model.monster.MonsterFactory;

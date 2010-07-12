@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import net.sf.json.JSONObject;
-
 import old.chat1.sale.message.ChatMessage;
 import old.chat1.sale.message.JoinRoomMessage;
 import old.chat1.sale.message.Message;
