@@ -34,8 +34,11 @@ public class ChatMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=ChatMessage&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_TEXT+"=" + getText()).getBytes();
-		return ByteBuffer.wrap(bytes);
+		String text = "class=ChatMessage&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_TEXT+"=" + getText();
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
+		return buffer;
 	}
 
 
