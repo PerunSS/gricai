@@ -12,6 +12,10 @@ import com.gricai.central.client.MainGui;
 
 public class LoginPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton loginButton;
 	private JButton exitButton;
 	private JTextField usernameField;

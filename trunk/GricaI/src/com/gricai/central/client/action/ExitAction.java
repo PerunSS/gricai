@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 
 public class ExitAction extends GricaIAbstractAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ExitAction(){
 		putValue(NAME, "exit");
 	}

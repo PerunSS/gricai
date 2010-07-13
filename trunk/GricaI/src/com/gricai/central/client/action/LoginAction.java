@@ -8,6 +8,11 @@ import com.gricai.common.message.server.LoginMessage;
 
 public class LoginAction extends GricaIAbstractAction {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public LoginAction(){
 		putValue(NAME, "log in");
 	}
