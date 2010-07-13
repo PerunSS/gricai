@@ -52,6 +52,11 @@ public abstract class ServerImpl implements Server {
 		Thread thread = new Thread(this);
 		thread.start();
 	}
+	
+	@Override
+	public void close(SocketChannel socketChannel) throws IOException {
+		connections.remove(socketChannel);
+	}
 
 	private void loadProps(String filename) {
 		// TODO Auto-generated method stub
