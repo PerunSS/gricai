@@ -36,9 +36,11 @@ public class JoinRoomResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class="+TEXT_MESSAGE+"&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + canJoin).getBytes();
-		
-		return ByteBuffer.wrap(bytes);
+		String text = "class="+TEXT_MESSAGE+"&"+TEXT_ROOMNAME+"=" + getRoomName()+ "&"+TEXT_CANJOIN+"=" + canJoin;
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
+		return buffer;
 	}
 
 	public void setCanJoin(boolean canJoin) {

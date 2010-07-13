@@ -33,8 +33,11 @@ public class ChangePositionMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class="+TEXT_MESSAGE+"&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_POSITION+"=" + position).getBytes();
-		return ByteBuffer.wrap(bytes);
+		String text = "class="+TEXT_MESSAGE+"&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_POSITION+"=" + position;
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
+		return buffer;
 	}
 	
 	@Override

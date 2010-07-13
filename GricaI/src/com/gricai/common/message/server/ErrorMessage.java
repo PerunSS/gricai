@@ -40,8 +40,11 @@ public class ErrorMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class="+TEXT_MESSAGE+"&"+ERROR_CODE+"=" + new Integer(getErrorCode()).toString()).getBytes();
-		return ByteBuffer.wrap(bytes);
+		String text = "class="+TEXT_MESSAGE+"&"+ERROR_CODE+"=" + new Integer(getErrorCode()).toString();
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
+		return buffer;
 	}
 
 	public int getErrorCode() {
