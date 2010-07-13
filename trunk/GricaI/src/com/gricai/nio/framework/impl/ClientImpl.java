@@ -132,4 +132,9 @@ public abstract class ClientImpl implements Client {
 		}
 	}
 
+	@Override
+	public void close(SocketChannel socketChannel) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 }

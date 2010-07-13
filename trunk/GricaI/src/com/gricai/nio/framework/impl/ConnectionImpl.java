@@ -40,6 +40,7 @@ public class ConnectionImpl implements Connection {
 	public void close() {
 		if (socketChannel.isOpen()) {
 			try {
+				clientServerObject.close(socketChannel);
 				socketChannel.close();
 				selectinKey.selector().wakeup();
 				selectinKey.attach(null);

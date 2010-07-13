@@ -7,4 +7,5 @@ import java.nio.channels.SocketChannel;
 public interface ClientServerObject extends Runnable {
 
 	public void onMessage(SocketChannel socketChannel, ByteBuffer message) throws IOException;
+	public void close(SocketChannel socketChannel) throws IOException;
 }
