@@ -35,10 +35,10 @@ public class LoginMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=LoginMessage&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_PASSWORD+"=" + getPassword()).getBytes();
-		ByteBuffer buffer = ByteBuffer.allocate(bytes.length+4);
-		buffer.putInt(bytes.length);
-		buffer.put(bytes);
+		String text = "class=LoginMessage&"+TEXT_USERNAME+"=" + getUsername() + "&"+TEXT_PASSWORD+"=" + getPassword();
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
 		return buffer;
 	}
 

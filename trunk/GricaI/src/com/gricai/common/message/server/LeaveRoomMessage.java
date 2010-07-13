@@ -24,8 +24,11 @@ public class LeaveRoomMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class="+TEXT_MESSAGE+"&").getBytes();
-		return ByteBuffer.wrap(bytes);
+		String text = "class="+TEXT_MESSAGE+"&";
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
+		return buffer;
 	}
 
 	@Override

@@ -39,9 +39,11 @@ public class LoginResponseMessage implements Message {
 
 	@Override
 	public ByteBuffer toByteBuffer() {
-		byte[] bytes = new String("class=LeaveRoomMessage&"+TEXT_USERNAME+"="+username+"&"+TEXT_ISLOGGED+"="+logged).getBytes();
-		
-		return ByteBuffer.wrap(bytes);
+		String text = "class=LeaveRoomMessage&"+TEXT_USERNAME+"="+username+"&"+TEXT_ISLOGGED+"="+logged;
+		ByteBuffer buffer = ByteBuffer.allocate(text.length()+4);
+		buffer.putInt(text.length());
+		buffer.put(text.getBytes());
+		return buffer;
 	}
 	
 	public void setLogged(boolean logged) {
