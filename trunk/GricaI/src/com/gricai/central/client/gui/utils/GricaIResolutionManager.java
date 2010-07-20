@@ -91,6 +91,7 @@ public final class GricaIResolutionManager {
 	private static Dimension2D gameResolution;
 	private static Properties props = new Properties();
 	private static File propsFile = new File("gricai.properties");
+	private static boolean fullScrean = false;
 	
 	static {
 		loadProps();
@@ -143,6 +144,22 @@ public final class GricaIResolutionManager {
 
 	public static Dimension2D getGameResolution(){
 		return gameResolution;
+	}
+	
+	public static void fullScrean(){
+		fullScrean = true;
+	}
+	
+	public static void windowMode(){
+		fullScrean = false;
+	}
+	
+	public static boolean isFullScrean(){
+		return fullScrean;
+	}
+	
+	public static Dimension2D getScreanSize(){
+		return Toolkit.getDefaultToolkit().getScreenSize();
 	}
 	
 }
