@@ -2,9 +2,25 @@ package com.gricai.central.client.gui.utils;
 
 import javax.swing.JComponent;
 
-public class GricaiComponentCreator {
+/**
+ * Util class that have methods for setting private data of component
+ * @author aleksandarvaricak
+ *
+ */
 
-	public static void setParameters(JComponent component, String name, double x, double y, double width, double height){
+public final class GricaiComponentCreator {
+
+	/**
+	 * method receives component, relative chords and size, and sets real chords and size according to
+	 * game resolution, and screen size
+	 * @param component
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	public static final void setParameters(JComponent component, String name, double x, double y, double width, double height){
 		component.setName(name);
 		double widthModifier = GricaIResolutionManager.getGameResolution()
 				.getWidth();
