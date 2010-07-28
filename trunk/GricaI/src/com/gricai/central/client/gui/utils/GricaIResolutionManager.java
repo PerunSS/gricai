@@ -10,7 +10,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
+/**
+ * Class that is responsible for resolution in game
+ * @author aleksandarvaricak
+ *
+ */
 public final class GricaIResolutionManager {
 
 	private static final short WIDTH_1920 = 1920;
@@ -52,23 +56,98 @@ public final class GricaIResolutionManager {
 	private static final Dimension2D SVGA_DIM = new Dimension(WIDTH_800, HEIGHT_600);
 	private static final Dimension2D VGA_DIM = new Dimension(WIDTH_640, HEIGHT_480);
 	
+	/**
+	 * description: Wide screen Ultra eXtended Graphics Array
+	 * ratio: 8:5 (16:10)
+	 * resolution: 1920 x 1200
+	 */
 	public static final String WUXGA = "WUXGA ( 1920 x 1200 )";
+	/**
+	 * description: Full High Definition	
+	 * ratio: 16:9
+	 * resolution: 1920 x 1080
+	 */
 	public static final String HD_FULL = "FULL HD ( 1920 x 1080 )";
+	/**
+	 * description: Wide screen Super eXtended Graphics Array Plus
+	 * ratio: 8:5 (16:10)
+	 * resolution: 1680 x 1050
+	 */
 	public static final String WSXGA_PLUS = "WSXGA+ ( 1680 x 1050 )";
+	/**
+	 * description: Ultra eXtended Graphics Array
+	 * ratio: 4:3
+	 * resolution: 1600 x 1200
+	 */
 	public static final String UXGA = "UXGA ( 1600 x 1200 )";
+	/**
+	 * description: High Definition (Plus)
+	 * ratio: 16:9
+	 * resolution: 1600 x 900
+	 */
 	public static final String HD_PLUS = "HD+ ( 1600 x 900 )";
+	/**
+	 * description: Wide screen Super eXtended Graphics Array
+	 * ratio: 8:5 (16:10)
+	 * resolution: 1440 x 900
+	 */
 	public static final String WSXGA = "WSXGA ( 1440 x 900 )";
+	/**
+	 * description: High Definition (Basic)
+	 * ratio: 16:9
+	 * resolution: 1366 x 768
+	 */
 	public static final String HD = "HD ( 1366 x 768 )";
+	/**
+	 * description: Super eXtended Graphics Array
+	 * ratio: 5:4
+	 * resolution: 1280 x 1024
+	 */
 	public static final String XSGA = "XSGA ( 1280 x 1024 )";
+	/**
+	 * description: Super eXtended Graphics Array
+	 * ratio: 4:3
+	 * resolution: 1280 x 960
+	 */
 	public static final String XSGA_2 = "XSGA ( 1280 x 960 )";
+	/**
+	 * description: Wide screen eXtended Graphics Array
+	 * ratio: 8:5 (16:10)
+	 * resolution: 1280 x 800
+	 */
 	public static final String WXGA = "WXGA ( 1280 x 800 )";
+	/**
+	 * description: Wide screen eXtended Graphics Array
+	 * ratio: 5:3
+	 * resolution: 1280 x 768
+	 */
 	public static final String WXGA_2 = "WXGA ( 1280 x 768 )";
+	/**
+	 * description: eXtended Graphics Array Plus
+	 * ratio: 4:3
+	 * resolution: 1152 x 864
+	 */
 	public static final String XGA_PLUS = "XGA+ ( 1152 x 864 )";
+	/**
+	 * description: eXtended Graphics Array
+	 * ratio: 4:3
+	 * resolution: 1024 x 768
+	 */
 	public static final String XGA = "XGA ( 1024 x 768 )";
+	/**
+	 * description: Super Video Graphics Array
+	 * ratio: 4:3
+	 * resolution: 800 x 600
+	 */
 	public static final String SVGA = "SVGA ( 800 x 600 )";
+	/**
+	 * description: Video Graphics Array
+	 * ratio: 4:3
+	 * resolution: 640 x 480
+	 */
 	public static final String VGA = "VGA ( 640 x 480 )";
 	
-	private static Map<String, Dimension2D> resolutions = new HashMap<String, Dimension2D>();
+	private static final Map<String, Dimension2D> resolutions = new HashMap<String, Dimension2D>();
 	
 	static {
 		resolutions.put(VGA, VGA_DIM);
@@ -95,11 +174,15 @@ public final class GricaIResolutionManager {
 	
 	static {
 		loadProps();
-		
 	}
-	
+	/**
+	 * Sets game resolution according to string that is send
+	 * @param desc
+	 */
 	public static void setGameResolution(String desc){
 		gameResolution = resolutions.get(desc);
+		if(gameResolution == null)
+			gameResolution = resolutions.get(SVGA);
 		props.setProperty("width", String.valueOf(gameResolution.getWidth()));
 		props.setProperty("height", String.valueOf(gameResolution.getHeight()));
 		FileWriter writer;
@@ -136,12 +219,21 @@ public final class GricaIResolutionManager {
 				gameResolution = Toolkit.getDefaultToolkit().getScreenSize();
 			else
 				gameResolution = new Dimension(width, height);
+			try{
+				fullScrean = Boolean.parseBoolean(props.getProperty("full_screan"));
+			}catch (Exception e) {
+				fullScrean = false;
+			}
 			reader.close();
 		}catch (Exception e) {
 			gameResolution = Toolkit.getDefaultToolkit().getScreenSize();
 		}
 	}
 
+	/**
+	 * method returns current game resolution
+	 * @return
+	 */
 	public static Dimension2D getGameResolution(){
 		return gameResolution;
 	}
@@ -158,8 +250,12 @@ public final class GricaIResolutionManager {
 		return fullScrean;
 	}
 	
+	/**
+	 * method returns screen size (actual resolution of monitor) 
+	 * @return
+	 */
 	public static Dimension2D getScreanSize(){
 		return Toolkit.getDefaultToolkit().getScreenSize();
 	}
-	
+		
 }
