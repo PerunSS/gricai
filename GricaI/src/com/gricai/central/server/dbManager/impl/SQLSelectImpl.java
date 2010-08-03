@@ -211,7 +211,7 @@ public class SQLSelectImpl extends SQLSelect {
 	@Override
 	//nesto se mislim da i ovaj execute ima argumente koja je baza, user i pass
 	// sh ti mislis nakucaj ovde
-	public Object execute() throws SQLException {
+	public void execute() throws SQLException {
 		//DB name user and pass needed!!!
 		Connection conn = DBManager.getInstance().connect(DBManager.DB_LOCATION, DBManager.USERNAME, DBManager.PASSWORD);
 		PreparedStatement ps = null;
@@ -228,8 +228,7 @@ public class SQLSelectImpl extends SQLSelect {
 		}finally{
 			DBManager.getInstance().closeAll(conn, ps, rs);
 		}
-		return rs;
-	}
+  	}
 
 	
 }
