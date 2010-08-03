@@ -12,10 +12,8 @@ public abstract class SQLQuery {
 	protected abstract String evaluate() throws Exception;
 	
 	/**
-	 * executes SQL Query and returns result 
-	 * @return 	ResultSet if SQLSelect
-	 * 			int if SQLDelete, SQLUpdate, SQLInsert
+	 * executes Query
 	 * @throws SQLException
 	 */
-	public abstract Object execute() throws SQLException;
+	public abstract void execute() throws SQLException;
 }

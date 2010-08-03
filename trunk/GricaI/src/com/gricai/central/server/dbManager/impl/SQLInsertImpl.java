@@ -13,9 +13,8 @@ public class SQLInsertImpl extends SQLInsert {
 	}
 
 	@Override
-	public Object execute() throws SQLException {
+	public void execute() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

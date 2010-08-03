@@ -23,7 +23,7 @@ public final class GricaIFontManager {
 	
 	private static final String verdana = "verdana";
 	private static final String arial = "arial";
-	private static final String calibri = "calibri";
+	private static final String tahoma = "tahoma";
 	
 	private static Font font = Font.decode("verdana-16");
 	private static int size;
@@ -45,8 +45,8 @@ public final class GricaIFontManager {
 		createFont();
 	}
 	
-	public static void calibri(){
-		family = calibri;
+	public static void tahoma(){
+		family = tahoma;
 		createFont();
 	}
 
