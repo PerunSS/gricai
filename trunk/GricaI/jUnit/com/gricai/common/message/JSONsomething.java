@@ -3,6 +3,8 @@ package com.gricai.common.message;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import com.gricai.common.message.server.LoginMessage;
+
 
 public class JSONsomething {
 	
