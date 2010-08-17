@@ -14,6 +14,7 @@ import java.util.Set;
 
 import com.gricai.nio.framework.Connection;
 import com.gricai.nio.framework.Server;
+import com.gricai.nio.framework.User;
 
 public abstract class ServerImpl implements Server {
 	
@@ -21,7 +22,7 @@ public abstract class ServerImpl implements Server {
 	private Selector selector;
 	private int PORT = 45453;
 	
-	private Map<SocketChannel, Connection> connections = new HashMap<SocketChannel, Connection>();
+	private Map<SocketChannel, User> connections = new HashMap<SocketChannel, User>();
 
 	@Override
 	public abstract void onMessage(SocketChannel socketChannel, ByteBuffer message)
@@ -30,7 +31,7 @@ public abstract class ServerImpl implements Server {
 	@Override
 	public synchronized void sendMessage(SocketChannel socketChannel, ByteBuffer message)
 			throws IOException {
-		connections.get(socketChannel).send(message);
+		connections.get(socketChannel).getConnection().send(message);
 	}
 
 	@Override
@@ -100,7 +101,9 @@ public abstract class ServerImpl implements Server {
 					| SelectionKey.OP_WRITE);
 			Connection conn = new ConnectionImpl(selectionKey, this);
 			selectionKey.attach(conn);
-			connections.put(userSocketChannel, conn);
+			User user = new User();
+			user.setConnection(conn);
+			connections.put(userSocketChannel, user);
 			System.out.println("added client");
 		} catch (Exception e) {
 			//TODO - logerr
@@ -129,8 +132,8 @@ public abstract class ServerImpl implements Server {
 	
 	public void broadcast(ByteBuffer message) throws IOException{
 		System.out.println("sending to all");
-		for(Map.Entry<SocketChannel, Connection> entry:connections.entrySet()){
-			entry.getValue().send(message);
+		for(Map.Entry<SocketChannel, User> entry:connections.entrySet()){
+			entry.getValue().getConnection().send(message);
 		}
 	}
 
