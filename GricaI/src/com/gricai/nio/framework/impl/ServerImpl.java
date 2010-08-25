@@ -14,7 +14,6 @@ import java.util.Set;
 
 import com.gricai.nio.framework.Connection;
 import com.gricai.nio.framework.Server;
-import com.gricai.nio.framework.User;
 
 public abstract class ServerImpl implements Server {
 	

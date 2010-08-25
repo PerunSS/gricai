@@ -1,4 +1,6 @@
-package com.gricai.nio.framework;
+package com.gricai.nio.framework.impl;
+
+import com.gricai.nio.framework.Connection;
 
 public class User {
 
