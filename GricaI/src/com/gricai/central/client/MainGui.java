@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import com.gricai.central.client.action.ActionManager;
-import com.gricai.central.client.panel.LoginPanel;
+import com.gricai.central.client.gui.panel.LoginPanel;
 
 public class MainGui extends JFrame {
 	

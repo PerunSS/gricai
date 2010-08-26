@@ -1,4 +1,7 @@
-package com.gricai.central.client.panel;
+package com.gricai.central.client.gui.panel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -40,6 +43,18 @@ public class CreateGamePanel extends JPanel {
 	private static final double playersPerTeamRelativePosX = 0.6d;
 	private static final double playersPerTeamRelativePosY = 0.3d;
 	
+	private static enum GAME_TYPES {
+		FFA, TEAM_GAME
+	}
+	
+	private static final Map<GAME_TYPES, String> gameTypeItems = new HashMap<GAME_TYPES, String>();
+	
+	
+	static {
+		gameTypeItems.put(GAME_TYPES.FFA, "Free for all");
+		gameTypeItems.put(GAME_TYPES.TEAM_GAME, "Team game");
+	}
+	
 	public CreateGamePanel(){
 		createPanel();
 	}
@@ -59,6 +74,13 @@ public class CreateGamePanel extends JPanel {
 		add(mapList);
 		setSize((int)GricaIResolutionManager.getGameResolution().getWidth(), (int)GricaIResolutionManager.getGameResolution().getHeight()-30);
 		setLocation(0, 30);
+		fillAll();
+	}
+
+	private void fillAll() {
+		//adding game types
+		gameTypeComboBox.addItem(gameTypeItems.get(GAME_TYPES.FFA));
+		gameTypeComboBox.addItem(gameTypeItems.get(GAME_TYPES.TEAM_GAME));
 	}
 
 }
