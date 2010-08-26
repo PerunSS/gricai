@@ -1,4 +1,4 @@
-package com.gricai.central.client.panel;
+package com.gricai.central.client.gui.panel;
 
 import javax.swing.JPanel;
 

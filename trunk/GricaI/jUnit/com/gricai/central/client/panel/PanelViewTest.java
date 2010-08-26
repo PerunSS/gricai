@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.gricai.central.client.gui.panel.CreateGamePanel;
 import com.gricai.central.client.gui.utils.GricaIResolutionManager;
 
 public class PanelViewTest extends JFrame {
