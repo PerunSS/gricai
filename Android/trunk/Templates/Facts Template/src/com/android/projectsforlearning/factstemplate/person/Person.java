@@ -19,26 +19,30 @@ public class Person {
 	}
 	
 	public String getName(){
-		return name;
+		/*return name;*/
+		return "name";
 	}
 	
 	public String getNextRumor(){
-		currentIndex++;
+		/*currentIndex++;
 		if(currentIndex>=rumorsAndFacts.size()){
 			currentIndex = 0;
 		}
-		return rumorsAndFacts.get(currentIndex);
+		return rumorsAndFacts.get(currentIndex);*/
+		return "next";
 	}
 	
 	public String getPrevious(){
-		currentIndex --;
+		/*currentIndex --;
 		if(currentIndex < 0)
 			currentIndex = rumorsAndFacts.size()-1;
-		return rumorsAndFacts.get(currentIndex);
+		return rumorsAndFacts.get(currentIndex);*/
+		return "previous";
 	}
 	
 	public String getRandom(){
-		currentIndex = (int)(Math.random() *rumorsAndFacts.size());
-		return rumorsAndFacts.get(currentIndex);
+		/*currentIndex = (int)(Math.random() *rumorsAndFacts.size());
+		return rumorsAndFacts.get(currentIndex);*/
+		return "random";
 	}
 }

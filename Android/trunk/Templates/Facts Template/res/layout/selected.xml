@@ -6,7 +6,6 @@
 	<TextView
 		android:id="@+id/rumorText"
 		android:background="@drawable/logo"
-		android:text="duvaj ga pederu sta te bole kurac sta kazu za njih :D"
 		android:textColor="#FF0000"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
@@ -19,7 +18,7 @@
 		android:layout_height="fill_parent"
 		android:layout_weight="5">
 		<Button 
-			android:id="@+id/backButton"
+			android:id="@+id/previousButton"
 			android:text="Back"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
