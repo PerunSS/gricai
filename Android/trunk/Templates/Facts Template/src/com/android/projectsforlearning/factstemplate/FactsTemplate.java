@@ -3,6 +3,7 @@ package com.android.projectsforlearning.factstemplate;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -38,7 +39,7 @@ public class FactsTemplate extends Activity {
     private void itemSelected(AdapterView<?> parent, View v, int position, long id) {
 				setContentView(R.layout.selected);
 				final Button homeButton = (Button) findViewById(R.id.homeButton);
-		        homeButton.setOnClickListener( new Button.OnClickListener() {
+		        homeButton.setOnClickListener( new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
@@ -47,7 +48,7 @@ public class FactsTemplate extends Activity {
 				});
 			}
     public void homeClick( View view){
-    	setContentView(R.layout.main);
+    	startMainView();
     }
     
 }
