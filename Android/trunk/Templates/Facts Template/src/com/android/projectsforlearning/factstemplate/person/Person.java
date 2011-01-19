@@ -2,14 +2,8 @@ package com.android.projectsforlearning.factstemplate.person;
 
 import java.util.List;
 
-import com.android.projectsforlearning.factstemplate.database.DBManager;
-
-import android.content.Context;
-import android.database.Cursor;
-
 public class Person {
 
-	private String name;
 	private List<String> rumorsAndFacts;
 	private int currentIndex;
 	
@@ -17,21 +11,23 @@ public class Person {
 		
 	}
 	
-	public static Person readPerson(int personIndex, Context ctx){
+	public static Person readPerson( int personIndex, String rummors){
 		Person person = new Person();
 		person.currentIndex = -1;
-		DBManager manager = new DBManager(ctx);
-		Cursor rumors = manager.getAllTitles(personIndex);
-		while(rumors.moveToNext()){
-			person.rumorsAndFacts.add(rumors.getString(1));
+		String[] rmrArr = rummors.split(";");
+		for(String str:rmrArr){
+			person.rumorsAndFacts.add(str);
 		}
+//		ctx.
+//		DBManager manager = new DBManager(ctx);
+//		Cursor rumors = manager.getAllTitles(personIndex);
+//		while(rumors.moveToNext()){
+//			person.rumorsAndFacts.add(rumors.getString(1));
+//		}
 		return person;
 	}
 	
-	public String getName(){
-		return name;
-	}
-	
+
 	public String getNextRumor(){
 		currentIndex++;
 		if(currentIndex>=rumorsAndFacts.size()){

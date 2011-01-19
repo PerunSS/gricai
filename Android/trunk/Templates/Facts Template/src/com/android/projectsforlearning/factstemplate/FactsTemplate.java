@@ -1,5 +1,8 @@
 package com.android.projectsforlearning.factstemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,9 +24,18 @@ public class FactsTemplate extends Activity {
 	private Button nextButton;
 	private Button previousButton;
 	private Button randomButton;
-	private Person person = Person.readPerson(0);
+	private Person person;
 	
-	
+	private static Map<Integer, Integer> personIds = new HashMap<Integer, Integer>();
+	static {
+		personIds.put(0, R.string.person0);
+		personIds.put(1, R.string.person1);
+		personIds.put(2, R.string.person2);
+		personIds.put(3, R.string.person3);
+		personIds.put(4, R.string.person4);
+		personIds.put(5, R.string.person5);
+		
+	}
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +64,10 @@ public class FactsTemplate extends Activity {
     private void itemSelected(AdapterView<?> parent, View v, int position, long id) {
 				setContentView(R.layout.selected);
 				
+				person = Person.readPerson(position, getString(personIds.get(position)));
+				
 				factsNRumorsText = (TextView) findViewById(R.id.rumorText);
-				factsNRumorsText.setText(this.person.getNextRumor());
+				factsNRumorsText.setText(person.getNextRumor());
 				
 				
 				previousButton = (Button) findViewById(R.id.previousButton);
@@ -80,7 +94,7 @@ public class FactsTemplate extends Activity {
     	setContentView(R.layout.selected);
     	
     	factsNRumorsText = (TextView) findViewById(R.id.rumorText);
-		factsNRumorsText.setText(this.person.getNextRumor());
+		factsNRumorsText.setText(person.getNextRumor());
 		
 		previousButton = (Button) findViewById(R.id.previousButton);
 		previousButton.setOnClickListener( new OnClickListener() {
