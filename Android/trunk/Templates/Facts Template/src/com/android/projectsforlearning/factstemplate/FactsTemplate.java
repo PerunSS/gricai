@@ -67,7 +67,7 @@ public class FactsTemplate extends Activity {
 				person = Person.readPerson(position, getString(personIds.get(position)));
 				
 				factsNRumorsText = (TextView) findViewById(R.id.rumorText);
-				factsNRumorsText.setText(person.getNextRumor());
+				factsNRumorsText.setText(person.getNext());
 				
 				
 				previousButton = (Button) findViewById(R.id.previousButton);
@@ -76,6 +76,24 @@ public class FactsTemplate extends Activity {
 					@Override
 					public void onClick(View v) {
 						previousClick(v);
+					}
+				});
+				
+				nextButton = (Button) findViewById(R.id.nextButton);
+				nextButton.setOnClickListener( new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						nextClick(v);
+					}
+				});
+				
+				randomButton = (Button) findViewById(R.id.randomButton);
+				randomButton.setOnClickListener( new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						randomClick(v);
 					}
 				});
 				
@@ -90,11 +108,10 @@ public class FactsTemplate extends Activity {
 				});
 			}
     
-    public void previousClick( View v){
-    	setContentView(R.layout.selected);
-    	
+    public void nextClick( View v){
     	factsNRumorsText = (TextView) findViewById(R.id.rumorText);
-		factsNRumorsText.setText(person.getNextRumor());
+		factsNRumorsText.setText(person.getNext());
+		
 		
 		previousButton = (Button) findViewById(R.id.previousButton);
 		previousButton.setOnClickListener( new OnClickListener() {
@@ -102,6 +119,110 @@ public class FactsTemplate extends Activity {
 			@Override
 			public void onClick(View v) {
 				previousClick(v);
+			}
+		});
+		
+		nextButton = (Button) findViewById(R.id.nextButton);
+		nextButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				nextClick(v);
+			}
+		});
+		
+		randomButton = (Button) findViewById(R.id.randomButton);
+		randomButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				randomClick(v);
+			}
+		});
+		
+		
+		homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				homeClick(v);
+			}
+		});
+    	
+    }
+    
+    public void randomClick( View v){
+    	factsNRumorsText = (TextView) findViewById(R.id.rumorText);
+		factsNRumorsText.setText(person.getRandom());
+		
+		
+		previousButton = (Button) findViewById(R.id.previousButton);
+		previousButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				previousClick(v);
+			}
+		});
+		
+		nextButton = (Button) findViewById(R.id.nextButton);
+		nextButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				nextClick(v);
+			}
+		});
+		
+		randomButton = (Button) findViewById(R.id.randomButton);
+		randomButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				randomClick(v);
+			}
+		});
+		
+		
+		homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				homeClick(v);
+			}
+		});
+    }
+    
+    public void previousClick( View v){
+    	factsNRumorsText = (TextView) findViewById(R.id.rumorText);
+		
+		
+		previousButton = (Button) findViewById(R.id.previousButton);
+		previousButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				previousClick(v);
+			}
+		});
+		
+		nextButton = (Button) findViewById(R.id.nextButton);
+		nextButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				nextClick(v);
+			}
+		});
+		
+		randomButton = (Button) findViewById(R.id.randomButton);
+		randomButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				randomClick(v);
 			}
 		});
 		

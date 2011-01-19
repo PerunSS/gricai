@@ -30,7 +30,7 @@ public class Person {
 	}
 	
 
-	public String getNextRumor(){
+	public String getNext(){
 		currentIndex++;
 		if(currentIndex>=rumorsAndFacts.size()){
 			currentIndex = 0;
