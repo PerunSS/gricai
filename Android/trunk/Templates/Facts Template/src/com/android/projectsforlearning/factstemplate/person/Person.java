@@ -1,5 +1,6 @@
 package com.android.projectsforlearning.factstemplate.person;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
@@ -15,6 +16,7 @@ public class Person {
 		Person person = new Person();
 		person.currentIndex = -1;
 		String[] rmrArr = rummors.split(";");
+		person.rumorsAndFacts = new ArrayList<String>();
 		for(String str:rmrArr){
 			person.rumorsAndFacts.add(str);
 		}
