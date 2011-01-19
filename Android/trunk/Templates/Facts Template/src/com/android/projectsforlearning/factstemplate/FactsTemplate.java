@@ -27,14 +27,15 @@ public class FactsTemplate extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    
         startMainView();
+        
     }
     
     private void startMainView(){
-    	setContentView(R.layout.main);
-        
+    	setContentView(R.layout.main);  
     	
-        gridView = (GridView) findViewById(R.id.startPageGridView);
+    	gridView = (GridView) findViewById(R.id.startPageGridView);
         gridView.setAdapter(new ImageAdapter(this));
         gridView.setBackgroundColor(android.graphics.Color.WHITE);
 
@@ -77,6 +78,7 @@ public class FactsTemplate extends Activity {
     
     public void previousClick( View v){
     	setContentView(R.layout.selected);
+    	
     	factsNRumorsText = (TextView) findViewById(R.id.rumorText);
 		factsNRumorsText.setText(this.person.getNextRumor());
 		
