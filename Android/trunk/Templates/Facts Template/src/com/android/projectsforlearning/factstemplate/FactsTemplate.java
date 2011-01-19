@@ -197,6 +197,7 @@ public class FactsTemplate extends Activity {
     
     public void previousClick( View v){
     	factsNRumorsText = (TextView) findViewById(R.id.rumorText);
+    	factsNRumorsText.setText(person.getPrevious());
 		
 		
 		previousButton = (Button) findViewById(R.id.previousButton);
