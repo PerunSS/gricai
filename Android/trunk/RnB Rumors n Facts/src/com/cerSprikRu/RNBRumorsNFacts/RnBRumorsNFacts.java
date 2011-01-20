@@ -8,6 +8,11 @@ public class RnBRumorsNFacts extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.rumorsnfacts);
+        startApplication();
+       
+    }
+    
+    private void startApplication(){
+    	setContentView(R.layout.rumorsnfacts);
     }
 }
