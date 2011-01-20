@@ -28,19 +28,36 @@ public class Person {
 		currentIndex++;
 		if(currentIndex>=rumorsAndFacts.size()){
 			currentIndex = 0;
+			return null;
 		}
+		if(rumorsAndFacts.size() == 0)
+			return null;
 		return rumorsAndFacts.get(currentIndex);
 	}
 	
 	public String getPrevious(){
 		currentIndex --;
-		if(currentIndex < 0)
+		if(currentIndex < 0){
 			currentIndex = rumorsAndFacts.size()-1;
+			return null;
+		}
+		if(rumorsAndFacts.size() == 0)
+			return null;
 		return rumorsAndFacts.get(currentIndex);
+	}
+	
+	public void resetIndex(){
+		currentIndex = -1;
+	}
+	
+	public void lastINdex(){
+		currentIndex = rumorsAndFacts.size();
 	}
 	
 	public String getRandom(){
 		currentIndex = (int)(Math.random() *rumorsAndFacts.size());
+		if(rumorsAndFacts.size() == 0)
+			return null;
 		return rumorsAndFacts.get(currentIndex);
 	}
 }

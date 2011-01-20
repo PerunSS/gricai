@@ -47,8 +47,11 @@ public class DBManager {
 				do {
 					String name = c.getString(c.getColumnIndex("personName"));
 					int personIndex = c.getInt(c.getColumnIndex("_id"));
+					List<String> personRumors = allRumors.get(personIndex);
+					if (personRumors == null)
+						personRumors = new ArrayList<String>();
 					Person p = Person.readPerson(personIndex, name,
-							allRumors.get(personIndex));
+							personRumors);
 					result.add(p);
 				} while (c.moveToNext());
 			}
