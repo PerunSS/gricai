@@ -10,10 +10,10 @@
   		android:layout_height="fill_parent"
   		android:layout_weight="30">
   		<ImageView 
-  			android:src="@drawable/applogo"
-  			android:layout_width="60dp"
-			android:layout_height="60dp" 
-			android:gravity="center"/>
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1"
+  		/>
   		<Button
   			android:id="@+id/addToFavourites"
   			android:layout_width="fill_parent"
@@ -50,6 +50,7 @@
   			/>
   		</LinearLayout>
   		<TextView
+  			android:id="@+id/factText"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:text="rumor text"
