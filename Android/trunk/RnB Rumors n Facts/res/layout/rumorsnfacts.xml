@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent">
+  	<LinearLayout
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent"
+  		android:layout_weight="22">
+  		<TextView 
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:text="RnB Rumors and Facts"
+  			android:layout_weight="1"/>
+  		<Button
+  			android:id="@+id/addToFavourites"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:text="add"
+  			android:layout_weight="2"/>
+  		<Button 
+  			android:id="@+id/openFavourites"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:text="fav"
+  			android:layout_weight="2"/>	 	
+  	</LinearLayout>  
+  	
+  	<TextView
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent"
+  		android:text="rumor text"
+  		android:layout_weight="9"
+  		/>	
+  	<LinearLayout
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent"
+  		android:layout_weight="21">
+  		<Button
+  			android:id="@+id/previous"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:text="previous"
+  			android:layout_weight="1"/>
+  		<Button 
+  			android:id="@+id/next"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:text="next"
+  			android:layout_weight="1"/>
+  		<Button 
+  			android:id="@+id/random"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:text="random"
+  			android:layout_weight="1"/>	
+  	</LinearLayout>
+  		 	
+</LinearLayout>
