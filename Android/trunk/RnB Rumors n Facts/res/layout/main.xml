@@ -10,7 +10,12 @@
 		android:text="@string/startString"
 		android:textSize="25dp"
 	/>
-	<GridView  
+	<ListView
+		android:id="@+id/start_page_list_veiw"
+		android:layout_height = "wrap_content"
+		android:layout_width = "fill_parent"
+	/>
+	<!-- <GridView  
     	android:id="@+id/startPageGridView"
     	android:layout_width="fill_parent" 
     	android:layout_height="fill_parent"
@@ -20,5 +25,5 @@
     	android:horizontalSpacing="10dp"
     	android:stretchMode="columnWidth"
     	android:gravity="center"
-	/>
+	/> -->
 </LinearLayout>

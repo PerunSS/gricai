@@ -3,9 +3,16 @@
     <string name="app_name">RnB Stars Facts n Rumors</string>
     <string name="startString">Famous Rumors</string>
 	<string name="person0">fact1;fast2;fact3</string>
+	<string name="person0name">Beyonce</string>
 	<string name="person1">fact1;fast2;fact3</string>
+	<string name="person1name">Alicia Keys</string>
 	<string name="person2">fact1;fast2;fact3</string>
+	<string name="person2name">Duffy</string>
 	<string name="person3">fact1;fast2;fact3</string>
+	<string name="person3name">Keyshia Cole</string>
 	<string name="person4">fact1;fast2;fact3</string>
+	<string name="person4name">Ne-Yo</string>
 	<string name="person5">fact1;fast2;fact3</string>
+	<string name="person5name">Charles Brown</string>
+	
 </resources>

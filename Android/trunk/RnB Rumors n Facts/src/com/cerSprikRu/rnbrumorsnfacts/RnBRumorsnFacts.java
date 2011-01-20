@@ -8,17 +8,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.cerSprikRu.rnbrumorsnfacts.person.Person;
 
 public class RnBRumorsnFacts extends Activity {
     /** Called when the activity is first created. */
 	
-	private GridView gridView;
+	//private GridView gridView;
+	private ListView listView;
 	private TextView factsNRumorsText;
 	private Button homeButton;
 	private Button nextButton;
@@ -47,17 +48,26 @@ public class RnBRumorsnFacts extends Activity {
     private void startMainView(){
     	setContentView(R.layout.main);  
     	
-    	gridView = (GridView) findViewById(R.id.startPageGridView);
-        gridView.setAdapter(new ImageAdapter(this));
-        gridView.setBackgroundColor(android.graphics.Color.WHITE);
-
-        gridView.setOnItemClickListener(new OnItemClickListener() {
+    	listView = (ListView) findViewById(R.id.start_page_list_veiw);
+    	listView.setAdapter(new CustomElementAdapter(this));
+    	listView.setBackgroundColor(android.graphics.Color.WHITE);
+    	
+    	listView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             	itemSelected( parent, v, position, id);
             }
-
-			
-        });
+    	});
+//    	gridView = (GridView) findViewById(R.id.startPageGridView);
+//        gridView.setAdapter(new ImageAdapter(this));
+//        gridView.setBackgroundColor(android.graphics.Color.WHITE);
+//
+//        gridView.setOnItemClickListener(new OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//            	itemSelected( parent, v, position, id);
+//            }
+//
+//			
+//        });
     }
     
     
