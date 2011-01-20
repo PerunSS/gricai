@@ -15,10 +15,11 @@ public final class R {
     }
     public static final class id {
         public static final int addToFavourites=0x7f050000;
-        public static final int next=0x7f050003;
+        public static final int imageView=0x7f050002;
+        public static final int next=0x7f050004;
         public static final int openFavourites=0x7f050001;
-        public static final int previous=0x7f050002;
-        public static final int random=0x7f050004;
+        public static final int previous=0x7f050003;
+        public static final int random=0x7f050005;
     }
     public static final class layout {
         public static final int rumorsnfacts=0x7f030000;
