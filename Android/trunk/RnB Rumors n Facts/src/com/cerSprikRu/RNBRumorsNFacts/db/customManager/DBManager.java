@@ -14,7 +14,7 @@ import com.cerSprikRu.RNBRumorsNFacts.person.Person;
 public class DBManager {
 
 	private static final String dbName = "RNBFacts";
-	private static final String projectPath = "com.android.projectsforlearning.factstemplate";
+	private static final String projectPath = "com.cerSprikRu.RNBRumorsNFacts";
 	DBAdapter adapter;
 
 	public DBManager(Context context) {
