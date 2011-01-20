@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cerSprikRu.RNBRumorsNFacts.db.customManager.DBManager;
@@ -17,11 +18,15 @@ public class RnBRumorsNFacts extends Activity {
 
 	private TextView factsTextView;
 	private TextView personNameTextView;
+	private ImageView personImageView;
 	private Button previousButton;
 	private Button nextButton;
 	private Button randomButton;
 
 	private List<Person> persons;
+	private static int[] imageIDs = { R.drawable.beyonce,
+			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
+			R.drawable.chrisbrown };
 
 	enum Action {
 		PREVIOUS, RANDOM, NEXT, NONE
@@ -91,7 +96,7 @@ public class RnBRumorsNFacts extends Activity {
 
 		String rumorText = null;
 		String personName = null;
-		if(lastAction == Action.PREVIOUS){
+		if (lastAction == Action.PREVIOUS) {
 			curentIndex++;
 		}
 		do {
@@ -109,6 +114,9 @@ public class RnBRumorsNFacts extends Activity {
 		personNameTextView = (TextView) findViewById(R.id.personName);
 		personNameTextView.setText(personName);
 
+		personImageView = (ImageView) findViewById(R.id.imageView);
+		personImageView.setImageResource(imageIDs[curentIndex]);
+		
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
 
@@ -142,7 +150,7 @@ public class RnBRumorsNFacts extends Activity {
 
 		String rumorText = null;
 		String personName = null;
-		if(lastAction == Action.NEXT){
+		if (lastAction == Action.NEXT) {
 			curentIndex--;
 		}
 		do {
