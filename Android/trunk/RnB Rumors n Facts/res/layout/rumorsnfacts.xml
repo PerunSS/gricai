@@ -50,16 +50,21 @@
 	  			android:id="@+id/personName"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
-  				android:text="name"
+  				
+  				android:textSize="35dp"
+  				android:gravity="center"
+  				android:textColor="#000000"
+  				
   			/>
   		</LinearLayout>
   		<TextView
   			android:id="@+id/factText"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:text="rumor text"
-  			
-  			android:layout_weight="2"
+  			android:textSize="27dp"
+  			android:gravity="center"
+  			android:textColor="#000000"
+ 			android:layout_weight="2"
   		/>	
   	</LinearLayout>	
   	<LinearLayout
