@@ -168,6 +168,9 @@ public class RnBRumorsNFacts extends Activity {
 		personNameTextView = (TextView) findViewById(R.id.personName);
 		personNameTextView.setText(personName);
 
+		personImageView = (ImageView) findViewById(R.id.imageView);
+		personImageView.setImageResource(imageIDs[curentIndex]);
+		
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
 
@@ -217,6 +220,9 @@ public class RnBRumorsNFacts extends Activity {
 
 		personNameTextView = (TextView) findViewById(R.id.personName);
 		personNameTextView.setText(personName);
+		
+		personImageView = (ImageView) findViewById(R.id.imageView);
+		personImageView.setImageResource(imageIDs[curentIndex]);
 
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
