@@ -59,8 +59,28 @@ public class RnBRumorsNFacts extends Activity {
 	private void startApplication() {
 		setContentView(R.layout.rumorsnfacts);
 
+		String rumorText = null;
+		String personName = null;
+		if (lastAction == Action.PREVIOUS) {
+			curentIndex++;
+		}
+		do {
+			rumorText = curentPerson().getNext();
+			personName = curentPerson().getName();
+			if (rumorText == null) {
+				curentPerson().resetIndex();
+				curentIndex++;
+			}
+		} while (rumorText == null);
+		lastAction = Action.NEXT;
 		factsTextView = (TextView) findViewById(R.id.factText);
-		factsTextView.setText("start");
+		factsTextView.setText(rumorText);
+
+		personNameTextView = (TextView) findViewById(R.id.personName);
+		personNameTextView.setText(personName);
+
+		personImageView = (ImageView) findViewById(R.id.imageView);
+		personImageView.setImageResource(imageIDs[curentIndex]);
 
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
