@@ -14,20 +14,20 @@
   			android:scaleType="fitXY"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="1"
+  			android:layout_weight="10"
   		/>
   		<Button
   			android:id="@+id/addToFavourites"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="2"
+  			android:layout_weight="22"
   			android:background="@drawable/add_button"/>
   		<Button 
   			android:id="@+id/openFavourites"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:background="@drawable/favourites_nc"
-  			android:layout_weight="2"/>	 	
+  			android:layout_weight="22"/>	 	
   	</LinearLayout>  
   	
   	<LinearLayout
