@@ -3,7 +3,8 @@
   	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
   	android:layout_width="fill_parent"
-  	android:layout_height="fill_parent">
+  	android:layout_height="fill_parent"
+  	android:background="#FFFFFF">
   	<LinearLayout
   		android:orientation="horizontal"
   		android:layout_width="fill_parent"
@@ -76,19 +77,19 @@
   			android:id="@+id/previous"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:text="previous"
+  			android:background="@drawable/rnb_previous"
   			android:layout_weight="1"/>
   		<Button 
   			android:id="@+id/next"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:text="next"
+  			android:background="@drawable/rnb_next"
   			android:layout_weight="1"/>
   		<Button 
   			android:id="@+id/random"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:text="random"
+  			android:background="@drawable/rnb_random"
   			android:layout_weight="1"/>	
   	</LinearLayout>
   		 	
