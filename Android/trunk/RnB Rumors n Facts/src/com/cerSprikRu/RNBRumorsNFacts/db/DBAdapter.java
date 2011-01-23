@@ -113,7 +113,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 		String myPath = dbPath + dbName;
 		Log.d("PATH", myPath);
 		myDataBase = SQLiteDatabase.openDatabase(myPath, null,
-				SQLiteDatabase.OPEN_READONLY);
+				SQLiteDatabase.OPEN_READWRITE);
 	}
 
 	@Override
