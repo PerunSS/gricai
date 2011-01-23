@@ -146,7 +146,7 @@ public class RnBRumorsNFacts extends Activity {
 		setContentView(R.layout.rumorsnfacts);
 	
 		curentIndex --;
-		if(curentIndex<facts.size())
+		if(curentIndex<0)
 			curentIndex = facts.size() - 1;
 		Fact fact = facts.get(curentIndex);
 		factsTextView = (TextView) findViewById(R.id.factText);
