@@ -82,7 +82,7 @@
   			android:id="@+id/next"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:background="@drawable/rnb_next"
+  			android:background="@drawable/next_button"
   			android:layout_weight="1"/>
   		<Button 
   			android:id="@+id/random"
