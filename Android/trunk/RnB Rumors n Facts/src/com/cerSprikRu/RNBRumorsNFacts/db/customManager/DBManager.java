@@ -62,4 +62,11 @@ public class DBManager {
 		adapter.close();
 		return result;
 	}
+	
+	public void updateFact(Fact fact){
+		adapter.openDataBase();
+		String sql = "update RNBFacts set fav = "+(fact.isFavorite()?1:0)+" where _id = "+fact.getId();
+		adapter.update(sql);
+		adapter.close();
+	}
 }

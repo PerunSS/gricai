@@ -133,13 +133,11 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	}
 
-	// Add your public helper methods to access and get content from the
-	// database.
-	// You could return cursors by doing "return myDataBase.query(....)" so it'd
-	// be easy
-	// to you to create adapters for your views.
-
 	public Cursor executeSql(String sql, String[] selectionArgs) {
 		return myDataBase.rawQuery(sql, selectionArgs);
+	}
+	
+	public void update(String sql){
+		myDataBase.execSQL(sql);
 	}
 }

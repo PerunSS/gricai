@@ -11,27 +11,30 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int add_button=0x7f020000;
-        public static final int aliciakeys=0x7f020001;
-        public static final int applogo=0x7f020002;
-        public static final int bckground=0x7f020003;
-        public static final int beyonce=0x7f020004;
-        public static final int chrisbrown=0x7f020005;
-        public static final int favourites_c=0x7f020006;
-        public static final int favourites_nc=0x7f020007;
+        public static final int aliciakeys=0x7f020000;
+        public static final int applogo=0x7f020001;
+        public static final int bckground=0x7f020002;
+        public static final int beyonce=0x7f020003;
+        public static final int chrisbrown=0x7f020004;
+        public static final int favorite_no=0x7f020005;
+        public static final int favorite_yes=0x7f020006;
+        public static final int favorites=0x7f020007;
         public static final int icon=0x7f020008;
         public static final int neyo=0x7f020009;
-        public static final int rihanna=0x7f02000a;
-        public static final int rnb_next=0x7f02000b;
-        public static final int rnb_previous=0x7f02000c;
-        public static final int rnb_random=0x7f02000d;
+        public static final int previous_button=0x7f02000a;
+        public static final int remove=0x7f02000b;
+        public static final int rihanna=0x7f02000c;
+        public static final int rnb_next=0x7f02000d;
+        public static final int rnb_previous=0x7f02000e;
+        public static final int rnb_previous_pressed=0x7f02000f;
+        public static final int rnb_random=0x7f020010;
     }
     public static final class id {
-        public static final int addToFavourites=0x7f050000;
+        public static final int addToFavorites=0x7f050000;
         public static final int factText=0x7f050004;
         public static final int imageView=0x7f050002;
         public static final int next=0x7f050006;
-        public static final int openFavourites=0x7f050001;
+        public static final int openFavorites=0x7f050001;
         public static final int personName=0x7f050003;
         public static final int previous=0x7f050005;
         public static final int random=0x7f050007;

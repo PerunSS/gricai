@@ -4,14 +4,14 @@ public class Fact {
 
 	private String text;
 	private String person;
-	private boolean favourite;
+	private boolean favorite;
 	private int id;
 	private int personID;
 	
-	public Fact(String text, String person, boolean favourite, int id, int personID){
+	public Fact(String text, String person, boolean favorite, int id, int personID){
 		this.text = text;
 		this.person = person;
-		this.favourite = favourite;
+		this.favorite = favorite;
 		this.id = id;
 		this.personID = personID;
 	}
@@ -24,8 +24,8 @@ public class Fact {
 		return person;
 	}
 
-	public boolean isFavourite() {
-		return favourite;
+	public boolean isFavorite() {
+		return favorite;
 	}
 
 	public int getId() {
@@ -36,12 +36,8 @@ public class Fact {
 		return personID;
 	}
 	
-	public void makeFavourite (){
-		favourite = true;
-	}
-	
-	public void removeFavourite (){
-		favourite = false;
+	public void togleFavorite() {
+		favorite = !favorite;
 	}
 
 }

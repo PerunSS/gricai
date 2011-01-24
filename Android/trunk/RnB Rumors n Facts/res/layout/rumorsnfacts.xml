@@ -18,16 +18,15 @@
   			android:layout_weight="10"
   		/>
   		<Button
-  			android:id="@+id/addToFavourites"
+  			android:id="@+id/addToFavorites"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="22"
-  			android:background="@drawable/add"/>
+  			android:layout_weight="22"/>
   		<Button 
-  			android:id="@+id/openFavourites"
+  			android:id="@+id/openFavorites"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:background="@drawable/favourites"
+  			android:background="@drawable/favorites"
   			android:layout_weight="22"/>	 	
   	</LinearLayout>  
   	
