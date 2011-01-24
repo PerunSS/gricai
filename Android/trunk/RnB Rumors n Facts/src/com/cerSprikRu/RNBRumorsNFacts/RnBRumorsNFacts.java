@@ -122,9 +122,9 @@ public class RnBRumorsNFacts extends Activity {
 
 	private void togleFavorite(Fact fact) {
 		if(fact.isFavorite()){
-			favoriteButton.setBackgroundResource(R.drawable.favorite_yes);
+			favoriteButton.setBackgroundResource(R.drawable.favorite_yes_button);
 		}else{
-			favoriteButton.setBackgroundResource(R.drawable.favorite_no);
+			favoriteButton.setBackgroundResource(R.drawable.favorite_no_button);
 		}
 	}
 
