@@ -90,6 +90,12 @@
   			android:layout_height="fill_parent"
   			android:background="@drawable/random_button"
   			android:layout_weight="1"/>	
+  		<Button 
+  			android:id="@+id/share"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:background="@drawable/share_button"
+  			android:layout_weight="1"/>
   	</LinearLayout>
   		 	
 </LinearLayout>
