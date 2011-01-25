@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+	
   	xmlns:android="http://schemas.android.com/apk/res/android"
   	android:orientation="vertical"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent"
+  	android:background="@drawable/border"
   	android:gravity="left|center"
-  	android:paddingBottom="5px"
-  	android:paddingTop="5px" 
-  	android:paddingLeft="5px">
+  	android:paddingBottom="18dp"
+  	android:paddingTop="18dp" 
+  	android:paddingLeft="18dp"
+  	android:paddingRight="18dp">
  	<TextView 
   		android:id="@+id/favorite_name"
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
-  		android:textSize="15dp"/>
+  		android:textSize="15dp"
+  		android:textColor="#000000"/>
   	<TextView
   		android:id="@+id/favorite_fact"
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
+  		android:textColor="#000000"
   		android:textSize="15dp"/>	 
 </LinearLayout>

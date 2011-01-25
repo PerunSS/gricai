@@ -15,13 +15,13 @@
   			android:scaleType="fitXY"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="1"
-  		/>
+  			android:layout_weight="1"/>
   		<Button
   			android:id="@+id/back_from_favorites"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="1"/> 		
+  			android:layout_weight="1"
+  			android:background="@drawable/back_button"/> 		
   	</LinearLayout>
   	
   	<ListView
@@ -29,8 +29,5 @@
 		android:layout_height = "fill_parent"
 		android:layout_width = "fill_parent"
 		android:layout_weight="1"
-	/>
-  	
-  	
-  	
+	/>  	
 </LinearLayout>
