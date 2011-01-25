@@ -22,6 +22,7 @@ public class RnBRumorsNFacts extends Activity {
 	private Button nextButton;
 	private Button randomButton;
 	private Button favoriteButton;
+//	private Button shareButton;
 
 	private List<Fact> facts;
 	private static int[] imageIDs = { R.drawable.beyonce,
@@ -82,6 +83,21 @@ public class RnBRumorsNFacts extends Activity {
 			}
 		});
 		
+//		shareButton = (Button) findViewById(R.id.openFavorites);
+//		shareButton.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				 final Intent intent = new Intent(Intent.ACTION_SEND);
+//
+//			     intent.setType("text/plain");
+//			     intent.putExtra(Intent.EXTRA_SUBJECT, "subject: test");
+//			     intent.putExtra(Intent.EXTRA_TEXT, "text: test");
+//
+//			     startActivity(Intent.createChooser(intent, "chooser: test"));
+//			}
+//		});
+		
 		updateUI();
 
 	}
@@ -115,7 +131,7 @@ public class RnBRumorsNFacts extends Activity {
 		personNameTextView.setText(fact.getPerson());
 
 		personImageView = (ImageView) findViewById(R.id.imageView);
-		personImageView.setImageResource(imageIDs[fact.getPersonID()-1]);
+		personImageView.setImageResource(imageIDs[fact.getPersonID()-1]);		
 		
 		togleFavorite(fact);
 	}
