@@ -1,5 +1,6 @@
 package com.cerSprikRu.RNBRumorsNFacts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cerSprikRu.RNBRumorsNFacts.db.customManager.DBManager;
@@ -22,6 +24,9 @@ public class RnBRumorsNFacts extends Activity {
 	private Button nextButton;
 	private Button randomButton;
 	private Button favoriteButton;
+	private Button openFavoriteButton;
+	private Button backButton;
+	private ListView favoritesView;
 //	private Button shareButton;
 
 	private List<Fact> facts;
@@ -31,6 +36,8 @@ public class RnBRumorsNFacts extends Activity {
 
 	private int curentIndex = 0;
 	private DBManager manager;
+	
+	private static RnBRumorsNFacts instance;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -39,8 +46,9 @@ public class RnBRumorsNFacts extends Activity {
 		manager = new DBManager(this);
 		facts = manager.read();
 		startApplication();
+		instance = this;
 	}
-
+	
 	private void startApplication() {
 		setContentView(R.layout.rumorsnfacts);
 
@@ -83,7 +91,31 @@ public class RnBRumorsNFacts extends Activity {
 			}
 		});
 		
-//		shareButton = (Button) findViewById(R.id.openFavorites);
+		openFavoriteButton = (Button) findViewById(R.id.openFavorites);
+		openFavoriteButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setContentView(R.layout.favorites);
+				favoritesView = (ListView) findViewById(R.id.favorites_list_view);
+				List<Fact> favorites = new ArrayList<Fact>();
+				for(Fact fact:facts)
+					if(fact.isFavorite())
+						favorites.add(fact);
+				favoritesView.setAdapter(new FavoritesListAdapter(instance, favorites));
+				
+				backButton = (Button) findViewById(R.id.back_from_favorites);
+				backButton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						startApplication();
+					}
+				});
+			}
+		});
+		
+//		shareButton = (Button) findViewById(R.id.share);
 //		shareButton.setOnClickListener(new OnClickListener() {
 //			
 //			@Override

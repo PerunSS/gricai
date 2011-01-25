@@ -12,10 +12,10 @@
   		android:id="@+id/favorite_name"
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
-  		android:textSize="20dp"/>
+  		android:textSize="15dp"/>
   	<TextView
   		android:id="@+id/favorite_fact"
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
-  		android:textSize="20dp"/>	 
+  		android:textSize="15dp"/>	 
 </LinearLayout>
