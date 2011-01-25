@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +28,7 @@ public class RnBRumorsNFacts extends Activity {
 	private Button openFavoriteButton;
 	private Button backButton;
 	private ListView favoritesView;
-//	private Button shareButton;
+	private Button shareButton;
 
 	private List<Fact> facts;
 	private static int[] imageIDs = { R.drawable.beyonce,
@@ -115,20 +116,20 @@ public class RnBRumorsNFacts extends Activity {
 			}
 		});
 		
-//		shareButton = (Button) findViewById(R.id.share);
-//		shareButton.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				 final Intent intent = new Intent(Intent.ACTION_SEND);
-//
-//			     intent.setType("text/plain");
-//			     intent.putExtra(Intent.EXTRA_SUBJECT, "subject: test");
-//			     intent.putExtra(Intent.EXTRA_TEXT, "text: test");
-//
-//			     startActivity(Intent.createChooser(intent, "chooser: test"));
-//			}
-//		});
+		shareButton = (Button) findViewById(R.id.share);
+		shareButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 final Intent intent = new Intent(Intent.ACTION_SEND);
+
+			     intent.setType("text/plain");
+			     intent.putExtra(Intent.EXTRA_SUBJECT, "subject: test");
+			     intent.putExtra(Intent.EXTRA_TEXT, "text: test");
+
+			     startActivity(Intent.createChooser(intent, "chooser: test"));
+			}
+		});
 		
 		updateUI();
 
@@ -157,6 +158,12 @@ public class RnBRumorsNFacts extends Activity {
 		Fact fact = facts.get(curentIndex);
 		
 		factsTextView = (TextView) findViewById(R.id.factText);
+		if(fact.getText().length()>150)
+			factsTextView.setTextSize(20);
+		else if (fact.getText().length()>100)
+			factsTextView.setTextSize(25);
+		else
+			factsTextView.setTextSize(30);
 		factsTextView.setText(fact.getText());
 
 		personNameTextView = (TextView) findViewById(R.id.personName);
