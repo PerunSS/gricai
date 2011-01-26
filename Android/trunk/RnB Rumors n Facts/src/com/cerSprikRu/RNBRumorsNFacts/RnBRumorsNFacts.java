@@ -37,7 +37,7 @@ public class RnBRumorsNFacts extends Activity {
 
 	private int curentIndex = 0;
 	private DBManager manager;
-	
+
 	private static RnBRumorsNFacts instance;
 
 	/** Called when the activity is first created. */
@@ -49,7 +49,7 @@ public class RnBRumorsNFacts extends Activity {
 		startApplication();
 		instance = this;
 	}
-	
+
 	private void startApplication() {
 		setContentView(R.layout.rumorsnfacts);
 
@@ -79,7 +79,7 @@ public class RnBRumorsNFacts extends Activity {
 				randomClick(v);
 			}
 		});
-		
+
 		favoriteButton = (Button) findViewById(R.id.addToFavorites);
 		favoriteButton.setOnClickListener(new OnClickListener() {
 
@@ -91,23 +91,24 @@ public class RnBRumorsNFacts extends Activity {
 				togleFavorite(fact);
 			}
 		});
-		
+
 		openFavoriteButton = (Button) findViewById(R.id.openFavorites);
 		openFavoriteButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				setContentView(R.layout.favorites);
 				favoritesView = (ListView) findViewById(R.id.favorites_list_view);
 				List<Fact> favorites = new ArrayList<Fact>();
-				for(Fact fact:facts)
-					if(fact.isFavorite())
+				for (Fact fact : facts)
+					if (fact.isFavorite())
 						favorites.add(fact);
-				favoritesView.setAdapter(new FavoritesListAdapter(instance, favorites));
-				
+				favoritesView.setAdapter(new FavoritesListAdapter(instance,
+						favorites));
+
 				backButton = (Button) findViewById(R.id.back_from_favorites);
 				backButton.setOnClickListener(new OnClickListener() {
-					
+
 					@Override
 					public void onClick(View v) {
 						startApplication();
@@ -115,36 +116,38 @@ public class RnBRumorsNFacts extends Activity {
 				});
 			}
 		});
-		
+
 		shareButton = (Button) findViewById(R.id.share);
 		shareButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				 final Intent intent = new Intent(Intent.ACTION_SEND);
+				Fact currentFact = facts.get(curentIndex);
+				final Intent intent = new Intent(Intent.ACTION_SEND);
 
-			     intent.setType("text/plain");
-			     intent.putExtra(Intent.EXTRA_SUBJECT, "subject: test");
-			     intent.putExtra(Intent.EXTRA_TEXT, "text: test");
+				intent.setType("text/plain");
+				intent.putExtra(Intent.EXTRA_TEXT,
+						"Fact about " + currentFact.getPerson() + ": "
+								+ currentFact.getText());
 
-			     startActivity(Intent.createChooser(intent, "chooser: test"));
+				startActivity(Intent.createChooser(intent, "chooser: test"));
 			}
 		});
-		
+
 		updateUI();
 
 	}
 
 	private void nextClick(View v) {
-		curentIndex ++;
-		if(curentIndex>=facts.size())
+		curentIndex++;
+		if (curentIndex >= facts.size())
 			curentIndex = 0;
 		updateUI();
 	}
 
 	private void previousClick(View v) {
-		curentIndex --;
-		if(curentIndex<0)
+		curentIndex--;
+		if (curentIndex < 0)
 			curentIndex = facts.size() - 1;
 		updateUI();
 	}
@@ -153,14 +156,14 @@ public class RnBRumorsNFacts extends Activity {
 		curentIndex = (int) (Math.random() * facts.size());
 		updateUI();
 	}
-	
+
 	private void updateUI() {
 		Fact fact = facts.get(curentIndex);
-		
+
 		factsTextView = (TextView) findViewById(R.id.factText);
-		if(fact.getText().length()>150)
+		if (fact.getText().length() > 150)
 			factsTextView.setTextSize(20);
-		else if (fact.getText().length()>100)
+		else if (fact.getText().length() > 100)
 			factsTextView.setTextSize(25);
 		else
 			factsTextView.setTextSize(30);
@@ -170,15 +173,16 @@ public class RnBRumorsNFacts extends Activity {
 		personNameTextView.setText(fact.getPerson());
 
 		personImageView = (ImageView) findViewById(R.id.imageView);
-		personImageView.setImageResource(imageIDs[fact.getPersonID()-1]);		
-		
+		personImageView.setImageResource(imageIDs[fact.getPersonID() - 1]);
+
 		togleFavorite(fact);
 	}
 
 	private void togleFavorite(Fact fact) {
-		if(fact.isFavorite()){
-			favoriteButton.setBackgroundResource(R.drawable.favorite_yes_button);
-		}else{
+		if (fact.isFavorite()) {
+			favoriteButton
+					.setBackgroundResource(R.drawable.favorite_yes_button);
+		} else {
 			favoriteButton.setBackgroundResource(R.drawable.favorite_no_button);
 		}
 	}
