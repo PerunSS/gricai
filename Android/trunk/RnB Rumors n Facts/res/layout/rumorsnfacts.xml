@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
+  	xmlns:myapp="http://schemas.android.com/apk/res/com.cerSprikRu.RNBRumorsNFacts"
+  	android:orientation="vertical"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent"
   	android:background="#FFFFFF">
@@ -97,5 +98,12 @@
   			android:background="@drawable/share_button"
   			android:layout_weight="1"/>
   	</LinearLayout>
-  		 	
+  	<com.admob.android.ads.AdView
+		android:id="@+id/ad"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		myapp:backgroundColor="#000000"
+		myapp:primaryTextColor="#FFFFFF"
+		myapp:secondaryTextColor="#CCCCCC"
+	/>	 	
 </LinearLayout>
