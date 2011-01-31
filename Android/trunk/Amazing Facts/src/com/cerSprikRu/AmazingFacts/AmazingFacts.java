@@ -9,10 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.cerSprikRu.AmazingFacts.adapter.FavoriteAdapter;
 import com.cerSprikRu.AmazingFacts.db.customManager.DBManager;
 import com.cerSprikRu.AmazingFacts.fact.Fact;
 
@@ -27,6 +27,7 @@ public class AmazingFacts extends Activity {
 	private Button backButton;
 	private ListView favoritesView;
 	private Button shareButton;
+	private Button searchButton;
 
 	private List<Fact> facts;
 
@@ -39,8 +40,8 @@ public class AmazingFacts extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//manager = new DBManager(this);
-		//facts = manager.read();
+		manager = new DBManager(this);
+		facts = manager.read();
 		startApplication();
 		instance = this;
 	}
@@ -80,10 +81,10 @@ public class AmazingFacts extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Fact fact = facts.get(curentIndex);
-//				fact.togleFavorite();
-//				manager.updateFact(fact);
-//				togleFavorite(fact);
+				 Fact fact = facts.get(curentIndex);
+				 fact.togleFavorite();
+				 manager.updateFact(fact);
+				 togleFavorite(fact);
 			}
 		});
 
@@ -98,8 +99,7 @@ public class AmazingFacts extends Activity {
 				for (Fact fact : facts)
 					if (fact.isFavorite())
 						favorites.add(fact);
-				favoritesView.setAdapter(new FavoritesListAdapter(instance,
-						favorites));
+				favoritesView.setAdapter(new FavoriteAdapter(instance, R.id.favorites_list_view, favorites));
 
 				backButton = (Button) findViewById(R.id.back_from_favorites);
 				backButton.setOnClickListener(new OnClickListener() {
@@ -121,11 +121,20 @@ public class AmazingFacts extends Activity {
 				final Intent intent = new Intent(Intent.ACTION_SEND);
 
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about " + currentFact.getPerson() + ": "
-								+ currentFact.getText());
+				intent.putExtra(Intent.EXTRA_TEXT, "Amazing fact: "
+						+ currentFact.getText());
 
 				startActivity(Intent.createChooser(intent, "chooser: test"));
+			}
+		});
+		
+		searchButton = (Button) findViewById(R.id.search);
+		searchButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				showSearch();
+				
 			}
 		});
 
@@ -153,18 +162,17 @@ public class AmazingFacts extends Activity {
 	}
 
 	private void updateUI() {
-//		Fact fact = facts.get(curentIndex);
-//
-//		factsTextView = (TextView) findViewById(R.id.factText);
-//		if (fact.getText().length() > 150)
-//			factsTextView.setTextSize(20);
-//		else if (fact.getText().length() > 100)
-//			factsTextView.setTextSize(25);
-//		else
-//			factsTextView.setTextSize(30);
-//		factsTextView.setText(fact.getText());
-//
-//		togleFavorite(fact);
+		Fact fact = facts.get(curentIndex);
+		factsTextView = (TextView) findViewById(R.id.factText);
+		if (fact.getText().length() > 150)
+			factsTextView.setTextSize(20);
+		else if (fact.getText().length() > 100)
+			factsTextView.setTextSize(25);
+		else
+			factsTextView.setTextSize(30);
+		factsTextView.setText(fact.getText());
+
+		togleFavorite(fact);
 	}
 
 	private void togleFavorite(Fact fact) {
@@ -174,6 +182,14 @@ public class AmazingFacts extends Activity {
 		} else {
 			favoriteButton.setBackgroundResource(R.drawable.favorite_no_button);
 		}
+	}
+	
+	private void showSearch(){
+		
+	}
+	
+	private List<Fact> search(String[] keywords){
+		return null;
 	}
 
 }
