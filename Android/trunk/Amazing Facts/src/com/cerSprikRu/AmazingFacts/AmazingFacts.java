@@ -19,8 +19,6 @@ import com.cerSprikRu.AmazingFacts.fact.Fact;
 public class AmazingFacts extends Activity {
 
 	private TextView factsTextView;
-	private TextView personNameTextView;
-	private ImageView personImageView;
 	private Button previousButton;
 	private Button nextButton;
 	private Button randomButton;
@@ -31,9 +29,6 @@ public class AmazingFacts extends Activity {
 	private Button shareButton;
 
 	private List<Fact> facts;
-	private static int[] imageIDs = { R.drawable.beyonce,
-			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
-			R.drawable.chrisbrown };
 
 	private int curentIndex = 0;
 	private DBManager manager;
@@ -44,8 +39,8 @@ public class AmazingFacts extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		manager = new DBManager(this);
-		facts = manager.read();
+		//manager = new DBManager(this);
+		//facts = manager.read();
 		startApplication();
 		instance = this;
 	}
@@ -85,10 +80,10 @@ public class AmazingFacts extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Fact fact = facts.get(curentIndex);
-				fact.togleFavorite();
-				manager.updateFact(fact);
-				togleFavorite(fact);
+//				Fact fact = facts.get(curentIndex);
+//				fact.togleFavorite();
+//				manager.updateFact(fact);
+//				togleFavorite(fact);
 			}
 		});
 
@@ -158,24 +153,18 @@ public class AmazingFacts extends Activity {
 	}
 
 	private void updateUI() {
-		Fact fact = facts.get(curentIndex);
-
-		factsTextView = (TextView) findViewById(R.id.factText);
-		if (fact.getText().length() > 150)
-			factsTextView.setTextSize(20);
-		else if (fact.getText().length() > 100)
-			factsTextView.setTextSize(25);
-		else
-			factsTextView.setTextSize(30);
-		factsTextView.setText(fact.getText());
-
-		personNameTextView = (TextView) findViewById(R.id.personName);
-		personNameTextView.setText(fact.getPerson());
-
-		personImageView = (ImageView) findViewById(R.id.imageView);
-		personImageView.setImageResource(imageIDs[fact.getPersonID() - 1]);
-
-		togleFavorite(fact);
+//		Fact fact = facts.get(curentIndex);
+//
+//		factsTextView = (TextView) findViewById(R.id.factText);
+//		if (fact.getText().length() > 150)
+//			factsTextView.setTextSize(20);
+//		else if (fact.getText().length() > 100)
+//			factsTextView.setTextSize(25);
+//		else
+//			factsTextView.setTextSize(30);
+//		factsTextView.setText(fact.getText());
+//
+//		togleFavorite(fact);
 	}
 
 	private void togleFavorite(Fact fact) {
