@@ -27,5 +27,10 @@ public class Fact {
 	public void togleFavorite() {
 		favorite = !favorite;
 	}
+	
+	@Override
+	public String toString() {
+		return text;
+	}
 
 }

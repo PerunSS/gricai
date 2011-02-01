@@ -1,9 +1,12 @@
 package com.cerSprikRu.AmazingFacts;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +33,7 @@ public class AmazingFacts extends Activity {
 	private ListView favoritesView;
 	private Button shareButton;
 	private Button searchButton;
+	private ListView searchView;
 
 	private List<Fact> facts;
 
@@ -46,6 +50,63 @@ public class AmazingFacts extends Activity {
 		facts = manager.read();
 		startApplication();
 		instance = this;
+		handleIntent(getIntent());
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+	    setIntent(intent);
+	    handleIntent(intent);
+	}
+
+	private void handleIntent(Intent intent) {
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+	      String query = intent.getStringExtra(SearchManager.QUERY);
+	      doMySearch(query);
+	    }
+	}
+
+	private void doMySearch(String query) {
+		Log.i("SEARCH", query);
+		String queryArr [] = query.split(" ");
+		for(int i=0;i<queryArr.length;i++){
+			queryArr[i].trim();
+		}
+		Map<Integer, List<Fact>> result = new HashMap<Integer, List<Fact>>();
+		for(Fact fact:facts){
+			int wordCount = 0;
+			for(String q:queryArr){
+				if(fact.getText().toLowerCase().contains(q.toLowerCase()))
+					wordCount++;
+			}
+			if(wordCount>0){
+				List<Fact> searchFacts = result.get(wordCount);
+				if(searchFacts == null)
+					searchFacts = new ArrayList<Fact>();
+				searchFacts.add(fact);
+				result.put(wordCount, searchFacts);
+			}
+		}
+		setContentView(R.layout.search);
+		searchView = (ListView) findViewById(R.id.search_list_view);
+		List<Fact> searchResult = new ArrayList<Fact>();
+		int maxCount = queryArr.length;
+		while(maxCount > 0){
+			List<Fact> res = result.get(maxCount);
+			if(res!=null)
+				searchResult.addAll(res);
+			maxCount--;
+		}
+		searchView.setAdapter(new FavoriteAdapter(instance, R.id.search_list_view, searchResult));
+
+		backButton = (Button) findViewById(R.id.back_from_search);
+		backButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startApplication();
+			}
+		});
 		
 	}
 
@@ -196,16 +257,14 @@ public class AmazingFacts extends Activity {
 			//TODO show menu
 		case KeyEvent.KEYCODE_HOME:
 			//TODO home
+		case KeyEvent.KEYCODE_SEARCH:
+			//TODO search
 		}
 		return super.onKeyDown(keyCode, event);
 	}
 	
 	private void showSearch(){
-		
+		onSearchRequested();
 	}
 	
-	private List<Fact> search(String[] keywords){
-		return null;
-	}
-
 }
