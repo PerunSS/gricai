@@ -6,6 +6,8 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -44,10 +46,11 @@ public class AmazingFacts extends Activity {
 		facts = manager.read();
 		startApplication();
 		instance = this;
+		
 	}
 
 	private void startApplication() {
-		setContentView(R.layout.rumorsnfacts);
+		setContentView(R.layout.amazingfacts);
 
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
@@ -182,6 +185,19 @@ public class AmazingFacts extends Activity {
 		} else {
 			favoriteButton.setBackgroundResource(R.drawable.favorite_no_button);
 		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch(keyCode){
+		case KeyEvent.KEYCODE_BACK:
+			//TODO back;
+		case KeyEvent.KEYCODE_MENU:
+			//TODO show menu
+		case KeyEvent.KEYCODE_HOME:
+			//TODO home
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	private void showSearch(){
