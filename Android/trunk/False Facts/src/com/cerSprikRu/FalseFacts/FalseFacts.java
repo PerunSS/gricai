@@ -185,10 +185,10 @@ public class FalseFacts extends Activity {
 				final Intent intent = new Intent(Intent.ACTION_SEND);
 
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT, "Amazing fact: "
+				intent.putExtra(Intent.EXTRA_TEXT, "False fact: "
 						+ currentFact.getText());
 
-				startActivity(Intent.createChooser(intent, "chooser: test"));
+				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
 		

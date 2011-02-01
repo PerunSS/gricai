@@ -11,8 +11,8 @@ import com.cerSprikRu.FalseFacts.fact.Fact;
 
 public class DBManager {
 
-	private static final String dbName = "AmazingFacts";
-	private static final String projectPath = "com.cerSprikRu.AmazingFacts";
+	private static final String dbName = "FalseFacts";
+	private static final String projectPath = "com.cerSprikRu.FalseFacts";
 	DBAdapter adapter;
 
 	public DBManager(Context context) {
