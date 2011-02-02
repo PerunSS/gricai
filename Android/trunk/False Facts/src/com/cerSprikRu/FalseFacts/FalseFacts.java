@@ -307,6 +307,8 @@ public class FalseFacts extends Activity {
 			if(currentState == STATE.BACKABLE){
 				startApplication();
 				return true;
+			}else{
+				return moveTaskToBack(true);
 			}
 		case KeyEvent.KEYCODE_MENU:
 			//TODO show menu

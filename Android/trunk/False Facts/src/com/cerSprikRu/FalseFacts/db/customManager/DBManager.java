@@ -11,7 +11,7 @@ import com.cerSprikRu.FalseFacts.fact.Fact;
 
 public class DBManager {
 
-	private static final String dbName = "FalseFacts";
+	private static final String dbName = "Facts";
 	private static final String projectPath = "com.cerSprikRu.FalseFacts";
 	DBAdapter adapter;
 
@@ -23,7 +23,7 @@ public class DBManager {
 		adapter.openDataBase();
 		List<Fact> result = new ArrayList<Fact>();
 		
-		Cursor c = adapter.executeSql("select * from AllFacts where type = 1 limit 250", null);
+		Cursor c = adapter.executeSql("select * from AllFacts", null);
 		if (c != null) {
 			if (c.moveToFirst()) {
 				do {
