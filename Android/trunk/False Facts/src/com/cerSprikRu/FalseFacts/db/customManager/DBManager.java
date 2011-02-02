@@ -27,7 +27,7 @@ public class DBManager {
 		if (c != null) {
 			if (c.moveToFirst()) {
 				do {
-					String text = c.getString(c.getColumnIndex("fact"));
+					String text = c.getString(c.getColumnIndex("fact")).trim();
 					int id = c.getInt(c.getColumnIndex("_id"));
 					boolean fav = false;
 					try{

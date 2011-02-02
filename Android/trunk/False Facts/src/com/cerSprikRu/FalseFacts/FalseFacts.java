@@ -8,6 +8,8 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,9 +40,16 @@ public class FalseFacts extends Activity {
 
 	private List<Fact> facts;
 	private List<Fact> searchResult;
+	private List<Fact> favorites;
 
 	private int curentIndex = 0;
 	private DBManager manager;
+	
+	private enum STATE {
+		NORMAL, BACKABLE
+	}
+	
+	private STATE currentState;
 
 	private static FalseFacts instance;
 
@@ -54,6 +63,8 @@ public class FalseFacts extends Activity {
 		instance = this;
 		handleIntent(getIntent());
 	}
+	
+	
 	
 	@Override
 	protected void onNewIntent(Intent intent) {
@@ -69,6 +80,7 @@ public class FalseFacts extends Activity {
 	}
 
 	private void doMySearch(String query) {
+		currentState = STATE.BACKABLE;
 		String queryArr [] = query.split(" ");
 		for(int i=0;i<queryArr.length;i++){
 			queryArr[i].trim();
@@ -90,6 +102,7 @@ public class FalseFacts extends Activity {
 		}
 		setContentView(R.layout.search);
 		searchView = (ListView) findViewById(R.id.search_list_view);
+		searchResult = null;
 		searchResult = new ArrayList<Fact>();
 		int maxCount = queryArr.length;
 		while(maxCount > 0){
@@ -98,6 +111,8 @@ public class FalseFacts extends Activity {
 				searchResult.addAll(res);
 			maxCount--;
 		}
+		searchView.setDivider(new ColorDrawable(Color.GRAY));
+		searchView.setDividerHeight(2);
 		searchView.setAdapter(new FavoriteAdapter(instance, R.id.search_list_view, searchResult));
 		searchView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -129,7 +144,7 @@ public class FalseFacts extends Activity {
 
 	private void startApplication() {
 		setContentView(R.layout.falsefacts);
-
+		currentState = STATE.NORMAL;
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
 
@@ -174,13 +189,33 @@ public class FalseFacts extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				currentState = STATE.BACKABLE;
 				setContentView(R.layout.favorites);
 				favoritesView = (ListView) findViewById(R.id.favorites_list_view);
-				List<Fact> favorites = new ArrayList<Fact>();
+				favorites = null;
+				favorites = new ArrayList<Fact>();
 				for (Fact fact : facts)
 					if (fact.isFavorite())
 						favorites.add(fact);
+				favoritesView.setDivider(new ColorDrawable(Color.GRAY));
+				favoritesView.setDividerHeight(2);
 				favoritesView.setAdapter(new FavoriteAdapter(instance, R.id.favorites_list_view, favorites));
+				favoritesView.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+						Fact f = favorites.get(position);
+						curentIndex = 0;
+						for(Fact fact:facts){
+							if(f.equals(fact)){
+								startApplication();
+								return;
+							}
+							curentIndex++;
+						}
+						
+					}
+				});
 
 				backButton = (Button) findViewById(R.id.back_from_favorites);
 				backButton.setOnClickListener(new OnClickListener() {
@@ -269,7 +304,10 @@ public class FalseFacts extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch(keyCode){
 		case KeyEvent.KEYCODE_BACK:
-			//TODO back;
+			if(currentState == STATE.BACKABLE){
+				startApplication();
+				return true;
+			}
 		case KeyEvent.KEYCODE_MENU:
 			//TODO show menu
 		case KeyEvent.KEYCODE_HOME:
