@@ -315,6 +315,9 @@ public class RnBRumorsNFacts extends Activity {
 				startApplication();
 				return true;
 			}
+			else{
+				moveTaskToBack(true);
+			}
 		case KeyEvent.KEYCODE_MENU:
 			//TODO show menu
 		case KeyEvent.KEYCODE_HOME:
