@@ -95,23 +95,25 @@ containing a value of this type.
         public static final int rnb_share=0x7f020026;
         public static final int rnb_share_focus=0x7f020027;
         public static final int rnb_share_onclick=0x7f020028;
-        public static final int share_button=0x7f020029;
+        public static final int search=0x7f020029;
+        public static final int search_button=0x7f02002a;
+        public static final int search_focus=0x7f02002b;
+        public static final int search_onclick=0x7f02002c;
+        public static final int share_button=0x7f02002d;
     }
     public static final class id {
         public static final int addToFavorites=0x7f060001;
-        public static final int back_from_favorites=0x7f06000a;
-        public static final int back_from_search=0x7f06000c;
-        public static final int factText=0x7f060005;
-        public static final int favorites_list_view=0x7f06000b;
-        public static final int imageView=0x7f060003;
-        public static final int next=0x7f060007;
+        public static final int back_from_favorites=0x7f060008;
+        public static final int back_from_search=0x7f06000a;
+        public static final int factText=0x7f060003;
+        public static final int favorites_list_view=0x7f060009;
+        public static final int next=0x7f060005;
         public static final int openFavorites=0x7f060002;
-        public static final int personName=0x7f060004;
-        public static final int previous=0x7f060006;
-        public static final int random=0x7f060008;
+        public static final int previous=0x7f060004;
+        public static final int random=0x7f060006;
         public static final int search=0x7f060000;
-        public static final int search_list_view=0x7f06000d;
-        public static final int share=0x7f060009;
+        public static final int search_list_view=0x7f06000b;
+        public static final int share=0x7f060007;
     }
     public static final class layout {
         public static final int falsefacts=0x7f030000;

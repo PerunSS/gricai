@@ -9,10 +9,11 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class FalseFacts extends Activity {
 	private ListView searchView;
 
 	private List<Fact> facts;
+	private List<Fact> searchResult;
 
 	private int curentIndex = 0;
 	private DBManager manager;
@@ -67,7 +69,6 @@ public class FalseFacts extends Activity {
 	}
 
 	private void doMySearch(String query) {
-		Log.i("SEARCH", query);
 		String queryArr [] = query.split(" ");
 		for(int i=0;i<queryArr.length;i++){
 			queryArr[i].trim();
@@ -89,7 +90,7 @@ public class FalseFacts extends Activity {
 		}
 		setContentView(R.layout.search);
 		searchView = (ListView) findViewById(R.id.search_list_view);
-		List<Fact> searchResult = new ArrayList<Fact>();
+		searchResult = new ArrayList<Fact>();
 		int maxCount = queryArr.length;
 		while(maxCount > 0){
 			List<Fact> res = result.get(maxCount);
@@ -98,7 +99,23 @@ public class FalseFacts extends Activity {
 			maxCount--;
 		}
 		searchView.setAdapter(new FavoriteAdapter(instance, R.id.search_list_view, searchResult));
+		searchView.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+				Fact f = searchResult.get(position);
+				curentIndex = 0;
+				for(Fact fact:facts){
+					if(f.equals(fact)){
+						startApplication();
+						return;
+					}
+					curentIndex++;
+				}
+				
+			}
+		});
+		
 		backButton = (Button) findViewById(R.id.back_from_search);
 		backButton.setOnClickListener(new OnClickListener() {
 
