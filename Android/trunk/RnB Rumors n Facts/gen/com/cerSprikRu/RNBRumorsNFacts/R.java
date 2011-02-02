@@ -98,20 +98,21 @@ containing a value of this type.
         public static final int share_button=0x7f020029;
     }
     public static final class id {
-        public static final int ad=0x7f05000d;
-        public static final int addToFavorites=0x7f050004;
-        public static final int back_from_favorites=0x7f050002;
-        public static final int factText=0x7f050008;
-        public static final int favorite_fact=0x7f050001;
-        public static final int favorite_name=0x7f050000;
-        public static final int favorites_list_view=0x7f050003;
-        public static final int imageView=0x7f050006;
-        public static final int next=0x7f05000a;
-        public static final int openFavorites=0x7f050005;
-        public static final int personName=0x7f050007;
-        public static final int previous=0x7f050009;
-        public static final int random=0x7f05000b;
-        public static final int share=0x7f05000c;
+        public static final int ad=0x7f06000e;
+        public static final int addToFavorites=0x7f060005;
+        public static final int back_from_favorites=0x7f060002;
+        public static final int factText=0x7f060009;
+        public static final int favorite_fact=0x7f060001;
+        public static final int favorite_name=0x7f060000;
+        public static final int favorites_list_view=0x7f060003;
+        public static final int imageView=0x7f060007;
+        public static final int next=0x7f06000b;
+        public static final int openFavorites=0x7f060006;
+        public static final int personName=0x7f060008;
+        public static final int previous=0x7f06000a;
+        public static final int random=0x7f06000c;
+        public static final int search=0x7f060004;
+        public static final int share=0x7f06000d;
     }
     public static final class layout {
         public static final int favorite_list_element=0x7f030000;
@@ -119,8 +120,12 @@ containing a value of this type.
         public static final int rumorsnfacts=0x7f030002;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int hello=0x7f040000;
+        public static final int app_name=0x7f050001;
+        public static final int hello=0x7f050000;
+        public static final int search_hint=0x7f050002;
+    }
+    public static final class xml {
+        public static final int searchable=0x7f040000;
     }
     public static final class styleable {
         /** Attributes that can be used with a com_admob_android_ads_AdView.

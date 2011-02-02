@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -34,6 +35,7 @@ public class RnBRumorsNFacts extends Activity {
 	private Button backButton;
 	private ListView favoritesView;
 	private Button shareButton;
+	private Button searchButton;
 
 	private List<Fact> facts;
 	private List<Fact> searchResult;
@@ -46,7 +48,13 @@ public class RnBRumorsNFacts extends Activity {
 	private DBManager manager;
 
 	private static RnBRumorsNFacts instance;
-
+	
+	private enum STATE {
+		NORMAL, BACKABLE
+	}
+	
+	private STATE currentState;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,7 @@ public class RnBRumorsNFacts extends Activity {
 	}
 	
 	private void doMySearch(String query){
+		currentState = STATE.BACKABLE;
 		String queryArr [] = query.split(" ");
 		for(int i=0;i<queryArr.length;i++){
 			queryArr[i].trim();
@@ -134,6 +143,7 @@ public class RnBRumorsNFacts extends Activity {
 	}
 
 	private void startApplication() {
+		currentState = STATE.NORMAL;
 		setContentView(R.layout.rumorsnfacts);
 
 		previousButton = (Button) findViewById(R.id.previous);
@@ -180,6 +190,7 @@ public class RnBRumorsNFacts extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				currentState = STATE.BACKABLE;
 				setContentView(R.layout.favorites);
 				favoritesView = (ListView) findViewById(R.id.favorites_list_view);
 				favorites = new ArrayList<Fact>();
@@ -230,6 +241,16 @@ public class RnBRumorsNFacts extends Activity {
 								+ currentFact.getText());
 
 				startActivity(Intent.createChooser(intent, "share"));
+			}
+		});
+		
+		searchButton = (Button) findViewById(R.id.search);
+		searchButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				showSearch();
+				
 			}
 		});
 
@@ -284,6 +305,28 @@ public class RnBRumorsNFacts extends Activity {
 		} else {
 			favoriteButton.setBackgroundResource(R.drawable.favorite_no_button);
 		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch(keyCode){
+		case KeyEvent.KEYCODE_BACK:
+			if(currentState == STATE.BACKABLE){
+				startApplication();
+				return true;
+			}
+		case KeyEvent.KEYCODE_MENU:
+			//TODO show menu
+		case KeyEvent.KEYCODE_HOME:
+			//TODO home
+		case KeyEvent.KEYCODE_SEARCH:
+			//TODO search
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	private void showSearch(){
+		onSearchRequested();
 	}
 
 }
