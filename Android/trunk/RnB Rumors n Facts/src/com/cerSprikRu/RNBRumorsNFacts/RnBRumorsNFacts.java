@@ -1,13 +1,18 @@
 package com.cerSprikRu.RNBRumorsNFacts;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -31,6 +36,8 @@ public class RnBRumorsNFacts extends Activity {
 	private Button shareButton;
 
 	private List<Fact> facts;
+	private List<Fact> searchResult;
+	private List<Fact> favorites;
 	private static int[] imageIDs = { R.drawable.beyonce,
 			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
 			R.drawable.chrisbrown };
@@ -48,6 +55,82 @@ public class RnBRumorsNFacts extends Activity {
 		facts = manager.read();
 		startApplication();
 		instance = this;
+		handleIntent(getIntent());
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+	    setIntent(intent);
+	    handleIntent(intent);
+	}
+
+	private void handleIntent(Intent intent) {
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+	      String query = intent.getStringExtra(SearchManager.QUERY);
+	      doMySearch(query);
+	    }
+	}
+	
+	private void doMySearch(String query){
+		String queryArr [] = query.split(" ");
+		for(int i=0;i<queryArr.length;i++){
+			queryArr[i].trim();
+		}
+		Map<Integer, List<Fact>> result = new HashMap<Integer, List<Fact>>();
+		int maxWordCount = 0;
+		for(Fact fact:facts){
+			int wordCount = 0;
+			for(String q:queryArr){
+				if(fact.getText().toLowerCase().contains(q.toLowerCase()))
+					wordCount++;
+				if(fact.getPerson().toLowerCase().contains(q.toLowerCase()))
+					wordCount++;
+			}
+			if(wordCount > maxWordCount)
+				maxWordCount = wordCount;
+			if(wordCount>0){
+				List<Fact> searchFacts = result.get(wordCount);
+				if(searchFacts == null)
+					searchFacts = new ArrayList<Fact>();
+				searchFacts.add(fact);
+				result.put(wordCount, searchFacts);
+			}
+		}
+		setContentView(R.layout.favorites);
+		favoritesView = (ListView) findViewById(R.id.favorites_list_view);
+		searchResult = new ArrayList<Fact>();
+		while(maxWordCount > 0){
+			List<Fact> res = result.get(maxWordCount);
+			if(res!=null)
+				searchResult.addAll(res);
+			maxWordCount--;
+		}
+		favoritesView.setAdapter(new FavoritesListAdapter(instance, searchResult));
+		favoritesView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+				Fact f = searchResult.get(position);
+				curentIndex = 0;
+				for(Fact fact:facts){
+					if(f.equals(fact)){
+						startApplication();
+						return;
+					}
+					curentIndex++;
+				}
+				
+			}
+		});
+
+		backButton = (Button) findViewById(R.id.back_from_favorites);
+		backButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startApplication();
+			}
+		});
 	}
 
 	private void startApplication() {
@@ -99,12 +182,28 @@ public class RnBRumorsNFacts extends Activity {
 			public void onClick(View v) {
 				setContentView(R.layout.favorites);
 				favoritesView = (ListView) findViewById(R.id.favorites_list_view);
-				List<Fact> favorites = new ArrayList<Fact>();
+				favorites = new ArrayList<Fact>();
 				for (Fact fact : facts)
 					if (fact.isFavorite())
 						favorites.add(fact);
 				favoritesView.setAdapter(new FavoritesListAdapter(instance,
 						favorites));
+				favoritesView.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+						Fact f = favorites.get(position);
+						curentIndex = 0;
+						for(Fact fact:facts){
+							if(f.equals(fact)){
+								startApplication();
+								return;
+							}
+							curentIndex++;
+						}
+						
+					}
+				});
 
 				backButton = (Button) findViewById(R.id.back_from_favorites);
 				backButton.setOnClickListener(new OnClickListener() {
@@ -130,7 +229,7 @@ public class RnBRumorsNFacts extends Activity {
 						"Fact about " + currentFact.getPerson() + ": "
 								+ currentFact.getText());
 
-				startActivity(Intent.createChooser(intent, "chooser: test"));
+				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
 
