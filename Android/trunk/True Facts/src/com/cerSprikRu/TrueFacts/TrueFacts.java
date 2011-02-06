@@ -266,7 +266,7 @@ public class TrueFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"False fact: " + currentFact.getText());
+						"True fact: " + currentFact.getText());
 
 				startActivity(Intent.createChooser(intent, "share"));
 			}
