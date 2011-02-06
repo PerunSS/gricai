@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, True Facts!</string>
+    <string name="app_name">True Facts</string>
+<string name="search_hint">Search True Facts</string>
+</resources>
