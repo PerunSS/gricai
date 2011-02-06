@@ -11,8 +11,8 @@ import com.cerSprikRu.TrueFacts.fact.Fact;
 
 public class DBManager {
 
-	private static final String dbName = "Facts";
-	private static final String projectPath = "com.cerSprikRu.FalseFacts";
+	private static final String dbName = "TrueFacts";
+	private static final String projectPath = "com.cerSprikRu.TrueFacts";
 	DBAdapter adapter;
 
 	public DBManager(Context context) {
@@ -23,7 +23,7 @@ public class DBManager {
 		adapter.openDataBase();
 		List<Fact> result = new ArrayList<Fact>();
 		
-		Cursor c = adapter.executeSql("select * from AllFacts", null);
+		Cursor c = adapter.executeSql("select * from TrueFacts", null);
 		if (c != null) {
 			if (c.moveToFirst()) {
 				do {
@@ -35,7 +35,8 @@ public class DBManager {
 					}catch (Exception e) {
 						fav = false;
 					}
-					Fact fact = new Fact(text, fav, id);
+					String publisher = c.getString(c.getColumnIndex("publisher"));
+					Fact fact = new Fact(text, fav, id, publisher);
 					result.add(fact);
 				} while (c.moveToNext());
 			}
@@ -47,7 +48,7 @@ public class DBManager {
 	
 	public void updateFact(Fact fact){
 		adapter.openDataBase();
-		String sql = "update AllFacts set fav = "+(fact.isFavorite()?1:0)+" where _id = "+fact.getId();
+		String sql = "update TrueFacts set fav = "+(fact.isFavorite()?1:0)+" where _id = "+fact.getId();
 		adapter.update(sql);
 		adapter.close();
 	}

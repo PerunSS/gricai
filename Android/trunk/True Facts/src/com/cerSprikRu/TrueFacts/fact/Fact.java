@@ -5,11 +5,13 @@ public class Fact {
 	private String text;
 	private boolean favorite;
 	private int id;
+	private String publisher;
 	
-	public Fact(String text, boolean favorite, int id){
+	public Fact(String text, boolean favorite, int id, String publisher){
 		this.text = text;
 		this.favorite = favorite;
 		this.id = id;
+		this.publisher = publisher;
 	}
 	
 	public String getText() {
@@ -31,6 +33,10 @@ public class Fact {
 	@Override
 	public String toString() {
 		return text;
+	}
+
+	public String getPublisher() {
+		return publisher;
 	}
 
 }

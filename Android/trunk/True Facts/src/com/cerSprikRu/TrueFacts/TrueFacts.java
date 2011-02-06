@@ -29,6 +29,7 @@ import com.cerSprikRu.TrueFacts.fact.Fact;
 public class TrueFacts extends Activity {
 
 	private TextView factsTextView;
+	private TextView factsPublisherTextView;
 	private Button previousButton;
 	private Button nextButton;
 	private Button randomButton;
@@ -85,12 +86,17 @@ public class TrueFacts extends Activity {
 			queryArr[i].trim();
 		}
 		Map<Integer, List<Fact>> result = new HashMap<Integer, List<Fact>>();
+		int maxCount = 0;
 		for (Fact fact : facts) {
 			int wordCount = 0;
 			for (String q : queryArr) {
 				if (fact.getText().toLowerCase().contains(q.toLowerCase()))
 					wordCount++;
+				if (fact.getPublisher().toLowerCase().contains(q.toLowerCase()))
+					wordCount++;
 			}
+			if(wordCount > maxCount)
+				maxCount = wordCount;
 			if (wordCount > 0) {
 				List<Fact> searchFacts = result.get(wordCount);
 				if (searchFacts == null)
@@ -101,7 +107,6 @@ public class TrueFacts extends Activity {
 		}
 		searchResult = null;
 		searchResult = new ArrayList<Fact>();
-		int maxCount = queryArr.length;
 		while (maxCount > 0) {
 			List<Fact> res = result.get(maxCount);
 			if (res != null)
@@ -303,14 +308,19 @@ public class TrueFacts extends Activity {
 	private void updateUI() {
 		Fact fact = facts.get(curentIndex);
 		factsTextView = (TextView) findViewById(R.id.factText);
-		if (fact.getText().length() > 150)
+		if (fact.getText().length() > 200)
+			factsTextView.setTextSize(17);
+		else if (fact.getText().length() > 150)
 			factsTextView.setTextSize(20);
 		else if (fact.getText().length() > 100)
 			factsTextView.setTextSize(25);
 		else
 			factsTextView.setTextSize(30);
 		factsTextView.setText(fact.getText());
-
+		
+		factsPublisherTextView = (TextView) findViewById(R.id.factPublisher);
+		factsPublisherTextView.setText(fact.getPublisher());
+		
 		togleFavorite(fact);
 	}
 

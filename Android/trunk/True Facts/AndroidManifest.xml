@@ -22,7 +22,7 @@
                    android:resource="@xml/searchable"/>
         </activity>
 		<!-- The application's publisher ID assigned by AdMob -->
-		<meta-data android:value="a14d49aeda776a9" android:name="ADMOB_PUBLISHER_ID" />
+		<meta-data android:value="a14d4ecf954389c" android:name="ADMOB_PUBLISHER_ID" />
         
 		<!-- AdMobActivity definition -->
 		<activity 
