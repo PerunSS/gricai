@@ -3,15 +3,15 @@ package com.cerSprikRu.BeerOBan;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cerSprikRu.BeerOBan.graphics.*;
-
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import com.cerSprikRu.BeerOBan.graphics.GraphicObject;
+import com.cerSprikRu.BeerOBan.graphics.PlayerGraphicObject;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 

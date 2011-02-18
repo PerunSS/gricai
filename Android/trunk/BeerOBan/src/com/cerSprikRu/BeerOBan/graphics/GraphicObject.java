@@ -6,18 +6,14 @@ import android.graphics.Bitmap;
 public abstract class GraphicObject {
     private Bitmap bitmap;
     private Coordinates coordinates;
-    private Resources resources;
  
-    public GraphicObject(Resources resources, Bitmap bitmap) {
+    public GraphicObject(Bitmap bitmap) {
     	this.bitmap = bitmap;
-    	this.resources = resources;
         coordinates = new Coordinates();
     }
-    public GraphicObject(Resources resources, Bitmap bitmap, Coordinates coordinates) {
+    public GraphicObject(Bitmap bitmap, Coordinates coordinates) {
     	this.bitmap = bitmap;
-    	this.resources = resources;
-        coordinates.setX(coordinates.getX());
-        coordinates.setY(coordinates.getY());
+        this.coordinates = coordinates;
     }
  
     public Bitmap getGraphic() {
