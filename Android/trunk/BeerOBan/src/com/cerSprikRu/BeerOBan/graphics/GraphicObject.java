@@ -11,7 +11,7 @@ public class GraphicObject {
         coordinates = new Coordinates();
     }
     public GraphicObject(Bitmap bitmap, int x, int y) {
-    	this.bitmap = bitmap;
+    	this(bitmap);
         coordinates.setX(x);
         coordinates.setY(y);
     }
