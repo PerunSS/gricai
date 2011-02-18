@@ -2,7 +2,6 @@ package com.cerSprikRu.BeerOBan.model.board;
 
 import java.util.Scanner;
 
-import android.content.Context;
 import android.content.res.Resources;
 
 import com.cerSprikRu.BeerOBan.BeerOBan;
@@ -17,7 +16,8 @@ public class Board {
 	private Tile[][] tiles;
 	private static Board instance = new Board();
 	private String difficulty;
-	private Context context;
+	//private Context context;
+	private Resources res;
 	
 	private Board(){}
 	
@@ -27,7 +27,7 @@ public class Board {
 	
 	public void loadLevel(int level){
 		try {
-			Resources res = context.getResources();
+			//res = context.getResources();
 			Scanner sc = new Scanner(res.openRawResource(BeerOBan.getLvlResource("lvl"+level)));
 			difficulty = sc.nextLine();
 			String dimension[] = sc.nextLine().split(";");
@@ -175,8 +175,8 @@ public class Board {
 		return difficulty;
 	}
 
-	public void setContext(Context context) {
-		this.context = context;
+	public void setResources(Resources res) {
+		this.res = res;
 	}
 
 }

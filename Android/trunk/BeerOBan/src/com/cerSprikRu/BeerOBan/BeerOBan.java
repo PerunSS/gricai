@@ -20,7 +20,7 @@ public class BeerOBan extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Board.getInstance().setContext(this);
+        Board.getInstance().setResources(this.getResources());
         setContentView(new GameView(this));
     }
     
