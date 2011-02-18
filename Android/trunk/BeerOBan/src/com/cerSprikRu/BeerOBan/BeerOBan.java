@@ -3,6 +3,8 @@ package com.cerSprikRu.BeerOBan;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cerSprikRu.BeerOBan.model.board.Board;
+
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -18,6 +20,7 @@ public class BeerOBan extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Board.getInstance().setContext(this);
         setContentView(R.layout.main);
     }
     
