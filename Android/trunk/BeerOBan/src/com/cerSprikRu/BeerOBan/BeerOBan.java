@@ -21,7 +21,7 @@ public class BeerOBan extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Board.getInstance().setContext(this);
-        setContentView(R.layout.main);
+        setContentView(new GameView(this));
     }
     
     public static int getLvlResource(String lvl){
