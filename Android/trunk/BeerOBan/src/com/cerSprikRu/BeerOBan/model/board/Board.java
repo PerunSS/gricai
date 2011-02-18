@@ -64,7 +64,9 @@ public class Board {
 					else if(element.startsWith("d")){
 						tiles[row][column].setDestination(true);
 					}
+					column++;
 				}
+				row++;
 			}
 			sc.close();
 		} catch (Exception e) {
