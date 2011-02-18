@@ -37,6 +37,7 @@ public class Board {
 				String rowElements[] = sc.nextLine().split(";");
 				int column = 0;
 				for(String element:rowElements){
+					element = element.trim();
 					tiles[row][column] = new Tile(row, column);
 					// prazna celija
 					if(element.equals("0"))
