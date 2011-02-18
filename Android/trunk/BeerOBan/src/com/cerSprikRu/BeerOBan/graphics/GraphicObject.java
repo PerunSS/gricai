@@ -1,19 +1,23 @@
 package com.cerSprikRu.BeerOBan.graphics;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 
-public class GraphicObject {
+public abstract class GraphicObject {
     private Bitmap bitmap;
     private Coordinates coordinates;
+    private Resources resources;
  
-    public GraphicObject(Bitmap bitmap) {
+    public GraphicObject(Resources resources, Bitmap bitmap) {
     	this.bitmap = bitmap;
+    	this.resources = resources;
         coordinates = new Coordinates();
     }
-    public GraphicObject(Bitmap bitmap, int x, int y) {
-    	this(bitmap);
-        coordinates.setX(x);
-        coordinates.setY(y);
+    public GraphicObject(Resources resources, Bitmap bitmap, Coordinates coordinates) {
+    	this.bitmap = bitmap;
+    	this.resources = resources;
+        coordinates.setX(coordinates.getX());
+        coordinates.setY(coordinates.getY());
     }
  
     public Bitmap getGraphic() {

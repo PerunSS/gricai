@@ -68,7 +68,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN){
-				GraphicObject graphic = new GraphicObject(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
+				GraphicObject graphic = new PlayerGraphicObject(getResources());
 				graphic.getCoordinates().setX((int)event.getX());
 				graphic.getCoordinates().setY((int)event.getY());
 			    graphics.add(graphic);
