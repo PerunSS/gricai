@@ -5,12 +5,14 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.cerSprikRu.BeerOBan.DrawThread;
+import com.cerSprikRu.BeerOBan.model.board.Board;
+import com.cerSprikRu.BeerOBan.model.board.Tile;
+import com.cerSprikRu.BeerOBan.view.graphicobjects.DestinationTileGraphicObject;
 import com.cerSprikRu.BeerOBan.view.graphicobjects.GraphicObject;
 import com.cerSprikRu.BeerOBan.view.graphicobjects.PlayerEntityGraphicObject;
 
@@ -19,20 +21,39 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Thread thread;
 	private DrawThread drawThread;
 	private List<GraphicObject> graphics = new ArrayList<GraphicObject>();
+	private GraphicObject destinationGraphics;
+	
+	private static final int tileWidth = 60;
+	private static final int tileHeight = 60;
 
 	public GameView(Context context) {
 		super(context);
+		destinationGraphics  = new DestinationTileGraphicObject(context.getResources());
 		getHolder().addCallback(this);
 		setFocusable(true);
-
+		Board.getInstance().loadLevel(1);
 	}
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		canvas.drawColor(Color.BLACK);
-		for(GraphicObject graphicObject : graphics){
-			canvas.drawBitmap(graphicObject.getGraphic(), graphicObject.getCoordinates().getX(), graphicObject.getCoordinates().getY(),null);
+		int rowIndex = 0;
+		for(Tile[] row : Board.getInstance().getTiles()){
+			int columnIndex = 0;
+			for(Tile cell: row){
+				if(cell.isDestination()){
+					canvas.drawBitmap(destinationGraphics.getGraphic(), columnIndex*tileWidth, rowIndex*tileHeight, null);
+				}
+				if(cell.getGameObject()!=null){
+					canvas.drawBitmap(cell.getGameObject().getGraphics().getGraphic(), columnIndex*tileWidth, rowIndex*tileHeight, null);
+				}
+				columnIndex++;
+			}
+			rowIndex++;
 		}
+//		canvas.drawColor(Color.BLACK);
+//		for(GraphicObject graphicObject : graphics){
+//			canvas.drawBitmap(graphicObject.getGraphic(), graphicObject.getCoordinates().getX(), graphicObject.getCoordinates().getY(),null);
+//		}
 	}
 
 	@Override

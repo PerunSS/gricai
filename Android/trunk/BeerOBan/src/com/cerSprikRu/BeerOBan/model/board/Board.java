@@ -44,17 +44,17 @@ public class Board {
 						;
 					// igrac sa energijom - npr p20 - player, 20 energy
 					else if(element.startsWith("p")){
-						Player player = new Player(tiles[row][column], Integer.parseInt(element.substring(1)));
+						Player player = new Player(tiles[row][column], Integer.parseInt(element.substring(1)), res);
 						tiles[row][column].setGameObject(player);
 					}
 					// pivo sa energijom - npr b10 - pivo, 10 energy
 					else if(element.startsWith("b")){
-						Beer beer = new Beer(Integer.parseInt(element.substring(1)));
+						Beer beer = new Beer(Integer.parseInt(element.substring(1)), res);
 						tiles[row][column].setGameObject(beer);
 					}
 					// sanduk piva s tezinom - npr c2 - sanduk tezine 2
 					else if(element.startsWith("c")){
-						BeerCrate crate = new BeerCrate(Integer.parseInt(element.substring(1)));
+						BeerCrate crate = new BeerCrate(Integer.parseInt(element.substring(1)), res);
 						tiles[row][column].setGameObject(crate);
 					}
 					// prepreka
@@ -73,6 +73,7 @@ public class Board {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		printLVL();
 	}
 	
 	public boolean move(Direction direction){
@@ -177,6 +178,19 @@ public class Board {
 
 	public void setResources(Resources res) {
 		this.res = res;
+	}
+	
+	public Tile[][] getTiles(){
+		return tiles;
+	}
+	
+	public void printLVL(){
+		for(Tile[] row:tiles){
+			for (Tile cell: row){
+				System.out.print(cell);
+			}
+			System.out.println();
+		}
 	}
 
 }

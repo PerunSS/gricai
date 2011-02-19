@@ -48,4 +48,15 @@ public class Tile {
 	public void setDestination(boolean destination) {
 		this.destination = destination;
 	}
+	
+	@Override
+	public String toString() {
+		if(isDestination())
+			return "D";
+		if(isObstacle())
+			return "X";
+		if(gameObject!=null)
+			return "O";
+		return "_";
+	}
 }
