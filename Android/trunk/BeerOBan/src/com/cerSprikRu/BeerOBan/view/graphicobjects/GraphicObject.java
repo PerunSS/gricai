@@ -1,6 +1,5 @@
 package com.cerSprikRu.BeerOBan.view.graphicobjects;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 
 public abstract class GraphicObject {

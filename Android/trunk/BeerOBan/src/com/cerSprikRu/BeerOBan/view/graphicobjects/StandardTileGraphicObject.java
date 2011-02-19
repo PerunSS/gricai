@@ -1,10 +1,9 @@
 package com.cerSprikRu.BeerOBan.view.graphicobjects;
 
-import com.cerSprikRu.BeerOBan.R;
-import com.cerSprikRu.BeerOBan.view.graphicobjects.GraphicObject.Coordinates;
-
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+
+import com.cerSprikRu.BeerOBan.R;
 
 public class StandardTileGraphicObject extends TileGraphicObject{
 	public StandardTileGraphicObject(Resources resources){
