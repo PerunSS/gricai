@@ -1,4 +1,4 @@
-package com.cerSprikRu.BeerOBan.graphics;
+package com.cerSprikRu.BeerOBan.view.graphicobjects;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

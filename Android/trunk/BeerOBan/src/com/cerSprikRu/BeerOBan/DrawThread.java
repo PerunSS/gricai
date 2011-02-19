@@ -1,5 +1,7 @@
 package com.cerSprikRu.BeerOBan;
 
+import com.cerSprikRu.BeerOBan.view.GameView;
+
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 

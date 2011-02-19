@@ -1,8 +1,8 @@
-package com.cerSprikRu.BeerOBan.graphics;
+package com.cerSprikRu.BeerOBan.view.graphicobjects;
 
 import android.graphics.Bitmap;
 
-abstract class TileGraphicObject extends GraphicObject{
+public abstract class TileGraphicObject extends GraphicObject{
 	public TileGraphicObject(Bitmap bitmap){
 		super(bitmap);
 	}

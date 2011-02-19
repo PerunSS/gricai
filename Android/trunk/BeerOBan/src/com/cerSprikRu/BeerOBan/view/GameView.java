@@ -1,4 +1,4 @@
-package com.cerSprikRu.BeerOBan;
+package com.cerSprikRu.BeerOBan.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.cerSprikRu.BeerOBan.graphics.GraphicObject;
-import com.cerSprikRu.BeerOBan.graphics.PlayerGraphicObject;
+import com.cerSprikRu.BeerOBan.DrawThread;
+import com.cerSprikRu.BeerOBan.view.graphicobjects.GraphicObject;
+import com.cerSprikRu.BeerOBan.view.graphicobjects.PlayerEntityGraphicObject;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -68,7 +69,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN){
-				GraphicObject graphic = new PlayerGraphicObject(getResources());
+				GraphicObject graphic = new PlayerEntityGraphicObject(getResources());
 				graphic.getCoordinates().setX((int)event.getX());
 				graphic.getCoordinates().setY((int)event.getY());
 			    graphics.add(graphic);

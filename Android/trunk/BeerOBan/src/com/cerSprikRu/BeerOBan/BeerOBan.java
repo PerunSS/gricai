@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.cerSprikRu.BeerOBan.model.board.Board;
+import com.cerSprikRu.BeerOBan.view.GameView;
 
 import android.app.Activity;
 import android.os.Bundle;
