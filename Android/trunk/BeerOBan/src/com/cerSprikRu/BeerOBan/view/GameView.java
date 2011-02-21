@@ -3,6 +3,7 @@ package com.cerSprikRu.BeerOBan.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -38,6 +39,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	@Override
 	public void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.BLACK);
+		Paint p = new Paint();
+		p.setColor(Color.WHITE);
+		canvas.drawLine(0, 0, Constants.getInstance().getWidth(), Constants
+				.getInstance().getHeight(), p);
+		canvas.drawLine(0, Constants.getInstance().getHeight(), Constants
+				.getInstance().getWidth(), 0, p);
 		int rowIndex = 0;
 		for (Tile[] row : Board.getInstance().getTiles()) {
 			int columnIndex = 0;
@@ -62,7 +69,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 												.getTileSize() - currentStep
 												* Constants.getInstance()
 														.getMoveStep());
-								if(tmpY <=y)
+								if (tmpY <= y)
 									cell.getObject().setAnimated(false);
 								break;
 							case SOUTH:
@@ -71,7 +78,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 												.getTileSize() - currentStep
 												* Constants.getInstance()
 														.getMoveStep());
-								if(tmpY >=y)
+								if (tmpY >= y)
 									cell.getObject().setAnimated(false);
 								break;
 							case EAST:
@@ -80,7 +87,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 												.getTileSize() - currentStep
 												* Constants.getInstance()
 														.getMoveStep());
-								if(tmpX >=x)
+								if (tmpX >= x)
 									cell.getObject().setAnimated(false);
 								break;
 							case WEST:
@@ -89,13 +96,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 												.getTileSize() - currentStep
 												* Constants.getInstance()
 														.getMoveStep());
-								if(tmpX <=x)
+								if (tmpX <= x)
 									cell.getObject().setAnimated(false);
 								break;
 							}
 							canvas.drawBitmap(cell.getGameObject()
-									.getGraphics().getGraphic(), tmpX, tmpY, null);
-							
+									.getGraphics().getGraphic(), tmpX, tmpY,
+									null);
+
 						} else {
 							cell.getGameObject().setAnimated(false);
 							canvas.drawBitmap(cell.getGameObject()
@@ -159,11 +167,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 						direction = Direction.SOUTH;
 					} else
 						direction = Direction.WEST;
-				} else if (event.getY() >= Constants.getInstance().getHeight()
-						- Constants.getInstance().getRatio() * event.getX()) {
-					direction = Direction.EAST;
-				} else
-					direction = Direction.NORTH;
+				} else {
+					if (event.getY() >= Constants.getInstance().getHeight()
+							- Constants.getInstance().getRatio() * event.getX()) {
+						direction = Direction.EAST;
+					} else
+						direction = Direction.NORTH;
+				}
 				if (moved = Board.getInstance().move(direction))
 					System.out.println(event.getX() + "," + event.getY() + ": "
 							+ direction);
