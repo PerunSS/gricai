@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -23,6 +24,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Direction direction;
 	private boolean moved;
 	private int currentStep = 0;
+	private Rect northRect, southRect, eastRect, westRect;
 
 	public GameView(Context context, int level) {
 		super(context);
@@ -34,6 +36,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		Constants.getInstance()
 				.calculetaStartingPosition(Board.getInstance().getRows(),
 						Board.getInstance().getColumns());
+		initRects();
 	}
 
 	@Override
@@ -41,10 +44,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		canvas.drawColor(Color.BLACK);
 		Paint p = new Paint();
 		p.setColor(Color.WHITE);
-		canvas.drawLine(0, 0, Constants.getInstance().getWidth(), Constants
-				.getInstance().getHeight(), p);
-		canvas.drawLine(0, Constants.getInstance().getHeight(), Constants
-				.getInstance().getWidth(), 0, p);
+		canvas.drawRect(eastRect, p);
+		canvas.drawRect(westRect, p);
+		canvas.drawRect(southRect, p);
+		canvas.drawRect(northRect, p);
 		int rowIndex = 0;
 		for (Tile[] row : Board.getInstance().getTiles()) {
 			int columnIndex = 0;
@@ -160,29 +163,55 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				if (event.getY() >= Constants.getInstance().getRatio()
-						* event.getX()) {
-					if (event.getY() >= Constants.getInstance().getHeight()
-							- Constants.getInstance().getRatio() * event.getX()) {
-						direction = Direction.SOUTH;
-					} else
-						direction = Direction.WEST;
-				} else {
-					if (event.getY() >= Constants.getInstance().getHeight()
-							- Constants.getInstance().getRatio() * event.getX()) {
-						direction = Direction.EAST;
-					} else
-						direction = Direction.NORTH;
+				boolean tryMove = false;
+				if(northRect.contains((int)event.getX(),(int)event.getY())){
+					tryMove = true;
+					direction = Direction.NORTH;
 				}
-				if (moved = Board.getInstance().move(direction))
-					System.out.println(event.getX() + "," + event.getY() + ": "
-							+ direction);
-				else
-					System.out.println("invalid move: " + direction);
-				Board.getInstance().printTiles();
+				if(southRect.contains((int)event.getX(),(int)event.getY())){
+					tryMove = true;
+					direction = Direction.SOUTH;
+				}
+				if(eastRect.contains((int)event.getX(),(int)event.getY())){
+					tryMove = true;
+					direction = Direction.EAST;
+				}
+				if(westRect.contains((int)event.getX(),(int)event.getY())){
+					tryMove = true;
+					direction = Direction.WEST;
+				}
+//				if (event.getY() >= Constants.getInstance().getRatio()
+//						* event.getX()) {
+//					if (event.getY() >= Constants.getInstance().getHeight()
+//							- Constants.getInstance().getRatio() * event.getX()) {
+//						direction = Direction.SOUTH;
+//					} else
+//						direction = Direction.WEST;
+//				} else {
+//					if (event.getY() >= Constants.getInstance().getHeight()
+//							- Constants.getInstance().getRatio() * event.getX()) {
+//						direction = Direction.EAST;
+//					} else
+//						direction = Direction.NORTH;
+//				}
+				if(tryMove){
+					if (moved = Board.getInstance().move(direction))
+						System.out.println(event.getX() + "," + event.getY() + ": "
+								+ direction);
+					else
+						System.out.println("invalid move: " + direction);
+					Board.getInstance().printTiles();
+				}
 			}
 			return true;
 		}
+	}
+	
+	private void initRects(){
+		northRect = new Rect(Constants.getInstance().getWidth()/3, 0, Constants.getInstance().getWidth()/3*2, Constants.getInstance().getHeight()/6);
+		southRect = new Rect(Constants.getInstance().getWidth()/3, Constants.getInstance().getHeight()/6*5, Constants.getInstance().getWidth()/3*2, Constants.getInstance().getHeight());
+		westRect = new Rect(0, Constants.getInstance().getHeight()/3, Constants.getInstance().getWidth()/8, Constants.getInstance().getHeight()/3*2);
+		eastRect = new Rect(Constants.getInstance().getWidth()/8*7, Constants.getInstance().getHeight()/3, Constants.getInstance().getWidth(), Constants.getInstance().getHeight()/3*2);
 	}
 
 }
