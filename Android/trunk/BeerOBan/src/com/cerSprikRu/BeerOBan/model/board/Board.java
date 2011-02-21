@@ -40,7 +40,7 @@ public class Board {
 				int column = 0;
 				for (String element : rowElements) {
 					element = element.trim();
-					tiles[row][column] = new Tile(row, column);
+					tiles[row][column] = new Tile(column, row);
 					// prazna celija
 					if (element.equals("0"))
 						;
@@ -117,11 +117,6 @@ public class Board {
 			behindTargetTile = getTile(newValue + 1, playerPosition.getY());
 			break;
 		}
-		System.out.println("player position: ["+playerPosition.getY()+","+playerPosition.getX()+"]");
-		if(targetTile!=null)
-			System.out.println("target tile: ["+targetTile.getY()+","+targetTile.getX()+"]");
-		if(behindTargetTile!=null)
-			System.out.println("behind target tile: ["+behindTargetTile.getY()+","+behindTargetTile.getX()+"]");
 		if (targetTile != null) {
 			GameObject object = targetTile.getObject();
 			// ukoliko je prepreka ne moze da se krece dalje, vraca false
@@ -152,15 +147,6 @@ public class Board {
 						behindTargetTile.setGameObject(object);
 						targetTile.setGameObject(player);
 						playerPosition.setGameObject(null);
-						
-						
-					System.out.println("after crate move");
-					System.out.println("player position: ["+playerPosition.getY()+","+playerPosition.getX()+"]: "+playerPosition.getObject() );
-					if(targetTile!=null)
-						System.out.println("target tile: ["+targetTile.getY()+","+targetTile.getX()+"]: "+targetTile.getObject());
-					if(behindTargetTile!=null)
-						System.out.println("behind target tile: ["+behindTargetTile.getY()+","+behindTargetTile.getX()+"]: "+behindTargetTile.getObject());
-					printTiles();
 					return true;
 					}
 					return false;
@@ -171,13 +157,8 @@ public class Board {
 					return false;
 			} else {
 				if (player.canMove(null)) {
-					System.out.println("after player move");
 					targetTile.setGameObject(player);
 					playerPosition.setGameObject(null);
-					System.out.println("player position: ["+playerPosition.getY()+","+playerPosition.getX()+"]: "+playerPosition.getObject());
-					if(targetTile!=null)
-						System.out.println("target tile: ["+targetTile.getY()+","+targetTile.getX()+"]: "+targetTile.getObject());
-					printTiles();
 					return true;
 				}
 				return false;
@@ -191,7 +172,6 @@ public class Board {
 			for (Tile cell : row) {
 				if (cell.getObject() != null)
 					if (cell.getObject() instanceof Player){
-						System.out.println(cell.getX()+","+cell.getY()+": "+cell.getObject());
 						return (Player) cell.getObject();
 					}
 			}
