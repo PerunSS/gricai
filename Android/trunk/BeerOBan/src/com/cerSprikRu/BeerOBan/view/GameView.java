@@ -19,6 +19,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Thread thread;
 	private DrawThread drawThread;
 	private GraphicObject destinationGraphics;
+	private Direction direction;
+	private boolean moved;
+	private int currentStep = 0;
 
 	public GameView(Context context, int level) {
 		super(context);
@@ -48,15 +51,70 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 							null);
 				}
 				if (cell.getGameObject() != null) {
-					if(cell.getGameObject().isAnimated()){
-						
-					}else
+					if (cell.getGameObject().isAnimated()) {
+						if (moved) {
+							int tmpX = x;
+							int tmpY = y;
+							switch (direction) {
+							case NORTH:
+								tmpY = tmpY
+										+ (int) (Constants.getInstance()
+												.getTileSize() - currentStep
+												* Constants.getInstance()
+														.getMoveStep());
+								if(tmpY <=y)
+									cell.getObject().setAnimated(false);
+								break;
+							case SOUTH:
+								tmpY = tmpY
+										- (int) (Constants.getInstance()
+												.getTileSize() - currentStep
+												* Constants.getInstance()
+														.getMoveStep());
+								if(tmpY >=y)
+									cell.getObject().setAnimated(false);
+								break;
+							case EAST:
+								tmpX = tmpX
+										- (int) (Constants.getInstance()
+												.getTileSize() - currentStep
+												* Constants.getInstance()
+														.getMoveStep());
+								if(tmpX >=x)
+									cell.getObject().setAnimated(false);
+								break;
+							case WEST:
+								tmpX = tmpX
+										+ (int) (Constants.getInstance()
+												.getTileSize() - currentStep
+												* Constants.getInstance()
+														.getMoveStep());
+								if(tmpX <=x)
+									cell.getObject().setAnimated(false);
+								break;
+							}
+							canvas.drawBitmap(cell.getGameObject()
+									.getGraphics().getGraphic(), tmpX, tmpY, null);
+							
+						} else {
+							cell.getGameObject().setAnimated(false);
+							canvas.drawBitmap(cell.getGameObject()
+									.getGraphics().getGraphic(), x, y, null);
+						}
+					} else
 						canvas.drawBitmap(cell.getGameObject().getGraphics()
-							.getGraphic(), x, y, null);
+								.getGraphic(), x, y, null);
 				}
 				columnIndex++;
 			}
 			rowIndex++;
+		}
+		if (moved) {
+			currentStep++;
+			if (currentStep == Constants.ANIMATION_STEPS) {
+				currentStep = 0;
+				moved = false;
+			}
 		}
 	}
 
@@ -94,21 +152,23 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				Direction direction;
-				if(event.getY()>=Constants.getInstance().getRatio()*event.getX()){
-					if(event.getY()>=Constants.getInstance().getHeight() - Constants.getInstance().getRatio() * event.getX()){
+				if (event.getY() >= Constants.getInstance().getRatio()
+						* event.getX()) {
+					if (event.getY() >= Constants.getInstance().getHeight()
+							- Constants.getInstance().getRatio() * event.getX()) {
 						direction = Direction.SOUTH;
-					}else
+					} else
 						direction = Direction.WEST;
-				}else
-					if(event.getY()>=Constants.getInstance().getHeight() - Constants.getInstance().getRatio() * event.getX()){
-						direction = Direction.EAST;
-					}else
-						direction = Direction.NORTH;
-				if(Board.getInstance().move(direction))
-					System.out.println(event.getX()+","+event.getY()+": "+direction);
+				} else if (event.getY() >= Constants.getInstance().getHeight()
+						- Constants.getInstance().getRatio() * event.getX()) {
+					direction = Direction.EAST;
+				} else
+					direction = Direction.NORTH;
+				if (moved = Board.getInstance().move(direction))
+					System.out.println(event.getX() + "," + event.getY() + ": "
+							+ direction);
 				else
-					System.out.println("invalid move: "+direction);
+					System.out.println("invalid move: " + direction);
 				Board.getInstance().printTiles();
 			}
 			return true;

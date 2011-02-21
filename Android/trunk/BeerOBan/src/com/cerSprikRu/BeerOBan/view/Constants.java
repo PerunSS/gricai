@@ -11,10 +11,13 @@ public class Constants {
 	private int tileSize;
 	private int startX, startY;
 	private double ratio;
+	private double moveStep;
 
 	public static final int MAX_TILES_X = 10;
 	public static final int MAX_TILES_Y = 6;
 	public static final int MAX_TILE_SIZE = 70;
+	public static final int ANIMATION_STEPS = 15;
+	
 
 	private Constants() {
 	}
@@ -46,6 +49,7 @@ public class Constants {
 		if (tileSize > MAX_TILE_SIZE)
 			tileSize = MAX_TILE_SIZE;
 		ratio = ((double) height)/height;
+		moveStep = ((double) tileSize)/ANIMATION_STEPS;
 		System.out.println(ratio);
 	}
 
@@ -71,5 +75,9 @@ public class Constants {
 	
 	public double getRatio(){
 		return ratio;
+	}
+
+	public double getMoveStep() {
+		return moveStep;
 	}
 }

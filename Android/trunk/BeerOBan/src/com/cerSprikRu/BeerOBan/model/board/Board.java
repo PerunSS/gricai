@@ -129,6 +129,7 @@ public class Board {
 					Beer beer = (Beer) object;
 					if (player.canMove(null)) {
 						player.increseEnergy(beer.getAmount());
+						player.setAnimated(true);
 						targetTile.setGameObject(player);
 						playerPosition.setGameObject(null);
 						return true;
@@ -144,6 +145,8 @@ public class Board {
 						return false;
 					BeerCrate crate = (BeerCrate) object;
 					if (player.canMove(crate)) {
+						player.setAnimated(true);
+						object.setAnimated(true);
 						behindTargetTile.setGameObject(object);
 						targetTile.setGameObject(player);
 						playerPosition.setGameObject(null);
@@ -157,6 +160,7 @@ public class Board {
 					return false;
 			} else {
 				if (player.canMove(null)) {
+					player.setAnimated(true);
 					targetTile.setGameObject(player);
 					playerPosition.setGameObject(null);
 					return true;
