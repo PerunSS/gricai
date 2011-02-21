@@ -1,16 +1,18 @@
 package com.cerSprikRu.BeerOBan.model.board;
 
 import com.cerSprikRu.BeerOBan.model.objects.GameObject;
+import com.cerSprikRu.BeerOBan.model.objects.Player;
 
 public class Tile {
 
 	private int x, y;
 	private boolean obstacle, destination;
 	private GameObject gameObject;
-	
-	public Tile (int x, int y){
+
+	public Tile(int x, int y) {
 		this.x = x;
 		this.y = y;
+		System.out.println(x+","+y);
 	}
 
 	public int getX() {
@@ -28,8 +30,8 @@ public class Tile {
 	public boolean isDestination() {
 		return destination;
 	}
-	
-	public GameObject getObject(){
+
+	public GameObject getObject() {
 		return gameObject;
 	}
 
@@ -39,6 +41,8 @@ public class Tile {
 
 	public void setGameObject(GameObject gameObject) {
 		this.gameObject = gameObject;
+		if (gameObject != null)
+			gameObject.setPosition(this);
 	}
 
 	public void setObstacle(boolean obstacle) {
@@ -48,15 +52,18 @@ public class Tile {
 	public void setDestination(boolean destination) {
 		this.destination = destination;
 	}
-	
+
 	@Override
 	public String toString() {
-		if(isDestination())
-			return "D";
-		if(isObstacle())
+		if (gameObject != null) {
+			if (gameObject instanceof Player)
+				return "P";
+			else
+				return "O";
+		}
+		if (isDestination()) {
 			return "X";
-		if(gameObject!=null)
-			return "O";
-		return "_";
+		}
+		return " ";
 	}
 }

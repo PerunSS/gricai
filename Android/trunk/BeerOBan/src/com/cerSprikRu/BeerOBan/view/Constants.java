@@ -10,6 +10,7 @@ public class Constants {
 	private int height;
 	private int tileSize;
 	private int startX, startY;
+	private double ratio;
 
 	public static final int MAX_TILES_X = 10;
 	public static final int MAX_TILES_Y = 6;
@@ -44,6 +45,8 @@ public class Constants {
 				: (int) (0.9 * height / MAX_TILES_Y);
 		if (tileSize > MAX_TILE_SIZE)
 			tileSize = MAX_TILE_SIZE;
+		ratio = ((double) height)/height;
+		System.out.println(ratio);
 	}
 
 	public int getWidth() {
@@ -64,5 +67,9 @@ public class Constants {
 
 	public int getStartY() {
 		return startY;
+	}
+	
+	public double getRatio(){
+		return ratio;
 	}
 }

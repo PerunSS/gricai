@@ -26,7 +26,7 @@ public class BeerOBan extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         Board.getInstance().setResources(this.getResources());
         Constants.getInstance().setResources(this.getResources());
-        setContentView(new GameView(this));
+        setContentView(new GameView(this,1));
     }
     
     public static int getLvlResource(String lvl){

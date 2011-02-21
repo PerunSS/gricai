@@ -1,10 +1,8 @@
 package com.cerSprikRu.BeerOBan.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,24 +10,23 @@ import android.view.SurfaceView;
 import com.cerSprikRu.BeerOBan.DrawThread;
 import com.cerSprikRu.BeerOBan.model.board.Board;
 import com.cerSprikRu.BeerOBan.model.board.Tile;
+import com.cerSprikRu.BeerOBan.model.enums.Direction;
 import com.cerSprikRu.BeerOBan.view.graphicobjects.DestinationTileGraphicObject;
 import com.cerSprikRu.BeerOBan.view.graphicobjects.GraphicObject;
-import com.cerSprikRu.BeerOBan.view.graphicobjects.PlayerEntityGraphicObject;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
 	private Thread thread;
 	private DrawThread drawThread;
-	private List<GraphicObject> graphics = new ArrayList<GraphicObject>();
 	private GraphicObject destinationGraphics;
 
-	public GameView(Context context) {
+	public GameView(Context context, int level) {
 		super(context);
 		destinationGraphics = new DestinationTileGraphicObject(
 				context.getResources());
 		getHolder().addCallback(this);
 		setFocusable(true);
-		Board.getInstance().loadLevel(1);
+		Board.getInstance().loadLevel(level);
 		Constants.getInstance()
 				.calculetaStartingPosition(Board.getInstance().getRows(),
 						Board.getInstance().getColumns());
@@ -37,6 +34,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void onDraw(Canvas canvas) {
+		canvas.drawColor(Color.BLACK);
 		int rowIndex = 0;
 		for (Tile[] row : Board.getInstance().getTiles()) {
 			int columnIndex = 0;
@@ -50,19 +48,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 							null);
 				}
 				if (cell.getGameObject() != null) {
-					canvas.drawBitmap(cell.getGameObject().getGraphics()
+					if(cell.getGameObject().isAnimated()){
+						
+					}else
+						canvas.drawBitmap(cell.getGameObject().getGraphics()
 							.getGraphic(), x, y, null);
 				}
 				columnIndex++;
 			}
 			rowIndex++;
 		}
-		// canvas.drawColor(Color.BLACK);
-		// for(GraphicObject graphicObject : graphics){
-		// canvas.drawBitmap(graphicObject.getGraphic(),
-		// graphicObject.getCoordinates().getX(),
-		// graphicObject.getCoordinates().getY(),null);
-		// }
 	}
 
 	@Override
@@ -99,11 +94,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				GraphicObject graphic = new PlayerEntityGraphicObject(
-						getResources());
-				graphic.getCoordinates().setX((int) event.getX());
-				graphic.getCoordinates().setY((int) event.getY());
-				graphics.add(graphic);
+				Direction direction;
+				if(event.getY()>=Constants.getInstance().getRatio()*event.getX()){
+					if(event.getY()>=Constants.getInstance().getHeight() - Constants.getInstance().getRatio() * event.getX()){
+						direction = Direction.SOUTH;
+					}else
+						direction = Direction.WEST;
+				}else
+					if(event.getY()>=Constants.getInstance().getHeight() - Constants.getInstance().getRatio() * event.getX()){
+						direction = Direction.EAST;
+					}else
+						direction = Direction.NORTH;
+				if(Board.getInstance().move(direction))
+					System.out.println(event.getX()+","+event.getY()+": "+direction);
+				else
+					System.out.println("invalid move: "+direction);
+				Board.getInstance().printTiles();
 			}
 			return true;
 		}

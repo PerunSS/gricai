@@ -2,7 +2,6 @@ package com.cerSprikRu.BeerOBan.model.objects;
 
 import android.content.res.Resources;
 
-import com.cerSprikRu.BeerOBan.model.board.Tile;
 import com.cerSprikRu.BeerOBan.model.enums.Condition;
 import com.cerSprikRu.BeerOBan.view.graphicobjects.PlayerEntityGraphicObject;
 
@@ -11,9 +10,8 @@ public class Player extends GameObject {
 	private int energy;
 	private Condition condition;
 
-	public Player(Tile position, int energy, Resources res) {
+	public Player(int energy, Resources res) {
 		super();
-		super.setPosition(position);
 		this.energy = energy;
 		setGraphics(new PlayerEntityGraphicObject(res));
 	}

@@ -7,6 +7,7 @@ public abstract class GameObject {
 
 	private Tile position;
 	private GraphicObject graphics;
+	private boolean animated;
 
 	public Tile getPosition() {
 		return position;
@@ -22,6 +23,14 @@ public abstract class GameObject {
 
 	public void setGraphics(GraphicObject graphics) {
 		this.graphics = graphics;
+	}
+
+	public void setAnimated(boolean animated) {
+		this.animated = animated;
+	}
+
+	public boolean isAnimated() {
+		return animated;
 	}
 	
 }

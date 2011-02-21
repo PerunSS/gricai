@@ -11,58 +11,63 @@ import com.cerSprikRu.BeerOBan.model.objects.BeerCrate;
 import com.cerSprikRu.BeerOBan.model.objects.GameObject;
 import com.cerSprikRu.BeerOBan.model.objects.Player;
 
-
 public class Board {
 	private Tile[][] tiles;
 	private static Board instance = new Board();
 	private String difficulty;
-	//private Context context;
+	// private Context context;
 	private Resources res;
-	
-	private Board(){}
-	
-	public static Board getInstance(){
+
+	private Board() {
+	}
+
+	public static Board getInstance() {
 		return instance;
 	}
-	
-	public void loadLevel(int level){
+
+	public void loadLevel(int level) {
 		try {
-			//res = context.getResources();
-			Scanner sc = new Scanner(res.openRawResource(BeerOBan.getLvlResource("lvl"+level)));
+			// res = context.getResources();
+			Scanner sc = new Scanner(res.openRawResource(BeerOBan
+					.getLvlResource("lvl" + level)));
 			difficulty = sc.nextLine();
 			String dimension[] = sc.nextLine().split(";");
-			tiles = new Tile[Integer.parseInt(dimension[0])][Integer.parseInt(dimension[1])];
+			tiles = new Tile[Integer.parseInt(dimension[0])][Integer
+					.parseInt(dimension[1])];
 			int row = 0;
-			while(sc.hasNext()){
+			while (sc.hasNext()) {
 				String rowElements[] = sc.nextLine().split(";");
 				int column = 0;
-				for(String element:rowElements){
+				for (String element : rowElements) {
 					element = element.trim();
 					tiles[row][column] = new Tile(row, column);
 					// prazna celija
-					if(element.equals("0"))
+					if (element.equals("0"))
 						;
 					// igrac sa energijom - npr p20 - player, 20 energy
-					else if(element.startsWith("p")){
-						Player player = new Player(tiles[row][column], Integer.parseInt(element.substring(1)), res);
+					else if (element.startsWith("p")) {
+						Player player = new Player(Integer.parseInt(element
+								.substring(1)), res);
 						tiles[row][column].setGameObject(player);
 					}
 					// pivo sa energijom - npr b10 - pivo, 10 energy
-					else if(element.startsWith("b")){
-						Beer beer = new Beer(Integer.parseInt(element.substring(1)), res);
+					else if (element.startsWith("b")) {
+						Beer beer = new Beer(Integer.parseInt(element
+								.substring(1)), res);
 						tiles[row][column].setGameObject(beer);
 					}
 					// sanduk piva s tezinom - npr c2 - sanduk tezine 2
-					else if(element.startsWith("c")){
-						BeerCrate crate = new BeerCrate(Integer.parseInt(element.substring(1)), res);
+					else if (element.startsWith("c")) {
+						BeerCrate crate = new BeerCrate(
+								Integer.parseInt(element.substring(1)), res);
 						tiles[row][column].setGameObject(crate);
 					}
 					// prepreka
-					else if(element.startsWith("x")){
+					else if (element.startsWith("x")) {
 						tiles[row][column].setObstacle(true);
 					}
 					// cilj
-					else if(element.startsWith("d")){
+					else if (element.startsWith("d")) {
 						tiles[row][column].setDestination(true);
 					}
 					column++;
@@ -73,12 +78,12 @@ public class Board {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		printLVL();
 	}
-	
-	public boolean move(Direction direction){
+
+	public boolean move(Direction direction) {
 		Player player = getPlayer();
-		Tile playerPosition = getTile(player.getPosition().getX(), player.getPosition().getY());
+		Tile playerPosition = getTile(player.getPosition().getX(), player
+				.getPosition().getY());
 		Tile targetTile = null;
 		Tile behindTargetTile = null;
 		int newValue;
@@ -112,62 +117,89 @@ public class Board {
 			behindTargetTile = getTile(newValue + 1, playerPosition.getY());
 			break;
 		}
+		System.out.println("player position: ["+playerPosition.getY()+","+playerPosition.getX()+"]");
+		if(targetTile!=null)
+			System.out.println("target tile: ["+targetTile.getY()+","+targetTile.getX()+"]");
+		if(behindTargetTile!=null)
+			System.out.println("behind target tile: ["+behindTargetTile.getY()+","+behindTargetTile.getX()+"]");
 		if (targetTile != null) {
 			GameObject object = targetTile.getObject();
-			//ukoliko je prepreka ne  moze da se krece dalje, vraca false
+			// ukoliko je prepreka ne moze da se krece dalje, vraca false
 			if (targetTile.isObstacle())
 				return false;
-			//ukoliko postoji nesto na zeljenom polju
-			if(object != null){
+			// ukoliko postoji nesto na zeljenom polju
+			if (object != null) {
 				// na zeljenom polju je pivo
-				if(object instanceof Beer){
+				if (object instanceof Beer) {
 					Beer beer = (Beer) object;
-					if(player.canMove(null)){
+					if (player.canMove(null)) {
 						player.increseEnergy(beer.getAmount());
-						player.setPosition(targetTile);
+						targetTile.setGameObject(player);
 						playerPosition.setGameObject(null);
 						return true;
 					}
 					return false;
 				}
-				//ukoliko postoji celija iza objekta
-				if(behindTargetTile!=null){
+				// ukoliko postoji celija iza objekta
+				if (behindTargetTile != null) {
 					GameObject behindObject = behindTargetTile.getObject();
-					//nalazi se objekat iza objekta koji zelimo da pomerimo, vraca se false
-					if(behindObject != null)
+					// nalazi se objekat iza objekta koji zelimo da pomerimo,
+					// vraca se false
+					if (behindObject != null)
 						return false;
 					BeerCrate crate = (BeerCrate) object;
-					if (player.canMove(crate)){
-						object.setPosition(behindTargetTile);
-						player.setPosition(targetTile);
+					if (player.canMove(crate)) {
+						behindTargetTile.setGameObject(object);
+						targetTile.setGameObject(player);
 						playerPosition.setGameObject(null);
-						return true;
+						
+						
+					System.out.println("after crate move");
+					System.out.println("player position: ["+playerPosition.getY()+","+playerPosition.getX()+"]: "+playerPosition.getObject() );
+					if(targetTile!=null)
+						System.out.println("target tile: ["+targetTile.getY()+","+targetTile.getX()+"]: "+targetTile.getObject());
+					if(behindTargetTile!=null)
+						System.out.println("behind target tile: ["+behindTargetTile.getY()+","+behindTargetTile.getX()+"]: "+behindTargetTile.getObject());
+					printTiles();
+					return true;
 					}
 					return false;
-					
+
 				}
-				//pokusavamo da pomerimo objekat a iza njega nema celije
+				// pokusavamo da pomerimo objekat a iza njega nema celije
 				else
 					return false;
-			}else{
-				return player.canMove(null);
+			} else {
+				if (player.canMove(null)) {
+					System.out.println("after player move");
+					targetTile.setGameObject(player);
+					playerPosition.setGameObject(null);
+					System.out.println("player position: ["+playerPosition.getY()+","+playerPosition.getX()+"]: "+playerPosition.getObject());
+					if(targetTile!=null)
+						System.out.println("target tile: ["+targetTile.getY()+","+targetTile.getX()+"]: "+targetTile.getObject());
+					printTiles();
+					return true;
+				}
+				return false;
 			}
 		}
 		return false;
 	}
 
 	private Player getPlayer() {
-		for(Tile []row :tiles)
-			for(Tile cell : row){
-				if(cell.getObject()!=null)
-					if(cell.getObject() instanceof Player)
+		for (Tile[] row : tiles)
+			for (Tile cell : row) {
+				if (cell.getObject() != null)
+					if (cell.getObject() instanceof Player){
+						System.out.println(cell.getX()+","+cell.getY()+": "+cell.getObject());
 						return (Player) cell.getObject();
+					}
 			}
 		return null;
 	}
 
 	private Tile getTile(int x, int y) {
-		if (x < 0 || y < 0 || x >= tiles[y].length || y >= tiles.length)
+		if (x < 0 || y < 0 || y >= tiles.length || x >= tiles[y].length)
 			return null;
 		return tiles[y][x];
 	}
@@ -179,29 +211,29 @@ public class Board {
 	public void setResources(Resources res) {
 		this.res = res;
 	}
-	
-	public Tile[][] getTiles(){
+
+	public Tile[][] getTiles() {
 		return tiles;
 	}
-	
-	public void printLVL(){
-		for(Tile[] row:tiles){
-			for (Tile cell: row){
-				System.out.print(cell);
+
+	public int getColumns() {
+		if (tiles != null)
+			if (tiles[0] != null)
+				return tiles[0].length;
+		return -1;
+	}
+
+	public void printTiles() {
+		for (Tile[] row : tiles) {
+			for (Tile cell : row) {
+				System.out.print(cell + " ");
 			}
 			System.out.println();
 		}
 	}
 
-	public int getColumns() {
-		if(tiles!=null)
-			if(tiles[0]!=null)
-				return tiles[0].length;
-		return -1;
-	}
-
 	public int getRows() {
-		if(tiles!=null)
+		if (tiles != null)
 			return tiles.length;
 		return -1;
 	}
