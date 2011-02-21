@@ -193,4 +193,17 @@ public class Board {
 		}
 	}
 
+	public int getColumns() {
+		if(tiles!=null)
+			if(tiles[0]!=null)
+				return tiles[0].length;
+		return -1;
+	}
+
+	public int getRows() {
+		if(tiles!=null)
+			return tiles.length;
+		return -1;
+	}
+
 }

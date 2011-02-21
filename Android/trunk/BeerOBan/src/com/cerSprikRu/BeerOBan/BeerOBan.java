@@ -3,11 +3,13 @@ package com.cerSprikRu.BeerOBan;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cerSprikRu.BeerOBan.model.board.Board;
-import com.cerSprikRu.BeerOBan.view.GameView;
-
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
+
+import com.cerSprikRu.BeerOBan.model.board.Board;
+import com.cerSprikRu.BeerOBan.view.Constants;
+import com.cerSprikRu.BeerOBan.view.GameView;
 
 public class BeerOBan extends Activity {
 	
@@ -21,7 +23,9 @@ public class BeerOBan extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         Board.getInstance().setResources(this.getResources());
+        Constants.getInstance().setResources(this.getResources());
         setContentView(new GameView(this));
     }
     

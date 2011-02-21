@@ -22,38 +22,47 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private DrawThread drawThread;
 	private List<GraphicObject> graphics = new ArrayList<GraphicObject>();
 	private GraphicObject destinationGraphics;
-	
-	private static final int tileWidth = 60;
-	private static final int tileHeight = 60;
 
 	public GameView(Context context) {
 		super(context);
-		destinationGraphics  = new DestinationTileGraphicObject(context.getResources());
+		destinationGraphics = new DestinationTileGraphicObject(
+				context.getResources());
 		getHolder().addCallback(this);
 		setFocusable(true);
 		Board.getInstance().loadLevel(1);
+		Constants.getInstance()
+				.calculetaStartingPosition(Board.getInstance().getRows(),
+						Board.getInstance().getColumns());
 	}
 
 	@Override
 	public void onDraw(Canvas canvas) {
 		int rowIndex = 0;
-		for(Tile[] row : Board.getInstance().getTiles()){
+		for (Tile[] row : Board.getInstance().getTiles()) {
 			int columnIndex = 0;
-			for(Tile cell: row){
-				if(cell.isDestination()){
-					canvas.drawBitmap(destinationGraphics.getGraphic(), columnIndex*tileWidth, rowIndex*tileHeight, null);
+			int y = Constants.getInstance().getStartY() + rowIndex
+					* Constants.getInstance().getTileSize();
+			for (Tile cell : row) {
+				int x = Constants.getInstance().getStartX() + columnIndex
+						* Constants.getInstance().getTileSize();
+				if (cell.isDestination()) {
+					canvas.drawBitmap(destinationGraphics.getGraphic(), x, y,
+							null);
 				}
-				if(cell.getGameObject()!=null){
-					canvas.drawBitmap(cell.getGameObject().getGraphics().getGraphic(), columnIndex*tileWidth, rowIndex*tileHeight, null);
+				if (cell.getGameObject() != null) {
+					canvas.drawBitmap(cell.getGameObject().getGraphics()
+							.getGraphic(), x, y, null);
 				}
 				columnIndex++;
 			}
 			rowIndex++;
 		}
-//		canvas.drawColor(Color.BLACK);
-//		for(GraphicObject graphicObject : graphics){
-//			canvas.drawBitmap(graphicObject.getGraphic(), graphicObject.getCoordinates().getX(), graphicObject.getCoordinates().getY(),null);
-//		}
+		// canvas.drawColor(Color.BLACK);
+		// for(GraphicObject graphicObject : graphics){
+		// canvas.drawBitmap(graphicObject.getGraphic(),
+		// graphicObject.getCoordinates().getX(),
+		// graphicObject.getCoordinates().getY(),null);
+		// }
 	}
 
 	@Override
@@ -89,13 +98,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
-			if (event.getAction() == MotionEvent.ACTION_DOWN){
-				GraphicObject graphic = new PlayerEntityGraphicObject(getResources());
-				graphic.getCoordinates().setX((int)event.getX());
-				graphic.getCoordinates().setY((int)event.getY());
-			    graphics.add(graphic);
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				GraphicObject graphic = new PlayerEntityGraphicObject(
+						getResources());
+				graphic.getCoordinates().setX((int) event.getX());
+				graphic.getCoordinates().setY((int) event.getY());
+				graphics.add(graphic);
 			}
 			return true;
-		}		
+		}
 	}
+
 }

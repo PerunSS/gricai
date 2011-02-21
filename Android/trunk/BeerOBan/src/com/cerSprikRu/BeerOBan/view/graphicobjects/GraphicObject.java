@@ -1,10 +1,13 @@
 package com.cerSprikRu.BeerOBan.view.graphicobjects;
 
+import com.cerSprikRu.BeerOBan.view.Constants;
+
 import android.graphics.Bitmap;
 
 public abstract class GraphicObject {
     private Bitmap bitmap;
     private Coordinates coordinates;
+    private boolean scaled = false;
  
     public GraphicObject(Bitmap bitmap) {
     	this.bitmap = bitmap;
@@ -16,6 +19,9 @@ public abstract class GraphicObject {
     }
  
     public Bitmap getGraphic() {
+    	if(!scaled)
+    		bitmap = Bitmap.createScaledBitmap(bitmap, Constants.getInstance().getTileSize(), Constants.getInstance().getTileSize(), false);
+    	scaled = true;
         return bitmap;
     }
  
