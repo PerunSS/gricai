@@ -22,7 +22,6 @@ public class BeerOBan extends Activity {
 	private static final Map<String, Integer> levels = new HashMap<String, Integer>();
 	
 	private Button startButton;
-	private int selectedLvl;
 
 	static {
 		levels.put("lvl1", R.raw.lvl1);
