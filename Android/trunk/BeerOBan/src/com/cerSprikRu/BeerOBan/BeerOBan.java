@@ -67,7 +67,7 @@ public class BeerOBan extends Activity {
 		        startLvl(item+1);
 		    }
 		});
-		AlertDialog alert = builder.show();
+		builder.show();
 	}
 	
 	private void startLvl(int lvl){
