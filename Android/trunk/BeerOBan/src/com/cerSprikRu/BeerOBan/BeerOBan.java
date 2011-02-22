@@ -6,13 +6,12 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -84,7 +83,8 @@ public class BeerOBan extends Activity {
 	public static int getLvlResource(String lvl) {
 		return levels.get(lvl);
 	}
-	protected Dialog onCreateDialog(int id){
+	@Override
+	protected Dialog onCreateDialog(int id) {
 		Dialog dialog;
 		switch(id) {
 	    case DIALOG_SELECT_LEVEL_ID:
@@ -104,8 +104,7 @@ public class BeerOBan extends Activity {
 			dialog = builder.create();
 	        break;
 	    case DIALOG_ABOUT_ID:
-	    	Context mContext = getApplicationContext();
-	    	dialog = new Dialog(mContext);
+	    	dialog = new Dialog(this);
 
 	    	dialog.setContentView(R.layout.about_dialog);
 	    	dialog.setTitle("About us");
