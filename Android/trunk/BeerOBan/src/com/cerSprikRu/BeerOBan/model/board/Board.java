@@ -221,5 +221,20 @@ public class Board {
 			return tiles.length;
 		return -1;
 	}
+	
+	public boolean checkLevel(){
+		for(Tile[] row: tiles){
+			for(Tile cell: row){
+				if(cell.isDestination()){
+					GameObject object = cell.getGameObject();
+					if(object == null)
+						return false;
+					if(!(object instanceof BeerCrate))
+						return false;
+				}
+			}
+		}
+		return true;
+	}
 
 }

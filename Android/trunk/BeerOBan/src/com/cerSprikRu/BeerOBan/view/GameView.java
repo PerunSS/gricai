@@ -162,6 +162,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
+			if(moved)
+				return true;
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				boolean tryMove = false;
 				if(northRect.contains((int)event.getX(),(int)event.getY())){
@@ -195,9 +197,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 //						direction = Direction.NORTH;
 //				}
 				if(tryMove){
-					if (moved = Board.getInstance().move(direction))
+					if (moved = Board.getInstance().move(direction)){
 						System.out.println(event.getX() + "," + event.getY() + ": "
 								+ direction);
+						if(Board.getInstance().checkLevel()){
+							System.out.println("level finished");
+						}
+					}
 					else
 						System.out.println("invalid move: " + direction);
 					Board.getInstance().printTiles();
