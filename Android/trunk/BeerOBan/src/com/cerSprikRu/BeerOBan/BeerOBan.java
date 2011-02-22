@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,8 @@ import com.cerSprikRu.BeerOBan.view.GameView;
 public class BeerOBan extends Activity {
 
 	private static final Map<String, Integer> levels = new HashMap<String, Integer>();
+	
+	static final int DIALOG_SELECT_LEVEL_ID = 0;
 	
 	private Button startButton;
 
@@ -51,20 +54,7 @@ public class BeerOBan extends Activity {
 	}
 	
 	private void startButtonClick(View v){
-		CharSequence[] items = new CharSequence[levels.keySet().size()];
-		int i=0;
-		for ( String str:levels.keySet()){
-			items[i++] = str;
-		}
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Pick level");
-		builder.setItems(items, new DialogInterface.OnClickListener() {
-		    public void onClick(DialogInterface dialog, int item) {
-		        startLvl(item+1);
-		    }
-		});
-		builder.show();
+		showDialog(DIALOG_SELECT_LEVEL_ID);
 	}
 	
 	private void startLvl(int lvl){
@@ -75,5 +65,29 @@ public class BeerOBan extends Activity {
 	
 	public static int getLvlResource(String lvl) {
 		return levels.get(lvl);
+	}
+	protected Dialog onCreateDialog(int id){
+		Dialog dialog;
+		switch(id) {
+	    case DIALOG_SELECT_LEVEL_ID:
+	    	CharSequence[] items = new CharSequence[levels.keySet().size()];
+			int i=0;
+			for ( String str:levels.keySet()){
+				items[i++] = str;
+			}
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Pick level");
+			builder.setItems(items, new DialogInterface.OnClickListener() {
+			    public void onClick(DialogInterface dialog, int item) {
+			        startLvl(item+1);
+			    }
+			});
+			dialog = builder.create();
+	        break;
+	    default:
+	        dialog = null;
+	    }
+	    return dialog;
 	}
 }
