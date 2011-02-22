@@ -162,49 +162,35 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (drawThread.getSurfaceHolder()) {
-			if(moved)
+			if (moved)
 				return true;
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				boolean tryMove = false;
-				if(northRect.contains((int)event.getX(),(int)event.getY())){
+				if (northRect.contains((int) event.getX(), (int) event.getY())) {
 					tryMove = true;
 					direction = Direction.NORTH;
 				}
-				if(southRect.contains((int)event.getX(),(int)event.getY())){
+				if (southRect.contains((int) event.getX(), (int) event.getY())) {
 					tryMove = true;
 					direction = Direction.SOUTH;
 				}
-				if(eastRect.contains((int)event.getX(),(int)event.getY())){
+				if (eastRect.contains((int) event.getX(), (int) event.getY())) {
 					tryMove = true;
 					direction = Direction.EAST;
 				}
-				if(westRect.contains((int)event.getX(),(int)event.getY())){
+				if (westRect.contains((int) event.getX(), (int) event.getY())) {
 					tryMove = true;
 					direction = Direction.WEST;
 				}
-//				if (event.getY() >= Constants.getInstance().getRatio()
-//						* event.getX()) {
-//					if (event.getY() >= Constants.getInstance().getHeight()
-//							- Constants.getInstance().getRatio() * event.getX()) {
-//						direction = Direction.SOUTH;
-//					} else
-//						direction = Direction.WEST;
-//				} else {
-//					if (event.getY() >= Constants.getInstance().getHeight()
-//							- Constants.getInstance().getRatio() * event.getX()) {
-//						direction = Direction.EAST;
-//					} else
-//						direction = Direction.NORTH;
-//				}
-				if(tryMove){
-					if (moved = Board.getInstance().move(direction)){
-						System.out.println(event.getX() + "," + event.getY() + ": "
-								+ direction);
-						if(Board.getInstance().checkLevel()){
+
+				if (tryMove) {
+					if (moved = Board.getInstance().move(direction)) {
+						System.out.println(event.getX() + "," + event.getY()
+								+ ": " + direction);
+						if (Board.getInstance().checkLevel()) {
 							System.out.println("level finished");
 						}
-					}
-					else
+					} else
 						System.out.println("invalid move: " + direction);
 					Board.getInstance().printTiles();
 				}
@@ -212,12 +198,21 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			return true;
 		}
 	}
-	
-	private void initRects(){
-		northRect = new Rect(Constants.getInstance().getWidth()/3, 0, Constants.getInstance().getWidth()/3*2, Constants.getInstance().getHeight()/6);
-		southRect = new Rect(Constants.getInstance().getWidth()/3, Constants.getInstance().getHeight()/6*5, Constants.getInstance().getWidth()/3*2, Constants.getInstance().getHeight());
-		westRect = new Rect(0, Constants.getInstance().getHeight()/3, Constants.getInstance().getWidth()/8, Constants.getInstance().getHeight()/3*2);
-		eastRect = new Rect(Constants.getInstance().getWidth()/8*7, Constants.getInstance().getHeight()/3, Constants.getInstance().getWidth(), Constants.getInstance().getHeight()/3*2);
+
+	private void initRects() {
+		northRect = new Rect(Constants.getInstance().getWidth() / 3, 0,
+				Constants.getInstance().getWidth() / 3 * 2, Constants
+						.getInstance().getHeight() / 6);
+		southRect = new Rect(Constants.getInstance().getWidth() / 3, Constants
+				.getInstance().getHeight() / 6 * 5, Constants.getInstance()
+				.getWidth() / 3 * 2, Constants.getInstance().getHeight());
+		westRect = new Rect(0, Constants.getInstance().getHeight() / 3,
+				Constants.getInstance().getWidth() / 8, Constants.getInstance()
+						.getHeight() / 3 * 2);
+		eastRect = new Rect(Constants.getInstance().getWidth() / 8 * 7,
+				Constants.getInstance().getHeight() / 3, Constants
+						.getInstance().getWidth(), Constants.getInstance()
+						.getHeight() / 3 * 2);
 	}
 
 }
