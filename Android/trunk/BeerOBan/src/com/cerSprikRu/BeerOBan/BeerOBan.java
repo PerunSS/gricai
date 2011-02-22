@@ -35,9 +35,6 @@ public class BeerOBan extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		startApplication();
-		/*Board.getInstance().setResources(this.getResources());
-		Constants.getInstance().setResources(this.getResources());
-		setContentView(new GameView(this, 1));*/
 	}
 
 	private void startApplication(){
@@ -61,7 +58,7 @@ public class BeerOBan extends Activity {
 		}
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Pick a color");
+		builder.setTitle("Pick level");
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
 		        startLvl(item+1);
