@@ -30,9 +30,9 @@ public class BeerOBan extends Activity {
 	private Button aboutButton;
 
 	static {
-		levels.put("lvl1", R.raw.lvl1);
-		levels.put("lvl2", R.raw.lvl2);
-		levels.put("lvl3", R.raw.lvl3);
+		levels.put("lvl1", R.raw.lvl01);
+		levels.put("lvl2", R.raw.lvl02);
+		levels.put("lvl3", R.raw.lvl03);
 	}
 
 	/** Called when the activity is first created. */
