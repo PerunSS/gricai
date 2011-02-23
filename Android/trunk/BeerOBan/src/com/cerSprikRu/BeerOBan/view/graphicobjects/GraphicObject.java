@@ -18,7 +18,7 @@ public abstract class GraphicObject {
         this.coordinates = coordinates;
     }
  
-    public Bitmap getGraphic() {
+    public Bitmap getBitmap() {
     	if(!scaled)
     		bitmap = Bitmap.createScaledBitmap(bitmap, Constants.getInstance().getTileSize(), Constants.getInstance().getTileSize(), false);
     	scaled = true;

@@ -49,6 +49,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		canvas.drawRect(southRect, p);
 		canvas.drawRect(northRect, p);
 		int rowIndex = 0;
+		//izcrtava samo objekte koji se mogu pokrenuti i pivo
 		for (Tile[] row : Board.getInstance().getTiles()) {
 			int columnIndex = 0;
 			int y = Constants.getInstance().getStartY() + rowIndex
@@ -57,9 +58,26 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 				int x = Constants.getInstance().getStartX() + columnIndex
 						* Constants.getInstance().getTileSize();
 				if (cell.isDestination()) {
-					canvas.drawBitmap(destinationGraphics.getGraphic(), x, y,
+					canvas.drawBitmap(destinationGraphics.getBitmap(), x, y,
 							null);
 				}
+				columnIndex++;
+			}
+			rowIndex++;
+		}
+		rowIndex = 0;
+		//izcrtava samo objekte koji se mogu pokrenuti i pivo
+		for (Tile[] row : Board.getInstance().getTiles()) {
+			int columnIndex = 0;
+			int y = Constants.getInstance().getStartY() + rowIndex
+					* Constants.getInstance().getTileSize();
+			for (Tile cell : row) {
+				int x = Constants.getInstance().getStartX() + columnIndex
+						* Constants.getInstance().getTileSize();
+//				if (cell.isDestination()) {
+//					canvas.drawBitmap(destinationGraphics.getGraphic(), x, y,
+//							null);
+//				}
 				if (cell.getGameObject() != null) {
 					if (cell.getGameObject().isAnimated()) {
 						if (moved) {
@@ -104,17 +122,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 								break;
 							}
 							canvas.drawBitmap(cell.getGameObject()
-									.getGraphics().getGraphic(), tmpX, tmpY,
+									.getGraphics().getBitmap(), tmpX, tmpY,
 									null);
 
 						} else {
 							cell.getGameObject().setAnimated(false);
 							canvas.drawBitmap(cell.getGameObject()
-									.getGraphics().getGraphic(), x, y, null);
+									.getGraphics().getBitmap(), x, y, null);
 						}
 					} else
 						canvas.drawBitmap(cell.getGameObject().getGraphics()
-								.getGraphic(), x, y, null);
+								.getBitmap(), x, y, null);
 				}
 				columnIndex++;
 			}

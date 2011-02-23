@@ -1,7 +1,7 @@
 package com.cerSprikRu.BeerOBan;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +21,7 @@ import com.cerSprikRu.BeerOBan.view.GameView;
 
 public class BeerOBan extends Activity {
 
-	private static final Map<String, Integer> levels = new HashMap<String, Integer>();
+	private static final Map<String, Integer> levels = new TreeMap<String, Integer>();
 	
 	static final int DIALOG_SELECT_LEVEL_ID = 0;
 	static final int DIALOG_ABOUT_ID = 1;
@@ -33,6 +33,13 @@ public class BeerOBan extends Activity {
 		levels.put("lvl1", R.raw.lvl01);
 		levels.put("lvl2", R.raw.lvl02);
 		levels.put("lvl3", R.raw.lvl03);
+		levels.put("lvl4", R.raw.lvl04);
+		levels.put("lvl5", R.raw.lvl05);
+		levels.put("lvl6", R.raw.lvl06);
+		levels.put("lvl7", R.raw.lvl07);
+		levels.put("lvl8", R.raw.lvl08);
+		levels.put("lvl9", R.raw.lvl09);
+		levels.put("lvl10", R.raw.lvl10);
 	}
 
 	/** Called when the activity is first created. */
