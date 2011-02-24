@@ -42,19 +42,20 @@ public class RnBRumorsNFacts extends Activity {
 	private List<Fact> favorites;
 	private static int[] imageIDs = { R.drawable.beyonce,
 			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
-			R.drawable.chrisbrown, R.drawable.justin_bieber, R.drawable.usher };
+			R.drawable.chrisbrown, R.drawable.justin_bieber, R.drawable.usher,
+			R.drawable.keyshia_cole, R.drawable.ashanti };
 
 	private int curentIndex = 0;
 	private DBManager manager;
 
 	private static RnBRumorsNFacts instance;
-	
+
 	private enum STATE {
 		NORMAL, BACKABLE
 	}
-	
+
 	private STATE currentState;
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,41 +66,41 @@ public class RnBRumorsNFacts extends Activity {
 		instance = this;
 		handleIntent(getIntent());
 	}
-	
+
 	@Override
 	protected void onNewIntent(Intent intent) {
-	    setIntent(intent);
-	    handleIntent(intent);
+		setIntent(intent);
+		handleIntent(intent);
 	}
 
 	private void handleIntent(Intent intent) {
-	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-	      String query = intent.getStringExtra(SearchManager.QUERY);
-	      doMySearch(query);
-	    }
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			doMySearch(query);
+		}
 	}
-	
-	private void doMySearch(String query){
+
+	private void doMySearch(String query) {
 		currentState = STATE.BACKABLE;
-		String queryArr [] = query.split(" ");
-		for(int i=0;i<queryArr.length;i++){
+		String queryArr[] = query.split(" ");
+		for (int i = 0; i < queryArr.length; i++) {
 			queryArr[i].trim();
 		}
 		Map<Integer, List<Fact>> result = new HashMap<Integer, List<Fact>>();
 		int maxWordCount = 0;
-		for(Fact fact:facts){
+		for (Fact fact : facts) {
 			int wordCount = 0;
-			for(String q:queryArr){
-				if(fact.getText().toLowerCase().contains(q.toLowerCase()))
+			for (String q : queryArr) {
+				if (fact.getText().toLowerCase().contains(q.toLowerCase()))
 					wordCount++;
-				if(fact.getPerson().toLowerCase().contains(q.toLowerCase()))
+				if (fact.getPerson().toLowerCase().contains(q.toLowerCase()))
 					wordCount++;
 			}
-			if(wordCount > maxWordCount)
+			if (wordCount > maxWordCount)
 				maxWordCount = wordCount;
-			if(wordCount>0){
+			if (wordCount > 0) {
 				List<Fact> searchFacts = result.get(wordCount);
-				if(searchFacts == null)
+				if (searchFacts == null)
 					searchFacts = new ArrayList<Fact>();
 				searchFacts.add(fact);
 				result.put(wordCount, searchFacts);
@@ -108,27 +109,29 @@ public class RnBRumorsNFacts extends Activity {
 		setContentView(R.layout.favorites);
 		favoritesView = (ListView) findViewById(R.id.favorites_list_view);
 		searchResult = new ArrayList<Fact>();
-		while(maxWordCount > 0){
+		while (maxWordCount > 0) {
 			List<Fact> res = result.get(maxWordCount);
-			if(res!=null)
+			if (res != null)
 				searchResult.addAll(res);
 			maxWordCount--;
 		}
-		favoritesView.setAdapter(new FavoritesListAdapter(instance, searchResult));
+		favoritesView.setAdapter(new FavoritesListAdapter(instance,
+				searchResult));
 		favoritesView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
 				Fact f = searchResult.get(position);
 				curentIndex = 0;
-				for(Fact fact:facts){
-					if(f.equals(fact)){
+				for (Fact fact : facts) {
+					if (f.equals(fact)) {
 						startApplication();
 						return;
 					}
 					curentIndex++;
 				}
-				
+
 			}
 		});
 
@@ -202,17 +205,18 @@ public class RnBRumorsNFacts extends Activity {
 				favoritesView.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
-					public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+					public void onItemClick(AdapterView<?> a, View v,
+							int position, long id) {
 						Fact f = favorites.get(position);
 						curentIndex = 0;
-						for(Fact fact:facts){
-							if(f.equals(fact)){
+						for (Fact fact : facts) {
+							if (f.equals(fact)) {
 								startApplication();
 								return;
 							}
 							curentIndex++;
 						}
-						
+
 					}
 				});
 
@@ -243,14 +247,14 @@ public class RnBRumorsNFacts extends Activity {
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
-		
+
 		searchButton = (Button) findViewById(R.id.search);
 		searchButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				showSearch();
-				
+
 			}
 		});
 
@@ -281,7 +285,9 @@ public class RnBRumorsNFacts extends Activity {
 		Fact fact = facts.get(curentIndex);
 
 		factsTextView = (TextView) findViewById(R.id.factText);
-		if (fact.getText().length() > 150)
+		if (fact.getText().length() > 200)
+			factsTextView.setTextSize(18);
+		else if (fact.getText().length() > 150)
 			factsTextView.setTextSize(20);
 		else if (fact.getText().length() > 100)
 			factsTextView.setTextSize(25);
@@ -306,29 +312,28 @@ public class RnBRumorsNFacts extends Activity {
 			favoriteButton.setBackgroundResource(R.drawable.favorite_no_button);
 		}
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		switch(keyCode){
+		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
-			if(currentState == STATE.BACKABLE){
+			if (currentState == STATE.BACKABLE) {
 				startApplication();
 				return true;
-			}
-			else{
+			} else {
 				moveTaskToBack(true);
 			}
 		case KeyEvent.KEYCODE_MENU:
-			//TODO show menu
+			// TODO show menu
 		case KeyEvent.KEYCODE_HOME:
-			//TODO home
+			// TODO home
 		case KeyEvent.KEYCODE_SEARCH:
-			//TODO search
+			// TODO search
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
-	private void showSearch(){
+
+	private void showSearch() {
 		onSearchRequested();
 	}
 

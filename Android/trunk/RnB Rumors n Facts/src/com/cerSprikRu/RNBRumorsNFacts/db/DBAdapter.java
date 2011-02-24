@@ -20,6 +20,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	private String dbName; // = "RNBFacts";
 	private SQLiteDatabase myDataBase;
 	private final Context myContext;
+	private static final int CURRENT_VERSION = 3;
 
 	/**
 	 * Constructor Takes and keeps a reference of the passed context in order to
@@ -28,7 +29,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	 * @param context
 	 */
 	public DBAdapter(Context context, String dbName, String projectPath) {
-		super(context, dbName, null, 2);
+		super(context, dbName, null, CURRENT_VERSION);
 		this.dbName = dbName;
 		dbPath = "/data/data/" + projectPath + "/databases/";
 		this.myContext = context;
@@ -46,6 +47,17 @@ public class DBAdapter extends SQLiteOpenHelper {
 	public void createDataBase() throws IOException {
 		boolean dbExist = checkDataBase();
 		if (dbExist) {
+			System.out.println(getDbVersion());
+			if (getDbVersion() != CURRENT_VERSION) {
+				this.getReadableDatabase();
+				try {
+					copyDataBase();
+				} catch (IOException e) {
+					Log.d("COPY ERROR", e.getMessage(), e);
+					throw new Error("Error copying database");
+				}
+				
+			}
 			// do nothing - database already exist
 		} else {
 			// By calling this method and empty database will be created into
@@ -60,6 +72,20 @@ public class DBAdapter extends SQLiteOpenHelper {
 				throw new Error("Error copying database");
 			}
 		}
+	}
+
+	private void setNewVersion(int currentVersion) {
+		SQLiteDatabase checkDB = null;
+		try {
+			String myPath = dbPath + dbName;
+			checkDB = SQLiteDatabase.openDatabase(myPath, null,
+					SQLiteDatabase.OPEN_READWRITE);
+			checkDB.setVersion(CURRENT_VERSION);
+			checkDB.close();
+		} catch (SQLiteException e) {
+			// database does't exist yet.
+		}
+		
 	}
 
 	/**
@@ -81,6 +107,21 @@ public class DBAdapter extends SQLiteOpenHelper {
 			checkDB.close();
 		}
 		return checkDB != null ? true : false;
+	}
+
+	private int getDbVersion() {
+		SQLiteDatabase checkDB = null;
+		int version = -1;
+		try {
+			String myPath = dbPath + dbName;
+			checkDB = SQLiteDatabase.openDatabase(myPath, null,
+					SQLiteDatabase.OPEN_READONLY);
+			version = checkDB.getVersion();
+			checkDB.close();
+		} catch (SQLiteException e) {
+			// database does't exist yet.
+		}
+		return version;
 	}
 
 	/**
@@ -106,6 +147,8 @@ public class DBAdapter extends SQLiteOpenHelper {
 		myOutput.flush();
 		myOutput.close();
 		myInput.close();
+		
+		setNewVersion(CURRENT_VERSION);
 	}
 
 	public void openDataBase() throws SQLException {
@@ -130,14 +173,18 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		
+		try {
+			copyDataBase();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Cursor executeSql(String sql, String[] selectionArgs) {
 		return myDataBase.rawQuery(sql, selectionArgs);
 	}
-	
-	public void update(String sql){
+
+	public void update(String sql) {
 		myDataBase.execSQL(sql);
 	}
 }
