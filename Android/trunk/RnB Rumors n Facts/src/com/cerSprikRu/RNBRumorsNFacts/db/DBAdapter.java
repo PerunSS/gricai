@@ -28,7 +28,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	 * @param context
 	 */
 	public DBAdapter(Context context, String dbName, String projectPath) {
-		super(context, dbName, null, 1);
+		super(context, dbName, null, 2);
 		this.dbName = dbName;
 		dbPath = "/data/data/" + projectPath + "/databases/";
 		this.myContext = context;
@@ -130,7 +130,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+		
 	}
 
 	public Cursor executeSql(String sql, String[] selectionArgs) {

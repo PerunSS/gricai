@@ -42,7 +42,7 @@ public class RnBRumorsNFacts extends Activity {
 	private List<Fact> favorites;
 	private static int[] imageIDs = { R.drawable.beyonce,
 			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
-			R.drawable.chrisbrown };
+			R.drawable.chrisbrown, R.drawable.justin_bieber, R.drawable.usher };
 
 	private int curentIndex = 0;
 	private DBManager manager;
