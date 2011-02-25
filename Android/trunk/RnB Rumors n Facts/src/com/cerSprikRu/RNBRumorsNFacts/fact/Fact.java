@@ -40,4 +40,8 @@ public class Fact {
 		favorite = !favorite;
 	}
 
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
+	}
+
 }

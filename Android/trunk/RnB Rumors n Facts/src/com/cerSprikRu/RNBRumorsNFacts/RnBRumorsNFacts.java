@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.cerSprikRu.RNBRumorsNFacts.db.customManager.DBManager;
 import com.cerSprikRu.RNBRumorsNFacts.fact.Fact;
+import com.cerSprikRu.RNBRumorsNFacts.favorites.FavoritesManager;
 
 public class RnBRumorsNFacts extends Activity {
 
@@ -47,6 +49,7 @@ public class RnBRumorsNFacts extends Activity {
 
 	private int curentIndex = 0;
 	private DBManager manager;
+	private FavoritesManager favManager;
 
 	private static RnBRumorsNFacts instance;
 
@@ -61,7 +64,13 @@ public class RnBRumorsNFacts extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		manager = new DBManager(this);
+		favManager = new FavoritesManager(this);
 		facts = manager.read();
+		Set<Integer> favorites = favManager.getFavorites();
+		for(Fact fact:facts){
+			if(favorites.contains(fact.getId()))
+				fact.setFavorite(true);
+		}
 		startApplication();
 		instance = this;
 		handleIntent(getIntent());
@@ -183,7 +192,8 @@ public class RnBRumorsNFacts extends Activity {
 			public void onClick(View v) {
 				Fact fact = facts.get(curentIndex);
 				fact.togleFavorite();
-				manager.updateFact(fact);
+				//manager.updateFact(fact);
+				favManager.togleFavorite(fact);
 				togleFavorite(fact);
 			}
 		});
