@@ -39,4 +39,8 @@ public class Fact {
 		return publisher;
 	}
 
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
+	}
+
 }

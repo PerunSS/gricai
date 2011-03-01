@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import com.cerSprikRu.TrueFacts.adapter.FavoriteAdapter;
 import com.cerSprikRu.TrueFacts.db.customManager.DBManager;
 import com.cerSprikRu.TrueFacts.fact.Fact;
+import com.cerSprikRu.TrueFacts.favorites.FavoritesManager;
 
 public class TrueFacts extends Activity {
 
@@ -47,6 +49,7 @@ public class TrueFacts extends Activity {
 
 	private int curentIndex = 0;
 	private DBManager manager;
+	private FavoritesManager favManager;
 
 	private enum STATE {
 		NORMAL, BACKABLE
@@ -61,7 +64,13 @@ public class TrueFacts extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		manager = new DBManager(this);
+		favManager = new FavoritesManager(this);
 		facts = manager.read();
+		Set<Integer> favorites = favManager.getFavorites();
+		for(Fact fact:facts){
+			if(favorites.contains(fact.getId()))
+				fact.setFavorite(true);
+		}
 		startApplication();
 		instance = this;
 		handleIntent(getIntent());
@@ -205,7 +214,8 @@ public class TrueFacts extends Activity {
 			public void onClick(View v) {
 				Fact fact = facts.get(curentIndex);
 				fact.togleFavorite();
-				manager.updateFact(fact);
+				favManager.togleFavorite(fact);
+				//manager.updateFact(fact);
 				togleFavorite(fact);
 			}
 		});
