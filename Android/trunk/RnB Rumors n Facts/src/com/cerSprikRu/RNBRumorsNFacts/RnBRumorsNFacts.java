@@ -45,7 +45,8 @@ public class RnBRumorsNFacts extends Activity {
 	private static int[] imageIDs = { R.drawable.beyonce,
 			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
 			R.drawable.chrisbrown, R.drawable.justin_bieber, R.drawable.usher,
-			R.drawable.keyshia_cole, R.drawable.ashanti };
+			R.drawable.keyshia_cole, R.drawable.ashanti, R.drawable.duffy,
+			R.drawable.r_kelly, R.drawable.trey_songz };
 
 	private int curentIndex = 0;
 	private DBManager manager;
@@ -67,8 +68,8 @@ public class RnBRumorsNFacts extends Activity {
 		favManager = new FavoritesManager(this);
 		facts = manager.read();
 		Set<Integer> favorites = favManager.getFavorites();
-		for(Fact fact:facts){
-			if(favorites.contains(fact.getId()))
+		for (Fact fact : facts) {
+			if (favorites.contains(fact.getId()))
 				fact.setFavorite(true);
 		}
 		startApplication();
@@ -192,7 +193,7 @@ public class RnBRumorsNFacts extends Activity {
 			public void onClick(View v) {
 				Fact fact = facts.get(curentIndex);
 				fact.togleFavorite();
-				//manager.updateFact(fact);
+				// manager.updateFact(fact);
 				favManager.togleFavorite(fact);
 				togleFavorite(fact);
 			}
