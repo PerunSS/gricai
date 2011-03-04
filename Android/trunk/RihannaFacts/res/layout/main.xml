@@ -25,7 +25,6 @@
 		myapp:backgroundColor="#000000"
 		myapp:primaryTextColor="#FFFFFF"
 		myapp:secondaryTextColor="#CCCCCC"
-		android:layout_weight="35"
 	/>
 	<LinearLayout
   		android:orientation="horizontal"
