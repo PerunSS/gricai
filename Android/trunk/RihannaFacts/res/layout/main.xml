@@ -5,51 +5,62 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-	<TextView android:text="@+id/fact" 
-		android:id="@+id/fact"
-		android:gravity="center" 
-		android:layout_height="fill_parent" 
-		android:layout_width="fill_parent"
-		android:textColor="#CCCC00"
-		android:layout_weight="5"
-		android:shadowColor="#FF0000"
-		android:textStyle="bold"
-		android:shadowRadius="10"
-		android:shadowDx="0"
-		android:shadowDy="0"
-	/>
-	<com.admob.android.ads.AdView
-		android:id="@+id/ad1"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		myapp:backgroundColor="#000000"
-		myapp:primaryTextColor="#FFFFFF"
-		myapp:secondaryTextColor="#CCCCCC"
-	/>
+    <LinearLayout
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_weight="5">
+		<TextView android:text="@+id/fact" 
+			android:id="@+id/fact"
+			android:gravity="center" 
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:textColor="#CCCC00"
+			android:shadowColor="#FF0000"
+			android:textStyle="bold"
+			android:shadowRadius="10"
+			android:shadowDx="0"
+			android:shadowDy="0"
+		/>
+		<com.admob.android.ads.AdView
+			android:id="@+id/ad1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			myapp:backgroundColor="#000000"
+			myapp:primaryTextColor="#FFFFFF"
+			myapp:secondaryTextColor="#CCCCCC"
+		/>
+	</LinearLayout>
+	
 	<LinearLayout
-  		android:orientation="horizontal"
-  		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent"
-  		android:layout_weight="20">
-  		<Button 
-  			android:id="@+id/random"
-  			android:text="Random"
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_weight="20">
+    	<LinearLayout
+  			android:orientation="horizontal"
   			android:layout_width="fill_parent"
-  			android:layout_height="fill_parent"
-  			android:layout_weight="1"/>	
-  		<Button 
-  			android:id="@+id/save"
-  			android:text ="Save Image"
-  			android:layout_width="fill_parent"
-  			android:layout_height="fill_parent"
-  			android:layout_weight="1"/>
-  	</LinearLayout>
-	<com.admob.android.ads.AdView
-		android:id="@+id/ad2"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		myapp:backgroundColor="#000000"
-		myapp:primaryTextColor="#FFFFFF"
-		myapp:secondaryTextColor="#CCCCCC"
-	/>	
+  			android:layout_height="fill_parent">
+  			<Button 
+  				android:id="@+id/random"
+  				android:text="Random"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"/>	
+  			<Button 
+  				android:id="@+id/save"
+  				android:text ="Save Image"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"/>
+  		</LinearLayout>
+		<com.admob.android.ads.AdView
+			android:id="@+id/ad2"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			myapp:backgroundColor="#000000"
+			myapp:primaryTextColor="#FFFFFF"
+			myapp:secondaryTextColor="#CCCCCC"
+		/>	
+	</LinearLayout>
 </LinearLayout>
