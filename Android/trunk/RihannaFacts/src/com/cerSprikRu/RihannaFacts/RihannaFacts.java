@@ -1,5 +1,8 @@
 package com.cerSprikRu.RihannaFacts;
 
+import com.admob.android.ads.AdManager;
+import com.admob.android.ads.AdView;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -95,6 +98,13 @@ public class RihannaFacts extends Activity {
 		factsTextView
 				.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
+		
+		
+		AdManager.setTestDevices(new String[] {AdManager.TEST_EMULATOR});
+		AdView view1 = (AdView)findViewById(R.id.ad1);
+		AdView view2 = (AdView)findViewById(R.id.ad2);
+		view1.requestFreshAd();
+		view2.requestFreshAd();
 
 	}
 }
