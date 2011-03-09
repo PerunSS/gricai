@@ -220,5 +220,9 @@ public class CocktailCreator {
 		for(Cocktail cocktail:cocktails)
 			System.out.println(cocktail);
 	}
+
+	public List<Cocktail> getCocktails() {
+		return cocktails;
+	}
 	
 }
