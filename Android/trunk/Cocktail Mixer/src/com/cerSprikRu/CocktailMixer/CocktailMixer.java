@@ -26,7 +26,7 @@ public class CocktailMixer extends Activity {
         final CheckBox gin = (CheckBox) findViewById(R.id.gin);
         final CheckBox rum = (CheckBox) findViewById(R.id.rum);
         final CheckBox cognac = (CheckBox) findViewById(R.id.cognac);
-        //liquers
+        //liqueurs
         final CheckBox l_cherry = (CheckBox) findViewById(R.id.l_cherry);
         final CheckBox l_chocolate = (CheckBox) findViewById(R.id.l_chocolate);
         final CheckBox l_coffee = (CheckBox) findViewById(R.id.l_coffee);
@@ -104,7 +104,7 @@ public class CocktailMixer extends Activity {
 				}
 				if(l_coffee.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("coffe liqueur");
+					drink.setName("coffee liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
