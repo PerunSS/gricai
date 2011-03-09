@@ -68,8 +68,8 @@
 				android:text="Orange type" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_strawbery" 
-				android:text="Strawbery type" 
+				android:id="@+id/l_strawberry" 
+				android:text="Strawberry type" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
@@ -78,8 +78,8 @@
 				android:text="Chocolate type" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_coffe" 
-				android:text="Coffe type" 
+				android:id="@+id/l_coffee" 
+				android:text="Coffee type" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
@@ -139,11 +139,11 @@
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
 				android:id="@+id/j_orange" 
-				android:text="Orange juece" 
+				android:text="Orange juice" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
 				android:id="@+id/j_apple" 
-				android:text="Apple juece" 
+				android:text="Apple juice" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
@@ -152,8 +152,8 @@
 				android:text="Cola type" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/biter" 
-				android:text="Biter type" 
+				android:id="@+id/bitter" 
+				android:text="Bitter type" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
