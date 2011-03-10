@@ -9,16 +9,18 @@ public class Cocktail {
 	private int amount = 0;
 	
 	public void addDrink(Drink drink){
+		Drink newDrink = new Drink();
+		newDrink.setName(drink.getName());
+		newDrink.setAmount(drink.getAmount());
 		boolean shouldAdd = true;
-		for(int i=0;i<drinks.size();i++){
-			if(drinks.get(i).getName().equalsIgnoreCase(drink.getName())){	
-				drinks.get(i).setAmount(drinks.get(i).getAmount() + drink.getAmount());
+		for(Drink d:drinks){
+			if(d.getName().equalsIgnoreCase(drink.getName())){
+				d.incAmount(drink.getAmount());
 				shouldAdd = false;
-				break;
 			}
 		}
 		if(shouldAdd)
-			drinks.add(drink);
+			drinks.add(newDrink);
 		recalculateAmount();
 	}
 	
@@ -39,7 +41,7 @@ public class Cocktail {
 	
 	@Override
 	public String toString() {
-		String str="\namount: "+amount+"cl\n";
+		String str="\namount: "+amount+" mesure(s)\n";
 		if(amount>9)
 			str+="mix in shaker wiht ice: ";
 		else

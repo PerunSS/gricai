@@ -15,6 +15,7 @@ public class DisplayCocktails extends Activity {
 		super.onCreate(savedInstanceState);
 		 setContentView(R.layout.display);
 		 CocktailCreator.getInstance().createCocktails();
+		 CocktailCreator.getInstance().printCocktails();
 		 
 		 Button back = (Button)findViewById(R.id.back);
 		 back.setOnClickListener(new View.OnClickListener() {

@@ -34,4 +34,8 @@ public  class Drink {
 	public String toString() {
 		return name+" "+amount+" messure(s)";
 	}
+
+	public void incAmount(int amount2) {
+		amount+=amount2;
+	}
 }
