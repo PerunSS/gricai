@@ -26,6 +26,8 @@ public class CocktailMixer extends Activity {
         final CheckBox gin = (CheckBox) findViewById(R.id.gin);
         final CheckBox rum = (CheckBox) findViewById(R.id.rum);
         final CheckBox cognac = (CheckBox) findViewById(R.id.cognac);
+        final CheckBox brandy = (CheckBox) findViewById(R.id.brandy);
+        final CheckBox absinthe = (CheckBox) findViewById(R.id.absinthe);
         //liqueurs
         final CheckBox l_cherry = (CheckBox) findViewById(R.id.l_cherry);
         final CheckBox l_chocolate = (CheckBox) findViewById(R.id.l_chocolate);
@@ -90,39 +92,51 @@ public class CocktailMixer extends Activity {
 					drink.setType(DrinkType.STRONG);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
+				if(brandy.isChecked()){
+					Drink drink = new Drink();
+					drink.setName("brandy");
+					drink.setType(DrinkType.STRONG);
+					CocktailCreator.getInstance().addDrink(drink);
+				}
+				if(absinthe.isChecked()){
+					Drink drink = new Drink();
+					drink.setName("absinthe");
+					drink.setType(DrinkType.STRONG);
+					CocktailCreator.getInstance().addDrink(drink);
+				}
 				if(l_cherry.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("cherry liqueur");
+					drink.setName("cherry type liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
 				if(l_chocolate.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("chocolate liqueur");
+					drink.setName("chocolate type liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
 				if(l_coffee.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("coffee liqueur");
+					drink.setName("coffee type liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
 				if(l_menthol.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("menthol liqueur");
+					drink.setName("menthol type liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
 				if(l_orange.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("orange liqueur");
+					drink.setName("orange type liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
 				if(l_strawberry.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("strawberry liqueur");
+					drink.setName("Other type liqueur");
 					drink.setType(DrinkType.LIQUEUR);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
@@ -176,7 +190,7 @@ public class CocktailMixer extends Activity {
 				}
 				if(m_water.isChecked()){
 					Drink drink = new Drink();
-					drink.setName("mineral water");
+					drink.setName("Tonic water");
 					drink.setType(DrinkType.NON_ALC);
 					CocktailCreator.getInstance().addDrink(drink);
 				}

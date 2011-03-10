@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android" 
     android:orientation="vertical"
@@ -7,191 +6,199 @@
     android:layout_height="fill_parent"
     android:scrollbars="vertical"
     >
-	<ScrollView 
- 		android:orientation="vertical"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_weight="1">
-		<LinearLayout
-			xmlns:android="http://schemas.android.com/apk/res/android" 
-    		android:orientation="vertical"
-    		android:layout_width="fill_parent"
-   		 	android:layout_height="fill_parent"
-   			android:scrollbars="vertical"
-		>
-    		<TextView android:id="@+id/strong_d"
-    			android:layout_height="wrap_content" 
-				android:layout_width="fill_parent"
-				android:text="Strong drinks"
-				android:textSize="20px"
-				android:textStyle="bold"
-			/>
-			<TableLayout android:id="@+id/strong_drinks" 
-				android:layout_height="wrap_content" 
-				android:layout_width="wrap_content"
-				android:stretchColumns="*">
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/vodka" 
-						android:text="Vodka" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/tequila" 
-						android:text="Tequila" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/gin" 
-						android:text="Gin" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/whisky" 
-						android:text="Whisky" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/rum" 
-						android:text="Rum" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/cognac" 
-						android:text="Cognac" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-			</TableLayout>
-			<TextView android:id="@+id/liqueur_d"
-  		 		android:layout_height="wrap_content" 
-				android:layout_width="fill_parent"
-				android:text="Liqueurs"
-				android:textSize="20px"
-				android:textStyle="bold"
-			/>
-			<TableLayout android:id="@+id/liquers_drinks" 
-				android:layout_height="wrap_content" 
-				android:layout_width="wrap_content"
-				android:stretchColumns="*">
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/l_orange" 
-						android:text="Orange type" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/l_strawberry" 
-						android:text="Strawberry type" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/l_chocolate" 
-						android:text="Chocolate type" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/l_coffee" 
-						android:text="Coffee type" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/l_cherry" 
-						android:text="Cherry type" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/l_menthol" 
-						android:text="Menthol type" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-			</TableLayout>
-			<TextView android:id="@+id/other_alc_d"
-   				android:layout_height="wrap_content" 
-				android:layout_width="fill_parent"
-				android:text="Other alcohol"
-				android:textSize="20px"
-				android:textStyle="bold"
-			/>
-			<TableLayout android:id="@+id/other_alc_drinks" 
-				android:layout_height="wrap_content" 
-				android:layout_width="wrap_content"
-				android:stretchColumns="*">
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/wine" 
-						android:text="Wine" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/champagne" 
-						android:text="Champagne" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/Vermouth" 
-						android:text="Vermouth" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/beer" 
-						android:text="Beer" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-			</TableLayout>
-				<TextView android:id="@+id/non_alc_d"
-   				android:layout_height="wrap_content" 
-				android:layout_width="fill_parent"
-				android:text="Non-alcohol drinks"
-				android:textSize="20px"
-				android:textStyle="bold"
-			/>
-			<TableLayout android:id="@+id/non_alc" 
-				android:layout_height="wrap_content" 
-				android:layout_width="wrap_content"
-				android:stretchColumns="*">
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/j_orange" 
-						android:text="Orange juice" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/j_apple" 
-						android:text="Apple juice" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/cola" 
-						android:text="Cola type" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/bitter" 
-						android:text="Bitter type" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/m_water" 
-						android:text="Mineral water" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/j_lemon" 
-						android:text="Lemon type" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-				<TableRow>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/milk" 
-						android:text="Milk" 
-						android:layout_width="wrap_content"/>
-					<CheckBox android:layout_height="wrap_content" 
-						android:id="@+id/j_other" 
-						android:text="Other jueces" 
-						android:layout_width="wrap_content"/>
-				</TableRow>
-			</TableLayout>
-		</LinearLayout>
-	</ScrollView>
-		<Button android:id="@+id/mix"
+<ScrollView 
+ 	android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical"
+    >
+    <TextView android:id="@+id/strong_d"
+    	android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:text="Strong drinks"
+		android:textSize="20px"
+		android:textStyle="bold"
+	/>
+	<TableLayout android:id="@+id/strong_drinks" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:stretchColumns="*">
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/vodka" 
+				android:text="Vodka" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/tequila" 
+				android:text="Tequila" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/gin" 
+				android:text="Gin" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/whisky" 
+				android:text="Whisky" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/rum" 
+				android:text="Rum" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/cognac" 
+				android:text="Cognac" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/brandy" 
+				android:text="Brandy" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/absinthe" 
+				android:text="Absinthe" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+	</TableLayout>
+	<TextView android:id="@+id/liqueur_d"
+   		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:text="Liqueurs"
+		android:textSize="20px"
+		android:textStyle="bold"
+	/>
+	<TableLayout android:id="@+id/liquers_drinks" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:stretchColumns="*">
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_orange" 
+				android:text="Orange type" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_menthol" 
+				android:text="Menthol type" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_chocolate" 
+				android:text="Chocolate type" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_coffee" 
+				android:text="Coffee type" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_cherry" 
+				android:text="Cherry type" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_strawberry" 
+				android:text="Other type" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+	</TableLayout>
+	<TextView android:id="@+id/other_alc_d"
+   		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:text="Other alcohol"
+		android:textSize="20px"
+		android:textStyle="bold"
+	/>
+	<TableLayout android:id="@+id/other_alc_drinks" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:stretchColumns="*">
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/wine" 
+				android:text="Wine" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/champagne" 
+				android:text="Champagne" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/Vermouth" 
+				android:text="Vermouth" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/beer" 
+				android:text="Beer" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+	</TableLayout>
+		<TextView android:id="@+id/non_alc_d"
+   		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent"
+		android:text="Non-alcohol drinks"
+		android:textSize="20px"
+		android:textStyle="bold"
+	/>
+	<TableLayout android:id="@+id/non_alc" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content"
+		android:stretchColumns="*">
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/j_orange" 
+				android:text="Orange juice" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/j_apple" 
+				android:text="Apple juice" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/cola" 
+				android:text="Cola type" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/bitter" 
+				android:text="Bitter type" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/m_water" 
+				android:text="Tonic water" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/j_lemon" 
+				android:text="Lemon type" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/milk" 
+				android:text="Milk" 
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/j_other" 
+				android:text="Other jueces" 
+				android:layout_width="wrap_content"/>
+		</TableRow>
+	</TableLayout>
+</LinearLayout>
+</ScrollView>
+<Button android:id="@+id/mix"
   			android:text ="Mix cocktails"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="7"/>
-</LinearLayout>  		
+</LinearLayout> 
