@@ -100,10 +100,9 @@ public class CocktailCreator {
 					if(check >=5)
 						break;
 				}
-				System.out.println("added strong cocktail: "+cocktail);
 				cocktails.add(cocktail);
 			}
-			if(cocktails.size()>size/2)
+			if(cocktails.size()>size/2 || cocktails.size()>=10)
 				return;
 			//mixing withouth strong drinks
 			for(Drink liquer:liqueurs){
@@ -147,10 +146,9 @@ public class CocktailCreator {
 					if(check >=5)
 						break;
 				}
-				System.out.println("added liqueur cocktail: "+cocktail);
 				cocktails.add(cocktail);
 			}
-			if(cocktails.size()>size/2)
+			if(cocktails.size()>size/2 || cocktails.size()>=10)
 				return;
 			//mixing withouth liquers and strong drinks
 			for(Drink otherDrink:otherDrinks){
@@ -186,10 +184,9 @@ public class CocktailCreator {
 					if(check >=5)
 						break;
 				}
-				System.out.println("added other cocktail: "+cocktail);
 				cocktails.add(cocktail);
 			}
-			if(cocktails.size()>size/2)
+			if(cocktails.size()>size/2 || cocktails.size()>=10)
 				return;
 			//mixing only non alc
 			for(Drink nonAlc:nonAlcDrinks){
@@ -207,10 +204,9 @@ public class CocktailCreator {
 					if(check >=5)
 						break;
 				}
-				System.out.println("added non alc cocktail: "+cocktail);
 				cocktails.add(cocktail);
 			}
-			if(cocktails.size()>size/2)
+			if(cocktails.size()>size/2 || cocktails.size()>=10)
 				return;
 		}
 		

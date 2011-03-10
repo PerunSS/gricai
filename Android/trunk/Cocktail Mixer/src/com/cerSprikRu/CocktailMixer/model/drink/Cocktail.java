@@ -9,23 +9,26 @@ public class Cocktail {
 	private int amount = 0;
 	
 	public void addDrink(Drink drink){
-		amount+=drink.getAmount();
 		boolean shouldAdd = true;
 		for(int i=0;i<drinks.size();i++){
 			if(drinks.get(i).getName().equalsIgnoreCase(drink.getName())){	
-				int amount = drinks.get(i).getAmount() + drink.getAmount();
-				System.out.println("============================================");
-				System.out.println(drink.getName()+" old amount: "+drinks.get(i).getAmount()+",added: "+drink.getAmount()+", new amount: "+amount);
-				drinks.get(i).setAmount(amount);
+				drinks.get(i).setAmount(drinks.get(i).getAmount() + drink.getAmount());
 				shouldAdd = false;
 				break;
 			}
 		}
 		if(shouldAdd)
 			drinks.add(drink);
-				
+		recalculateAmount();
 	}
 	
+	private void recalculateAmount() {
+		amount = 0;
+		for(Drink drink: drinks){
+			amount+=drink.getAmount();
+		}
+	}
+
 	public int getAmount(){
 		return amount;
 	}
