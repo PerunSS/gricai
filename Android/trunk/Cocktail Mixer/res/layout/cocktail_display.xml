@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:orientation="vertical"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent">
+  		<TextView
+  			android:id="@+id/cocktail_recipe"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1"
+  		/>
+  		<LinearLayout
+  			android:orientation="horizontal"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="4">
+  			<Button
+  				android:id="@+id/add_to_favorites"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:text="add"
+  			/>
+  			<Button
+  				android:id="@+id/share_cocktail"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:text="share"
+  			/>
+  			
+  			
+  		</LinearLayout>
+  	
+</LinearLayout>

@@ -202,6 +202,7 @@ public class CocktailMixer extends Activity {
 				if(CocktailCreator.getInstance().size() < 5){
 					showError();
 				}else {
+					CocktailCreator.getInstance().createCocktails();
 					Intent myIntent = new Intent(v.getContext(), DisplayCocktails.class);
 	                startActivityForResult(myIntent, 0);
 				}
