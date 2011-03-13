@@ -1,15 +1,14 @@
 package com.cerSprikRu.RihannaFacts;
 
-import com.admob.android.ads.AdManager;
-import com.admob.android.ads.AdView;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,7 +26,7 @@ public class RihannaFacts extends Activity {
 			R.drawable.b24, R.drawable.b25, R.drawable.b26, R.drawable.b27,
 			R.drawable.b28, R.drawable.b29, R.drawable.b30, R.drawable.b31,
 			R.drawable.b32, R.drawable.b33, R.drawable.b34, R.drawable.b35 };
-	
+
 	private int currentBck;
 	private AlertDialog.Builder builder;
 
@@ -56,31 +55,33 @@ public class RihannaFacts extends Activity {
 				else
 					factsTextView.setTextSize(35);
 				currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
-				factsTextView
-						.setBackgroundResource(currentBck);
+				factsTextView.setBackgroundResource(currentBck);
 				factsTextView.setText(fact);
 			}
 		});
-		 builder = new AlertDialog.Builder(this);
+		builder = new AlertDialog.Builder(this);
 		final Button saveBtn = (Button) findViewById(R.id.save);
 		saveBtn.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				String timestamp = Long.toString(System.currentTimeMillis());
-				MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeResource(getResources(), currentBck), timestamp, timestamp);
-				
-				builder.setMessage("image: "+timestamp+" saved");
+				MediaStore.Images.Media.insertImage(getContentResolver(),
+						BitmapFactory
+								.decodeResource(getResources(), currentBck),
+						timestamp, timestamp);
+
+				builder.setMessage("image: " + timestamp + " saved");
 				builder.setTitle("saved");
 				builder.setNeutralButton("OK",
-                        new DialogInterface.OnClickListener() {
+						new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                    int which) {
-                                dialog.cancel();
-                            }
-                        });
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
 				AlertDialog dialog = builder.create();
 				dialog.show();
 			}
@@ -95,16 +96,24 @@ public class RihannaFacts extends Activity {
 		else
 			factsTextView.setTextSize(35);
 		currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
-		factsTextView
-				.setBackgroundResource(currentBck);
+		factsTextView.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
 		
-		
-		AdManager.setTestDevices(new String[] {AdManager.TEST_EMULATOR});
-		AdView view1 = (AdView)findViewById(R.id.ad1);
-		AdView view2 = (AdView)findViewById(R.id.ad2);
-		view1.requestFreshAd();
-		view2.requestFreshAd();
+		final Button shareButton = (Button) findViewById(R.id.share);
+		shareButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final Intent intent = new Intent(Intent.ACTION_SEND);
+
+				intent.setType("text/plain");
+				intent.putExtra(Intent.EXTRA_TEXT,
+						"Fact about Rihanna: "
+								+fact);
+
+				startActivity(Intent.createChooser(intent, "share"));
+			}
+		});
 
 	}
 }
