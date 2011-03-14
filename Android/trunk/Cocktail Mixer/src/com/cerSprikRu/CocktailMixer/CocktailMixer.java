@@ -53,6 +53,17 @@ public class CocktailMixer extends Activity {
         final CheckBox m_water = (CheckBox) findViewById(R.id.m_water);
         final CheckBox bitter = (CheckBox) findViewById(R.id.bitter);
         
+        Button favorites = (Button) findViewById(R.id.favorites);
+        favorites.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent favoritesIntent = new Intent(v.getContext(),
+						DisplayFavorites.class);
+				startActivity(favoritesIntent);
+			}
+		});
+        
         Button mix = (Button) findViewById(R.id.mix);
         mix.setOnClickListener(new View.OnClickListener() {
 			

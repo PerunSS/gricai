@@ -7,6 +7,20 @@
     android:scrollbars="vertical"
     android:background="@drawable/bg"
     >
+    <LinearLayout 
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:scrollbars="horizontal"
+    	android:layout_weight="4"
+    	android:background="@drawable/bg">
+    	<Button android:id="@+id/favorites"
+  			android:text ="Favorites"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:textSize="20sp"/>
+    </LinearLayout>
+    
 <ScrollView 
  	android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -238,6 +252,6 @@
   			android:text ="Mix it up!!!"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="7"
-  			android:textSize="30sp"/>
+  			android:layout_weight="4"
+  			android:textSize="25sp"/>
 </LinearLayout> 
