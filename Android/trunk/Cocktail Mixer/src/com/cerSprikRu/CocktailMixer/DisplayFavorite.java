@@ -21,7 +21,7 @@ public class DisplayFavorite extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.favorite_cocktail_display);
 		cocktail = (Cocktail) getIntent().getExtras().get("favorite");
-		recipe = (TextView)findViewById(R.id.cocktail_recipe);
+		recipe = (TextView)findViewById(R.id.favorite_cocktail_recipe);
 		recipe.setText(cocktail.toString());
 		
 		final Button shareButton = (Button) findViewById(R.id.share_favorite_cocktail);

@@ -16,6 +16,8 @@ import com.cerSprikRu.CocktailMixer.model.drink.Drink;
 import com.cerSprikRu.CocktailMixer.model.drink.DrinkType;
 
 public class CocktailMixer extends Activity {
+	
+	public static CocktailMixer instance;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -239,6 +241,7 @@ public class CocktailMixer extends Activity {
 			}
 		});
         new FavoritesManager(this);
+        instance = this;
     }
     
     private void showError(){

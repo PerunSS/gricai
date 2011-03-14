@@ -47,6 +47,7 @@ public class DisplayCocktail extends Activity{
 			@Override
 			public void onClick(View v) {
 				FavoritesManager.getInstance().togleFavorite(cocktail);
+				favButton.setEnabled(false);
 			}
 		});
 		

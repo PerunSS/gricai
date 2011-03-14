@@ -17,8 +17,8 @@ import com.cerSprikRu.CocktailMixer.adapter.CocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 
-public class DisplayFavorites extends Activity{
-	
+public class DisplayFavorites extends Activity {
+
 	private ListView favoriteCocktailsView;
 	private List<Cocktail> favoriteCocktailList = new ArrayList<Cocktail>();
 
@@ -28,43 +28,49 @@ public class DisplayFavorites extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.favorites_display);
 		favoriteCocktailsView = (ListView) findViewById(R.id.favorites_cocktail_list_view);
-		Set<Cocktail> cocktailsSet = FavoritesManager.getInstance().getFavorites();
-		for(Cocktail cocktail:cocktailsSet){
-			favoriteCocktailList.add(cocktail);
-		}
-		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this, favoriteCocktailList));
-		favoriteCocktailsView.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> a, View v, int position,
-					long id) {
-				Intent cocktailIntent = new Intent(v.getContext(),
-						DisplayFavorite.class);
-				cocktailIntent.putExtra("favorite", favoriteCocktailList.get(position));
-				startActivity(cocktailIntent);
-			}
-		});
+		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this,
+				favoriteCocktailList));
+		// favoriteCocktailsView.setOnItemClickListener(new
+		// OnItemClickListener() {
+		//
+		// public void onItemClick(AdapterView<?> a, View v, int position,
+		// long id) {
+		// Intent cocktailIntent = new Intent(v.getContext(),
+		// DisplayFavorite.class);
+		// System.out.println(position);
+		// cocktailIntent.putExtra("favorite",
+		// favoriteCocktailList.get(position));
+		// startActivity(cocktailIntent);
+		// }
+		// });
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		favoriteCocktailsView = (ListView) findViewById(R.id.favorites_cocktail_list_view);
-		Set<Cocktail> cocktailsSet = FavoritesManager.getInstance().getFavorites();
-		for(Cocktail cocktail:cocktailsSet){
+		if (FavoritesManager.getInstance() == null)
+			new FavoritesManager(CocktailMixer.instance);
+		Set<Cocktail> cocktailsSet = FavoritesManager.getInstance()
+				.getFavorites();
+		favoriteCocktailList.clear();
+		for (Cocktail cocktail : cocktailsSet) {
 			favoriteCocktailList.add(cocktail);
 		}
-		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this, favoriteCocktailList));
+		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this,
+				favoriteCocktailList));
 		favoriteCocktailsView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				Intent cocktailIntent = new Intent(v.getContext(),
 						DisplayFavorite.class);
-				cocktailIntent.putExtra("favorite", favoriteCocktailList.get(position));
+				cocktailIntent.putExtra("favorite",
+						favoriteCocktailList.get(position));
 				startActivity(cocktailIntent);
 			}
 		});
 	}
 	
-	
+
 }
