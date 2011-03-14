@@ -38,8 +38,29 @@ public class DisplayFavorites extends Activity{
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				Intent cocktailIntent = new Intent(v.getContext(),
+						DisplayFavorite.class);
+				cocktailIntent.putExtra("favorite", favoriteCocktailList.get(position));
+				startActivity(cocktailIntent);
+			}
+		});
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		favoriteCocktailsView = (ListView) findViewById(R.id.favorites_cocktail_list_view);
+		Set<Cocktail> cocktailsSet = FavoritesManager.getInstance().getFavorites();
+		for(Cocktail cocktail:cocktailsSet){
+			favoriteCocktailList.add(cocktail);
+		}
+		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this, favoriteCocktailList));
+		favoriteCocktailsView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
+				Intent cocktailIntent = new Intent(v.getContext(),
 						DisplayCocktail.class);
-				cocktailIntent.putExtra("position", position);
+				cocktailIntent.putExtra("favorite", favoriteCocktailList.get(position));
 				startActivity(cocktailIntent);
 			}
 		});
