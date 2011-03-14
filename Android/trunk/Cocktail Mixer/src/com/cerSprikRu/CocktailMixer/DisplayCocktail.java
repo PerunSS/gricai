@@ -50,6 +50,7 @@ public class DisplayCocktail extends Activity{
 				favButton.setEnabled(false);
 			}
 		});
-		
+		if(FavoritesManager.getInstance().getFavorites().contains(cocktail))
+			favButton.setEnabled(false);
 	}
 }
