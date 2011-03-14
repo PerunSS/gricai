@@ -21,7 +21,7 @@
         </activity>
 
    		<!-- The application's publisher ID assigned by AdMob -->
-		<meta-data android:value="a14d49aeda776a9" android:name="ADMOB_PUBLISHER_ID" />
+		<meta-data android:value="a14d7e898152f3b" android:name="ADMOB_PUBLISHER_ID" />
         
 		<!-- AdMobActivity definition -->
 		<activity 
