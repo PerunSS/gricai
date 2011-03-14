@@ -13,8 +13,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.admob.android.ads.AdManager;
-import com.admob.android.ads.AdView;
 import com.cerSprikRu.CocktailMixer.adapter.CocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
@@ -32,27 +30,6 @@ public class DisplayFavorites extends Activity {
 		favoriteCocktailsView = (ListView) findViewById(R.id.favorites_cocktail_list_view);
 		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this,
 				favoriteCocktailList));
-		// favoriteCocktailsView.setOnItemClickListener(new
-		// OnItemClickListener() {
-		//
-		// public void onItemClick(AdapterView<?> a, View v, int position,
-		// long id) {
-		// Intent cocktailIntent = new Intent(v.getContext(),
-		// DisplayFavorite.class);
-		// System.out.println(position);
-		// cocktailIntent.putExtra("favorite",
-		// favoriteCocktailList.get(position));
-		// startActivity(cocktailIntent);
-		// }
-		// });
-		
-		AdManager.setTestDevices(new String[]{
-	            AdManager.TEST_EMULATOR });
-	        AdView view7 = (AdView)findViewById(R.id.ad7);
-	        view7.requestFreshAd();
-	        AdView view8 = (AdView)findViewById(R.id.ad8);
-	        view8.requestFreshAd();
-		
 	}
 
 	@Override

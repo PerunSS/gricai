@@ -9,8 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.admob.android.ads.AdManager;
-import com.admob.android.ads.AdView;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 
@@ -50,11 +48,6 @@ public class DisplayFavorite extends Activity{
 				finish();
 			}
 		});
-		
-		AdManager.setTestDevices(new String[]{
-	            AdManager.TEST_EMULATOR });
-	        AdView view6 = (AdView)findViewById(R.id.ad6);
-	        view6.requestFreshAd();
 		
 	}
 }
