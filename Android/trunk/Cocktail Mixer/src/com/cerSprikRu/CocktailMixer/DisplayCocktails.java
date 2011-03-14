@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.admob.android.ads.AdManager;
+import com.admob.android.ads.AdView;
 import com.cerSprikRu.CocktailMixer.adapter.CocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
@@ -39,5 +41,13 @@ public class DisplayCocktails extends Activity {
 				startActivity(cocktailIntent);
 			}
 		});
+		
+		AdManager.setTestDevices(new String[]{
+	            AdManager.TEST_EMULATOR });
+	        AdView view4 = (AdView)findViewById(R.id.ad4);
+	        view4.requestFreshAd();
+	        AdView view5 = (AdView)findViewById(R.id.ad5);
+	        view5.requestFreshAd();
+		
 	}
 }

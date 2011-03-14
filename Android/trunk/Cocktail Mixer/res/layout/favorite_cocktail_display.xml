@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:myapp="http://schemas.android.com/apk/res/com.cerSprikRu.CocktailMixer"
   	android:orientation="vertical"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent"
   	android:background="@drawable/bg">
+  		<LinearLayout
+  			android:orientation="vertical"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1">
   		<TextView
   			android:id="@+id/favorite_cocktail_recipe"
   			android:layout_width="fill_parent"
@@ -14,6 +20,15 @@
   			android:textColor="#000000"
   			android:gravity="center"
   		/>
+  		<com.admob.android.ads.AdView
+			android:id="@+id/ad6"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			myapp:backgroundColor="#000000"
+			myapp:primaryTextColor="#FFFFFF"
+			myapp:secondaryTextColor="#CCCCCC"
+		/>
+  		</LinearLayout>
   		<LinearLayout
   			android:orientation="horizontal"
   			android:layout_width="fill_parent"

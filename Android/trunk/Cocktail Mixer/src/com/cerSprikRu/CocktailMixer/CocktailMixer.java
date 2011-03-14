@@ -10,6 +10,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.admob.android.ads.AdManager;
+import com.admob.android.ads.AdView;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
 import com.cerSprikRu.CocktailMixer.model.drink.Drink;
@@ -242,6 +244,14 @@ public class CocktailMixer extends Activity {
 		});
         new FavoritesManager(this);
         instance = this;
+        
+        AdManager.setTestDevices(new String[]{
+	            AdManager.TEST_EMULATOR });
+	        AdView view1 = (AdView)findViewById(R.id.ad1);
+	        view1.requestFreshAd();
+	        AdView view2 = (AdView)findViewById(R.id.ad2);
+	        view2.requestFreshAd();
+        
     }
     
     private void showError(){

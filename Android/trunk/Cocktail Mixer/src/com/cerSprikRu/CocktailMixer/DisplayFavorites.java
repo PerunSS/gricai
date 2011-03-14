@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.admob.android.ads.AdManager;
+import com.admob.android.ads.AdView;
 import com.cerSprikRu.CocktailMixer.adapter.CocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
@@ -43,6 +45,14 @@ public class DisplayFavorites extends Activity {
 		// startActivity(cocktailIntent);
 		// }
 		// });
+		
+		AdManager.setTestDevices(new String[]{
+	            AdManager.TEST_EMULATOR });
+	        AdView view7 = (AdView)findViewById(R.id.ad7);
+	        view7.requestFreshAd();
+	        AdView view8 = (AdView)findViewById(R.id.ad8);
+	        view8.requestFreshAd();
+		
 	}
 
 	@Override

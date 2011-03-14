@@ -9,6 +9,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.admob.android.ads.AdManager;
+import com.admob.android.ads.AdView;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
@@ -52,5 +54,11 @@ public class DisplayCocktail extends Activity{
 		});
 		if(FavoritesManager.getInstance().getFavorites().contains(cocktail))
 			favButton.setEnabled(false);
+		
+		AdManager.setTestDevices(new String[]{
+	            AdManager.TEST_EMULATOR });
+	        AdView view3 = (AdView)findViewById(R.id.ad3);
+	        view3.requestFreshAd();
+	        
 	}
 }
