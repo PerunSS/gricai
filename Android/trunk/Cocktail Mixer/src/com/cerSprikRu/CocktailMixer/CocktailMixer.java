@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
 import com.cerSprikRu.CocktailMixer.model.drink.Drink;
 import com.cerSprikRu.CocktailMixer.model.drink.DrinkType;
@@ -226,6 +227,7 @@ public class CocktailMixer extends Activity {
 				
 			}
 		});
+        new FavoritesManager(this);
     }
     
     private void showError(){

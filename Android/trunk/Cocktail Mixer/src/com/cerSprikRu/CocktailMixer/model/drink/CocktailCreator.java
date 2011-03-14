@@ -65,9 +65,9 @@ public class CocktailCreator {
 				int cocktailSize = strong.getAmount()*(int)(Math.random()*2+3);
 				int check = 0;
 				while(cocktail.getAmount()<cocktailSize){
-					int choice = (int)(Math.random()*10);
+					int choice = (int)(Math.random()*20);
 					switch(choice){
-					case 0: case 1: case 2: case 3:
+					case 0: case 1: case 2: case 3: case 10: case 11: case 12: case 13:
 						if(liqueurs.size()>0){
 							Drink liqueur = liqueurs.get((int)(Math.random()*liqueurs.size()));
 							liqueur.setAmount(strong.getAmount()+(int)(Math.random()*3-1));
@@ -75,7 +75,7 @@ public class CocktailCreator {
 						}
 						else check++;
 						break;
-					case 4:
+					case 4: case 14:
 						if(otherDrinks.size()>0){
 							Drink other = otherDrinks.get((int)(Math.random()*otherDrinks.size()));
 							int a = strong.getAmount()+(int)(Math.random()*5-2);
@@ -85,7 +85,7 @@ public class CocktailCreator {
 							cocktail.addDrink(other);
 						}else check++;
 						break;
-					case 5: case 6: case 7: case 8: case 9:
+					case 5: case 6: case 7: case 8: case 9: case 15: case 16: case 17: case 18:
 						if(nonAlcDrinks.size()>0){
 							Drink nonAlc = nonAlcDrinks.get((int)(Math.random()*nonAlcDrinks.size()));
 							int amount = strong.getAmount()+(int)(Math.random()*7-3);
@@ -95,6 +95,10 @@ public class CocktailCreator {
 							cocktail.addDrink(nonAlc);
 						}else check++;
 						break;
+					case 19:
+						Drink strong2 = strongDrinks.get((int)(Math.random()*strongDrinks.size()));
+						strong2.setAmount(strong.getAmount());
+						cocktail.addDrink(strong2);
 					}
 					
 					if(check >=5)

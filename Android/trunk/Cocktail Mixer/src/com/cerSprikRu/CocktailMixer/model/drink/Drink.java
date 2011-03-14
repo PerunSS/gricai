@@ -1,7 +1,13 @@
 package com.cerSprikRu.CocktailMixer.model.drink;
 
-public  class Drink {
+import java.io.Serializable;
 
+public  class Drink implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int amount;
 	private String name;
 	private DrinkType type;
