@@ -59,7 +59,7 @@ public class DisplayFavorites extends Activity{
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				Intent cocktailIntent = new Intent(v.getContext(),
-						DisplayCocktail.class);
+						DisplayFavorite.class);
 				cocktailIntent.putExtra("favorite", favoriteCocktailList.get(position));
 				startActivity(cocktailIntent);
 			}
