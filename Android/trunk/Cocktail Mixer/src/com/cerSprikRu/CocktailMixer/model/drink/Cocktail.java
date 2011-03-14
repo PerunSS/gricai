@@ -12,6 +12,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail>{
 	private static final long serialVersionUID = 1L;
 	private List<Drink> drinks = new ArrayList<Drink>();
 	private int amount = 0;
+	private String name;
 	
 	public void addDrink(Drink drink){
 		Drink newDrink = new Drink();
@@ -89,5 +90,13 @@ public class Cocktail implements Serializable, Comparable<Cocktail>{
 				return -1;
 		}
 		return 0;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 }
