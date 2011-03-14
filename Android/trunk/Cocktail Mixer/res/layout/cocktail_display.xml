@@ -3,18 +3,22 @@
   	xmlns:android="http://schemas.android.com/apk/res/android"
   	android:orientation="vertical"
   	android:layout_width="fill_parent"
-  	android:layout_height="fill_parent">
+  	android:layout_height="fill_parent"
+  	android:background="@drawable/bg">
   		<TextView
   			android:id="@+id/cocktail_recipe"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="1"
+  			android:textSize="22sp"
+  			android:textColor="#000000"
+  			android:gravity="center"
   		/>
   		<LinearLayout
   			android:orientation="horizontal"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="4">
+  			android:layout_weight="7">
   			<Button
   				android:id="@+id/add_to_favorites"
   				android:layout_width="fill_parent"
