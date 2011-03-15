@@ -237,11 +237,6 @@ public class CocktailMixer extends Activity {
 					ProgressDialog dialog = ProgressDialog.show(instance, "", 
 	                        "Mixing Cocktails...", true);
 					
-					try{
-						Thread.sleep(10000);
-					}catch (InterruptedException e) {
-					}
-					
 					CocktailsCreatorThread cct = new CocktailsCreatorThread("cct");
 					try{
 						cct.t.join();
