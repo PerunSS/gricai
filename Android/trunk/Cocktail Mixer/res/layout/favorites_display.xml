@@ -23,6 +23,7 @@
   		android:textSize="15dp"
   		android:divider="#000000"
         android:dividerHeight="4px"
+        android:cacheColorHint="#00000000"
 	/>  	
 	<com.admob.android.ads.AdView
 			android:id="@+id/ad8"
