@@ -9,52 +9,216 @@ package com.cerSprikRu.CocktailMixer;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int backgroundColor=0x7f010000;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int keywords=0x7f010003;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int primaryTextColor=0x7f010001;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int refreshInterval=0x7f010004;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int secondaryTextColor=0x7f010002;
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int bg=0x7f020000;
+        public static final int icon=0x7f020001;
     }
     public static final class id {
-        public static final int Vermouth=0x7f050015;
-        public static final int back=0x7f050000;
-        public static final int beer=0x7f050016;
-        public static final int biter=0x7f05001c;
-        public static final int champagne=0x7f050014;
-        public static final int cognac=0x7f050008;
-        public static final int cola=0x7f05001b;
-        public static final int gin=0x7f050005;
-        public static final int j_apple=0x7f05001a;
-        public static final int j_lemon=0x7f05001e;
-        public static final int j_orange=0x7f050019;
-        public static final int j_other=0x7f050020;
-        public static final int l_cherry=0x7f05000f;
-        public static final int l_chocolate=0x7f05000d;
-        public static final int l_coffe=0x7f05000e;
-        public static final int l_menthol=0x7f050010;
-        public static final int l_orange=0x7f05000b;
-        public static final int l_strawbery=0x7f05000c;
-        public static final int liquers_drinks=0x7f05000a;
-        public static final int liqueur_d=0x7f050009;
-        public static final int m_water=0x7f05001d;
-        public static final int milk=0x7f05001f;
-        public static final int mix=0x7f050021;
-        public static final int non_alc=0x7f050018;
-        public static final int non_alc_d=0x7f050017;
-        public static final int other_alc_d=0x7f050011;
-        public static final int other_alc_drinks=0x7f050012;
-        public static final int rum=0x7f050007;
-        public static final int strong_d=0x7f050001;
-        public static final int strong_drinks=0x7f050002;
-        public static final int tequila=0x7f050004;
-        public static final int vodka=0x7f050003;
-        public static final int whisky=0x7f050006;
-        public static final int wine=0x7f050013;
+        public static final int Vermouth=0x7f050027;
+        public static final int absinthe=0x7f05001a;
+        public static final int ad1=0x7f050010;
+        public static final int ad2=0x7f050033;
+        public static final int ad3=0x7f050001;
+        public static final int ad4=0x7f050004;
+        public static final int ad5=0x7f050006;
+        public static final int ad6=0x7f050008;
+        public static final int ad7=0x7f05000b;
+        public static final int ad8=0x7f05000d;
+        public static final int add_to_favorites=0x7f050002;
+        public static final int beer=0x7f050028;
+        public static final int bitter=0x7f05002e;
+        public static final int brandy=0x7f050019;
+        public static final int champagne=0x7f050026;
+        public static final int cocktail_list_element_text=0x7f05000e;
+        public static final int cocktail_list_view=0x7f050005;
+        public static final int cocktail_recipe=0x7f050000;
+        public static final int cognac=0x7f050018;
+        public static final int cola=0x7f05002d;
+        public static final int favorite_cocktail_recipe=0x7f050007;
+        public static final int favorites=0x7f05000f;
+        public static final int favorites_cocktail_list_view=0x7f05000c;
+        public static final int gin=0x7f050015;
+        public static final int j_apple=0x7f05002c;
+        public static final int j_lemon=0x7f050030;
+        public static final int j_orange=0x7f05002b;
+        public static final int j_other=0x7f050032;
+        public static final int l_cherry=0x7f050021;
+        public static final int l_chocolate=0x7f05001f;
+        public static final int l_coffee=0x7f050020;
+        public static final int l_menthol=0x7f05001e;
+        public static final int l_orange=0x7f05001d;
+        public static final int l_strawberry=0x7f050022;
+        public static final int liquers_drinks=0x7f05001c;
+        public static final int liqueur_d=0x7f05001b;
+        public static final int m_water=0x7f05002f;
+        public static final int milk=0x7f050031;
+        public static final int mix=0x7f050034;
+        public static final int non_alc=0x7f05002a;
+        public static final int non_alc_d=0x7f050029;
+        public static final int other_alc_d=0x7f050023;
+        public static final int other_alc_drinks=0x7f050024;
+        public static final int remove_from_favorites=0x7f050009;
+        public static final int rum=0x7f050017;
+        public static final int share_cocktail=0x7f050003;
+        public static final int share_favorite_cocktail=0x7f05000a;
+        public static final int strong_d=0x7f050011;
+        public static final int strong_drinks=0x7f050012;
+        public static final int tequila=0x7f050014;
+        public static final int vodka=0x7f050013;
+        public static final int whisky=0x7f050016;
+        public static final int wine=0x7f050025;
     }
     public static final class layout {
-        public static final int display=0x7f030000;
-        public static final int main=0x7f030001;
+        public static final int cocktail_display=0x7f030000;
+        public static final int display=0x7f030001;
+        public static final int favorite_cocktail_display=0x7f030002;
+        public static final int favorites_display=0x7f030003;
+        public static final int list_element=0x7f030004;
+        public static final int main=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
         public static final int hello=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a com_admob_android_ads_AdView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_backgroundColor com.cerSprikRu.CocktailMixer:backgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_keywords com.cerSprikRu.CocktailMixer:keywords}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_primaryTextColor com.cerSprikRu.CocktailMixer:primaryTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_refreshInterval com.cerSprikRu.CocktailMixer:refreshInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_secondaryTextColor com.cerSprikRu.CocktailMixer:secondaryTextColor}</code></td><td></td></tr>
+           </table>
+           @see #com_admob_android_ads_AdView_backgroundColor
+           @see #com_admob_android_ads_AdView_keywords
+           @see #com_admob_android_ads_AdView_primaryTextColor
+           @see #com_admob_android_ads_AdView_refreshInterval
+           @see #com_admob_android_ads_AdView_secondaryTextColor
+         */
+        public static final int[] com_admob_android_ads_AdView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.cerSprikRu.CocktailMixer.R.attr#backgroundColor}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:backgroundColor
+        */
+        public static final int com_admob_android_ads_AdView_backgroundColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.cerSprikRu.CocktailMixer.R.attr#keywords}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:keywords
+        */
+        public static final int com_admob_android_ads_AdView_keywords = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.cerSprikRu.CocktailMixer.R.attr#primaryTextColor}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:primaryTextColor
+        */
+        public static final int com_admob_android_ads_AdView_primaryTextColor = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.cerSprikRu.CocktailMixer.R.attr#refreshInterval}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:refreshInterval
+        */
+        public static final int com_admob_android_ads_AdView_refreshInterval = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.cerSprikRu.CocktailMixer.R.attr#secondaryTextColor}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:secondaryTextColor
+        */
+        public static final int com_admob_android_ads_AdView_secondaryTextColor = 2;
+    };
 }

@@ -234,15 +234,11 @@ public class CocktailMixer extends Activity {
 				if(CocktailCreator.getInstance().size() < 5){
 					showError();
 				}else {
-					ProgressDialog dialog = ProgressDialog.show(instance, "", 
-	                        "Mixing Cocktails...", true);
-					
 					CocktailsCreatorThread cct = new CocktailsCreatorThread("cct");
 					try{
 						cct.t.join();
 					}catch (InterruptedException e) {
 					}
-					dialog.dismiss();
 					Intent myIntent = new Intent(v.getContext(), DisplayCocktails.class);
 	                startActivityForResult(myIntent, 0);
 				}
