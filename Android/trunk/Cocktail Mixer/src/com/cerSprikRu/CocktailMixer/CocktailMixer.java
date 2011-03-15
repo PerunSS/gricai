@@ -2,6 +2,7 @@ package com.cerSprikRu.CocktailMixer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
 import com.cerSprikRu.CocktailMixer.model.drink.Drink;
 import com.cerSprikRu.CocktailMixer.model.drink.DrinkType;
+import com.cerSprikRu.CocktailMixer.threads.CocktailsCreatorThread;
 
 public class CocktailMixer extends Activity {
 	
@@ -232,7 +234,20 @@ public class CocktailMixer extends Activity {
 				if(CocktailCreator.getInstance().size() < 5){
 					showError();
 				}else {
-					CocktailCreator.getInstance().createCocktails();
+					ProgressDialog dialog = ProgressDialog.show(instance, "", 
+	                        "Mixing Cocktails...", true);
+					
+					try{
+						Thread.sleep(10000);
+					}catch (InterruptedException e) {
+					}
+					
+					CocktailsCreatorThread cct = new CocktailsCreatorThread("cct");
+					try{
+						cct.t.join();
+					}catch (InterruptedException e) {
+					}
+					dialog.dismiss();
 					Intent myIntent = new Intent(v.getContext(), DisplayCocktails.class);
 	                startActivityForResult(myIntent, 0);
 				}
