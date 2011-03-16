@@ -75,7 +75,24 @@ public class Cocktail implements Serializable, Comparable<Cocktail>{
 		}
 		return str;
 	}
+	
 
+	public String toFavoritesString() {
+		String str= name+"\n";
+		str+="\namount: "+amount+" mesure(s)\n";
+		if(amount>9)
+			str+="mix in shaker wiht ice: ";
+		else
+			str+="put in glass: ";
+		str+="\n";
+		for(Drink drink:drinks){
+			str+=drink+"\n";
+		}
+		return str;
+	}
+
+	
+	
 	@Override
 	public int compareTo(Cocktail another) {
 		for(Drink drink1:drinks){

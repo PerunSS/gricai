@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.cerSprikRu.CocktailMixer.adapter.CocktailListAdapter;
+import com.cerSprikRu.CocktailMixer.adapter.FavoriteCocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 
@@ -28,7 +29,7 @@ public class DisplayFavorites extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.favorites_display);
 		favoriteCocktailsView = (ListView) findViewById(R.id.favorites_cocktail_list_view);
-		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this,
+		favoriteCocktailsView.setAdapter(new FavoriteCocktailListAdapter(this,
 				favoriteCocktailList));
 	}
 
@@ -44,7 +45,7 @@ public class DisplayFavorites extends Activity {
 		for (Cocktail cocktail : cocktailsSet) {
 			favoriteCocktailList.add(cocktail);
 		}
-		favoriteCocktailsView.setAdapter(new CocktailListAdapter(this,
+		favoriteCocktailsView.setAdapter(new FavoriteCocktailListAdapter(this,
 				favoriteCocktailList));
 		favoriteCocktailsView.setOnItemClickListener(new OnItemClickListener() {
 
