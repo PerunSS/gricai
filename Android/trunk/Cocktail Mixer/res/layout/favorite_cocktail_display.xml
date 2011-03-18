@@ -5,12 +5,23 @@
   	android:orientation="vertical"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent"
-  	android:background="@drawable/bg">
+  	android:background="@drawable/bg">	
+  		<TextView
+  			android:id="@+id/favorite_cocktail_name"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:textSize="35sp"
+  			android:textColor="#000000"
+  			android:gravity="center"
+  			android:layout_weight="3"
+  			android:paddingTop="15sp"
+  		/>
   		<LinearLayout
   			android:orientation="vertical"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="1">
+  			
   		<TextView
   			android:id="@+id/favorite_cocktail_recipe"
   			android:layout_width="fill_parent"
@@ -33,7 +44,7 @@
   			android:orientation="horizontal"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:layout_weight="7">
+  			android:layout_weight="3">
   			<Button
   				android:id="@+id/remove_from_favorites"
   				android:layout_width="fill_parent"

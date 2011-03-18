@@ -15,6 +15,7 @@ import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 public class DisplayFavorite extends Activity{
 	private Cocktail cocktail;
 	private TextView recipe;
+	private TextView name;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,7 +23,9 @@ public class DisplayFavorite extends Activity{
 		setContentView(R.layout.favorite_cocktail_display);
 		cocktail = (Cocktail) getIntent().getExtras().get("favorite");
 		recipe = (TextView)findViewById(R.id.favorite_cocktail_recipe);
-		recipe.setText(cocktail.toFavoritesString());
+		recipe.setText(cocktail.toString());
+		name = (TextView)findViewById(R.id.favorite_cocktail_name);
+		name.setText(cocktail.getName());
 		
 		final Button shareButton = (Button) findViewById(R.id.share_favorite_cocktail);
 		shareButton.setOnClickListener(new OnClickListener() {
@@ -33,7 +36,7 @@ public class DisplayFavorite extends Activity{
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Cocktail recipe: " + cocktail.toFavoritesString());
+						cocktail.getName() + " recipe: " + cocktail.toString());
 
 				startActivity(Intent.createChooser(intent, "share"));
 			}
