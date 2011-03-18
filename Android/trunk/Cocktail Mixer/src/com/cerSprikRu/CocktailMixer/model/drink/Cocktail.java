@@ -114,6 +114,9 @@ public class Cocktail implements Serializable, Comparable<Cocktail>{
 	}
 
 	public String getName() {
+		if (name == null){
+			return "";
+		}
 		return name;
 	}
 }
