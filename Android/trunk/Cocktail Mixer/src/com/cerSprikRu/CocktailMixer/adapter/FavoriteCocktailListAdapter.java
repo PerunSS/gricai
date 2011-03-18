@@ -52,8 +52,11 @@ public class FavoriteCocktailListAdapter extends BaseAdapter{
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		
-		holder.cocktailText.setText(CocktailList.get(position).getName() +":\n"+CocktailList.get(position).toString());
+		if (CocktailList.get(position).getName() != null){
+			holder.cocktailText.setText(CocktailList.get(position).getName() +":\n"+CocktailList.get(position).toString());
+		} else {
+			holder.cocktailText.setText(CocktailList.get(position).toString());
+		}
 		
 		return convertView;
 	}
