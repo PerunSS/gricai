@@ -16,8 +16,9 @@ public class FavoritesManager {
 
 	private Context context;
 	private Set<Integer> favorites = new TreeSet<Integer>();
-
+	
 	public FavoritesManager(Context context) {
+		
 		this.context = context;
 		try {
 			FileInputStream read = context.openFileInput("favorites");
