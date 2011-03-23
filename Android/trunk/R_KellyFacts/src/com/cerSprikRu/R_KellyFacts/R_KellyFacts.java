@@ -1,13 +1,16 @@
 package com.cerSprikRu.R_KellyFacts;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -93,5 +96,20 @@ public class R_KellyFacts extends Activity {
 				.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
 
+		final Button shareButton = (Button) findViewById(R.id.share);
+		shareButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final Intent intent = new Intent(Intent.ACTION_SEND);
+
+				intent.setType("text/plain");
+				intent.putExtra(Intent.EXTRA_TEXT,
+						"Fact about R.Kelly: "
+								+fact);
+
+				startActivity(Intent.createChooser(intent, "share"));
+			}
+		});
 	}
 }
