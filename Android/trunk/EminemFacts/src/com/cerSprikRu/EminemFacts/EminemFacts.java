@@ -108,7 +108,7 @@ public class EminemFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Rihanna: "
+						"Fact about Eminem: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
