@@ -1,6 +1,7 @@
 package com.cerSprikRu.QuizTemplate;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -18,9 +19,9 @@ public class QuizTemplate extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-//				Intent favoritesIntent = new Intent(v.getContext(),
-//						DisplayFavorites.class);
-//				startActivity(favoritesIntent);
+				Intent startQuiz = new Intent(v.getContext(),
+						QuizActivity.class);
+				startActivity(startQuiz);
 			}
 		});
         

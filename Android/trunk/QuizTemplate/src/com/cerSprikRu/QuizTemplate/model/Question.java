@@ -1,27 +1,37 @@
 package com.cerSprikRu.QuizTemplate.model;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Question implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String question;
-	private Map<String, Boolean> answers;
+	private List<String> answers;
+	private List<Boolean> validity;
 	
-	public Question(String question, Map<String, Boolean> answers){
+	public Question(String question){
 		this.question=question;
-		this.answers=answers;
+		this.answers= new ArrayList<String>();
 	}
 	
 	
-	public Map<String, Boolean> getAnswers() {
+	public List<String> getAnswer() {
 		return answers;
 	}
-	public void setAnswers(Map<String, Boolean> answers) {
-		this.answers = answers;
+	public void putAnswer(String answer, boolean validity) {
+		answers.add(answer);
+		this.validity.add(validity);
 	}
+	public String getAnswer(int i){
+		return answers.get(i);
+	}
+	public boolean getValidity(int i){
+		return validity.get(i);
+	}
+	
 	public String getQuestion() {
 		return question;
 	}
