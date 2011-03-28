@@ -61,6 +61,7 @@
   	</LinearLayout>
   	<Button
   		android:id="@+id/AnswerButton"
+  		android:text="OK!"
   		android:layout_width="fill_parent"
   		android:layout_height="fill_parent"
   		android:layout_weight="3"/>
