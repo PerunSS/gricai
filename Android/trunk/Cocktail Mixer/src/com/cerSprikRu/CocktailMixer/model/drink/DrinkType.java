@@ -1,5 +1,5 @@
 package com.cerSprikRu.CocktailMixer.model.drink;
 
 public enum DrinkType {
-	STRONG, LIQUEUR, OTHER, NON_ALC
+	A_STRONG, B_LIQUEUR, C_OTHER, D_NON_ALC
 }

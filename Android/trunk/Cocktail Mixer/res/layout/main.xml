@@ -227,12 +227,12 @@
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
 				android:id="@+id/cola" 
-				android:text="Cola type" 
+				android:text="Cola" 
 				android:textColor="#000000"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
 				android:id="@+id/bitter" 
-				android:text="Bitter type" 
+				android:text="Bitter" 
 				android:textColor="#000000"
 				android:layout_width="wrap_content"/>
 		</TableRow>
@@ -244,14 +244,14 @@
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
 				android:id="@+id/j_lemon" 
-				android:text="Lemon type" 
+				android:text="Lemon juece" 
 				android:textColor="#000000"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
 				android:id="@+id/milk" 
-				android:text="Milk" 
+				android:text="Grenadine" 
 				android:textColor="#000000"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 

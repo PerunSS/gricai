@@ -2,7 +2,7 @@ package com.cerSprikRu.CocktailMixer.model.drink;
 
 import java.io.Serializable;
 
-public  class Drink implements Serializable{
+public class Drink implements Serializable, Comparable<Drink> {
 
 	/**
 	 * 
@@ -11,6 +11,15 @@ public  class Drink implements Serializable{
 	private int amount;
 	private String name;
 	private DrinkType type;
+	private boolean teaSpoon;
+
+	public Drink() {
+		teaSpoon = false;
+	}
+
+	public Drink(boolean teaSpoon) {
+		this.teaSpoon = teaSpoon;
+	}
 
 	public void setAmount(int amount) {
 		this.amount = amount;
@@ -35,13 +44,31 @@ public  class Drink implements Serializable{
 	public DrinkType getType() {
 		return type;
 	}
-	
+
 	@Override
 	public String toString() {
-		return name+" "+amount+" messure(s)";
+		String mesure = "messure";
+		if (teaSpoon)
+			mesure = "teaspon";
+		if (amount > 1)
+			mesure += "s";
+		return name + " " + amount + " " + mesure;
 	}
 
 	public void incAmount(int amount2) {
-		amount+=amount2;
+		amount += amount2;
+	}
+
+	public boolean isTeaSpoon() {
+		return teaSpoon;
+	}
+
+	@Override
+	public int compareTo(Drink another) {
+		return getType().toString().compareTo(another.getType().toString());
+	}
+
+	public void setTeaSpoon(boolean teaSpoon) {
+		this.teaSpoon = teaSpoon;
 	}
 }
