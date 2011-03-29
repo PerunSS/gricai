@@ -79,7 +79,6 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 			str += "Put in glass:\n" + (int) (Math.random() * 3 + 3)
 					+ " ice cubes";
 		str += "\n";
-		Collections.sort(drinks);
 		for (Drink drink : drinks) {
 			str += drink + "\n";
 		}
