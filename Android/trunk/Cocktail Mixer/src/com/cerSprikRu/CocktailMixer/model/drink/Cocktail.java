@@ -14,6 +14,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 	private List<Drink> drinks = new ArrayList<Drink>();
 	private int amount = 0;
 	private String name;
+	private String text;
 
 	public void addDrink(Drink drink) {
 		Drink newDrink = new Drink();
@@ -54,7 +55,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 		for (Drink drink1 : drinks) {
 			boolean exist = false;
 			for (Drink drink2 : c.drinks) {
-				if (drink1.getName().equals(drink2.getName())
+				if (drink1.getName().equalsIgnoreCase(drink2.getName())
 						&& drink1.getAmount() == drink2.getAmount()) {
 					exist = true;
 					break;
@@ -68,43 +69,35 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 
 	@Override
 	public String toString() {
-		String str = "";
-		double random = Math.random();
-		if (random < 0.45) {
-			str += "Shake in shaker:\n" + (int) (Math.random() * 5 + 5)
-					+ " ice cubes";
-		} else if (random > 0.65)
-			str += "Put in glass:";
-		else
-			str += "Put in glass:\n" + (int) (Math.random() * 3 + 3)
-					+ " ice cubes";
-		str += "\n";
-		for (Drink drink : drinks) {
-			str += drink + "\n";
+		String str = text;
+		if(str.startsWith("null"))
+			str = null;
+		if (str == null) {
+			str = "";
+			double random = Math.random();
+			if (random < 0.45) {
+				str += "Shake in shaker:\n" + (int) (Math.random() * 5 + 5)
+						+ " ice cubes";
+			} else if (random > 0.65)
+				str += "Put in glass:";
+			else
+				str += "Put in glass:\n" + (int) (Math.random() * 3 + 3)
+						+ " ice cubes";
+			str += "\n";
+			for (Drink drink : drinks) {
+				str += drink + "\n";
+			}
+			text = str;
 		}
 		return str;
 	}
-
-	// public String toFavoritesString() {
-	// String str= name+"\n";
-	// str+="\namount: "+amount+" mesure(s)\n";
-	// if(amount>9)
-	// str+="mix in shaker wiht ice: ";
-	// else
-	// str+="put in glass: ";
-	// str+="\n";
-	// for(Drink drink:drinks){
-	// str+=drink+"\n";
-	// }
-	// return str;
-	// }
 
 	@Override
 	public int compareTo(Cocktail another) {
 		for (Drink drink1 : drinks) {
 			boolean exist = false;
 			for (Drink drink2 : another.drinks) {
-				if (drink1.getName().equals(drink2.getName())
+				if (drink1.getName().equalsIgnoreCase(drink2.getName())
 						&& drink1.getAmount() == drink2.getAmount()) {
 					exist = true;
 					break;
@@ -114,6 +107,24 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 				return -1;
 		}
 		return 0;
+	}
+
+	public void generateRecipe() {
+		Collections.sort(drinks);
+		text = "";
+		double random = Math.random();
+		if (random < 0.45) {
+			text += "Shake in shaker:\n" + (int) (Math.random() * 5 + 5)
+					+ " ice cubes";
+		} else if (random > 0.65)
+			text += "Put in glass:";
+		else
+			text += "Put in glass:\n" + (int) (Math.random() * 3 + 3)
+					+ " ice cubes";
+		text += "\n";
+		for (Drink drink : drinks) {
+			text += drink + "\n";
+		}
 	}
 
 	public void setName(String name) {

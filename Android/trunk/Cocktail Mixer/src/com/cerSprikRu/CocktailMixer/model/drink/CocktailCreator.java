@@ -77,6 +77,7 @@ public class CocktailCreator {
 					startDrink = nextDrink;
 				}
 			}
+			cocktail.generateRecipe();
 			cocktails.add(cocktail);
 		}
 		// while (true) {

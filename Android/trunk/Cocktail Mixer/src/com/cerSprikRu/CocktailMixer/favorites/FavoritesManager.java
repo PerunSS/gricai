@@ -75,12 +75,10 @@ public class FavoritesManager {
 	}
 	
 	public void togleFavorite(Cocktail cocktail){
-		System.out.println(cocktail);
 		if(favorites.contains(cocktail))
 			favorites.remove(cocktail);
 		else
 			favorites.add(cocktail);
-		System.out.println(favorites.size());
 		update();
 	}
 	
