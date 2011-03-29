@@ -6,14 +6,6 @@
   	android:layout_height="fill_parent"
   	android:orientation="vertical"
   	android:background="@drawable/bg"> 	
-  	<com.admob.android.ads.AdView
-			android:id="@+id/ad7"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			myapp:backgroundColor="#000000"
-			myapp:primaryTextColor="#FFFFFF"
-			myapp:secondaryTextColor="#CCCCCC"
-		/>
   	<ListView
 		android:id="@+id/favorites_cocktail_list_view"
 		android:layout_height = "fill_parent"
@@ -25,12 +17,4 @@
         android:dividerHeight="4px"
         android:cacheColorHint="#00000000"
 	/>  	
-	<com.admob.android.ads.AdView
-			android:id="@+id/ad8"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			myapp:backgroundColor="#000000"
-			myapp:primaryTextColor="#FFFFFF"
-			myapp:secondaryTextColor="#CCCCCC"
-		/>
 </LinearLayout>

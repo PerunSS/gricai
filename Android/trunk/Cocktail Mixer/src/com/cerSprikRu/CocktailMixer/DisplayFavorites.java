@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.cerSprikRu.CocktailMixer.adapter.CocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.adapter.FavoriteCocktailListAdapter;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
