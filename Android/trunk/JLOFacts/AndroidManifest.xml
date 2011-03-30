@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.cerSprikRu.JLOFacts"
+      android:installLocation="auto"
+      android:versionCode="1"
+      android:versionName="1.0">
+      <supports-screens 
+		android:largeScreens="true" 
+		android:normalScreens="true" 
+		android:smallScreens="true" 
+		android:anyDensity="true" />
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".JLOFacts"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+   		<!-- The application's publisher ID assigned by AdMob -->
+		<meta-data 
+			android:value="a14d7424b4e8440" 
+			android:name="ADMOB_PUBLISHER_ID" />
+
+		<!-- AdMobActivity definition -->
+		<activity 
+			android:name="com.admob.android.ads.AdMobActivity"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+			android:configChanges="orientation|keyboard|keyboardHidden" />
+		<!-- Track Market installs -->
+		<receiver 
+			android:name="com.admob.android.ads.analytics.InstallReceiver"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="com.android.vending.INSTALL_REFERRER" />
+			</intent-filter>
+		</receiver>
+
+    
+	</application>
+	<uses-sdk android:minSdkVersion="3" />
+	 <uses-permission android:name="android.permission.INTERNET" />
+
+
+</manifest> 
