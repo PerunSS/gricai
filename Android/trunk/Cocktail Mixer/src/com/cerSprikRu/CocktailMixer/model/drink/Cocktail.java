@@ -70,7 +70,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 	@Override
 	public String toString() {
 		String str = text;
-		if(str.startsWith("null"))
+		if(str!=null && str.startsWith("null"))
 			str = null;
 		if (str == null) {
 			str = "";
