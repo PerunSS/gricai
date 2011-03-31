@@ -40,6 +40,7 @@ public class QuizActivity extends Activity{
 		if (question == null){
 			System.out.println("evo null je nema vishe pitanja");
 			openResultPage();
+			return;
 		}
 		
 		
