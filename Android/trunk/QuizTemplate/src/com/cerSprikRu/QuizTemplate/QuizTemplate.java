@@ -25,7 +25,7 @@ public class QuizTemplate extends Activity {
 			}
 		});
         
-        Button highScores = (Button) findViewById(R.id.startNewButton);
+        Button highScores = (Button) findViewById(R.id.highScoreButton);
         highScores.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -36,7 +36,7 @@ public class QuizTemplate extends Activity {
 			}
 		});
         
-        Button quit = (Button) findViewById(R.id.startNewButton);
+        Button quit = (Button) findViewById(R.id.quitButton);
         quit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

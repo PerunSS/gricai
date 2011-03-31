@@ -18,33 +18,49 @@ public class DBManager {
 	}
 
 	public Quiz read() {
+		System.out.println("otvaram bazu pre vadjenja iz baze");
 		adapter.openDataBase();
 		Quiz quiz = new Quiz();
-		
+		System.out.println("pociunjem sa vadjenjem iz baze mrtve");
 		Cursor q = adapter.executeSql("select * from Question", null);
+		System.out.println("nesto i izvadio");
 		if (q != null) {
 			if (q.moveToFirst()) {
 				do {
+					System.out.println("kao ovde sam ovo ono");
 					String question = q.getString(q.getColumnIndex("question")).trim();
-					int id = q.getInt(q.getColumnIndex("ID"));
+					System.out.println("hmmmm kveshcn" + question);
+					int id = q.getInt(q.getColumnIndex("_id"));
 					Question qu = new Question(question);
-//					try{
-//						fav = c.getInt(c.getColumnIndex("fav"))==1?true:false;
-//					}catch (Exception e) {
-//						fav = false;
-//					}
-					Cursor a = adapter.executeSql("select * from Answers where ID="+id, null);
-					if (a.moveToFirst()){
-						do {
-							String answer = a.getString(a.getColumnIndex("answer")).trim();
-							boolean validity = a.getInt(a.getColumnIndex("validity"))==1?true:false;
-							qu.putAnswer(answer, validity);
-						} while (a.moveToNext());
-						a.close();
-						quiz.addQuestion(qu);
+					System.out.println("shatro mozda imam question"+question);
+
+					Cursor a = adapter.executeSql("select * from Answers where _id="+id, null);
+					System.out.println("e sad ovaj uspeo valjda il ne ?");
+					if (a !=null){
+						if (a.moveToFirst()){
+							System.out.println("znaci uspeo drugi");
+							do {
+								String answer = a.getString(a.getColumnIndex("answer")).trim();
+								System.out.println("i answer je  " + answer);
+								boolean validity = a.getInt(a.getColumnIndex("validity"))==1?true:false;
+								System.out.println("tacnost je " + validity);
+								qu.putAnswer(answer, validity);
+								System.out.println("ubacio u kveschn");
+							} while (a.moveToNext());
+							a.close();
+							quiz.addQuestion(qu);
+						}	else {
+							System.out.println("drugi prazan");
+						}
+					} else {
+						System.out.println("drugi null");
 					}
 				} while (q.moveToNext());
+			} else {
+				System.out.println("nece na prvi ?");
 			}
+		} else {
+			System.out.println("prazna baza ?");
 		}
 		q.close();
 		adapter.close();

@@ -15,6 +15,7 @@ public class Question implements Serializable{
 	public Question(String question){
 		this.question=question;
 		this.answers= new ArrayList<String>();
+		this.validity = new ArrayList<Boolean>();
 	}
 	
 	
@@ -22,8 +23,8 @@ public class Question implements Serializable{
 		return answers;
 	}
 	public void putAnswer(String answer, boolean validity) {
-		answers.add(answer);
-		this.validity.add(validity);
+		this.answers.add(answer);
+		this.validity.add(new Boolean(validity));
 	}
 	public String getAnswer(int i){
 		return answers.get(i);
