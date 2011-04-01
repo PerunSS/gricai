@@ -109,7 +109,7 @@ public class BieberQuotes extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Justin Bieber: "
+						"Justin Bieber: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
