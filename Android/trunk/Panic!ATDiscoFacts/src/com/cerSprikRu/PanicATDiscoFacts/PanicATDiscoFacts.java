@@ -110,7 +110,7 @@ public class PanicATDiscoFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Lady Gaga: "
+						"Fact about Panic! At Disco: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
