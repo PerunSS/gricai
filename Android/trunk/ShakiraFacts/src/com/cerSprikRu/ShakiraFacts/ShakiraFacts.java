@@ -110,7 +110,7 @@ public class ShakiraFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Lady Gaga: "
+						"Fact about Shakira: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
