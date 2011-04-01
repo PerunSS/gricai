@@ -108,7 +108,7 @@ public class BritneyQuotes extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Rihanna: "
+						"Britney Spears: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
