@@ -20,7 +20,7 @@
 
    		<!-- The application's publisher ID assigned by AdMob -->
 		<meta-data 
-			android:value="a14d7424b4e8440" 
+			android:value="a14d90c2c6525fb" 
 			android:name="ADMOB_PUBLISHER_ID" />
 
 		<!-- AdMobActivity definition -->

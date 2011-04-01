@@ -110,7 +110,7 @@ public class NicoleQuotes extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Lady Gaga: "
+						"Nicole Schrezinger: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
