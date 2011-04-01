@@ -110,7 +110,7 @@ public class cent50Facts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about Lady Gaga: "
+						"Fact about 50 cent: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
