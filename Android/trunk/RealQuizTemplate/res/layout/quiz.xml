@@ -4,18 +4,34 @@
   	android:orientation="vertical"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent">
-  
+  	<LinearLayout 	
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		>
+  		<ImageView
+  			android:id="@+id/Logo"
+  			android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"
+  			android:background="@drawable/icon"/>
+  		<TextView
+  			android:id="@+id/timer"
+  			android:gravity="right"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  		/>
+  	</LinearLayout>
   	<TextView
   		android:id="@+id/QuestionText"
   		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent"
-  		android:layout_weight="2"
+  		android:layout_height="wrap_content"
+  		
   		/>
   	<RadioGroup
-  		android:layout_weight="2"
+  		
   		android:orientation="vertical"
   		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent">
+  		android:layout_height="wrap_content">
   		<RadioButton 
   			android:checked="false"
 			android:id="@+id/answer1"/>
@@ -25,12 +41,15 @@
 		<RadioButton 
 			android:checked="false"
 			android:id="@+id/answer3"/>
+		<RadioButton 
+			android:checked="false"
+			android:id="@+id/answer4"/>
   	</RadioGroup>	
   	<Button
   		android:id="@+id/AnswerButton"
   		android:text="OK!"
   		android:layout_width="fill_parent"
-  		android:layout_height="fill_parent"
-  		android:layout_weight="3"/>
+  		android:layout_height="wrap_content"
+  		/>
   	
 </LinearLayout>
