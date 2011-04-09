@@ -26,10 +26,11 @@ public class Question implements Serializable {
 		ans.setAnswer(answer);
 		ans.setCorrect(correct);
 		this.answers.add(ans);
-
 	}
 
 	public Answer getAnswer(int i) {
+		if(i>=answers.size())
+			return null;
 		return answers.get(i);
 	}
 

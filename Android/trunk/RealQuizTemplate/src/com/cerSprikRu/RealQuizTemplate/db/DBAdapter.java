@@ -20,7 +20,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	private String dbName; // = "RNBFacts";
 	private SQLiteDatabase myDataBase;
 	private final Context myContext;
-	private static final int CURRENT_VERSION = 1;
+	private static final int CURRENT_VERSION = 2;
 
 	/**
 	 * Constructor Takes and keeps a reference of the passed context in order to

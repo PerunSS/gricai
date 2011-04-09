@@ -9,12 +9,12 @@ public class Quiz {
 	// poenta je da nikad ne prikaze sva pitanja, da bi kviz bio drugaciji
 	// stalno i da bi ljudi vise igrali, za to na hard prikazuje max
 	// brojPitanja/1.7
-	private double difficultyModificator = 1.7;
+	private double difficultyModificator = 1;
 
 	private List<Question> questions = new ArrayList<Question>();
 	private int score;
 	private int currentQuestion;
-	private int maxNumOfMistakes;
+	//private int maxNumOfMistakes;
 	private GameState currentState;
 
 	public enum GameState {
@@ -26,8 +26,9 @@ public class Quiz {
 	}
 
 	public Question getNextQuestion() {
-		if (currentState != GameState.GAME_OVER){
-			System.out.println(currentQuestion+" of "+questions.size() / difficultyModificator);
+		if (currentState != GameState.GAME_OVER) {
+			System.out.println(currentQuestion + " of " + questions.size()
+					/ difficultyModificator);
 			if (currentQuestion < questions.size() / difficultyModificator) {
 				return questions.get(currentQuestion);
 			} else {
@@ -39,20 +40,26 @@ public class Quiz {
 
 	}
 
-	public synchronized void tryAnswer(int answer) {
-		if (questions.get(currentQuestion).getAnswer(answer).isCorrect()) {
+	public synchronized boolean tryAnswer(int answer) {
+		boolean correct = false;
+		if(currentQuestion>=questions.size())
+			return false;
+		if (questions.get(currentQuestion).getAnswer(answer) != null
+				&& questions.get(currentQuestion).getAnswer(answer).isCorrect()) {
 			if (currentState == GameState.TIME_PLAY) {
 
 			} else
 				score += 1;
-		} else {
+			correct = true;
+		} /*else {
 			if (maxNumOfMistakes >= 0)
 				maxNumOfMistakes--;
 			if (maxNumOfMistakes < 0) {
 				currentState = GameState.GAME_OVER;
 			}
-		}
+		}*/
 		currentQuestion++;
+		return correct;
 	}
 
 	public void startQuiz() {
@@ -73,27 +80,27 @@ public class Quiz {
 		switch (dif) {
 		case MANIAC:
 			difficultyModificator = 1;
-			maxNumOfMistakes = 0;
+			//maxNumOfMistakes = 0;
 			break;
 		case HARD:
 			difficultyModificator = 1.7;
-			maxNumOfMistakes = 1;
+			//maxNumOfMistakes = 1;
 			break;
 		case MEDIUM:
 			difficultyModificator = 2.55;
-			maxNumOfMistakes = 3;
+			//maxNumOfMistakes = 3;
 			break;
 		case EASY:
 			difficultyModificator = 3;
-			maxNumOfMistakes = 5;
+			//maxNumOfMistakes = 5;
 			break;
 
 		default:
 			break;
 		}
 	}
-	
-	public void setGameState(GameState state){
+
+	public void setGameState(GameState state) {
 		currentState = state;
 	}
 
