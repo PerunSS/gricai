@@ -16,7 +16,7 @@
     	android:layout_weight="4"
     	android:background="@drawable/bg">
     	<Button android:id="@+id/favorites"
-  			android:text ="Favorites"
+  			android:background="@drawable/btn_favorites"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:textSize="20sp"/>
@@ -54,7 +54,7 @@
 		android:text="Strong drinks"
 		android:textSize="27sp"
 		android:textStyle="bold"
-		android:textColor="#000000"
+		android:textColor="#FFFFFF"
 		android:gravity="center"
 	/>
 	<TableLayout android:id="@+id/strong_drinks" 
@@ -64,50 +64,58 @@
 		>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
+				android:button="@drawable/check_box"
 				android:id="@+id/vodka" 
-				android:text="Vodka"
-				android:textColor="#000000" 
+				android:text=" Vodka"
+				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
-			<CheckBox android:layout_height="wrap_content" 
+			<CheckBox android:layout_height="wrap_content"
+				android:button="@drawable/check_box" 
 				android:id="@+id/tequila" 
-				android:text="Tequila" 
-				android:textColor="#000000"
+				android:text=" Tequila" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/gin" 
-				android:text="Gin" 
-				android:textColor="#000000"
+				android:id="@+id/gin"
+				android:button="@drawable/check_box" 
+				android:text=" Gin" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/whisky" 
-				android:text="Whisky" 
-				android:textColor="#000000"
-				android:layout_width="wrap_content"/>
-		</TableRow>
-		<TableRow>
-			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/rum" 
-				android:text="Rum" 
-				android:textColor="#000000"
-				android:layout_width="wrap_content"/>
-			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/cognac" 
-				android:text="Cognac" 
-				android:textColor="#000000"
+				android:id="@+id/whisky"
+				android:button="@drawable/check_box" 
+				android:text=" Whisky" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/brandy" 
-				android:text="Brandy" 
-				android:textColor="#000000"
+				android:id="@+id/rum"
+				android:button="@drawable/check_box" 
+				android:text=" Rum" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/absinthe" 
-				android:text="Absinthe" 
-				android:textColor="#000000"
+				android:id="@+id/cognac"
+				android:button="@drawable/check_box" 
+				android:text=" Cognac" 
+				android:textColor="#FFFFFF"
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/brandy"
+				android:button="@drawable/check_box" 
+				android:text=" Brandy" 
+				android:textColor="#FFFFFF"
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/absinthe"
+				android:button="@drawable/check_box" 
+				android:text=" Absinthe" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 	</TableLayout>
@@ -117,7 +125,7 @@
 		android:text="Liqueurs"
 		android:textSize="27sp"
 		android:textStyle="bold"
-		android:textColor="#000000"
+		android:textColor="#FFFFFF"
 		android:gravity="center"
 	/>
 	<TableLayout android:id="@+id/liquers_drinks" 
@@ -126,50 +134,58 @@
 		android:stretchColumns="*">
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_orange" 
-				android:text="Orange type"
-				android:textColor="#000000" 
+				android:id="@+id/l_orange"
+				android:button="@drawable/check_box" 
+				android:text=" Orange type"
+				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_menthol" 
-				android:text="Menthol type"
-				android:textColor="#000000" 
-				android:layout_width="wrap_content"/>
-		</TableRow>
-		<TableRow>
-			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_chocolate" 
-				android:text="Chocolate type"
-				android:textColor="#000000" 
-				android:layout_width="wrap_content"/>
-			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_coffee" 
-				android:text="Coffee type" 
-				android:textColor="#000000"
+				android:id="@+id/l_menthol"
+				android:button="@drawable/check_box" 
+				android:text=" Menthol type"
+				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_cherry" 
-				android:text="Cherry type" 
-				android:textColor="#000000"
+				android:id="@+id/l_chocolate"
+				android:button="@drawable/check_box" 
+				android:text=" Chocolate type"
+				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_strawberry" 
-				android:text="Strawberry type" 
-				android:textColor="#000000"
+				android:id="@+id/l_coffee"
+				android:button="@drawable/check_box" 
+				android:text=" Coffee type" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_coconut" 
-				android:text="Coconut type" 
-				android:textColor="#000000"
+				android:id="@+id/l_cherry"
+				android:button="@drawable/check_box" 
+				android:text=" Cherry type" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/l_other" 
-				android:text="Other type" 
-				android:textColor="#000000"
+				android:id="@+id/l_strawberry"
+				android:button="@drawable/check_box" 
+				android:text=" Strawberry type" 
+				android:textColor="#FFFFFF"
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_coconut"
+				android:button="@drawable/check_box" 
+				android:text=" Coconut type" 
+				android:textColor="#FFFFFF"
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/l_other"
+				android:button="@drawable/check_box" 
+				android:text=" Other type" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 	</TableLayout>
@@ -179,7 +195,7 @@
 		android:text="Other alcohol"
 		android:textSize="27sp"
 		android:textStyle="bold"
-		android:textColor="#000000"
+		android:textColor="#FFFFFF"
 		android:gravity="center"
 	/>
 	<TableLayout android:id="@+id/other_alc_drinks" 
@@ -188,26 +204,35 @@
 		android:stretchColumns="*">
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/wine" 
-				android:text="Wine"
-				android:textColor="#000000" 
+				android:id="@+id/wine"
+				android:button="@drawable/check_box" 
+				android:text=" Wine"
+				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/champagne" 
-				android:text="Champagne" 
-				android:textColor="#000000"
+				android:id="@+id/champagne"
+				android:button="@drawable/check_box" 
+				android:text=" Champagne" 
+				android:textColor="#FFFFFF"
+				android:shadowColor="#FF0000"
+				android:textStyle="bold"
+				android:shadowRadius="10"
+				android:shadowDx="0"
+				android:shadowDy="0"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/Vermouth" 
-				android:text="Vermouth" 
-				android:textColor="#000000"
+				android:id="@+id/Vermouth"
+				android:button="@drawable/check_box" 
+				android:text=" Vermouth" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/beer" 
-				android:text="Beer" 
-				android:textColor="#000000"
+				android:id="@+id/beer"
+				android:button="@drawable/check_box" 
+				android:text=" Beer" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 	</TableLayout>
@@ -217,7 +242,7 @@
 		android:text="Non-alcohol drinks"
 		android:textSize="27sp"
 		android:textStyle="bold"
-		android:textColor="#000000"
+		android:textColor="#FFFFFF"
 		android:gravity="center"
 	/>
 	<TableLayout android:id="@+id/non_alc" 
@@ -226,50 +251,63 @@
 		android:stretchColumns="*">
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/j_orange" 
-				android:text="Orange juice"
-				android:textColor="#000000" 
+				android:id="@+id/j_orange"
+				android:button="@drawable/check_box" 
+				android:text=" Orange juice"
+				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/j_apple" 
-				android:text="Apple juice" 
-				android:textColor="#000000"
-				android:layout_width="wrap_content"/>
-		</TableRow>
-		<TableRow>
-			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/cola" 
-				android:text="Cola" 
-				android:textColor="#000000"
-				android:layout_width="wrap_content"/>
-			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/bitter" 
-				android:text="Bitter" 
-				android:textColor="#000000"
+				android:id="@+id/j_apple"
+				android:button="@drawable/check_box" 
+				android:text=" Apple juice" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/m_water" 
-				android:text="Tonic water" 
-				android:textColor="#000000"
+				android:id="@+id/cola"
+				android:button="@drawable/check_box" 
+				android:text=" Cola" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/j_lemon" 
-				android:text="Lemon juece" 
-				android:textColor="#000000"
+				android:id="@+id/bitter"
+				android:button="@drawable/check_box" 
+				android:text=" Bitter" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/milk" 
-				android:text="Grenadine" 
-				android:textColor="#000000"
+				android:id="@+id/m_water"
+				android:button="@drawable/check_box" 
+				android:text=" Tonic water" 
+				android:textColor="#FFFFFF"
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content" 
-				android:id="@+id/j_other" 
-				android:text="Other jueces"
-				android:textColor="#000000" 
+				android:id="@+id/j_lemon"
+				android:button="@drawable/check_box" 
+				android:text=" Lemon juece" 
+				android:textColor="#FFFFFF"
+				android:layout_width="wrap_content"/>
+		</TableRow>
+		<TableRow>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/milk"
+				android:button="@drawable/check_box" 
+				android:text=" Grenadine" 
+				android:textColor="#FFFFFF"
+				android:layout_width="wrap_content"/>
+			<CheckBox android:layout_height="wrap_content" 
+				android:id="@+id/j_other"
+				android:button="@drawable/check_box" 
+				android:text=" Other jueces"
+				android:textColor="#FFFFFF"
+				android:shadowColor="#FF0000"
+				android:textStyle="bold"
+				android:shadowRadius="10"
+				android:shadowDx="0"
+				android:shadowDy="0" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 	</TableLayout>
@@ -285,7 +323,7 @@
 		/>
 </LinearLayout>
 <Button android:id="@+id/mix"
-  			android:text ="Mix it up!!!"
+  			android:background="@drawable/btn_mix"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="4"
