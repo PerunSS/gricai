@@ -67,6 +67,7 @@
 				android:button="@drawable/check_box"
 				android:id="@+id/vodka" 
 				android:text=" Vodka"
+				android:textStyle="bold"
 				android:textColor="#FFFFFF" 
 				android:layout_width="wrap_content"/>
 			<CheckBox android:layout_height="wrap_content"
@@ -214,11 +215,6 @@
 				android:button="@drawable/check_box" 
 				android:text=" Champagne" 
 				android:textColor="#FFFFFF"
-				android:shadowColor="#FF0000"
-				android:textStyle="bold"
-				android:shadowRadius="10"
-				android:shadowDx="0"
-				android:shadowDy="0"
 				android:layout_width="wrap_content"/>
 		</TableRow>
 		<TableRow>
@@ -303,11 +299,6 @@
 				android:button="@drawable/check_box" 
 				android:text=" Other jueces"
 				android:textColor="#FFFFFF"
-				android:shadowColor="#FF0000"
-				android:textStyle="bold"
-				android:shadowRadius="10"
-				android:shadowDx="0"
-				android:shadowDy="0" 
 				android:layout_width="wrap_content"/>
 		</TableRow>
 	</TableLayout>
