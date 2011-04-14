@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -24,10 +22,10 @@ public class CocktailMixer extends Activity {
 	private boolean fullRandom = false;
 	
 	
-	private boolean standard = true;
-	private static final int standard_mix_type = 1;
-	private static final int complete_random_mix_type = 2;
-	private static final int mix_type_group = 0;
+//	private boolean standard = true;
+//	private static final int standard_mix_type = 1;
+//	private static final int complete_random_mix_type = 2;
+//	private static final int mix_type_group = 0;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -288,7 +286,7 @@ public class CocktailMixer extends Activity {
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
-	
+	/*
 	public boolean onCreateOptionsMenu( android.view.Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		menu.add("Backgrounds")
@@ -324,5 +322,5 @@ public class CocktailMixer extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 
-	
+	*/
 }
