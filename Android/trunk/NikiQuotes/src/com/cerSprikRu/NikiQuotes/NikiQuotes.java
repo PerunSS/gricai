@@ -1,17 +1,23 @@
 package com.cerSprikRu.NikiQuotes;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NikiQuotes extends Activity {
 	private String[] facts;
@@ -26,10 +32,9 @@ public class NikiQuotes extends Activity {
 			R.drawable.b24, R.drawable.b25, R.drawable.b26, R.drawable.b27,
 			R.drawable.b28, R.drawable.b29, R.drawable.b30, R.drawable.b31,
 			R.drawable.b32, R.drawable.b33, R.drawable.b34, R.drawable.b35,
-			R.drawable.b36, R.drawable.b37};
+			R.drawable.b36, R.drawable.b37 };
 
 	private int currentBck;
-	private AlertDialog.Builder builder;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -60,31 +65,40 @@ public class NikiQuotes extends Activity {
 				factsTextView.setText(fact);
 			}
 		});
-		builder = new AlertDialog.Builder(this);
 		final Button saveBtn = (Button) findViewById(R.id.save);
 		saveBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				String externalDirectory = Environment
+						.getExternalStorageDirectory().toString();
+				String directory = NikiQuotes.class.getSimpleName();
+				File file = new File(externalDirectory + File.separator
+						+ directory);
+				if (!file.isDirectory())
+					file.mkdir();
 				String timestamp = Long.toString(System.currentTimeMillis());
-				MediaStore.Images.Media.insertImage(getContentResolver(),
-						BitmapFactory
-								.decodeResource(getResources(), currentBck),
-						timestamp, timestamp);
-
-				builder.setMessage("image: " + timestamp + " saved");
-				builder.setTitle("saved");
-				builder.setNeutralButton("OK",
-						new DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-				AlertDialog dialog = builder.create();
-				dialog.show();
+				file = new File(externalDirectory + File.separator + directory,
+						timestamp + ".jpg");
+				OutputStream out = null;
+				try {
+					out = new FileOutputStream(file);
+					Bitmap bm = BitmapFactory.decodeResource(getResources(),
+							currentBck);
+					bm.compress(Bitmap.CompressFormat.JPEG, 100, out);
+					out.flush();
+				} catch (FileNotFoundException e) {
+				} catch (IOException e) {
+				} finally {
+					if (out != null)
+						try {
+							out.close();
+						} catch (IOException e) {
+						}
+				}
+				Toast.makeText(NikiQuotes.this,
+						"Saved image: " + file.getAbsolutePath(),
+						Toast.LENGTH_LONG).show();
 			}
 		});
 		factsTextView = (TextView) findViewById(R.id.fact);
@@ -99,7 +113,7 @@ public class NikiQuotes extends Activity {
 		currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
 		factsTextView.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
-		
+
 		final Button shareButton = (Button) findViewById(R.id.share);
 		shareButton.setOnClickListener(new OnClickListener() {
 
@@ -108,9 +122,7 @@ public class NikiQuotes extends Activity {
 				final Intent intent = new Intent(Intent.ACTION_SEND);
 
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
-								+fact);
+				intent.putExtra(Intent.EXTRA_TEXT, "Nicki Minaj: " + fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
 			}
