@@ -3,8 +3,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cerSprikRu.RihannaFacts"
     android:installLocation="auto"
-    android:versionCode="6"
-    android:versionName="1.4">
+    android:versionCode="7"
+    android:versionName="1.4.1">
     <supports-screens 
 		android:largeScreens="true" 
 		android:normalScreens="true" 
@@ -44,5 +44,6 @@
     
 	</application>
 	<uses-sdk android:minSdkVersion="3" />
-	 <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest> 
