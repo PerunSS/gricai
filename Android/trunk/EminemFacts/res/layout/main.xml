@@ -49,18 +49,21 @@
   			<Button 
   				android:id="@+id/random"
   				android:text="Random"
+  				android:background="@drawable/random_button"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
   				android:layout_weight="1"/>	
   			<Button 
   				android:id="@+id/save"
   				android:text ="Save Image"
+  				android:background="@drawable/save_button"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
   				android:layout_weight="1"/>
   			<Button 
   				android:id="@+id/share"
   				android:text ="Share"
+  				android:background="@drawable/share_button"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
   				android:layout_weight="1"/>
