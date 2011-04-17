@@ -253,8 +253,8 @@ public class CocktailMixer extends Activity {
 				}
 
 				if (CocktailCreator.getInstance().size() < 5) {
-					showError();
-				} else {
+					showError("If You have less than 5 drinks, You dont need cocktail mixer for that, just experiment. ;)");
+				} else if(CocktailCreator.getInstance().canMix()) {
 					CocktailsCreatorThread cct = new CocktailsCreatorThread(
 							"cct", fullRandom);
 					try {
@@ -264,6 +264,8 @@ public class CocktailMixer extends Activity {
 					Intent myIntent = new Intent(v.getContext(),
 							DisplayCocktails.class);
 					startActivityForResult(myIntent, 0);
+				}else {
+					showError("You cannot make cocktails with only strong drinks!");
 				}
 
 			}
@@ -272,9 +274,9 @@ public class CocktailMixer extends Activity {
 		instance = this;
 	}
 
-	private void showError() {
+	private void showError(String text) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("if u have less than 5 drinks, u dont need cocktail mixer for that, just experiment ;)");
+		builder.setMessage(text);
 		builder.setTitle("cannot create");
 		builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 
