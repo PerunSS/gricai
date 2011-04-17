@@ -1,6 +1,5 @@
 package com.cerSprikRu.UsherFacts;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -69,7 +68,7 @@ public class UsherFacts extends Activity {
 				String timestamp = Long.toString(System.currentTimeMillis());
 				MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeResource(getResources(), currentBck), timestamp, timestamp);
 				
-				builder.setMessage("image: "+timestamp+" saved");
+				builder.setMessage("image: "+timestamp+" saved to gallery");
 				builder.setTitle("saved");
 				builder.setNeutralButton("OK",
                         new DialogInterface.OnClickListener() {
