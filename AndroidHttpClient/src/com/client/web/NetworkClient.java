@@ -1,33 +1,30 @@
 package com.client.web;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.apache.http.HttpResponse;
 
-import com.client.web.beans.HTTPConnectionPostRequest;
+import com.client.web.beans.requests.InitialValidationPostRequest;
 
-import android.os.AsyncTask;
-import android.os.Build;
 
 public class NetworkClient
 {
 	private String server_addr,server_req_target;
-	BufferedReader br ;
-	NetworkConnection  connection;
-	public NetworkClient(NetworkConnection connection)
+	
+	InitialValidationPostRequest initReq;
+	public NetworkClient(String serverAddress,String relativePageLocation)
 	{
-		this.connection = connection;
+		
+		this.server_addr = serverAddress;
+		this.server_req_target  = relativePageLocation;
+		initReq = new InitialValidationPostRequest(serverAddress);
 	}
 
 	
 	public String executePost()
 	{
-		
-		connection.doPost(new HTTPConnectionPostRequest().createPostRequest(null,null, true));
-		
+		System.out.println("SERVER ADDR : "+server_addr +server_req_target);
+		HttpResponse response = initReq.executeRequest("1", "2", "3", "4", "5", server_req_target);
+		response.getParams();
+		System.out.println("MAIL MOTHERFUCKER!");
 		return "done";
 	}
 	
