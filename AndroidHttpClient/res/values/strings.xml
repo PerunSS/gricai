@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidHttpClient</string>
+    <string name="button_name"> Button </string>
+    <string name="server_addr">http://89.216.150.127:8080</string>
+    <string name="server_req_target">/AndroidTestServer/Master</string>
+    <string name="Boot_msg">Synchonizing with server...</string>
+</resources>
