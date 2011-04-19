@@ -1,10 +1,6 @@
 package rs.novosti;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import rs.novosti.adapter.CategoryLayoutAdapter;
-import rs.novosti.model.Article;
 import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
@@ -16,7 +12,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class NovostiCategory extends Activity {
     /** Called when the activity is first created. */
@@ -60,8 +55,8 @@ public class NovostiCategory extends Activity {
         
     }
     
-    private void showMessage(String message){
-    	Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-    	toast.show();
-    }
+//    private void showMessage(String message){
+//    	Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+//    	toast.show();
+//    }
 }
