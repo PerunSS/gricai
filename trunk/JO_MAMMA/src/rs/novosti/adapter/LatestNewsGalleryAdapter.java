@@ -51,7 +51,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Article article = articles.get(position);
+		final Article article = articles.get(position);
 		Holder holder = null;
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.first_article_style, null);
@@ -77,6 +77,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 					public void onClick(View v) {
 						Intent myIntent = new Intent(v.getContext(),
 								NovostiCela.class);
+						myIntent.putExtra("article", article);
 						activity.startActivityForResult(myIntent, 0);
 					}
 				});
@@ -103,7 +104,8 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 			if (ratio > ((double) screenHeight - 100) / height) {
 				ratio = ((double) screenHeight - 100) / height;
 			}
-			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio), (int) (height * ratio), true);
+			int maxHeight = (screenHeight-100)/2;
+			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio), ((int) (height * ratio) > maxHeight ? maxHeight : (int) (height * ratio)) , true);
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -115,9 +117,5 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		LinearLayout articleLayout;
 		TextView latestArticleTitle;
 
-		@Override
-		public String toString() {
-			return latestArticleTitle.getText().toString().trim() + "\n";
-		}
 	}
 }

@@ -9,6 +9,7 @@ import rs.novosti.model.Category;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +69,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		Category cat = categories.get(position);
-		holder.categoryName.setText(cat.getName());
+		holder.categoryName.setText(Html.fromHtml("<b>"+cat.getName()+"</b>"));
 		final Article firstArticle = cat.getArticles().get(0);
 		if (firstArticle != null) {
 			holder.firstArticle.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +95,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 				public void onClick(View v) {
 					Intent myIntent = new Intent(v.getContext(),
 							NovostiCela.class);
-					myIntent.putExtra("article", firstArticle);
+					myIntent.putExtra("article", secondArticle);
 					((Activity)context).startActivityForResult(myIntent, 0);
 				}
 			});
@@ -108,7 +109,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 				public void onClick(View v) {
 					Intent myIntent = new Intent(v.getContext(),
 							NovostiCela.class);
-					myIntent.putExtra("article", firstArticle);
+					myIntent.putExtra("article", thirdArticle);
 					((Activity)context).startActivityForResult(myIntent, 0);
 				}
 			});
@@ -125,12 +126,5 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 		TextView thirdArticle;
 		RelativeLayout firstArticle;
 
-//		@Override
-//		public String toString() {
-//			return categoryName.getText() + "\n" + firstArticleTitle.getText()
-//					+ "\n" + firstArticleDescription.getText() + "\n"
-//					+ secondArticle.getText() + "\n" + thirdArticle.getText()
-//					+ "\n";
-//		}
 	}
 }

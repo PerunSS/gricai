@@ -6,12 +6,11 @@
     >
 
 	<ImageView 
-		android:layout_height="fill_parent" 
+		android:layout_height="50sp" 
 		android:id="@+id/Logo" 
-		android:background="@drawable/b2"
+		android:background="@drawable/novosti_logo"
 		android:layout_width="fill_parent"
-		android:layout_weight="3">
-	</ImageView>
+		/>
 	<HorizontalScrollView 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content" 
@@ -28,7 +27,7 @@
 	
 	
 	<rs.novosti.MyGallery
-		android:layout_weight="2"
+		
 		android:id="@+id/latestNewsGallery"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
@@ -36,10 +35,11 @@
 	
 	
 	<ListView 
-		android:layout_weight="2"
+		
 		android:id="@+id/Content" 
 		android:layout_height="fill_parent" 
-		android:layout_width="fill_parent"  
+		android:layout_width="fill_parent"
+		android:divider="#333333"  
 		android:cacheColorHint="#00000000">
 	</ListView>
 </LinearLayout>

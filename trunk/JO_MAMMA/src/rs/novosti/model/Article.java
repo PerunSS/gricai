@@ -33,6 +33,10 @@ public class Article implements Serializable {
 		return text;
 	}
 	public void setText(String text) {
+		int index = text.indexOf('>')+1;
+		if(index<0)
+			index = 0;
+		text = text.substring(index);
 		this.text = text;
 	}
 	public String getSource() {

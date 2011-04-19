@@ -8,16 +8,24 @@
 		android:id="@+id/category_name" 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:textColor="#FFFFFF"
+		android:background="#AA0000"
 		android:layout_weight = "5" />
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="2dip"
+		android:background="#333333"/>
 	<RelativeLayout
 		android:id="@+id/firstArticle"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_weight = "3">
+		android:layout_weight = "3"
+		android:background="#FFFFFF">
 		<TextView
 			android:id="@+id/firstArticle_name"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:textColor="#333333"/>
 		<ImageView
 			android:id="@+id/firstArticle_image"
 			android:layout_width="wrap_content"
@@ -27,17 +35,30 @@
 			android:id="@+id/firstArticle_shortText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:textColor="#333333"
 			android:layout_toRightOf="@id/firstArticle_image"
 			android:layout_alignTop="@id/firstArticle_image"/>
 	</RelativeLayout>
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="2dip"
+		android:background="#333333"/>
 	<TextView 
 		android:id="@+id/secondArticle" 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_weight = "5" />
+		android:layout_weight = "5"
+		android:background="#FFFFFF"
+		android:textColor="#333333" />
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="2dip"
+		android:background="#333333"/>
 	<TextView 
 		android:id="@+id/thirdArticle" 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_weight = "5" />
+		android:layout_weight = "5"
+		android:background="#FFFFFF"
+		android:textColor="#333333" />
 </LinearLayout>
