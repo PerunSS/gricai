@@ -6,14 +6,13 @@
     >
 
 	<ImageView 
-		android:layout_height="22sp" 
+		android:layout_height="50sp" 
 		android:id="@+id/fullArticle_Logo" 
-		android:background="@drawable/b2"
-		android:layout_width="fill_parent">
-	</ImageView>
+		android:background="@drawable/novosti_logo"
+		android:layout_width="fill_parent"/>
 	<HorizontalScrollView 
 		android:layout_width="fill_parent" 
-		android:layout_height="20sp" 
+		android:layout_height="wrap_content" 
 		android:id="@+id/fullArticle_menuScrollView"
 		>
 
@@ -49,7 +48,7 @@
 			android:id="@+id/fullArticle_ShortText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textSize="25sp"	
+			android:textSize="20sp"	
 		/>
 		<ImageView
 			android:id="@+id/fullArticle_Photo"
@@ -60,7 +59,7 @@
 			android:id="@+id/fullArticle_FullText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textSize="40sp"	
+			android:textSize="15sp"	
 		/>
 		</LinearLayout>
 	</ScrollView>

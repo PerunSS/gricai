@@ -5,14 +5,14 @@
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent">
   	<ImageView 
-		android:layout_height="22sp"
+		android:layout_height="50sp"
 		android:id="@+id/categoryLayout_Logo" 
-		android:background="@drawable/b2"
+		android:background="@drawable/novosti_logo"
 		android:layout_width="fill_parent"
 		/>
 	<HorizontalScrollView 
 		android:layout_width="fill_parent" 
-		android:layout_height="30sp" 
+		android:layout_height="wrap_content" 
 		android:id="@+id/categoryLayout_menuScrollView"
 		>
 
