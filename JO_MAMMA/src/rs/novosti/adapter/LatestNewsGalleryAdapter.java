@@ -69,7 +69,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		// System.out.println(article.getName());
 		// new BitmapFactory();
 		// holder.latestArticleImage.setImageBitmap(BitmapFactory.decodeFile(article.getPhotoPath()));
-		holder.latestArticleTitle.setText(article.getName());
+		holder.latestArticleTitle.setText(article.getTitle());
 		holder.latestArticleTitle
 				.setOnClickListener(new View.OnClickListener() {
 
@@ -82,12 +82,11 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 					}
 				});
 		// holder.latestArticleTitle.setText(article.getName());
-		Drawable firstArticleImage = getResizedDrawable(article
-				.getPhotoPath());
-		holder.articleLayout.setBackgroundDrawable(firstArticleImage);
+		holder.articleLayout.setBackgroundDrawable(getResizedDrawable(article
+				.getPhotoPath()));
 		return convertView;
 	}
-	
+
 	private Drawable getResizedDrawable(String url) {
 		InputStream is = null;
 		url = url.replaceAll(" ", "%20");
@@ -104,8 +103,10 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 			if (ratio > ((double) screenHeight - 100) / height) {
 				ratio = ((double) screenHeight - 100) / height;
 			}
-			int maxHeight = (screenHeight-100)/2;
-			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio), ((int) (height * ratio) > maxHeight ? maxHeight : (int) (height * ratio)) , true);
+			int maxHeight = (screenHeight - 100) / 2;
+			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
+					((int) (height * ratio) > maxHeight ? maxHeight
+							: (int) (height * ratio)), true);
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
 			// TODO: handle exception

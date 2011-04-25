@@ -53,7 +53,8 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			holder = new Holder();
 			holder.categoryName = (TextView) convertView
 					.findViewById(R.id.category_name);
-			holder.firstArticle = (RelativeLayout)convertView.findViewById(R.id.firstArticle);
+			holder.firstArticle = (RelativeLayout) convertView
+					.findViewById(R.id.firstArticle);
 			holder.firstArticleDescription = (TextView) convertView
 					.findViewById(R.id.firstArticle_shortText);
 			holder.firstArticleImage = (ImageView) convertView
@@ -69,22 +70,27 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		Category cat = categories.get(position);
-		holder.categoryName.setText(Html.fromHtml("<b>"+cat.getName()+"</b>"));
+		holder.categoryName.setText(Html.fromHtml("<b>" + cat.getTitle()
+				+ "</b>"));
 		final Article firstArticle = cat.getArticles().get(0);
 		if (firstArticle != null) {
 			holder.firstArticle.setOnClickListener(new View.OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					Intent myIntent = new Intent(v.getContext(),
 							NovostiCela.class);
 					myIntent.putExtra("article", firstArticle);
-					((Activity)context).startActivityForResult(myIntent, 0);
+					((Activity) context).startActivityForResult(myIntent, 0);
 				}
 			});
-			holder.firstArticleTitle.setText(firstArticle.getName());
+			holder.firstArticleTitle.setText(firstArticle.getTitle());
 			holder.firstArticleDescription.setText(firstArticle.getShortText());
-			holder.firstArticleImage.setBackgroundResource(R.drawable.icon);
+			if(firstArticle.getView() == null)
+				holder.firstArticleImage.setImageResource(R.drawable.icon);
+			firstArticle.setView(holder.firstArticleImage);
+			firstArticle.generateSmallPhoto();
+			//new DownloadImagesTask().execute(firstArticle.getPhotoPath());
 		}
 		final Article secondArticle = cat.getArticles().get(1);
 		if (secondArticle != null) {
@@ -96,7 +102,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 					Intent myIntent = new Intent(v.getContext(),
 							NovostiCela.class);
 					myIntent.putExtra("article", secondArticle);
-					((Activity)context).startActivityForResult(myIntent, 0);
+					((Activity) context).startActivityForResult(myIntent, 0);
 				}
 			});
 		}
@@ -110,7 +116,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 					Intent myIntent = new Intent(v.getContext(),
 							NovostiCela.class);
 					myIntent.putExtra("article", thirdArticle);
-					((Activity)context).startActivityForResult(myIntent, 0);
+					((Activity) context).startActivityForResult(myIntent, 0);
 				}
 			});
 		}
@@ -127,4 +133,6 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 		RelativeLayout firstArticle;
 
 	}
+
+
 }

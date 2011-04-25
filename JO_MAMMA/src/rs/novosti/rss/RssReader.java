@@ -58,7 +58,7 @@ public class RssReader {
 
 	public Category readCategory(String path, String name) {
 		Category category = new Category();
-		category.setName(name);
+		category.setTitle(name);
 		category.setPath(path);
 		Map<Integer, Article> articles = new TreeMap<Integer, Article>();
 		int key = -1;
@@ -111,13 +111,13 @@ public class RssReader {
 						if (tag.length() > 0) {
 							if (text.trim().length() > 0)
 								if (tag.equalsIgnoreCase(TITLE_TAG)) {
-									article.setName(text);
+									article.setTitle(text);
 								} else if (tag.equalsIgnoreCase(LINK_TAG)) {
 									article.setSource(text);
 								} else if (tag
 										.equalsIgnoreCase(DESCRIPTION_TAG)) {
 									article.setShortText(text);
-									String oneLine = article.getName()+": "+article.getShortText();
+									String oneLine = article.getTitle()+": "+article.getShortText();
 									article.setOneLine(oneLine.substring(0,40)+"...");
 								} else if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
 									String date = text;

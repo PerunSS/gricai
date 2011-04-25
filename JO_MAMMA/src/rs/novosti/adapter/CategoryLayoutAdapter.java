@@ -66,10 +66,9 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			firstHolder = new FirstHolder();
 			firstHolder.articleLayout = (LinearLayout) convertView
 					.findViewById(R.id.firstStyleArticle);
-
-			Drawable firstArticleImage = getResizedDrawable(article
-					.getPhotoPath());
-			firstHolder.articleLayout.setBackgroundDrawable(firstArticleImage);
+			firstHolder.articleLayout
+					.setBackgroundDrawable(getResizedDrawable(article
+							.getPhotoPath()));
 			firstHolder.articleTitle = (TextView) convertView
 					.findViewById(R.id.firstStyleArticle_title);
 			convertView.setTag(firstHolder);
@@ -84,7 +83,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			// firstHolder.articleTitle.setText(article.getName());
 			// firstHolder.articleImage;
 
-			firstHolder.articleTitle.setText(article.getName());
+			firstHolder.articleTitle.setText(article.getTitle());
 			firstHolder.articleTitle
 					.setOnClickListener(new View.OnClickListener() {
 
@@ -134,7 +133,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			// secondHolder.secondStyleArticleTitle.setText(article.getName());
 			// secondHolder.secondStyleArticleShortText.setText(article.getShortText());
 
-			secondHolder.secondStyleArticleTitle.setText(article.getName());
+			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
 			secondHolder.secondStyleArticleShortText.setText(article
 					.getShortText());
 
@@ -190,7 +189,8 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			if (ratio > ((double) screenHeight - 100) / height) {
 				ratio = ((double) screenHeight - 100) / height;
 			}
-			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio), (int) (height * ratio), true);
+			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
+					(int) (height * ratio), true);
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -198,37 +198,37 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		return null;
 	}
 
-//	private Drawable imageOperations(String url) {
-//		try {
-//			InputStream is = (InputStream) this.fetch(url);
-//			Drawable d = Drawable.createFromStream(is, "image");
-//			int width = d.getIntrinsicWidth();
-//			int height = d.getIntrinsicHeight();
-//			int screenWidth = activity.getWindowManager().getDefaultDisplay()
-//					.getWidth();
-//			int screenHeight = activity.getWindowManager().getDefaultDisplay()
-//					.getHeight();
-//			double ratio = ((double) screenWidth) / width;
-//			if (ratio < ((double) screenHeight - 100) / height) {
-//				ratio = ((double) screenHeight - 100) / height;
-//			}
-//			d.setBounds(0, 0, );
-//			return d;
-//		} catch (MalformedURLException e) {
-//			e.printStackTrace();
-//			return null;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-//
-//	public Object fetch(String address) throws MalformedURLException,
-//			IOException {
-//		URL url = new URL(address);
-//		Object content = url.getContent();
-//		return content;
-//	}
+	// private Drawable imageOperations(String url) {
+	// try {
+	// InputStream is = (InputStream) this.fetch(url);
+	// Drawable d = Drawable.createFromStream(is, "image");
+	// int width = d.getIntrinsicWidth();
+	// int height = d.getIntrinsicHeight();
+	// int screenWidth = activity.getWindowManager().getDefaultDisplay()
+	// .getWidth();
+	// int screenHeight = activity.getWindowManager().getDefaultDisplay()
+	// .getHeight();
+	// double ratio = ((double) screenWidth) / width;
+	// if (ratio < ((double) screenHeight - 100) / height) {
+	// ratio = ((double) screenHeight - 100) / height;
+	// }
+	// d.setBounds(0, 0, );
+	// return d;
+	// } catch (MalformedURLException e) {
+	// e.printStackTrace();
+	// return null;
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// return null;
+	// }
+	// }
+	//
+	// public Object fetch(String address) throws MalformedURLException,
+	// IOException {
+	// URL url = new URL(address);
+	// Object content = url.getContent();
+	// return content;
+	// }
 
 	private class FirstHolder {
 		LinearLayout articleLayout;

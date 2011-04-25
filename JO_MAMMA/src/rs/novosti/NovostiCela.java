@@ -21,23 +21,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NovostiCela extends Activity {
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.full_article_view);
-        Article article = (Article) getIntent().getExtras().get("article");
-        HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.fullArticle_menuScrollView);
-        horScrView.setHorizontalScrollBarEnabled(false);
-        LinearLayout menuView = (LinearLayout)findViewById(R.id.fullArticle_Menu);
-        menuView.setHorizontalScrollBarEnabled(false);
-        Main main = Main.getInstance();
-        for (Category cat : main.getCategories()) {
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.full_article_view);
+		Article article = (Article) getIntent().getExtras().get("article");
+		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.fullArticle_menuScrollView);
+		horScrView.setHorizontalScrollBarEnabled(false);
+		LinearLayout menuView = (LinearLayout) findViewById(R.id.fullArticle_Menu);
+		menuView.setHorizontalScrollBarEnabled(false);
+		Main main = Main.getInstance();
+		for (Category cat : main.getCategories()) {
 			final Category category = cat;
 			TextView tv = new TextView(this);
-			tv.setText(" " + cat.getName() + " ");
+			tv.setText(" " + cat.getTitle() + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -50,25 +50,26 @@ public class NovostiCela extends Activity {
 			});
 			menuView.addView(tv);
 		}
-   
-        TextView articleTitle = (TextView)findViewById(R.id.fullArticle_Title);
-        articleTitle.setText(article.getName());
-        
-        TextView articleSource = (TextView)findViewById(R.id.fullArticle_Source);
-        articleSource.setText("...");
-        
-        TextView articleShortText = (TextView)findViewById(R.id.fullArticle_ShortText);
-        articleShortText.setText(article.getShortText());
-        
-        ImageView articlePhoto = (ImageView)findViewById(R.id.fullArticle_Photo);
-        articlePhoto.setBackgroundDrawable(getResizedDrawable(article.getPhotoPath()));
-        
-        TextView articleFullText = (TextView)findViewById(R.id.fullArticle_FullText);
-        articleFullText.setText(article.getText());
-        
-    }
-    
-    private Drawable getResizedDrawable(String url) {
+
+		TextView articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
+		articleTitle.setText(article.getTitle());
+
+		TextView articleSource = (TextView) findViewById(R.id.fullArticle_Source);
+		articleSource.setText("...");
+
+		TextView articleShortText = (TextView) findViewById(R.id.fullArticle_ShortText);
+		articleShortText.setText(article.getShortText());
+
+		ImageView articlePhoto = (ImageView) findViewById(R.id.fullArticle_Photo);
+		articlePhoto.setBackgroundDrawable(getResizedDrawable(article
+				.getPhotoPath()));
+
+		TextView articleFullText = (TextView) findViewById(R.id.fullArticle_FullText);
+		articleFullText.setText(article.getText());
+
+	}
+
+	private Drawable getResizedDrawable(String url) {
 		InputStream is = null;
 		url = url.replaceAll(" ", "%20");
 		try {
@@ -76,20 +77,19 @@ public class NovostiCela extends Activity {
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
 			int width = bitmap.getWidth();
 			int height = bitmap.getHeight();
-			int screenWidth = getWindowManager().getDefaultDisplay()
-					.getWidth();
+			int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
 			int screenHeight = getWindowManager().getDefaultDisplay()
 					.getHeight();
 			double ratio = ((double) screenWidth) / width;
 			if (ratio > ((double) screenHeight - 100) / height) {
 				ratio = ((double) screenHeight - 100) / height;
 			}
-			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio), (int) (height * ratio), true);
+			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
+					(int) (height * ratio), true);
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		return null;
 	}
-    
+
 }

@@ -33,7 +33,7 @@ public class NovostiPortal extends Activity {
 		for (Category cat : main.getCategories()) {
 			final Category category = cat;
 			TextView tv = new TextView(this);
-			tv.setText(" " + cat.getName() + " ");
+			tv.setText(" " + cat.getTitle() + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -57,9 +57,9 @@ public class NovostiPortal extends Activity {
 		List<Article> sliderArticles = new ArrayList<Article>();
 		for (Category cat : main.getCategories()) {
 			if (cat.getArticles() != null && cat.getArticles().size() > 1)
-				if (cat.getName().equalsIgnoreCase("politika")
-						|| cat.getName().equalsIgnoreCase("ekonomija")
-						|| cat.getName().equalsIgnoreCase("sport"))
+				if (cat.getTitle().equalsIgnoreCase("politika")
+						|| cat.getTitle().equalsIgnoreCase("ekonomija")
+						|| cat.getTitle().equalsIgnoreCase("sport"))
 					sliderArticles.add(cat.getArticles().get(0));
 		}
 //		sliderArticles.add(new Article());
