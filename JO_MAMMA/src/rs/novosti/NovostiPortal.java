@@ -3,6 +3,7 @@ package rs.novosti;
 import java.util.ArrayList;
 import java.util.List;
 
+import rs.novosti.adapter.CategoryLayoutAdapter;
 import rs.novosti.adapter.CategoryPreviewAdapter;
 import rs.novosti.adapter.LatestNewsGalleryAdapter;
 import rs.novosti.model.Article;
@@ -38,10 +39,15 @@ public class NovostiPortal extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					Intent categoryIntent = new Intent(v.getContext(),
-							NovostiCategory.class);
-					categoryIntent.putExtra("category", category);
-					startActivityForResult(categoryIntent, 0);
+//					Intent categoryIntent = new Intent(v.getContext(),
+//							NovostiCategory.class);
+//					categoryIntent.putExtra("category", category);
+//					startActivityForResult(categoryIntent, 0);
+					ListView view = (ListView) findViewById(R.id.Content);
+					view.setAdapter(new CategoryLayoutAdapter(NovostiPortal.this, category
+							.getArticles(), NovostiPortal.this));
+					view.setItemsCanFocus(true);
+					view.setFocusable(false);
 				}
 			});
 			// RelativeLayout.LayoutParams lay = new
@@ -65,12 +71,12 @@ public class NovostiPortal extends Activity {
 //		sliderArticles.add(new Article());
 //		sliderArticles.add(new Article());
 //		sliderArticles.add(new Article());
-		MyGallery gallery = (MyGallery) findViewById(R.id.latestNewsGallery);
-		gallery.setAdapter(new LatestNewsGalleryAdapter(this, sliderArticles,
-				this));
+//		MyGallery gallery = (MyGallery) findViewById(R.id.latestNewsGallery);
+//		gallery.setAdapter(new LatestNewsGalleryAdapter(this, sliderArticles,
+//				this));
 
 		ListView view = (ListView) findViewById(R.id.Content);
-		view.setAdapter(new CategoryPreviewAdapter(this, main.getCategories()));
+		view.setAdapter(new CategoryPreviewAdapter(this, main.getCategories(),sliderArticles));
 		view.setItemsCanFocus(true);
 		view.setFocusable(false);
 
