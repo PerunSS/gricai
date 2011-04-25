@@ -39,17 +39,17 @@ public class Generator {
 		List<Category> categories = new ArrayList<Category>();
 		for(int i=0;i<10;i++){
 			Category cat = new Category();
-			cat.setName("category "+i);
+			cat.setTitle("category "+i);
 			List<Article> articles = new ArrayList<Article>();
 			for(int j=0;j<30;j++){
 				Article article = new Article();
-				article.setName("article "+j+", category "+i);
+				article.setTitle("article "+j+", category "+i);
 				article.setText(loremIpsum);
 				article.setShortText(loremIpsum.substring(0, 100)+"...");
 				article.setDate(new Date());
 				article.setSource("cerspri kru");
 				article.setPhotoPath("testis");
-				article.setOneLine(article.getName()+": "+article.getShortText().substring(0,20)+"...");
+				article.setOneLine(article.getTitle()+": "+article.getShortText().substring(0,20)+"...");
 				articles.add(article);
 			}
 			cat.setArticles(articles);

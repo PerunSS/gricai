@@ -14,22 +14,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class NovostiCategory extends Activity {
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.category_layout);
-        Category currentCategory = (Category) getIntent().getExtras().get("category");
-        HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.categoryLayout_menuScrollView);
-        horScrView.setHorizontalScrollBarEnabled(false);
-        LinearLayout menuView = (LinearLayout)findViewById(R.id.categoryLayout_Menu);
-        menuView.setHorizontalScrollBarEnabled(false);
-        Main main = Main.getInstance();
-        for (Category cat : main.getCategories()) {
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.category_layout);
+		Category currentCategory = (Category) getIntent().getExtras().get(
+				"category");
+		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.categoryLayout_menuScrollView);
+		horScrView.setHorizontalScrollBarEnabled(false);
+		LinearLayout menuView = (LinearLayout) findViewById(R.id.categoryLayout_Menu);
+		menuView.setHorizontalScrollBarEnabled(false);
+		Main main = Main.getInstance();
+		for (Category cat : main.getCategories()) {
 			final Category category = cat;
 			TextView tv = new TextView(this);
-			tv.setText(" " + cat.getName() + " ");
+			tv.setText(" " + cat.getTitle() + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -46,17 +47,17 @@ public class NovostiCategory extends Activity {
 			// lay.addRule(RelativeLayout.RIGHT_OF, RelativeLayout.TRUE);
 			menuView.addView(tv);
 		}
-   
-        ListView view = (ListView)findViewById(R.id.categoryLayout_Content);
-        view.setAdapter(new CategoryLayoutAdapter(this, currentCategory.getArticles(), this));
-        view.setItemsCanFocus(true);
-        view.setFocusable(false);
-        
-        
-    }
-    
-//    private void showMessage(String message){
-//    	Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-//    	toast.show();
-//    }
+
+		ListView view = (ListView) findViewById(R.id.categoryLayout_Content);
+		view.setAdapter(new CategoryLayoutAdapter(this, currentCategory
+				.getArticles(), this));
+		view.setItemsCanFocus(true);
+		view.setFocusable(false);
+
+	}
+
+	// private void showMessage(String message){
+	// Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+	// toast.show();
+	// }
 }
