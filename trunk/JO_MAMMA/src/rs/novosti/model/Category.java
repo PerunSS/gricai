@@ -42,4 +42,9 @@ public class Category implements Serializable {
 		this.articles = articles;
 	}
 
+	public void clear() {
+		for(Article article:articles)
+			article.clear();
+	}
+
 }

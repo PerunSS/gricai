@@ -26,17 +26,17 @@ import android.widget.TextView;
 public class CategoryLayoutAdapter extends BaseAdapter {
 
 	private int firstPart = 1;
-	private int secondPart = 4;
+	private int secondPart = 11;
 
 	private LayoutInflater inflater;
 	private List<Article> articles;
-	private Activity activity;
+	private Drawable categoryBigDrawable;
+	private Context context;
 
-	public CategoryLayoutAdapter(Context context, List<Article> articles,
-			Activity activity) {
+	public CategoryLayoutAdapter(Context context, List<Article> articles) {
 		inflater = LayoutInflater.from(context);
 		this.articles = articles;
-		this.activity = activity;
+		this.context = context;
 
 	}
 
@@ -66,9 +66,11 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			firstHolder = new FirstHolder();
 			firstHolder.articleLayout = (LinearLayout) convertView
 					.findViewById(R.id.firstStyleArticle);
+			if(categoryBigDrawable == null){
+				categoryBigDrawable = getResizedDrawable(article.getPhotoPath());
+			}
 			firstHolder.articleLayout
-					.setBackgroundDrawable(getResizedDrawable(article
-							.getPhotoPath()));
+					.setBackgroundDrawable(categoryBigDrawable);
 			firstHolder.articleTitle = (TextView) convertView
 					.findViewById(R.id.firstStyleArticle_title);
 			convertView.setTag(firstHolder);
@@ -92,7 +94,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 							Intent myIntent = new Intent(v.getContext(),
 									NovostiCela.class);
 							myIntent.putExtra("article", article);
-							activity.startActivityForResult(myIntent, 0);
+							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
 			// firstHolder.articleLayout.setBackgroundResource(R.drawable.b1);
@@ -125,7 +127,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 							Intent myIntent = new Intent(v.getContext(),
 									NovostiCela.class);
 							myIntent.putExtra("article", article);
-							activity.startActivityForResult(myIntent, 0);
+							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
 
@@ -136,7 +138,10 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
 			secondHolder.secondStyleArticleShortText.setText(article
 					.getShortText());
-
+			if(article.getView() == null)
+				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.icon);
+			article.setView(secondHolder.secondStyleArticleImage);
+			article.generateSmallPhoto();
 			secondHolder.secondStyleArticleImage
 					.setBackgroundResource(R.drawable.icon);
 
@@ -165,7 +170,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 							Intent myIntent = new Intent(v.getContext(),
 									NovostiCela.class);
 							myIntent.putExtra("article", article);
-							activity.startActivityForResult(myIntent, 0);
+							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
 		}
@@ -179,19 +184,14 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		try {
 			is = new URL(url).openStream();
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
-			int width = bitmap.getWidth();
-			int height = bitmap.getHeight();
-			int screenWidth = activity.getWindowManager().getDefaultDisplay()
+			int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
 					.getWidth();
-			int screenHeight = activity.getWindowManager().getDefaultDisplay()
+			int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
 					.getHeight();
-			double ratio = ((double) screenWidth) / width;
-			if (ratio > ((double) screenHeight - 100) / height) {
-				ratio = ((double) screenHeight - 100) / height;
-			}
-			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
-					(int) (height * ratio), true);
-			return new BitmapDrawable(bitmap);
+			Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth,
+					(screenHeight-100)/2, true);
+			bitmap.recycle();
+			return new BitmapDrawable(bitmap2);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -248,4 +248,8 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		TextView articleTitle;
 	}
 
+	public void clear(){
+		for(Article article:articles)
+			article.clear();
+	}
 }

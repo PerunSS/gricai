@@ -4,20 +4,14 @@ import java.io.InputStream;
 import java.net.URL;
 
 import rs.novosti.model.Article;
-import rs.novosti.model.Category;
-import rs.novosti.model.Main;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NovostiCela extends Activity {
@@ -29,27 +23,6 @@ public class NovostiCela extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.full_article_view);
 		Article article = (Article) getIntent().getExtras().get("article");
-		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.fullArticle_menuScrollView);
-		horScrView.setHorizontalScrollBarEnabled(false);
-		LinearLayout menuView = (LinearLayout) findViewById(R.id.fullArticle_Menu);
-		menuView.setHorizontalScrollBarEnabled(false);
-		Main main = Main.getInstance();
-		for (Category cat : main.getCategories()) {
-			final Category category = cat;
-			TextView tv = new TextView(this);
-			tv.setText(" " + cat.getTitle() + " ");
-			tv.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Intent categoryIntent = new Intent(v.getContext(),
-							NovostiCategory.class);
-					categoryIntent.putExtra("category", category);
-					startActivityForResult(categoryIntent, 0);
-				}
-			});
-			menuView.addView(tv);
-		}
 
 		TextView articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
 		articleTitle.setText(article.getTitle());
