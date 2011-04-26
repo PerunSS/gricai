@@ -22,7 +22,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight = "3"
-		android:background="#FFFFFF">
+		android:background="#EEEEEE">
 		<TextView
 			android:id="@+id/firstArticle_name"
 			android:layout_width="fill_parent"
@@ -54,7 +54,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight = "5"
-		android:background="#FFFFFF"
+		android:background="#EEEEEE"
 		android:textColor="#333333"
 		android:paddingLeft="4sp"
 		android:textSize="14sp" />
@@ -67,7 +67,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight = "5"
-		android:background="#FFFFFF"
+		android:background="#EEEEEE"
 		android:textColor="#333333"
 		android:paddingLeft="4sp" 
 		android:textSize="14sp"/>

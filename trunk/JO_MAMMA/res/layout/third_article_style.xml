@@ -9,7 +9,7 @@
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
   		android:id="@+id/thirdStyleArticle_title"
-		android:background="#FFFFFF"
+		android:background="#EEEEEE"
 		android:textColor="#333333"
 		android:paddingLeft="4sp"
 		android:textSize="14sp"

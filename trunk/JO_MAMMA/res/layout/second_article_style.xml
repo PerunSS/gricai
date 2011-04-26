@@ -9,7 +9,7 @@
 		android:id="@+id/secondStyleArticle_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:background="#FFFFFF">
+		android:background="#EEEEEE">
 		<TextView
 			android:id="@+id/secondStyleArticle_title"
 			android:layout_width="fill_parent"
