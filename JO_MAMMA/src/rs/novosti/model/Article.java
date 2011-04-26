@@ -147,7 +147,7 @@ public class Article implements Serializable {
 		@Override
 		protected void onPostExecute(Bitmap result) {
 			bitmap = result;
-			if (small) {
+			if (small && result!=null) {
 				smallBitmap = Bitmap.createScaledBitmap(result, 48, 48,
 						true);
 				view.setImageBitmap(smallBitmap);
@@ -157,6 +157,8 @@ public class Article implements Serializable {
 
 		private Bitmap getSmallIcon(String url) {
 			InputStream is = null;
+			if(url == null)
+				return null;
 			url = url.replaceAll(" ", "%20");
 			try {
 				is = new URL(url).openStream();

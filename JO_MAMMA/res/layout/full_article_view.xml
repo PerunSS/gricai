@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#eeeeee"
     >
 
 	<ImageView 
@@ -36,19 +37,24 @@
 			android:id="@+id/fullArticle_Title"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textSize="25sp"	
+			android:textColor="#333333"
+			android:paddingLeft="4sp"
+			android:textSize="20sp"
 		/>
 		<TextView
 			android:id="@+id/fullArticle_Source"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textSize="15sp"	
+			
 		/>
 		<TextView
 			android:id="@+id/fullArticle_ShortText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textSize="20sp"	
+			android:textColor="#333333"
+			android:paddingLeft="4sp"
+			android:textSize="14sp"
+			android:textStyle="italic"	
 		/>
 		<ImageView
 			android:id="@+id/fullArticle_Photo"
@@ -59,7 +65,9 @@
 			android:id="@+id/fullArticle_FullText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textSize="15sp"	
+			android:textColor="#333333"
+			android:paddingLeft="4sp"
+			android:textSize="14sp"	
 		/>
 		</LinearLayout>
 	</ScrollView>

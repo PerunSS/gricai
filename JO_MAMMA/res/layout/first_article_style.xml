@@ -9,10 +9,12 @@
   	
   	<TextView
   		android:layout_width="fill_parent"
-  		android:layout_height="50sp"
+  		android:layout_height="40sp"
   		android:id="@+id/firstStyleArticle_title"
-  		android:textSize="15sp"
+  		android:textSize="16sp"
   		android:background="@color/title_transparent_background"
-  		android:textColor="#DDDDDD"
+  		android:textColor="#ffffff"
+  		android:paddingLeft="7sp"
+  		android:paddingRight="7sp"
   	/> 	
 </LinearLayout>
