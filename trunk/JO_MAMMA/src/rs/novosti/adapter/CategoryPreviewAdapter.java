@@ -4,6 +4,7 @@ import java.util.List;
 
 import rs.novosti.MyGallery;
 import rs.novosti.NovostiCela;
+import rs.novosti.NovostiPortal;
 import rs.novosti.R;
 import rs.novosti.model.Article;
 import rs.novosti.model.Category;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -89,9 +91,31 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 //			} else {
 //				holder = (Holder) convertView.getTag();
 //			}
-			Category cat = categories.get(position-1);
+			final Category cat = categories.get(position-1);
 			holder.categoryName.setText(Html.fromHtml("<b>" + cat.getTitle()
 					+ "</b>"));
+			holder.categoryName.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					((NovostiPortal)context).categoryPreviewAdapter.clear();
+					((NovostiPortal)context).colorSelected(cat.getTitle());
+//					Intent categoryIntent = new Intent(v.getContext(),
+//							NovostiCategory.class);
+//					categoryIntent.putExtra("category", category);
+//					startActivityForResult(categoryIntent, 0);
+					ListView view = (ListView) ((NovostiPortal)context).findViewById(R.id.Content);
+					if(((NovostiPortal)context).categoryLayoutAdapter!=null){
+						((NovostiPortal)context).categoryLayoutAdapter.clear();
+					}
+					((NovostiPortal)context).categoryLayoutAdapter = new CategoryLayoutAdapter(context, cat
+							.getArticles());
+					view.setAdapter(((NovostiPortal)context).categoryLayoutAdapter);
+					view.setItemsCanFocus(true);
+					view.setFocusable(false);
+					
+				}
+			});
 			final Article firstArticle = cat.getArticles().get(0);
 			if (firstArticle != null) {
 				holder.firstArticle.setOnClickListener(new View.OnClickListener() {
