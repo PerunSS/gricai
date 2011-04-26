@@ -25,6 +25,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 	private List<Category> categories;
 	private Context context;
 	private List<Article> sliderArticles;
+	private LatestNewsGalleryAdapter latestNewsGalleryAdapter;
 	
 	public CategoryPreviewAdapter(Context context, List<Category> categories, List<Article> sliderArticles) {
 		this.context = context;
@@ -61,9 +62,10 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 				holder.gallery = (MyGallery)convertView
 						.findViewById(R.id.latestNewsGallery);
 				convertView.setTag(holder);
-				
-				holder.gallery.setAdapter(new LatestNewsGalleryAdapter(context, sliderArticles,
-						(Activity)context));
+				if(latestNewsGalleryAdapter == null){
+					latestNewsGalleryAdapter = new LatestNewsGalleryAdapter(context, sliderArticles);
+				}
+				holder.gallery.setAdapter(latestNewsGalleryAdapter);
 		} else {	
 			Holder holder = null;
 //			if (convertView == null) {
@@ -154,6 +156,12 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 	}
 	private class GalleryHolder{
 		MyGallery gallery;
+	}
+	
+	public void clear(){
+		for(Category cat:categories)
+			cat.clear();
+		latestNewsGalleryAdapter.clearAll();
 	}
 
 }

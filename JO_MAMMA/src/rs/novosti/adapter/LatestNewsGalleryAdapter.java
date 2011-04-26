@@ -1,5 +1,6 @@
 package rs.novosti.adapter;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
@@ -25,13 +26,13 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 	private List<Article> articles;
-	private Activity activity;
+	private Context context;
 
-	public LatestNewsGalleryAdapter(Context context, List<Article> articles,
-			Activity a) {
+
+	public LatestNewsGalleryAdapter(Context context, List<Article> articles) {
 		inflater = LayoutInflater.from(context);
 		this.articles = articles;
-		this.activity = a;
+		this.context = context;
 	}
 
 	@Override
@@ -78,12 +79,13 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 						Intent myIntent = new Intent(v.getContext(),
 								NovostiCela.class);
 						myIntent.putExtra("article", article);
-						activity.startActivityForResult(myIntent, 0);
+						((Activity)context).startActivityForResult(myIntent, 0);
 					}
 				});
 		// holder.latestArticleTitle.setText(article.getName());
-		holder.articleLayout.setBackgroundDrawable(getResizedDrawable(article
-				.getPhotoPath()));
+		if (article.getBigDrawable() == null)
+			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
+		holder.articleLayout.setBackgroundDrawable(article.getBigDrawable());
 		return convertView;
 	}
 
@@ -92,24 +94,37 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		url = url.replaceAll(" ", "%20");
 		try {
 			is = new URL(url).openStream();
-			Bitmap bitmap = BitmapFactory.decodeStream(is);
-			int width = bitmap.getWidth();
-			int height = bitmap.getHeight();
-			int screenWidth = activity.getWindowManager().getDefaultDisplay()
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = 2;
+			Bitmap bitmap = BitmapFactory.decodeStream(is,null, options);
+
+			// BitmapFactory.Options op = new BitmapFactory.Options();
+			// op.inSampleSize = 8;
+			// bitmap = BitmapFactory.decodeStream(is,null, op);
+			// int width = bitmap.getWidth();
+			// int height = bitmap.getHeight();
+			int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
 					.getWidth();
-			int screenHeight = activity.getWindowManager().getDefaultDisplay()
+			int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
 					.getHeight();
-			double ratio = ((double) screenWidth) / width;
-			if (ratio > ((double) screenHeight - 100) / height) {
-				ratio = ((double) screenHeight - 100) / height;
-			}
 			int maxHeight = (screenHeight - 100) / 2;
-			bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
-					((int) (height * ratio) > maxHeight ? maxHeight
-							: (int) (height * ratio)), true);
-			return new BitmapDrawable(bitmap);
+			Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth, maxHeight,
+					true);
+			bitmap.recycle();
+			Drawable drawable = new BitmapDrawable(bitmap2);
+			// drawable.setBounds(0, 0, screenWidth, maxHeight);
+			// bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
+			// ((int) (height * ratio) > maxHeight ? maxHeight
+			// : (int) (height * ratio)), true);
+			return drawable;
 		} catch (Exception e) {
 			// TODO: handle exception
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
@@ -118,5 +133,11 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		LinearLayout articleLayout;
 		TextView latestArticleTitle;
 
+	}
+	
+	public void clearAll(){
+		for(Article article:articles){
+			article.clear();
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package rs.novosti.model;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -7,6 +8,7 @@ import java.util.Date;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
@@ -25,8 +27,10 @@ public class Article implements Serializable {
 	private String oneLine;
 	private int imageLength;
 	private transient ImageView view;
+	private transient Drawable bigDrawable;
 	private boolean generated = false;
 	private transient Bitmap bitmap;
+	private transient Bitmap smallBitmap;
 
 	public String getTitle() {
 		return title;
@@ -102,8 +106,15 @@ public class Article implements Serializable {
 			generated = true;
 		}
 		if (view != null && bitmap != null) {
-			view.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 48, 48, true));
+			if (smallBitmap == null)
+				smallBitmap = Bitmap.createScaledBitmap(bitmap, 48, 48, true);
+			bitmap.recycle();
+			view.setImageBitmap(smallBitmap);
 		}
+	}
+
+	public void generateBigPhoto(double ratio) {
+
 	}
 
 	public void setView(ImageView view) {
@@ -112,6 +123,14 @@ public class Article implements Serializable {
 
 	public ImageView getView() {
 		return view;
+	}
+
+	public void setBigDrawable(Drawable bigDrawable) {
+		this.bigDrawable = bigDrawable;
+	}
+
+	public Drawable getBigDrawable() {
+		return bigDrawable;
 	}
 
 	private class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
@@ -128,9 +147,10 @@ public class Article implements Serializable {
 		@Override
 		protected void onPostExecute(Bitmap result) {
 			bitmap = result;
-			if (small)
+			if (small) {
 				view.setImageBitmap(Bitmap.createScaledBitmap(result, 48, 48,
 						true));
+			}
 		}
 
 		private Bitmap getSmallIcon(String url) {
@@ -138,19 +158,43 @@ public class Article implements Serializable {
 			url = url.replaceAll(" ", "%20");
 			try {
 				is = new URL(url).openStream();
-				Bitmap bitmap = BitmapFactory.decodeStream(is);
-				// int width = bitmap.getWidth();
-				// int height = bitmap.getHeight();
-				// double ratio = 48. / width;
-				// if (ratio > 48. / height) {
-				// ratio = 48. / height;
-				// }
-				return bitmap;
+				if (is != null) {
+					BitmapFactory.Options options = new BitmapFactory.Options();
+					options.inSampleSize = 4;
+					Bitmap bitmap = BitmapFactory.decodeStream(is, null,
+							options);
+
+					System.out.println("created bitmap in article . . .");
+					// int width = bitmap.getWidth();
+					// int height = bitmap.getHeight();
+					// double ratio = 48. / width;
+					// if (ratio > 48. / height) {
+					// ratio = 48. / height;
+					// }
+					return bitmap;
+				}
 			} catch (Exception e) {
+				System.out.println("ARTICLE");
+				e.printStackTrace();
+			} finally {
+				if (is != null)
+					try {
+						is.close();
+					} catch (IOException e) {
+						System.out.println("ARTICLE FINALLY");
+						e.printStackTrace();
+					}
 			}
 			return null;
 		}
 
+	}
+
+	public void clear() {
+		if (bitmap != null)
+			bitmap.recycle();
+		if (smallBitmap != null)
+			smallBitmap.recycle();
 	}
 
 }
