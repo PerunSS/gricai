@@ -108,8 +108,8 @@ public class Article implements Serializable {
 		if (view != null && bitmap != null) {
 			if (smallBitmap == null)
 				smallBitmap = Bitmap.createScaledBitmap(bitmap, 48, 48, true);
-			bitmap.recycle();
 			view.setImageBitmap(smallBitmap);
+			bitmap.recycle();
 		}
 	}
 
@@ -148,8 +148,10 @@ public class Article implements Serializable {
 		protected void onPostExecute(Bitmap result) {
 			bitmap = result;
 			if (small) {
-				view.setImageBitmap(Bitmap.createScaledBitmap(result, 48, 48,
-						true));
+				smallBitmap = Bitmap.createScaledBitmap(result, 48, 48,
+						true);
+				view.setImageBitmap(smallBitmap);
+				result.recycle();
 			}
 		}
 
@@ -195,6 +197,9 @@ public class Article implements Serializable {
 			bitmap.recycle();
 		if (smallBitmap != null)
 			smallBitmap.recycle();
+		bitmap = null;
+		smallBitmap = null;
+		generated = false;
 	}
 
 }
