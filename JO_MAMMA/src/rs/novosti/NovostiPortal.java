@@ -36,12 +36,6 @@ public class NovostiPortal extends Activity {
 			createMainPage();
 		}
 	};
-	Handler categoryHandler = new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			progressDialog.dismiss();
-		}
-	};
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -100,21 +94,19 @@ public class NovostiPortal extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					progressDialog = ProgressDialog.show(NovostiPortal.this, "", "Molimo sačekajte");
-					Thread thread = new Thread(new CategoryLoaderThread(category));
-					thread.start();
-//					categoryPreviewAdapter.clear();
+					
+					categoryPreviewAdapter.clear();
 					
 //					Intent categoryIntent = new Intent(v.getContext(),
 //							NovostiCategory.class);
 //					categoryIntent.putExtra("category", category);
 //					startActivityForResult(categoryIntent, 0);
 					ListView view = (ListView) findViewById(R.id.Content);
-//					if(categoryLayoutAdapter!=null){
-//						categoryLayoutAdapter.clear();
-//					}
-//					categoryLayoutAdapter = new CategoryLayoutAdapter(NovostiPortal.this, category
-//							.getArticles());
+					if(categoryLayoutAdapter!=null){
+						categoryLayoutAdapter.clear();
+					}
+					categoryLayoutAdapter = new CategoryLayoutAdapter(NovostiPortal.this, category
+							.getArticles());
 					view.setAdapter(categoryLayoutAdapter);
 					view.setItemsCanFocus(true);
 					view.setFocusable(false);
@@ -172,27 +164,4 @@ public class NovostiPortal extends Activity {
 		
 	}
 	
-	private class CategoryLoaderThread implements Runnable{
-
-		Category category;
-		CategoryLoaderThread(Category category) {
-			this.category = category;
-		}
-		@Override
-		public void run() {
-			categoryPreviewAdapter.clear();
-			
-//			Intent categoryIntent = new Intent(v.getContext(),
-//					NovostiCategory.class);
-//			categoryIntent.putExtra("category", category);
-//			startActivityForResult(categoryIntent, 0);
-			if(categoryLayoutAdapter!=null){
-				categoryLayoutAdapter.clear();
-			}
-			categoryLayoutAdapter = new CategoryLayoutAdapter(NovostiPortal.this, category
-					.getArticles());
-			categoryHandler.sendEmptyMessage(0);
-		}
-		
-	}
 }
