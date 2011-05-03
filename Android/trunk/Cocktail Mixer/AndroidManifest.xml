@@ -25,25 +25,15 @@
         </activity>
         <activity android:name=".DisplayFavorite">
         </activity>
-
-   		<!-- The application's publisher ID assigned by AdMob -->
-		<meta-data android:value="a14d7e898152f3b" android:name="ADMOB_PUBLISHER_ID" />
+        <activity android:name=".Chooser">
+        </activity>
         
-		<!-- AdMobActivity definition -->
-		<activity 
-			android:name="com.admob.android.ads.AdMobActivity"
-			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-			android:configChanges="orientation|keyboard|keyboardHidden" />
-		<!-- Track Market installs -->          
-		<receiver 
-			android:name="com.admob.android.ads.analytics.InstallReceiver"
-			android:exported="true">
-			<intent-filter>
-  				<action android:name="com.android.vending.INSTALL_REFERRER" />
-			</intent-filter>
-		</receiver>
-    </application>
-    <uses-sdk android:minSdkVersion="3" />
-	<uses-permission android:name="android.permission.INTERNET" />
+		<!-- new admob -->
+        <activity android:name="com.google.ads.AdActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation"/>   
+	</application>
+	<uses-sdk android:minSdkVersion="3" />
+	<uses-permission android:name="android.permission.INTERNET"/>
+  	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 </manifest> 

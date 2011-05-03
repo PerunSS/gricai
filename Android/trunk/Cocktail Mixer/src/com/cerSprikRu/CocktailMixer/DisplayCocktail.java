@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class DisplayCocktail extends Activity{
 	
@@ -102,5 +104,7 @@ public class DisplayCocktail extends Activity{
 			favButton.setEnabled(false);
 			favButton.setBackgroundResource(R.drawable.save_2);
 		}
+		AdView adView4 = (AdView) findViewById(R.id.adView4);
+		adView4.loadAd(new AdRequest());
 	}
 }

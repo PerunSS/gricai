@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class DisplayFavorite extends Activity{
 	private Cocktail cocktail;
@@ -51,6 +53,7 @@ public class DisplayFavorite extends Activity{
 				finish();
 			}
 		});
-		
+		AdView adView3 = (AdView) findViewById(R.id.adView3);
+		adView3.loadAd(new AdRequest());
 	}
 }

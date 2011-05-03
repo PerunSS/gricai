@@ -37,7 +37,7 @@ public class DisplayFavorites extends Activity {
 		super.onResume();
 		favoriteCocktailsView = (ListView) findViewById(R.id.favorites_cocktail_list_view);
 		if (FavoritesManager.getInstance() == null)
-			new FavoritesManager(CocktailMixer.instance);
+			new FavoritesManager(Chooser.instance);
 		Set<Cocktail> cocktailsSet = FavoritesManager.getInstance()
 				.getFavorites();
 		favoriteCocktailList.clear();
