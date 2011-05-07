@@ -15,8 +15,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,12 +71,12 @@ public class NovostiPortal extends Activity {
 
 	private void createMenu() {
 		setContentView(R.layout.main);
-		ImageView image = (ImageView) findViewById(R.id.Logo);
+		Button home = (Button) findViewById(R.id.HomeButton);
 		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.menuScrollView);
 		horScrView.setHorizontalScrollBarEnabled(false);
 		menuView = (LinearLayout) findViewById(R.id.Menu);
 		menuView.setHorizontalScrollBarEnabled(false);
-		image.setOnClickListener(new View.OnClickListener() {
+		home.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

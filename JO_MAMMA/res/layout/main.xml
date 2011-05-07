@@ -5,12 +5,30 @@
     android:layout_height="fill_parent"
     >
 
-	<ImageView 
+	<!--<ImageView 
 		android:layout_height="50sp" 
 		android:id="@+id/Logo" 
 		android:background="@drawable/novosti_logo"
 		android:layout_width="fill_parent"
-		/>
+		/>-->
+	<LinearLayout 
+    	android:orientation="horizontal"
+    	android:layout_width="fill_parent"
+    	android:layout_height="50sp"
+    	>
+		<Button
+			android:id="@+id/HomeButton"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:text="home"/>
+		<Button
+			android:id="@+id/ImageGalleryButton"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:text="galerija"/>
+	</LinearLayout>
 	<HorizontalScrollView 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content" 
