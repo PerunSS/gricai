@@ -111,19 +111,47 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 
 	public void generateRecipe() {
 		Collections.sort(drinks);
-		text = "";
+		double alcAmount = 0.0;
+		int totalSize = 0;
+		for(Drink drink:drinks){
+			alcAmount+=(drink.getAlcPercent()*drink.getAmount());
+			totalSize+=drink.getAmount();
+		}
+		boolean strong = false;
+		if(alcAmount/totalSize>0.25){
+			strong = true;
+		}
+		String prepare = "";
 		double random = Math.random();
-		if (random < 0.45) {
-			text += "Shake in shaker:\n" + (int) (Math.random() * 5 + 5)
-					+ " ice cubes";
-		} else if (random > 0.65)
-			text += "Put in glass:";
-		else
-			text += "Put in glass:\n" + (int) (Math.random() * 3 + 3)
-					+ " ice cubes";
-		text += "\n";
+		boolean shot = false;
+		boolean ice = false;
+		if(strong){
+			if(RandomOptions.getInstance().isShotDrinks() && random>0.45){
+				shot = true;
+			}
+			prepare = "Shake:\n";
+			ice = true;
+		}else {
+			if(random>0.70){
+				prepare = "Shake:\n";
+				ice = true;
+			}else if(random<30 && RandomOptions.getInstance().isShortDrinks()){
+				prepare = "Distribute in small glasses:\n";
+			}else {
+				prepare = "Put in glass:\n";
+				ice = true;
+			}
+		}
+		text = prepare;
+		
+		if (ice && Math.random() < 0.75) {
+			text += (int) (Math.random() * 5 + 5) + " ice cubes\n";
+		} 
 		for (Drink drink : drinks) {
 			text += drink + "\n";
+		}
+		if(shot){
+			text+="drink as a shot from small glasses";
 		}
 	}
 

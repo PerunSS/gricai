@@ -105,6 +105,7 @@ public class Chooser extends Activity {
 				if (rum.isChecked()) {
 					Drink drink = new Drink();
 					drink.setName("Rum");
+					drink.setAlcPercent(0.42);
 					drink.setType(DrinkType.A_STRONG);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
@@ -117,12 +118,14 @@ public class Chooser extends Activity {
 				if (brandy.isChecked()) {
 					Drink drink = new Drink();
 					drink.setName("Brandy");
+					drink.setAlcPercent(0.42);
 					drink.setType(DrinkType.A_STRONG);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
 				if (absinthe.isChecked()) {
 					Drink drink = new Drink();
 					drink.setName("Absinthe");
+					drink.setAlcPercent(0.65);
 					drink.setType(DrinkType.A_STRONG);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
@@ -177,6 +180,7 @@ public class Chooser extends Activity {
 				if (beer.isChecked()) {
 					Drink drink = new Drink();
 					drink.setName("Beer");
+					drink.setAlcPercent(0.05);
 					drink.setType(DrinkType.C_OTHER);
 					CocktailCreator.getInstance().addDrink(drink);
 				}
@@ -189,6 +193,7 @@ public class Chooser extends Activity {
 				if (vermouth.isChecked()) {
 					Drink drink = new Drink();
 					drink.setName("Vermouth");
+					drink.setAlcPercent(0.18);
 					drink.setType(DrinkType.C_OTHER);
 					CocktailCreator.getInstance().addDrink(drink);
 				}

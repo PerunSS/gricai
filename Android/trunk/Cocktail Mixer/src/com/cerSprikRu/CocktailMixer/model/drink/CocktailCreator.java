@@ -14,10 +14,6 @@ public class CocktailCreator {
 	private static CocktailCreator instance = new CocktailCreator();
 	private List<Cocktail> cocktails = new ArrayList<Cocktail>();
 
-	private double strongRatio = 0.2;
-	private double liquerRatio = 0.45;
-	private double nonAlcRatio = 0.45;
-
 	private CocktailCreator() {
 
 	}
@@ -82,11 +78,6 @@ public class CocktailCreator {
 		}
 	}
 
-	public void printCocktails() {
-		for (Cocktail cocktail : cocktails)
-			System.out.println(cocktail);
-	}
-
 	public List<Cocktail> getCocktails() {
 		return cocktails;
 	}
@@ -109,42 +100,45 @@ public class CocktailCreator {
 		switch (drink.getType()) {
 		case A_STRONG:
 			random = Math.random();
-			if (random < liquerRatio)
+			if (random < RandomOptions.getInstance().getLiquerRatio())
 				nextType = DrinkType.B_LIQUEUR;
-			else if (random > 1 - nonAlcRatio)
+			else if (random > 1 - RandomOptions.getInstance().getNonAlcRatio())
 				nextType = DrinkType.D_NON_ALC;
 			else
 				nextType = DrinkType.C_OTHER;
 			break;
 		case B_LIQUEUR:
 			random = Math.random();
-			if (random < strongRatio)
+			if (random < RandomOptions.getInstance().getStrongRatio())
 				nextType = DrinkType.A_STRONG;
-			else if (random > 1 - liquerRatio + strongRatio)
+			else if (random > 1 - RandomOptions.getInstance().getLiquerRatio()
+					+ RandomOptions.getInstance().getStrongRatio())
 				nextType = DrinkType.B_LIQUEUR;
-			else if (random > nonAlcRatio)
+			else if (random > RandomOptions.getInstance().getNonAlcRatio())
 				nextType = DrinkType.D_NON_ALC;
 			else
 				nextType = DrinkType.C_OTHER;
 			break;
 		case C_OTHER:
 			random = Math.random();
-			if (random < strongRatio - 0.05)
+			if (random < RandomOptions.getInstance().getStrongRatio() - 0.05)
 				nextType = DrinkType.A_STRONG;
-			else if (random > 1 - liquerRatio + strongRatio - 0.05)
+			else if (random > 1 - RandomOptions.getInstance().getLiquerRatio()
+					+ RandomOptions.getInstance().getStrongRatio() - 0.05)
 				nextType = DrinkType.B_LIQUEUR;
-			else if (random > nonAlcRatio - 0.1)
+			else if (random > RandomOptions.getInstance().getNonAlcRatio() - 0.1)
 				nextType = DrinkType.D_NON_ALC;
 			else
 				nextType = DrinkType.C_OTHER;
 			break;
 		case D_NON_ALC:
 			random = Math.random();
-			if (random < strongRatio + 0.05)
+			if (random < RandomOptions.getInstance().getStrongRatio() + 0.05)
 				nextType = DrinkType.A_STRONG;
-			else if (random > 1 - liquerRatio + strongRatio)
+			else if (random > 1 - RandomOptions.getInstance().getLiquerRatio()
+					+ RandomOptions.getInstance().getStrongRatio())
 				nextType = DrinkType.B_LIQUEUR;
-			else if (random > nonAlcRatio)
+			else if (random > RandomOptions.getInstance().getNonAlcRatio())
 				nextType = DrinkType.D_NON_ALC;
 			else
 				nextType = DrinkType.C_OTHER;
@@ -183,18 +177,18 @@ public class CocktailCreator {
 		} else {
 			switch (nextType) {
 			case A_STRONG:
-				strongRatio = 0;
+				RandomOptions.getInstance().setStrongRatio(0);
 				break;
 			case B_LIQUEUR:
-				liquerRatio = 0;
+				RandomOptions.getInstance().setLiquerRatio(0);
 				break;
 			case D_NON_ALC:
-				nonAlcRatio = 0;
+				RandomOptions.getInstance().setNonAlcRatio(0);
 				break;
 			default:
-				strongRatio = 0.25;
-				liquerRatio = 0.35;
-				nonAlcRatio = 0.40;
+				RandomOptions.getInstance().setStrongRatio(0.25);
+				RandomOptions.getInstance().setLiquerRatio(0.35);
+				RandomOptions.getInstance().setNonAlcRatio(0.40);
 			}
 		}
 
@@ -231,7 +225,8 @@ public class CocktailCreator {
 	}
 
 	public boolean canMix() {
-		if(liqueurs.isEmpty() && otherDrinks.isEmpty() && nonAlcDrinks.isEmpty())
+		if (liqueurs.isEmpty() && otherDrinks.isEmpty()
+				&& nonAlcDrinks.isEmpty())
 			return false;
 		return true;
 	}

@@ -12,6 +12,7 @@ public class Drink implements Serializable, Comparable<Drink> {
 	private String name;
 	private DrinkType type;
 	private boolean teaSpoon;
+	private double alcPercent = 0.0;
 
 	public Drink() {
 		teaSpoon = false;
@@ -39,6 +40,19 @@ public class Drink implements Serializable, Comparable<Drink> {
 
 	public void setType(DrinkType type) {
 		this.type = type;
+		switch(type){
+		case A_STRONG:
+			alcPercent = 0.4;
+			break;
+		case B_LIQUEUR:
+			alcPercent = 0.22;
+			break;
+		case C_OTHER:
+			alcPercent = 0.15;
+			break;
+		case D_NON_ALC:
+			alcPercent = 0.0;
+		}
 	}
 
 	public DrinkType getType() {
@@ -70,5 +84,13 @@ public class Drink implements Serializable, Comparable<Drink> {
 
 	public void setTeaSpoon(boolean teaSpoon) {
 		this.teaSpoon = teaSpoon;
+	}
+
+	public void setAlcPercent(double alcAmount) {
+		this.alcPercent = alcAmount;
+	}
+
+	public double getAlcPercent() {
+		return alcPercent;
 	}
 }
