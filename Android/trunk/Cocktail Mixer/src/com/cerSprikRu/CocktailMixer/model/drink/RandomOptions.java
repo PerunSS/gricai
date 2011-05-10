@@ -54,6 +54,10 @@ public class RandomOptions {
 	}
 
 	public void setShotDrinks(boolean shotDrinks) {
+		if(shotDrinks){
+			nonAlcRatio*=0.5;
+			strongRatio = 1 - nonAlcRatio - liquerRatio;
+		}
 		this.shotDrinks = shotDrinks;
 	}
 }
