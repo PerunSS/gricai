@@ -6,16 +6,29 @@
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent"
   	android:background="@drawable/bg_2">	
-  		<TextView
-  			android:id="@+id/favorite_cocktail_name"
+  		<LinearLayout
+  			android:orientation="horizontal"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
-  			android:textSize="35sp"
-  			android:textColor="#FFFFFF"
-  			android:gravity="center"
-  			android:layout_weight="3"
-  			android:paddingTop="15sp"
-  		/>
+  			android:layout_weight="3">
+  			<ImageView
+  				android:id="@+id/favorite_cocktail_image"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:background="@drawable/icon"
+  				android:layout_weight="3"/>
+  			<TextView
+  				android:id="@+id/favorite_cocktail_name"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:textSize="40sp"
+  				android:textColor="#FFFFFF"
+  				android:gravity="center"
+  				android:paddingTop="15sp"
+  				android:layout_weight="1"
+  				android:typeface="serif"
+  			/>
+  		</LinearLayout>
   		<LinearLayout
   			android:orientation="vertical"
   			android:layout_width="fill_parent"
