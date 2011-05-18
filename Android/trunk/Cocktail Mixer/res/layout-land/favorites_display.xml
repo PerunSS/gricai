@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:myapp="http://schemas.android.com/apk/res/com.cerSprikRu.CocktailMixer"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@drawable/bg_1"> 	
+  	<ListView
+		android:id="@+id/favorites_cocktail_list_view"
+		android:layout_height = "fill_parent"
+		android:layout_width = "fill_parent"
+		android:layout_weight="1"
+		android:textColor="#FFFFFF"
+  		android:textSize="15dp"
+  		android:divider="#FFFFFF"
+        android:dividerHeight="4px"
+        android:cacheColorHint="#00000000"
+	/>  	
+</LinearLayout>

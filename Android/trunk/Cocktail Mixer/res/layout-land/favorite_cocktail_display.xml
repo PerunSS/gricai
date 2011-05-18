@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:ads="http://schemas.android.com/apk/res/com.cerSprikRu.CocktailMixer"
+  	android:orientation="vertical"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
+  	android:background="@drawable/bg_2">	
+  		<LinearLayout
+  			android:orientation="vertical"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1">
+  			<ScrollView
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+	  			android:gravity="center">
+  				<LinearLayout
+  					android:orientation="vertical"
+  					android:layout_width="fill_parent"
+  					android:layout_height="fill_parent">
+  				<TextView
+  					android:id="@+id/favorite_cocktail_name"
+  					android:layout_width="fill_parent"	
+  					android:layout_height="fill_parent"
+  					android:textSize="35sp"
+  					android:textColor="#FFFFFF"
+  					android:gravity="center"
+	  				android:paddingTop="20sp"
+  				/> 			
+  				<TextView
+	  				android:id="@+id/favorite_cocktail_recipe"
+  					android:layout_width="fill_parent"
+  					android:layout_height="fill_parent"
+  					android:layout_weight="1"
+  					android:textSize="22sp"
+  					android:textColor="#FFFFFF"
+  					android:gravity="center"
+  				/>
+  				</LinearLayout>
+  			</ScrollView>
+  			<com.google.ads.AdView android:id="@+id/adView3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				ads:adUnitId="a14d7e898152f3b"
+				ads:adSize="BANNER"
+			/>
+  		</LinearLayout>
+  		<LinearLayout
+  			android:orientation="horizontal"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="5">
+  			<Button
+  				android:id="@+id/remove_from_favorites"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:background="@drawable/btn_remove"
+  			/>
+  			<Button
+  				android:id="@+id/share_favorite_cocktail"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:background="@drawable/btn_share"
+  			/>
+  			
+  			
+  		</LinearLayout>
+  	
+</LinearLayout>
