@@ -6,11 +6,28 @@
     android:background="#eeeeee"
     >
 
-	<ImageView 
-		android:layout_height="50sp" 
-		android:id="@+id/fullArticle_Logo" 
-		android:background="@drawable/novosti_logo"
-		android:layout_width="fill_parent"/>
+	<LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="60dp"
+		android:background="#FE0000">
+		<LinearLayout 
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="fill_parent"
+			android:layout_weight="1">
+			<include layout="@layout/logo_view" 
+			android:id="@+id/Logo_ref2"/>
+		</LinearLayout>
+		
+		
+		<include layout="@layout/homebutton" 
+			android:id="@+id/HomeButton2"/>
+		<include layout="@layout/imagegallerybutton" 
+			android:id="@+id/ImageGalleryButton2"/>
+			
+			
+	</LinearLayout>
 	<HorizontalScrollView 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content" 
@@ -28,6 +45,7 @@
 		android:id="@+id/fullArticle_View"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"	
+		android:background="@drawable/bck"
 		>
 		<LinearLayout
 			android:orientation="vertical"
@@ -38,8 +56,8 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textColor="#333333"
-			android:paddingLeft="4sp"
-			android:textSize="20sp"
+			android:paddingLeft="4dp"
+			android:textSize="20dp"
 		/>
 		<TextView
 			android:id="@+id/fullArticle_Source"
@@ -47,28 +65,31 @@
 			android:layout_height="wrap_content"
 			
 		/>
+		
+		<ImageView
+			android:id="@+id/fullArticle_Photo"
+			android:layout_height="200dp"  
+			android:layout_width="fill_parent"
+		/>
 		<TextView
 			android:id="@+id/fullArticle_ShortText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textColor="#333333"
-			android:paddingLeft="4sp"
-			android:textSize="14sp"
+			android:paddingLeft="4dp"
+			android:textSize="14dp"
 			android:textStyle="italic"	
-		/>
-		<ImageView
-			android:id="@+id/fullArticle_Photo"
-			android:layout_height="200sp"  
-			android:layout_width="fill_parent"
 		/>
 		<TextView
 			android:id="@+id/fullArticle_FullText"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textColor="#333333"
-			android:paddingLeft="4sp"
+			android:paddingLeft="4dp"
+			android:paddingTop="15dp"
 			android:textSize="14sp"	
 		/>
+		
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

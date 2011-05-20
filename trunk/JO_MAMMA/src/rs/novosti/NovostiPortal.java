@@ -77,9 +77,7 @@ public class NovostiPortal extends Activity {
 	private void createMenu() {
 		setContentView(R.layout.main);
 		Button home = (Button) findViewById(R.id.HomeButton);
-		home.setBackgroundResource(android.R.drawable.ic_menu_slideshow);
 		Button gallery = (Button) findViewById(R.id.ImageGalleryButton);
-		gallery.setBackgroundResource(android.R.drawable.ic_menu_camera);
 		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.menuScrollView);
 		horScrView.setHorizontalScrollBarEnabled(false);
 		menuView = (LinearLayout) findViewById(R.id.Menu);
