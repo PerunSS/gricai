@@ -3,19 +3,49 @@
   	xmlns:android="http://schemas.android.com/apk/res/android"
   	android:id="@+id/thirdStyleArticle"
   	android:layout_width="fill_parent"
-  	android:layout_height="fill_parent"
+  	android:layout_height="48dp"
   	android:orientation="vertical">
-  	<TextView
-  		android:layout_width="fill_parent"
-  		android:layout_height="wrap_content"
-  		android:id="@+id/thirdStyleArticle_title"
-		android:background="#EEEEEE"
-		android:textColor="#333333"
-		android:paddingLeft="4sp"
-		android:textSize="14sp"
-  	/> 	
   	<View
 		android:layout_width="fill_parent"
-		android:layout_height="2dip"
-		android:background="#888888"/>
+		android:layout_height="1dip"
+		android:background="#BBBBBB"/>
+	<LinearLayout
+		android:id="@+id/thirdStyleArticle_layout"
+		android:layout_width="fill_parent"
+		android:layout_height="45dp"
+		android:orientation="horizontal"
+		android:background="@drawable/bck"
+		android:padding="5dp"
+		android:gravity="center_vertical">	
+		
+  		<TextView
+  			android:id="@+id/thirdStyleArticle_title"
+			android:layout_width="285dp"
+			android:layout_height="wrap_content"
+			android:textColor="#333333"
+			android:paddingRight="5dp"
+			android:textSize="14dp"
+			android:gravity="left"
+  		/> 	
+  		<LinearLayout
+			android:layout_width="35dp"
+			android:layout_height="fill_parent"
+			android:paddingRight="5dp"
+			android:gravity="center"
+			>	
+		<ImageView 
+			android:layout_width="30dp"
+			android:layout_height="30dp"		
+			android:gravity="center_vertical"
+			android:background="@drawable/arrow"/>
+		</LinearLayout>
+	</LinearLayout>			
+  	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dip"
+		android:background="#BBBBBB"/>
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dip"
+		android:background="#FFFFFF"/>
 </LinearLayout>
