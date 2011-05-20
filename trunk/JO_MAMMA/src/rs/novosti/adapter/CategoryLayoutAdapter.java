@@ -25,8 +25,8 @@ import android.widget.TextView;
 
 public class CategoryLayoutAdapter extends BaseAdapter {
 
-	private int firstPart = 1;
-	private int secondPart = 11;
+	private int firstPart = 0;
+	private int secondPart = 5;
 
 	private LayoutInflater inflater;
 	private List<Article> articles;
@@ -106,10 +106,10 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			// if (convertView == null) {
 			convertView = inflater.inflate(R.layout.second_article_style, null);
 			secondHolder = new SecondHolder();
-			secondHolder.secondStyleArticleLayout = (RelativeLayout) convertView
+			secondHolder.secondStyleArticleLayout = (LinearLayout) convertView
 					.findViewById(R.id.secondStyleArticle_layout);
 			secondHolder.secondStyleArticleShortText = (TextView) convertView
-					.findViewById(R.id.secondStyleArticle_shortText);
+					.findViewById(R.id.secondStyleArticle_source);
 			secondHolder.secondStyleArticleImage = (ImageView) convertView
 					.findViewById(R.id.secondStyleArticle_image);
 			secondHolder.secondStyleArticleTitle = (TextView) convertView
@@ -130,14 +130,14 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
-
+			
 			// ovde treba da stvarno ubacuje iz artikala
 			// secondHolder.secondStyleArticleTitle.setText(article.getName());
 			// secondHolder.secondStyleArticleShortText.setText(article.getShortText());
 
 			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
 			secondHolder.secondStyleArticleShortText.setText(article
-					.getShortText());
+					.getSource());
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.icon);
 			article.setView(secondHolder.secondStyleArticleImage);
@@ -154,6 +154,8 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			thirdHolder = new ThirdHolder();
 			thirdHolder.articleTitle = (TextView) convertView
 					.findViewById(R.id.thirdStyleArticle_title);
+			thirdHolder.thirdHolderLayout = (LinearLayout) convertView
+			.findViewById(R.id.thirdStyleArticle_layout);
 			convertView.setTag(thirdHolder);
 			// } else {
 			// thirdHolder = (ThirdHolder) convertView.getTag();
@@ -161,8 +163,8 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			// i ovde naravno ovo uzima al da bi mi bilo lakse necu to sad :D
 			// Article article = articles.get(position);
 			// thirdHolder.articleTitle.setText(article.getName());
-			thirdHolder.articleTitle.setText(article.getOneLine());
-			thirdHolder.articleTitle
+			thirdHolder.articleTitle.setText(article.getTitle());
+			thirdHolder.thirdHolderLayout
 					.setOnClickListener(new View.OnClickListener() {
 
 						@Override
@@ -240,11 +242,12 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		ImageView secondStyleArticleImage;
 		TextView secondStyleArticleTitle;
 		TextView secondStyleArticleShortText;
-		RelativeLayout secondStyleArticleLayout;
+		LinearLayout secondStyleArticleLayout;
 
 	}
 
 	private class ThirdHolder {
+		LinearLayout thirdHolderLayout;
 		TextView articleTitle;
 	}
 

@@ -10,6 +10,8 @@ import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,7 +42,7 @@ public class NovostiPortal extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
 		Thread thread = new Thread(new LoaderThread());
 		thread.start();
@@ -55,7 +57,10 @@ public class NovostiPortal extends Activity {
 	
 	public void resetMenuView(){
 		for(int i=0;i<menuView.getChildCount();i++){
-			menuView.getChildAt(i).setBackgroundResource(R.color.menu_background);
+			TextView tv = (TextView)menuView.getChildAt(i);
+			tv.setTextColor(0xFFFE0000);
+			tv.setBackgroundColor(0xFFFFFFFF);
+			
 		}
 	}
 	
@@ -72,6 +77,9 @@ public class NovostiPortal extends Activity {
 	private void createMenu() {
 		setContentView(R.layout.main);
 		Button home = (Button) findViewById(R.id.HomeButton);
+		home.setBackgroundResource(android.R.drawable.ic_menu_slideshow);
+		Button gallery = (Button) findViewById(R.id.ImageGalleryButton);
+		gallery.setBackgroundResource(android.R.drawable.ic_menu_camera);
 		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.menuScrollView);
 		horScrView.setHorizontalScrollBarEnabled(false);
 		menuView = (LinearLayout) findViewById(R.id.Menu);
@@ -89,6 +97,13 @@ public class NovostiPortal extends Activity {
 		for (Category cat : Main.getInstance().getCategories()) {
 			final Category category = cat;
 			final TextView tv = new TextView(this);
+			tv.setHeight(30);
+			tv.setTextSize(16);
+			tv.setGravity(0x11);
+			tv.setTextColor(0xFFFE0000);
+			tv.setBackgroundColor(0xFFFFFFFF);
+			tv.setPadding(5, 0, 5, 0);
+			tv.setTypeface(Typeface.DEFAULT_BOLD);
 			tv.setText(" " + cat.getTitle() + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
 
@@ -111,14 +126,15 @@ public class NovostiPortal extends Activity {
 					view.setItemsCanFocus(true);
 					view.setFocusable(false);
 					resetMenuView();
-					tv.setBackgroundResource(R.color.menu_high_light);
+					tv.setTextColor(0xFFFFFFFF);
+					tv.setBackgroundColor(0xFFFE0000);
 				}
 			});
 			// RelativeLayout.LayoutParams lay = new
 			// RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
 			// RelativeLayout.LayoutParams.WRAP_CONTENT);
 			// lay.addRule(RelativeLayout.RIGHT_OF, RelativeLayout.TRUE);
-			tv.setBackgroundResource(R.color.menu_background);
+			//tv.setBackgroundResource(R.color.menu_background);
 			menuView.addView(tv);
 		}
 	}
@@ -130,6 +146,7 @@ public class NovostiPortal extends Activity {
 		for (Category cat : main.getCategories()) {
 			if (cat.getArticles() != null && cat.getArticles().size() > 1)
 				if (cat.getTitle().equalsIgnoreCase("politika")
+						|| cat.getTitle().equalsIgnoreCase("društvo")
 						|| cat.getTitle().equalsIgnoreCase("ekonomija")
 						|| cat.getTitle().equalsIgnoreCase("sport"))
 					sliderArticles.add(cat.getArticles().get(0));

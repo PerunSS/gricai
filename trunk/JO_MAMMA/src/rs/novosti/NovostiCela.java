@@ -50,7 +50,7 @@ public class NovostiCela extends Activity {
 
 		articleFullText = (TextView) findViewById(R.id.fullArticle_FullText);
 		articleFullText.setText(article.getText());
-
+	
 	}
 
 	private void setFontSize(List<Integer> list){
