@@ -15,22 +15,17 @@
 			android:layout_width="wrap_content" 
 			android:layout_height="fill_parent"
 			android:layout_weight="1">
-			<ImageView 
-				android:layout_height="fill_parent" 
-				android:id="@+id/Logo"
-				android:background="@drawable/novosti_logo" 
-				android:layout_width="90dp" />
+			<include layout="@layout/logo_view" 
+			android:id="@+id/Logo_ref"/>
 		</LinearLayout>
-		<Button 
-			android:id="@+id/HomeButton" 
-			android:layout_width="60dp"
-			android:layout_height="fill_parent" 
-			android:gravity="right" />
-		<Button 
-			android:id="@+id/ImageGalleryButton"
-			android:layout_width="60dp" 
-			android:layout_height="fill_parent" 
-			android:gravity="right" />
+		
+		
+		<include layout="@layout/homebutton" 
+			android:id="@+id/HomeButton"/>
+		<include layout="@layout/imagegallerybutton" 
+			android:id="@+id/ImageGalleryButton"/>
+			
+			
 	</LinearLayout>
 	
 	<View
@@ -39,18 +34,8 @@
 		android:background="#FFFFFF"/>
 	
 	
-	<HorizontalScrollView 
-		android:layout_width="fill_parent"
-		android:layout_height="30dp" 
-		android:id="@+id/menuScrollView">
-
-		<LinearLayout 
-			android:id="@+id/Menu"
-			android:layout_height="30dp" 
-			android:layout_width="wrap_content"
-			android:orientation="horizontal">
-		</LinearLayout>
-	</HorizontalScrollView>
+	<include layout="@layout/menuscrollview" 
+		android:id="@+id/menuScrollView"  />
 	
 	<View
 		android:layout_width="fill_parent"
