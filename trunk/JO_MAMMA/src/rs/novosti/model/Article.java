@@ -21,10 +21,11 @@ public class Article implements Serializable {
 	private String title;
 	private String shortText;
 	private String text;
-	private String source;
+	private String link;
 	private Date date;
 	private String photoPath;
-	private String oneLine;
+	private String smallPhotoPath;
+	private String description;
 	private int imageLength;
 	private transient ImageView view;
 	private transient Drawable bigDrawable;
@@ -60,14 +61,6 @@ public class Article implements Serializable {
 		this.text = text;
 	}
 
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
 	public Date getDate() {
 		return date;
 	}
@@ -82,14 +75,6 @@ public class Article implements Serializable {
 
 	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
-	}
-
-	public void setOneLine(String oneLine) {
-		this.oneLine = oneLine;
-	}
-
-	public String getOneLine() {
-		return oneLine;
 	}
 
 	public void setImageLength(int imageLength) {
@@ -202,6 +187,30 @@ public class Article implements Serializable {
 		bitmap = null;
 		smallBitmap = null;
 		generated = false;
+	}
+
+	public void setSmallPhotoPath(String smallPhotoPath) {
+		this.smallPhotoPath = smallPhotoPath;
+	}
+
+	public String getSmallPhotoPath() {
+		return smallPhotoPath;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 }
