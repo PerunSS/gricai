@@ -87,14 +87,11 @@ public class Article implements Serializable {
 
 	public void generateSmallPhoto() {
 		if (!generated) {
-			new DownloadImagesTask().execute(photoPath, "small");
+			new DownloadImagesTask().execute(smallPhotoPath, "small");
 			generated = true;
 		}
 		if (view != null && bitmap != null) {
-			if (smallBitmap == null)
-				smallBitmap = Bitmap.createScaledBitmap(bitmap, 48, 48, true);
-			view.setImageBitmap(smallBitmap);
-			bitmap.recycle();
+			view.setImageBitmap(bitmap);
 		}
 	}
 
@@ -133,10 +130,8 @@ public class Article implements Serializable {
 		protected void onPostExecute(Bitmap result) {
 			bitmap = result;
 			if (small && result!=null) {
-				smallBitmap = Bitmap.createScaledBitmap(result, 48, 48,
-						true);
+				smallBitmap = result;
 				view.setImageBitmap(smallBitmap);
-				result.recycle();
 			}
 		}
 
@@ -149,7 +144,6 @@ public class Article implements Serializable {
 				is = new URL(url).openStream();
 				if (is != null) {
 					BitmapFactory.Options options = new BitmapFactory.Options();
-					options.inSampleSize = 4;
 					Bitmap bitmap = BitmapFactory.decodeStream(is, null,
 							options);
 
@@ -211,6 +205,15 @@ public class Article implements Serializable {
 
 	public String getDescription() {
 		return description;
+	}
+	
+	@Override
+	public String toString() {
+		String returnString = "naslov: "+title+"\n";
+		returnString+="datum: "+date+"\n";
+		returnString+="image: "+smallPhotoPath+"\n";
+		returnString+="link: "+link+"\n";
+		return returnString;
 	}
 
 }

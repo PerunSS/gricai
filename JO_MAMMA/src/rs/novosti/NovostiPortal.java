@@ -10,13 +10,11 @@ import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -158,7 +156,7 @@ public class NovostiPortal extends Activity {
 
 		ListView view = (ListView) findViewById(R.id.Content);
 		if(categoryPreviewAdapter == null)
-			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main.getCategories(),sliderArticles);
+			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main.getNaslovna().getArticles(),sliderArticles);
 		view.setAdapter(categoryPreviewAdapter);
 		view.setItemsCanFocus(true);
 		view.setFocusable(false);

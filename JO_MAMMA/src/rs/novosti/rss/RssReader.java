@@ -1,6 +1,8 @@
 package rs.novosti.rss;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
@@ -58,7 +60,17 @@ public class RssReader {
 			URL url = new URL(RssReader.naslovna);
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
 					.newPullParser();
-			parser.setInput(url.openStream(), "UTF-8");
+			
+			StringBuffer buffer = new StringBuffer();
+			InputStreamReader stream = new InputStreamReader(url.openStream(), "UTF-8");
+			int c = 1;
+			while((c = stream.read())!=-1){
+				buffer.append(Character.toChars(c));
+			}
+			String result = new String(buffer.toString().getBytes(),"UTF-8");
+			result = result.replaceAll("&", "&amp;");
+			System.out.println(result);
+			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
 			Article article = null;
@@ -75,32 +87,36 @@ public class RssReader {
 					if (itemStarted && article != null && tag.length() > 0) {
 						String text = parser.getText();
 						text = text.trim();
-						if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
-							String date = text;
-							Date dateValue = null;
-							try {
-								dateValue = new Date(Date.parse(date));
-							} catch (Exception e) {
-								e.printStackTrace();
+						if(text.length()>0){
+							if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
+								String date = text;
+								Date dateValue = null;
+								try {
+									dateValue = new Date(Date.parse(date));
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								if (dateValue != null) {
+									article.setDate(dateValue);
+								}
+							} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
+								article.setTitle(text);
+							} else if (tag.equalsIgnoreCase(LINK_TAG)) {
+								article.setLink(text);
+							} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
+								article.setSmallPhotoPath(text);
 							}
-							if (dateValue != null) {
-								article.setDate(dateValue);
-							}
-						} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
-							article.setTitle(text);
-						} else if (tag.equalsIgnoreCase(LINK_TAG)) {
-							article.setLink(text);
-						} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
-							article.setSmallPhotoPath(text);
 						}
 					}
 					break;
 				case XmlPullParser.END_TAG:
 					if (itemStarted && article != null && tag.length() > 0) {
 						tag = parser.getName();
-						itemStarted = false;
-						naslovna.getArticles().add(article);
-						article = null;
+						if(tag.equalsIgnoreCase(ITEM_TAG)){
+							itemStarted = false;
+							naslovna.getArticles().add(article);
+							article = null;
+						}
 					}
 					break;
 				}
@@ -124,7 +140,15 @@ public class RssReader {
 			URL url = new URL(path);
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
 					.newPullParser();
-			parser.setInput(url.openStream(), "UTF-8");
+			StringBuffer buffer = new StringBuffer();
+			InputStreamReader stream = new InputStreamReader(url.openStream(), "UTF-8");
+			int c = 1;
+			while((c = stream.read())!=-1){
+				buffer.append(Character.toChars(c));
+			}
+			String result = new String(buffer.toString().getBytes(),"UTF-8");
+			result = result.replaceAll("&", "&amp;");
+			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
 			Article article = null;
@@ -137,38 +161,42 @@ public class RssReader {
 						article = new Article();
 					}
 					break;
+				case XmlPullParser.END_TAG:
+					if (itemStarted && article != null && tag.length() > 0) {
+						tag = parser.getName();
+						if(tag.equalsIgnoreCase(ITEM_TAG)){
+							itemStarted = false;
+							category.getArticles().add(article);
+							article = null;
+						}
+					}
+					break;
 				case XmlPullParser.TEXT:
 					if (itemStarted && article != null && tag.length() > 0) {
 						String text = parser.getText();
 						text = text.trim();
-						if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
-							String date = text;
-							Date dateValue = null;
-							try {
-								dateValue = new Date(Date.parse(date));
-							} catch (Exception e) {
-								e.printStackTrace();
+						if(text.length()>0){
+							if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
+								String date = text;
+								Date dateValue = null;
+								try {
+									dateValue = new Date(Date.parse(date));
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								if (dateValue != null) {
+									article.setDate(dateValue);
+								}
+							} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
+								article.setTitle(text);
+							} else if (tag.equalsIgnoreCase(LINK_TAG)) {
+								article.setLink(text);
+							} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
+								article.setSmallPhotoPath(text);
+							} else if (tag.equalsIgnoreCase(DESCRIPTION_TAG)) {
+								article.setDescription(text);
 							}
-							if (dateValue != null) {
-								article.setDate(dateValue);
-							}
-						} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
-							article.setTitle(text);
-						} else if (tag.equalsIgnoreCase(LINK_TAG)) {
-							article.setLink(text);
-						} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
-							article.setSmallPhotoPath(text);
-						} else if (tag.equalsIgnoreCase(DESCRIPTION_TAG)) {
-							article.setDescription(text);
 						}
-					}
-					break;
-				case XmlPullParser.END_TAG:
-					if (itemStarted && article != null && tag.length() > 0) {
-						tag = parser.getName();
-						itemStarted = false;
-						category.getArticles().add(article);
-						article = null;
 					}
 					break;
 				}
@@ -181,6 +209,7 @@ public class RssReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(category);
 		return category;
 	}
 
@@ -192,8 +221,17 @@ public class RssReader {
 			url = new URL(article.getLink());
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
 					.newPullParser();
-			parser.setInput(url.openStream(), "UTF-8");
+			StringBuffer buffer = new StringBuffer();
+			InputStreamReader stream = new InputStreamReader(url.openStream(), "UTF-8");
+			int c = 1;
+			while((c = stream.read())!=-1){
+				buffer.append(Character.toChars(c));
+			}
+			String result = new String(buffer.toString().getBytes(),"UTF-8");
+			result = result.replaceAll("&", "&amp;");
+			System.out.println(result);
 			int parserEvent = parser.getEventType();
+			parser.setInput(new StringReader(result));
 			String tag = "";
 			while (parserEvent != XmlPullParser.END_DOCUMENT) {
 				switch (parserEvent) {
@@ -283,5 +321,5 @@ public class RssReader {
 	public Category readSport() {
 		return readCategory(sport, "Sport");
 	}
-
+	
 }

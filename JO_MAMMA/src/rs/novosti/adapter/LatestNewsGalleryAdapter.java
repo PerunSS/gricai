@@ -84,7 +84,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 				});
 		// holder.latestArticleTitle.setText(article.getName());
 		if (article.getBigDrawable() == null)
-			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
+			article.setBigDrawable(getResizedDrawable(article.getSmallPhotoPath()));
 		holder.articleLayout.setBackgroundDrawable(article.getBigDrawable());
 		return convertView;
 	}
