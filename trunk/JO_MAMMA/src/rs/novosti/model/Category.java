@@ -46,5 +46,14 @@ public class Category implements Serializable {
 		for(Article article:articles)
 			article.clear();
 	}
+	
+	@Override
+	public String toString() {
+		String returnString = title+"\n";
+		for(Article article:articles){
+			returnString+=article.toString()+"\n";
+		}
+		return returnString;
+	}
 
 }
