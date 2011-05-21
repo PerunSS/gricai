@@ -3,8 +3,6 @@ package rs.novosti.model.font;
 import java.util.ArrayList;
 import java.util.List;
 
-import rs.novosti.model.Main;
-
 public class FontSize {
 	private int fullArticleTitle = 20;
 	private int fullArticleSource = 10;
