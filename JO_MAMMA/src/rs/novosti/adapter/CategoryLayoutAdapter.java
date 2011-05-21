@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CategoryLayoutAdapter extends BaseAdapter {
@@ -137,7 +136,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 
 			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
 			secondHolder.secondStyleArticleShortText.setText(article
-					.getSource());
+					.getLink());
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.icon);
 			article.setView(secondHolder.secondStyleArticleImage);

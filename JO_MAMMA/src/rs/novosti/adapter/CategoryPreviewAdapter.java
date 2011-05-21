@@ -138,7 +138,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			}
 			final Article secondArticle = cat.getArticles().get(1);
 			if (secondArticle != null) {
-				holder.secondArticle.setText(secondArticle.getOneLine());
+				holder.secondArticle.setText(secondArticle.getTitle());
 				holder.secondArticle.setOnClickListener(new View.OnClickListener() {
 	
 					@Override
@@ -152,7 +152,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			}
 			final Article thirdArticle = cat.getArticles().get(2);
 			if (thirdArticle != null) {
-				holder.thirdArticle.setText(thirdArticle.getOneLine());
+				holder.thirdArticle.setText(thirdArticle.getTitle());
 				holder.thirdArticle.setOnClickListener(new View.OnClickListener() {
 	
 					@Override
