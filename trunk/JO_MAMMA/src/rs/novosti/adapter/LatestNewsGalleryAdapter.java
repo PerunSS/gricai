@@ -8,6 +8,7 @@ import java.util.List;
 import rs.novosti.NovostiCela;
 import rs.novosti.R;
 import rs.novosti.model.Article;
+import rs.novosti.model.Main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +53,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final Article article = articles.get(position);
+		final Article article = Main.getInstance().readArticle(articles.get(position));
 		Holder holder = null;
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.first_article_style, null);
@@ -84,18 +85,19 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 				});
 		// holder.latestArticleTitle.setText(article.getName());
 		if (article.getBigDrawable() == null)
-			article.setBigDrawable(getResizedDrawable(article.getSmallPhotoPath()));
+			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
 		holder.articleLayout.setBackgroundDrawable(article.getBigDrawable());
 		return convertView;
 	}
 
 	private Drawable getResizedDrawable(String url) {
+		
 		InputStream is = null;
 		url = url.replaceAll(" ", "%20");
 		try {
 			is = new URL(url).openStream();
 			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inSampleSize = 2;
+			//options.inSampleSize = 2;
 			Bitmap bitmap = BitmapFactory.decodeStream(is,null, options);
 
 			// BitmapFactory.Options op = new BitmapFactory.Options();
@@ -103,15 +105,15 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 			// bitmap = BitmapFactory.decodeStream(is,null, op);
 			// int width = bitmap.getWidth();
 			// int height = bitmap.getHeight();
-			int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
-					.getWidth();
-			int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
-					.getHeight();
-			int maxHeight = (screenHeight - 100) / 2;
-			Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth, maxHeight,
-					true);
-			bitmap.recycle();
-			Drawable drawable = new BitmapDrawable(bitmap2);
+//			int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
+//					.getWidth();
+//			int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
+//					.getHeight();
+//			int maxHeight = (screenHeight - 100) / 2;
+//			Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth, maxHeight,
+//					true);
+//			bitmap.recycle();
+			Drawable drawable = new BitmapDrawable(bitmap);
 			// drawable.setBounds(0, 0, screenWidth, maxHeight);
 			// bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
 			// ((int) (height * ratio) > maxHeight ? maxHeight
