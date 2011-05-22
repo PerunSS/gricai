@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<all_drinks>
+	<type name="strong">
+		<drink name="Vodka">
+			<subtype>Flavored Vodka</subtype>
+		</drink>
+		<drink name="Gin">
+			<subtype>Dry Gin</subtype>
+		</drink>
+		<drink name="Rum">
+			<subtype>Flavored Rum</subtype>
+			<subtype>Light Rum</subtype>
+			<subtype>Dark Rum</subtype>
+			<subtype>Spiced Rum</subtype>
+			<subtype>Overproof Rum</subtype>
+		</drink>
+		<drink name="Brandy">
+			<subtype>Fruit Brandy</subtype>
+			<subtype>Cognac</subtype>
+		</drink>
+		<drink name="Whiskey">
+			<subtype>Burbon</subtype>
+			<subtype>Tennessee</subtype>
+			<subtype>Scotch</subtype>
+			<subtype>Rye Whiskey</subtype>
+		</drink>
+		<drink name="Tequila">
+			<subtype>White Tequila</subtype>
+			<subtype>Gold Tequila</subtype>
+			<subtype>Aged tequila</subtype>
+			<subtype>Flavored Tequila</subtype>
+		</drink>
+		<drink name="Other">
+			<subtype>Sake</subtype>
+			<subtype>Rakia</subtype>
+		</drink>
+	</type>
+	<type name="liqueur">
+		<drink name="Fruit">
+			<subtype>Orange</subtype>
+			<subtype>Peach</subtype>
+			<subtype>Tropical</subtype>
+			<subtype>Curacao</subtype>
+		</drink>
+		<drink name="Coffee">
+		</drink>
+		<drink name="Chocolate">
+		</drink>
+		<drink name="Berry">
+			<subtype>Raspberry</subtype>
+			<subtype>Strawberry</subtype>
+			<subtype>Blackberry</subtype>
+		</drink>
+		<drink name="Herbal">
+			<subtype>Mint</subtype>
+			<subtype>Cinnamon</subtype>
+		</drink>
+		<drink name="Nut">
+			<subtype>Almond</subtype>
+			<subtype>Hazelnut</subtype>
+		</drink>
+		<drink name="Cream">
+			<subtype>Irish Cream Liqueur</subtype>
+		</drink>
+		<drink name="Creme">
+			<subtype>Creme de Bananes</subtype>
+			<subtype>Creme de Cacao</subtype>
+			<subtype>Creme de Cassis</subtype>
+			<subtype>Creme de Menthe</subtype>
+		</drink>
+		<drink name="Other">
+			<subtype>Whisky Liqueur</subtype>
+			<subtype>Flower Liqueur</subtype>
+			<subtype>Honey Liqueur</subtype>
+		</drink>
+	</type>
+	<type name="flavored liqor">
+		<drink name="Absinthe">
+		</drink>
+		<drink name="Bitters">
+		</drink>
+		<drink name="Schnapps">
+			<subtype>Cinnamon</subtype>
+			<subtype>Peach</subtype>
+			<subtype>Mint</subtype>
+		</drink>
+		<drink name="Other">
+			<subtype>Ouzo</subtype>
+		</drink>
+	</type>
+	<type name="other alcoholic">
+		<drink name="Beer">
+			<subtype>Dark Beer</subtype>
+		</drink>
+		<drink name="Wine">
+			<subtype>Red Wine</subtype>
+			<subtype>White Wine</subtype>
+			<subtype>Rose Wine</subtype>
+			<subtype>Champagne</subtype>
+		</drink>
+		<drink name="Vermouth">
+			<subtype>Dry Vermouth</subtype>
+			<subtype>Sweet Vermouth</subtype>
+			<subtype>Rosso Vermouth</subtype>
+		</drink>
+	</type>
+	<type name="non-alcoholic">
+		<drink name="Juice">
+			<subtype>Orange Juice</subtype>
+			<subtype>Lemon Juice</subtype>
+			<subtype>Pineapple Juice</subtype>
+			<subtype>Cranberry Juice</subtype>
+		</drink>
+		<drink name="Soda">
+			<subtype>Fruit Soda</subtype>
+			<subtype>Ginger Ale</subtype>
+			<subtype>Bitter Soda</subtype>
+			<subtype>Tonic Water</subtype>
+		</drink>
+		<drink name="Cola">
+		</drink>
+		<drink name="Energy">
+		</drink>
+		<drink name="Soft">
+			<subtype>Ice Tea</subtype>
+			<subtype>Lemonade</subtype>
+			<subtype>Squash</subtype>
+		</drink>
+		<drink name="Hot">
+			<subtype>Coffee</subtype>
+			<subtype>Tea</subtype>
+			<subtype>Hot Chocolate</subtype>
+		</drink>
+		<drink name="Other Non-alcoholic">
+		</drink>
+	</type>
+	<type name="other">
+		<drink name="Milk">
+		</drink>
+		<drink name="Sugar">
+		</drink>
+		<drink name="Syrup">
+			<subtype>Chocolate Syrup</subtype>
+			<subtype>Grenadine</subtype>
+			<subtype>Sugar Syrup</subtype>
+		</drink>
+		<drink name="Fruit">
+		</drink>
+	</type>
+</all_drinks>

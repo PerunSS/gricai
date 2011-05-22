@@ -1,66 +1,160 @@
 package com.cerSprikRu.CocktailMixer;
 
-import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
-import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
-import com.cerSprikRu.CocktailMixer.model.drink.Drink;
-import com.cerSprikRu.CocktailMixer.model.drink.DrinkType;
-import com.cerSprikRu.CocktailMixer.threads.CocktailsCreatorThread;
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableLayout.LayoutParams;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
+import com.cerSprikRu.CocktailMixer.model.drink.Category;
+import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
+import com.cerSprikRu.CocktailMixer.model.drink.Drink;
+import com.cerSprikRu.CocktailMixer.threads.CocktailsCreatorThread;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class Chooser extends Activity {
 
+	private static final String TYPE_TAG="type";
+	private static final String DRINK_TAG="drink";
+	private static final String SUBTYPE_TAG="subtype";
+	
 	public static Chooser instance;
 	private boolean fullRandom = false;
+	private List<Category> categories;
+	private int currentCategory = 0;
+	private int currentDrink = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
-		// strong drinks
-		final CheckBox vodka = (CheckBox) findViewById(R.id.vodka);
-		final CheckBox tequila = (CheckBox) findViewById(R.id.tequila);
-		final CheckBox whisky = (CheckBox) findViewById(R.id.whisky);
-		final CheckBox gin = (CheckBox) findViewById(R.id.gin);
-		final CheckBox rum = (CheckBox) findViewById(R.id.rum);
-		final CheckBox cognac = (CheckBox) findViewById(R.id.cognac);
-		final CheckBox brandy = (CheckBox) findViewById(R.id.brandy);
-		final CheckBox absinthe = (CheckBox) findViewById(R.id.absinthe);
-		// liqueurs
-		final CheckBox l_cherry = (CheckBox) findViewById(R.id.l_cherry);
-		final CheckBox l_chocolate = (CheckBox) findViewById(R.id.l_chocolate);
-		final CheckBox l_coffee = (CheckBox) findViewById(R.id.l_coffee);
-		final CheckBox l_menthol = (CheckBox) findViewById(R.id.l_menthol);
-		final CheckBox l_orange = (CheckBox) findViewById(R.id.l_orange);
-		final CheckBox l_other = (CheckBox) findViewById(R.id.l_other);
-		final CheckBox l_strawberry = (CheckBox) findViewById(R.id.l_strawberry);
-		final CheckBox l_coconut = (CheckBox) findViewById(R.id.l_coconut);
-		// other drinks
-		final CheckBox beer = (CheckBox) findViewById(R.id.beer);
-		final CheckBox vermouth = (CheckBox) findViewById(R.id.Vermouth);
-		final CheckBox wine = (CheckBox) findViewById(R.id.wine);
-		final CheckBox champagne = (CheckBox) findViewById(R.id.champagne);
-		// non alc drinks
-		final CheckBox grenadine = (CheckBox) findViewById(R.id.milk);
-		final CheckBox cola = (CheckBox) findViewById(R.id.cola);
-		final CheckBox j_apple = (CheckBox) findViewById(R.id.j_apple);
-		final CheckBox j_lemon = (CheckBox) findViewById(R.id.j_lemon);
-		final CheckBox j_orange = (CheckBox) findViewById(R.id.j_orange);
-		final CheckBox j_other = (CheckBox) findViewById(R.id.j_other);
-		final CheckBox m_water = (CheckBox) findViewById(R.id.m_water);
-		final CheckBox bitter = (CheckBox) findViewById(R.id.bitter);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.drink_list);
+		initDrinks();
+		for (Category category:categories) {
+			TextView categoryView = new TextView(this);
+			categoryView.setTextSize(27);
+			categoryView.setText(category.getName().toUpperCase());
+			categoryView.setTextColor(Color.WHITE);
+			categoryView.setGravity(Gravity.CENTER);
+			categoryView.setTypeface(null, Typeface.BOLD);
+			layout.addView(categoryView);
+			TableLayout categoryDrinksLayout = new TableLayout(this);
+			categoryDrinksLayout.setStretchAllColumns(true);
+			TableRow row = new TableRow(this);
+			int indicator = 1;
+			currentDrink = 0;
+			for (Drink drink:category.getDrinks()) {
+				StateListDrawable stateList = new StateListDrawable();
+				int statePressed = android.R.attr.state_pressed;
+				int stateChecked = android.R.attr.state_checked;
+				stateList.addState(new int[] {-stateChecked}, new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.check_3)));
+				stateList.addState(new int[] {stateChecked}, new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.check_1)));
+				stateList.addState(new int[] {statePressed}, new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.check_2)));
+				final CheckBox box = new CheckBox(this);
+				box.setLayoutParams(new TableRow.LayoutParams(0,LayoutParams.WRAP_CONTENT,1f));
+				String name = drink.getName();
+				if(name.contains(" "))
+					name = name.substring(0,name.indexOf(' '));
+				box.setText(name);
+				box.setTextColor(Color.WHITE);
+				box.setButtonDrawable(stateList);
+				CocktailTrace trace = new CocktailTrace();
+				trace.currentCategory = currentCategory;
+				trace.currentDrink = currentDrink;
+				box.setTag(trace);
+				box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						CocktailTrace trace = (CocktailTrace)box.getTag();
+						final Drink drink = categories.get(trace.currentCategory).getDrinks().get(trace.currentDrink);
+						boolean newValue = !drink.isPresent();
+						drink.setPresent(newValue);
+						if(newValue && drink.getSubDrinks()!=null && drink.getSubDrinks().size() > 0){
+							AlertDialog.Builder builder = new AlertDialog.Builder(Chooser.this);
+							CharSequence names[] = new CharSequence[drink.getSubDrinks().size()];
+							int i=0;
+							for(Drink subDrink:drink.getSubDrinks()){
+								names[i++]=subDrink.getName();
+							}
+							builder.setTitle("Choose specific types");
+							builder.setMultiChoiceItems(names,null, new DialogInterface.OnMultiChoiceClickListener() {
+	
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which, boolean isChecked) {
+									boolean present = drink.getSubDrinks().get(which).isPresent();
+									drink.getSubDrinks().get(which).setPresent(!present);
+								}
+								
+							});
+							builder.setPositiveButton("done", new DialogInterface.OnClickListener(){
+								public void onClick(DialogInterface dialog, int id) {
+					                dialog.dismiss();
+					           }
+							});
+							builder.create().show();
+						}else {
+							if(drink.getSubDrinks()!=null)
+								for(Drink subDrink:drink.getSubDrinks()){
+									subDrink.setPresent(false);
+								}
+						}
+					}
+				});
+				row.addView(box);
+				if (indicator % 2 == 0) {
+					if (row != null) {
+						categoryDrinksLayout.addView(row,
+								new TableLayout.LayoutParams(
+										LayoutParams.FILL_PARENT,
+										LayoutParams.WRAP_CONTENT));
+					}
+					row = new TableRow(this);
+				}
+				currentDrink++;
+				indicator++;
+			}
+			if(indicator %2 == 0){
+				categoryDrinksLayout.addView(row,
+						new TableLayout.LayoutParams(
+								LayoutParams.FILL_PARENT,
+								LayoutParams.WRAP_CONTENT));
+			}
+			layout.addView(categoryDrinksLayout);
+			currentCategory++;
+		}
+		
 		Button favorites = (Button) findViewById(R.id.favorites);
 		favorites.setOnClickListener(new View.OnClickListener() {
 
@@ -71,187 +165,19 @@ public class Chooser extends Activity {
 				startActivity(favoritesIntent);
 			}
 		});
-
 		Button mix = (Button) findViewById(R.id.mix);
 		mix.setOnClickListener(new View.OnClickListener() {
-
+			
 			@Override
 			public void onClick(View v) {
 				CocktailCreator.getInstance().reset();
-				if (vodka.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Vodka");
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
+				for(Category category:categories){
+					for(Drink drink:category.getDrinks()){
+						if(drink.isPresent()){
+							CocktailCreator.getInstance().addDrink(drink);
+						}
+					}
 				}
-				if (tequila.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Tequila");
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (whisky.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Whisky");
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (gin.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Gin");
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (rum.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Rum");
-					drink.setAlcPercent(0.42);
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (cognac.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Cognac");
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (brandy.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Brandy");
-					drink.setAlcPercent(0.42);
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (absinthe.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Absinthe");
-					drink.setAlcPercent(0.65);
-					drink.setType(DrinkType.A_STRONG);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_cherry.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Cherry type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_chocolate.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Chocolate type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_coffee.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Coffee type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_menthol.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Menthol type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_orange.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Orange type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_strawberry.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Strawberry type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_coconut.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Coconut type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (l_other.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Other type liqueur");
-					drink.setType(DrinkType.B_LIQUEUR);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (beer.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Beer");
-					drink.setAlcPercent(0.05);
-					drink.setType(DrinkType.C_OTHER);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (wine.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Wine");
-					drink.setType(DrinkType.C_OTHER);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (vermouth.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Vermouth");
-					drink.setAlcPercent(0.18);
-					drink.setType(DrinkType.C_OTHER);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (champagne.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Champagne");
-					drink.setType(DrinkType.C_OTHER);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (j_apple.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Apple juice");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (j_orange.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Orange juice");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (j_other.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Other juice");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (j_lemon.isChecked()) {
-					Drink drink = new Drink(true);
-					drink.setName("Lemon juice");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (m_water.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Tonic water");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (cola.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Cola");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (bitter.isChecked()) {
-					Drink drink = new Drink();
-					drink.setName("Bitter");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-				if (grenadine.isChecked()) {
-					Drink drink = new Drink(true);
-					drink.setName("Grenadine");
-					drink.setType(DrinkType.D_NON_ALC);
-					CocktailCreator.getInstance().addDrink(drink);
-				}
-
 				if (CocktailCreator.getInstance().size() < 5) {
 					showError("If You have less than 5 drinks, You dont need cocktail mixer for that, just experiment. ;)");
 				} else if (CocktailCreator.getInstance().canMix()) {
@@ -267,15 +193,76 @@ public class Chooser extends Activity {
 				} else {
 					showError("You cannot make cocktails with only strong drinks!");
 				}
-
 			}
 		});
+		
 		AdView adView1 = (AdView) findViewById(R.id.adView1);
 		adView1.loadAd(new AdRequest());
 		AdView adView2 = (AdView) findViewById(R.id.adView2);
 		adView2.loadAd(new AdRequest());
 		new FavoritesManager(this);
 		instance = this;
+	}
+	
+	private void initDrinks() {
+		categories = new ArrayList<Category>();
+		try {
+			InputStream stream = getAssets().open("drink_list.xml");
+			XmlPullParser parser = XmlPullParserFactory.newInstance()
+					.newPullParser();
+			parser.setInput(stream, "UTF-8");
+			int parserEvent = parser.getEventType();
+			String tag = "";
+			Category category=null;
+			String categoryName = null;
+			Drink currentDrink = null;;
+			Drink subDrink=null;
+			while (parserEvent != XmlPullParser.END_DOCUMENT) {
+				switch (parserEvent) {
+				case XmlPullParser.START_TAG:
+					tag = parser.getName();
+					if(tag.equalsIgnoreCase(TYPE_TAG)){
+						category = new Category();
+						categoryName = parser.getAttributeValue(null, "name");
+						category.setName(categoryName);
+					}else if(tag.equalsIgnoreCase(DRINK_TAG)){
+						currentDrink = new Drink();
+						currentDrink.setName(parser.getAttributeValue(null,"name"));
+						currentDrink.setType(categoryName);
+					}else if(tag.equalsIgnoreCase(SUBTYPE_TAG)){
+						subDrink = new Drink();
+					}
+					break;
+				case XmlPullParser.TEXT:
+					String text = parser.getText().trim();
+					if(subDrink!=null && text.length()>0){
+						subDrink.setName(text);
+						if(currentDrink!=null)
+							currentDrink.addSubDrink(subDrink);
+					}
+					break;
+				case XmlPullParser.END_TAG:
+					tag = parser.getName();
+					if(tag.equalsIgnoreCase(DRINK_TAG)){
+						if(category!=null)
+							category.addDrink(currentDrink);
+					}else if(tag.equalsIgnoreCase(TYPE_TAG)){
+						if(category!=null && categoryName!=null){
+							categories.add(category);
+						}
+					}
+					break;
+				default:
+					break;
+				}
+				parserEvent = parser.next();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		System.out.println(categories);
 	}
 
 	private void showError(String text) {
@@ -291,5 +278,14 @@ public class Chooser extends Activity {
 		});
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+	
+	private class CocktailTrace implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		int currentCategory;
+		int currentDrink;
 	}
 }

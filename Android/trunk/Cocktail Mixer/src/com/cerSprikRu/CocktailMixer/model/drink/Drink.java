@@ -1,6 +1,8 @@
 package com.cerSprikRu.CocktailMixer.model.drink;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Drink implements Serializable, Comparable<Drink> {
 
@@ -10,12 +12,15 @@ public class Drink implements Serializable, Comparable<Drink> {
 	private static final long serialVersionUID = 1L;
 	private int amount;
 	private String name;
+	private List<Drink> subDrinks;
 	private DrinkType type;
 	private boolean teaSpoon;
 	private double alcPercent = 0.0;
+	private boolean isPresent;
 
 	public Drink() {
 		teaSpoon = false;
+		subDrinks = new ArrayList<Drink>();
 	}
 
 	public Drink(boolean teaSpoon) {
@@ -37,6 +42,34 @@ public class Drink implements Serializable, Comparable<Drink> {
 	public String getName() {
 		return name;
 	}
+	
+	public List<Drink> getSubDrinks(){
+		return subDrinks;
+	}
+	
+	public void addSubDrink(Drink... subDrinks){
+		for(Drink subDrink:subDrinks){
+			subDrink.setType(getType());
+			subDrink.setAlcPercent(getAlcPercent());
+			this.subDrinks.add(subDrink);
+		}
+	}
+	
+	public void setType(String category){
+		if(category.equalsIgnoreCase("strong"))
+			setType(DrinkType.A_STRONG);
+		else if(category.equalsIgnoreCase("liqueur"))
+			setType(DrinkType.B_LIQUEUR);
+		else if(category.equalsIgnoreCase("other alcoholic"))
+			setType(DrinkType.D_OTHER);
+		else if(category.equalsIgnoreCase("non-alcoholic"))
+			setType(DrinkType.E_NON_ALC);
+		else{
+			setType(DrinkType.F_ADDITIONS);
+			setTeaSpoon(true);
+		}
+			
+	}
 
 	public void setType(DrinkType type) {
 		this.type = type;
@@ -44,14 +77,15 @@ public class Drink implements Serializable, Comparable<Drink> {
 		case A_STRONG:
 			alcPercent = 0.4;
 			break;
-		case B_LIQUEUR:
+		case B_LIQUEUR: case C_FLAVORED_LIQUEUR:
 			alcPercent = 0.22;
 			break;
-		case C_OTHER:
+		case D_OTHER:
 			alcPercent = 0.15;
 			break;
-		case D_NON_ALC:
+		case E_NON_ALC: case F_ADDITIONS:
 			alcPercent = 0.0;
+	
 		}
 	}
 
@@ -92,5 +126,13 @@ public class Drink implements Serializable, Comparable<Drink> {
 
 	public double getAlcPercent() {
 		return alcPercent;
+	}
+
+	public void setPresent(boolean isPresent) {
+		this.isPresent = isPresent;
+	}
+
+	public boolean isPresent() {
+		return isPresent;
 	}
 }

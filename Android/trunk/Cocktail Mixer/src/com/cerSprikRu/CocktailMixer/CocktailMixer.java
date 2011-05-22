@@ -34,7 +34,6 @@ public class CocktailMixer extends Activity {
 				} finally {
 					finish();
 					startActivity(new Intent(CocktailMixer.this,Chooser.class));
-					stop();
 				}
 			}
 		};

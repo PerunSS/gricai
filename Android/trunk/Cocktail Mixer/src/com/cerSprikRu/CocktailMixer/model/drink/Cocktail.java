@@ -125,6 +125,8 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 		double random = Math.random();
 		boolean shot = false;
 		boolean ice = false;
+		System.out.println("Random number:"+random+", strong: "+strong);
+		
 		if(strong){
 			if(RandomOptions.getInstance().isShotDrinks() && random>0.45){
 				shot = true;
@@ -132,10 +134,11 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 			prepare = "Shake:\n";
 			ice = true;
 		}else {
-			if(random>0.70){
+			
+			if(random>0.60){
 				prepare = "Shake:\n";
 				ice = true;
-			}else if(random<30 && RandomOptions.getInstance().isShortDrinks()){
+			}else if(random<0.30 && RandomOptions.getInstance().isShortDrinks()){
 				prepare = "Distribute in small glasses:\n";
 			}else {
 				prepare = "Put in glass:\n";

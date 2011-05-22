@@ -45,7 +45,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="vertical"
+    android:id="@+id/drink_list"
     >
+    <!-- 
     <TextView android:id="@+id/strong_d"
     	android:layout_height="wrap_content" 
 		android:layout_width="fill_parent"
@@ -326,6 +328,7 @@
 				android:layout_width="wrap_content"/>
 		</TableRow>
 	</TableLayout>
+	 -->
 </LinearLayout>
 </ScrollView>
 <com.google.ads.AdView android:id="@+id/adView2"
