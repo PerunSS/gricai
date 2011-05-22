@@ -8,6 +8,7 @@ import rs.novosti.adapter.CategoryPreviewAdapter;
 import rs.novosti.model.Article;
 import rs.novosti.model.Category;
 import rs.novosti.model.Main;
+import rs.novosti.model.Naslovna;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
@@ -23,12 +24,14 @@ import android.widget.TextView;
 
 public class NovostiPortal extends Activity {
 	
+	Naslovna naslovna;
+
 	List<Article> sliderArticles;
 	public CategoryPreviewAdapter categoryPreviewAdapter;
 	public CategoryLayoutAdapter categoryLayoutAdapter;
 	ProgressDialog progressDialog;
 	LinearLayout menuView;
-	Handler mainHandler = new Handler(){
+	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			progressDialog.dismiss();
@@ -36,37 +39,39 @@ public class NovostiPortal extends Activity {
 			createMainPage();
 		}
 	};
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
 		Thread thread = new Thread(new LoaderThread());
 		thread.start();
-		//createMenu();
+		// createMenu();
 
 		// Pravim ovu listu artikala cisto da bi imo sta da mu prosledim jer ako
 		// je prazna ne pravi nista
 		// a doduse to ce svakako posle biti lista ta tri artikla najnovija
-		
 
 	}
-	
-	public void resetMenuView(){
-		for(int i=0;i<menuView.getChildCount();i++){
-			TextView tv = (TextView)menuView.getChildAt(i);
+
+	public void resetMenuView() {
+		for (int i = 0; i < menuView.getChildCount(); i++) {
+			TextView tv = (TextView) menuView.getChildAt(i);
 			tv.setTextColor(0xFFFE0000);
 			tv.setBackgroundColor(0xFFFFFFFF);
-			
+
 		}
 	}
-	
-	public void colorSelected(String name){
+
+	public void colorSelected(String name) {
 		resetMenuView();
-		for(int i=0;i<menuView.getChildCount();i++){
-			if(((TextView)menuView.getChildAt(i)).getText().toString().trim().equalsIgnoreCase(name)){
-				menuView.getChildAt(i).setBackgroundResource(R.color.menu_high_light);
+		for (int i = 0; i < menuView.getChildCount(); i++) {
+			if (((TextView) menuView.getChildAt(i)).getText().toString().trim()
+					.equalsIgnoreCase(name)) {
+				menuView.getChildAt(i).setBackgroundResource(
+						R.color.menu_high_light);
 				return;
 			}
 		}
@@ -81,15 +86,14 @@ public class NovostiPortal extends Activity {
 		menuView = (LinearLayout) findViewById(R.id.Menu);
 		menuView.setHorizontalScrollBarEnabled(false);
 		home.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				resetMenuView();
 				createMainPage();
 			}
 		});
-		
-		
+
 		for (Category cat : Main.getInstance().getCategories()) {
 			final Category category = cat;
 			final TextView tv = new TextView(this);
@@ -105,19 +109,19 @@ public class NovostiPortal extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					
+
 					categoryPreviewAdapter.clear();
-					
-//					Intent categoryIntent = new Intent(v.getContext(),
-//							NovostiCategory.class);
-//					categoryIntent.putExtra("category", category);
-//					startActivityForResult(categoryIntent, 0);
+
+					// Intent categoryIntent = new Intent(v.getContext(),
+					// NovostiCategory.class);
+					// categoryIntent.putExtra("category", category);
+					// startActivityForResult(categoryIntent, 0);
 					ListView view = (ListView) findViewById(R.id.Content);
-					if(categoryLayoutAdapter!=null){
+					if (categoryLayoutAdapter != null) {
 						categoryLayoutAdapter.clear();
 					}
-					categoryLayoutAdapter = new CategoryLayoutAdapter(NovostiPortal.this, category
-							.getArticles());
+					categoryLayoutAdapter = new CategoryLayoutAdapter(
+							NovostiPortal.this, category.getArticles());
 					view.setAdapter(categoryLayoutAdapter);
 					view.setItemsCanFocus(true);
 					view.setFocusable(false);
@@ -130,7 +134,7 @@ public class NovostiPortal extends Activity {
 			// RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
 			// RelativeLayout.LayoutParams.WRAP_CONTENT);
 			// lay.addRule(RelativeLayout.RIGHT_OF, RelativeLayout.TRUE);
-			//tv.setBackgroundResource(R.color.menu_background);
+			// tv.setBackgroundResource(R.color.menu_background);
 			menuView.addView(tv);
 		}
 	}
@@ -147,16 +151,17 @@ public class NovostiPortal extends Activity {
 						|| cat.getTitle().equalsIgnoreCase("sport"))
 					sliderArticles.add(cat.getArticles().get(0));
 		}
-//		sliderArticles.add(new Article());
-//		sliderArticles.add(new Article());
-//		sliderArticles.add(new Article());
-//		MyGallery gallery = (MyGallery) findViewById(R.id.latestNewsGallery);
-//		gallery.setAdapter(new LatestNewsGalleryAdapter(this, sliderArticles,
-//				this));
+		// sliderArticles.add(new Article());
+		// sliderArticles.add(new Article());
+		// sliderArticles.add(new Article());
+		// MyGallery gallery = (MyGallery) findViewById(R.id.latestNewsGallery);
+		// gallery.setAdapter(new LatestNewsGalleryAdapter(this, sliderArticles,
+		// this));
 
 		ListView view = (ListView) findViewById(R.id.Content);
-		if(categoryPreviewAdapter == null)
-			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main.getNaslovna().getArticles(),sliderArticles);
+		if (categoryPreviewAdapter == null)
+			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main
+					.getNaslovna().getArticles(), sliderArticles);
 		view.setAdapter(categoryPreviewAdapter);
 		view.setItemsCanFocus(true);
 		view.setFocusable(false);
@@ -166,15 +171,15 @@ public class NovostiPortal extends Activity {
 	// Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
 	// toast.show();
 	// }
-	
-	private class LoaderThread implements Runnable{
+
+	private class LoaderThread implements Runnable {
 
 		@Override
 		public void run() {
 			Main.getInstance();
 			mainHandler.sendEmptyMessage(0);
 		}
-		
+
 	}
-	
+
 }

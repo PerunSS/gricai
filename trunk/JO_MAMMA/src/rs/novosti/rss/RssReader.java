@@ -1,5 +1,6 @@
 package rs.novosti.rss;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
@@ -62,11 +63,12 @@ public class RssReader {
 					.newPullParser();
 			
 			StringBuffer buffer = new StringBuffer();
-			InputStreamReader stream = new InputStreamReader(url.openStream(), "UTF-8");
-			int c = 1;
-			while((c = stream.read())!=-1){
-				buffer.append(Character.toChars(c));
+			BufferedReader stream = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"), 64 * 1024);
+			String line;
+			while((line = stream.readLine())!=null){
+				buffer.append(line);
 			}
+			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
 			result = result.replaceAll("&", "&amp;");
 			parser.setInput(new StringReader(result));
@@ -140,11 +142,12 @@ public class RssReader {
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
 					.newPullParser();
 			StringBuffer buffer = new StringBuffer();
-			InputStreamReader stream = new InputStreamReader(url.openStream(), "UTF-8");
-			int c = 1;
-			while((c = stream.read())!=-1){
-				buffer.append(Character.toChars(c));
+			BufferedReader stream = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"), 64 * 1024);
+			String line;
+			while((line = stream.readLine())!=null){
+				buffer.append(line);
 			}
+			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
 			result = result.replaceAll("&", "&amp;");
 			parser.setInput(new StringReader(result));
@@ -220,11 +223,12 @@ public class RssReader {
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
 					.newPullParser();
 			StringBuffer buffer = new StringBuffer();
-			InputStreamReader stream = new InputStreamReader(url.openStream(), "UTF-8");
-			int c = 1;
-			while((c = stream.read())!=-1){
-				buffer.append(Character.toChars(c));
+			BufferedReader stream = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"), 64 * 1024);
+			String line;
+			while((line = stream.readLine())!=null){
+				buffer.append(line);
 			}
+			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
 			result = result.replaceAll("&", "&amp;");
 			int parserEvent = parser.getEventType();

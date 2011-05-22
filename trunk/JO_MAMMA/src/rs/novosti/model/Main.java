@@ -19,17 +19,17 @@ public class Main {
 	private Main(){
 		categories = new ArrayList<Category>();
 		RssReader reader = new RssReader();
-		categories.add(reader.readPolitika());
-		categories.add(reader.readDrustvo());
-		categories.add(reader.readEkonomija());
-		categories.add(reader.readHronika());
-		categories.add(reader.readBeograd());
-		categories.add(reader.readDosije());
-		categories.add(reader.readSpektakl());
-		categories.add(reader.readZivotPlus());
-		categories.add(reader.readTehnologije());
-		categories.add(reader.readAuto());
-		categories.add(reader.readSport());
+//		categories.add(reader.readPolitika());
+//		categories.add(reader.readDrustvo());
+//		categories.add(reader.readEkonomija());
+//		categories.add(reader.readHronika());
+//		categories.add(reader.readBeograd());
+//		categories.add(reader.readDosije());
+//		categories.add(reader.readSpektakl());
+//		categories.add(reader.readZivotPlus());
+//		categories.add(reader.readTehnologije());
+//		categories.add(reader.readAuto());
+//		categories.add(reader.readSport());
 		naslovna = reader.readNaslovna();
 	}
 	
