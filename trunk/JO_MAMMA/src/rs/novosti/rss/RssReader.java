@@ -69,7 +69,6 @@ public class RssReader {
 			}
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
 			result = result.replaceAll("&", "&amp;");
-			System.out.println(result);
 			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
@@ -209,7 +208,6 @@ public class RssReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(category);
 		return category;
 	}
 
@@ -229,7 +227,6 @@ public class RssReader {
 			}
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
 			result = result.replaceAll("&", "&amp;");
-			System.out.println(result);
 			int parserEvent = parser.getEventType();
 			parser.setInput(new StringReader(result));
 			String tag = "";
@@ -242,26 +239,27 @@ public class RssReader {
 					if (article != null && tag.length() > 0) {
 						String text = parser.getText();
 						text = text.trim();
-						if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
-							String date = text;
-							Date dateValue = null;
-							try {
-								dateValue = new Date(Date.parse(date));
-							} catch (Exception e) {
-								e.printStackTrace();
+						if(text.length()>0)
+							if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
+								String date = text;
+								Date dateValue = null;
+								try {
+									dateValue = new Date(Date.parse(date));
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								if (dateValue != null) {
+									article.setDate(dateValue);
+								}
+							} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
+								article.setTitle(text);
+							} else if (tag.equalsIgnoreCase(SHORT_TEXT_TAG)) {
+								article.setShortText(text);
+							} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
+								article.setPhotoPath(text);
+							} else if (tag.equalsIgnoreCase(DESCRIPTION_TAG)){
+								article.setText(text);
 							}
-							if (dateValue != null) {
-								article.setDate(dateValue);
-							}
-						} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
-							article.setTitle(text);
-						} else if (tag.equalsIgnoreCase(SHORT_TEXT_TAG)) {
-							article.setShortText(text);
-						} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
-							article.setPhotoPath(text);
-						} else if (tag.equalsIgnoreCase(DESCRIPTION_TAG)){
-							article.setText(text);
-						}
 					}
 					break;
 				}
