@@ -8,10 +8,10 @@
   	android:gravity="bottom">
   	
   	<TextView
-  		android:layout_width="fill_parent"
+  		android:layout_width="320dp"
   		android:layout_height="40dp"
   		android:id="@+id/firstStyleArticle_title"
-  		android:textSize="16sp"
+  		android:textSize="16dp"
   		android:background="@color/title_transparent_background"
   		android:textColor="#ffffff"
   		android:paddingLeft="7dp"

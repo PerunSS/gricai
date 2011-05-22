@@ -115,11 +115,11 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			secondHolder.secondStyleArticleShortText.setText(article
 					.getLink());
 			if(article.getView() == null)
-				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.icon);
+				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.spinner);
 			article.setView(secondHolder.secondStyleArticleImage);
 			article.generateSmallPhoto();
-			secondHolder.secondStyleArticleImage
-					.setBackgroundResource(R.drawable.icon);
+//			secondHolder.secondStyleArticleImage
+//					.setBackgroundResource(R.drawable.icon);
 
 		}
 

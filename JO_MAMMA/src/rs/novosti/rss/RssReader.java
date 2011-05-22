@@ -244,18 +244,7 @@ public class RssReader {
 						String text = parser.getText();
 						text = text.trim();
 						if(text.length()>0)
-							if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
-								String date = text;
-								Date dateValue = null;
-								try {
-									dateValue = new Date(Date.parse(date));
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								if (dateValue != null) {
-									article.setDate(dateValue);
-								}
-							} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
+							if (tag.equalsIgnoreCase(TITLE_TAG)) {
 								article.setTitle(text);
 							} else if (tag.equalsIgnoreCase(SHORT_TEXT_TAG)) {
 								article.setShortText(text);
