@@ -86,6 +86,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		// holder.latestArticleTitle.setText(article.getName());
 		if (article.getBigDrawable() == null)
 			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
+		holder.articleLayout.setMinimumHeight(220);
 		holder.articleLayout.setBackgroundDrawable(article.getBigDrawable());
 		return convertView;
 	}
