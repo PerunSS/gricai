@@ -11,6 +11,7 @@ import rs.novosti.model.Main;
 import rs.novosti.model.Naslovna;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,12 +30,12 @@ public class NovostiPortal extends Activity {
 	List<Article> sliderArticles;
 	public CategoryPreviewAdapter categoryPreviewAdapter;
 	public CategoryLayoutAdapter categoryLayoutAdapter;
-	ProgressDialog progressDialog;
+//	ProgressDialog progressDialog;
 	LinearLayout menuView;
 	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			progressDialog.dismiss();
+//			progressDialog.dismiss();
 			createMenu();
 			createMainPage();
 		}
@@ -45,7 +46,8 @@ public class NovostiPortal extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
+//		progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
+		setContentView(R.layout.loading);
 		Thread thread = new Thread(new LoaderThread());
 		thread.start();
 		// createMenu();
@@ -181,5 +183,16 @@ public class NovostiPortal extends Activity {
 		}
 
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == 1440) {
+            	resetMenuView();
+				createMainPage();
+            }
+        }
+    }
 
+	
 }

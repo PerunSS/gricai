@@ -136,7 +136,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 
 			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
 			secondHolder.secondStyleArticleShortText.setText(article
-					.getLink());
+					.getDate().toString());
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.spinner);
 			article.setView(secondHolder.secondStyleArticleImage);

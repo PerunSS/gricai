@@ -17,7 +17,9 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class NovostiCela extends Activity {
 	private TextView articleShortText;
 	private ImageView articlePhoto;
 	private TextView articleFullText;
+	private Button homeButton;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -37,6 +40,17 @@ public class NovostiCela extends Activity {
 		setContentView(R.layout.full_article_view);
 		Article article = (Article) getIntent().getExtras().get("article");
 		Main.getInstance().readArticle(article);
+		
+		homeButton = (Button) findViewById(R.id.HomeButton2);
+		homeButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				setResult(1440);
+				finish();
+			}
+		});
+		
 		
 		articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
 		articleTitle.setText(article.getTitle());

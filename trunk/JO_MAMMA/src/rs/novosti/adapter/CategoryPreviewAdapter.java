@@ -63,8 +63,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		if(position >= first){
-			;}
+		
 		if(position < first)	{
 			GalleryHolder holder = null;
 				convertView = inflater.inflate(R.layout.gallery, null);
@@ -113,7 +112,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 
 			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
 			secondHolder.secondStyleArticleShortText.setText(article
-					.getLink());
+					.getDate().toString());
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.spinner);
 			article.setView(secondHolder.secondStyleArticleImage);
