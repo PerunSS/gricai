@@ -10,7 +10,6 @@ import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import rs.novosti.model.Naslovna;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;

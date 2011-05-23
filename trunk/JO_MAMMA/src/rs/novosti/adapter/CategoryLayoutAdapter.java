@@ -185,13 +185,6 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		try {
 			is = new URL(url).openStream();
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
-			int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
-					.getWidth();
-			int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
-					.getHeight();
-			Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth,
-					(screenHeight-100)/2, true);
-			bitmap.recycle();
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
 			// TODO: handle exception

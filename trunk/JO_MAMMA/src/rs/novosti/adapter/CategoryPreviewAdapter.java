@@ -4,23 +4,17 @@ import java.util.List;
 
 import rs.novosti.MyGallery;
 import rs.novosti.NovostiCela;
-import rs.novosti.NovostiPortal;
 import rs.novosti.R;
 import rs.novosti.model.Article;
-import rs.novosti.model.Category;
-import rs.novosti.model.Naslovna;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CategoryPreviewAdapter extends BaseAdapter {
