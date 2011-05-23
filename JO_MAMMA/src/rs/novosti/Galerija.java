@@ -18,7 +18,7 @@ public class Galerija extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.image_gallery);
         
         final MyGalleryAdapter adapter = new MyGalleryAdapter(this);
         final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
