@@ -192,7 +192,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth,
 					(screenHeight-100)/2, true);
 			bitmap.recycle();
-			return new BitmapDrawable(bitmap2);
+			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
