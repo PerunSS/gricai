@@ -95,7 +95,18 @@ public class NovostiPortal extends Activity {
 				createMainPage();
 			}
 		});
+		
+		gallery.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				Intent myIntent = new Intent(v.getContext(),
+						Galerija.class);
+//				myIntent.putExtra("article", article);
+				startActivityForResult(myIntent, 0);
+			}
+		});
+		
 		for (Category cat : Main.getInstance().getCategories()) {
 			final Category category = cat;
 			final TextView tv = new TextView(this);
