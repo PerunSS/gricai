@@ -182,12 +182,17 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	private Drawable getResizedDrawable(String url) {
 		InputStream is = null;
 		url = url.replaceAll(" ", "%20");
+		if (url != null) {
 		try {
 			is = new URL(url).openStream();
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
 			// TODO: handle exception
+		}	
+		} else {
+			return new BitmapDrawable(BitmapFactory.decodeResource(
+					context.getResources(), R.drawable.no_image));
 		}
 		return null;
 	}

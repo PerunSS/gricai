@@ -94,6 +94,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 	private Drawable getResizedDrawable(String url) {
 		
 		InputStream is = null;
+		if (url != null) {
 		url = url.replaceAll(" ", "%20");
 		try {
 			is = new URL(url).openStream();
@@ -129,6 +130,11 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 				e.printStackTrace();
 			}
 		}
+		} else {
+			return new BitmapDrawable(BitmapFactory.decodeResource(
+					context.getResources(), R.drawable.no_image));
+		}
+		
 		return null;
 	}
 

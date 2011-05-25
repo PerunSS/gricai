@@ -3,7 +3,45 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" 
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FE0000">
+    
+    <LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="60dp">
+		<LinearLayout 
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="fill_parent"
+			android:layout_weight="1">
+			<include layout="@layout/logo_view" 
+			android:id="@+id/Logo_ref2"/>
+		</LinearLayout>
+		
+		
+		<include layout="@layout/homebutton" 
+			android:id="@+id/HomeButton3"/>
+		<include layout="@layout/imagegallerybutton" 
+			android:id="@+id/ImageGalleryButton3"/>
+			
+			
+	</LinearLayout>
+    
+    <View
+		android:layout_width="fill_parent"
+		android:layout_height="2dp"
+		android:background="#FFFFFF"/>
+	
+	
+	<include layout="@layout/menuscrollview" 
+		android:id="@+id/menuScrollView2"  />
+	
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="2dp"
+		android:background="#FE0000"/>
+       
 	<GridView  
     	android:id="@+id/gallery_gridview"
     	android:layout_width="fill_parent" 

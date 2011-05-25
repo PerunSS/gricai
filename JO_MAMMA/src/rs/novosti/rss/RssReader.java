@@ -20,7 +20,6 @@ public class RssReader {
 
 	private static final String naslovna = new String(
 			"http://service.tehnicomsolutions.co.uk/novosti/rss/novosti.php");
-
 	private static final String politika = new String(
 			"http://service.tehnicomsolutions.co.uk/novosti/rss/url2xml.php?url=http://novosti.rs/rss/2-Sve%20vesti");
 	private static final String drustvo = new String(
@@ -149,7 +148,7 @@ public class RssReader {
 			}
 			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
-			result = result.replaceAll("&", "&amp;");
+//				result = result.replaceAll("&", "&amp;");
 			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
