@@ -10,6 +10,7 @@ public class Main {
 	private List<Category> categories;
 	private RssReader reader;
 	private Category naslovna;
+	private List<Category> galleryCategories;
 	
 	private static Main instance = new Main();
 	
@@ -20,6 +21,8 @@ public class Main {
 	private Main(){
 		categories = new ArrayList<Category>();
 		reader = new RssReader();
+		naslovna = reader.readNaslovna();
+		categories.add(naslovna);
 		categories.add(reader.readPolitika());
 		categories.add(reader.readDrustvo());
 		categories.add(reader.readEkonomija());
@@ -31,7 +34,7 @@ public class Main {
 		categories.add(reader.readTehnologije());
 		categories.add(reader.readAuto());
 		categories.add(reader.readSport());
-		naslovna = reader.readNaslovna();
+		
 	}
 	
 	public void setCategories(List<Category> categories) {
@@ -39,10 +42,7 @@ public class Main {
 	}
 
 	public List<Category> getCategories() {
-		List<Category> all = new ArrayList<Category>();
-		all.add(naslovna);
-		all.addAll(categories);
-		return all;
+		return categories;
 	}
 
 	public Article readArticle(Article article){
@@ -51,5 +51,15 @@ public class Main {
 
 	public Category getNaslovna() {
 		return naslovna;
+	}
+	
+	public List<Category> getGalleryCategories(){
+		if(galleryCategories == null){
+			galleryCategories = new ArrayList<Category>();
+			galleryCategories.add(naslovna);
+			galleryCategories.add(categories.get(1));
+			galleryCategories.add(categories.get(categories.size()-1));
+		}
+		return galleryCategories;
 	}
 }
