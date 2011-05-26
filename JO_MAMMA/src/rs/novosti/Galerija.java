@@ -43,11 +43,11 @@ public class Galerija extends Activity {
 			}
 		});
 		
-		adapter = new MyGalleryAdapter(this,Main.getInstance().getGalleryCategories().get(0).getArticles());
+//		adapter = new MyGalleryAdapter(this,Main.getInstance().getGalleryCategories().get(0).getArticles());
         final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
-        gridview.setAdapter(adapter);
+//        gridview.setAdapter(adapter);
         
-        
+        boolean doClick = true;
         for (Category cat : Main.getInstance().getGalleryCategories()) {
 			final Category category = cat;
 			final TextView tv = new TextView(this);
@@ -77,6 +77,10 @@ public class Galerija extends Activity {
 					tv.setBackgroundColor(0xFFFE0000);
 				}
 			});
+			if(doClick){
+				tv.performClick();
+				doClick = false;
+			}
 			// RelativeLayout.LayoutParams lay = new
 			// RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
 			// RelativeLayout.LayoutParams.WRAP_CONTENT);
