@@ -13,10 +13,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Galerija">
+        <activity android:name=".Galerija"
+        	android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         
-        <activity android:name=".NovostiCela">
+        <activity android:name=".NovostiCela"
+        	android:theme="@android:style/Theme.NoTitleBar">
         </activity>
 
     </application>

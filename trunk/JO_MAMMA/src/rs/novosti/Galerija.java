@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -20,6 +21,7 @@ public class Galerija extends Activity {
 	LinearLayout menuView;
 	Context context = this;
 	MyGalleryAdapter adapter;
+	private Button homeButton;
 	
     /** Called when the activity is first created. */
     @Override        
@@ -31,7 +33,16 @@ public class Galerija extends Activity {
         menuView = (LinearLayout) findViewById(R.id.Menu);
 		menuView.setHorizontalScrollBarEnabled(false);
         
-        
+		homeButton = (Button) findViewById(R.id.HomeButton3);
+		homeButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				setResult(1440);
+				finish();
+			}
+		});
+		
 		adapter = new MyGalleryAdapter(this,Main.getInstance().getGalleryCategories().get(0).getArticles());
         final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
         gridview.setAdapter(adapter);

@@ -200,6 +200,12 @@ public class NovostiPortal extends Activity {
             	resetMenuView();
 				createMainPage();
             }
+            if (resultCode == 1410) {
+            	Intent myIntent = new Intent(this,
+						Galerija.class);
+//				myIntent.putExtra("article", article);
+				startActivityForResult(myIntent, 0);
+            }
         }
     }
 
