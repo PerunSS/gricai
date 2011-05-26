@@ -1,17 +1,9 @@
 package rs.novosti.adapter;
 
-import java.io.InputStream;
-import java.net.URL;
+import java.util.List;
 
-import rs.novosti.R;
 import rs.novosti.model.Article;
-import rs.novosti.model.Category;
-import rs.novosti.rss.RssReader;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,28 +14,27 @@ import android.widget.ImageView;
 
 public class MyGalleryAdapter extends BaseAdapter {
 	private Context mContext;
-	private Category category;
+	List<Article> articles;
 
-	public MyGalleryAdapter(Context c) {
+	public MyGalleryAdapter(Context c, List<Article> articles) {
 		mContext = c;
-		RssReader reader = new RssReader();
-		category = reader.readHronika();
+		this.articles = articles;
 	}
 
 	public int getCount() {
-		return category.getArticles().size();
+		return articles.size();
 	}
 
 	public void add(Article a){
-		category.getArticles().add(a);
+		articles.add(a);
 	}
 	
 	public Object getItem(int position) {
-		return null;
+		return articles.get(position);
 	}
 
 	public long getItemId(int position) {
-		return 0;
+		return position;
 	}
 
 	// create a new ImageView for each item referenced by the Adapter
@@ -58,33 +49,38 @@ public class MyGalleryAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-		Article article = category.getArticles().get(position);
+//		Article article = category.getArticles().get(position);
 //		System.out.println("artikl     " + article.getPhotoPath() + "\n"
 //				);
-		imageView.setImageDrawable(getResizedDrawable(article.getPhotoPath()));
+		articles.get(position).setView(imageView);
+		articles.get(position).generateSmallPhoto();
 		return imageView;
 	}
 
 	// references to our images
 
-	private Drawable getResizedDrawable(String url) {
-		System.out.println("aj kao krece sliku da vadi jebo ga ja");
-		InputStream is = null;
-		if (url != null) {
-			url = url.replaceAll(" ", "%20");
-			try {
-				is = new URL(url).openStream();
-				Bitmap bitmap = BitmapFactory.decodeStream(is);
-				bitmap = Bitmap.createScaledBitmap(bitmap, (int) (80),
-						(int) (80), true);
-				return new BitmapDrawable(bitmap);
-			} catch (Exception e) {
-				// TODO: ha]ndle exception
-			}
-		} else {
-			return new BitmapDrawable(BitmapFactory.decodeResource(
-					mContext.getResources(), R.drawable.no_image));
-		}
-		return null;
+//	private Drawable getResizedDrawable(String url) {
+//		System.out.println("aj kao krece sliku da vadi jebo ga ja");
+//		InputStream is = null;
+//		if (url != null) {
+//			url = url.replaceAll(" ", "%20");
+//			try {
+//				is = new URL(url).openStream();
+//				Bitmap bitmap = BitmapFactory.decodeStream(is);
+//				bitmap = Bitmap.createScaledBitmap(bitmap, (int) (80),
+//						(int) (80), true);
+//				return new BitmapDrawable(bitmap);
+//			} catch (Exception e) {
+//				// TODO: ha]ndle exception
+//			}
+//		} else {
+//			return new BitmapDrawable(BitmapFactory.decodeResource(
+//					mContext.getResources(), R.drawable.no_image));
+//		}
+//		return null;
+//	}
+	public void clear(){
+		for(Article article:articles)
+			article.clear();
 	}
 }

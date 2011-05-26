@@ -1,24 +1,79 @@
 package rs.novosti;
 
 import rs.novosti.adapter.MyGalleryAdapter;
+import rs.novosti.model.Category;
+import rs.novosti.model.Main;
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 
 public class Galerija extends Activity {
+	
+	LinearLayout menuView;
+	Context context = this;
+	MyGalleryAdapter adapter;
+	
     /** Called when the activity is first created. */
     @Override        
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_gallery);
+        HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.menuScrollView2);
+		horScrView.setHorizontalScrollBarEnabled(false);
+        menuView = (LinearLayout) findViewById(R.id.Menu);
+		menuView.setHorizontalScrollBarEnabled(false);
         
         
-        
-        final MyGalleryAdapter adapter = new MyGalleryAdapter(this);
+		adapter = new MyGalleryAdapter(this,Main.getInstance().getGalleryCategories().get(0).getArticles());
         final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
         gridview.setAdapter(adapter);
+        
+        
+        for (Category cat : Main.getInstance().getGalleryCategories()) {
+			final Category category = cat;
+			final TextView tv = new TextView(this);
+			tv.setHeight(30);
+			tv.setTextSize(16);
+			tv.setGravity(0x11);
+			tv.setTextColor(0xFFFE0000);
+			tv.setBackgroundColor(0xFFFFFFFF);
+			tv.setPadding(5, 0, 5, 0);
+			tv.setTypeface(Typeface.DEFAULT_BOLD);
+			tv.setText(" " + cat.getTitle() + " ");
+			tv.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					
+					if (adapter != null) {
+						adapter.clear();
+					}
+					adapter = new MyGalleryAdapter(context,category.getArticles());
+					gridview.setAdapter(adapter);
+					
+					gridview.setFocusable(false);
+					
+					resetMenuView();
+					tv.setTextColor(0xFFFFFFFF);
+					tv.setBackgroundColor(0xFFFE0000);
+				}
+			});
+			// RelativeLayout.LayoutParams lay = new
+			// RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+			// RelativeLayout.LayoutParams.WRAP_CONTENT);
+			// lay.addRule(RelativeLayout.RIGHT_OF, RelativeLayout.TRUE);
+			// tv.setBackgroundResource(R.color.menu_background);
+			menuView.addView(tv);
+		}
+        
         
         
 //        gridview.setOnItemClickListener(new OnItemClickListener() {
@@ -39,4 +94,13 @@ public class Galerija extends Activity {
 //			}
 //		});
     }
+    public void resetMenuView() {
+		for (int i = 0; i < menuView.getChildCount(); i++) {
+			TextView tv = (TextView) menuView.getChildAt(i);
+			tv.setTextColor(0xFFFE0000);
+			tv.setBackgroundColor(0xFFFFFFFF);
+
+		}
+	}
+    
 }
