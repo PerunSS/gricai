@@ -51,6 +51,15 @@ public class NovostiCela extends Activity {
 			}
 		});
 		
+		Button gallery = (Button) findViewById(R.id.ImageGalleryButton2);
+		gallery.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				setResult(1410);
+				finish();
+			}
+		});
 		
 		articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
 		articleTitle.setText(article.getTitle());
