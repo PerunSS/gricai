@@ -35,7 +35,8 @@
 	
 	
 	<include layout="@layout/menuscrollview" 
-		android:id="@+id/menuScrollView2"  />
+		android:id="@+id/menuScrollView2"
+		  />
 	
 	<View
 		android:layout_width="fill_parent"
@@ -53,6 +54,7 @@
     	android:stretchMode="columnWidth"
     	android:gravity="center"
     	android:layout_weight="1"
+    	android:background="#FFFFFF"
 	/>
 	<Button
 		android:id="@+id/dugme"
