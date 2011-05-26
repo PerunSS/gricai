@@ -8,7 +8,6 @@ import rs.novosti.adapter.CategoryPreviewAdapter;
 import rs.novosti.model.Article;
 import rs.novosti.model.Category;
 import rs.novosti.model.Main;
-import rs.novosti.model.Naslovna;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -24,7 +23,7 @@ import android.widget.TextView;
 
 public class NovostiPortal extends Activity {
 	
-	Naslovna naslovna;
+	Category naslovna;
 
 	List<Article> sliderArticles;
 	public CategoryPreviewAdapter categoryPreviewAdapter;

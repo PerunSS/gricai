@@ -8,8 +8,8 @@ import rs.novosti.rss.RssReader;
 public class Main {
 
 	private List<Category> categories;
-	private Naslovna naslovna;
 	private RssReader reader;
+	private Category naslovna;
 	
 	private static Main instance = new Main();
 	
@@ -39,14 +39,17 @@ public class Main {
 	}
 
 	public List<Category> getCategories() {
-		return categories;
+		List<Category> all = new ArrayList<Category>();
+		all.add(naslovna);
+		all.addAll(categories);
+		return all;
 	}
 
-	public Naslovna getNaslovna() {
-		return naslovna;
-	}
-	
 	public Article readArticle(Article article){
 		return reader.readArticle(article);
+	}
+
+	public Category getNaslovna() {
+		return naslovna;
 	}
 }

@@ -14,7 +14,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import rs.novosti.model.Article;
 import rs.novosti.model.Category;
-import rs.novosti.model.Naslovna;
 
 public class RssReader {
 
@@ -54,8 +53,8 @@ public class RssReader {
 
 	private boolean itemStarted = false;
 
-	public Naslovna readNaslovna() {
-		Naslovna naslovna = new Naslovna();
+	public Category readNaslovna() {
+		Category naslovna = new Category();
 		try {
 			URL url = new URL(RssReader.naslovna);
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
@@ -129,6 +128,7 @@ public class RssReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		naslovna.setTitle("Top vesti");
 		return naslovna;
 	}
 
