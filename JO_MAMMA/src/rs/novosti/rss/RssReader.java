@@ -69,7 +69,7 @@ public class RssReader {
 			}
 			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
-//			result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("&", "&amp;");
 			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
@@ -148,7 +148,7 @@ public class RssReader {
 			}
 			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
-//				result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("&", "&amp;");
 			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
@@ -229,7 +229,7 @@ public class RssReader {
 			}
 			stream.close();
 			String result = new String(buffer.toString().getBytes(),"UTF-8");
-//			result = result.replaceAll("&", "&amp;");
+			result = result.replaceAll("&", "&amp;");
 			int parserEvent = parser.getEventType();
 			parser.setInput(new StringReader(result));
 			String tag = "";
