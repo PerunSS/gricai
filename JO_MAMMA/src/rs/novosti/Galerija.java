@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -117,5 +118,15 @@ public class Galerija extends Activity {
 
 		}
 	}
-    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        	setResult(1440);
+			finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
 }
