@@ -31,6 +31,10 @@ containing a value of this type.
          */
         public static final int adUnitId=0x7f010001;
     }
+    public static final class color {
+        public static final int full_transparent=0x7f050000;
+        public static final int selected_drink=0x7f050001;
+    }
     public static final class drawable {
         public static final int bg=0x7f020000;
         public static final int bg_1=0x7f020001;
@@ -62,59 +66,25 @@ containing a value of this type.
         public static final int IAB_BANNER=0x7f040002;
         public static final int IAB_LEADERBOARD=0x7f040003;
         public static final int IAB_MRECT=0x7f040001;
-        public static final int Vermouth=0x7f04002a;
-        public static final int absinthe=0x7f04001b;
-        public static final int adView1=0x7f040011;
-        public static final int adView2=0x7f040036;
-        public static final int adView3=0x7f04000b;
+        public static final int adView1=0x7f040012;
+        public static final int adView2=0x7f040014;
+        public static final int adView3=0x7f04000c;
         public static final int adView4=0x7f040005;
         public static final int add_to_favorites=0x7f040006;
-        public static final int beer=0x7f04002b;
-        public static final int bitter=0x7f040031;
-        public static final int brandy=0x7f04001a;
-        public static final int champagne=0x7f040029;
-        public static final int cocktail_list_element_text=0x7f04000f;
+        public static final int cocktail_list_element_text=0x7f040010;
         public static final int cocktail_list_view=0x7f040008;
-        public static final int cocktail_name_entry=0x7f040038;
+        public static final int cocktail_name_entry=0x7f040016;
         public static final int cocktail_recipe=0x7f040004;
-        public static final int cognac=0x7f040019;
-        public static final int cola=0x7f040030;
-        public static final int favorite_cocktail_name=0x7f040009;
-        public static final int favorite_cocktail_recipe=0x7f04000a;
-        public static final int favorites=0x7f040010;
-        public static final int favorites_cocktail_list_view=0x7f04000e;
-        public static final int gin=0x7f040016;
-        public static final int j_apple=0x7f04002f;
-        public static final int j_lemon=0x7f040033;
-        public static final int j_orange=0x7f04002e;
-        public static final int j_other=0x7f040035;
-        public static final int l_cherry=0x7f040022;
-        public static final int l_chocolate=0x7f040020;
-        public static final int l_coconut=0x7f040024;
-        public static final int l_coffee=0x7f040021;
-        public static final int l_menthol=0x7f04001f;
-        public static final int l_orange=0x7f04001e;
-        public static final int l_other=0x7f040025;
-        public static final int l_strawberry=0x7f040023;
-        public static final int liquers_drinks=0x7f04001d;
-        public static final int liqueur_d=0x7f04001c;
-        public static final int m_water=0x7f040032;
-        public static final int milk=0x7f040034;
-        public static final int mix=0x7f040037;
-        public static final int non_alc=0x7f04002d;
-        public static final int non_alc_d=0x7f04002c;
-        public static final int other_alc_d=0x7f040026;
-        public static final int other_alc_drinks=0x7f040027;
-        public static final int remove_from_favorites=0x7f04000c;
-        public static final int rum=0x7f040018;
+        public static final int drink_list=0x7f040013;
+        public static final int favorite_cocktail_image=0x7f040009;
+        public static final int favorite_cocktail_name=0x7f04000a;
+        public static final int favorite_cocktail_recipe=0x7f04000b;
+        public static final int favorites=0x7f040011;
+        public static final int favorites_cocktail_list_view=0x7f04000f;
+        public static final int mix=0x7f040015;
+        public static final int remove_from_favorites=0x7f04000d;
         public static final int share_cocktail=0x7f040007;
-        public static final int share_favorite_cocktail=0x7f04000d;
-        public static final int strong_d=0x7f040012;
-        public static final int strong_drinks=0x7f040013;
-        public static final int tequila=0x7f040015;
-        public static final int vodka=0x7f040014;
-        public static final int whisky=0x7f040017;
-        public static final int wine=0x7f040028;
+        public static final int share_favorite_cocktail=0x7f04000e;
     }
     public static final class layout {
         public static final int cocktail_display=0x7f030000;
@@ -127,8 +97,8 @@ containing a value of this type.
         public static final int splash_screen=0x7f030007;
     }
     public static final class string {
-        public static final int app_name=0x7f050001;
-        public static final int hello=0x7f050000;
+        public static final int app_name=0x7f060001;
+        public static final int hello=0x7f060000;
     }
     public static final class styleable {
         /** Attributes that can be used with a com_google_ads_AdView.
