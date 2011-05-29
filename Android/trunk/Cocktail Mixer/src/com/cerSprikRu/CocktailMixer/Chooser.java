@@ -36,16 +36,19 @@ import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Category;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
 import com.cerSprikRu.CocktailMixer.model.drink.Drink;
+import com.cerSprikRu.CocktailMixer.model.drink.RandomOptions;
 import com.cerSprikRu.CocktailMixer.threads.CocktailsCreatorThread;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
 public class Chooser extends Activity {
 
-	private static final String TYPE_TAG="type";
-	private static final String DRINK_TAG="drink";
-	private static final String SUBTYPE_TAG="subtype";
-	
+	private static final String TYPE_TAG = "type";
+	private static final String DRINK_TAG = "drink";
+	private static final String SUBTYPE_TAG = "subtype";
+	private static final String PERCENT_ATTRIBUTE = "percent";
+	private static final String ALC_ATTRIBUTE = "alc";
+
 	public static Chooser instance;
 	private boolean fullRandom = false;
 	private List<Category> categories;
@@ -59,7 +62,7 @@ public class Chooser extends Activity {
 		setContentView(R.layout.main);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.drink_list);
 		initDrinks();
-		for (Category category:categories) {
+		for (Category category : categories) {
 			TextView categoryView = new TextView(this);
 			categoryView.setTextSize(27);
 			categoryView.setText(category.getName().toUpperCase());
@@ -72,18 +75,28 @@ public class Chooser extends Activity {
 			TableRow row = new TableRow(this);
 			int indicator = 1;
 			currentDrink = 0;
-			for (Drink drink:category.getDrinks()) {
+			for (Drink drink : category.getDrinks()) {
 				StateListDrawable stateList = new StateListDrawable();
 				int statePressed = android.R.attr.state_pressed;
 				int stateChecked = android.R.attr.state_checked;
-				stateList.addState(new int[] {-stateChecked}, new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.check_3)));
-				stateList.addState(new int[] {stateChecked}, new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.check_1)));
-				stateList.addState(new int[] {statePressed}, new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.check_2)));
+				stateList.addState(
+						new int[] { -stateChecked },
+						new BitmapDrawable(BitmapFactory.decodeResource(
+								getResources(), R.drawable.check_3)));
+				stateList.addState(
+						new int[] { stateChecked },
+						new BitmapDrawable(BitmapFactory.decodeResource(
+								getResources(), R.drawable.check_1)));
+				stateList.addState(
+						new int[] { statePressed },
+						new BitmapDrawable(BitmapFactory.decodeResource(
+								getResources(), R.drawable.check_2)));
 				final CheckBox box = new CheckBox(this);
-				box.setLayoutParams(new TableRow.LayoutParams(0,LayoutParams.WRAP_CONTENT,1f));
+				box.setLayoutParams(new TableRow.LayoutParams(0,
+						LayoutParams.WRAP_CONTENT, 1f));
 				String name = drink.getName();
-				if(name.contains(" "))
-					name = name.substring(0,name.indexOf(' '));
+				if (name.contains(" "))
+					name = name.substring(0, name.indexOf(' '));
 				box.setText(name);
 				box.setTextColor(Color.WHITE);
 				box.setButtonDrawable(stateList);
@@ -96,37 +109,51 @@ public class Chooser extends Activity {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
-						CocktailTrace trace = (CocktailTrace)box.getTag();
-						final Drink drink = categories.get(trace.currentCategory).getDrinks().get(trace.currentDrink);
+						CocktailTrace trace = (CocktailTrace) box.getTag();
+						final Drink drink = categories
+								.get(trace.currentCategory).getDrinks()
+								.get(trace.currentDrink);
 						boolean newValue = !drink.isPresent();
 						drink.setPresent(newValue);
-						if(newValue && drink.getSubDrinks()!=null && drink.getSubDrinks().size() > 0){
-							AlertDialog.Builder builder = new AlertDialog.Builder(Chooser.this);
-							CharSequence names[] = new CharSequence[drink.getSubDrinks().size()];
-							int i=0;
-							for(Drink subDrink:drink.getSubDrinks()){
-								names[i++]=subDrink.getName();
+						if (newValue && drink.getSubDrinks() != null
+								&& drink.getSubDrinks().size() > 0) {
+							AlertDialog.Builder builder = new AlertDialog.Builder(
+									Chooser.this);
+							CharSequence names[] = new CharSequence[drink
+									.getSubDrinks().size()];
+							int i = 0;
+							for (Drink subDrink : drink.getSubDrinks()) {
+								names[i++] = subDrink.getName();
 							}
-							builder.setTitle("Choose specific types");
-							builder.setMultiChoiceItems(names,null, new DialogInterface.OnMultiChoiceClickListener() {
-	
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which, boolean isChecked) {
-									boolean present = drink.getSubDrinks().get(which).isPresent();
-									drink.getSubDrinks().get(which).setPresent(!present);
-								}
-								
-							});
-							builder.setPositiveButton("done", new DialogInterface.OnClickListener(){
-								public void onClick(DialogInterface dialog, int id) {
-					                dialog.dismiss();
-					           }
-							});
+							builder.setTitle("Choose specific subtypes");
+							builder.setMultiChoiceItems(
+									names,
+									null,
+									new DialogInterface.OnMultiChoiceClickListener() {
+
+										@Override
+										public void onClick(
+												DialogInterface dialog,
+												int which, boolean isChecked) {
+											boolean present = drink
+													.getSubDrinks().get(which)
+													.isPresent();
+											drink.getSubDrinks().get(which)
+													.setPresent(!present);
+										}
+
+									});
+							builder.setPositiveButton("done",
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog, int id) {
+											dialog.dismiss();
+										}
+									});
 							builder.create().show();
-						}else {
-							if(drink.getSubDrinks()!=null)
-								for(Drink subDrink:drink.getSubDrinks()){
+						} else {
+							if (drink.getSubDrinks() != null)
+								for (Drink subDrink : drink.getSubDrinks()) {
 									subDrink.setPresent(false);
 								}
 						}
@@ -145,16 +172,14 @@ public class Chooser extends Activity {
 				currentDrink++;
 				indicator++;
 			}
-			if(indicator %2 == 0){
-				categoryDrinksLayout.addView(row,
-						new TableLayout.LayoutParams(
-								LayoutParams.FILL_PARENT,
-								LayoutParams.WRAP_CONTENT));
+			if (indicator % 2 == 0) {
+				categoryDrinksLayout.addView(row, new TableLayout.LayoutParams(
+						LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 			}
 			layout.addView(categoryDrinksLayout);
 			currentCategory++;
 		}
-		
+
 		Button favorites = (Button) findViewById(R.id.favorites);
 		favorites.setOnClickListener(new View.OnClickListener() {
 
@@ -167,13 +192,13 @@ public class Chooser extends Activity {
 		});
 		Button mix = (Button) findViewById(R.id.mix);
 		mix.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				CocktailCreator.getInstance().reset();
-				for(Category category:categories){
-					for(Drink drink:category.getDrinks()){
-						if(drink.isPresent()){
+				for (Category category : categories) {
+					for (Drink drink : category.getDrinks()) {
+						if (drink.isPresent()) {
 							CocktailCreator.getInstance().addDrink(drink);
 						}
 					}
@@ -195,7 +220,7 @@ public class Chooser extends Activity {
 				}
 			}
 		});
-		
+
 		AdView adView1 = (AdView) findViewById(R.id.adView1);
 		adView1.loadAd(new AdRequest());
 		AdView adView2 = (AdView) findViewById(R.id.adView2);
@@ -203,7 +228,7 @@ public class Chooser extends Activity {
 		new FavoritesManager(this);
 		instance = this;
 	}
-	
+
 	private void initDrinks() {
 		categories = new ArrayList<Category>();
 		try {
@@ -213,43 +238,58 @@ public class Chooser extends Activity {
 			parser.setInput(stream, "UTF-8");
 			int parserEvent = parser.getEventType();
 			String tag = "";
-			Category category=null;
+			Category category = null;
 			String categoryName = null;
-			Drink currentDrink = null;;
-			Drink subDrink=null;
+			Drink currentDrink = null;
+			;
+			Drink subDrink = null;
 			while (parserEvent != XmlPullParser.END_DOCUMENT) {
 				switch (parserEvent) {
 				case XmlPullParser.START_TAG:
 					tag = parser.getName();
-					if(tag.equalsIgnoreCase(TYPE_TAG)){
+					String percent = parser.getAttributeValue(null,
+							PERCENT_ATTRIBUTE);
+					String alc = parser.getAttributeValue(null, ALC_ATTRIBUTE);
+					if (tag.equalsIgnoreCase(TYPE_TAG)) {
 						category = new Category();
 						categoryName = parser.getAttributeValue(null, "name");
 						category.setName(categoryName);
-					}else if(tag.equalsIgnoreCase(DRINK_TAG)){
+						category.setPercent(Double.parseDouble(percent));
+						RandomOptions.getInstance().setRatio(category.getPercent(),categoryName);
+						if (alc != null) {
+							category.setAlcPercent(Double.parseDouble(alc));
+						}
+					} else if (tag.equalsIgnoreCase(DRINK_TAG)) {
 						currentDrink = new Drink();
-						currentDrink.setName(parser.getAttributeValue(null,"name"));
+						currentDrink.setName(parser.getAttributeValue(null,
+								"name"));
 						currentDrink.setType(categoryName);
-					}else if(tag.equalsIgnoreCase(SUBTYPE_TAG)){
+						currentDrink.setPercent(Double.parseDouble(percent));
+					} else if (tag.equalsIgnoreCase(SUBTYPE_TAG)) {
 						subDrink = new Drink();
+						subDrink.setPercent(Double.parseDouble(percent));
 					}
 					break;
 				case XmlPullParser.TEXT:
 					String text = parser.getText().trim();
-					if(subDrink!=null && text.length()>0){
+					if (subDrink != null && text.length() > 0) {
 						subDrink.setName(text);
-						if(currentDrink!=null)
+						if (currentDrink != null)
 							currentDrink.addSubDrink(subDrink);
+						subDrink = null;
 					}
 					break;
 				case XmlPullParser.END_TAG:
 					tag = parser.getName();
-					if(tag.equalsIgnoreCase(DRINK_TAG)){
-						if(category!=null)
+					if (tag.equalsIgnoreCase(DRINK_TAG)) {
+						if (category != null)
 							category.addDrink(currentDrink);
-					}else if(tag.equalsIgnoreCase(TYPE_TAG)){
-						if(category!=null && categoryName!=null){
+						currentDrink = null;
+					} else if (tag.equalsIgnoreCase(TYPE_TAG)) {
+						if (category != null && categoryName != null) {
 							categories.add(category);
 						}
+						category = null;
 					}
 					break;
 				default:
@@ -262,7 +302,6 @@ public class Chooser extends Activity {
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		}
-		System.out.println(categories);
 	}
 
 	private void showError(String text) {
@@ -279,8 +318,8 @@ public class Chooser extends Activity {
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
-	
-	private class CocktailTrace implements Serializable{
+
+	private class CocktailTrace implements Serializable {
 		/**
 		 * 
 		 */

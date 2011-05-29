@@ -17,6 +17,7 @@ public class Drink implements Serializable, Comparable<Drink> {
 	private boolean teaSpoon;
 	private double alcPercent = 0.0;
 	private boolean isPresent;
+	private double percent;
 
 	public Drink() {
 		teaSpoon = false;
@@ -60,6 +61,8 @@ public class Drink implements Serializable, Comparable<Drink> {
 			setType(DrinkType.A_STRONG);
 		else if(category.equalsIgnoreCase("liqueur"))
 			setType(DrinkType.B_LIQUEUR);
+		else if(category.equalsIgnoreCase("flavored liqueur"))
+			setType(DrinkType.C_FLAVORED_LIQUEUR);
 		else if(category.equalsIgnoreCase("other alcoholic"))
 			setType(DrinkType.D_OTHER);
 		else if(category.equalsIgnoreCase("non-alcoholic"))
@@ -73,20 +76,6 @@ public class Drink implements Serializable, Comparable<Drink> {
 
 	public void setType(DrinkType type) {
 		this.type = type;
-		switch(type){
-		case A_STRONG:
-			alcPercent = 0.4;
-			break;
-		case B_LIQUEUR: case C_FLAVORED_LIQUEUR:
-			alcPercent = 0.22;
-			break;
-		case D_OTHER:
-			alcPercent = 0.15;
-			break;
-		case E_NON_ALC: case F_ADDITIONS:
-			alcPercent = 0.0;
-	
-		}
 	}
 
 	public DrinkType getType() {
@@ -134,5 +123,13 @@ public class Drink implements Serializable, Comparable<Drink> {
 
 	public boolean isPresent() {
 		return isPresent;
+	}
+
+	public void setPercent(double percent) {
+		this.percent = percent;
+	}
+
+	public double getPercent() {
+		return percent;
 	}
 }
