@@ -121,16 +121,16 @@
 		</drink>
 		<drink name="Energy" percent="2.38">
 		</drink>
-		<drink name="Soft" percent="3.72">
+		<!--  <drink name="Soft" percent="3.72">
 			<subtype percent="18.04">Ice Tea</subtype>
-			<subtype percent="100">Lemonade</subtype>
+			<subtype percent="100">Lemonade</subtype> -->
 			<!-- <subtype>Squash</subtype> -->
-		</drink>
+		<!-- </drink>
 		<drink name="Hot" percent="4.43">
 			<subtype percent="69.58">Coffee</subtype>
-			<subtype percent="30.42">Tea</subtype>
+			<subtype percent="30.42">Tea</subtype> -->
 			<!-- <subtype>Hot Chocolate</subtype> -->
-		</drink>
+		<!-- </drink> -->
 		<!-- <drink name="Other Non-alcoholic">
 		</drink> -->
 	</type>

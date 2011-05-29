@@ -211,7 +211,7 @@ public class CocktailCreator {
 		if (nextDrinks != null) {
 			Drink nextDrink = null;
 			while (nextDrink == null) {
-				double random = 100 * Math.random();
+				double random = 75 * Math.random();
 				List<Drink> possibleDrinks = new ArrayList<Drink>();
 				for (Drink drink : nextDrinks) {
 					if (drink.getPercent() > random) {
