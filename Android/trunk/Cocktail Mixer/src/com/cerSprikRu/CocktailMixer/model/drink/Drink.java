@@ -52,6 +52,7 @@ public class Drink implements Serializable, Comparable<Drink> {
 		for(Drink subDrink:subDrinks){
 			subDrink.setType(getType());
 			subDrink.setAlcPercent(getAlcPercent());
+			subDrink.setTeaSpoon(isTeaSpoon());
 			this.subDrinks.add(subDrink);
 		}
 	}
@@ -87,8 +88,11 @@ public class Drink implements Serializable, Comparable<Drink> {
 		String mesure = "messure";
 		if (teaSpoon)
 			mesure = "teaspon";
+		if(name.equalsIgnoreCase("fruit"))
+			mesure = "piece";
 		if (amount > 1)
 			mesure += "s";
+		
 		return name + " " + amount + " " + mesure;
 	}
 

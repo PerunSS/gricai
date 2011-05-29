@@ -271,31 +271,15 @@ public class CocktailCreator {
 	}
 
 	private Drink getRandomDrink() {
-		Drink nextDrink;
-		int nextIndex = (int) (Math.random() * size);
-		if (nextIndex >= strongDrinks.size()) {
-			nextIndex -= strongDrinks.size();
-			if (nextIndex >= liqueurs.size()) {
-				nextIndex -= liqueurs.size();
-				if (nextIndex >= otherDrinks.size()) {
-					nextIndex -= otherDrinks.size();
-					if (nextIndex >= nonAlcDrinks.size()) {
-						return null;
-					}
-					nextDrink = nonAlcDrinks.get(nextIndex);
-					nextDrink.setAmount((int) (Math.random() * 4) + 3);
-				} else {
-					nextDrink = otherDrinks.get(nextIndex);
-					nextDrink.setAmount((int) (Math.random() * 3) + 2);
-				}
-			} else {
-				nextDrink = liqueurs.get(nextIndex);
-				nextDrink.setAmount((int) (Math.random() * 2) + 1);
-			}
-		} else {
-			nextDrink = strongDrinks.get(nextIndex);
-			nextDrink.setAmount((int) (Math.random() * 1) + 1);
-		}
+		List<Drink> allDrinks = new ArrayList<Drink>();
+		allDrinks.addAll(strongDrinks);
+		allDrinks.addAll(liqueurs);
+		allDrinks.addAll(flavoredLiqueurs);
+		allDrinks.addAll(otherDrinks);
+		allDrinks.addAll(nonAlcDrinks);
+		allDrinks.addAll(additions);
+		Drink nextDrink = allDrinks.get((int)(Math.random()*allDrinks.size()));
+		nextDrink.setAmount(1+(int)(Math.random()*4));
 		return nextDrink;
 	}
 

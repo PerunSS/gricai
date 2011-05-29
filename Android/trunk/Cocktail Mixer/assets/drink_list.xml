@@ -36,33 +36,33 @@
 		</drink> -->
 	</type>
 	<type name="liqueur" percent="72.02" alc="28">
-		<drink name="Fruit" percent="38.92">
+		<drink name="Fruit liqueur" percent="38.92">
 			<subtype percent="59.52">Orange liqueur</subtype>
 			<subtype percent="16.96">Peach liqueur</subtype>
 			<subtype percent="3.32">Tropical liqueur</subtype>
 			<subtype percent="20.21">Curacao liqueur</subtype>
 		</drink>
-		<drink name="Coffee" percent="9.42">
+		<drink name="Coffee liqueur" percent="9.42">
 		</drink>
-		<drink name="Chocolate" percent="6.13">
+		<drink name="Chocolate liqueur" percent="6.13">
 		</drink>
-		<drink name="Berry" percent="6.64">
+		<drink name="Berry liqueur" percent="6.64">
 			<subtype percent="62.51">Raspberry liqueur</subtype>
 			<subtype percent="17.16">Strawberry liqueur</subtype>
 			<subtype percent="20.33">Blackberry liqueur</subtype>
 		</drink>
-		<drink name="Herbal" percent="7.77">
+		<drink name="Herbal liqueur" percent="7.77">
 			<subtype percent="34.17">Mint liqueur</subtype>
 			<subtype percent="48.93">Cinnamon liqueur</subtype>
 		</drink>
-		<drink name="Nut" percent="10.80">
+		<drink name="Nut liqueur" percent="10.80">
 			<subtype percent="81.26">Almond liqueur</subtype>
 			<subtype percent="18.74">Hazelnut liqueur</subtype>
 		</drink>
-		<drink name="Cream" percent="10.02">
+		<drink name="Cream liqueur" percent="10.02">
 			<subtype percent="91.17">Irish Cream Liqueur</subtype>
 		</drink>
-		<drink name="Creme" percent="10.08">
+		<drink name="Creme liqueur" percent="10.08">
 			<subtype percent="18.57">Creme de Bananes</subtype>
 			<subtype percent="48.02">Creme de Cacao</subtype>
 			<subtype percent="8.42">Creme de Cassis</subtype>
