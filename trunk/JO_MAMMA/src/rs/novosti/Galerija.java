@@ -35,6 +35,7 @@ public class Galerija extends Activity {
 		menuView.setHorizontalScrollBarEnabled(false);
         
 		homeButton = (Button) findViewById(R.id.HomeButton3);
+		homeButton.setBackgroundResource(R.drawable.home_no);
 		homeButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -75,7 +76,7 @@ public class Galerija extends Activity {
 					
 					resetMenuView();
 					tv.setTextColor(0xFFFFFFFF);
-					tv.setBackgroundColor(0xFFFE0000);
+					tv.setBackgroundResource(R.drawable.menu_selected);
 				}
 			});
 			if(doClick){

@@ -81,6 +81,7 @@ public class NovostiPortal extends Activity {
 		setContentView(R.layout.main);
 		Button home = (Button) findViewById(R.id.HomeButton);
 		Button gallery = (Button) findViewById(R.id.ImageGalleryButton);
+		gallery.setBackgroundResource(R.drawable.photo_gallery_no);
 		HorizontalScrollView horScrView = (HorizontalScrollView) findViewById(R.id.menuScrollView);
 		horScrView.setHorizontalScrollBarEnabled(false);
 		menuView = (LinearLayout) findViewById(R.id.Menu);
@@ -138,7 +139,7 @@ public class NovostiPortal extends Activity {
 					view.setFocusable(false);
 					resetMenuView();
 					tv.setTextColor(0xFFFFFFFF);
-					tv.setBackgroundColor(0xFFFE0000);
+					tv.setBackgroundResource(R.drawable.menu_selected);
 				}
 			});
 			// RelativeLayout.LayoutParams lay = new
