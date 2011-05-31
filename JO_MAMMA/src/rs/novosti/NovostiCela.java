@@ -52,6 +52,7 @@ public class NovostiCela extends Activity {
 		});
 		
 		Button gallery = (Button) findViewById(R.id.ImageGalleryButton2);
+		gallery.setBackgroundResource(R.drawable.photo_gallery_no);
 		gallery.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -62,7 +63,7 @@ public class NovostiCela extends Activity {
 		});
 		
 		articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
-		articleTitle.setText(article.getTitle());
+		articleTitle.setText(Html.fromHtml(article.getTitle()));
 
 		articleSource = (TextView) findViewById(R.id.fullArticle_Source);
 		articleSource.setText("");

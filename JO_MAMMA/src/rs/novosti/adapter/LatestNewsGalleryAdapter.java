@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		// System.out.println(article.getName());
 		// new BitmapFactory();
 		// holder.latestArticleImage.setImageBitmap(BitmapFactory.decodeFile(article.getPhotoPath()));
-		holder.latestArticleTitle.setText(article.getTitle());
+		holder.latestArticleTitle.setText(Html.fromHtml(article.getTitle()));
 		holder.latestArticleTitle
 				.setOnClickListener(new View.OnClickListener() {
 

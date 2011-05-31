@@ -9,6 +9,7 @@ import rs.novosti.model.Article;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,7 +105,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			// secondHolder.secondStyleArticleTitle.setText(article.getName());
 			// secondHolder.secondStyleArticleShortText.setText(article.getShortText());
 
-			secondHolder.secondStyleArticleTitle.setText(article.getTitle());
+			secondHolder.secondStyleArticleTitle.setText(Html.fromHtml(article.getTitle()));
 			secondHolder.secondStyleArticleShortText.setText(article
 					.getDate().toString());
 			if(article.getView() == null)
@@ -133,7 +134,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			// i ovde naravno ovo uzima al da bi mi bilo lakse necu to sad :D
 			// Article article = articles.get(position);
 			// thirdHolder.articleTitle.setText(article.getName());
-			thirdHolder.articleTitle.setText(article.getTitle());
+			thirdHolder.articleTitle.setText(Html.fromHtml(article.getTitle()));
 			thirdHolder.thirdHolderLayout
 					.setOnClickListener(new View.OnClickListener() {
 
