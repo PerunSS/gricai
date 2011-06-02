@@ -1,9 +1,12 @@
 package rs.novosti.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import rs.novosti.rss.RssReader;
+import android.text.format.DateFormat;
 
 public class Main {
 
@@ -11,6 +14,7 @@ public class Main {
 	private RssReader reader;
 	private Category naslovna;
 	private List<Category> galleryCategories;
+	private String timeRefreshed;
 	
 	private static Main instance = new Main();
 	
@@ -19,6 +23,7 @@ public class Main {
 	}
 	
 	private Main(){
+		
 		categories = new ArrayList<Category>();
 		reader = new RssReader();
 		naslovna = reader.readNaslovna();
@@ -35,8 +40,14 @@ public class Main {
 		categories.add(reader.readAuto());
 		categories.add(reader.readSport());
 		
+
+		timeRefreshed = "Osveženo "+android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", new java.util.Date())+"h";
 	}
 	
+	public String getTimeRefreshed() {
+		return timeRefreshed;
+	}
+
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}

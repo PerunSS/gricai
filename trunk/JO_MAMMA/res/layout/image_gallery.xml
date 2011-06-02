@@ -4,7 +4,7 @@
 	android:layout_width="fill_parent" 
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="#FE0000">
+    android:background="@color/novosti_red">
     
     <LinearLayout 
 		android:orientation="horizontal"
@@ -41,12 +41,12 @@
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="2dp"
-		android:background="#FE0000"/>
+		android:background="@color/novosti_red"/>
        
 	<GridView  
     	android:id="@+id/gallery_gridview"
     	android:layout_width="fill_parent" 
-    	android:layout_height="fill_parent"
+    	android:layout_height="386dp"
     	android:columnWidth="90dp"
     	android:numColumns="auto_fit"
     	android:verticalSpacing="3dp"
@@ -56,9 +56,37 @@
     	android:layout_weight="1"
     	android:background="#FFFFFF"
 	/>
-	<Button
-		android:id="@+id/dugme"
-		android:layout_width="fill_parent"
-		android:layout_height="50sp"
-		android:layout_weight="1"/>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="20dp"
+		android:paddingLeft="5dp"
+		android:paddingRight="5dp"
+	>
+		<TextView
+			android:layout_width="130dp"
+			android:layout_weight="1"
+			android:layout_height="20dp"
+			android:text="Tehnicom Solutions"
+			android:textSize="12dp"
+			android:textColor="#FFFFFF"		
+			android:gravity="center_vertical"			
+		/>
+		<TextView
+			android:layout_width="160dp"
+			android:layout_weight="1"
+			android:layout_height="20dp"
+			android:id="@+id/time_refreshed_gallery"
+			android:textColor="#FFFFFF"
+			android:textSize="11dp"		
+			android:gravity="center"			
+		/>
+		<Button
+			android:layout_width="20dp"
+			android:layout_height="20dp"
+			android:id="@+id/refresh_button_gallery"
+			android:background="@drawable/refresh"
+		/>
+	</LinearLayout>
+		
 </LinearLayout>

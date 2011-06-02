@@ -38,6 +38,9 @@ public class NovostiCela extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.full_article_view);
+		
+		
+		
 		Article article = (Article) getIntent().getExtras().get("article");
 		Main.getInstance().readArticle(article);
 		
@@ -77,6 +80,9 @@ public class NovostiCela extends Activity {
 
 		articleFullText = (TextView) findViewById(R.id.fullArticle_FullText);
 		articleFullText.setText(Html.fromHtml(article.getText()));
+		
+		TextView refTime = (TextView) findViewById(R.id.time_refreshed_full);
+		refTime.setText(Main.getInstance().getTimeRefreshed());
 	
 	}
 
