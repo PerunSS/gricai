@@ -9,8 +9,10 @@ import rs.novosti.model.Article;
 import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,14 +31,20 @@ public class NovostiPortal extends Activity {
 	List<Article> sliderArticles;
 	public CategoryPreviewAdapter categoryPreviewAdapter;
 	public CategoryLayoutAdapter categoryLayoutAdapter;
-	// ProgressDialog progressDialog;
+	ProgressDialog progressDialog;
 	LinearLayout menuView;
 	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			// progressDialog.dismiss();
-			createMenu();
-			createMainPage();
+			if(msg.arg1 == 0){
+				createMenu();
+				createMainPage();
+			}
+			if(msg.arg1 == 1){
+				if(progressDialog!=null)
+					progressDialog.dismiss();
+			}
 		}
 	};
 
@@ -125,26 +133,22 @@ public class NovostiPortal extends Activity {
 
 				@Override
 				public void onClick(View v) {
-
-					categoryPreviewAdapter.clear();
+					
 
 					// Intent categoryIntent = new Intent(v.getContext(),
 					// NovostiCategory.class);
 					// categoryIntent.putExtra("category", category);
 					// startActivityForResult(categoryIntent, 0);
-					ListView view = (ListView) findViewById(R.id.Content);
+					
 					if (categoryLayoutAdapter != null) {
 						categoryLayoutAdapter.clear();
 					}
-					categoryLayoutAdapter = new CategoryLayoutAdapter(
-							NovostiPortal.this, name);
-					view.setAdapter(categoryLayoutAdapter);
-					view.setItemsCanFocus(true);
-					view.setFocusable(false);
-					resetMenuView();
+					new CategoryLoaderTask().execute(name);
+					
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
 					tv.setBackgroundResource(R.drawable.menu_selected);
+					
 				}
 			});
 			// RelativeLayout.LayoutParams lay = new
@@ -195,9 +199,43 @@ public class NovostiPortal extends Activity {
 		@Override
 		public void run() {
 			Main.getInstance();
-			mainHandler.sendEmptyMessage(0);
+			Message msg = new Message();
+			msg.arg1 = 0;
+			mainHandler.sendMessage(msg);
 		}
 
+	}
+	
+	private class CategoryLoaderTask extends AsyncTask<String, Void, CategoryLayoutAdapter>{
+
+		@Override
+		protected CategoryLayoutAdapter doInBackground(String... params) {
+			
+			categoryLayoutAdapter = new CategoryLayoutAdapter(
+					NovostiPortal.this, params[0]);
+			return categoryLayoutAdapter;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NovostiPortal.this, "", "Molimo sačekajte");
+		}
+		
+		@Override
+		protected void onPostExecute(CategoryLayoutAdapter result) {
+			super.onPostExecute(result);
+			progressDialog.dismiss();
+			if(categoryPreviewAdapter!=null)
+				categoryPreviewAdapter.clear();
+			categoryLayoutAdapter = null;
+			ListView view = (ListView) findViewById(R.id.Content);
+			view.setAdapter(result);
+			view.setItemsCanFocus(true);
+			view.setFocusable(false);
+			resetMenuView();
+		}
+		
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
