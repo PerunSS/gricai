@@ -31,8 +31,11 @@ public class NovostiPortal extends Activity {
 	List<Article> sliderArticles;
 	public CategoryPreviewAdapter categoryPreviewAdapter;
 	public CategoryLayoutAdapter categoryLayoutAdapter;
+	public CategoryLayoutAdapter activeCategory;
 	ProgressDialog progressDialog;
 	LinearLayout menuView;
+	private String currentCategory;
+	
 	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -99,6 +102,7 @@ public class NovostiPortal extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				currentCategory = null;
 				resetMenuView();
 				createMainPage();
 			}
@@ -189,8 +193,20 @@ public class NovostiPortal extends Activity {
 		view.setItemsCanFocus(true);
 		view.setFocusable(false);
 
-		TextView refTime = (TextView) findViewById(R.id.time_refreshed);
+		final TextView refTime = (TextView) findViewById(R.id.time_refreshed);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
+		Button refresh = (Button) findViewById(R.id.refresh_button);
+		refresh.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(currentCategory!=null){
+					activeCategory.refresh();
+					refTime.setText(Main.getInstance().getTimeRefreshed());
+				}
+				
+			}
+		});
 	}
 
 	// private void showMessage(String message){
@@ -214,9 +230,9 @@ public class NovostiPortal extends Activity {
 
 		@Override
 		protected CategoryLayoutAdapter doInBackground(String... params) {
-			System.out.println("citam kategoriju "+params[0]);
 			categoryLayoutAdapter = new CategoryLayoutAdapter(
 					NovostiPortal.this, params[0]);
+			currentCategory = params[0];
 			return categoryLayoutAdapter;
 		}
 		
@@ -229,10 +245,9 @@ public class NovostiPortal extends Activity {
 		@Override
 		protected void onPostExecute(CategoryLayoutAdapter result) {
 			super.onPostExecute(result);
-			System.out.println("ucitana kategorija");
-			
 			if(categoryPreviewAdapter!=null)
 				categoryPreviewAdapter.clear();
+			activeCategory = result;
 			categoryLayoutAdapter = null;
 			ListView view = (ListView) findViewById(R.id.Content);
 			view.setAdapter(result);
@@ -243,7 +258,7 @@ public class NovostiPortal extends Activity {
 		}
 		
 	}
-
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 0) {
 			if (resultCode == 1440) {

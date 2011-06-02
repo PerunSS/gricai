@@ -33,9 +33,11 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	private List<Article> articles;
 	private Drawable categoryBigDrawable;
 	private Context context;
+	private String categoryName;
 
 	public CategoryLayoutAdapter(Context context, String categoryName) {
 		inflater = LayoutInflater.from(context);
+		this.categoryName = categoryName;
 		Main.getInstance().readCategory(categoryName);
 		this.articles = Main.getInstance().getCategories().get(categoryName).getArticles();
 		this.context = context;
@@ -254,5 +256,11 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	public void clear(){
 		for(Article article:articles)
 			article.clear();
+	}
+
+	public void refresh() {
+		Main.getInstance().refreshCategory(categoryName);
+		articles = Main.getInstance().getCategories().get(categoryName).getArticles();
+		notifyDataSetChanged();
 	}
 }
