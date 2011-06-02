@@ -7,6 +7,7 @@ import java.util.List;
 import rs.novosti.NovostiCela;
 import rs.novosti.R;
 import rs.novosti.model.Article;
+import rs.novosti.model.Main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,9 +34,10 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	private Drawable categoryBigDrawable;
 	private Context context;
 
-	public CategoryLayoutAdapter(Context context, List<Article> articles) {
+	public CategoryLayoutAdapter(Context context, String categoryName) {
 		inflater = LayoutInflater.from(context);
-		this.articles = articles;
+		Main.getInstance().readCategory(categoryName);
+		this.articles = Main.getInstance().getCategories().get(categoryName).getArticles();
 		this.context = context;
 
 	}

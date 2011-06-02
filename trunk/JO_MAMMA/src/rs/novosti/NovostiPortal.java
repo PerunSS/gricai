@@ -23,18 +23,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class NovostiPortal extends Activity {
-	
+
 	Category naslovna;
 
 	List<Article> sliderArticles;
 	public CategoryPreviewAdapter categoryPreviewAdapter;
 	public CategoryLayoutAdapter categoryLayoutAdapter;
-//	ProgressDialog progressDialog;
+	// ProgressDialog progressDialog;
 	LinearLayout menuView;
 	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-//			progressDialog.dismiss();
+			// progressDialog.dismiss();
 			createMenu();
 			createMainPage();
 		}
@@ -45,7 +45,7 @@ public class NovostiPortal extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
+		// progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
 		setContentView(R.layout.loading);
 		Thread thread = new Thread(new LoaderThread());
 		thread.start();
@@ -63,8 +63,6 @@ public class NovostiPortal extends Activity {
 			tv.setGravity(Gravity.CENTER);
 			tv.setTextColor(0xFFd7181f);
 			tv.setBackgroundColor(0xFFFFFFFF);
-			
-
 		}
 	}
 
@@ -97,20 +95,23 @@ public class NovostiPortal extends Activity {
 				createMainPage();
 			}
 		});
-		
+
 		gallery.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent myIntent = new Intent(v.getContext(),
-						Galerija.class);
-//				myIntent.putExtra("article", article);
+				Intent myIntent = new Intent(v.getContext(), Galerija.class);
+				// myIntent.putExtra("article", article);
 				startActivityForResult(myIntent, 0);
 			}
 		});
-		
-		for (Category cat : Main.getInstance().getCategories()) {
-			final Category category = cat;
+
+		String names[] = { "Top vesti", "Politika", "Društvo", "Ekonomija",
+				"Hronika", "Beograd", "Dosije", "Spektakl", "Život plus",
+				"Tehnologije", "Auto", "Sport" };
+
+		for (String categoryName:names) {
+			final String name = categoryName;
 			final TextView tv = new TextView(this);
 			tv.setHeight(30);
 			tv.setTextSize(16);
@@ -119,7 +120,7 @@ public class NovostiPortal extends Activity {
 			tv.setPadding(5, 0, 5, 0);
 			tv.setGravity(Gravity.CENTER);
 			tv.setTypeface(Typeface.DEFAULT_BOLD);
-			tv.setText(" " + cat.getTitle() + " ");
+			tv.setText(" " + name + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -136,11 +137,11 @@ public class NovostiPortal extends Activity {
 						categoryLayoutAdapter.clear();
 					}
 					categoryLayoutAdapter = new CategoryLayoutAdapter(
-							NovostiPortal.this, category.getArticles());
+							NovostiPortal.this, name);
 					view.setAdapter(categoryLayoutAdapter);
 					view.setItemsCanFocus(true);
 					view.setFocusable(false);
-					resetMenuView();		
+					resetMenuView();
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
 					tv.setBackgroundResource(R.drawable.menu_selected);
@@ -159,14 +160,12 @@ public class NovostiPortal extends Activity {
 		Main main = Main.getInstance();
 		sliderArticles = new ArrayList<Article>();
 		sliderArticles.clear();
-		for (Category cat : main.getCategories()) {
-			if (cat.getArticles() != null && cat.getArticles().size() > 1)
-				if (cat.getTitle().equalsIgnoreCase("politika")
-						|| cat.getTitle().equalsIgnoreCase("društvo")
-						|| cat.getTitle().equalsIgnoreCase("ekonomija")
-						|| cat.getTitle().equalsIgnoreCase("sport"))
-					sliderArticles.add(cat.getArticles().get(0));
-		}
+
+		sliderArticles.add(Main.getInstance().getCategories().get("Politika").getArticles().get(0));
+		sliderArticles.add(Main.getInstance().getCategories().get("Društvo").getArticles().get(0));
+		sliderArticles.add(Main.getInstance().getCategories().get("Ekonomija").getArticles().get(0));
+		sliderArticles.add(Main.getInstance().getCategories().get("Sport").getArticles().get(0));
+		
 		// sliderArticles.add(new Article());
 		// sliderArticles.add(new Article());
 		// sliderArticles.add(new Article());
@@ -181,7 +180,7 @@ public class NovostiPortal extends Activity {
 		view.setAdapter(categoryPreviewAdapter);
 		view.setItemsCanFocus(true);
 		view.setFocusable(false);
-		
+
 		TextView refTime = (TextView) findViewById(R.id.time_refreshed);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
 	}
@@ -200,22 +199,19 @@ public class NovostiPortal extends Activity {
 		}
 
 	}
-	
-	protected void onActivityResult(int requestCode, int resultCode,
-            Intent data) {
-        if (requestCode == 0) {
-            if (resultCode == 1440) {
-            	resetMenuView();
-				createMainPage();
-            }
-            if (resultCode == 1410) {
-            	Intent myIntent = new Intent(this,
-						Galerija.class);
-//				myIntent.putExtra("article", article);
-				startActivityForResult(myIntent, 0);
-            }
-        }
-    }
 
-	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 0) {
+			if (resultCode == 1440) {
+				resetMenuView();
+				createMainPage();
+			}
+			if (resultCode == 1410) {
+				Intent myIntent = new Intent(this, Galerija.class);
+				// myIntent.putExtra("article", article);
+				startActivityForResult(myIntent, 0);
+			}
+		}
+	}
+
 }
