@@ -140,8 +140,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			// secondHolder.secondStyleArticleShortText.setText(article.getShortText());
 
 			secondHolder.secondStyleArticleTitle.setText(Html.fromHtml(article.getTitle()));
-			secondHolder.secondStyleArticleShortText.setText(article
-					.getDate().toString());
+			secondHolder.secondStyleArticleShortText.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", article.getDate())+"h");
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.spinner);
 			article.setView(secondHolder.secondStyleArticleImage);
