@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -59,8 +60,10 @@ public class NovostiPortal extends Activity {
 	public void resetMenuView() {
 		for (int i = 0; i < menuView.getChildCount(); i++) {
 			TextView tv = (TextView) menuView.getChildAt(i);
-			tv.setTextColor(0xFFFE0000);
+			tv.setGravity(Gravity.CENTER);
+			tv.setTextColor(0xFFd7181f);
 			tv.setBackgroundColor(0xFFFFFFFF);
+			
 
 		}
 	}
@@ -111,10 +114,10 @@ public class NovostiPortal extends Activity {
 			final TextView tv = new TextView(this);
 			tv.setHeight(30);
 			tv.setTextSize(16);
-			tv.setGravity(0x11);
-			tv.setTextColor(0xFFFE0000);
+			tv.setTextColor(0xFFd7181f);
 			tv.setBackgroundColor(0xFFFFFFFF);
 			tv.setPadding(5, 0, 5, 0);
+			tv.setGravity(Gravity.CENTER);
 			tv.setTypeface(Typeface.DEFAULT_BOLD);
 			tv.setText(" " + cat.getTitle() + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +140,8 @@ public class NovostiPortal extends Activity {
 					view.setAdapter(categoryLayoutAdapter);
 					view.setItemsCanFocus(true);
 					view.setFocusable(false);
-					resetMenuView();
+					resetMenuView();		
+					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
 					tv.setBackgroundResource(R.drawable.menu_selected);
 				}
@@ -177,6 +181,9 @@ public class NovostiPortal extends Activity {
 		view.setAdapter(categoryPreviewAdapter);
 		view.setItemsCanFocus(true);
 		view.setFocusable(false);
+		
+		TextView refTime = (TextView) findViewById(R.id.time_refreshed);
+		refTime.setText(Main.getInstance().getTimeRefreshed());
 	}
 
 	// private void showMessage(String message){

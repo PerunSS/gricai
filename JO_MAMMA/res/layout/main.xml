@@ -3,7 +3,8 @@
 	android:orientation="vertical" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" 
-	android:background="#FE0000">
+	android:background="@color/novosti_red"
+	android:cacheColorHint="#00FFFFFF">
 
 
 	<LinearLayout 
@@ -40,13 +41,46 @@
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="2dp"
-		android:background="#FE0000"/>
+		android:background="@color/novosti_red"/>
 
 	<ListView 
 		android:id="@+id/Content" 
-		android:layout_height="fill_parent"
-		android:layout_width="fill_parent" 
+		android:layout_height="386dp"
+		android:layout_width="fill_parent"
+		android:layout_weight="1" 
 		android:divider="#888888"
-		android:cacheColorHint="#00000000">
+		android:cacheColorHint="#00FFFFFF">
 	</ListView>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="20dp"
+		android:paddingLeft="5dp"
+		android:paddingRight="5dp"
+	>
+		<TextView
+			android:layout_width="130dp"
+			android:layout_weight="1"
+			android:layout_height="20dp"
+			android:text="Tehnicom Solutions"
+			android:textSize="12dp"
+			android:textColor="#FFFFFF"		
+			android:gravity="center_vertical"			
+		/>
+		<TextView
+			android:layout_width="160dp"
+			android:layout_weight="1"
+			android:layout_height="20dp"
+			android:id="@+id/time_refreshed"
+			android:textColor="#FFFFFF"
+			android:textSize="11dp"		
+			android:gravity="center"			
+		/>
+		<Button
+			android:layout_width="20dp"
+			android:layout_height="20dp"
+			android:id="@+id/refresh_button"
+			android:background="@drawable/refresh"
+		/>
+	</LinearLayout>
 </LinearLayout>

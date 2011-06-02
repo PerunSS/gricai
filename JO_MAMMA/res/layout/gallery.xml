@@ -9,5 +9,6 @@
 		android:id="@+id/latestNewsGallery"
     	android:layout_width="fill_parent"
     	android:layout_height="190dp"
+    	android:fadingEdge = "none"
 	/>
 </LinearLayout>

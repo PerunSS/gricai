@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,9 @@ public class Galerija extends Activity {
         menuView = (LinearLayout) findViewById(R.id.Menu);
 		menuView.setHorizontalScrollBarEnabled(false);
         
+		TextView refTime = (TextView) findViewById(R.id.time_refreshed_gallery);
+		refTime.setText(Main.getInstance().getTimeRefreshed());
+		
 		homeButton = (Button) findViewById(R.id.HomeButton3);
 		homeButton.setBackgroundResource(R.drawable.home_no);
 		homeButton.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +59,8 @@ public class Galerija extends Activity {
 			final TextView tv = new TextView(this);
 			tv.setHeight(30);
 			tv.setTextSize(16);
-			tv.setGravity(0x11);
-			tv.setTextColor(0xFFFE0000);
+			tv.setGravity(Gravity.CENTER);
+			tv.setTextColor(0xFFd7181f);
 			tv.setBackgroundColor(0xFFFFFFFF);
 			tv.setPadding(5, 0, 5, 0);
 			tv.setTypeface(Typeface.DEFAULT_BOLD);
@@ -75,6 +79,7 @@ public class Galerija extends Activity {
 					gridview.setFocusable(false);
 					
 					resetMenuView();
+					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
 					tv.setBackgroundResource(R.drawable.menu_selected);
 				}
@@ -114,8 +119,9 @@ public class Galerija extends Activity {
     public void resetMenuView() {
 		for (int i = 0; i < menuView.getChildCount(); i++) {
 			TextView tv = (TextView) menuView.getChildAt(i);
-			tv.setTextColor(0xFFFE0000);
+			tv.setTextColor(0xFFd7181f);
 			tv.setBackgroundColor(0xFFFFFFFF);
+			tv.setGravity(Gravity.CENTER);
 
 		}
 	}
