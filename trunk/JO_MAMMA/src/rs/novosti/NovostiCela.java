@@ -8,10 +8,12 @@ import rs.novosti.model.Article;
 import rs.novosti.model.Main;
 import rs.novosti.model.font.FontSize;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -39,10 +41,11 @@ public class NovostiCela extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.full_article_view);
 		
-		
-		
 		Article article = (Article) getIntent().getExtras().get("article");
-		Main.getInstance().readArticle(article);
+		new LoadArticle().execute(article);
+		
+//		Article article = (Article) getIntent().getExtras().get("article");
+//		article = Main.getInstance().readArticle(article);
 		
 		homeButton = (Button) findViewById(R.id.HomeButton2);
 		homeButton.setOnClickListener(new View.OnClickListener() {
@@ -64,25 +67,6 @@ public class NovostiCela extends Activity {
 				finish();
 			}
 		});
-		
-		articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
-		articleTitle.setText(Html.fromHtml(article.getTitle()));
-
-		articleSource = (TextView) findViewById(R.id.fullArticle_Source);
-		articleSource.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", article.getDate())+"h");
-
-		articleShortText = (TextView) findViewById(R.id.fullArticle_ShortText);
-		articleShortText.setText(article.getShortText());
-
-		articlePhoto = (ImageView) findViewById(R.id.fullArticle_Photo);
-		articlePhoto.setBackgroundDrawable(getResizedDrawable(article
-				.getPhotoPath()));
-
-		articleFullText = (TextView) findViewById(R.id.fullArticle_FullText);
-		articleFullText.setText(Html.fromHtml(article.getText()));
-		
-		TextView refTime = (TextView) findViewById(R.id.time_refreshed_full);
-		refTime.setText(Main.getInstance().getTimeRefreshed());
 	
 	}
 
@@ -152,5 +136,56 @@ public class NovostiCela extends Activity {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.full_article_menu, menu);
 	    return true;
+	}
+	
+	private class LoadArticle extends AsyncTask<Article, Void, Article>{
+		ProgressDialog progressDialog;
+		@Override
+		protected Article doInBackground(Article... params) {
+			return Main.getInstance().readArticle(params[0]);
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			progressDialog = ProgressDialog.show(NovostiCela.this, "", "Molimo sačekajte");
+			super.onPreExecute();
+		}
+		
+		@Override
+		protected void onPostExecute(Article result) {
+			if(result!=null){
+				if(result.getTitle()!=null){
+					articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
+					articleTitle.setText(Html.fromHtml(result.getTitle()));
+				}
+	
+				if(result.getDate()!=null){
+					articleSource = (TextView) findViewById(R.id.fullArticle_Source);
+					articleSource.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", result.getDate())+"h");
+				}
+				
+				if(result.getShortText()!=null){
+					articleShortText = (TextView) findViewById(R.id.fullArticle_ShortText);
+					articleShortText.setText(result.getShortText());
+				}
+				
+				if(result.getPhotoPath()!=null){
+					articlePhoto = (ImageView) findViewById(R.id.fullArticle_Photo);
+					articlePhoto.setBackgroundDrawable(getResizedDrawable(result
+							.getPhotoPath()));
+				}
+	
+				if(result.getText()!=null){
+					articleFullText = (TextView) findViewById(R.id.fullArticle_FullText);
+					articleFullText.setText(Html.fromHtml(result.getText()));
+				}
+				
+				TextView refTime = (TextView) findViewById(R.id.time_refreshed_full);
+				refTime.setText(Main.getInstance().getTimeRefreshed());
+			}
+			progressDialog.dismiss();
+			super.onPostExecute(result);
+		}
+		
 	}
 }

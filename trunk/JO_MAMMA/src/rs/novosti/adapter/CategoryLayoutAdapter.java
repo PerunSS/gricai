@@ -9,12 +9,14 @@ import rs.novosti.R;
 import rs.novosti.model.Article;
 import rs.novosti.model.Main;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -258,8 +260,33 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	}
 
 	public void refresh() {
-		Main.getInstance().refreshCategory(categoryName);
-		articles = Main.getInstance().getCategories().get(categoryName).getArticles();
-		notifyDataSetChanged();
+//		Main.getInstance().refreshCategory(categoryName);
+//		articles = Main.getInstance().getCategories().get(categoryName).getArticles();
+//		notifyDataSetChanged();
+		new RefreshTask().execute();
+	}
+	
+	private class RefreshTask extends AsyncTask<Void, Void, Void>{
+		ProgressDialog progressDialog;
+		@Override
+		protected Void doInBackground(Void... params) {
+			Main.getInstance().refreshCategory(categoryName);
+			return null;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			progressDialog = ProgressDialog.show(context, "", "Molimo sačekajte");
+			super.onPreExecute();
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			articles = Main.getInstance().getCategories().get(categoryName).getArticles();
+			notifyDataSetChanged();
+			progressDialog.dismiss();
+			super.onPostExecute(result);
+		}
+		
 	}
 }
