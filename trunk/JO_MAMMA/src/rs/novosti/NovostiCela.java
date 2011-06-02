@@ -69,7 +69,7 @@ public class NovostiCela extends Activity {
 		articleTitle.setText(Html.fromHtml(article.getTitle()));
 
 		articleSource = (TextView) findViewById(R.id.fullArticle_Source);
-		articleSource.setText("");
+		articleSource.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", article.getDate())+"h");
 
 		articleShortText = (TextView) findViewById(R.id.fullArticle_ShortText);
 		articleShortText.setText(article.getShortText());

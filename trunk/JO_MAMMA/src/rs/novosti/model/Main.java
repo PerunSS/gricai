@@ -44,6 +44,11 @@ public class Main {
 		timeRefreshed = "Osveženo "+android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", new java.util.Date())+"h";
 	}
 	
+	public void refreshCategory(){
+		categories.clear();
+		
+	}
+	
 	public String getTimeRefreshed() {
 		return timeRefreshed;
 	}
