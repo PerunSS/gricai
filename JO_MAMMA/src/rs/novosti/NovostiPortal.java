@@ -144,7 +144,7 @@ public class NovostiPortal extends Activity {
 						categoryLayoutAdapter.clear();
 					}
 					new CategoryLoaderTask().execute(name);
-					
+					resetMenuView();
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
 					tv.setBackgroundResource(R.drawable.menu_selected);
@@ -165,10 +165,14 @@ public class NovostiPortal extends Activity {
 		sliderArticles = new ArrayList<Article>();
 		sliderArticles.clear();
 
-		sliderArticles.add(Main.getInstance().getCategories().get("Politika").getArticles().get(0));
-		sliderArticles.add(Main.getInstance().getCategories().get("Društvo").getArticles().get(0));
-		sliderArticles.add(Main.getInstance().getCategories().get("Ekonomija").getArticles().get(0));
-		sliderArticles.add(Main.getInstance().getCategories().get("Sport").getArticles().get(0));
+		if(Main.getInstance().getCategories().get("Politika").getArticles().size()>0)
+			sliderArticles.add(Main.getInstance().getCategories().get("Politika").getArticles().get(0));
+		if(Main.getInstance().getCategories().get("Društvo").getArticles().size()>0)
+			sliderArticles.add(Main.getInstance().getCategories().get("Društvo").getArticles().get(0));
+		if(Main.getInstance().getCategories().get("Ekonomija").getArticles().size()>0)
+			sliderArticles.add(Main.getInstance().getCategories().get("Ekonomija").getArticles().get(0));
+		if(Main.getInstance().getCategories().get("Sport").getArticles().size()>0)
+			sliderArticles.add(Main.getInstance().getCategories().get("Sport").getArticles().get(0));
 		
 		// sliderArticles.add(new Article());
 		// sliderArticles.add(new Article());
@@ -210,7 +214,7 @@ public class NovostiPortal extends Activity {
 
 		@Override
 		protected CategoryLayoutAdapter doInBackground(String... params) {
-			
+			System.out.println("citam kategoriju "+params[0]);
 			categoryLayoutAdapter = new CategoryLayoutAdapter(
 					NovostiPortal.this, params[0]);
 			return categoryLayoutAdapter;
@@ -225,7 +229,8 @@ public class NovostiPortal extends Activity {
 		@Override
 		protected void onPostExecute(CategoryLayoutAdapter result) {
 			super.onPostExecute(result);
-			progressDialog.dismiss();
+			System.out.println("ucitana kategorija");
+			
 			if(categoryPreviewAdapter!=null)
 				categoryPreviewAdapter.clear();
 			categoryLayoutAdapter = null;
@@ -233,7 +238,8 @@ public class NovostiPortal extends Activity {
 			view.setAdapter(result);
 			view.setItemsCanFocus(true);
 			view.setFocusable(false);
-			resetMenuView();
+			progressDialog.dismiss();
+			
 		}
 		
 	}
