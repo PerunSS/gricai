@@ -218,7 +218,7 @@ public class RssReader {
 			return article;
 		URL url;
 		try {
-			url = new URL(article.getLink());
+			url = new URL(article.getLink().replaceAll(" ", "%20"));
 			XmlPullParser parser = XmlPullParserFactory.newInstance()
 					.newPullParser();
 			StringBuffer buffer = new StringBuffer();
