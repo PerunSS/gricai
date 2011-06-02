@@ -25,11 +25,7 @@ public class Main {
 
 		categories = new HashMap<String, Category>();
 		reader = new RssReader();
-		naslovna = reader.readNaslovna();
-		categories.put("Top vesti", naslovna);
-		categories.put("Politika", reader.readPolitika());
-		categories.put("Društvo", reader.readDrustvo());
-		categories.put("Ekonomija", reader.readEkonomija());
+		readStartCategories();
 //		categories.put("Hronika", reader.readHronika());
 //		categories.put("Beograd", reader.readBeograd());
 //		categories.put("Dosije", reader.readDosije());
@@ -37,20 +33,27 @@ public class Main {
 //		categories.put("Život plus", reader.readZivotPlus());
 //		categories.put("Tehnologije", reader.readTehnologije());
 //		categories.put("Auto", reader.readAuto());
-		categories.put("Sport", reader.readSport());
+		
 
 		timeRefreshed = "Osveženo "
 				+ android.text.format.DateFormat.format("dd.MM.yyyy hh:mm",
 						new java.util.Date()) + "h";
 	}
 
-	public void refreshCategory(String categoryName, boolean clear) {
-		if(clear){
-			categories.clear();
+	private void readStartCategories() {
+		naslovna = reader.readNaslovna();
+		categories.put("Top vesti", naslovna);
+		categories.put("Politika", reader.readPolitika());
+		categories.put("Društvo", reader.readDrustvo());
+		categories.put("Ekonomija", reader.readEkonomija());
+		categories.put("Sport", reader.readSport());
+	}
+
+	public void refreshCategory(String categoryName) {
+		if(categoryName.equals("Top vesti")){
 			naslovna = reader.readNaslovna();
 			categories.put("Top vesti", naslovna);
-		}
-		if(categoryName.equals("Politika")){
+		}else if(categoryName.equals("Politika")){
 			categories.put("Politika", reader.readPolitika());
 		}else if(categoryName.equals("Društvo")){
 			categories.put("Društvo", reader.readDrustvo());
@@ -75,12 +78,15 @@ public class Main {
 		}else if(categoryName.equals("Sport")){
 			categories.put("Sport", reader.readSport());
 		}
+		timeRefreshed = "Osveženo "
+			+ android.text.format.DateFormat.format("dd.MM.yyyy hh:mm",
+					new java.util.Date()) + "h";
 	}
 	
 	public void readCategory(String categoryName){
 		Category cat = categories.get(categoryName);
 		if(cat == null){
-			refreshCategory(categoryName, false);
+			refreshCategory(categoryName);
 		}
 	}
 

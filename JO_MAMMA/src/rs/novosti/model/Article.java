@@ -181,6 +181,7 @@ public class Article implements Serializable {
 		bitmap = null;
 		smallBitmap = null;
 		generated = false;
+		bigDrawable = null;
 	}
 
 	public void setSmallPhotoPath(String smallPhotoPath) {
