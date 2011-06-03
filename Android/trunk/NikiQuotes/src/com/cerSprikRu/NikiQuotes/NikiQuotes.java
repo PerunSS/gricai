@@ -7,17 +7,21 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class NikiQuotes extends Activity {
 	private String[] facts;
@@ -35,6 +39,7 @@ public class NikiQuotes extends Activity {
 			R.drawable.b36, R.drawable.b37 };
 
 	private int currentBck;
+	private AlertDialog.Builder builder;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -44,6 +49,13 @@ public class NikiQuotes extends Activity {
 		setContentView(R.layout.main);
 		facts = getResources().getStringArray(R.array.facts);
 		fact = facts[(int) (Math.random() * facts.length)];
+		
+		AdView adView1 = (AdView)this.findViewById(R.id.ad1);
+	    adView1.loadAd(new AdRequest());
+
+	    AdView adView2 = (AdView)this.findViewById(R.id.ad2);
+	    adView2.loadAd(new AdRequest());
+		
 		final Button randomBtn = (Button) findViewById(R.id.random);
 
 		randomBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +77,7 @@ public class NikiQuotes extends Activity {
 				factsTextView.setText(fact);
 			}
 		});
+		builder = new AlertDialog.Builder(this);
 		final Button saveBtn = (Button) findViewById(R.id.save);
 		saveBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -79,7 +92,7 @@ public class NikiQuotes extends Activity {
 					file.mkdir();
 				String timestamp = Long.toString(System.currentTimeMillis());
 				file = new File(externalDirectory + File.separator + directory,
-						timestamp + ".jpg");
+						timestamp);
 				OutputStream out = null;
 				try {
 					out = new FileOutputStream(file);
@@ -96,9 +109,7 @@ public class NikiQuotes extends Activity {
 						} catch (IOException e) {
 						}
 				}
-				Toast.makeText(NikiQuotes.this,
-						"Saved image: " + file.getAbsolutePath(),
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(NikiQuotes.this, "Saved image: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
 			}
 		});
 		factsTextView = (TextView) findViewById(R.id.fact);
@@ -113,7 +124,7 @@ public class NikiQuotes extends Activity {
 		currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
 		factsTextView.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
-
+		
 		final Button shareButton = (Button) findViewById(R.id.share);
 		shareButton.setOnClickListener(new OnClickListener() {
 
@@ -122,11 +133,14 @@ public class NikiQuotes extends Activity {
 				final Intent intent = new Intent(Intent.ACTION_SEND);
 
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT, "Nicki Minaj: " + fact);
+				intent.putExtra(Intent.EXTRA_TEXT,
+						"Nicki Minaj: "
+								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
+
 
 	}
 }
