@@ -12,15 +12,19 @@ public final class R {
         public static final int facts=0x7f040000;
     }
     public static final class attr {
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>BANNER</code></td><td>1</td><td></td></tr>
+<tr><td><code>IAB_MRECT</code></td><td>2</td><td></td></tr>
+<tr><td><code>IAB_BANNER</code></td><td>3</td><td></td></tr>
+<tr><td><code>IAB_LEADERBOARD</code></td><td>4</td><td></td></tr>
+</table>
          */
-        public static final int backgroundColor=0x7f010000;
+        public static final int adSize=0x7f010000;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -28,33 +32,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int keywords=0x7f010003;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int primaryTextColor=0x7f010001;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int refreshInterval=0x7f010004;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int secondaryTextColor=0x7f010002;
+        public static final int adUnitId=0x7f010001;
     }
     public static final class drawable {
         public static final int b1=0x7f020000;
@@ -88,70 +66,94 @@ containing a value of this type.
         public static final int b35=0x7f02001c;
         public static final int b36=0x7f02001d;
         public static final int b37=0x7f02001e;
-        public static final int b4=0x7f02001f;
-        public static final int b5=0x7f020020;
-        public static final int b6=0x7f020021;
-        public static final int b7=0x7f020022;
-        public static final int b8=0x7f020023;
-        public static final int b9=0x7f020024;
-        public static final int icon=0x7f020025;
+        public static final int b38=0x7f02001f;
+        public static final int b39=0x7f020020;
+        public static final int b4=0x7f020021;
+        public static final int b40=0x7f020022;
+        public static final int b41=0x7f020023;
+        public static final int b42=0x7f020024;
+        public static final int b43=0x7f020025;
+        public static final int b44=0x7f020026;
+        public static final int b45=0x7f020027;
+        public static final int b46=0x7f020028;
+        public static final int b47=0x7f020029;
+        public static final int b48=0x7f02002a;
+        public static final int b5=0x7f02002b;
+        public static final int b6=0x7f02002c;
+        public static final int b7=0x7f02002d;
+        public static final int b8=0x7f02002e;
+        public static final int b9=0x7f02002f;
+        public static final int icon=0x7f020030;
+        public static final int random=0x7f020031;
+        public static final int random_button=0x7f020032;
+        public static final int random_focus=0x7f020033;
+        public static final int random_on_click=0x7f020034;
+        public static final int save=0x7f020035;
+        public static final int save_button=0x7f020036;
+        public static final int save_focus=0x7f020037;
+        public static final int save_on_click=0x7f020038;
+        public static final int share=0x7f020039;
+        public static final int share_button=0x7f02003a;
+        public static final int share_focus=0x7f02003b;
+        public static final int share_on_click=0x7f02003c;
     }
     public static final class id {
-        public static final int ad1=0x7f060001;
-        public static final int ad2=0x7f060005;
-        public static final int fact=0x7f060000;
-        public static final int random=0x7f060002;
-        public static final int save=0x7f060003;
-        public static final int share=0x7f060004;
+        public static final int BANNER=0x7f050000;
+        public static final int IAB_BANNER=0x7f050002;
+        public static final int IAB_LEADERBOARD=0x7f050003;
+        public static final int IAB_MRECT=0x7f050001;
+        public static final int ad1=0x7f050005;
+        public static final int ad2=0x7f050009;
+        public static final int fact=0x7f050004;
+        public static final int random=0x7f050006;
+        public static final int save=0x7f050007;
+        public static final int share=0x7f050008;
     }
     public static final class layout {
         public static final int main=0x7f030000;
     }
     public static final class string {
-        public static final int app_name=0x7f050001;
-        public static final int hello=0x7f050000;
+        public static final int app_name=0x7f060001;
+        public static final int hello=0x7f060000;
     }
     public static final class styleable {
-        /** Attributes that can be used with a com_admob_android_ads_AdView.
+        /** Attributes that can be used with a com_google_ads_AdView.
            <p>Includes the following attributes:</p>
            <table>
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_backgroundColor com.cerSprikRu.NikiFacts:backgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_keywords com.cerSprikRu.NikiFacts:keywords}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_primaryTextColor com.cerSprikRu.NikiFacts:primaryTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_refreshInterval com.cerSprikRu.NikiFacts:refreshInterval}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_secondaryTextColor com.cerSprikRu.NikiFacts:secondaryTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_google_ads_AdView_adSize com.cerSprikRu.NikiFacts:adSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_google_ads_AdView_adUnitId com.cerSprikRu.NikiFacts:adUnitId}</code></td><td></td></tr>
            </table>
-           @see #com_admob_android_ads_AdView_backgroundColor
-           @see #com_admob_android_ads_AdView_keywords
-           @see #com_admob_android_ads_AdView_primaryTextColor
-           @see #com_admob_android_ads_AdView_refreshInterval
-           @see #com_admob_android_ads_AdView_secondaryTextColor
+           @see #com_google_ads_AdView_adSize
+           @see #com_google_ads_AdView_adUnitId
          */
-        public static final int[] com_admob_android_ads_AdView = {
-            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
-            0x7f010004
+        public static final int[] com_google_ads_AdView = {
+            0x7f010000, 0x7f010001
         };
         /**
-          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#backgroundColor}
-          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#adSize}
+          attribute's value can be found in the {@link #com_google_ads_AdView} array.
 
 
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:backgroundColor
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>BANNER</code></td><td>1</td><td></td></tr>
+<tr><td><code>IAB_MRECT</code></td><td>2</td><td></td></tr>
+<tr><td><code>IAB_BANNER</code></td><td>3</td><td></td></tr>
+<tr><td><code>IAB_LEADERBOARD</code></td><td>4</td><td></td></tr>
+</table>
+          @attr name android:adSize
         */
-        public static final int com_admob_android_ads_AdView_backgroundColor = 0;
+        public static final int com_google_ads_AdView_adSize = 0;
         /**
-          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#keywords}
-          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#adUnitId}
+          attribute's value can be found in the {@link #com_google_ads_AdView} array.
 
 
           <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
@@ -160,52 +162,8 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:keywords
+          @attr name android:adUnitId
         */
-        public static final int com_admob_android_ads_AdView_keywords = 3;
-        /**
-          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#primaryTextColor}
-          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:primaryTextColor
-        */
-        public static final int com_admob_android_ads_AdView_primaryTextColor = 1;
-        /**
-          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#refreshInterval}
-          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:refreshInterval
-        */
-        public static final int com_admob_android_ads_AdView_refreshInterval = 4;
-        /**
-          <p>This symbol is the offset where the {@link com.cerSprikRu.NikiFacts.R.attr#secondaryTextColor}
-          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:secondaryTextColor
-        */
-        public static final int com_admob_android_ads_AdView_secondaryTextColor = 2;
+        public static final int com_google_ads_AdView_adUnitId = 1;
     };
 }
