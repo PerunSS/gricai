@@ -1,6 +1,6 @@
 package com.cerSprikRu.NikiQuotes;
 
-import java.io.File;
+import java.io.File; 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,7 +36,10 @@ public class NikiQuotes extends Activity {
 			R.drawable.b24, R.drawable.b25, R.drawable.b26, R.drawable.b27,
 			R.drawable.b28, R.drawable.b29, R.drawable.b30, R.drawable.b31,
 			R.drawable.b32, R.drawable.b33, R.drawable.b34, R.drawable.b35,
-			R.drawable.b36, R.drawable.b37 };
+			R.drawable.b36, R.drawable.b37, R.drawable.b38, R.drawable.b39,
+			R.drawable.b40, R.drawable.b41, R.drawable.b42, R.drawable.b43,
+			R.drawable.b44, R.drawable.b45, R.drawable.b46, R.drawable.b47,
+			R.drawable.b48,};
 
 	private int currentBck;
 	private AlertDialog.Builder builder;
