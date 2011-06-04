@@ -5,13 +5,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
-import rs.novosti.NovostiCela;
 import rs.novosti.R;
 import rs.novosti.model.Article;
 import rs.novosti.model.Main;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -73,17 +70,6 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		// new BitmapFactory();
 		// holder.latestArticleImage.setImageBitmap(BitmapFactory.decodeFile(article.getPhotoPath()));
 		holder.latestArticleTitle.setText(Html.fromHtml(article.getTitle()));
-		holder.latestArticleTitle
-				.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						Intent myIntent = new Intent(v.getContext(),
-								NovostiCela.class);
-						myIntent.putExtra("article", article);
-						((Activity)context).startActivityForResult(myIntent, 0);
-					}
-				});
 		// holder.latestArticleTitle.setText(article.getName());
 		if (article.getBigDrawable() == null)
 			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
@@ -142,7 +128,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 	private class Holder {
 		LinearLayout articleLayout;
 		TextView latestArticleTitle;
-
+		
 	}
 	
 	public void clearAll(){

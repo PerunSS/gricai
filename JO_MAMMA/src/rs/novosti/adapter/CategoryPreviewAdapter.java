@@ -13,6 +13,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,6 +71,18 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 					latestNewsGalleryAdapter = new LatestNewsGalleryAdapter(context, sliderArticles);
 				}
 				holder.gallery.setAdapter(latestNewsGalleryAdapter);
+				holder.gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView parent, 
+			                View v, int position, long id) {
+						Intent myIntent = new Intent(v.getContext(),
+								NovostiCela.class);
+						Article article = sliderArticles.get(position);
+						myIntent.putExtra("article", article);
+						((Activity)context).startActivityForResult(myIntent, 0);
+					}
+				});
 		} else if (position<second){
 			final Article article = articles.get(position-1);
 			SecondHolder secondHolder;
