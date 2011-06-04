@@ -198,7 +198,8 @@ public class NovostiPortal extends Activity {
 
 		final TextView refTime = (TextView) findViewById(R.id.time_refreshed);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
-		Button refresh = (Button) findViewById(R.id.refresh_button);
+		LinearLayout refresh = (LinearLayout) findViewById(R.id.refresh_button);
+		refresh.setClickable(true);
 		refresh.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
