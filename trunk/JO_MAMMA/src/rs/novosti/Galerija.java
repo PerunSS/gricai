@@ -81,7 +81,7 @@ public class Galerija extends Activity {
 					resetMenuView();
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
-					tv.setBackgroundResource(R.drawable.menu_selected);
+					tv.setBackgroundColor(0xFFd7181f);
 				}
 			});
 			if(doClick){
