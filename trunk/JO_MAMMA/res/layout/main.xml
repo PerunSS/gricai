@@ -67,6 +67,13 @@
 			android:textColor="#FFFFFF"		
 			android:gravity="center_vertical"			
 		/>
+		<LinearLayout
+			android:id="@+id/refresh_button"
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="20dp"
+			android:clickable = "true"
+		>
 		<TextView
 			android:layout_width="160dp"
 			android:layout_weight="1"
@@ -79,8 +86,8 @@
 		<Button
 			android:layout_width="20dp"
 			android:layout_height="20dp"
-			android:id="@+id/refresh_button"
 			android:background="@drawable/refresh"
 		/>
+		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
