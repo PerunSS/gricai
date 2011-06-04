@@ -11,11 +11,14 @@ import rs.novosti.model.Main;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -207,6 +210,15 @@ public class NovostiPortal extends Activity {
 				
 			}
 		});
+		final TextView technicomView = (TextView) findViewById(R.id.tehnicom_solutions);
+		technicomView.setText(Html.fromHtml(/*"<style type=\"text/css\">" +
+				"A:link {text-decoration: none; color: white;}" +
+				"A:visited {text-decoration: none; color: white;}" +
+				"A:active {text-decoration: none; color: white;}" +
+				"A:hover {text-decoration: underline; color: red;}" +*/
+				"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom solutions</a>"));
+		technicomView.setMovementMethod(LinkMovementMethod.getInstance());
+		technicomView.setLinkTextColor(Color.WHITE);
 	}
 
 	// private void showMessage(String message){
