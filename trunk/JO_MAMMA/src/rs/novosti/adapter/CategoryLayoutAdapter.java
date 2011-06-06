@@ -113,7 +113,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.second_article_style, null);
 			secondHolder = new SecondHolder();
 			secondHolder.secondStyleArticleLayout = (LinearLayout) convertView
-					.findViewById(R.id.secondStyleArticle_layout);
+					.findViewById(R.id.secondStyleArticle);
 			secondHolder.secondStyleArticleShortText = (TextView) convertView
 					.findViewById(R.id.secondStyleArticle_source);
 			secondHolder.secondStyleArticleImage = (ImageView) convertView
@@ -160,7 +160,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			thirdHolder.articleTitle = (TextView) convertView
 					.findViewById(R.id.thirdStyleArticle_title);
 			thirdHolder.thirdHolderLayout = (LinearLayout) convertView
-			.findViewById(R.id.thirdStyleArticle_layout);
+			.findViewById(R.id.thirdStyleArticle);
 			convertView.setTag(thirdHolder);
 			// } else {
 			// thirdHolder = (ThirdHolder) convertView.getTag();

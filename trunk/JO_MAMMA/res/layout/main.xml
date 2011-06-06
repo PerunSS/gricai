@@ -48,8 +48,9 @@
 		android:layout_height="386dp"
 		android:layout_width="fill_parent"
 		android:layout_weight="1" 
-		android:divider="#888888"
-		android:cacheColorHint="#00FFFFFF">
+		android:divider="#FFFFFF"
+		android:cacheColorHint="#00FFFFFF"
+		android:focusable="true">
 	</ListView>
 	<LinearLayout
 		android:orientation="horizontal"
