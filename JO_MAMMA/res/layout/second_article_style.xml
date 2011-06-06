@@ -4,40 +4,50 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="73dp"
 	android:orientation="vertical"
-	android:id="@+id/secondStyleArticle">
+	android:id="@+id/secondStyleArticle"
+	android:focusable="true"
+	android:clickable="true"
+	>
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="1dp"
-		android:background="#BBBBBB"/>
+		android:background="#FFFFFF"/>
 	<LinearLayout
 		android:id="@+id/secondStyleArticle_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="70dp"
 		android:orientation="horizontal"
-		android:background="@drawable/bck"
-		android:padding="5dp">
+		android:background="@drawable/background_selector"
+		android:paddingLeft="5dp"
+		android:duplicateParentState="true"
+		android:gravity="center">
 		<ImageView
 			android:id="@+id/secondStyleArticle_image"
 			android:layout_width="80dp"
-			android:layout_height="60dp"/>
+			android:layout_height="wrap_content"
+			android:background="@drawable/image_background"
+			android:padding="1dp"
+			android:duplicateParentState="true"/>
 		<LinearLayout
-			android:layout_width="205dp"
+			android:layout_width="200dp"
 			android:layout_height="fill_parent"
 			android:orientation="vertical"
+			android:duplicateParentState="true"
 			>	
 		<TextView
 			android:id="@+id/secondStyleArticle_title"
 			android:layout_width="fill_parent"
 			android:layout_height="45dp"
-			android:textColor="#333333"
+			android:textColor="@drawable/font_style"
 			android:paddingLeft="5dp"
 			android:textSize="14dp"
-			android:gravity="left"/>
+			android:gravity="left"
+			android:duplicateParentState="true"/>
 		<TextView
 			android:id="@+id/secondStyleArticle_source"
 			android:layout_width="fill_parent"
 			android:layout_height="15dp"
-			android:textColor="#AAAAAA"
+			android:textColor="#dad6d3"
 			android:paddingLeft="5dp"
 			android:textSize="12dp"
 			android:gravity="left"/>
@@ -48,18 +58,20 @@
 			android:layout_height="fill_parent"
 			android:paddingRight="5dp"
 			android:gravity="center"
+			android:duplicateParentState="true"
 			>	
 		<ImageView 
-			android:layout_width="30dp"
-			android:layout_height="30dp"
+			android:layout_width="10dp"
+			android:layout_height="15dp"
 			android:gravity="center_vertical"
-			android:background="@drawable/arrow"/>
+			android:background="@drawable/arrow_style"
+			android:duplicateParentState="true"/>
 		</LinearLayout>	
 	</LinearLayout>
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="1dp"
-		android:background="#BBBBBB"/>
+		android:background="#FFFFFF"/>
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="1dp"

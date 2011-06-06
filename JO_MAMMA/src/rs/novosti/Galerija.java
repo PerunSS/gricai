@@ -60,7 +60,7 @@ public class Galerija extends Activity {
 			tv.setHeight(30);
 			tv.setTextSize(16);
 			tv.setGravity(Gravity.CENTER);
-			tv.setTextColor(0xFFd7181f);
+			tv.setTextColor(0xFFe1302a);
 			tv.setBackgroundColor(0xFFFFFFFF);
 			tv.setPadding(5, 0, 5, 0);
 			tv.setTypeface(Typeface.DEFAULT_BOLD);
@@ -81,7 +81,7 @@ public class Galerija extends Activity {
 					resetMenuView();
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
-					tv.setBackgroundColor(0xFFd7181f);
+					tv.setBackgroundColor(0xFFe1302a);
 				}
 			});
 			if(doClick){
@@ -119,7 +119,7 @@ public class Galerija extends Activity {
     public void resetMenuView() {
 		for (int i = 0; i < menuView.getChildCount(); i++) {
 			TextView tv = (TextView) menuView.getChildAt(i);
-			tv.setTextColor(0xFFd7181f);
+			tv.setTextColor(0xFFe1302a);
 			tv.setBackgroundColor(0xFFFFFFFF);
 			tv.setGravity(Gravity.CENTER);
 

@@ -21,11 +21,13 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NovostiPortal extends Activity {
 
@@ -75,7 +77,7 @@ public class NovostiPortal extends Activity {
 		for (int i = 0; i < menuView.getChildCount(); i++) {
 			TextView tv = (TextView) menuView.getChildAt(i);
 			tv.setGravity(Gravity.CENTER);
-			tv.setTextColor(0xFFd7181f);
+			tv.setTextColor(0xFFe1302a);
 			tv.setBackgroundColor(0xFFFFFFFF);
 		}
 	}
@@ -130,7 +132,7 @@ public class NovostiPortal extends Activity {
 			final TextView tv = new TextView(this);
 			tv.setHeight(30);
 			tv.setTextSize(16);
-			tv.setTextColor(0xFFd7181f);
+			tv.setTextColor(0xFFe1302a);
 			tv.setBackgroundColor(0xFFFFFFFF);
 			tv.setPadding(5, 0, 5, 0);
 			tv.setGravity(Gravity.CENTER);
@@ -154,7 +156,7 @@ public class NovostiPortal extends Activity {
 					resetMenuView();
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
-					tv.setBackgroundColor(0xFFd7181f);
+					tv.setBackgroundColor(0xFFe1302a);
 					
 				}
 			});
@@ -193,8 +195,30 @@ public class NovostiPortal extends Activity {
 			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main
 					.getNaslovna().getArticles(), sliderArticles);
 		view.setAdapter(categoryPreviewAdapter);
+//		view.setOnItemSelectedListener(new OnItemSelectedListener()
+//        {
+//
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
+//            {
+//                if (position>0 && position <=3){
+//                	categoryPreviewAdapter.notifyDataSetChanged();
+//                	LinearLayout llayout = (LinearLayout)v.findViewById(R.id.secondStyleArticle_layout);
+//                	llayout.setBackgroundResource(R.color.novosti_red);
+//                }
+//                
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?>  arg0)
+//            {
+//            	
+//            	
+//            }
+//           }
+//        );
 		view.setItemsCanFocus(true);
-		view.setFocusable(false);
+		
 
 		final TextView refTime = (TextView) findViewById(R.id.time_refreshed);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
