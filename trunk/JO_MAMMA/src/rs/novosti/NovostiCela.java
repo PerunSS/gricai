@@ -34,6 +34,11 @@ public class NovostiCela extends Activity {
 	private TextView articleFullText;
 	private Button homeButton;
 	
+	private boolean hasTitle = false;
+	private boolean hasSource = false;
+	private boolean hasDescription = false;
+	private boolean hasText = false;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,10 +76,10 @@ public class NovostiCela extends Activity {
 	}
 
 	private void setFontSize(List<Integer> list){
-		articleTitle.setTextSize(list.get(0));
-		articleSource.setTextSize(list.get(1));
-		articleShortText.setTextSize(list.get(2));
-		articleFullText.setTextSize(list.get(3));
+		if (hasTitle)	articleTitle.setTextSize(list.get(0));
+		if (hasSource)  articleSource.setTextSize(list.get(1));
+		if (hasDescription)  articleShortText.setTextSize(list.get(2));
+		if (hasText)  articleFullText.setTextSize(list.get(3));
 	}
 	
 	private Drawable getResizedDrawable(String url) {
@@ -157,16 +162,19 @@ public class NovostiCela extends Activity {
 				if(result.getTitle()!=null){
 					articleTitle = (TextView) findViewById(R.id.fullArticle_Title);
 					articleTitle.setText(Html.fromHtml(result.getTitle()));
+					hasTitle = true;
 				}
 	
 				if(result.getDate()!=null){
 					articleSource = (TextView) findViewById(R.id.fullArticle_Source);
 					articleSource.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", result.getDate())+"h");
+					hasSource = true;
 				}
 				
-				if(result.getShortText()!=null){
+				if(result.getDescription()!=null){
 					articleShortText = (TextView) findViewById(R.id.fullArticle_ShortText);
-					articleShortText.setText(result.getShortText());
+					articleShortText.setText(result.getDescription());
+					hasDescription = true;
 				}
 				
 				if(result.getPhotoPath()!=null){
@@ -178,6 +186,7 @@ public class NovostiCela extends Activity {
 				if(result.getText()!=null){
 					articleFullText = (TextView) findViewById(R.id.fullArticle_FullText);
 					articleFullText.setText(Html.fromHtml(result.getText()));
+					hasText = true;
 				}
 				
 				TextView refTime = (TextView) findViewById(R.id.time_refreshed_full);

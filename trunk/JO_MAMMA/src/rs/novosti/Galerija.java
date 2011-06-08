@@ -5,11 +5,13 @@ import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
@@ -75,7 +77,18 @@ public class Galerija extends Activity {
 					}
 					adapter = new MyGalleryAdapter(context,category.getArticles());
 					gridview.setAdapter(adapter);
-					
+					gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+						@Override
+						public void onItemClick(AdapterView parent, 
+				                View v, int position, long id) {
+							Intent myIntent = new Intent(v.getContext(), SoloImageGallery.class);
+							Bundle b = new Bundle();
+							b.putSerializable("category", category);
+							b.putInt("position", position);
+							myIntent.putExtras(b);
+							startActivityForResult(myIntent, 0);
+						}
+					});
 					gridview.setFocusable(false);
 					
 					resetMenuView();

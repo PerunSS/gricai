@@ -10,5 +10,6 @@
     	android:layout_width="fill_parent"
     	android:layout_height="190dp"
     	android:fadingEdge = "none"
+    	android:unselectedAlpha = "0x0101020e"
 	/>
 </LinearLayout>

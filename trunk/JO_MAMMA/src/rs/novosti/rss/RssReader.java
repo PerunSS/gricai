@@ -104,6 +104,8 @@ public class RssReader {
 								article.setLink(text);
 							} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
 								article.setSmallPhotoPath(text);
+							} else if (tag.equalsIgnoreCase(DESCRIPTION_TAG)) {
+								article.setDescription(text);
 							}
 						}
 					}
