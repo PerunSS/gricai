@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,11 +29,13 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private List<Article> articles;
 	private Context context;
+	private TextView text;
 
-	public SoloImageGalleryAdapter(Context context, List<Article> articles) {
+	public SoloImageGalleryAdapter(Context context, List<Article> articles, TextView text) {
 		inflater = LayoutInflater.from(context);
 		this.articles = articles;
 		this.context = context;
+		this.text = text;
 	}
 
 	@Override
@@ -54,8 +57,11 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final Article article = Main.getInstance().readArticle(articles.get(position));
 		Holder holder = null;
+//		final FrameLayout layout = new FrameLayout(context);
+//		layout.setMinimumHeight(480);
+//		layout.setMinimumWidth(320);
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.solo_image_gallery_element, null);
+			convertView = inflater.inflate(R.layout.solo_image_gallery_element,null );
 			holder = new Holder();
 			holder.image = (ImageView) convertView
 					.findViewById(R.id.solo_gallery_image);
@@ -71,9 +77,10 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 		// holder.latestArticleTitle.setText(article.getName());
 		if (article.getBigDrawable() == null)
 			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
-		holder.image.setMinimumWidth(320);
+//		holder.image.setMinimumWidth(320);
 		holder.image.setImageDrawable(article.getBigDrawable());
 		holder.image.setBackgroundColor(Color.BLACK);
+//		text.setText(article.getTitle());
 		return convertView;
 	}
 
