@@ -69,7 +69,7 @@
 		<ImageView
 			android:id="@+id/fullArticle_Photo"
 			android:layout_height="wrap_content"  
-			android:layout_width="320dp"
+			android:layout_width="fill_parent"
 		/>
 		<TextView
 			android:id="@+id/fullArticle_ShortText"
