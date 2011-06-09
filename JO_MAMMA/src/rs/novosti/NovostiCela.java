@@ -38,6 +38,7 @@ public class NovostiCela extends Activity {
 	private boolean hasSource = false;
 	private boolean hasDescription = false;
 	private boolean hasText = false;
+	ProgressDialog progressDialog;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -144,7 +145,7 @@ public class NovostiCela extends Activity {
 	}
 	
 	private class LoadArticle extends AsyncTask<Article, Void, Article>{
-		ProgressDialog progressDialog;
+		
 		@Override
 		protected Article doInBackground(Article... params) {
 			return Main.getInstance().readArticle(params[0]);
@@ -193,6 +194,7 @@ public class NovostiCela extends Activity {
 				refTime.setText(Main.getInstance().getTimeRefreshed());
 			}
 			progressDialog.dismiss();
+			progressDialog = null;
 			super.onPostExecute(result);
 		}
 		
