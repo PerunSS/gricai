@@ -179,7 +179,7 @@ public class NovostiCela extends Activity {
 				
 				if(result.getPhotoPath()!=null){
 					articlePhoto = (ImageView) findViewById(R.id.fullArticle_Photo);
-					articlePhoto.setBackgroundDrawable(getResizedDrawable(result
+					articlePhoto.setImageDrawable(getResizedDrawable(result
 							.getPhotoPath()));
 				}
 	
