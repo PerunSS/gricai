@@ -3,13 +3,28 @@
   	xmlns:android="http://schemas.android.com/apk/res/android"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent">
-  
+  	<!--<ProgressBar
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:layout_gravity="center"
+  	/>-->
+  	
   	<rs.novosti.MyGallery	
 		android:id="@+id/solo_image_gallery"
     	android:layout_width="320dp"
     	android:layout_height="fill_parent"
     	android:fadingEdge = "none"
     	android:unselectedAlpha = "0x0101020e"
+	/>
+	<TextView
+		android:id="@+id/solo_gallery_numbering"
+		android:layout_gravity="top|right"
+		android:gravity="center"
+		android:layout_width="60dp"
+		android:layout_height="wrap_content"
+		android:padding="7dp"
+		android:textSize="15dp"
+		android:textColor="@color/novosti_white"
 	/>
 	<TextView
 		android:id="@+id/solo_gallery_text"

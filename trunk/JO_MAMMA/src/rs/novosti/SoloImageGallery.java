@@ -26,6 +26,7 @@ public class SoloImageGallery extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.solo_image_gallery);
 		final TextView text = (TextView)findViewById(R.id.solo_gallery_text);
+		final TextView numbering = (TextView)findViewById(R.id.solo_gallery_numbering);
 		text.setVisibility(View.INVISIBLE);
 		Bundle b = getIntent().getExtras();
 		position=b.getInt("position");
@@ -33,7 +34,7 @@ public class SoloImageGallery extends Activity{
 		articles = cat.getArticles();
 		
 		gallery = (MyGallery)findViewById(R.id.solo_image_gallery);
-		gallery.setAdapter(new SoloImageGalleryAdapter(this, articles, text));
+		gallery.setAdapter(new SoloImageGalleryAdapter(this, articles));
 		gallery.setSelection(position);
 		gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
@@ -52,6 +53,8 @@ public class SoloImageGallery extends Activity{
             public void onItemSelected(AdapterView<?> parent, View view,
                     int position, long id) {
             	text.setText(articles.get(position).getTitle());
+            	numbering.setText((position+1)+"/"+articles.size());
+		
             }
 
 			@Override
