@@ -1,6 +1,5 @@
 package rs.novosti.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rs.novosti.model.Article;
