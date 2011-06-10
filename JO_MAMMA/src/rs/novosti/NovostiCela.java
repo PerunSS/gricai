@@ -93,7 +93,7 @@ public class NovostiCela extends Activity {
 				"A:visited {text-decoration: none; color: white;}" +
 				"A:active {text-decoration: none; color: white;}" +
 				"A:hover {text-decoration: underline; color: red;}" +*/
-				"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom solutions</a>"));
+				"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom computers</a>"));
 		technicomView.setMovementMethod(LinkMovementMethod.getInstance());
 		technicomView.setLinkTextColor(Color.WHITE);
 	
