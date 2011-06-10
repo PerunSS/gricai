@@ -26,13 +26,13 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private List<Article> articles;
 	private Context context;
-	private TextView text;
+	//private TextView text;
 
 	public SoloImageGalleryAdapter(Context context, List<Article> articles, TextView text) {
 		inflater = LayoutInflater.from(context);
 		this.articles = articles;
 		this.context = context;
-		this.text = text;
+		//this.text = text;
 	}
 
 	@Override
