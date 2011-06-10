@@ -107,8 +107,16 @@
 			android:text="Tehnicom Solutions"
 			android:textSize="12dp"
 			android:textColor="#FFFFFF"		
-			android:gravity="center_vertical"			
+			android:gravity="center_vertical"
+			android:id="@+id/tehnicom_solutions_full"			
 		/>
+		<LinearLayout
+			android:id="@+id/refresh_button_full"
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="20dp"
+			android:clickable = "true"
+		>
 		<TextView
 			android:layout_width="160dp"
 			android:layout_weight="1"
@@ -121,8 +129,8 @@
 		<Button
 			android:layout_width="20dp"
 			android:layout_height="20dp"
-			android:id="@+id/refresh_button_full"
 			android:background="@drawable/refresh"
 		/>
+		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

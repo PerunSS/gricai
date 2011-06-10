@@ -4,10 +4,15 @@ import rs.novosti.adapter.MyGalleryAdapter;
 import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +31,7 @@ public class Galerija extends Activity {
 	Context context = this;
 	MyGalleryAdapter adapter;
 	private Button homeButton;
+	private String currentCategory;
 	
     /** Called when the activity is first created. */
     @Override        
@@ -37,7 +43,7 @@ public class Galerija extends Activity {
         menuView = (LinearLayout) findViewById(R.id.Menu);
 		menuView.setHorizontalScrollBarEnabled(false);
         
-		TextView refTime = (TextView) findViewById(R.id.time_refreshed_gallery);
+		final TextView refTime = (TextView) findViewById(R.id.time_refreshed_gallery);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
 		
 		homeButton = (Button) findViewById(R.id.HomeButton3);
@@ -54,10 +60,11 @@ public class Galerija extends Activity {
 //		adapter = new MyGalleryAdapter(this,Main.getInstance().getGalleryCategories().get(0).getArticles());
         final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
 //        gridview.setAdapter(adapter);
-        
+        String categoryNames[]={"Top vesti","Politika","Sport"};
         boolean doClick = true;
-        for (Category cat : Main.getInstance().getGalleryCategories()) {
-			final Category category = cat;
+        for (String categoryName : categoryNames) {
+			final Category category = Main.getInstance().getCategories().get(categoryName);
+			final String curCatName = categoryName;
 			final TextView tv = new TextView(this);
 			tv.setHeight(30);
 			tv.setTextSize(16);
@@ -66,7 +73,7 @@ public class Galerija extends Activity {
 			tv.setBackgroundColor(0xFFFFFFFF);
 			tv.setPadding(5, 0, 5, 0);
 			tv.setTypeface(Typeface.DEFAULT_BOLD);
-			tv.setText(" " + cat.getTitle() + " ");
+			tv.setText(" " + categoryName + " ");
 			tv.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -79,7 +86,7 @@ public class Galerija extends Activity {
 					gridview.setAdapter(adapter);
 					gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
-						public void onItemClick(AdapterView parent, 
+						public void onItemClick(AdapterView<?> parent, 
 				                View v, int position, long id) {
 							Intent myIntent = new Intent(v.getContext(), SoloImageGallery.class);
 							Bundle b = new Bundle();
@@ -87,10 +94,11 @@ public class Galerija extends Activity {
 							b.putInt("position", position);
 							myIntent.putExtras(b);
 							startActivityForResult(myIntent, 0);
+							
 						}
 					});
 					gridview.setFocusable(false);
-					
+					currentCategory = curCatName;
 					resetMenuView();
 					tv.setGravity(Gravity.CENTER);
 					tv.setTextColor(0xFFFFFFFF);
@@ -108,6 +116,29 @@ public class Galerija extends Activity {
 			// tv.setBackgroundResource(R.color.menu_background);
 			menuView.addView(tv);
 		}
+        final TextView technicomView = (TextView) findViewById(R.id.tehnicom_solutions_gallery);
+		technicomView.setText(Html.fromHtml(/*"<style type=\"text/css\">" +
+				"A:link {text-decoration: none; color: white;}" +
+				"A:visited {text-decoration: none; color: white;}" +
+				"A:active {text-decoration: none; color: white;}" +
+				"A:hover {text-decoration: underline; color: red;}" +*/
+				"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom solutions</a>"));
+		technicomView.setMovementMethod(LinkMovementMethod.getInstance());
+		technicomView.setLinkTextColor(Color.WHITE);
+        LinearLayout refresh = (LinearLayout) findViewById(R.id.refresh_button_gallery);
+		refresh.setClickable(true);
+		refresh.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(currentCategory!=null){
+					new RefreshTask().execute();
+					refTime.setText(Main.getInstance().getTimeRefreshed());
+					System.out.println("refresh gallery");
+				}
+				
+			}
+		});
         
         
         
@@ -147,6 +178,29 @@ public class Galerija extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
+    
+    private class RefreshTask extends AsyncTask<Void, Void, Void>{
+		ProgressDialog progressDialog;
+		@Override
+		protected Void doInBackground(Void... params) {
+			Main.getInstance().refreshCategory(currentCategory);
+			return null;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			progressDialog = ProgressDialog.show(context, "", "Molimo sačekajte");
+			super.onPreExecute();
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			adapter.refresh(Main.getInstance().getCategories().get(currentCategory).getArticles());
+			progressDialog.dismiss();
+			super.onPostExecute(result);
+		}
+		
+	}
 
 
 }
