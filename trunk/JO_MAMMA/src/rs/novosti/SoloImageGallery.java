@@ -37,7 +37,7 @@ public class SoloImageGallery extends Activity{
 		gallery.setSelection(position);
 		gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView parent, 
+			public void onItemClick(AdapterView<?> parent, 
 	                View v, int position, long id) {
 				if (toggle){
 					text.setVisibility(View.VISIBLE);

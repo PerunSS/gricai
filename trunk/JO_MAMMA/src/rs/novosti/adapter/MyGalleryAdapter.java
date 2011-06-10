@@ -1,5 +1,6 @@
 package rs.novosti.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rs.novosti.model.Article;
@@ -55,6 +56,11 @@ public class MyGalleryAdapter extends BaseAdapter {
 		articles.get(position).setView(imageView);
 		articles.get(position).generateSmallPhoto();
 		return imageView;
+	}
+	
+	public void refresh(List<Article> articles){
+		this.articles = articles;
+		notifyDataSetChanged();
 	}
 
 	// references to our images

@@ -11,11 +11,13 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NovostiCela extends Activity {
@@ -39,6 +42,7 @@ public class NovostiCela extends Activity {
 	private boolean hasDescription = false;
 	private boolean hasText = false;
 	ProgressDialog progressDialog;
+	private Article article;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -47,7 +51,7 @@ public class NovostiCela extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.full_article_view);
 		
-		Article article = (Article) getIntent().getExtras().get("article");
+		article = (Article) getIntent().getExtras().get("article");
 		new LoadArticle().execute(article);
 		
 //		Article article = (Article) getIntent().getExtras().get("article");
@@ -73,6 +77,25 @@ public class NovostiCela extends Activity {
 				finish();
 			}
 		});
+		LinearLayout refresh = (LinearLayout) findViewById(R.id.refresh_button_full);
+		refresh.setClickable(true);
+		refresh.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				refresh();
+				
+			}
+		});
+		final TextView technicomView = (TextView) findViewById(R.id.tehnicom_solutions_full);
+		technicomView.setText(Html.fromHtml(/*"<style type=\"text/css\">" +
+				"A:link {text-decoration: none; color: white;}" +
+				"A:visited {text-decoration: none; color: white;}" +
+				"A:active {text-decoration: none; color: white;}" +
+				"A:hover {text-decoration: underline; color: red;}" +*/
+				"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom solutions</a>"));
+		technicomView.setMovementMethod(LinkMovementMethod.getInstance());
+		technicomView.setLinkTextColor(Color.WHITE);
 	
 	}
 
@@ -142,6 +165,11 @@ public class NovostiCela extends Activity {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.full_article_menu, menu);
 	    return true;
+	}
+
+	public void refresh(){
+		article = (Article) getIntent().getExtras().get("article");
+		new LoadArticle().execute(article);
 	}
 	
 	private class LoadArticle extends AsyncTask<Article, Void, Article>{

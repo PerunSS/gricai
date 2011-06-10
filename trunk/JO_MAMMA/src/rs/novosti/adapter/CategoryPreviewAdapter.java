@@ -74,7 +74,7 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 				holder.gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 					@Override
-					public void onItemClick(AdapterView parent, 
+					public void onItemClick(AdapterView<?> parent, 
 			                View v, int position, long id) {
 						Intent myIntent = new Intent(v.getContext(),
 								NovostiCela.class);

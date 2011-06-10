@@ -1,8 +1,6 @@
 package rs.novosti.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import rs.novosti.rss.RssReader;
@@ -12,7 +10,7 @@ public class Main {
 	private Map<String, Category> categories;
 	private RssReader reader;
 	private Category naslovna;
-	private List<Category> galleryCategories;
+	private Map<String,Category> galleryCategories;
 	private String timeRefreshed;
 
 	private static Main instance = new Main();
@@ -106,12 +104,12 @@ public class Main {
 		return naslovna;
 	}
 
-	public List<Category> getGalleryCategories() {
+	public Map<String,Category> getGalleryCategories() {
 		if (galleryCategories == null) {
-			galleryCategories = new ArrayList<Category>();
-			galleryCategories.add(naslovna);
-			galleryCategories.add(categories.get("Politika"));
-			galleryCategories.add(categories.get("Sport"));
+			galleryCategories = new HashMap<String, Category>();
+			galleryCategories.put("Top vesti",naslovna);
+			galleryCategories.put("Politika",categories.get("Politika"));
+			galleryCategories.put("Sport",categories.get("Sport"));
 		}
 		return galleryCategories;
 	}
