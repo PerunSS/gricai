@@ -12,15 +12,37 @@
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="1">
-  		<TextView
-  			android:id="@+id/cocktail_recipe"
+  		<ScrollView
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="1"
-  			android:textSize="22sp"
-  			android:textColor="#FFFFFF"
-  			android:gravity="center"
-  		/>
+  			android:gravity="center">
+  			<LinearLayout
+  			android:orientation="vertical"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1">
+	  		<TextView
+	  			android:id="@+id/cocktail_recipe"
+	  			android:layout_width="fill_parent"
+	  			android:layout_height="fill_parent"
+	  			android:layout_weight="1"
+	  			android:textSize="22sp"
+	  			android:textColor="#FFFFFF"
+	  			android:gravity="left"
+	  		/>
+	  		<TextView
+	  			android:id="@+id/cocktail_recipe_detailed"
+	  			android:layout_width="fill_parent"
+	  			android:layout_height="fill_parent"
+	  			android:layout_weight="1"
+	  			android:textSize="16sp"
+	  			android:textColor="#FFFFFF"
+	  			android:gravity="left"
+	  		/>
+	  		
+  		</LinearLayout>
+  		</ScrollView>
 		<com.google.ads.AdView android:id="@+id/adView4"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

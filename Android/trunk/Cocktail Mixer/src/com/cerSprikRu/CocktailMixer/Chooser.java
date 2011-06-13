@@ -48,6 +48,9 @@ public class Chooser extends Activity {
 	private static final String SUBTYPE_TAG = "subtype";
 	private static final String PERCENT_ATTRIBUTE = "percent";
 	private static final String ALC_ATTRIBUTE = "alc";
+	private static final String CARB_ATTRIBUTE = "carbonated";
+	private static final String WEIGHT_ATTRIBUTE = "weight";
+	private static final String NAME_ATRIBUTE = "name";
 
 	public static Chooser instance;
 	private boolean fullRandom = false;
@@ -241,7 +244,6 @@ public class Chooser extends Activity {
 			Category category = null;
 			String categoryName = null;
 			Drink currentDrink = null;
-			;
 			Drink subDrink = null;
 			while (parserEvent != XmlPullParser.END_DOCUMENT) {
 				switch (parserEvent) {
@@ -250,23 +252,33 @@ public class Chooser extends Activity {
 					String percent = parser.getAttributeValue(null,
 							PERCENT_ATTRIBUTE);
 					String alc = parser.getAttributeValue(null, ALC_ATTRIBUTE);
+					String crb = parser.getAttributeValue(null, CARB_ATTRIBUTE);
+					boolean carbonated = false;
+					if (crb != null){
+						carbonated = Boolean.parseBoolean(crb);
+					}
 					if (tag.equalsIgnoreCase(TYPE_TAG)) {
 						category = new Category();
-						categoryName = parser.getAttributeValue(null, "name");
+						categoryName = parser.getAttributeValue(null, NAME_ATRIBUTE);
 						category.setName(categoryName);
 						category.setPercent(Double.parseDouble(percent));
-						RandomOptions.getInstance().setRatio(category.getPercent(),categoryName);
+						RandomOptions.getInstance().setRatio(
+								category.getPercent(), categoryName);
 						if (alc != null) {
 							category.setAlcPercent(Double.parseDouble(alc));
 						}
 					} else if (tag.equalsIgnoreCase(DRINK_TAG)) {
 						currentDrink = new Drink();
 						currentDrink.setName(parser.getAttributeValue(null,
-								"name"));
+								NAME_ATRIBUTE));
 						currentDrink.setType(categoryName);
+						currentDrink.setWeight(Integer.parseInt(parser.getAttributeValue(null,WEIGHT_ATTRIBUTE)));
 						currentDrink.setPercent(Double.parseDouble(percent));
+						currentDrink.setCarbonated(carbonated);
 					} else if (tag.equalsIgnoreCase(SUBTYPE_TAG)) {
 						subDrink = new Drink();
+						subDrink.setWeight(currentDrink.getWeight());
+						subDrink.setCarbonated(currentDrink.isCarbonated());
 						subDrink.setPercent(Double.parseDouble(percent));
 					}
 					break;
@@ -277,6 +289,7 @@ public class Chooser extends Activity {
 						if (currentDrink != null)
 							currentDrink.addSubDrink(subDrink);
 						subDrink = null;
+						System.out.println();
 					}
 					break;
 				case XmlPullParser.END_TAG:

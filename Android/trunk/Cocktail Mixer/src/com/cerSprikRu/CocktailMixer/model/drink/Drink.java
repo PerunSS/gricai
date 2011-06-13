@@ -18,6 +18,8 @@ public class Drink implements Serializable, Comparable<Drink> {
 	private double alcPercent = 0.0;
 	private boolean isPresent;
 	private double percent;
+	private boolean isCarbonated;
+	private int weight;
 
 	public Drink() {
 		teaSpoon = false;
@@ -135,5 +137,21 @@ public class Drink implements Serializable, Comparable<Drink> {
 
 	public double getPercent() {
 		return percent;
+	}
+
+	public void setCarbonated(boolean isCarbonated) {
+		this.isCarbonated = isCarbonated;
+	}
+
+	public boolean isCarbonated() {
+		return isCarbonated;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 }

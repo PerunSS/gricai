@@ -43,6 +43,7 @@ public class CocktailCreator {
 			additions.add(drink);
 			break;
 		}
+		System.out.println(drink+" "+drink.isCarbonated());
 		size++;
 	}
 

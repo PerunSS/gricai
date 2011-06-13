@@ -26,6 +26,7 @@ public class DisplayCocktail extends Activity{
 	private Context mContext = this;
 	private Cocktail cocktail;
 	private TextView recipe;
+	private TextView detailed;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public class DisplayCocktail extends Activity{
 		cocktail = CocktailCreator.getInstance().getCocktails().get(getIntent().getExtras().getInt("position"));
 		recipe = (TextView)findViewById(R.id.cocktail_recipe);
 		recipe.setText(cocktail.toString());
+		detailed = (TextView)findViewById(R.id.cocktail_recipe_detailed);
+		detailed.setText(cocktail.getDescription());
 		
 		final Button shareButton = (Button) findViewById(R.id.share_cocktail);
 		shareButton.setOnClickListener(new OnClickListener() {

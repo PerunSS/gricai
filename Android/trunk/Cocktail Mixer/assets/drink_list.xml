@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <all_drinks>
 	<type name="strong" percent="80.84" alc="40">
-		<drink name="Vodka" percent="35.23">
+		<drink name="Vodka" percent="35.23" weight="1">
 			<subtype percent="24.6">Flavored Vodka</subtype>
 		</drink>
-		<drink name="Gin" percent="11.85">
+		<drink name="Gin" percent="11.85" weight="1">
 			<subtype percent="18.21">Dry Gin</subtype>
 		</drink>
-		<drink name="Rum" percent="29.09">
+		<drink name="Rum" percent="29.09" weight="1">
 			<subtype percent="25.83">Flavored Rum</subtype>
 			<subtype percent="19.64">Light Rum</subtype>
 			<subtype percent="13.02">Dark Rum</subtype>
 			<subtype percent="9.66">Spiced Rum</subtype>
 			<subtype percent="15.37">Overproof Rum</subtype>
 		</drink>
-		<drink name="Brandy" percent="10.33">
+		<drink name="Brandy" percent="10.33" weight="1">
 			<subtype percent="3.25">Fruit Brandy</subtype>
 			<subtype percent="21.4">Cognac</subtype>
 		</drink>
-		<drink name="Whiskey" percent="15.43">
+		<drink name="Whiskey" percent="15.43" weight="1">
 			<subtype percent="30.5">Burbon</subtype>
 			<subtype percent="12.11">Tennessee</subtype>
 			<subtype percent="18.10">Scotch</subtype>
 			<subtype percent="2.64">Rye Whiskey</subtype>
 		</drink>
-		<drink name="Tequila" percent="9.93">
+		<drink name="Tequila" percent="9.93" weight="1">
 			<subtype percent="11.39">White Tequila</subtype>
 			<subtype percent="16.86">Gold Tequila</subtype>
 			<subtype percent="4.23">Aged tequila</subtype>
@@ -36,33 +36,33 @@
 		</drink> -->
 	</type>
 	<type name="liqueur" percent="72.02" alc="28">
-		<drink name="Fruit liqueur" percent="38.92">
+		<drink name="Fruit liqueur" percent="38.92" weight="2">
 			<subtype percent="59.52">Orange liqueur</subtype>
 			<subtype percent="16.96">Peach liqueur</subtype>
 			<subtype percent="3.32">Tropical liqueur</subtype>
 			<subtype percent="20.21">Curacao liqueur</subtype>
 		</drink>
-		<drink name="Coffee liqueur" percent="9.42">
+		<drink name="Coffee liqueur" percent="9.42" weight="3">
 		</drink>
-		<drink name="Chocolate liqueur" percent="6.13">
+		<drink name="Chocolate liqueur" percent="6.13" weight="3">
 		</drink>
-		<drink name="Berry liqueur" percent="6.64">
+		<drink name="Berry liqueur" percent="6.64" weight="2">
 			<subtype percent="62.51">Raspberry liqueur</subtype>
 			<subtype percent="17.16">Strawberry liqueur</subtype>
 			<subtype percent="20.33">Blackberry liqueur</subtype>
 		</drink>
-		<drink name="Herbal liqueur" percent="7.77">
+		<drink name="Herbal liqueur" percent="7.77" weight="2">
 			<subtype percent="34.17">Mint liqueur</subtype>
 			<subtype percent="48.93">Cinnamon liqueur</subtype>
 		</drink>
-		<drink name="Nut liqueur" percent="10.80">
+		<drink name="Nut liqueur" percent="10.80" weight="2">
 			<subtype percent="81.26">Almond liqueur</subtype>
 			<subtype percent="18.74">Hazelnut liqueur</subtype>
 		</drink>
-		<drink name="Cream liqueur" percent="10.02">
+		<drink name="Cream liqueur" percent="10.02" weight="3">
 			<subtype percent="91.17">Irish Cream Liqueur</subtype>
 		</drink>
-		<drink name="Creme liqueur" percent="10.08">
+		<drink name="Creme liqueur" percent="10.08" weight="4">
 			<subtype percent="18.57">Creme de Bananes</subtype>
 			<subtype percent="48.02">Creme de Cacao</subtype>
 			<subtype percent="8.42">Creme de Cassis</subtype>
@@ -75,51 +75,51 @@
 		</drink> -->
 	</type>
 	<type name="flavored liqueur" percent="12.90" alc="28">
-		<drink name="Absinthe" percent="4.54">
+		<drink name="Absinthe" percent="4.54" weight="2">
 		</drink>
-		<drink name="Bitters" percent="35.60">
+		<drink name="Bitters" percent="35.60" weight="2">
 		</drink>
-		<drink name="Schnapps" percent="58.40">
-			<subtype percent="36.27">Cinnamon liqueur</subtype>
-			<subtype percent="63.73">Peach liqueur</subtype>
+		<drink name="Schnapps" percent="58.40" weight="2">
+			<subtype percent="36.27">Cinnamon Schnapps</subtype>
+			<subtype percent="63.73">Peach Schnapps</subtype>
 			<!-- <subtype>Mint liqueur</subtype> -->
 		</drink>
-		<drink name="Other" percent="1.46">
+		<drink name="Other" percent="1.46" weight="2">
 			<subtype percent="1.46">Ouzo</subtype>
 		</drink>
 	</type>
 	<type name="other alcoholic" percent="20.58" alc="10">
-		<drink name="Beer" percent="13.93">
+		<drink name="Beer" percent="13.93" weight="1" carbonated="true">
 			<!-- <subtype>Dark Beer</subtype> -->
 		</drink>
-		<drink name="Wine" percent="60.18">
+		<drink name="Wine" percent="60.18" weight="1">
 			<subtype percent="16.83">Red Wine</subtype>
 			<subtype percent="66.39">White Wine</subtype>
 			<!-- <subtype>Rose Wine</subtype> -->
-			<subtype percent="16.79">Champagne</subtype>
+			<subtype percent="16.79" carbonated="true">Champagne</subtype>
 		</drink>
-		<drink name="Vermouth" percent="25.89">
+		<drink name="Vermouth" percent="25.89" weight="1">
 			<subtype percent="59.9">Dry Vermouth</subtype>
 			<subtype percent="43.53">Sweet Vermouth</subtype>
 			<subtype percent="11.18">Rosso Vermouth</subtype>
 		</drink>
 	</type>
 	<type name="non-alcoholic" percent="70.14" alc="0">
-		<drink name="Juice" percent="57.15">
+		<drink name="Juice" percent="57.15" weight="1">
 			<subtype percent="33.99">Orange Juice</subtype>
 			<subtype percent="19.86">Lemon Juice</subtype>
 			<subtype percent="23.10">Pineapple Juice</subtype>
 			<subtype percent="16.70">Cranberry Juice</subtype>
 		</drink>
-		<drink name="Soda" percent="30.49">
+		<drink name="Soda" percent="30.49" weight="1" carbonated="true">
 			<subtype percent="36.01">Fruit Soda</subtype>
 			<subtype percent="10.77">Ginger Ale</subtype>
 			<subtype percent="32.67">Bitter Soda</subtype>
 			<subtype percent="4.54">Tonic Water</subtype>
 		</drink>
-		<drink name="Cola" percent="1.83">
+		<drink name="Cola" percent="1.83" weight="1" carbonated="true">
 		</drink>
-		<drink name="Energy" percent="2.38">
+		<drink name="Energy" percent="2.38" weight="1" carbonated="true">
 		</drink>
 		<!--  <drink name="Soft" percent="3.72">
 			<subtype percent="18.04">Ice Tea</subtype>
@@ -135,16 +135,16 @@
 		</drink> -->
 	</type>
 	<type name="other" percent="35.29">
-		<drink name="Milk" percent="12.02">
+		<drink name="Milk" percent="12.02" weight="2">
 		</drink>
-		<drink name="Sugar" percent="22.02">
+		<drink name="Sugar" percent="22.02" weight="-1">
 		</drink>
-		<drink name="Syrup" percent="31.45">
+		<drink name="Syrup" percent="31.45" weight="4">
 			<subtype percent="6.22">Chocolate Syrup</subtype>
 			<subtype percent="83.84">Grenadine</subtype>
 			<subtype percent="9.94">Sugar Syrup</subtype>
 		</drink>
-		<drink name="Fruit" percent="34.51">
+		<drink name="Fruit" percent="34.51" weight="0">
 		</drink>
 	</type>
 </all_drinks>
