@@ -134,7 +134,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 			totalSize += drink.getAmount();
 		}
 		boolean strong = false;
-		if (alcAmount / totalSize > 0.2) {
+		if (alcAmount / totalSize > 0.25) {
 			strong = true;
 		}
 		double random = Math.random();
@@ -168,7 +168,6 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 		boolean hasFruit = false;
 		for (Drink drink : drinks) {
 			if (state == SHAKE) {
-				System.out.println(drink + " " + drink.isCarbonated());
 				if (drink.isCarbonated()) {
 					carbonDrinks.add(drink);
 				}
@@ -205,8 +204,11 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 						.substring(0, description.length() - 1);
 			}
 			description += ".";
-			if (hasFruit) {
+			if (hasFruit && !shot) {
 				description += " Decorate with fruit.\n";
+			}
+			if (shot && !hasFruit) {
+				description += "Drink as a shot.";
 			}
 		} else {
 			int maxWeight = -2;
@@ -248,7 +250,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 				if(canSmall && Math.random()<.6)
 					description+=" small";
 				description+=" glass";
-				description+= " in next order: \n";
+				description+= " in next order:\n";
 	
 				boolean sugarAdded = false;
 				if (Math.random() > .5 && hasSugar) {
@@ -275,9 +277,6 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 			if (hasFruit)
 				description += "Decorate with fruit.";
 
-		}
-		if (shot && !hasFruit) {
-			description += "Drink as a shot.";
 		}
 	}
 
