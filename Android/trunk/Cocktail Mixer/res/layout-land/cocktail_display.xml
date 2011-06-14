@@ -25,12 +25,22 @@
   				android:id="@+id/cocktail_recipe"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
-  				android:textSize="22sp"
+  				android:textSize="22dp"
   				android:textColor="#FFFFFF"
-  				android:gravity="center"
-  				android:paddingTop="20sp"
+  				android:gravity="center_vertical|left"
+  				android:paddingTop="20dp"
   			/>
-  			</LinearLayout>
+  			<TextView
+	  			android:id="@+id/cocktail_recipe_detailed"
+	  			android:layout_width="fill_parent"
+	  			android:layout_height="fill_parent"
+	  			android:layout_weight="1"
+	  			android:textSize="16dp"
+	  			android:textColor="#FFFFFF"
+	  			android:gravity="left"
+	  			android:paddingTop="5dp"
+	  		/>
+  		</LinearLayout>
   		</ScrollView>
 		<com.google.ads.AdView android:id="@+id/adView4"
 			android:layout_width="wrap_content"
