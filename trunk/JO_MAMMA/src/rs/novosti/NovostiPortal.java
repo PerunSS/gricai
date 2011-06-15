@@ -11,6 +11,7 @@ import rs.novosti.model.Main;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -21,11 +22,13 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NovostiPortal extends Activity {
 
@@ -58,6 +61,12 @@ public class NovostiPortal extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		SharedPreferences sPrefs = this.getSharedPreferences("novostiPrefs", MODE_WORLD_READABLE);
+		if(sPrefs.getInt("isFirstTime", 1) == 1){
+			Intent myIntent = new Intent(this, Disclaimer.class);
+			startActivityForResult(myIntent, 0);
+		}
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
 		setContentView(R.layout.loading);
@@ -299,6 +308,9 @@ public class NovostiPortal extends Activity {
 			if (resultCode == 1440) {
 				resetMenuView();
 				createMainPage();
+			}
+			if (resultCode == 4373) {
+				finish();
 			}
 			if (resultCode == 1410) {
 				Intent myIntent = new Intent(this, Galerija.class);
