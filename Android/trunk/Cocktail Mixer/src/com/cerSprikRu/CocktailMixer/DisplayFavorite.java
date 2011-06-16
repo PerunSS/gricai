@@ -18,6 +18,7 @@ public class DisplayFavorite extends Activity{
 	private Cocktail cocktail;
 	private TextView recipe;
 	private TextView name;
+	private TextView details;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,6 +27,9 @@ public class DisplayFavorite extends Activity{
 		cocktail = (Cocktail) getIntent().getExtras().get("favorite");
 		recipe = (TextView)findViewById(R.id.favorite_cocktail_recipe);
 		recipe.setText(cocktail.toString());
+		details = (TextView)findViewById(R.id.favorite_cocktail_recipe_detailed);
+		if(cocktail.getDescription()!=null)
+			details.setText(cocktail.getDescription());
 		name = (TextView)findViewById(R.id.favorite_cocktail_name);
 		name.setText(cocktail.getName());
 		
