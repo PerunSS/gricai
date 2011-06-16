@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -41,6 +43,7 @@ public class RssReader {
 			"http://service.tehnicomsolutions.co.uk/novosti/rss/url2xml.php?url=http://novosti.rs/rss/50-Sve%20vesti");
 	private static final String sport = new String(
 			"http://service.tehnicomsolutions.co.uk/novosti/rss/url2xml.php?url=http://novosti.rs/rss/11%7C47%7C12%7C14%7C13-Sve%20vesti");
+	private static final String sliderArticles = new String("http://service.tehnicomsolutions.co.uk/novosti/rss/mixednews.php");
 
 	private static final String TITLE_TAG = "title";
 	private static final String LINK_TAG = "link";
@@ -132,6 +135,84 @@ public class RssReader {
 		}
 		naslovna.setTitle("Top vesti");
 		return naslovna;
+	}
+	
+	public List<Article> readSliderArticles(){
+		List<Article> articles = new ArrayList<Article>();
+		try {
+			URL url = new URL(RssReader.sliderArticles);
+			XmlPullParser parser = XmlPullParserFactory.newInstance()
+					.newPullParser();
+			
+			StringBuffer buffer = new StringBuffer();
+			BufferedReader stream = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"), 64 * 1024);
+			String line;
+			while((line = stream.readLine())!=null){
+				buffer.append(line);
+			}
+			stream.close();
+			String result = new String(buffer.toString().getBytes(),"UTF-8");
+			result = result.replaceAll("&", "&amp;");
+			parser.setInput(new StringReader(result));
+			int parserEvent = parser.getEventType();
+			String tag = "";
+			Article article = null;
+			while (parserEvent != XmlPullParser.END_DOCUMENT) {
+				switch (parserEvent) {
+				case XmlPullParser.START_TAG:
+					tag = parser.getName();
+					if (tag.equalsIgnoreCase(ITEM_TAG)) {
+						itemStarted = true;
+						article = new Article();
+					}
+					break;
+				case XmlPullParser.TEXT:
+					if (itemStarted && article != null && tag.length() > 0) {
+						String text = parser.getText();
+						text = text.trim();
+						if(text.length()>0){
+							if (tag.equalsIgnoreCase(PUB_DATE_TAG)) {
+								String date = text;
+								Date dateValue = null;
+								try {
+									dateValue = new Date(Date.parse(date));
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								if (dateValue != null) {
+									article.setDate(dateValue);
+								}
+							} else if (tag.equalsIgnoreCase(TITLE_TAG)) {
+								article.setTitle(text);
+							} else if (tag.equalsIgnoreCase(LINK_TAG)) {
+								article.setLink(text);
+							} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
+								article.setSmallPhotoPath(text);
+							} 
+						}
+					}
+					break;
+				case XmlPullParser.END_TAG:
+					if (itemStarted && article != null && tag.length() > 0) {
+						tag = parser.getName();
+						if(tag.equalsIgnoreCase(ITEM_TAG)){
+							itemStarted = false;
+							articles.add(article);
+							article = null;
+						}
+					}
+					break;
+				}
+				parserEvent = parser.next();
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return articles;
 	}
 
 	public Category readCategory(String path, String name) {

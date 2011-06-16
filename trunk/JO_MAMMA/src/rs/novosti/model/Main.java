@@ -1,6 +1,7 @@
 package rs.novosti.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import rs.novosti.rss.RssReader;
@@ -12,6 +13,7 @@ public class Main {
 	private Category naslovna;
 	private Map<String,Category> galleryCategories;
 	private String timeRefreshed;
+	private List<Article> sliderArticles;
 
 	private static Main instance = new Main();
 
@@ -37,14 +39,22 @@ public class Main {
 				+ android.text.format.DateFormat.format("dd.MM.yyyy hh:mm",
 						new java.util.Date()) + "h";
 	}
+	
+	public void readGallery(){
+		naslovna = reader.readNaslovna();
+		categories.put("Top vesti", naslovna);
+		categories.put("Politika", reader.readPolitika());
+		categories.put("Sport", reader.readSport());
+	}
 
 	private void readStartCategories() {
 		naslovna = reader.readNaslovna();
 		categories.put("Top vesti", naslovna);
-		categories.put("Politika", reader.readPolitika());
-		categories.put("Društvo", reader.readDrustvo());
-		categories.put("Ekonomija", reader.readEkonomija());
-		categories.put("Sport", reader.readSport());
+		sliderArticles = reader.readSliderArticles();
+//		categories.put("Politika", reader.readPolitika());
+//		categories.put("Društvo", reader.readDrustvo());
+//		categories.put("Ekonomija", reader.readEkonomija());
+//		categories.put("Sport", reader.readSport());
 	}
 
 	public void refreshCategory(String categoryName) {
@@ -112,5 +122,9 @@ public class Main {
 			galleryCategories.put("Sport",categories.get("Sport"));
 		}
 		return galleryCategories;
+	}
+
+	public List<Article> getSliderArticles() {
+		return sliderArticles;
 	}
 }

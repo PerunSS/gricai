@@ -1,6 +1,5 @@
 package rs.novosti;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rs.novosti.adapter.CategoryLayoutAdapter;
@@ -22,13 +21,11 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NovostiPortal extends Activity {
 
@@ -178,9 +175,8 @@ public class NovostiPortal extends Activity {
 
 	private void createMainPage() {
 		Main main = Main.getInstance();
-		sliderArticles = new ArrayList<Article>();
-		sliderArticles.clear();
-
+		sliderArticles = main.getSliderArticles();
+/*
 		if(Main.getInstance().getCategories().get("Politika").getArticles().size()>0)
 			sliderArticles.add(Main.getInstance().getCategories().get("Politika").getArticles().get(0));
 		if(Main.getInstance().getCategories().get("Društvo").getArticles().size()>0)
@@ -189,7 +185,7 @@ public class NovostiPortal extends Activity {
 			sliderArticles.add(Main.getInstance().getCategories().get("Ekonomija").getArticles().get(0));
 		if(Main.getInstance().getCategories().get("Sport").getArticles().size()>0)
 			sliderArticles.add(Main.getInstance().getCategories().get("Sport").getArticles().get(0));
-		
+*/		
 		// sliderArticles.add(new Article());
 		// sliderArticles.add(new Article());
 		// sliderArticles.add(new Article());

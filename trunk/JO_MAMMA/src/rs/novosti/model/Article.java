@@ -147,7 +147,6 @@ public class Article implements Serializable {
 					Bitmap bitmap = BitmapFactory.decodeStream(is, null,
 							options);
 
-					System.out.println("created bitmap in article . . .");
 					// int width = bitmap.getWidth();
 					// int height = bitmap.getHeight();
 					// double ratio = 48. / width;
@@ -157,14 +156,12 @@ public class Article implements Serializable {
 					return bitmap;
 				}
 			} catch (Exception e) {
-				System.out.println("ARTICLE");
 				e.printStackTrace();
 			} finally {
 				if (is != null)
 					try {
 						is.close();
 					} catch (IOException e) {
-						System.out.println("ARTICLE FINALLY");
 						e.printStackTrace();
 					}
 			}

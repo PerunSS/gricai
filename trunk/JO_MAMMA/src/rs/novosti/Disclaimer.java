@@ -14,7 +14,7 @@ public class Disclaimer extends Activity{
 		SharedPreferences sPrefs = this.getSharedPreferences("novostiPrefs", MODE_WORLD_READABLE);
 		final SharedPreferences.Editor editor = sPrefs.edit();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("UPOZORENJE \n ova aplikacija koristi internet konekciju.\n Da li ste saglasni sa tim ?")
+		builder.setMessage("UPOZORENJE\nZa rad aplikacije potrebna je Internet konekcija. Ukoliko Internetu pristupate putem GPRS-a, operater bi Vas mogao dodatno zadužiti za ostvareni saobraćaj.\nDa li ste saglasni sa tim ?")
 		       .setCancelable(false)
 		       .setPositiveButton("Da", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
