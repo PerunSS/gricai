@@ -25,17 +25,16 @@ public class MyGallery extends Gallery {
 	}
 
 //	@Override
-//	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-//	        float velocityY) {
-//	    super.onFling(e1, e2, 1, velocityY);
-//	    return false;
-//	}
+//    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//      return super.onFling(e1, e2, 0, velocityY);
+//    }
+
 
 	private boolean isScrollingLeft(MotionEvent e1, MotionEvent e2){
 		  return e2.getX() > e1.getX();
 		}
 
-	@Override
+	/*@Override
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
 		  int kEvent;
 		  if(isScrollingLeft(e1, e2)){ //Check if scrolling left
@@ -46,6 +45,41 @@ public class MyGallery extends Gallery {
 		  }
 		  onKeyDown(kEvent, null);
 		  return true;  
-	}
+	}*/
+	
+	  @Override
+	  public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+	    setAnimationDuration(600);
+	    return super.onScroll(e1, e2, distanceX, distanceY);
+	  }
+
+	  @Override
+	  public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+	    float velMax = 2500f;
+	    float velMin = 1000f;
+	    float velX = Math.abs(velocityX);
+	    if (velX > velMax) {
+	      velX = velMax;
+	    } else if (velX < velMin) {
+	      velX = velMin;
+	    }
+	    velX -= 600;
+	    int k = 500000;
+	    int speed = (int) Math.floor(1f / velX * k);
+	    setAnimationDuration(speed);
+
+	    int kEvent;
+	    if (isScrollingLeft(e1, e2)) {
+	      // Check if scrolling left
+	      kEvent = KeyEvent.KEYCODE_DPAD_LEFT;
+	    } else {
+	      // Otherwise scrolling right
+	      kEvent = KeyEvent.KEYCODE_DPAD_RIGHT;
+	    }
+	    onKeyDown(kEvent, null);
+
+	    return true;
+	  }
+
 
 }

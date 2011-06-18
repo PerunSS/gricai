@@ -51,7 +51,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final Article article = Main.getInstance().readArticle(articles.get(position));
+		Article article = (Article)getItem(position);
 		Holder holder = null;
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.first_article_style, null);
