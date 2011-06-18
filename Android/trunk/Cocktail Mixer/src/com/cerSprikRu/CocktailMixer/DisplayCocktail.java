@@ -12,21 +12,28 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Cocktail;
 import com.cerSprikRu.CocktailMixer.model.drink.CocktailCreator;
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
-public class DisplayCocktail extends Activity{
+public class DisplayCocktail extends Activity implements DialogListener{
 	
 	private Context mContext = this;
 	private Cocktail cocktail;
 	private TextView recipe;
 	private TextView detailed;
+	private Facebook facebookClient;
+    private ImageView facebookButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +114,58 @@ public class DisplayCocktail extends Activity{
 			favButton.setEnabled(false);
 			favButton.setBackgroundResource(R.drawable.save_2);
 		}
+		
+		facebookButton = (ImageView)this.findViewById(R.id.share_cocktail_fb);
+		facebookButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				facebookClient = new Facebook("117614281661009");
+	            // replace APP_API_ID with your own
+	            facebookClient.authorize(DisplayCocktail.this, new String[] {"publish_stream", "offline_access"}, DisplayCocktail.this);
+			}
+		});
 		AdView adView4 = (AdView) findViewById(R.id.adView4);
 		adView4.loadAd(new AdRequest());
+	}
+
+	@Override
+	public void onComplete(Bundle values) {
+		if (values.isEmpty())
+        {
+            //"skip" clicked ?
+			return;
+        }
+
+        // if facebookClient.authorize(...) was successful, this runs
+        // this also runs after successful post
+        // after posting, "post_id" is added to the values bundle
+        // I use that to differentiate between a call from
+        // faceBook.authorize(...) and a call from a successful post
+        // is there a better way of doing this?
+        if (!values.containsKey("post_id")) {
+            try {
+                Bundle parameters = new Bundle();
+                parameters.putString("message", "Try crazy cocktail:\n" +cocktail.toString()+"\n"+cocktail.getDescription());// the message to post to the wall
+                facebookClient.dialog(this, "stream.publish", parameters, this);// "stream.publish" is an API call
+                
+
+            }catch (Exception e) {
+                // TODO: handle exception
+                System.out.println(e.getMessage());
+            }
+        }
+	}
+
+	@Override
+	public void onFacebookError(FacebookError e) {
+	}
+
+	@Override
+	public void onError(DialogError e) {
+	}
+
+	@Override
+	public void onCancel() {
 	}
 }

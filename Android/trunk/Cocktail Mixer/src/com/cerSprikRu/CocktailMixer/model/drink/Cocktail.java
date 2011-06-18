@@ -179,9 +179,9 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 		if (state == SHAKE && carbonDrinks.size() < drinks.size() - 2) {
 			description = "Put all ingredients ";
 			if (carbonDrinks.size() > 0) {
-				description += "except ";
+				description += "except";
 				for (Drink drink : carbonDrinks) {
-					description += drink.getName() + ",";
+					description += " "+drink.getName() + ",";
 				}
 				description = description
 						.substring(0, description.length() - 1);
@@ -194,7 +194,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 			else if (shakeRandom > 0.65)
 				description += " until a frost forms";
 			description += ".";
-			description += "Distribute in glasses";
+			description += " Distribute in glasses";
 			if (carbonDrinks.size() > 0) {
 				description += " and then add";
 				for (Drink drink : carbonDrinks) {
@@ -204,11 +204,11 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 						.substring(0, description.length() - 1);
 			}
 			description += ".";
-			if (hasFruit && !shot) {
+			if (hasFruit){
 				description += " Decorate with fruit.\n";
 			}
 			if (shot && !hasFruit) {
-				description += "Drink as a shot.";
+				description += " Drink as a shot.";
 			}
 		} else {
 			int maxWeight = -2;
@@ -250,7 +250,7 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 				if(canSmall && Math.random()<.6)
 					description+=" small";
 				description+=" glass";
-				description+= " in next order:\n";
+				description+= " in next order - ";
 	
 				boolean sugarAdded = false;
 				if (Math.random() > .5 && hasSugar) {
@@ -263,19 +263,20 @@ public class Cocktail implements Serializable, Comparable<Cocktail> {
 						for (Drink drink : wDrinks) {
 							description += " "+drink.getName() + ",";
 						}
-						description = description
-							.substring(0, description.length() - 1);
 					}
 				}
+				description = description
+					.substring(0, description.length() - 1);
 				if(!ice && Math.random()<.5)
-					description+=" and add few ice cubes.";
-				if (!sugarAdded) {
-					description += "Sprinkle sugar over it.";
+					description+=" and add few ice cubes";
+				description+=".";
+				if (!sugarAdded && hasSugar) {
+					description += " Sprinkle sugar over it.";
 				}
 				
 			}
 			if (hasFruit)
-				description += "Decorate with fruit.";
+				description += " Decorate with fruit.";
 
 		}
 	}
