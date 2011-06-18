@@ -18,7 +18,7 @@ public class SoloImageGallery extends Activity{
 	private MyGallery gallery;
 	private List<Article> articles;
 	private int position;
-	boolean toggle = true;
+	boolean toggle = false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class SoloImageGallery extends Activity{
 		setContentView(R.layout.solo_image_gallery);
 		final TextView text = (TextView)findViewById(R.id.solo_gallery_text);
 		final TextView numbering = (TextView)findViewById(R.id.solo_gallery_numbering);
-		text.setVisibility(View.INVISIBLE);
+		text.setVisibility(View.VISIBLE);
 		Bundle b = getIntent().getExtras();
 		position=b.getInt("position");
 		Category cat=(Category)b.getSerializable("category");
