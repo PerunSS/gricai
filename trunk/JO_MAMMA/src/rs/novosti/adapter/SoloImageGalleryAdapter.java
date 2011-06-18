@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,15 +71,17 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 		// holder.latestArticleImage.setImageBitmap(BitmapFactory.decodeFile(article.getPhotoPath()));
 		// holder.latestArticleTitle.setText(article.getName());
 		
-		if (article.getBigDrawable() == null)
-			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
-//		holder.image.setMinimumWidth(320);
-		holder.image.setImageDrawable(article.getBigDrawable());
-		holder.image.setBackgroundColor(Color.BLACK);
+//		if (article.getBigDrawable() == null)
+//			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
+////		holder.image.setMinimumWidth(320);
+//		holder.image.setImageDrawable(article.getBigDrawable());
+//		holder.image.setBackgroundColor(Color.BLACK);
+		new LoadImageTask(holder.image, article).execute();
 //		text.setText(article.getTitle());
 		return convertView;
 	}
 
+	/*
 	private Drawable getResizedDrawable(String url) {
 		
 		InputStream is = null;
@@ -124,7 +127,7 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 		}
 		
 		return null;
-	}
+	}*/
 
 	private class Holder {
 		ImageView image;
@@ -135,6 +138,76 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 		for(Article article:articles){
 			article.clear();
 		}
+	}
+	
+	private class LoadImageTask extends AsyncTask<Void, Void, Drawable>{
+		private ImageView view;
+		private Article article;
+		
+		LoadImageTask(ImageView view, Article article){
+			this.view = view;
+			this.article = article;
+		}
+		
+
+		@Override
+		protected Drawable doInBackground(Void ... params) {
+			InputStream is = null;
+			if(article.getBigDrawable()!=null)
+				return article.getBigDrawable();
+			if(article.getPhotoPath() == null)
+				article = Main.getInstance().readArticle(article);
+			String url = article.getPhotoPath();
+			if (url != null) {
+				url = url.replaceAll(" ", "%20");
+				try {
+					is = new URL(url).openStream();
+					BitmapFactory.Options options = new BitmapFactory.Options();
+					//options.inSampleSize = 2;
+					Bitmap bitmap = BitmapFactory.decodeStream(is,null, options);
+	
+					// BitmapFactory.Options op = new BitmapFactory.Options();
+					// op.inSampleSize = 8;
+					// bitmap = BitmapFactory.decodeStream(is,null, op);
+					// int width = bitmap.getWidth();
+					// int height = bitmap.getHeight();
+	//				int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
+	//						.getWidth();
+	//				int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
+	//						.getHeight();
+	//				int maxHeight = (screenHeight - 100) / 2;
+	//				Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth, maxHeight,
+	//						true);
+	//				bitmap.recycle();
+					Drawable drawable = new BitmapDrawable(bitmap);
+					// drawable.setBounds(0, 0, screenWidth, maxHeight);
+					// bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
+					// ((int) (height * ratio) > maxHeight ? maxHeight
+					// : (int) (height * ratio)), true);
+					article.setBigDrawable(drawable);
+					return drawable;
+				} catch (Exception e) {
+					// TODO: handle exception
+				} finally {
+					try {
+						is.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				return new BitmapDrawable(BitmapFactory.decodeResource(
+						context.getResources(), R.drawable.no_image));
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Drawable result) {
+			view.setImageDrawable(result);
+			view.setBackgroundColor(Color.BLACK);
+		}
+		
 	}
 }
 

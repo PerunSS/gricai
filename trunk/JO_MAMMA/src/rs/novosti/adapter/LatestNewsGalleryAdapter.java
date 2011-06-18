@@ -7,7 +7,6 @@ import java.util.List;
 
 import rs.novosti.R;
 import rs.novosti.model.Article;
-import rs.novosti.model.Main;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
