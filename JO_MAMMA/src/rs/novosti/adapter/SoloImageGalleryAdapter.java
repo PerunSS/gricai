@@ -76,6 +76,7 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 ////		holder.image.setMinimumWidth(320);
 //		holder.image.setImageDrawable(article.getBigDrawable());
 //		holder.image.setBackgroundColor(Color.BLACK);
+		holder.image.setImageResource(R.drawable.spinner);
 		new LoadImageTask(holder.image, article).execute();
 //		text.setText(article.getTitle());
 		return convertView;
