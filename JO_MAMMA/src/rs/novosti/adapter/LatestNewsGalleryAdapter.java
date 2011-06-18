@@ -7,11 +7,13 @@ import java.util.List;
 
 import rs.novosti.R;
 import rs.novosti.model.Article;
+import rs.novosti.model.Main;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,13 +72,15 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		// holder.latestArticleImage.setImageBitmap(BitmapFactory.decodeFile(article.getPhotoPath()));
 		holder.latestArticleTitle.setText(Html.fromHtml(article.getTitle()));
 		// holder.latestArticleTitle.setText(article.getName());
-		if (article.getBigDrawable() == null)
-			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
-		holder.articleLayout.setMinimumHeight(190);
-		holder.articleLayout.setBackgroundDrawable(article.getBigDrawable());
+//		if (article.getBigDrawable() == null)
+//			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
+//		holder.articleLayout.setMinimumHeight(190);
+//		holder.articleLayout.setBackgroundDrawable(article.getBigDrawable());
+		
+		new LoadImageTask(holder.articleLayout, article).execute();
 		return convertView;
 	}
-
+/*
 	private Drawable getResizedDrawable(String url) {
 		
 		InputStream is = null;
@@ -123,7 +127,7 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		
 		return null;
 	}
-
+*/
 	private class Holder {
 		LinearLayout articleLayout;
 		TextView latestArticleTitle;
@@ -134,5 +138,75 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 		for(Article article:articles){
 			article.clear();
 		}
+	}
+	
+	private class LoadImageTask extends AsyncTask<Void, Void, Drawable>{
+		private LinearLayout layout;
+		private Article article;
+		
+		LoadImageTask(LinearLayout layout, Article article){
+			this.layout = layout;
+			this.article = article;
+		}
+		
+
+		@Override
+		protected Drawable doInBackground(Void ... params) {
+			InputStream is = null;
+			if(article.getBigDrawable()!=null)
+				return article.getBigDrawable();
+			if(article.getPhotoPath() == null)
+				article = Main.getInstance().readArticle(article);
+			String url = article.getPhotoPath();
+			if (url != null) {
+				url = url.replaceAll(" ", "%20");
+				try {
+					is = new URL(url).openStream();
+					BitmapFactory.Options options = new BitmapFactory.Options();
+					//options.inSampleSize = 2;
+					Bitmap bitmap = BitmapFactory.decodeStream(is,null, options);
+	
+					// BitmapFactory.Options op = new BitmapFactory.Options();
+					// op.inSampleSize = 8;
+					// bitmap = BitmapFactory.decodeStream(is,null, op);
+					// int width = bitmap.getWidth();
+					// int height = bitmap.getHeight();
+	//				int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay()
+	//						.getWidth();
+	//				int screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay()
+	//						.getHeight();
+	//				int maxHeight = (screenHeight - 100) / 2;
+	//				Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, screenWidth, maxHeight,
+	//						true);
+	//				bitmap.recycle();
+					Drawable drawable = new BitmapDrawable(bitmap);
+					// drawable.setBounds(0, 0, screenWidth, maxHeight);
+					// bitmap = Bitmap.createScaledBitmap(bitmap, (int) (width * ratio),
+					// ((int) (height * ratio) > maxHeight ? maxHeight
+					// : (int) (height * ratio)), true);
+					article.setBigDrawable(drawable);
+					return drawable;
+				} catch (Exception e) {
+					// TODO: handle exception
+				} finally {
+					try {
+						is.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				return new BitmapDrawable(BitmapFactory.decodeResource(
+						context.getResources(), R.drawable.no_image));
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Drawable result) {
+			layout.setBackgroundDrawable(result);
+			layout.setMinimumHeight(190);
+		}
+		
 	}
 }
