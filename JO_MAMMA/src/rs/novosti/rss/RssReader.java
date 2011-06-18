@@ -164,7 +164,7 @@ public class RssReader {
 					if (tag.equalsIgnoreCase(ITEM_TAG)) {
 						itemStarted = true;
 						article = new Article();
-					}
+					} 
 					break;
 				case XmlPullParser.TEXT:
 					if (itemStarted && article != null && tag.length() > 0) {
@@ -187,7 +187,7 @@ public class RssReader {
 							} else if (tag.equalsIgnoreCase(LINK_TAG)) {
 								article.setLink(text);
 							} else if (tag.equalsIgnoreCase(IMAGE_TAG)) {
-								article.setSmallPhotoPath(text);
+								article.setPhotoPath(text);
 							} 
 						}
 					}

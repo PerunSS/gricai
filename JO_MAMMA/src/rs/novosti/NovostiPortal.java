@@ -192,7 +192,7 @@ public class NovostiPortal extends Activity {
 		// MyGallery gallery = (MyGallery) findViewById(R.id.latestNewsGallery);
 		// gallery.setAdapter(new LatestNewsGalleryAdapter(this, sliderArticles,
 		// this));
-
+		System.out.println(sliderArticles.size());
 		ListView view = (ListView) findViewById(R.id.Content);
 		if (categoryPreviewAdapter == null)
 			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main

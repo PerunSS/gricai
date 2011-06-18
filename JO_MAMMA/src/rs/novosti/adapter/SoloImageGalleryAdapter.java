@@ -49,7 +49,7 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final Article article = Main.getInstance().readArticle(articles.get(position));
+		Article article = (Article)getItem(position);
 		Holder holder = null;
 //		final FrameLayout layout = new FrameLayout(context);
 //		layout.setMinimumHeight(480);
@@ -69,6 +69,7 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 		// new BitmapFactory();
 		// holder.latestArticleImage.setImageBitmap(BitmapFactory.decodeFile(article.getPhotoPath()));
 		// holder.latestArticleTitle.setText(article.getName());
+		
 		if (article.getBigDrawable() == null)
 			article.setBigDrawable(getResizedDrawable(article.getPhotoPath()));
 //		holder.image.setMinimumWidth(320);

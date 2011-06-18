@@ -2,6 +2,7 @@ package rs.novosti.adapter;
 
 import java.util.List;
 
+import rs.novosti.R;
 import rs.novosti.model.Article;
 import android.content.Context;
 import android.view.View;
@@ -52,6 +53,8 @@ public class MyGalleryAdapter extends BaseAdapter {
 //		Article article = category.getArticles().get(position);
 //		System.out.println("artikl     " + article.getPhotoPath() + "\n"
 //				);
+		if(articles.get(position).getView() == null)
+			imageView.setImageResource(R.drawable.spinner);
 		articles.get(position).setView(imageView);
 		articles.get(position).generateSmallPhoto();
 		return imageView;
