@@ -11,7 +11,7 @@
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="1dp"
-		android:background="#FFFFFF"/>
+		android:background="@color/menu_background"/>
 	<LinearLayout
 		android:id="@+id/secondStyleArticle_layout"
 		android:layout_width="fill_parent"
@@ -70,10 +70,10 @@
 	</LinearLayout>
 	<View
 		android:layout_width="fill_parent"
-		android:layout_height="1dp"
+		android:layout_height="2dp"
 		android:background="#FFFFFF"/>
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="1dp"
-		android:background="#FFFFFF"/>	
+		android:background="@color/menu_background"/>	
 </LinearLayout>
