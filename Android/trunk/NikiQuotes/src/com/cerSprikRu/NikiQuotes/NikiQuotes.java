@@ -48,7 +48,6 @@ public class NikiQuotes extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		facts = getResources().getStringArray(R.array.facts);
 		fact = facts[(int) (Math.random() * facts.length)];
