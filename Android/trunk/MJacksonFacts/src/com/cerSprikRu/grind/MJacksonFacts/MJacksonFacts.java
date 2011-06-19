@@ -45,7 +45,6 @@ public class MJacksonFacts extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		facts = getResources().getStringArray(R.array.facts);
 		fact = facts[(int) (Math.random() * facts.length)];
@@ -85,7 +84,7 @@ public class MJacksonFacts extends Activity {
 			public void onClick(View v) {
 				String externalDirectory = Environment
 						.getExternalStorageDirectory().toString();
-				String directory = NikiQuotes.class.getSimpleName();
+				String directory = MJacksonFacts.class.getSimpleName();
 				File file = new File(externalDirectory + File.separator
 						+ directory);
 				if (!file.isDirectory())
@@ -109,7 +108,7 @@ public class MJacksonFacts extends Activity {
 						} catch (IOException e) {
 						}
 				}
-				Toast.makeText(NikiQuotes.this, "Saved image: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+				Toast.makeText(MJacksonFacts.this, "Saved image: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
 			}
 		});
 		factsTextView = (TextView) findViewById(R.id.fact);
