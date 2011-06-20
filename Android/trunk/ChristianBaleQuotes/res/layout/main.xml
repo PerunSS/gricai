@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <LinearLayout
+  			android:orientation="vertical"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1"
+  		>	
+		<TextView android:text="@+id/fact" 
+			android:id="@+id/fact"
+			android:gravity="center" 
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:textColor="#CCCC00"
+			android:shadowColor="#FF0000"
+			android:textStyle="bold"
+			android:shadowRadius="10"
+			android:shadowDx="0"
+			android:shadowDy="0"
+			android:layout_weight="1"
+		/>
+		<com.google.ads.AdView android:id="@+id/ad1"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14dff85cf872a7"
+                         ads:adSize="BANNER"/>
+
+	</LinearLayout>	
+	<LinearLayout
+  			android:orientation="vertical"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="4"
+  	>	
+    	<LinearLayout
+  			android:orientation="horizontal"
+  			android:layout_width="fill_parent"
+  			android:layout_height="fill_parent"
+  			android:layout_weight="1"
+  		>
+  			<Button 
+  				android:id="@+id/random"
+  				android:text="Random"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:background="@drawable/random_button"/>	
+  			<Button 
+  				android:id="@+id/save"
+  				android:text ="Save Image"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:background="@drawable/save_button"/>
+  			<Button 
+  				android:id="@+id/share"
+  				android:text ="Share"
+  				android:layout_width="fill_parent"
+  				android:layout_height="fill_parent"
+  				android:layout_weight="1"
+  				android:background="@drawable/share_button"/>
+		</LinearLayout>
+		
+		<com.google.ads.AdView android:id="@+id/ad2"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14dff85cf872a7"
+                         ads:adSize="BANNER"/>
+
+	</LinearLayout>		
+</LinearLayout>
