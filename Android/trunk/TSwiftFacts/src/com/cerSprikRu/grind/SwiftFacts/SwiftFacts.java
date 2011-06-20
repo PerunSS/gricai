@@ -134,7 +134,7 @@ public class SwiftFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
+						"Tailor Swift: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
