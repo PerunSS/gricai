@@ -122,7 +122,7 @@ public class DisplayCocktail extends Activity implements DialogListener{
 			public void onClick(View v) {
 				facebookClient = new Facebook("117614281661009");
 	            // replace APP_API_ID with your own
-	            facebookClient.authorize(DisplayCocktail.this, new String[] {"publish_stream", "offline_access"}, DisplayCocktail.this);
+	            facebookClient.authorize(DisplayCocktail.this, new String[] {"publish_stream"}, DisplayCocktail.this);
 			}
 		});
 		AdView adView4 = (AdView) findViewById(R.id.adView4);
@@ -131,6 +131,7 @@ public class DisplayCocktail extends Activity implements DialogListener{
 
 	@Override
 	public void onComplete(Bundle values) {
+		System.out.println("on complete");
 		if (values.isEmpty())
         {
             //"skip" clicked ?
@@ -145,14 +146,13 @@ public class DisplayCocktail extends Activity implements DialogListener{
         // is there a better way of doing this?
         if (!values.containsKey("post_id")) {
             try {
+            	System.out.println("uso u post id");
                 Bundle parameters = new Bundle();
                 parameters.putString("message", "Try crazy cocktail:\n" +cocktail.toString()+"\n"+cocktail.getDescription());// the message to post to the wall
-                facebookClient.dialog(this, "stream.publish", parameters, this);// "stream.publish" is an API call
+                facebookClient.dialog(this, "feed", parameters, this);// "stream.publish" is an API call
                 
 
             }catch (Exception e) {
-                // TODO: handle exception
-                System.out.println(e.getMessage());
             }
         }
 	}
@@ -168,4 +168,11 @@ public class DisplayCocktail extends Activity implements DialogListener{
 	@Override
 	public void onCancel() {
 	}
+	
+	@Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        facebookClient.authorizeCallback(requestCode, resultCode, data);
+    }
 }
