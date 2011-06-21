@@ -4,31 +4,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.cerSprikRu.grind.StupidInsults.adapter.FavoriteAdapter;
 import com.cerSprikRu.grind.StupidInsults.db.customManager.DBManager;
-import com.cerSprikRu.grind.StupidInsults.favorites.FavoritesManager;
 import com.cerSprikRu.grind.StupidInsults.insult.Fact;
 
 public class StupidInsults extends Activity {
 
 	private TextView factsTextView;
-	private TextView personNameTextView;
-	private ImageView personImageView;
 	private Button previousButton;
 	private Button nextButton;
 	private Button randomButton;
@@ -38,21 +38,14 @@ public class StupidInsults extends Activity {
 	private ListView favoritesView;
 	private Button shareButton;
 	private Button searchButton;
+	private ListView searchView;
 
 	private List<Fact> facts;
 	private List<Fact> searchResult;
 	private List<Fact> favorites;
-	private static int[] imageIDs = { R.drawable.beyonce,
-			R.drawable.aliciakeys, R.drawable.rihanna, R.drawable.neyo,
-			R.drawable.chrisbrown, R.drawable.justin_bieber, R.drawable.usher,
-			R.drawable.keyshia_cole, R.drawable.ashanti, R.drawable.duffy,
-			R.drawable.r_kelly, R.drawable.trey_songz };
 
 	private int curentIndex = 0;
 	private DBManager manager;
-	private FavoritesManager favManager;
-
-	private static StupidInsults instance;
 
 	private enum STATE {
 		NORMAL, BACKABLE
@@ -60,18 +53,14 @@ public class StupidInsults extends Activity {
 
 	private STATE currentState;
 
+	private static StupidInsults instance;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		manager = new DBManager(this);
-		favManager = new FavoritesManager(this);
 		facts = manager.read();
-		Set<Integer> favorites = favManager.getFavorites();
-		for (Fact fact : facts) {
-			if (favorites.contains(fact.getId()))
-				fact.setFavorite(true);
-		}
 		startApplication();
 		instance = this;
 		handleIntent(getIntent());
@@ -91,23 +80,17 @@ public class StupidInsults extends Activity {
 	}
 
 	private void doMySearch(String query) {
-		currentState = STATE.BACKABLE;
 		String queryArr[] = query.split(" ");
 		for (int i = 0; i < queryArr.length; i++) {
 			queryArr[i].trim();
 		}
 		Map<Integer, List<Fact>> result = new HashMap<Integer, List<Fact>>();
-		int maxWordCount = 0;
 		for (Fact fact : facts) {
 			int wordCount = 0;
 			for (String q : queryArr) {
 				if (fact.getText().toLowerCase().contains(q.toLowerCase()))
 					wordCount++;
-				if (fact.getPerson().toLowerCase().contains(q.toLowerCase()))
-					wordCount++;
 			}
-			if (wordCount > maxWordCount)
-				maxWordCount = wordCount;
 			if (wordCount > 0) {
 				List<Fact> searchFacts = result.get(wordCount);
 				if (searchFacts == null)
@@ -116,18 +99,42 @@ public class StupidInsults extends Activity {
 				result.put(wordCount, searchFacts);
 			}
 		}
-		setContentView(R.layout.favorites);
-		favoritesView = (ListView) findViewById(R.id.favorites_list_view);
+		searchResult = null;
 		searchResult = new ArrayList<Fact>();
-		while (maxWordCount > 0) {
-			List<Fact> res = result.get(maxWordCount);
+		int maxCount = queryArr.length;
+		while (maxCount > 0) {
+			List<Fact> res = result.get(maxCount);
 			if (res != null)
 				searchResult.addAll(res);
-			maxWordCount--;
+			maxCount--;
 		}
-		favoritesView.setAdapter(new FavoritesListAdapter(instance,
-				searchResult));
-		favoritesView.setOnItemClickListener(new OnItemClickListener() {
+		if (searchResult.isEmpty()) {
+			AlertDialog.Builder adb = new AlertDialog.Builder(this);
+			adb.setMessage("No results for query: " + query)
+					.setCancelable(false)
+					.setNeutralButton("OK",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+								}
+							});
+			AlertDialog dialog = adb.create();
+			dialog.setTitle("Search");
+			adb.show();
+			return;
+		}
+		currentState = STATE.BACKABLE;
+		setContentView(R.layout.search);
+		searchView = (ListView) findViewById(R.id.search_list_view);
+
+		searchView.setDivider(new ColorDrawable(Color.GRAY));
+		searchView.setDividerHeight(2);
+		searchView.setAdapter(new FavoriteAdapter(instance,
+				R.id.search_list_view, searchResult));
+		searchView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> a, View v, int position,
@@ -145,7 +152,7 @@ public class StupidInsults extends Activity {
 			}
 		});
 
-		backButton = (Button) findViewById(R.id.back_from_favorites);
+		backButton = (Button) findViewById(R.id.back_from_search);
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -153,12 +160,12 @@ public class StupidInsults extends Activity {
 				startApplication();
 			}
 		});
+
 	}
 
 	private void startApplication() {
+		setContentView(R.layout.main);
 		currentState = STATE.NORMAL;
-		setContentView(R.layout.rumorsnfacts);
-
 		previousButton = (Button) findViewById(R.id.previous);
 		previousButton.setOnClickListener(new OnClickListener() {
 
@@ -193,8 +200,7 @@ public class StupidInsults extends Activity {
 			public void onClick(View v) {
 				Fact fact = facts.get(curentIndex);
 				fact.togleFavorite();
-				// manager.updateFact(fact);
-				favManager.togleFavorite(fact);
+				manager.updateFact(fact);
 				togleFavorite(fact);
 			}
 		});
@@ -207,12 +213,15 @@ public class StupidInsults extends Activity {
 				currentState = STATE.BACKABLE;
 				setContentView(R.layout.favorites);
 				favoritesView = (ListView) findViewById(R.id.favorites_list_view);
+				favorites = null;
 				favorites = new ArrayList<Fact>();
 				for (Fact fact : facts)
 					if (fact.isFavorite())
 						favorites.add(fact);
-				favoritesView.setAdapter(new FavoritesListAdapter(instance,
-						favorites));
+				favoritesView.setDivider(new ColorDrawable(Color.GRAY));
+				favoritesView.setDividerHeight(2);
+				favoritesView.setAdapter(new FavoriteAdapter(instance,
+						R.id.favorites_list_view, favorites));
 				favoritesView.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
@@ -252,8 +261,7 @@ public class StupidInsults extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Fact about " + currentFact.getPerson() + ": "
-								+ currentFact.getText());
+						 currentFact.getText());
 
 				startActivity(Intent.createChooser(intent, "share"));
 			}
@@ -294,23 +302,14 @@ public class StupidInsults extends Activity {
 
 	private void updateUI() {
 		Fact fact = facts.get(curentIndex);
-
 		factsTextView = (TextView) findViewById(R.id.factText);
-		if (fact.getText().length() > 200)
-			factsTextView.setTextSize(18);
-		else if (fact.getText().length() > 150)
+		if (fact.getText().length() > 150)
 			factsTextView.setTextSize(20);
 		else if (fact.getText().length() > 100)
 			factsTextView.setTextSize(25);
 		else
 			factsTextView.setTextSize(30);
 		factsTextView.setText(fact.getText());
-
-		personNameTextView = (TextView) findViewById(R.id.personName);
-		personNameTextView.setText(fact.getPerson());
-
-		personImageView = (ImageView) findViewById(R.id.imageView);
-		personImageView.setImageResource(imageIDs[fact.getPersonID() - 1]);
 
 		togleFavorite(fact);
 	}
@@ -332,7 +331,7 @@ public class StupidInsults extends Activity {
 				startApplication();
 				return true;
 			} else {
-				moveTaskToBack(true);
+				return moveTaskToBack(true);
 			}
 		case KeyEvent.KEYCODE_MENU:
 			// TODO show menu
