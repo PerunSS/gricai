@@ -131,7 +131,7 @@ public class PattinsonFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
+						"Fact about Robert Pattison: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
