@@ -118,8 +118,9 @@ public class Main {
 		if (galleryCategories == null) {
 			galleryCategories = new HashMap<String, Category>();
 			galleryCategories.put("Top vesti",naslovna);
-			galleryCategories.put("Politika",categories.get("Politika"));
 			galleryCategories.put("Sport",categories.get("Sport"));
+			galleryCategories.put("Politika",categories.get("Politika"));
+			
 		}
 		return galleryCategories;
 	}
