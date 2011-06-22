@@ -95,7 +95,7 @@ public class Galerija extends Activity {
 		refTime.setText(Main.getInstance().getTimeRefreshed());
 		final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
 		// gridview.setAdapter(adapter);
-		String categoryNames[] = { "Top vesti", "Politika", "Sport" };
+		String categoryNames[] = { "Top vesti", "Sport", "Politika" };
 		boolean doClick = true;
 		for (String categoryName : categoryNames) {
 			final Category category = Main.getInstance().getCategories()

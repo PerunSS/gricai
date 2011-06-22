@@ -127,9 +127,9 @@ public class NovostiPortal extends Activity {
 			}
 		});
 
-		String names[] = { "Top vesti", "Politika", "Društvo", "Ekonomija",
+		String names[] = { "Top vesti", "Sport", "Politika", "Društvo", "Ekonomija",
 				"Hronika", "Beograd", "Dosije", "Spektakl", "Život plus",
-				"Tehnologije", "Auto", "Sport" };
+				"Tehnologije", "Auto" };
 
 		for (String categoryName:names) {
 			final String name = categoryName;
