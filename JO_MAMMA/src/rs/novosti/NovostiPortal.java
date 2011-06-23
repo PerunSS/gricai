@@ -8,11 +8,16 @@ import rs.novosti.model.Article;
 import rs.novosti.model.Category;
 import rs.novosti.model.Main;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,6 +43,7 @@ public class NovostiPortal extends Activity {
 	ProgressDialog progressDialog;
 	LinearLayout menuView;
 	private String currentCategory;
+	private Activity myActivity = this;
 	
 	Handler mainHandler = new Handler() {
 		@Override
@@ -58,17 +64,15 @@ public class NovostiPortal extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		setContentView(R.layout.loading);
 		SharedPreferences sPrefs = this.getSharedPreferences("novostiPrefs", MODE_WORLD_READABLE);
 		if(sPrefs.getInt("isFirstTime", 1) == 1){
 			Intent myIntent = new Intent(this, Disclaimer.class);
 			startActivityForResult(myIntent, 0);
 		}
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
-		setContentView(R.layout.loading);
-		Thread thread = new Thread(new LoaderThread());
-		thread.start();
+		checkForNetworkAndStart();
+		
+		
 		// createMenu();
 
 		// Pravim ovu listu artikala cisto da bi imo sta da mu prosledim jer ako
@@ -77,6 +81,34 @@ public class NovostiPortal extends Activity {
 
 	}
 
+	private void checkForNetworkAndStart(){
+		
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
+//		System.out.println(isNetworkAvailable());
+		
+		if(!isNetworkAvailable()){
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Ne postoji internet konekcija")
+			       .setCancelable(false)
+			       .setPositiveButton("Pokusaj ponovo", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			               checkForNetworkAndStart(); 
+			           }
+			       })
+			       .setNegativeButton("Odustani", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   myActivity.finish();
+			           }
+			       });
+			AlertDialog alert = builder.create();
+			alert.show();
+		} else {
+			Thread thread = new Thread(new LoaderThread());
+			thread.start();
+		}
+	}
+	
 	public void resetMenuView() {
 		for (int i = 0; i < menuView.getChildCount(); i++) {
 			TextView tv = (TextView) menuView.getChildAt(i);
@@ -314,6 +346,15 @@ public class NovostiPortal extends Activity {
 				startActivityForResult(myIntent, 0);
 			}
 		}
+	}
+
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//	    System.out.println(activeNetworkInfo.isAvailable());
+	    return activeNetworkInfo.isConnected();
+	    
 	}
 
 }
