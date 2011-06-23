@@ -135,7 +135,7 @@ public class MadonnaFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
+						"Fact about Madonna: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
