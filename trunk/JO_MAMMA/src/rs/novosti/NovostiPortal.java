@@ -43,7 +43,6 @@ public class NovostiPortal extends Activity {
 	ProgressDialog progressDialog;
 	LinearLayout menuView;
 	private String currentCategory;
-	private Activity myActivity = this;
 	
 	Handler mainHandler = new Handler() {
 		@Override
@@ -98,7 +97,7 @@ public class NovostiPortal extends Activity {
 			       })
 			       .setNegativeButton("Odustani", new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {
-			        	   myActivity.finish();
+			        	   NovostiPortal.this.finish();
 			           }
 			       });
 			AlertDialog alert = builder.create();
@@ -349,11 +348,14 @@ public class NovostiPortal extends Activity {
 	}
 
 	private boolean isNetworkAvailable() {
-	    ConnectivityManager connectivityManager 
-	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-//	    System.out.println(activeNetworkInfo.isAvailable());
-	    return activeNetworkInfo.isConnected();
+		try{
+		    ConnectivityManager connectivityManager 
+		          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		    return activeNetworkInfo.isConnected();
+		}catch (Exception e) {
+			return false;
+		}
 	    
 	}
 
