@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, FatInsults!</string>
+    <string name="app_name">Fat Insults</string>
+    <string name="search_hint">Search Fat Insults</string>
+</resources>
