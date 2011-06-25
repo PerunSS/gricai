@@ -27,6 +27,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -34,9 +37,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
-import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.TableLayout.LayoutParams;
 
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Category;
@@ -248,6 +251,7 @@ public class Chooser extends Activity {
 			} catch (NoSuchAlgorithmException e) {
 
 			}
+		
 	}
 
 	private void initDrinks() {
@@ -357,5 +361,26 @@ public class Chooser extends Activity {
 		private static final long serialVersionUID = 1L;
 		int currentCategory;
 		int currentDrink;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.cocktail_mixer_menu, menu);
+	    return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.help:
+	    	Intent myIntent = new Intent(this,
+					Help.class);
+			startActivityForResult(myIntent, 0);
+	        return true;
+	        
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
 	}
 }
