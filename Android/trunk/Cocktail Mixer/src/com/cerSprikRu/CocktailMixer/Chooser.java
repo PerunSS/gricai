@@ -3,8 +3,6 @@ package com.cerSprikRu.CocktailMixer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +14,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.Signature;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -37,9 +31,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.TableLayout.LayoutParams;
 
 import com.cerSprikRu.CocktailMixer.favorites.FavoritesManager;
 import com.cerSprikRu.CocktailMixer.model.drink.Category;
@@ -239,18 +233,27 @@ public class Chooser extends Activity {
 		adView2.loadAd(new AdRequest());
 		new FavoritesManager(this);
 		instance = this;
-		try {
+		/*try {
 			   PackageInfo info = getPackageManager().getPackageInfo("com.cerSprikRu.CocktailMixer", PackageManager.GET_SIGNATURES);
 			   for (Signature signature : info.signatures) {
 			        MessageDigest md = MessageDigest.getInstance("SHA");
 			        md.update(signature.toByteArray());
+			        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			        builder.setMessage("Hash key: " + Base64.encodeBytes(md.digest())).setPositiveButton("done", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
+			        builder.create().show();
 			        System.out.println("Hash Key:"+ Base64.encodeBytes(md.digest()));
 			   }
 			} catch (NameNotFoundException e) {
 
 			} catch (NoSuchAlgorithmException e) {
 
-			}
+			}*/
 		
 	}
 
