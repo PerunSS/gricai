@@ -131,7 +131,7 @@ public class LilWayneFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
+						"Fact about Lil Wayne: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
