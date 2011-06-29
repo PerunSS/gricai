@@ -135,7 +135,7 @@ public class JLoQuotes extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
+						"Jennifer Lopez: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
