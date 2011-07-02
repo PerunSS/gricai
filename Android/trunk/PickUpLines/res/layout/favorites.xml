@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@drawable/bckground">
+  	<LinearLayout 
+  		android:layout_width="fill_parent"
+  		android:layout_height="50dp"
+  		android:orientation="horizontal">
+  		<ImageView 
+  			android:src="@drawable/applogo"
+  			android:scaleType="fitXY"
+  			android:layout_width="50dp"
+  			android:layout_height="50dp"/>
+  		<View
+  			android:layout_width="50dp"
+  			android:layout_height="50dp"
+  			android:layout_weight="1"
+  			android:background="@drawable/appname"
+  		/>
+  		<Button
+  			android:id="@+id/back_from_favorites"
+  			android:layout_width="150dp"
+  			android:layout_height="50dp"
+  			android:background="@drawable/back_button"/> 		
+  	</LinearLayout>
+  	<com.google.ads.AdView android:id="@+id/ad3"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14e0f240230c79"
+                         ads:adSize="BANNER"
+                         ads:loadAdOnCreate="true"/>
+  	<ListView
+		android:id="@+id/favorites_list_view"
+		android:layout_height = "100dp"
+		android:layout_width = "fill_parent"
+		android:layout_weight="1"
+		android:textColor="#000000"
+  		android:textSize="15dp"
+	/>  
+	<com.google.ads.AdView android:id="@+id/ad4"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14e0f240230c79"
+                         ads:adSize="BANNER"
+                         ads:loadAdOnCreate="true"/>	
+</LinearLayout>

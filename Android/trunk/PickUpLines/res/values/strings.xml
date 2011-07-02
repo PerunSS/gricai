@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, PickUpLines!</string>
+    <string name="app_name">Pick Up Lines</string>
+    <string name="search_hint">Search Pick Up Lines</string>
+</resources>
