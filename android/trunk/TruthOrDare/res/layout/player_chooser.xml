@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent" android:orientation="vertical">
-    <LinearLayout android:layout_width="wrap_content" android:id="@+id/linearLayout1" android:layout_height="fill_parent" android:orientation="horizontal">
-        <TextView android:layout_width="wrap_content" android:id="@+id/textView1" android:layout_height="wrap_content" android:text="Number of players: "></TextView>
-        <EditText android:layout_width="60dp" android:id="@+id/player_number" android:layout_height="wrap_content"></EditText>
-        <Button android:layout_width="wrap_content" android:id="@+id/confirm_players" android:text="OK" android:layout_height="wrap_content"></Button>
-    </LinearLayout>
-    <ListView android:layout_width="fill_parent" android:id="@+id/players_list" android:layout_height="wrap_content"></ListView>
-    <Button android:layout_width="wrap_content" android:id="@+id/start_game" android:text="Start game" android:layout_height="wrap_content" android:gravity="center"></Button>
+	xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+        <TextView 
+        	android:layout_width="wrap_content" 
+        	android:id="@+id/textView1" 
+        	android:layout_height="wrap_content" 
+        	android:text="Select number of players: "
+        	android:textSize="15dp"/>
+        <Spinner 
+        	android:id="@+id/player_spinner"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:prompt="@string/players_prompt"
+    	/>
+        
+    <ListView 
+    	android:layout_width="fill_parent" 
+    	android:id="@+id/players_list" 
+    	android:layout_height="120dp"/>
+    <Button 
+    	android:layout_width="wrap_content" 
+    	android:id="@+id/start_game" 
+    	android:text="Start game" 
+    	android:layout_height="wrap_content" 
+    	android:gravity="center"/>
 </LinearLayout>

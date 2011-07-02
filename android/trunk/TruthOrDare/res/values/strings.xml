@@ -2,4 +2,16 @@
 <resources>
     <string name="hello">Hello World, TruthOrDare!</string>
     <string name="app_name">TruthOrDare</string>
+    <string name="players_prompt">Choose number of players</string>
+    <string-array name="players_array">
+        <item>2 Players</item>
+        <item>3 Players</item>
+        <item>4 Players</item>
+        <item>5 Players</item>
+        <item>6 Players</item>
+        <item>7 Players</item>
+        <item>8 Players</item>
+        <item>9 Players</item>
+        <item>10 Players</item>
+    </string-array>
 </resources>
