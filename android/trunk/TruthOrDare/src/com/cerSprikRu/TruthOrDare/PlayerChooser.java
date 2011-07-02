@@ -51,7 +51,7 @@ public class PlayerChooser extends Activity {
         	playersListView.setAdapter(new PlayersListAdapter(myContext, playersList));
 	    }
 
-	    public void onNothingSelected(AdapterView parent) {
+	    public void onNothingSelected(AdapterView<?> parent) {
 	      // Do nothing.
 	    }
 	}
