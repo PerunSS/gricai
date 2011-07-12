@@ -132,7 +132,7 @@ public class AvrilFacts extends Activity {
 
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_TEXT,
-						"Avril Lavigne: "
+						"Fact about Avril Lavigne: "
 								+fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
