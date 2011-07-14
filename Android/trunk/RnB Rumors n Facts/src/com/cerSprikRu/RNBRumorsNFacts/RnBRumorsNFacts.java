@@ -23,6 +23,8 @@ import android.widget.TextView;
 import com.cerSprikRu.RNBRumorsNFacts.db.customManager.DBManager;
 import com.cerSprikRu.RNBRumorsNFacts.fact.Fact;
 import com.cerSprikRu.RNBRumorsNFacts.favorites.FavoritesManager;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class RnBRumorsNFacts extends Activity {
 
@@ -73,6 +75,8 @@ public class RnBRumorsNFacts extends Activity {
 				fact.setFavorite(true);
 		}
 		startApplication();
+		AdView adView1 = (AdView) findViewById(R.id.adView1);
+		adView1.loadAd(new AdRequest());
 		instance = this;
 		handleIntent(getIntent());
 	}
