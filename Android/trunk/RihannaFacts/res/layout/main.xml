@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:myapp="http://schemas.android.com/apk/res/com.cerSprikRu.RihannaFacts"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -25,14 +25,13 @@
 			android:shadowDy="0"
 			android:layout_weight="1"
 		/>
-		<com.admob.android.ads.AdView
-			android:id="@+id/ad1"
-			android:layout_width="fill_parent"
+		<com.google.ads.AdView android:id="@+id/adView1"
+        	android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			myapp:backgroundColor="#000000"
-			myapp:primaryTextColor="#FFFFFF"
-			myapp:secondaryTextColor="#CCCCCC"
-		/>
+			ads:adUnitId="a14d70f49dccf46"
+			ads:adSize="BANNER"
+			ads:loadAdOnCreate="true"
+        />
 	</LinearLayout>	
 	<LinearLayout
   			android:orientation="vertical"
@@ -69,13 +68,12 @@
   				android:layout_weight="1"/>
 		</LinearLayout>
 		
-		<com.admob.android.ads.AdView
-			android:id="@+id/ad2"
-			android:layout_width="fill_parent"
+		<com.google.ads.AdView android:id="@+id/adView2"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			myapp:backgroundColor="#000000"
-			myapp:primaryTextColor="#FFFFFF"
-			myapp:secondaryTextColor="#CCCCCC"
+			ads:adUnitId="a14d70f49dccf46"
+			ads:adSize="BANNER"
+			ads:loadAdOnCreate="true"
 		/>
 	</LinearLayout>		
 </LinearLayout>

@@ -19,6 +19,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
 public class RihannaFacts extends Activity {
 	private String[] facts;
 	private TextView factsTextView;
@@ -79,7 +82,7 @@ public class RihannaFacts extends Activity {
 					file.mkdir();
 				String timestamp = Long.toString(System.currentTimeMillis());
 				file = new File(externalDirectory + File.separator + directory,
-						timestamp);
+						timestamp+".jpg");
 				OutputStream out = null;
 				try {
 					out = new FileOutputStream(file);
@@ -127,6 +130,10 @@ public class RihannaFacts extends Activity {
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
+		AdView adView1 = (AdView)this.findViewById(R.id.adView1);
+	    adView1.loadAd(new AdRequest());
+	    AdView adView2 = (AdView)this.findViewById(R.id.adView2);
+	    adView2.loadAd(new AdRequest());
 
 	}
 }
