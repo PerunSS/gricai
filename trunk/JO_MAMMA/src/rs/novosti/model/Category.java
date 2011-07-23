@@ -3,12 +3,13 @@ package rs.novosti.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Class represents category with needed data and list of articles in that category
+ * @author aleksandarvaricak
+ *
+ */
 public class Category implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String title;
 	private String path;

@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import rs.novosti.rss.RssReader;
-
+/**
+ * Singletone class that is used to get and refresh data. Connection between view and model
+ * @author aleksandarvaricak
+ *
+ */
 public class Main {
 
 	private Map<String, Category> categories;
@@ -39,7 +43,9 @@ public class Main {
 				+ android.text.format.DateFormat.format("dd.MM.yyyy hh:mm",
 						new java.util.Date()) + "h";
 	}
-	
+	/**
+	 * Method reads gallery
+	 */
 	public void readGallery(){
 		naslovna = reader.readNaslovna();
 		categories.put("Top vesti", naslovna);
@@ -57,6 +63,10 @@ public class Main {
 //		categories.put("Sport", reader.readSport());
 	}
 
+	/**
+	 * Method is used to refresh data of given category
+	 * @param categoryName
+	 */
 	public void refreshCategory(String categoryName) {
 		if(categoryName.equals("Top vesti")){
 			naslovna = reader.readNaslovna();
@@ -90,7 +100,11 @@ public class Main {
 			+ android.text.format.DateFormat.format("dd.MM.yyyy hh:mm",
 					new java.util.Date()) + "h";
 	}
-	
+
+	/**
+	 * Method gets category from read categories. If category is null method is fetching data for it
+	 * @param categoryName
+	 */
 	public void readCategory(String categoryName){
 		Category cat = categories.get(categoryName);
 		if(cat == null){
@@ -114,6 +128,10 @@ public class Main {
 		return naslovna;
 	}
 
+	/**
+	 * Method returns map of gallery categories
+	 * @return
+	 */
 	public Map<String,Category> getGalleryCategories() {
 		if (galleryCategories == null) {
 			galleryCategories = new HashMap<String, Category>();

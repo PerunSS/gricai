@@ -11,12 +11,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.widget.ImageView;
-
+/**
+ * Class represents single article with all necessary data
+ * @author aleksandarvaricak
+ *
+ */
 public class Article implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String title;
 	private String shortText;
@@ -95,10 +96,6 @@ public class Article implements Serializable {
 		}
 	}
 
-	public void generateBigPhoto(double ratio) {
-
-	}
-
 	public void setView(ImageView view) {
 		this.view = view;
 	}
@@ -115,6 +112,60 @@ public class Article implements Serializable {
 		return bigDrawable;
 	}
 
+	
+
+	/**
+	 * Method clears all data that take lot of space (images)
+	 */
+	public void clear() {
+		if (bitmap != null)
+			bitmap.recycle();
+		if (smallBitmap != null)
+			smallBitmap.recycle();
+		bitmap = null;
+		smallBitmap = null;
+		generated = false;
+		bigDrawable = null;
+	}
+
+	public void setSmallPhotoPath(String smallPhotoPath) {
+		this.smallPhotoPath = smallPhotoPath;
+	}
+
+	public String getSmallPhotoPath() {
+		return smallPhotoPath;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+	
+	@Override
+	public String toString() {
+		String returnString = "naslov: "+title+"\n";
+		returnString+="datum: "+date+"\n";
+		returnString+="image: "+smallPhotoPath+"\n";
+		returnString+="link: "+link+"\n";
+		return returnString;
+	}
+	
+	/**
+	 * AsyncTask that is used for downloading image
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
 
 		private boolean small = false;
@@ -168,50 +219,6 @@ public class Article implements Serializable {
 			return null;
 		}
 
-	}
-
-	public void clear() {
-		if (bitmap != null)
-			bitmap.recycle();
-		if (smallBitmap != null)
-			smallBitmap.recycle();
-		bitmap = null;
-		smallBitmap = null;
-		generated = false;
-		bigDrawable = null;
-	}
-
-	public void setSmallPhotoPath(String smallPhotoPath) {
-		this.smallPhotoPath = smallPhotoPath;
-	}
-
-	public String getSmallPhotoPath() {
-		return smallPhotoPath;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-	
-	@Override
-	public String toString() {
-		String returnString = "naslov: "+title+"\n";
-		returnString+="datum: "+date+"\n";
-		returnString+="image: "+smallPhotoPath+"\n";
-		returnString+="link: "+link+"\n";
-		return returnString;
 	}
 
 }
