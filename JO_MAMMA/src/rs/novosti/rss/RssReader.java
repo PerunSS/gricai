@@ -19,6 +19,7 @@ import rs.novosti.model.Category;
 
 public class RssReader {
 
+	//Paths to categories
 	private static final String naslovna = new String(
 			"http://service.tehnicomsolutions.co.uk/novosti/rss/novosti.php");
 	private static final String politika = new String(
@@ -45,17 +46,21 @@ public class RssReader {
 			"http://service.tehnicomsolutions.co.uk/novosti/rss/url2xml.php?url=http://novosti.rs/rss/11%7C47%7C12%7C14%7C13-Sve%20vesti");
 	private static final String sliderArticles = new String("http://service.tehnicomsolutions.co.uk/novosti/rss/mixednews.php");
 
+	//RSS tags names
 	private static final String TITLE_TAG = "title";
 	private static final String LINK_TAG = "link";
 	private static final String DESCRIPTION_TAG = "description";
 	private static final String IMAGE_TAG = "image";
 	private static final String SHORT_TEXT_TAG="shortText";
 	private static final String ITEM_TAG = "item";
-
 	private static final String PUB_DATE_TAG = "pubDate";
 
 	private boolean itemStarted = false;
 
+	/**
+	 * Method reads RSS feed for Naslovna category, parses it, and return filled category
+	 * @return
+	 */
 	public Category readNaslovna() {
 		Category naslovna = new Category();
 		try {
@@ -136,7 +141,10 @@ public class RssReader {
 		naslovna.setTitle("Top vesti");
 		return naslovna;
 	}
-	
+	/**
+	 * Method is used to read Articles for slider on fist page
+	 * @return List<Article> list of articles that are read
+	 */
 	public List<Article> readSliderArticles(){
 		List<Article> articles = new ArrayList<Article>();
 		try {
@@ -215,6 +223,12 @@ public class RssReader {
 		return articles;
 	}
 
+	/**
+	 * Method reads single category
+	 * @param path String presentation of URL path to category
+	 * @param name Name of category
+	 * @return Category filled category
+	 */
 	public Category readCategory(String path, String name) {
 		Category category = new Category();
 		category.setTitle(name);
@@ -296,6 +310,11 @@ public class RssReader {
 		return category;
 	}
 
+	/**
+	 * Method is used to fill existing article with additional data 
+	 * @param article Article that need to be filled
+	 * @return Article returns same article that is passed to call with aditional data
+	 */
 	public Article readArticle(Article article) {
 		if (article.getText() != null && article.getText().length() > 0)
 			return article;
