@@ -28,7 +28,7 @@
 		<com.google.ads.AdView android:id="@+id/ad1"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         ads:adUnitId="a14e2ab89e37f88"
+                         ads:adUnitId="a14e2eacf06c3c2"
                          ads:adSize="BANNER"/>
 
 	</LinearLayout>	
@@ -70,7 +70,7 @@
 		<com.google.ads.AdView android:id="@+id/ad2"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         ads:adUnitId="a14e2ab89e37f88"
+                         ads:adUnitId="a14e2eacf06c3c2"
                          ads:adSize="BANNER"/>
 
 	</LinearLayout>		
