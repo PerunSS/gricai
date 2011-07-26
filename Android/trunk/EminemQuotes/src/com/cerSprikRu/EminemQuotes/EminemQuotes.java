@@ -1,17 +1,26 @@
 package com.cerSprikRu.EminemQuotes;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Environment;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 public class EminemQuotes extends Activity {
 	private String[] facts;
@@ -34,10 +43,16 @@ public class EminemQuotes extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		facts = getResources().getStringArray(R.array.facts);
 		fact = facts[(int) (Math.random() * facts.length)];
+		
+		AdView adView1 = (AdView)this.findViewById(R.id.ad1);
+	    adView1.loadAd(new AdRequest());
+
+	    AdView adView2 = (AdView)this.findViewById(R.id.ad2);
+	    adView2.loadAd(new AdRequest());
+		
 		final Button randomBtn = (Button) findViewById(R.id.random);
 
 		randomBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,25 +80,33 @@ public class EminemQuotes extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				String externalDirectory = Environment
+						.getExternalStorageDirectory().toString();
+				String directory = EminemQuotes.class.getSimpleName();
+				File file = new File(externalDirectory + File.separator
+						+ directory);
+				if (!file.isDirectory())
+					file.mkdir();
 				String timestamp = Long.toString(System.currentTimeMillis());
-				MediaStore.Images.Media.insertImage(getContentResolver(),
-						BitmapFactory
-								.decodeResource(getResources(), currentBck),
-						timestamp, timestamp);
-
-				builder.setMessage("image: " + timestamp + " saved");
-				builder.setTitle("saved");
-				builder.setNeutralButton("OK",
-						new DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-				AlertDialog dialog = builder.create();
-				dialog.show();
+				file = new File(externalDirectory + File.separator + directory,
+						timestamp);
+				OutputStream out = null;
+				try {
+					out = new FileOutputStream(file);
+					Bitmap bm = BitmapFactory.decodeResource(getResources(),
+							currentBck);
+					bm.compress(Bitmap.CompressFormat.JPEG, 100, out);
+					out.flush();
+				} catch (FileNotFoundException e) {
+				} catch (IOException e) {
+				} finally {
+					if (out != null)
+						try {
+							out.close();
+						} catch (IOException e) {
+						}
+				}
+				Toast.makeText(EminemQuotes.this, "Saved image: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
 			}
 		});
 		factsTextView = (TextView) findViewById(R.id.fact);
@@ -114,6 +137,7 @@ public class EminemQuotes extends Activity {
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
+
 
 	}
 }
