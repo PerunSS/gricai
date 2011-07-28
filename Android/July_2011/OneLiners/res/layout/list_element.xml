@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	
+  	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:orientation="vertical"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
+ 	android:background="@drawable/fs_border"
+  	android:gravity="left|center"
+  	android:paddingBottom="18dp"
+  	android:paddingTop="18dp" 
+  	android:paddingLeft="18dp"
+  	android:paddingRight="18dp">
+ 	<TextView 
+
+  		android:id="@+id/favorite_fact"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:textSize="15dp"
+  		android:textColor="#000000"/>	 
+</LinearLayout>
