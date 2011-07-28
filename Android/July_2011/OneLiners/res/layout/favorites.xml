@@ -30,7 +30,7 @@
   	<com.google.ads.AdView android:id="@+id/ad3"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         ads:adUnitId="a14e04747bd4fa7"
+                         ads:adUnitId="a14e31538c60117"
                          ads:adSize="BANNER"
                          ads:loadAdOnCreate="true"/>
   	<ListView
@@ -44,7 +44,7 @@
 	<com.google.ads.AdView android:id="@+id/ad4"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         ads:adUnitId="a14e04747bd4fa7"
+                         ads:adUnitId="a14e31538c60117"
                          ads:adSize="BANNER"
                          ads:loadAdOnCreate="true"/>	
 </LinearLayout>
