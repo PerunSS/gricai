@@ -12,7 +12,11 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
-
+/**
+ * Activity class for displaying solo image gallery
+ * @author aleksandarvaricak
+ *
+ */
 public class SoloImageGallery extends Activity{
 	
 	private MyGallery gallery;

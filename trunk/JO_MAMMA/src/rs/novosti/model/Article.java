@@ -115,7 +115,7 @@ public class Article implements Serializable {
 	
 
 	/**
-	 * Method clears all data that take lot of space (images)
+	 * Method clears all data that takes a lot of space (images)
 	 */
 	public void clear() {
 		if (bitmap != null)

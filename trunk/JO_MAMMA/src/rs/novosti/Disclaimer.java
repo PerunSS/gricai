@@ -5,7 +5,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
+/**
+ * Activity class that displays a warning to app user and gets his permission for internet usage
+ * @author aleksandarvaricak
+ *
+ */
 public class Disclaimer extends Activity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

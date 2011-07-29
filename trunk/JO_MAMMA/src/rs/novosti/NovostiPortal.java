@@ -31,7 +31,11 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
+/**
+ * Activity class for displaying starting view
+ * @author aleksandarvaricak
+ *
+ */
 public class NovostiPortal extends Activity {
 
 	Category naslovna;
@@ -79,7 +83,9 @@ public class NovostiPortal extends Activity {
 		// a doduse to ce svakako posle biti lista ta tri artikla najnovija
 
 	}
-
+	/**
+	 * Method that checks if internet connection is available
+	 */
 	private void checkForNetworkAndStart(){
 		
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -128,7 +134,9 @@ public class NovostiPortal extends Activity {
 			}
 		}
 	}
-
+	/**
+	 * Method for creating menu items
+	 */
 	private void createMenu() {
 		setContentView(R.layout.main);
 		Button home = (Button) findViewById(R.id.HomeButton);
@@ -203,7 +211,9 @@ public class NovostiPortal extends Activity {
 			menuView.addView(tv);
 		}
 	}
-
+	/**
+	 * Method for creating the main view
+	 */
 	private void createMainPage() {
 		Main main = Main.getInstance();
 		sliderArticles = main.getSliderArticles();
@@ -296,7 +306,11 @@ public class NovostiPortal extends Activity {
 		}
 
 	}
-	
+	/**
+	 * AsyncTask for loading category data
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class CategoryLoaderTask extends AsyncTask<String, Void, CategoryLayoutAdapter>{
 
 		@Override
@@ -329,6 +343,9 @@ public class NovostiPortal extends Activity {
 		}
 		
 	}
+	/**
+	 * Method for handling results returned by other activities
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 0) {

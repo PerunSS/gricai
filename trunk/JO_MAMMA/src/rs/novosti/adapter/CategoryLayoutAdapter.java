@@ -25,7 +25,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+/**
+ * Adapter class for loading data into category layout view
+ * @author aleksandarvaricak
+ *
+ */
 public class CategoryLayoutAdapter extends BaseAdapter {
 
 	private int firstPart = 0;
@@ -60,7 +64,9 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
-
+	/**
+	 * Method for creating a new ImageView for each item referenced by the Adapter
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -184,7 +190,11 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 
 		return convertView;
 	}
-
+	/**
+	 * Method for downloading and resizing image from url
+	 * @param url
+	 * @return
+	 */
 	private Drawable getResizedDrawable(String url) {
 		InputStream is = null;
 		url = url.replaceAll(" ", "%20");
@@ -265,7 +275,11 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 //		notifyDataSetChanged();
 		new RefreshTask().execute();
 	}
-	
+	/**
+	 * AsyncTask for refreshing images
+	 * @author churava
+	 *
+	 */
 	private class RefreshTask extends AsyncTask<Void, Void, Void>{
 		ProgressDialog progressDialog;
 		@Override

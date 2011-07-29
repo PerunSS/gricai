@@ -18,7 +18,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+/**
+ * Adapter class for loading data into category view
+ * @author aleksandarvaricak
+ *
+ */
 public class CategoryPreviewAdapter extends BaseAdapter {
 	
 	private int first=1;
@@ -55,7 +59,9 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
-
+	/**
+	 * Method for creating a new ImageView for each item referenced by the Adapter
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		

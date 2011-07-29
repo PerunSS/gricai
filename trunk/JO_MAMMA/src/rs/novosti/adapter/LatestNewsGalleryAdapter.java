@@ -21,7 +21,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+/**
+ * Adapter class for loading data into latest news gallery view
+ * @author aleksandarvaricak
+ *
+ */
 public class LatestNewsGalleryAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
@@ -49,7 +53,9 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
-
+	/**
+	 * Method for creating a new ImageView for each item referenced by the Adapter
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Article article = (Article)getItem(position);
@@ -139,7 +145,11 @@ public class LatestNewsGalleryAdapter extends BaseAdapter {
 			article.clear();
 		}
 	}
-	
+	/**
+	 * AsyncTask for downloading image
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class LoadImageTask extends AsyncTask<Void, Void, Drawable>{
 		private LinearLayout layout;
 		private Article article;

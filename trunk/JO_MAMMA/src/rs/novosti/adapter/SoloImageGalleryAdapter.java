@@ -20,7 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
+/**
+ * Adapter class for loading data into solo image gallery view
+ * @author aleksandarvaricak
+ *
+ */
 public class SoloImageGalleryAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
@@ -47,7 +51,9 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
-
+	/**
+	 * Method for creating a new ImageView for each item referenced by the Adapter
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Article article = (Article)getItem(position);
@@ -140,7 +146,11 @@ public class SoloImageGalleryAdapter extends BaseAdapter {
 			article.clear();
 		}
 	}
-	
+	/**
+	 * AsyncTask for downloading image
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class LoadImageTask extends AsyncTask<Void, Void, Drawable>{
 		private ImageView view;
 		private Article article;
