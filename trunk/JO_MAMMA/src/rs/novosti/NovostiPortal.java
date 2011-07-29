@@ -51,7 +51,6 @@ public class NovostiPortal extends Activity {
 	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// progressDialog.dismiss();
 			if(msg.arg1 == 0){
 				createMenu();
 				createMainPage();
@@ -75,23 +74,11 @@ public class NovostiPortal extends Activity {
 		}
 		checkForNetworkAndStart();
 		
-		
-		// createMenu();
-
-		// Pravim ovu listu artikala cisto da bi imo sta da mu prosledim jer ako
-		// je prazna ne pravi nista
-		// a doduse to ce svakako posle biti lista ta tri artikla najnovija
-
 	}
 	/**
 	 * Method that checks if internet connection is available
 	 */
 	private void checkForNetworkAndStart(){
-		
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// progressDialog = ProgressDialog.show(this, "", "Molimo sačekajte");
-//		System.out.println(isNetworkAvailable());
-		
 		if(!isNetworkAvailable()){
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Ne postoji internet konekcija")
@@ -161,7 +148,6 @@ public class NovostiPortal extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(v.getContext(), Galerija.class);
-				// myIntent.putExtra("article", article);
 				startActivityForResult(myIntent, 0);
 			}
 		});
@@ -185,13 +171,6 @@ public class NovostiPortal extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					
-
-					// Intent categoryIntent = new Intent(v.getContext(),
-					// NovostiCategory.class);
-					// categoryIntent.putExtra("category", category);
-					// startActivityForResult(categoryIntent, 0);
-					
 					if (categoryLayoutAdapter != null) {
 						categoryLayoutAdapter.clear();
 					}
@@ -203,11 +182,6 @@ public class NovostiPortal extends Activity {
 					
 				}
 			});
-			// RelativeLayout.LayoutParams lay = new
-			// RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-			// RelativeLayout.LayoutParams.WRAP_CONTENT);
-			// lay.addRule(RelativeLayout.RIGHT_OF, RelativeLayout.TRUE);
-			// tv.setBackgroundResource(R.color.menu_background);
 			menuView.addView(tv);
 		}
 	}
@@ -217,50 +191,11 @@ public class NovostiPortal extends Activity {
 	private void createMainPage() {
 		Main main = Main.getInstance();
 		sliderArticles = main.getSliderArticles();
-/*
-		if(Main.getInstance().getCategories().get("Politika").getArticles().size()>0)
-			sliderArticles.add(Main.getInstance().getCategories().get("Politika").getArticles().get(0));
-		if(Main.getInstance().getCategories().get("Društvo").getArticles().size()>0)
-			sliderArticles.add(Main.getInstance().getCategories().get("Društvo").getArticles().get(0));
-		if(Main.getInstance().getCategories().get("Ekonomija").getArticles().size()>0)
-			sliderArticles.add(Main.getInstance().getCategories().get("Ekonomija").getArticles().get(0));
-		if(Main.getInstance().getCategories().get("Sport").getArticles().size()>0)
-			sliderArticles.add(Main.getInstance().getCategories().get("Sport").getArticles().get(0));
-*/		
-		// sliderArticles.add(new Article());
-		// sliderArticles.add(new Article());
-		// sliderArticles.add(new Article());
-		// MyGallery gallery = (MyGallery) findViewById(R.id.latestNewsGallery);
-		// gallery.setAdapter(new LatestNewsGalleryAdapter(this, sliderArticles,
-		// this));
-		System.out.println(sliderArticles.size());
 		ListView view = (ListView) findViewById(R.id.Content);
 		if (categoryPreviewAdapter == null)
 			categoryPreviewAdapter = new CategoryPreviewAdapter(this, main
 					.getNaslovna().getArticles(), sliderArticles);
 		view.setAdapter(categoryPreviewAdapter);
-//		view.setOnItemSelectedListener(new OnItemSelectedListener()
-//        {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
-//            {
-//                if (position>0 && position <=3){
-//                	categoryPreviewAdapter.notifyDataSetChanged();
-//                	LinearLayout llayout = (LinearLayout)v.findViewById(R.id.secondStyleArticle_layout);
-//                	llayout.setBackgroundResource(R.color.novosti_red);
-//                }
-//                
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?>  arg0)
-//            {
-//            	
-//            	
-//            }
-//           }
-//        );
 		view.setItemsCanFocus(true);
 		
 
@@ -280,20 +215,10 @@ public class NovostiPortal extends Activity {
 			}
 		});
 		final TextView technicomView = (TextView) findViewById(R.id.tehnicom_solutions);
-		technicomView.setText(Html.fromHtml(/*"<style type=\"text/css\">" +
-				"A:link {text-decoration: none; color: white;}" +
-				"A:visited {text-decoration: none; color: white;}" +
-				"A:active {text-decoration: none; color: white;}" +
-				"A:hover {text-decoration: underline; color: red;}" +*/
-				"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom computers</a>"));
+		technicomView.setText(Html.fromHtml("</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom computers</a>"));
 		technicomView.setMovementMethod(LinkMovementMethod.getInstance());
 		technicomView.setLinkTextColor(Color.WHITE);
 	}
-
-	// private void showMessage(String message){
-	// Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-	// toast.show();
-	// }
 
 	private class LoaderThread implements Runnable {
 
@@ -358,7 +283,6 @@ public class NovostiPortal extends Activity {
 			}
 			if (resultCode == 1410) {
 				Intent myIntent = new Intent(this, Galerija.class);
-				// myIntent.putExtra("article", article);
 				startActivityForResult(myIntent, 0);
 			}
 		}
@@ -373,7 +297,6 @@ public class NovostiPortal extends Activity {
 		}catch (Exception e) {
 			return false;
 		}
-	    
 	}
 
 }

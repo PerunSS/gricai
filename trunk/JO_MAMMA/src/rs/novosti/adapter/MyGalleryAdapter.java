@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 /**
  * Adapter class for loading data into my gallery view
- * @author churava
+ * @author aleksandarvaricak
  *
  */
 public class MyGalleryAdapter extends BaseAdapter {
@@ -47,8 +47,7 @@ public class MyGalleryAdapter extends BaseAdapter {
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView;
-		if (convertView == null) { // if it's not recycled, initialize some
-									// attributes
+		if (convertView == null) {
 			imageView = new ImageView(mContext);
 			imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -56,9 +55,6 @@ public class MyGalleryAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-//		Article article = category.getArticles().get(position);
-//		System.out.println("artikl     " + article.getPhotoPath() + "\n"
-//				);
 		if(articles.get(position).getView() == null)
 			imageView.setImageResource(R.drawable.spinner);
 		articles.get(position).setView(imageView);
@@ -71,28 +67,6 @@ public class MyGalleryAdapter extends BaseAdapter {
 		notifyDataSetChanged();
 	}
 
-	// references to our images
-
-//	private Drawable getResizedDrawable(String url) {
-//		System.out.println("aj kao krece sliku da vadi jebo ga ja");
-//		InputStream is = null;
-//		if (url != null) {
-//			url = url.replaceAll(" ", "%20");
-//			try {
-//				is = new URL(url).openStream();
-//				Bitmap bitmap = BitmapFactory.decodeStream(is);
-//				bitmap = Bitmap.createScaledBitmap(bitmap, (int) (80),
-//						(int) (80), true);
-//				return new BitmapDrawable(bitmap);
-//			} catch (Exception e) {
-//				// TODO: ha]ndle exception
-//			}
-//		} else {
-//			return new BitmapDrawable(BitmapFactory.decodeResource(
-//					mContext.getResources(), R.drawable.no_image));
-//		}
-//		return null;
-//	}
 	public void clear(){
 		for(Article article:articles)
 			article.clear();

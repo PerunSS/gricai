@@ -30,14 +30,6 @@ public class Main {
 		categories = new HashMap<String, Category>();
 		reader = new RssReader();
 		readStartCategories();
-//		categories.put("Hronika", reader.readHronika());
-//		categories.put("Beograd", reader.readBeograd());
-//		categories.put("Dosije", reader.readDosije());
-//		categories.put("Spektakl", reader.readSpektakl());
-//		categories.put("Život plus", reader.readZivotPlus());
-//		categories.put("Tehnologije", reader.readTehnologije());
-//		categories.put("Auto", reader.readAuto());
-		
 
 		timeRefreshed = "Osveženo "
 				+ android.text.format.DateFormat.format("dd.MM.yyyy hh:mm",
@@ -57,10 +49,6 @@ public class Main {
 		naslovna = reader.readNaslovna();
 		categories.put("Top vesti", naslovna);
 		sliderArticles = reader.readSliderArticles();
-//		categories.put("Politika", reader.readPolitika());
-//		categories.put("Društvo", reader.readDrustvo());
-//		categories.put("Ekonomija", reader.readEkonomija());
-//		categories.put("Sport", reader.readSport());
 	}
 
 	/**
