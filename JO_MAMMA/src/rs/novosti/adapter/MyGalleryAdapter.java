@@ -12,7 +12,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 
-
+/**
+ * Adapter class for loading data into my gallery view
+ * @author churava
+ *
+ */
 public class MyGalleryAdapter extends BaseAdapter {
 	private Context mContext;
 	List<Article> articles;
@@ -37,8 +41,10 @@ public class MyGalleryAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
-
-	// create a new ImageView for each item referenced by the Adapter
+	/**
+	 * Method for creating a new ImageView for each item referenced by the Adapter
+	 */
+	
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView;
 		if (convertView == null) { // if it's not recycled, initialize some

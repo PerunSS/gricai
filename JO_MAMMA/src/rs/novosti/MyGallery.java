@@ -5,7 +5,11 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.Gallery;
-
+/**
+ * Class that extends Gallery class, overriding its side scroll
+ * @author churava
+ *
+ */
 public class MyGallery extends Gallery {
 
 	public MyGallery(Context context) {

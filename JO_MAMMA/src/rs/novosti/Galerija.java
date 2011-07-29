@@ -24,7 +24,11 @@ import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+/**
+ * Activity class for displaying the image gallery
+ * @author churava
+ *
+ */
 public class Galerija extends Activity {
 
 	LinearLayout menuView;
@@ -44,7 +48,6 @@ public class Galerija extends Activity {
 		}
 	};
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,7 +92,9 @@ public class Galerija extends Activity {
 		// }
 		// });
 	}
-
+	/**
+	 * Method for creating the gallery with given categories
+	 */
 	private void createGallery() {
 		final TextView refTime = (TextView) findViewById(R.id.time_refreshed_gallery);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
@@ -195,7 +200,9 @@ public class Galerija extends Activity {
 
 		}
 	}
-
+	/**
+	 * Method that gets back to parent activity with a result of 1440
+	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -205,7 +212,11 @@ public class Galerija extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-
+	/**
+	 * AsyncTask for refreshing images
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class RefreshTask extends AsyncTask<Void, Void, Void> {
 		ProgressDialog progressDialog;
 
@@ -231,7 +242,11 @@ public class Galerija extends Activity {
 		}
 
 	}
-
+	/**
+	 * AsyncTask for loading images for first start
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class FirstStartTask extends AsyncTask<Void, Void, Void> {
 		ProgressDialog progressDialog;
 

@@ -2,7 +2,11 @@ package rs.novosti.model.font;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Class that defines font size, and ratio between big, normal and small
+ * @author aleksandarvaricak
+ *
+ */
 public class FontSize {
 	private int fullArticleTitle = 20;
 	private int fullArticleSource = 10;
@@ -17,7 +21,10 @@ public class FontSize {
 
 	public FontSize() {		
 	}
-	
+	/**
+	 * Method for getting default font size
+	 * @return
+	 */
 	public List<Integer> getDefaultSizeFullArticle() {
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(fullArticleTitle);
@@ -26,7 +33,10 @@ public class FontSize {
 		list.add(fullArticleFullText);
 		return list;
 	}
-	
+	/**
+	 * Method for getting medium font size
+	 * @return
+	 */
 	public List<Integer> getMediumSizeFullArticle() {
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(fullArticleTitle+fullArticleTitle/2);
@@ -35,7 +45,10 @@ public class FontSize {
 		list.add(fullArticleFullText+fullArticleFullText/2);
 		return list;
 	}
-	
+	/**
+	 * Method for getting big font size
+	 * @return
+	 */
 	public List<Integer> getBigSizeFullArticle() {
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(fullArticleTitle*2);

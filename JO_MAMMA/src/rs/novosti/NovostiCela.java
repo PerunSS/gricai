@@ -26,7 +26,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+/**
+ * Activity class that displays full article
+ * @author churava
+ *
+ */
 public class NovostiCela extends Activity {
 
 	private TextView articleTitle;
@@ -96,14 +100,21 @@ public class NovostiCela extends Activity {
 		technicomView.setLinkTextColor(Color.WHITE);
 	
 	}
-
+	/**
+	 * Method for setting font size
+	 * @param list
+	 */
 	private void setFontSize(List<Integer> list){
 		if (hasTitle)	articleTitle.setTextSize(list.get(0));
 		if (hasSource)  articleSource.setTextSize(list.get(1));
 		if (hasDescription)  articleShortText.setTextSize(list.get(2));
 		if (hasText)  articleFullText.setTextSize(list.get(3));
 	}
-	
+	/**
+	 * Method for downloading and resizing image from url
+	 * @param url
+	 * @return
+	 */
 	private Drawable getResizedDrawable(String url) {
 		if(url==null){
 			return getResources().getDrawable(R.drawable.no_image);
@@ -130,7 +141,9 @@ public class NovostiCela extends Activity {
 		}
 		return null;
 	}
-
+	/**
+	 * Method for implementing font size change from menu
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
@@ -169,7 +182,11 @@ public class NovostiCela extends Activity {
 		article = (Article) getIntent().getExtras().get("article");
 		new LoadArticle().execute(article);
 	}
-	
+	/**
+	 * AsyncTask for downloading article data
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class LoadArticle extends AsyncTask<Article, Void, Article>{
 		
 		@Override
