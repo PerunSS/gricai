@@ -92,7 +92,6 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 		} else if (position<second){
 			final Article article = articles.get(position-1);
 			SecondHolder secondHolder;
-			// if (convertView == null) {
 			convertView = inflater.inflate(R.layout.second_article_style, null);
 			secondHolder = new SecondHolder();
 			secondHolder.secondStyleArticleLayout = (LinearLayout) convertView
@@ -104,9 +103,6 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			secondHolder.secondStyleArticleTitle = (TextView) convertView
 					.findViewById(R.id.secondStyleArticle_title);
 			convertView.setTag(secondHolder);
-			// } else {
-			// secondHolder = (SecondHolder) convertView.getTag();
-			// }
 
 			secondHolder.secondStyleArticleLayout
 					.setOnClickListener(new View.OnClickListener() {
@@ -119,25 +115,18 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
-			// ovde treba da stvarno ubacuje iz artikala
-			// secondHolder.secondStyleArticleTitle.setText(article.getName());
-			// secondHolder.secondStyleArticleShortText.setText(article.getShortText());
-
 			secondHolder.secondStyleArticleTitle.setText(Html.fromHtml(article.getTitle()));
 			secondHolder.secondStyleArticleShortText.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", article.getDate())+"h");
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.spinner);
 			article.setView(secondHolder.secondStyleArticleImage);
 			article.generateSmallPhoto();
-//			secondHolder.secondStyleArticleImage
-//					.setBackgroundResource(R.drawable.icon);
 
 		}
 
 		else {
 			final Article article = articles.get(position-1);
 			ThirdHolder thirdHolder = null;
-			// if (convertView == null) {
 			convertView = inflater.inflate(R.layout.third_article_style, null);
 			thirdHolder = new ThirdHolder();
 			thirdHolder.articleTitle = (TextView) convertView
@@ -145,12 +134,6 @@ public class CategoryPreviewAdapter extends BaseAdapter {
 			thirdHolder.thirdHolderLayout = (LinearLayout) convertView
 			.findViewById(R.id.thirdStyleArticle);
 			convertView.setTag(thirdHolder);
-			// } else {
-			// thirdHolder = (ThirdHolder) convertView.getTag();
-			// }
-			// i ovde naravno ovo uzima al da bi mi bilo lakse necu to sad :D
-			// Article article = articles.get(position);
-			// thirdHolder.articleTitle.setText(article.getName());
 			thirdHolder.articleTitle.setText(Html.fromHtml(article.getTitle()));
 			thirdHolder.thirdHolderLayout
 					.setOnClickListener(new View.OnClickListener() {

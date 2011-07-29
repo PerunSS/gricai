@@ -73,7 +73,6 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		final Article article = articles.get(position);
 		if (position < firstPart) {
 			FirstHolder firstHolder = null;
-			// if (convertView == null) {
 			convertView = inflater.inflate(R.layout.first_article_style, null);
 			firstHolder = new FirstHolder();
 			firstHolder.articleLayout = (LinearLayout) convertView
@@ -86,16 +85,6 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			firstHolder.articleTitle = (TextView) convertView
 					.findViewById(R.id.firstStyleArticle_title);
 			convertView.setTag(firstHolder);
-			// } else {
-			// firstHolder = (FirstHolder) convertView.getTag();
-			// }
-
-			// ovde bi trebalo da stvarno vadi iz artikala sa tim sto sliku
-			// nisam napravio
-			// posto ne znam kako od urla
-			// Article article = articles.get(position);
-			// firstHolder.articleTitle.setText(article.getName());
-			// firstHolder.articleImage;
 
 			firstHolder.articleTitle.setText(Html.fromHtml(article.getTitle()));
 			firstHolder.articleTitle
@@ -109,13 +98,10 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
-			// firstHolder.articleLayout.setBackgroundResource(R.drawable.b1);
 
 		}
-		// ovde ubacuje ako je drugog tipa artikl ( slicica ime mali tekst)
 		else if (position < secondPart) {
 			SecondHolder secondHolder;
-			// if (convertView == null) {
 			convertView = inflater.inflate(R.layout.second_article_style, null);
 			secondHolder = new SecondHolder();
 			secondHolder.secondStyleArticleLayout = (LinearLayout) convertView
@@ -127,9 +113,6 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			secondHolder.secondStyleArticleTitle = (TextView) convertView
 					.findViewById(R.id.secondStyleArticle_title);
 			convertView.setTag(secondHolder);
-			// } else {
-			// secondHolder = (SecondHolder) convertView.getTag();
-			// }
 
 			secondHolder.secondStyleArticleLayout
 					.setOnClickListener(new View.OnClickListener() {
@@ -142,25 +125,16 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 							((Activity)context).startActivityForResult(myIntent, 0);
 						}
 					});
-			
-			// ovde treba da stvarno ubacuje iz artikala
-			// secondHolder.secondStyleArticleTitle.setText(article.getName());
-			// secondHolder.secondStyleArticleShortText.setText(article.getShortText());
-
 			secondHolder.secondStyleArticleTitle.setText(Html.fromHtml(article.getTitle()));
 			secondHolder.secondStyleArticleShortText.setText(android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", article.getDate())+"h");
 			if(article.getView() == null)
 				secondHolder.secondStyleArticleImage.setImageResource(R.drawable.spinner);
 			article.setView(secondHolder.secondStyleArticleImage);
 			article.generateSmallPhoto();
-//			secondHolder.secondStyleArticleImage
-//					.setBackgroundResource(R.drawable.icon);
-
 		}
 
 		else {
 			ThirdHolder thirdHolder = null;
-			// if (convertView == null) {
 			convertView = inflater.inflate(R.layout.third_article_style, null);
 			thirdHolder = new ThirdHolder();
 			thirdHolder.articleTitle = (TextView) convertView
@@ -168,12 +142,7 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			thirdHolder.thirdHolderLayout = (LinearLayout) convertView
 			.findViewById(R.id.thirdStyleArticle);
 			convertView.setTag(thirdHolder);
-			// } else {
-			// thirdHolder = (ThirdHolder) convertView.getTag();
-			// }
-			// i ovde naravno ovo uzima al da bi mi bilo lakse necu to sad :D
-			// Article article = articles.get(position);
-			// thirdHolder.articleTitle.setText(article.getName());
+
 			thirdHolder.articleTitle.setText(Html.fromHtml(article.getTitle()));
 			thirdHolder.thirdHolderLayout
 					.setOnClickListener(new View.OnClickListener() {
@@ -192,8 +161,8 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	}
 	/**
 	 * Method for downloading and resizing image from url
-	 * @param url
-	 * @return
+	 * @param url of image
+	 * @return Drawable 
 	 */
 	private Drawable getResizedDrawable(String url) {
 		InputStream is = null;
@@ -204,7 +173,6 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
 			return new BitmapDrawable(bitmap);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}	
 		} else {
 			return new BitmapDrawable(BitmapFactory.decodeResource(
@@ -212,38 +180,6 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 		}
 		return null;
 	}
-
-	// private Drawable imageOperations(String url) {
-	// try {
-	// InputStream is = (InputStream) this.fetch(url);
-	// Drawable d = Drawable.createFromStream(is, "image");
-	// int width = d.getIntrinsicWidth();
-	// int height = d.getIntrinsicHeight();
-	// int screenWidth = activity.getWindowManager().getDefaultDisplay()
-	// .getWidth();
-	// int screenHeight = activity.getWindowManager().getDefaultDisplay()
-	// .getHeight();
-	// double ratio = ((double) screenWidth) / width;
-	// if (ratio < ((double) screenHeight - 100) / height) {
-	// ratio = ((double) screenHeight - 100) / height;
-	// }
-	// d.setBounds(0, 0, );
-	// return d;
-	// } catch (MalformedURLException e) {
-	// e.printStackTrace();
-	// return null;
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// return null;
-	// }
-	// }
-	//
-	// public Object fetch(String address) throws MalformedURLException,
-	// IOException {
-	// URL url = new URL(address);
-	// Object content = url.getContent();
-	// return content;
-	// }
 
 	private class FirstHolder {
 		LinearLayout articleLayout;
@@ -270,14 +206,11 @@ public class CategoryLayoutAdapter extends BaseAdapter {
 	}
 
 	public void refresh() {
-//		Main.getInstance().refreshCategory(categoryName);
-//		articles = Main.getInstance().getCategories().get(categoryName).getArticles();
-//		notifyDataSetChanged();
 		new RefreshTask().execute();
 	}
 	/**
 	 * AsyncTask for refreshing images
-	 * @author churava
+	 * @author aleksandarvaricak
 	 *
 	 */
 	private class RefreshTask extends AsyncTask<Void, Void, Void>{

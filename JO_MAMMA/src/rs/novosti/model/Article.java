@@ -198,12 +198,6 @@ public class Article implements Serializable {
 					Bitmap bitmap = BitmapFactory.decodeStream(is, null,
 							options);
 
-					// int width = bitmap.getWidth();
-					// int height = bitmap.getHeight();
-					// double ratio = 48. / width;
-					// if (ratio > 48. / height) {
-					// ratio = 48. / height;
-					// }
 					return bitmap;
 				}
 			} catch (Exception e) {

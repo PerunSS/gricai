@@ -24,10 +24,11 @@ import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 /**
  * Activity class for displaying the image gallery
- * @author churava
- *
+ * @author aleksandarvaricak
+ * 
  */
 public class Galerija extends Activity {
 
@@ -40,10 +41,9 @@ public class Galerija extends Activity {
 	Handler mainHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// progressDialog.dismiss();
 			if (msg.arg1 == 0) {
 				createGallery();
-				
+
 			}
 		}
 	};
@@ -67,31 +67,10 @@ public class Galerija extends Activity {
 				finish();
 			}
 		});
-
-		// adapter = new
-		// MyGalleryAdapter(this,Main.getInstance().getGalleryCategories().get(0).getArticles());
 		new FirstStartTask().execute();
 
-		// gridview.setOnItemClickListener(new OnItemClickListener() {
-		// public void onItemClick(AdapterView<?> parent, View v, int position,
-		// long id) {
-		// Toast.makeText(Galerija.this, "" + position,
-		// Toast.LENGTH_SHORT).show();
-		// }
-		// });
-		//
-		// final Article article = new Article();
-		// article.setPhotoPath("http://www.novosti.rs/upload/images/2011/04/2404/po-toma.jpg");
-		// Button dugme = (Button)findViewById(R.id.dugme);
-		// dugme.setOnClickListener(new View.OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// adapter.add(new Article());
-		// adapter.notifyDataSetChanged();
-		// }
-		// });
 	}
+
 	/**
 	 * Method for creating the gallery with given categories
 	 */
@@ -99,7 +78,6 @@ public class Galerija extends Activity {
 		final TextView refTime = (TextView) findViewById(R.id.time_refreshed_gallery);
 		refTime.setText(Main.getInstance().getTimeRefreshed());
 		final GridView gridview = (GridView) findViewById(R.id.gallery_gridview);
-		// gridview.setAdapter(adapter);
 		String categoryNames[] = { "Top vesti", "Sport", "Politika" };
 		boolean doClick = true;
 		for (String categoryName : categoryNames) {
@@ -152,28 +130,12 @@ public class Galerija extends Activity {
 				tv.performClick();
 				doClick = false;
 			}
-			// RelativeLayout.LayoutParams lay = new
-			// RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-			// RelativeLayout.LayoutParams.WRAP_CONTENT);
-			// lay.addRule(RelativeLayout.RIGHT_OF, RelativeLayout.TRUE);
-			// tv.setBackgroundResource(R.color.menu_background);
 			menuView.addView(tv);
 		}
 		final TextView technicomView = (TextView) findViewById(R.id.tehnicom_solutions_gallery);
 		technicomView
 				.setText(Html
-						.fromHtml(/*
-								 * "<style type=\"text/css\">" +
-								 * "A:link {text-decoration: none; color: white;}"
-								 * +
-								 * "A:visited {text-decoration: none; color: white;}"
-								 * +
-								 * "A:active {text-decoration: none; color: white;}"
-								 * +
-								 * "A:hover {text-decoration: underline; color: red;}"
-								 * +
-								 */
-						"</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom computers</a>"));
+						.fromHtml("</style><a href=\"http://www.tehnicomsolutions.com\">Tehnicom computers</a>"));
 		technicomView.setMovementMethod(LinkMovementMethod.getInstance());
 		technicomView.setLinkTextColor(Color.WHITE);
 		LinearLayout refresh = (LinearLayout) findViewById(R.id.refresh_button_gallery);
@@ -200,6 +162,7 @@ public class Galerija extends Activity {
 
 		}
 	}
+
 	/**
 	 * Method that gets back to parent activity with a result of 1440
 	 */
@@ -212,10 +175,11 @@ public class Galerija extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+
 	/**
 	 * AsyncTask for refreshing images
 	 * @author aleksandarvaricak
-	 *
+	 * 
 	 */
 	private class RefreshTask extends AsyncTask<Void, Void, Void> {
 		ProgressDialog progressDialog;
@@ -242,10 +206,11 @@ public class Galerija extends Activity {
 		}
 
 	}
+
 	/**
 	 * AsyncTask for loading images for first start
 	 * @author aleksandarvaricak
-	 *
+	 * 
 	 */
 	private class FirstStartTask extends AsyncTask<Void, Void, Void> {
 		ProgressDialog progressDialog;

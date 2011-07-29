@@ -16,7 +16,11 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import rs.novosti.model.Article;
 import rs.novosti.model.Category;
-
+/**
+ * Class used for reading Rss feeds
+ * @author aleksandarvaricak
+ *
+ */
 public class RssReader {
 
 	//Paths to categories
