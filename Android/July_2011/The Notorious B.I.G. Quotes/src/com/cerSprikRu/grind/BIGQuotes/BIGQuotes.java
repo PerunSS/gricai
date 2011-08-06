@@ -47,7 +47,11 @@ public class BIGQuotes extends Activity {
 		facts = getResources().getStringArray(R.array.facts);
 		fact = facts[(int) (Math.random() * facts.length)];
 		
+		AdView adView1 = (AdView)this.findViewById(R.id.ad1);
+	    adView1.loadAd(new AdRequest());
 
+	    AdView adView2 = (AdView)this.findViewById(R.id.ad2);
+	    adView2.loadAd(new AdRequest());
 		
 		final Button randomBtn = (Button) findViewById(R.id.random);
 
