@@ -1,116 +1,459 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="facts">
-		<item>"And I want you to know, you’re far from the usual."</item>
-		<item>"God knows that I’d do anything for a part two."</item>
-		<item>"What she mean to me is what I mean to rap."</item>
-		<item>"You had a lot of dreams that transformed to visions."</item>
-		<item>"When you was just a youngin’, your looks were so precious. But now you’re grown up, so fly, it’s like a blessin’. But ya can’t have a man look at ya for five seconds without ya bein’ insecure."</item>
-		<item>"Had a lot of moments that didn’t last forever, now you’re in the corner tryin’ to put it together – how to love."</item>
-		<item>"You had a lot of crooks try to steal your heart, never really had luck – couldn’t never figure out how to love."</item>
-		<item>"And I got the haters like when will he stop? Maybe a minute after never, so set your clocks."</item>
-		<item>"She my motivation, I’m her transportation. ‘Cause I let her ride, while I drive her crazy. Then I just keep going, going like I’m racing. When I’m done she hold me like a conversation."</item>
-		<item>"I put her on my plate, then I do the dishes."</item>
-		<item>"Rain on my head, call that brainstorming."</item>
-		<item>"Girl, I turn that thing into a rain forest."</item>
-		<item>"More beautiful than the world, word. Matter of fact, beautiful ain’t the word. Unexplainable is the beauty of her. And I’ll be the race car, hitting her curves."</item>
-		<item>"I’m in so much ice, they yell ‘Skate Wayne!"</item>
-		<item>"Tell ‘em kiss my ass, call it kiss and tell."</item>
-		<item>"I got through that sentence like a subject and a predicate."</item>
-		<item>"And I call it like I see it and my glasses on. But most of y’all don’t get the picture ‘less the flash is on."</item>
-		<item>"I beat the beat up, call it self defense."</item>
-		<item>"Life is the bitch, and death is her sister."</item>
-		<item>"So misunderstood, but what’s a world without enigma?"</item>
-		<item>"Swagger down pat, call my shit Patricia."</item>
-		<item>"Excuse my charisma, Vodka with a spritzer."</item>
-		<item>"I think you stand under me if you don’t understand me."</item>
-		<item>"Real G’s move in silence like Lasagna..."</item>
-		<item>"Try to kick me while I’m down. I’ll break your leg."</item>
-		<item>"Mind so sharp, I f*ck around and cut my head off."</item>
-		<item>"And I don’t mind when we fall out as long as we fall back into it."</item>
-		<item>"Smoke a lot of weed, but I could never forget ya."</item>
-		<item>"We probably ain’t supposed to be together, but I wonder if my love of her could last forever."</item>
-		<item>"And she ain’t sure about me, but can’t go without me."</item>
-		<item>"Damn you the sh*t, and I’ll rip my heart out, and hand you the sh*t."</item>
-		<item>"Appetite for lovin’, ma, I’m hungry like the scavenger."</item>
-		<item>"I’m cruisin’ on the road of life, but I need a passenger."</item>
-		<item>"Shawty I’m a pro and you are lookin’ like the prototype."</item>
-		<item>"And with her brain – she should make the honor roll."</item>
-		<item>"We at the pool and she lookin’ like a center fold."</item>
-		<item>"I’m just sayin’ with my love, I could feed her soul."</item>
-		<item>"Shawty badder than a 3 year old."</item>
+		<item>"Here's my most funniest joke, I'm broke."</item>
+		<item>"Everyday is Halloween."</item>
+		<item>"Stay away from the rattlesnakes, and the jakes, and the fakes, and the hate."</item>
+		<item>"I'm a boss, your man is just an employee mami. Let me upgrade you."</item>
+		<item>"You ain't gotta vote for us cuz we ain't neva runnin"</item>
+		<item>"Niggas wanna kick it but no I don't play soccer"</item>
+		<item>"Make a money chasing shadow call it dolla after dolla"</item>
+		<item>"I am from the jungle where the lion eats the cobra"</item>
+		<item>"I told my niggas we would see better yesterday, today is a better day, celebrate"</item>
+		<item>"From a cell to a jet call it Con-Air"</item>
+		<item>"I'm on top of my green like a lawn chair"</item>
+		<item>"Flyer than the rest but I don't rest I keep goin"</item>
+		<item>"They don't know where I came from but they know where I'm goin"</item>
+		<item>"If you ain't got that price then go that away  we can't even negotiate"</item>
+		<item>"Her body stay on top of my Summers like Suzanne"</item>
+		<item>"My life is like a movie and I do my own stunts"</item>
+		<item>"For me every song's like pussy so fuck it"</item>
+		<item>"I'm so cool even I want to be me"</item>
+		<item>"Blood gang and I'm in bleed mode"</item>
+		<item>"Bitches try to kick me while I'm down I break ya leg"</item>
+		<item>"Married to the game, but she broke her vowels"</item>
+		<item>"You can keep knocking but won't knock me down. No love lost, no love found"</item>
+		<item>"I got this world stuck in a safe, combination is the G-Code"</item>
+		<item>"Money outweighing problems on a triple beam"</item>
+		<item>"I think about more than I forget, but I don't go around fire expecting not to sweat"</item>
+		<item>"Been to hell and back, I can show you vouchers"</item>
+		<item>"Yeah my life a bitch, but you know nothin bout her"</item>
+		<item>"Throw dirt on me, and grow a wild flower"</item>
+		<item>"Know who you're dealin with, a full hand of aces, I shuffle with kings, and cut off queens"</item>
+		<item>"Safe sex is great sex, better wear a latex cuz you don't want that late text... that I think I'm late text."</item>
+		<item>"Ok you want me up in a cage, then I'll come out in beast mode."</item>
+		<item>"Put the d*** in they mouth, so I guess it's f*** what they say"</item>
+		<item>"I don't go around fire expectin' not to sweat"</item>
+		<item>"I'm stickin to the script, you n****s skippin' scenes"</item>
+		<item>"Yeah, my life a bitch, but you nothin' bout her"</item>
+		<item>"But it's f*** the world, get a child out her"</item>
+		<item>"Throw dirt on me and grow a wild flower"</item>
+		<item>"With the gun in this position, you could call it Kamasutra"</item>
+		<item>"I don't like to stop. I believe when you stop, you die"</item>
+		<item>"This is brain surgery. Ski masks on my bullets, let 'em commit brain burglary. Emergency, it's an emergency. Someone in all black left the whole scene burgundy"</item>
+		<item>"Shoot you on the front porch and knock you to the back yard"</item>
+		<item>"You just see Jill on the hill, I knock Jack off"</item>
+		<item>"And I keep that hammer, do you wanna get nailed down"</item>
+		<item>"Paper chasin', money runnin' like andale"</item>
+		<item>"I take you farther than Zimbabwe"</item>
+		<item>"All you boys bustas, so soft, bet the wind blew 'em"</item>
+		<item>"I school you n****s, but none of yous get A's"</item>
+		<item>"I'ma call my guns jumpers, cause my bullets just leapin to 'em"</item>
+		<item>"Call me Mr. Kill Em All"</item>
+		<item>"My word is my pride, the wisdom is weak, and that's word from the wise"</item>
+		<item>"Confidence is a stain they can't wipe off"</item>
+		<item>"Just hope you heaven sent and you're hell proof"</item>
+		<item>"The spot gets smaller and I get bigger tryin to get in where I fit in"</item>
+		<item>"You keep the sunshine, save me the rain"</item>
+		<item>"I search, but never find. Hurt, but never cry. I work and forever tired"</item>
+		<item>"The top gets higher the more that I climb"</item>
+		<item>"I seen nights full of pain, days of the same"</item>
+		<item>"I got ice in my veins, blood in my eyes, hate in my heart, love in my mind"</item>
+		<item>"I'm the cashier, I change girls"</item>
+		<item>"Midnight cowboy. My flow is a dog, down boy"</item>
+		<item>"And haters at an all-time high. Everybody got a hater like a f*n iPod"</item>
+		<item>"Stuck in the hood, like they poured cement on us"</item>
+		<item>"Hope you ain't too tired to cry, and I hope you know you ain't never too alive to die"</item>
+		<item>"And I'm seeing what you need and I'm thinkin it's me"</item>
+		<item>"And Weezy transform a good girl to a freak"</item>
+		<item>"I transform smaller and she puts me in her pants"</item>
+		<item>"I can transform ya, like a transformer"</item>
+		<item>"I can turn you from a human to a Carter. Take you off the bench, turn you to a starter"</item>
+		<item>"I can change your life, make it so new. Make you never want to go back to the old you"</item>
+		<item>"I shoot you nine times like you was 50, but you won't be as likely as 50"</item>
+		<item>"I don't need the Hot Boyz, I still keep my heat"</item>
+		<item>"Even in the dungeon, I glow. Even if it ain't sunny, I glow"</item>
+		<item>"Life's a b---h, now die for her"</item>
+		<item>"Elevator in my crib 'cause it's 5 floors. I'm not expectin you to have one in yours"</item>
+		<item>"We are not the same. I'm a martian, this is Space Jam"</item>
+		<item>"If you's a hater. I'm eatin, you's a waiter"</item>
+		<item>"Put me in the wild --- I be there for a while"</item>
+		<item>"We the motha f---a's like M.I.L.F., my n---ga"</item>
+		<item>"I love my baby mamas, they my highest honors"</item>
+		<item>"Stop playin, I'm fresher than a Degree stick"</item>
+		<item>"B*tch, I go hard like the boy from 300"</item>
+		<item>"Well of course, I smoke mad weed, I'm on my high horse"</item>
+		<item>"Money spread like germs, get sick n---a"</item>
+		<item>"Make the girls say my name like roll call"</item>
+		<item>"And everybody watch your back when you're in the front"</item>
+		<item>"Time to do the thing, that's word to your wrist watch"</item>
+		<item>"The money keep calling, I hear this sh-t dialling, and they say money talks, you can hear my sh-t holler'n"</item>
+		<item>"Crown fit me good, I ain't even got to try on"</item>
+		<item>"I look in the flames and see the hotter me"</item>
+		<item>"I'm the bomb baby, watch me nuke this sh-t"</item>
+		<item>"I pop like lolli's, you drop like eyelids"</item>
+		<item>"New Orleans coroner, his name is Frank Minyard, f-ck with me wrong, you'll be waking up in his yard"</item>
+		<item>"I still eat rappers. Mmm. Scrumptious"</item>
+		<item>"Man I go crazy on the beat I go Nimrod, Man I act a ass, treat the beat like a hemorrhoid Man I go to work on the beat, call it employ, Man I kicks it, b-tch get your shin guard"</item>
+		<item>"Pump to your chest, I ain't talking CPR"</item>
+		<item>"Ran into a super woman, turned her to a super b*tch, hit her with that super d***, she be cumming super quick"</item>
+		<item>"My pockets too deep, I f*** around and drown her..........All we do is shop until we drop"</item>
+		<item>"I take her to the vet, cause she a bad b****"</item>
+		<item>"Pockets too deep, shawty you gon' have to climb out"</item>
+		<item>"She wants to own me and I ain't trying to fight it"</item>
+		<item>"And I keep that toaster, you can come, and be my strudel biiitch"</item>
+		<item>"Hater, hater, hater -- I love you so much"</item>
+		<item>"And I would hate to not be hated"</item>
+		<item>"Stand on my money, headbutt Yao Ming"</item>
+		<item>"How do I feel? b*tch, I feel undefeated"</item>
+		<item>"I am the only fire that can live in the rain"</item>
+		<item>"I'm restin in the lead. I need a pillow and a cover"</item>
+		<item>"Fresher than the harvest"</item>
+		<item>"So fly I'm gonna take off when I leap. Bye"</item>
+		<item>"I scream f*** the world with a long d***"</item>
+		<item>"You know what they say 'bout when your palm itch, I'm gonna get money - money I'm gon' get"</item>
+		<item>"I'm so high I can vomit on a comet"</item>
+		<item>"No I didn't say that I'm flawless, but I damn sure don't tarnish"</item>
+		<item>"We are in a league they aren't"</item>
+		<item>"My gun go crazy like it's retarded. Red light on it's like it's recording"</item>
+		<item>"And I take probation, I don't want that T.I. and Vic vacation"</item>
+		<item>"I dont stunt I stunt hard"</item>
+		<item>"Swagga so bright I don't even need light"</item>
+		<item>"The money is the motive"</item>
+		<item>"If you the s*** then I'm sewerage"</item>
+		<item>"Try me and I'll have your people readin' eulogies"</item>
+		<item>"Life is a gamble and I'm all about my poker chips"</item>
+		<item>"The top is so appropriate, this is just where I belong"</item>
+		<item>"Yeah I'm the best to ever do it b*tch and you the best at never doin' s***"</item>
+		<item>"I'm the man around this muthaf-a I'm so hot you probably catch a tan around this muthaf-a this rap game, I got my hand around this muthaf-a yeah I said game but I ain't playin' around this muthaf-a"</item>
+		<item>"Crazy muthaf-a I am one but the crazy thing is I began one"</item>
+		<item>"You n*s softer then roseanne's son"</item>
+		<item>"Futuristic handgun if you act foul you get two shots and one"</item>
+		<item>"Hope I dont look weak cuz when a wolf cry wolf you still see that wolfs teeth"</item>
+		<item>"I swear I care bout everything but these b****s I don't care I so what these b*tches and I put young mula baby way above these b*tches"</item>
+		<item>"Imma spare everything but these n-s I flip the gun and gun f*** these n-s take the knife off the AK and cut these n-s"</item>
+		<item>"I got a grill, I don't need to get my tooth fixed. The Tooth Fairy will retire if I use it"</item>
+		<item>"I know my role and I play it well"</item>
+		<item>"Got my tank top top down, it probably ain't summer but I ride like that cause I'm hotter than the others"</item>
+		<item>"You can't get on my level. you gon' need a space shuttle or a ladder; that's forever"</item>
+		<item>"And I know you probably wish you never met me, and I just wish you never forget me"</item>
+		<item>"Life is such a f***** roller coaster then it drops, but what should I scream for? This is my theme park"</item>
+		<item>"Hopped up in my car and told my chauffeur to the top"</item>
+		<item>"And I will never stop, like I'm runnin' from the cops"</item>
+		<item>"I'm so official all I need is a whistle"</item>
+		<item>"Since I've lost you : I'm lost too"</item>
+		<item>"My mind shine even when my thoughts seem dark"</item>
+		<item>"She was my down chick, I was her soldier I was her gangsta, she was my shoulder You were the pistol to my holster ...BANG"</item>
+		<item>"Rock star sh*t for my rock star ass Got a tub full of money that's a rock star bath Then I use more money to wipe my rock star ass Then I throw it in the garbage that rock star trash"</item>
+		<item>"They don't make em like me no more matter fact they never made em like me before"</item>
+		<item>"I'm all I trust"</item>
+		<item>"Imma new song and you're just a remix"</item>
+		<item>"I have no stress, because I am the best"</item>
+		<item>"Take them shoes off your teeth and quit runnin your mouth"</item>
+		<item>"Love, live, life, and I'm dead"</item>
+		<item>"Make jokes. no stress. love. live. life. proceed. progress"</item>
+		<item>"We done matured and grown into our own situations"</item>
+		<item>"You're like a b*tch with no ass you ain't got s***"</item>
+		<item>"And I don't think you're beautiful I think you're beyond it"</item>
+		<item>"I'm all about my cake; I'm tryna marry betty crocker"</item>
+		<item>"I'm right right and you're wrong left"</item>
+		<item>"And I aint on hova level, I'm over level"</item>
+		<item>"Weezy is so fly in any weather"</item>
+		<item>"Man I swear I'm so fly - I wake up in the sky and wipe the cloud out my eye"</item>
+		<item>"What's understood don't gotta be explained"</item>
+		<item>"Tell them to keep my name out their mouth, cause they don't know me"</item>
+		<item>"I'm rare like mr. clean with hair"</item>
+		<item>"I'm the s*** and that's the only thing you smell around me"</item>
+		<item>"Yes I am the best even bobble heads tell me yes"</item>
+		<item>"Even when I'm on my back, I'm never backin down"</item>
+		<item>"I dont want a broken heart; cause i'll lose all the pieces"</item>
+		<item>"You worry about yours, let them worry about theirs, cause I got mine"</item>
+		<item>"You can wear a condom but you cant come here"</item>
+		<item>"Well you know how they say you are nobody till somebody kills you well I'm from your nobody till you kill somebody"</item>
+		<item>"If you need an example of how to live you should not have been born"</item>
+		<item>"I'll take probation, I don't want that t.i. and vick vacation"</item>
+		<item>"Don't you compare me cause they're aint nobody near me they dont see me but they hear me they dont fear me but they feel me"</item>
+		<item>"Baby I can bless you when you ain't even sneezin"</item>
+		<item>"Flow so sick makes you wanna throw your food up"</item>
+		<item>"Weezy F. Baby. Don't forget the f about me and if you do get the f around me"</item>
+		<item>"I'm higher than a m-f***** chronic leaf tree top"</item>
+		<item>"I'm just a soul whose intentions are good o lord please don't let me be misunderstood"</item>
+		<item>"I'm a doctor they dont understand my writing so I stopped writing...now I'm like lightning... And u aint Vince Young so dont clash wit the Titans"</item>
+		<item>"I'm not the shooter, I'm the bullet b*tch"</item>
+		<item>"I do what I do and you do what you can do about it"</item>
+		<item>"Drugs are bad I'm acknowledging that but when I'm on the drugs I don't have a problem wit that"</item>
+		<item>"You know the cops don't like us because they wanna rock just like us"</item>
+		<item>"If you leave you leaving the best so you would have to settle for less"</item>
+		<item>"But but he so sweet, she wanna lick the rapper"</item>
+		<item>"Swallow my words taste my thoughts and if they to nasty spit it back at me"</item>
+		<item>"You got beef, bring your cow. I will CATTLE you"</item>
+		<item>"Keep your mouth closed and let your eyes listen"</item>
+		<item>"Safe sex is great sex better wear a latex cuz you dont want that late text that "i think am late" text"</item>
+		<item>"I'm the one who has to die when its time for me to die. so let me live my life the way I want to"</item>
+		<item>"I know you prolly wish you never met me, but I just hope you never forget me"</item>
+		<item>"She wanna f* weezy, but she wanna rape wayne"</item>
+		<item>"They say if you pray then you can get your blessings ordered and delivered"</item>
+		<item>"When I started flirtin with the hustle failure became my ex now I'm engaged to the game and married to success"</item>
+		<item>"I'm more afraid of life than death"</item>
+		<item>"One finger up and I'm out, because b*tch you aint even worth two"</item>
+		<item>"I listen to her heartbeat cause it plays my favorite song"</item>
+		<item>"II'll cool ya ass down if ya think ya hot s***"</item>
+		<item>"And I swear to everything when I leave this earth, its gonna be on both feet never knees in the dirt"</item>
+		<item>"We pop em like orville redenbacher"</item>
+		<item>"I've been through alotta s***, but i'ma keep my head up like my nose is bleedin"</item>
+		<item>"You think you fresh shytt; - I'm ripee"</item>
+		<item>"Dont compare me cause there aunt nobody near me"</item>
+		<item>"There aint nuthin gon stop me so just envy it"</item>
+		<item>"Take them shoes off your teeth and stop runnin your mouth"</item>
+		<item>"I dont want a broken heart; cuz i'll lose all the pieces"</item>
+		<item>"He s*** you hear might be true but then again it could be as fake as the b* who told you"</item>
+		<item>"Shhh!!! you hear the fire truck"</item>
+		<item>"So keep your mouth closed and let your eyes listen"</item>
+		<item>"I'm just tryna stay ahead of my shadow"</item>
+		<item>"Blind eyes could look at me and see the truth"</item>
+		<item>"And if -they- got beef I'm the meat cleaver"</item>
+		<item>"You can love me or hate me I swear it won't make me or break me"</item>
+		<item>"There's no keepin up with the brother man I can spell my name in burnt rubber"</item>
+		<item>"I'm sleepin', I'm dreamin'. I know there's a better way cause I've seen it Lord"</item>
+		<item>"And my future will be better than my past"</item>
+		<item>"I'm fishin' and the b*tches will bite. It's probably cause my game is Fixodent tight"</item>
+		<item>"Got my tank top top down, it probably ain't summer but I ride like that cause I'm hotter than the others"</item>
+		<item>"Fck you b*tch, I'm actin brand new"</item>
+		<item>"I call them april babies - cause they fools"</item>
+		<item>"I know ive been through alotta s*** this year, but ima keep my head up like my nose is bleeding"</item>
+		<item>"I'm focused - thinkin like I got 2 brains"</item>
+		<item>"All about a dollar like four quarters"</item>
+		<item>"Is there a heaven for G's and soldiers, I cant go to hell cause i'd take over"</item>
+		<item>"I'm the bomb like - tickk. tick"</item>
+		<item>"Birds dont fly, without my permission"</item>
+		<item>"Sometimes I wanna drop a tear but no emotion from a king"</item>
+		<item>"Young money, dipset, thats what this is and if I aint good lookin you can bet my b*tch is"</item>
+		<item>"I been thru it all, the fails the falls, I'm like niagra but I got right back up like viagra"</item>
+		<item>"I got these hataz like when he gon stop? maybe a minute after never start ya clocks"</item>
+		<item>"I'm not hot. I'm great"</item>
+		<item>"They said I couldn't play football I was too small they said I couldn't play basketball I wasn't tall they said I couldn't play baseball at all and now everyday of my life I BALL"</item>
+		<item>"Got more ice than a super sized drink"</item>
+		<item>"I know the game is crazy it's more crazy than it's ever been I'm married to that crazy b*tch call me Kevin Federline"</item>
+		<item>"And them birds don't fly, without my permission, I'm probably in the sky, flying with the fishes, or maybe in the ocean, swimming with the pigeons, see my world is different, like dwayne wayne"</item>
+		<item>"My name ain't Bic, but I keep that flame"</item>
+		<item>"I got a grill, I dont need to get my tooth fixed, the tooth fairy might retire if I lose it"</item>
+		<item>"No I aint lookin down, but I see no one above me"</item>
+		<item>"I get Head and Tail like a quarter...in that order"</item>
+		<item>"So misunderstood but what's a world without enigma"</item>
+		<item>"I'm probably in sky, flying with the fishes.. or maybe in ocean, swimming with the pigeons."</item>
+		<item>"The sky is the limit."</item>
+		<item>"I hate when a nigga say talk is is cheap, cuz I'm the type to let money talk for me."</item>
+		<item>"My flow is art..unique. My flow can part the sea."</item>
+		<item>"The only thing on the mind of shark is eat..by any means and you're just sardines."</item>
+		<item>"I got my 40 cal tucked in my PRPS, what do you expect I'm from New Orleans."</item>
+		<item>"Real G's move in silence like lasagna."</item>
+		<item>"When I came, she caught me like the common cold."</item>
+		<item>"With her brain she could make the honor roll."</item>
 		<item>"Me and shawty go together like chemicals."</item>
-		<item>"Okay, you want me up in a cage, then I’ll come out in beast mode."</item>
-		<item>"Put the d*** in they mouth, so I guess it’s f*** what they say."</item>
-		<item>"I’m stickin to the script, you n*ggas skippin’ scenes."</item>
-		<item>"I don’t go around fire expectin’ not to sweat."</item>
-		<item>"Been to hell and back, I can show you vouchers."</item>
-		<item>"Yeah, my life a bitch, but you nothin’ bout her."</item>
-		<item>"But it’s f*ck the world, get a child out her."</item>
-		<item>"Throw dirt on me and grow a wild flower."</item>
-		<item>"I don’t like to stop. I believe when you stop, you die."</item>
-		<item>"With the gun in this position, you could call it Kamasutra."</item>
-		<item>"This is brain surgery. Ski masks on my bullets, let ‘em commit brain burglary. Emergency, it’s an emergency. Someone in all black left the whole scene burgundy."</item>
-		<item>"You just see Jill on the hill, I knock Jack off."</item>
-		<item>"Shoot you on the front porch and knock you to the back yard."</item>
-		<item>"And I keep that hammer, do you wanna get nailed down?"</item>
-		<item>"I take you farther than Zimbabwe."</item>
-		<item>"Paper chasin’, money runnin’ like andale."</item>
-		<item>"I school you n*ggas, but none of yous get A’s."</item>
-		<item>"All you boys bustas, so soft, bet the wind blew ‘em."</item>
-		<item>"I’ma call my guns jumpers, cause my bullets just leapin to ‘em."</item>
-		<item>"Call me Mr. Kill Em All."</item>
-		<item>"My word is my pride, the wisdom is weak, and that’s word from the wise."</item>
-		<item>"Confidence is a stain they can’t wipe off."</item>
-		<item>"Just hope you heaven sent and you’re hell proof."</item>
-		<item>"The spot gets smaller and I get bigger tryin’ to get in where I fit in."</item>
-		<item>"The top gets higher the more that I climb."</item>
-		<item>"I search, but never find. Hurt, but never cry. I work and forever tired."</item>
-		<item>"You keep the sunshine, save me the rain."</item>
-		<item>"I seen nights full of pain, days of the same."</item>
-		<item>"I got ice in my veins, blood in my eyes, hate in my heart, love in my mind."</item>
-		<item>"Midnight cowboy. My flow is a dog, down boy."</item>
-		<item>"I’m the cashier, I change girls."</item>
-		<item>"And haters at an all-time high. Everybody got a hater like a f*ckin’ iPod."</item>
-		<item>"Stuck in the hood, like they poured cement on us."</item>
-		<item>"Hope you ain’t too tired to cry and I hope you know you ain’t never too alive to die."</item>
-		<item>"And I’m seeing what you need and I’m thinkin’ it’s me."</item>
-		<item>"And Weezy transform a good girl to a freak."</item>
-		<item>"I transform smaller and she puts me in her pants."</item>
-		<item>"I can turn you from a human to a Carter. Take you off the bench, turn you to a starter."</item>
-		<item>"I can transform ya, like a transformer."</item>
-		<item>"I can change your life, make it so new. Make you never want to go back to the old you."</item>
-		<item>"I shoot you nine times like you was 50, but you won’t be as likely as 50."</item>
-		<item>"I don’t need the Hot Boyz, I still keep my heat."</item>
-		<item>"Even in the dungeon, I glow. Even if it ain’t sunny, I glow."</item>
-		<item>"Life’s a b*tch, now die for her."</item>
-		<item>"Elevator in my crib ’cause it’s 5 floors. I’m not expectin’ you to have one in yours."</item>
-		<item>"We are not the same. I’m a martian, this is Space Jam."</item>
-		<item>"Put me in the wild — I be there for a while."</item>
-		<item>"If you’s a hater. I’m eatin’, you’s a waiter."</item>
-		<item>"We the motha f*cka’s like M.I.L.F., my n*gga."</item>
-		<item>"I love my baby mamas, they my highest honors."</item>
-		<item>"B*tch, I go hard like the boy from 300."</item>
-		<item>"Stop playin, I’m fresher than a Degree stick."</item>
-		<item>"Well of course, I smoke mad weed, I’m on my high horse."</item>
-		<item>"Money spread like germs, get sick n*gga."</item>
-		<item>"Make the girls say my name like roll call."</item>
-		<item>"Time to do the thing, that’s word to your wrist watch."</item>
-		<item>"And everybody watch your back when you’re in the front."</item>
-		<item>"The money keep calling, I hear this sh*t dialing, and they say money talks, you can hear my sh*t holler’n."</item>
-		<item>"Crown fit me good, I ain’t even got to try on."</item>
-		<item>"I look in the flames and see the hotter me."</item>
-		<item>"I’m the bomb baby, watch me nuke this sh-t."</item>
-		<item>"I pop like lolli’s, you drop like eyelids."</item>
-		<item>"New Orleans coroner, his name is Frank Minyard, f-ck with me wrong, you’ll be waking up in his yard."</item>
-		<item>"I still eat rappers. Mmm. Scrumptious."</item>
-		<item>"Man I go crazy on the beat I go Nimrod. Man I act a ass, treat the beat like a hemorrhoid. Man I go to work on the beat, call it employ. Man I kicks it, b-tch get your shin guard."</item>
-		<item>"Pump to your chest, I ain’t talking CPR."</item>
-		<item>"Ran into a super woman, turned her to a super bitch, hit her with that super d-ck, she be cumming super quick."</item>
-		<item>"My pockets too deep, I f-ck around and drown her. All we do is shop until we drop."</item>
-		<item>"I take her to the vet, cause she a bad bitch."</item>
-		<item>"Pockets too deep, shawty you gon’ have to climb out."</item>
-		<item>"She wants to own me and I ain’t trying to fight it."</item>
+		<item>"With my love I could feed her soul."</item>
+		<item>"I listen to her heart beat because it plays my favorite song."</item>
+		<item>"She done heard so many lies, she don't know what's true or not."</item>
+		<item>"Shawty like a valet service; I swear she been through a lot."</item>
+		<item>"Life is beach, I'm just playing in the sand."</item>
+		<item>"Guns turn you boys into sex change."</item>
+		<item>"Skinny pants and some vans!"</item>
+		<item>"Sleeping on the edge; I hope I don't toss and turn."</item>
+		<item>"I'll take my heart out and hand it to you."</item>
+		<item>"Shawty badder than a three year old."</item>
+		<item>"Ahead of my time like dog years."</item>
+		<item>"We some asshole niggas, call us diarrhea."</item>
+		<item>"I call ya how I see ya."</item>
+		<item>"Pussy ass nigga I don't want ya gonorrhea."</item>
+		<item>"Swagga unflawed"</item>
+		<item>"Life's a bitch. Nah, better yet a dumb broad."</item>
+		<item>"Hotter than the Devil? Nigga, hell yeah!"</item>
+		<item>"Bitch I'm in the building; you in the front yard"</item>
+		<item>"I'm a pro and you are looking like the prototype"</item>
+		<item>"If everyone was like you the World would be a better place."</item>
+		<item>"You boys is washed up and I'm shitting on em like two girls in one cup."</item>
+		<item>"I could fuck the world and make it cum hard."</item>
+		<item>"Wish I never met ya - I wouldn't want to be ya."</item>
+		<item>"I don't want your gonorrhea."</item>
+		<item>"Polo sheets is what I lands on."</item>
+		<item>"She blowing me like a van horn."</item>
+		<item>"I'm busy fucking the world and giving the universe my damn tongue."</item>
+		<item>"I'm a huster, write it down, take a picture bitch print it."</item>
+		<item>"I don't need a pool, I'm swimming in you."</item>
+		<item>"I don't rap, I just spit - like a new born So tell them others niggas cut it out - like a coupon"</item>
+		<item>"I'm tired of all these haters, that's why I go hard like AC Slater."</item>
+		<item>"Red thick women I adore; I'm a whore, you know that I'm a whore"</item>
+		<item>"Pimpin' ain't dead 'cause I be the life line."</item>
+		<item>"Under I'm sharper than a fucking hell razor."</item>
+		<item>"I should cherish life, but this ain't paradise."</item>
+		<item>"Cut school, sell crack, sorry I'm just thinking back"</item>
+		<item>"Hear the money talk and it talk about me."</item>
+		<item>"A gun is not a math problem, I won't even think, Just leave ya dead like the mink under my sink."</item>
+		<item>"Make the girls say my name like roll call; pain killers got a nigga bout to dose off."</item>
+		<item>"I put it down like it's too heavy."</item>
+		<item>"You against me is like man vs. wild, me against you is like man vs. child, and I am the man."</item>
+		<item>"I'm a cool cat, but I'm on life nine."</item>
+		<item>"The peace sign is just a trigger and a middle finger."</item>
+		<item>"I ball hard even with all flaws."</item>
+		<item>"Pull out the AK and pop you in your funny bone."</item>
+		<item>"I ain't never had height, but boy I got heart."</item>
+		<item>"Gotta get it, even if it's in the worse way. Got cake like everyday my birthday."</item>
+		<item>"Nigga, it's fuck you and I'm fucking yours. From the bedroom to the floors... whores."</item>
+		<item>"It's no problem to put a nigga's brains on the mothafuckin' window."</item>
+		<item>"Got them hoes falling like a hundred million dominoes."</item>
+		<item>"Shittin on you bitches, now let me flush the toilet and wipe my ass."</item>
+		<item>"Mothafuckin' psychopath, Young Money Caveman, mothafuckin' Geico Ad."</item>
+		<item>"We don't want no problems. Okay you're a goon, but what's a goon to a goblin?"</item>
+		<item>"I'ma pick the world up and I'ma drop it on your fucking head."</item>
+		<item>"Start with straight shots and then pop bottles Pour it on the models; shutup bitch swallow."</item>
+		<item>"How you want it? Show me my opponent."</item>
+		<item>"New Orleans Maniac; shoot a nigga up til his whole body ain't attached."</item>
+		<item>"I'm a cool cat, but I'm on life nine."</item>
+		<item>"I put it down like it's too heavy."</item>
+		<item>"Make the girls say my name like roll call; pain killers got a nigga bout to dose off."</item>
+		<item>"A gun is not a math problem, I won't even think Just leave ya dead like the mink under my sink."</item>
+		<item>"Cut school, sell crack, sorry I'm just thinking back."</item>
+		<item>"I should cherish life, but this ain't paradise."</item>
+		<item>"Under I'm sharper than a fucking hell razor."</item>
+		<item>"Your love is a one in a million, it goes on and on and on. You give me a reall good feeling all day long."</item>
+		<item>"Gotta get it, even if it's in the worse way. Got cake like everyday my birthday."</item>
+		<item>"Pimpin' ain't dead 'cause I be the life line."</item>
+		<item>"Red thick women I adore; I'm a whore, you know that I'm a whore."</item>
+		<item>"I'm tired of all these haters, that's why I go hard like AC Slater."</item>
+		<item>"Fuck Wendy Williams, the bitch look like a dude, her body looks chewed and her hair looks glued."</item>
+		<item>"Flowers for the dead. Say hello to the forest."</item>
+		<item>"Big nuts here swining like nunchucks."</item>
+		<item>"I'm so far ahead, I got to save the last dance."</item>
+		<item>"I just want some brain like a fucking cat skan."</item>
+		<item>"Flow mo' rare than finding black sand."</item>
+		<item>"She come to my room thinking it's Egypt and she leave feeling like a parapalegic."</item>
+		<item>"No remote; I control women."</item>
+		<item>"I'm a R.O.C.K star and I can play with that pussy like I play my guitar."</item>
+		<item>"Let me rock you up, maybe marriage, baby carriage, let me knock you up."</item>
+		<item>"Young Money can't die, bitch we like Hancock."</item>
+		<item>"Attitude like fuck em all and I'm greezy and your boyfriend is a butterball."</item>
+		<item>"Hi, my name is best rapper alive and your mouth is the best crapper alive . Cause you talk shit, I get hit and walk it off."</item>
+		<item>"Started with my girlfriend, ended with her homies."</item>
+		<item>"Nigga I'm the shit, get the fuck up out my toilet."</item>
+		<item>"Started out hustlin, ended up ballin."</item>
+		<item>"I'm richer than all y'all, I got a bank full of pride."</item>
+		<item>"You hurt her, you kill me and nigga I ain't bout to die."</item>
+		<item>"See my style it varies, like drugs in an alley. My leather so soft my paint prettier than Halle."</item>
+		<item>"Her pussy so good, wish I could wear it for cologne. And her pussy so wet I wish slip and break my neck."</item>
+		<item>"Truely cold, shawty need a movie role."</item>
+		<item>"Young Money thieves, steal your hearts with ease."</item>
+		<item>"I hate to see her go, but I'd love to watch her leave. But I keep her runnin' back and forth like a soccer team."</item>
+		<item>"She got that good good, she Michael Jackson bad. I'm attracted to her with her attractive ass."</item>
+		<item>"Always strapped when I hit the club. Niggas give me daps, bitches give me hugs. And since I'm paid, niggaz be muggin' me, you know I'm muggin' back."</item>
+		<item>"When love is in the air I put on a gas mask."</item>
+		<item>"Stop hatin' on a nigga, that is a weak emotion... the lady of a nigga."</item>
+		<item>"The only time I was dependent is when I'm 70 years old. Thats when I cant hold my shit within, so I shit on myself... cause I'm so sick and tired of shitting on everybody else."</item>
+		<item>"Nigga we in charge, baby put me in charge, and I'm just murdering niggas free of charge."</item>
+		<item>"Dont believe in me, don't believe me, I graduated from hungry and made it to greedy."</item>
+		<item>"I have flushed out the feeling, of me being the shit. Cause I was leaving skid marks, on everywhere I sit."</item>
+		<item>"When them Niggas Left Eye(I) It Got A Lil Bit Chilli(TLC), But I Just Let It Burn(Usher) Like The End Of A Philly"</item>
+		<item>"I'm so Hollygrove I should be the logo. I pogo on the Po-Po I leave 'em molded from old dough. I ride slow mo."</item>
+		<item>"Niggas try'n to kick it but no I don't play soccer, I'm all about my cake my try'na marry Betty Crocker."</item>
+		<item>"A devil in the flesh, a rebel at its best. No complainin we live in hell and I'm blessed."</item>
+		<item>"These muthafukas the prey I'm the predator."</item>
+		<item>"I'm bout my spinach, chesse, dough, chedda, feddi, gwop, money, moolah, mozarella, etc etc"</item>
+		<item>"They know where Carter at, straight off the launchin pad marching on the moon muthafuka I've been to Mars and back."</item>
+		<item>"Lord, protect me from my friends I can take care of my enemies."</item>
+		<item>"Money, money, money is my intuition... money over bitches such an easy decision."</item>
+		<item>"Young Money, money men, monster militia. Hardbody these niggaz boxes of tissue."</item>
+		<item>"Even deaf bitches say hi to me, she tell a blind bitch and she say I gotta see."</item>
+		<item>"She thick and she right, damn she nice. You can be my judge baby... yeah I'll do life."</item>
+		<item>"Damn she bad, damn she thick, and I may not know perfect but damn she it."</item>
+		<item>"I hear you want somebody you can call Boo, I will change my name to Boo and fuck around and call you now what you wanna do."</item>
+		<item>"I know that you'll be dancing til your toes hurt, but I can make your toes curl I can make your soul jerk... we can soul search."</item>
+		<item>"I'm gettin my lunch like noon I gotta eat, Scarface with diamond teeth ."</item>
+		<item>"They know where carter at, straight off the launching pad. Marching on the moon muthafucka I been to mars and back. Cleaner than laundry mats."</item>
+		<item>"Fuck competitors, fuck these rappers, fuck these editors, fuck the head of the state, fuck the gates surrounding the prisoners. These muthafuckas the prey I'm the predator."</item>
+		<item>"You can love me or hate me, I swear it won't make me or break me."</item>
+		<item>"The cops is watchin, the streets is talkin, ya hoes is unfaithful, ya family ungrateful, ya niggas ain't loyal, ya niggas ain't loyal and everybody saw you and ain't that a bitch!"</item>
+		<item>"Shit, get on my level, you can't get on my level. You will need a space shuttle or a ladder that's forever."</item>
+		<item>"I told my girl when she fuck me she better fuck me good, cuz if another girl could she would fuck me good."</item>
+		<item>"When I was 14 I told my we would see better days, and sure enough we did exactly what I said."</item>
+		<item>"They can't stop me, even if they stopped me."</item>
+		<item>"Money on my mind, that's all I think of. Married to the game never taking my ring off."</item>
+		<item>"I'm allergic to cheatin' and I hate failure. And I am in love with achievement."</item>
+		<item>"I think positively, you can't harm me mentally, not physically, not spiritually, you'll never get rid of me."</item>
+		<item>"Victory consistently, train all year to be the enemy's misery. No stress visibly, neither does it enter me."</item>
+		<item>"Admired as a saint, defined by my rank. Combined with my strength, my time and my length."</item>
+		<item>"I'm tired of the fame, got everything to gain and I'm proud of the pain."</item>
+		<item>"I'm a lion on redeem, inspired by the green. Never tired nor fatigued, never defiant to my team."</item>
+		<item>"Don't buy into the schemes, the science or stratege. Just giant N U Ts brings triumph and belief."</item>
+		<item>"I'm goin' for the gold, my heart is in control. My mind is on succeed and I am in the lead."</item>
+		<item>"Okay my leather so soft but don't think I ain't hard, they say Weezy make it rain I say bitch I ain't God."</item>
+		<item>"I feel caged in my mind, it's like my flow doin time. I goes crazy inside but when it comes out it's fine."</item>
+		<item>"They say you're nobody til somebody kills you but where I'm from you're nobody til you kill somebody."</item>
+		<item>"Mama always told me I was crazy and my hoes say I'm amazing but I dont listen to a lady."</item>
+		<item>"I am the beast, feed me rappers or feed me beats."</item>
+		<item>"Long hair don't care."</item>
+		<item>"It's a cold world, so homie bundle up. We ain't on this grind for nothin now get ya hustle up."</item>
+		<item>"Since I be on TV... I turn it on see me, hey I'm so cool even I wanna be me."</item>
+		<item>"All these bitches... and niggas still hatin. I use to be ballin but now I'm bill gatin."</item>
+		<item>"I'm on the road to riches, it's just a lil traffic."</item>
+		<item>"I eat her insides, mmm soul food. She put her head back, then her eyes closed. We stuck in the moment, like the time froze."</item>
+		<item>"I ain't a player, but I love a lot. She loves me, she loves me not."</item>
+		<item>"Life is a bitch and death is her sister."</item>
+		<item>"Only once the drugs are done, that I feel like dying."</item>
+		<item>"I'm a love machine, and I won't work for nobody but you. It's only me and her cuz the bugatti a coupe."</item>
+		<item>"She put her head back, then her eyes closed. We stuck in the moment, like the time froze. Then my girl called, back to reality. But I keep in a picture in my heart gallery."</item>
+		<item>"I'm sick of being criticized. That's why I'm higher than the star trek enterprise. I do it big don't get mad cuz you minimized."</item>
+		<item>"If I die today, remember me like John Lennon. Buried in Louis, Im talking all brown linen."</item>
+		<item>"She my motivation, I'm her transportation, cause I let her ride, while I drive her crazy."</item>
+		<item>"Flow is so sweet, I eat angels for dinner. Call me what you want, I don't give a finger in the middle."</item>
+		<item>"I'm killin these hoes, I swear I'm trying to stop the voilence."</item>
+		<item>"I'm a made nigga, I should dust somethin. You niggas on the bench, like the bus comin."</item>
+		<item>"Too much money ain't enough money, you know the feds listenin. Nigga what money."</item>
+		<item>"I'm about to go Andre the Giant, you a sell out but I ain't buyin."</item>
+		<item>"I'm focused might as well say cheese for the pictures."</item>
+		<item>"Prepared for the worst but still praying for the best, this game is a bitch I got my hand up her dress."</item>
+		<item>"The money don't sleep so Weezy can't rest, and AK-47 is my fuckin address."</item>
+		<item>"The guns are drawn and I ain't talkin bout a sketch, I pay these niggas with a reality check."</item>
+		<item>"When you see a real nigga you gotta tip yo hat.. and since I'm a real nigga, I do just that."</item>
+		<item>"The paralyzed feel me, the blind see me...and the deaf can hear me and the smart fear me."</item>
+		<item>"See I just want you to know that you deserve the best, you're beautiful."</item>
+		<item>"I admire your poppin bottles and dippin', just as much as you admire bartending and stripping."</item>
+		<item>"You had a lot of moments that didn't last forever, now you in the corner tryna put it together. How to love."</item>
+		<item>"You had a lot of crooks tryna steal your heart, never really had luck. Couldn't never figure out how to love."</item>
+		<item>"Saying \"seek and you'll be led\". But instead, instead I loved you. I was weak and mislead, I was deeper than dead, I was sinking in dread now I'm thinking in shreds. So I inked this in red."</item>
+		<item>"But you love me, at least thats what she said. That whole weekend in my bed."</item>
+		<item>"I'd rather stay together and she'd rather chase the devil Now I'm left to race the rebel."</item>
+		<item>"She was the sweetest ever, whatever happened to forever. She never say never, she rather say whatever."</item>
+		<item>"I hate love. I used to tell myself I wouldn't do this to myself, Until I proved it to myself. And now I'm losing myself."</item>
+		<item>"Me and my gun took and oath together. Said I would never die, if we both together."</item>
+		<item>"Im a gangsta by choice I hope my sons choose wiser and dont call me sir, call me survivor."</item>
+		<item>"You keep opening ya grill, Im barbecuing with it. I know my shit already tight so I aint screwing with it. Some say this shit is a joke well I hope they get it."</item>
+		<item>"If you sleeping on me, than I hope you toss and turning. Im so cold Im hypothermic, ask yo girl she will confirm it."</item>
+		<item>"Back to my journey, that bullshit dont concern me. I knew I was going to jail I would have f-cked my attorney."</item>
+		<item>"Ts like I have it all but I dont have to worry Married to the money, a true love story."</item>
+		<item>"Attention all shooters, Im a shooting star Life is a course and Imma shoot for Par."</item>
+		<item>"Pause! Like a red light, Im dead right! Highway to Heaven, God do you see my headlights?"</item>
+		<item>"Im looking in my rear view, I see the world in it. I try to slow down, and I get rear ended."</item>
+		<item>"Who am I to talk? I aint shittin roses. We in in the same picture but we all got different poses."</item>
+		<item>"Sleepin at the top, nightmares of the bottom. Everybody wanna be fly til you swat em."</item>
+		<item>"Im Weezy F baby and the F aint for Flaw"</item>
+		<item>"I'm lookin in the mirror and I see a dollar sign, I had a cat scan and I had money on my mind."</item>
+		<item>"Married to the money, a true love story."</item>
+		<item>"Only God can judge me, I don't need a jury. Nothing standing in my way, like nothing's my security."</item>
+		<item>"Prepared for the worst, but still praying for the best."</item>
+		<item>"They say you don't know what you're doing till you stop doing it, well call me clueless cause I do this."</item>
+		<item>"I'm searching for today, instead I found tomorrow. And I put that shit right back like I'll see what I find tomorrow."</item>
+		<item>"I'm Weezy F Baby and the F ain't for Fear"</item>
+		<item>"Sleeping at the top, nightmares of the bottom. Everybody wanna be fly until you swat 'em."</item>
+		<item>"All my niggas bloods but we make you niggas bleed."</item>
+		<item>"Boy instead of writing raps you should be writing a will."</item>
+		<item>"I got a virgin I call her Madonna, but I ain't trippin her head is a monsta."</item>
+		<item>"The difference between you and I... you get money and you get crazy, I get crazy and I get money."</item>
+		<item>"She want that dope dick, hello world I'm the dope dealer."</item>
+		<item>"Lord knows I'm a sinner, pain pills for dinner. Bitch I'm getting money like I got a money printer."</item>
+		<item>"I love it when she talk crazy, that dick make her walk crazy."</item>
+		<item>"Last time was awesome, all the lines we crossed em. I ain't a killer but don't push me, I'll OJ Simpson that pussy."</item>
+		<item>"Even if the sky come falling, bitch I'mma still be high. I got faith in my weed man."</item>
+		<item>"I smoke a lot of week to keep them bitches off my mind."</item>
+		<item>"Swear to God I never shoot unless I'm shooting to kill."</item>
+		<item>"I'm loving my shine, sipping on fine wine, up in some fine dime then she give me Einstein."</item>		
 
 	</string-array>
 </resources>
