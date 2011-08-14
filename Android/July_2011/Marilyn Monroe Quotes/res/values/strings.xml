@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MarilynQuotes!</string>
+    <string name="app_name">Marilyn Monroe Quotes</string>
+</resources>
