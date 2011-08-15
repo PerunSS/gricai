@@ -1,20 +1,21 @@
 package com.cerSprikRu.NikiQuotes;
 
-import java.io.File; 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,9 +25,10 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
 public class NikiQuotes extends Activity {
-	private String[] facts;
+	private List<String> facts;
 	private TextView factsTextView;
 	private String fact;
+	private int current = 0;
 	private int[] backgrounds = { R.drawable.b1, R.drawable.b2, R.drawable.b3,
 			R.drawable.b4, R.drawable.b5, R.drawable.b6, R.drawable.b7,
 			R.drawable.b8, R.drawable.b9, R.drawable.b10, R.drawable.b11,
@@ -42,16 +44,19 @@ public class NikiQuotes extends Activity {
 			R.drawable.b48,};
 
 	private int currentBck;
-	private AlertDialog.Builder builder;
+	//private AlertDialog.Builder builder;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		facts = getResources().getStringArray(R.array.facts);
-		fact = facts[(int) (Math.random() * facts.length)];
-		
+		String elements [] = getResources().getStringArray(R.array.facts);
+		facts = new ArrayList<String>();
+		for(String element:elements)
+			facts.add(element);
+		Collections.shuffle(facts);
+		fact = facts.get(current);		
 		AdView adView1 = (AdView)this.findViewById(R.id.ad1);
 	    adView1.loadAd(new AdRequest());
 
@@ -64,7 +69,7 @@ public class NikiQuotes extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				fact = facts[(int) (Math.random() * facts.length)];
+				fact = facts.get((++current)%facts.size());
 				factsTextView = (TextView) findViewById(R.id.fact);
 				if (fact.length() > 200)
 					factsTextView.setTextSize(25);
@@ -79,7 +84,7 @@ public class NikiQuotes extends Activity {
 				factsTextView.setText(fact);
 			}
 		});
-		builder = new AlertDialog.Builder(this);
+		//builder = new AlertDialog.Builder(this);
 		final Button saveBtn = (Button) findViewById(R.id.save);
 		saveBtn.setOnClickListener(new View.OnClickListener() {
 
