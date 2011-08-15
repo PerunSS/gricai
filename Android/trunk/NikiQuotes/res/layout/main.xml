@@ -12,6 +12,11 @@
   			android:layout_height="fill_parent"
   			android:layout_weight="1"
   		>	
+  		<ScrollView
+  			android:id="@+id/scroll_view"
+  			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent"
+			android:layout_weight="1">
 		<TextView android:text="@+id/fact" 
 			android:id="@+id/fact"
 			android:gravity="center" 
@@ -24,7 +29,9 @@
 			android:shadowDx="0"
 			android:shadowDy="0"
 			android:layout_weight="1"
+			android:textSize="18dp"
 		/>
+		</ScrollView>
 		<com.google.ads.AdView android:id="@+id/ad1"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"

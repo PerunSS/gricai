@@ -31,6 +31,7 @@ import com.google.ads.AdView;
 public class NikiQuotes extends Activity {
 	private List<String> facts;
 	private TextView factsTextView;
+	
 	private String fact;
 	private int current = 0;
 	private int[] backgrounds = { R.drawable.b1, R.drawable.b2, R.drawable.b3,
@@ -164,7 +165,7 @@ public class NikiQuotes extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
 	    switch (item.getItemId()) {
-	    case R.id.settings:
+	    case R.id.text_color:
 		    new ColorPickerDialog(this, new OnColorChangedListener() {
 				
 				@Override
@@ -174,6 +175,16 @@ public class NikiQuotes extends Activity {
 			}, 0xFFFF0000).show();
 	        return true;
 	        
+	    case R.id.shadow_color:
+		    new ColorPickerDialog(this, new OnColorChangedListener() {
+				
+				@Override
+				public void colorChanged(int color) {
+					factsTextView.setShadowLayer(10, 0, 0, color);
+				}
+			}, 0xFFFF0000).show();
+	        return true; 
+	        	
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }

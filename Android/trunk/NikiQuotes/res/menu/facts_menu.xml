@@ -4,5 +4,18 @@
  	<item 
     	android:id="@+id/settings"
     	android:title="Settings"
-    	android:icon="@android:drawable/ic_menu_manage"/>     
+    	android:icon="@android:drawable/ic_menu_manage">
+    	<menu 
+    		android:id="@+id/submenu">
+        		<item 
+        			android:id="@+id/text_color"
+              		android:title="Text Color"/>
+        		<item 
+        			android:id="@+id/shadow_color"
+              		android:title="Text Shadow Color" />
+        		<item 
+	        		android:id="@+id/font_size"
+    	    	  	android:title="Font Size"/>  	      
+    	</menu>
+    </item>     
 </menu>
