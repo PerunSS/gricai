@@ -15,12 +15,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cerSprikRu.NikiQuotes.ColorPickerDialog.OnColorChangedListener;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
@@ -132,6 +136,7 @@ public class NikiQuotes extends Activity {
 		factsTextView.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
 		
+		
 		final Button shareButton = (Button) findViewById(R.id.share);
 		shareButton.setOnClickListener(new OnClickListener() {
 
@@ -147,7 +152,30 @@ public class NikiQuotes extends Activity {
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
-
-
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.facts_menu, menu);
+	    return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.settings:
+		    new ColorPickerDialog(this, new OnColorChangedListener() {
+				
+				@Override
+				public void colorChanged(int color) {
+					factsTextView.setTextColor(color);
+				}
+			}, 0xFFFF0000).show();
+	        return true;
+	        
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
 	}
 }
