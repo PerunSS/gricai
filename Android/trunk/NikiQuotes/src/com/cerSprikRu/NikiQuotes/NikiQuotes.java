@@ -24,7 +24,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cerSprikRu.NikiQuotes.ColorPickerDialog.OnColorChangedListener;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
@@ -165,26 +164,27 @@ public class NikiQuotes extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
 	    switch (item.getItemId()) {
-	    case R.id.text_color:
-		    new ColorPickerDialog(this, new OnColorChangedListener() {
+	    case R.id.settings:
+	    	SettingsDialog dialog = new SettingsDialog(this, 18, 10, 0xFFCCCC00, 0xFFFF0000, new SettingsDialog.SettingsListener() {
+				
+				@Override
+				public void changeSettings(int fontSize, int shadowSize, int textColor,
+						int shadowColor) {
+					factsTextView.setTextColor(textColor);
+			    	factsTextView.setTextSize(fontSize);
+			    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
+				}
+			});
+	    	dialog.show();
+	    	
+		    /*new ColorPickerDialog(this, new OnColorChangedListener() {
 				
 				@Override
 				public void colorChanged(int color) {
 					factsTextView.setTextColor(color);
 				}
-			}, 0xFFFF0000).show();
+			}, 0xFFFF0000).show();*/
 	        return true;
-	        
-	    case R.id.shadow_color:
-		    new ColorPickerDialog(this, new OnColorChangedListener() {
-				
-				@Override
-				public void colorChanged(int color) {
-					factsTextView.setShadowLayer(10, 0, 0, color);
-				}
-			}, 0xFFFF0000).show();
-	        return true; 
-	        	
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
