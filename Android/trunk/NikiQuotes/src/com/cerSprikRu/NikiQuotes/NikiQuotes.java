@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,8 @@ import com.google.ads.AdView;
 public class NikiQuotes extends Activity {
 	private List<String> facts;
 	private TextView factsTextView;
+	private ScrollView scrollView;
+	private Context myContext =this;
 	
 	private String fact;
 	private int current = 0;
@@ -55,6 +59,7 @@ public class NikiQuotes extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		scrollView = (ScrollView) findViewById(R.id.scroll_view);
 		String elements [] = getResources().getStringArray(R.array.facts);
 		facts = new ArrayList<String>();
 		for(String element:elements)
@@ -84,7 +89,7 @@ public class NikiQuotes extends Activity {
 				else
 					factsTextView.setTextSize(35);
 				currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
-				factsTextView.setBackgroundResource(currentBck);
+				scrollView.setBackgroundResource(currentBck);
 				factsTextView.setText(fact);
 			}
 		});
@@ -133,9 +138,28 @@ public class NikiQuotes extends Activity {
 		else
 			factsTextView.setTextSize(35);
 		currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
-		factsTextView.setBackgroundResource(currentBck);
+		
+		scrollView.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
 		
+		final Button settingsButton = (Button) findViewById(R.id.settings_button);
+		settingsButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				SettingsDialog dialog = new SettingsDialog(myContext, 18, 10, 0xFFCCCC00, 0xFFFF0000, new SettingsDialog.SettingsListener() {
+					
+					@Override
+					public void changeSettings(int fontSize, int shadowSize, int textColor,
+							int shadowColor) {
+						factsTextView.setTextColor(textColor);
+				    	factsTextView.setTextSize(fontSize);
+				    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
+					}
+				});
+		    	dialog.show();
+							}
+		});
 		
 		final Button shareButton = (Button) findViewById(R.id.share);
 		shareButton.setOnClickListener(new OnClickListener() {

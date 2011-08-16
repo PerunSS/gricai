@@ -5,7 +5,31 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    
+    <LinearLayout
+    	android:orientation="horizontal"
+    	android:layout_width="fill_parent"
+    	android:layout_height="40dp"
+    	android:background="@drawable/bar">
+    	<Button
+    		android:id="@+id/cerspri_button"
+    		android:background="@drawable/logo_button"	
+    		android:layout_width="40dp"
+	    	android:layout_height="40dp"
+    	/>
+    	<TextView
+    		android:layout_width="40dp"
+	    	android:layout_height="40dp"
+	    	android:layout_weight="1"
+    	/>
+    	<Button
+    		android:layout_gravity="right|center_vertical"
+    		android:layout_marginRight="5dp"
+    		android:id="@+id/settings_button"
+    		android:background="@drawable/settings_button"	
+    		android:layout_width="35dp"
+	    	android:layout_height="35dp"
+    	/>
+    </LinearLayout>
     <LinearLayout
   			android:orientation="vertical"
   			android:layout_width="fill_parent"
@@ -20,6 +44,7 @@
 		<TextView android:text="@+id/fact" 
 			android:id="@+id/fact"
 			android:gravity="center" 
+			android:layout_gravity="center"
 			android:layout_height="fill_parent" 
 			android:layout_width="fill_parent"
 			android:textColor="#CCCC00"
@@ -42,14 +67,14 @@
 	<LinearLayout
   			android:orientation="vertical"
   			android:layout_width="fill_parent"
-  			android:layout_height="fill_parent"
-  			android:layout_weight="4"
+  			android:layout_height="80dp"
   	>	
     	<LinearLayout
   			android:orientation="horizontal"
   			android:layout_width="fill_parent"
   			android:layout_height="fill_parent"
   			android:layout_weight="1"
+  			android:background="#fffcc2"
   		>
   			<Button 
   				android:id="@+id/random"
@@ -57,21 +82,21 @@
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
   				android:layout_weight="1"
-  				android:background="@drawable/random_button"/>	
+  				android:background="@drawable/facts_button"/>	
   			<Button 
   				android:id="@+id/save"
   				android:text ="Save Image"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
   				android:layout_weight="1"
-  				android:background="@drawable/save_button"/>
+  				android:background="@drawable/facts_button"/>
   			<Button 
   				android:id="@+id/share"
   				android:text ="Share"
   				android:layout_width="fill_parent"
   				android:layout_height="fill_parent"
   				android:layout_weight="1"
-  				android:background="@drawable/share_button"/>
+  				android:background="@drawable/facts_button"/>
 		</LinearLayout>
 		
 		<com.google.ads.AdView android:id="@+id/ad2"
