@@ -8,8 +8,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,7 +25,12 @@ public class RihannaQuotes extends Activity {
 			R.drawable.b20, R.drawable.b21, R.drawable.b22, R.drawable.b23,
 			R.drawable.b24, R.drawable.b25, R.drawable.b26, R.drawable.b27,
 			R.drawable.b28, R.drawable.b29, R.drawable.b30, R.drawable.b31,
-			R.drawable.b32, R.drawable.b33, R.drawable.b34, R.drawable.b35 };
+			R.drawable.b32, R.drawable.b33, R.drawable.b34, R.drawable.b35,
+			R.drawable.b36, R.drawable.b37, R.drawable.b38, R.drawable.b39,
+			R.drawable.b40, R.drawable.b41, R.drawable.b42, R.drawable.b43,
+			R.drawable.b44, R.drawable.b45, R.drawable.b46, R.drawable.b47,
+			R.drawable.b48, R.drawable.b49, R.drawable.b50, R.drawable.b51,
+			R.drawable.b52,};
 
 	private int currentBck;
 	private AlertDialog.Builder builder;
