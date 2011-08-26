@@ -38,7 +38,8 @@ public class BieberFacts extends Activity {
 			R.drawable.b36, R.drawable.b37, R.drawable.b38, R.drawable.b39,
 			R.drawable.b40, R.drawable.b41, R.drawable.b42, R.drawable.b43,
 			R.drawable.b44, R.drawable.b45, R.drawable.b46, R.drawable.b47,
-			R.drawable.b48, R.drawable.b49};
+			R.drawable.b48, R.drawable.b49, R.drawable.b50, R.drawable.b51,
+			R.drawable.b52, R.drawable.b53, R.drawable.b54,};
 
 	private int currentBck;
 	private AlertDialog.Builder builder;
