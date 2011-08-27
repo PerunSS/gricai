@@ -35,12 +35,12 @@ public class NikiQuotes extends Activity {
 	private TextView factsTextView;
 	private ScrollView scrollView;
 	private Context myContext = this;
-	
+
 	private float fontSize;
 	private int fontColor;
 	private float shadowSize;
 	private int shadowColor;
-	
+
 	private String fact;
 	private int current = 0;
 	private int[] backgrounds = { R.drawable.b1, R.drawable.b2, R.drawable.b3,
@@ -56,49 +56,51 @@ public class NikiQuotes extends Activity {
 			R.drawable.b40, R.drawable.b41, R.drawable.b42, R.drawable.b43,
 			R.drawable.b44, R.drawable.b45, R.drawable.b46, R.drawable.b47,
 			R.drawable.b48, R.drawable.b49, R.drawable.b50, R.drawable.b51,
-			R.drawable.b52, R.drawable.b53, R.drawable.b54, R.drawable.b55,};
+			R.drawable.b52, R.drawable.b53, R.drawable.b54, R.drawable.b55, };
 
 	private int currentBck;
-	//private AlertDialog.Builder builder;
+
+	// private AlertDialog.Builder builder;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref", MODE_WORLD_READABLE);
+		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref",
+				MODE_WORLD_READABLE);
 		fontSize = sPrefs.getFloat("font_size", 18.0f);
 		fontColor = sPrefs.getInt("font_color", 0xFFCCCC00);
 		shadowSize = sPrefs.getFloat("shadow_size", 10f);
 		shadowColor = sPrefs.getInt("shadow_color", 0xFFFF0000);
-		
+
 		setContentView(R.layout.main);
 		scrollView = (ScrollView) findViewById(R.id.scroll_view);
-		String elements [] = getResources().getStringArray(R.array.facts);
+		String elements[] = getResources().getStringArray(R.array.facts);
 		facts = new ArrayList<String>();
-		for(String element:elements)
+		for (String element : elements)
 			facts.add(element);
 		Collections.shuffle(facts);
-		fact = facts.get(current);		
-		AdView adView1 = (AdView)this.findViewById(R.id.ad1);
-	    adView1.loadAd(new AdRequest());
+		fact = facts.get(current);
+		AdView adView1 = (AdView) this.findViewById(R.id.ad1);
+		adView1.loadAd(new AdRequest());
 
-	    AdView adView2 = (AdView)this.findViewById(R.id.ad2);
-	    adView2.loadAd(new AdRequest());
-		
+		AdView adView2 = (AdView) this.findViewById(R.id.ad2);
+		adView2.loadAd(new AdRequest());
+
 		final Button randomBtn = (Button) findViewById(R.id.random);
 
 		randomBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				fact = facts.get((++current)%facts.size());
+				fact = facts.get((++current) % facts.size());
 				factsTextView = (TextView) findViewById(R.id.fact);
 				currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
 				scrollView.setBackgroundResource(currentBck);
 				factsTextView.setText(fact);
 			}
 		});
-		//builder = new AlertDialog.Builder(this);
+		// builder = new AlertDialog.Builder(this);
 		final Button saveBtn = (Button) findViewById(R.id.save);
 		saveBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -130,44 +132,49 @@ public class NikiQuotes extends Activity {
 						} catch (IOException e) {
 						}
 				}
-				Toast.makeText(NikiQuotes.this, "Saved image: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+				Toast.makeText(NikiQuotes.this,
+						"Saved image: " + file.getAbsolutePath(),
+						Toast.LENGTH_LONG).show();
 			}
 		});
 		factsTextView = (TextView) findViewById(R.id.fact);
 		currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
-		
+
 		scrollView.setBackgroundResource(currentBck);
 		factsTextView.setText(fact);
-		
+
 		final Button settingsButton = (Button) findViewById(R.id.settings_button);
 		settingsButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				SettingsDialog dialog = new SettingsDialog(myContext, fontSize, shadowSize, fontColor, shadowColor, new SettingsDialog.SettingsListener() {
-					
-					@Override
-					public void changeSettings(float fontSize, float shadowSize, int textColor,
-							int shadowColor) {
-						if(fontSize!=Float.NaN){
-							NikiQuotes.this.fontSize = fontSize;
-						}
-						if(shadowSize!=Float.NaN){
-							NikiQuotes.this.shadowSize = shadowSize;
-						}
-						if(textColor!=Integer.MAX_VALUE){
-							NikiQuotes.this.fontColor = textColor;
-						}
-						if(shadowColor!=Integer.MAX_VALUE){
-							NikiQuotes.this.shadowColor = shadowColor;
-						}
-						changeColors();
-					}
-				});
-		    	dialog.show();
+				SettingsDialog dialog = new SettingsDialog(myContext, fontSize,
+						shadowSize, fontColor, shadowColor,
+						new SettingsDialog.SettingsListener() {
+
+							@Override
+							public void changeSettings(float fontSize,
+									float shadowSize, int textColor,
+									int shadowColor) {
+								if (fontSize != Float.NaN) {
+									NikiQuotes.this.fontSize = fontSize;
+								}
+								if (shadowSize != Float.NaN) {
+									NikiQuotes.this.shadowSize = shadowSize;
+								}
+								if (textColor != Integer.MAX_VALUE) {
+									NikiQuotes.this.fontColor = textColor;
+								}
+								if (shadowColor != Integer.MAX_VALUE) {
+									NikiQuotes.this.shadowColor = shadowColor;
+								}
+								changeColors();
 							}
+						});
+				dialog.show();
+			}
 		});
-		
+
 		final Button shareButton = (Button) findViewById(R.id.share);
 		shareButton.setOnClickListener(new OnClickListener() {
 
@@ -176,70 +183,71 @@ public class NikiQuotes extends Activity {
 				final Intent intent = new Intent(Intent.ACTION_SEND);
 
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT,
-						"Nicki Minaj: "
-								+fact);
+				intent.putExtra(Intent.EXTRA_TEXT, "Nicki Minaj: " + fact);
 
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
 		changeColors();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.facts_menu, menu);
-	    return true;
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.facts_menu, menu);
+		return true;
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	    case R.id.settings:
-	    	SettingsDialog dialog = new SettingsDialog(this, factsTextView.getTextSize(), 10,0xFFFF0000 , 0xFFFF0000, new SettingsDialog.SettingsListener() {
-				
-				@Override
-				public void changeSettings(float fontSize, float shadowSize, int textColor,
-						int shadowColor) {
-					if(fontSize!=Float.NaN){
-						NikiQuotes.this.fontSize = fontSize;
-					}
-					if(shadowSize!=Float.NaN){
-						NikiQuotes.this.shadowSize = shadowSize;
-					}
-					if(textColor!=Integer.MAX_VALUE){
-						NikiQuotes.this.fontColor = textColor;
-					}
-					if(shadowColor!=Integer.MAX_VALUE){
-						NikiQuotes.this.shadowColor = shadowColor;
-					}
-					changeColors();
-				}
-			});
-	    	dialog.show();
-	    	
-		    /*new ColorPickerDialog(this, new OnColorChangedListener() {
-				
-				@Override
-				public void colorChanged(int color) {
-					factsTextView.setTextColor(color);
-				}
-			}, 0xFFFF0000).show();*/
-	        return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.settings:
+			SettingsDialog dialog = new SettingsDialog(this, factsTextView
+					.getTextSize(), 10, 0xFFFF0000, 0xFFFF0000,
+					new SettingsDialog.SettingsListener() {
+
+						@Override
+						public void changeSettings(float fontSize,
+								float shadowSize, int textColor, int shadowColor) {
+							if (fontSize != Float.NaN) {
+								NikiQuotes.this.fontSize = fontSize;
+							}
+							if (shadowSize != Float.NaN) {
+								NikiQuotes.this.shadowSize = shadowSize;
+							}
+							if (textColor != Integer.MAX_VALUE) {
+								NikiQuotes.this.fontColor = textColor;
+							}
+							if (shadowColor != Integer.MAX_VALUE) {
+								NikiQuotes.this.shadowColor = shadowColor;
+							}
+							changeColors();
+						}
+					});
+			dialog.show();
+
+			/*
+			 * new ColorPickerDialog(this, new OnColorChangedListener() {
+			 * 
+			 * @Override public void colorChanged(int color) {
+			 * factsTextView.setTextColor(color); } }, 0xFFFF0000).show();
+			 */
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-	
-	private void changeColors(){
-		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref", MODE_WORLD_WRITEABLE);
+
+	private void changeColors() {
+		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref",
+				MODE_WORLD_WRITEABLE);
 		sPrefs.edit().putFloat("font_size", fontSize);
 		sPrefs.edit().putFloat("shadow_size", shadowSize);
 		sPrefs.edit().putInt("font_color", fontColor);
 		sPrefs.edit().putInt("shadow_color", shadowColor);
 		factsTextView.setTextColor(fontColor);
-    	factsTextView.setTextSize(fontSize);
-    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);	
+		factsTextView.setTextSize(fontSize);
+		factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
 	}
 }

@@ -11,16 +11,16 @@ import android.widget.TextView;
 import com.cerSprikRu.NikiQuotes.ColorPickerDialog.OnColorChangedListener;
 
 public class SettingsDialog extends Dialog {
-	
-	public interface SettingsListener{
-		public void changeSettings( float fontSize, float shadowSize,
+
+	public interface SettingsListener {
+		public void changeSettings(float fontSize, float shadowSize,
 				int textColor, int shadowColor);
 	}
 
-	private float shadowSize, startShadowSize;
-	private float fontSize, startFontSize;
-	private int textColor, startTextColor;
-	private int shadowColor, startShadowColor;
+	private float shadowSize;
+	private float fontSize;
+	private int textColor;
+	private int shadowColor;
 	private Context context;
 	private SettingsListener listener;
 
@@ -28,10 +28,10 @@ public class SettingsDialog extends Dialog {
 			int textColor, int shadowColor, SettingsListener listener) {
 		super(context);
 		this.listener = listener;
-		startFontSize = this.fontSize = fontSize;
-		startTextColor = this.textColor = textColor;
-		startShadowColor = this.shadowColor = shadowColor;
-		startShadowSize = this.shadowSize = shadowSize;
+		this.fontSize = fontSize;
+		this.textColor = textColor;
+		this.shadowColor = shadowColor;
+		this.shadowSize = shadowSize;
 		this.context = context;
 	}
 
@@ -44,7 +44,7 @@ public class SettingsDialog extends Dialog {
 		fontView.setText("" + fontSize);
 		final SeekBar fontBar = (SeekBar) findViewById(R.id.seekFontSize);
 		fontBar.setMax(32);
-		fontBar.setProgress((int)fontSize - 8);
+		fontBar.setProgress((int) fontSize - 8);
 		fontBar
 				.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 					@Override
@@ -67,7 +67,7 @@ public class SettingsDialog extends Dialog {
 		shView.setText("" + shadowSize);
 		final SeekBar shadowBar = (SeekBar) findViewById(R.id.seekShSize);
 		shadowBar.setMax(20);
-		shadowBar.setProgress((int)shadowSize);
+		shadowBar.setProgress((int) shadowSize);
 		shadowBar
 				.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 					@Override
@@ -82,7 +82,7 @@ public class SettingsDialog extends Dialog {
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
 						shadowSize = progress;
-						shadowBar.setProgress((int)shadowSize);
+						shadowBar.setProgress((int) shadowSize);
 					}
 				});
 		final TextView txtClr = (TextView) findViewById(R.id.textColor);
@@ -125,23 +125,25 @@ public class SettingsDialog extends Dialog {
 		});
 		Button btnCancel = (Button) findViewById(R.id.settBtnCancel);
 		btnCancel.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				shadowColor = startShadowColor;
-				shadowSize = startShadowSize;
-				fontSize = startFontSize;
-				textColor = startTextColor;
-				listener.changeSettings(fontSize, shadowSize, textColor, shadowColor);
+				shadowColor = Integer.MAX_VALUE;
+				shadowSize = Float.NaN;
+				fontSize = Float.NaN;
+				textColor = Integer.MAX_VALUE;
+				listener.changeSettings(fontSize, shadowSize, textColor,
+						shadowColor);
 				SettingsDialog.this.dismiss();
 			}
 		});
 		Button btnOk = (Button) findViewById(R.id.settBtnOk);
 		btnOk.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				listener.changeSettings(fontSize, shadowSize, textColor, shadowColor);
+				listener.changeSettings(fontSize, shadowSize, textColor,
+						shadowColor);
 				SettingsDialog.this.dismiss();
 			}
 		});
