@@ -93,14 +93,6 @@ public class NikiQuotes extends Activity {
 			public void onClick(View v) {
 				fact = facts.get((++current)%facts.size());
 				factsTextView = (TextView) findViewById(R.id.fact);
-				if (fact.length() > 200)
-					factsTextView.setTextSize(25);
-				else if (fact.length() > 150)
-					factsTextView.setTextSize(27);
-				else if (fact.length() > 100)
-					factsTextView.setTextSize(30);
-				else
-					factsTextView.setTextSize(35);
 				currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
 				scrollView.setBackgroundResource(currentBck);
 				factsTextView.setText(fact);
@@ -142,14 +134,6 @@ public class NikiQuotes extends Activity {
 			}
 		});
 		factsTextView = (TextView) findViewById(R.id.fact);
-		if (fact.length() > 200)
-			factsTextView.setTextSize(25);
-		else if (fact.length() > 150)
-			factsTextView.setTextSize(27);
-		else if (fact.length() > 100)
-			factsTextView.setTextSize(30);
-		else
-			factsTextView.setTextSize(35);
 		currentBck = backgrounds[(int) (Math.random() * backgrounds.length)];
 		
 		scrollView.setBackgroundResource(currentBck);
@@ -165,10 +149,19 @@ public class NikiQuotes extends Activity {
 					@Override
 					public void changeSettings(float fontSize, float shadowSize, int textColor,
 							int shadowColor) {
-						
-						factsTextView.setTextColor(textColor);
-				    	factsTextView.setTextSize(fontSize);
-				    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
+						if(fontSize!=Float.NaN){
+							NikiQuotes.this.fontSize = fontSize;
+						}
+						if(shadowSize!=Float.NaN){
+							NikiQuotes.this.shadowSize = shadowSize;
+						}
+						if(textColor!=Integer.MAX_VALUE){
+							NikiQuotes.this.fontColor = textColor;
+						}
+						if(shadowColor!=Integer.MAX_VALUE){
+							NikiQuotes.this.shadowColor = shadowColor;
+						}
+						changeColors();
 					}
 				});
 		    	dialog.show();
@@ -190,6 +183,7 @@ public class NikiQuotes extends Activity {
 				startActivity(Intent.createChooser(intent, "share"));
 			}
 		});
+		changeColors();
 	}
 	
 	@Override
@@ -208,9 +202,19 @@ public class NikiQuotes extends Activity {
 				@Override
 				public void changeSettings(float fontSize, float shadowSize, int textColor,
 						int shadowColor) {
-					factsTextView.setTextColor(textColor);
-			    	factsTextView.setTextSize(fontSize);
-			    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
+					if(fontSize!=Float.NaN){
+						NikiQuotes.this.fontSize = fontSize;
+					}
+					if(shadowSize!=Float.NaN){
+						NikiQuotes.this.shadowSize = shadowSize;
+					}
+					if(textColor!=Integer.MAX_VALUE){
+						NikiQuotes.this.fontColor = textColor;
+					}
+					if(shadowColor!=Integer.MAX_VALUE){
+						NikiQuotes.this.shadowColor = shadowColor;
+					}
+					changeColors();
 				}
 			});
 	    	dialog.show();
@@ -226,5 +230,16 @@ public class NikiQuotes extends Activity {
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private void changeColors(){
+		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref", MODE_WORLD_WRITEABLE);
+		sPrefs.edit().putFloat("font_size", fontSize);
+		sPrefs.edit().putFloat("shadow_size", shadowSize);
+		sPrefs.edit().putInt("font_color", fontColor);
+		sPrefs.edit().putInt("shadow_color", shadowColor);
+		factsTextView.setTextColor(fontColor);
+    	factsTextView.setTextSize(fontSize);
+    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);	
 	}
 }
