@@ -13,18 +13,18 @@ import com.cerSprikRu.NikiQuotes.ColorPickerDialog.OnColorChangedListener;
 public class SettingsDialog extends Dialog {
 	
 	public interface SettingsListener{
-		public void changeSettings( int fontSize, int shadowSize,
+		public void changeSettings( float fontSize, float shadowSize,
 				int textColor, int shadowColor);
 	}
 
-	private int shadowSize, startShadowSize;
-	private int fontSize, startFontSize;
+	private float shadowSize, startShadowSize;
+	private float fontSize, startFontSize;
 	private int textColor, startTextColor;
 	private int shadowColor, startShadowColor;
 	private Context context;
 	private SettingsListener listener;
 
-	public SettingsDialog(Context context, int fontSize, int shadowSize,
+	public SettingsDialog(Context context, float fontSize, float shadowSize,
 			int textColor, int shadowColor, SettingsListener listener) {
 		super(context);
 		this.listener = listener;
@@ -44,7 +44,7 @@ public class SettingsDialog extends Dialog {
 		fontView.setText("" + fontSize);
 		final SeekBar fontBar = (SeekBar) findViewById(R.id.seekFontSize);
 		fontBar.setMax(32);
-		fontBar.setProgress(fontSize - 8);
+		fontBar.setProgress((int)fontSize - 8);
 		fontBar
 				.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 					@Override
@@ -67,7 +67,7 @@ public class SettingsDialog extends Dialog {
 		shView.setText("" + shadowSize);
 		final SeekBar shadowBar = (SeekBar) findViewById(R.id.seekShSize);
 		shadowBar.setMax(20);
-		shadowBar.setProgress(shadowSize);
+		shadowBar.setProgress((int)shadowSize);
 		shadowBar
 				.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 					@Override
@@ -82,7 +82,7 @@ public class SettingsDialog extends Dialog {
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
 						shadowSize = progress;
-						shadowBar.setProgress(shadowSize);
+						shadowBar.setProgress((int)shadowSize);
 					}
 				});
 		final TextView txtClr = (TextView) findViewById(R.id.textColor);

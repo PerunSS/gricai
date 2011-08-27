@@ -12,6 +12,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -33,7 +34,12 @@ public class NikiQuotes extends Activity {
 	private List<String> facts;
 	private TextView factsTextView;
 	private ScrollView scrollView;
-	private Context myContext =this;
+	private Context myContext = this;
+	
+	private float fontSize;
+	private int fontColor;
+	private float shadowSize;
+	private int shadowColor;
 	
 	private String fact;
 	private int current = 0;
@@ -59,6 +65,12 @@ public class NikiQuotes extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref", MODE_WORLD_READABLE);
+		fontSize = sPrefs.getFloat("font_size", 18.0f);
+		fontColor = sPrefs.getInt("font_color", 0xFFCCCC00);
+		shadowSize = sPrefs.getFloat("shadow_size", 10f);
+		shadowColor = sPrefs.getInt("shadow_color", 0xFFFF0000);
+		
 		setContentView(R.layout.main);
 		scrollView = (ScrollView) findViewById(R.id.scroll_view);
 		String elements [] = getResources().getStringArray(R.array.facts);
@@ -148,11 +160,12 @@ public class NikiQuotes extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				SettingsDialog dialog = new SettingsDialog(myContext, 18, 10, 0xFFCCCC00, 0xFFFF0000, new SettingsDialog.SettingsListener() {
+				SettingsDialog dialog = new SettingsDialog(myContext, fontSize, shadowSize, fontColor, shadowColor, new SettingsDialog.SettingsListener() {
 					
 					@Override
-					public void changeSettings(int fontSize, int shadowSize, int textColor,
+					public void changeSettings(float fontSize, float shadowSize, int textColor,
 							int shadowColor) {
+						
 						factsTextView.setTextColor(textColor);
 				    	factsTextView.setTextSize(fontSize);
 				    	factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
@@ -190,10 +203,10 @@ public class NikiQuotes extends Activity {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.settings:
-	    	SettingsDialog dialog = new SettingsDialog(this, 18, 10, 0xFFCCCC00, 0xFFFF0000, new SettingsDialog.SettingsListener() {
+	    	SettingsDialog dialog = new SettingsDialog(this, factsTextView.getTextSize(), 10,0xFFFF0000 , 0xFFFF0000, new SettingsDialog.SettingsListener() {
 				
 				@Override
-				public void changeSettings(int fontSize, int shadowSize, int textColor,
+				public void changeSettings(float fontSize, float shadowSize, int textColor,
 						int shadowColor) {
 					factsTextView.setTextColor(textColor);
 			    	factsTextView.setTextSize(fontSize);
