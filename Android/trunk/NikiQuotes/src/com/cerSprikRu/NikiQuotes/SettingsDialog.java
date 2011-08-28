@@ -41,7 +41,7 @@ public class SettingsDialog extends Dialog {
 		setContentView(R.layout.settings);
 		final TextView fontView = (TextView) findViewById(R.id.fontSize);
 		fontView.setTextSize(fontSize);
-		fontView.setText("" + fontSize);
+		fontView.setText((int)fontSize+"");
 		final SeekBar fontBar = (SeekBar) findViewById(R.id.seekFontSize);
 		fontBar.setMax(32);
 		fontBar.setProgress((int) fontSize - 8);
@@ -59,12 +59,11 @@ public class SettingsDialog extends Dialog {
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
 						fontSize = progress + 8;
-						fontView.setTextSize(fontSize);
-						fontView.setText("" + fontSize);
+						fontView.setText((int)fontSize+"");
 					}
 				});
-		final TextView shView = (TextView) findViewById(R.id.fontSize);
-		shView.setText("" + shadowSize);
+		final TextView shView = (TextView) findViewById(R.id.shSize);
+		shView.setText((int)shadowSize+"");
 		final SeekBar shadowBar = (SeekBar) findViewById(R.id.seekShSize);
 		shadowBar.setMax(20);
 		shadowBar.setProgress((int) shadowSize);
@@ -82,7 +81,7 @@ public class SettingsDialog extends Dialog {
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
 						shadowSize = progress;
-						shadowBar.setProgress((int) shadowSize);
+						shView.setText((int)shadowSize+"");
 					}
 				});
 		final TextView txtClr = (TextView) findViewById(R.id.textColor);

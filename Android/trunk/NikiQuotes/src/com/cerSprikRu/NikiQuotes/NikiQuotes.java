@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
@@ -68,7 +69,7 @@ public class NikiQuotes extends Activity {
 		super.onCreate(savedInstanceState);
 		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref",
 				MODE_WORLD_READABLE);
-		fontSize = sPrefs.getFloat("font_size", 18.0f);
+		fontSize = sPrefs.getFloat("font_size", 22.0f);
 		fontColor = sPrefs.getInt("font_color", 0xFFCCCC00);
 		shadowSize = sPrefs.getFloat("shadow_size", 10f);
 		shadowColor = sPrefs.getInt("shadow_color", 0xFFFF0000);
@@ -156,8 +157,11 @@ public class NikiQuotes extends Activity {
 							public void changeSettings(float fontSize,
 									float shadowSize, int textColor,
 									int shadowColor) {
+								boolean cancel = false;
 								if (fontSize != Float.NaN) {
 									NikiQuotes.this.fontSize = fontSize;
+								} else {
+									cancel = true;
 								}
 								if (shadowSize != Float.NaN) {
 									NikiQuotes.this.shadowSize = shadowSize;
@@ -168,7 +172,8 @@ public class NikiQuotes extends Activity {
 								if (shadowColor != Integer.MAX_VALUE) {
 									NikiQuotes.this.shadowColor = shadowColor;
 								}
-								changeColors();
+								if (!cancel)
+									changeColors();
 							}
 						});
 				dialog.show();
@@ -189,6 +194,19 @@ public class NikiQuotes extends Activity {
 			}
 		});
 		changeColors();
+		
+		//link to android makret search cerspri.kru
+		final Button cerspriButton = (Button)findViewById(R.id.cerspri_button);
+		cerspriButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse("market://search?q=cerspri.kru"));
+				startActivity(intent);
+			}
+		});
+		
 	}
 
 	@Override
@@ -210,8 +228,11 @@ public class NikiQuotes extends Activity {
 						@Override
 						public void changeSettings(float fontSize,
 								float shadowSize, int textColor, int shadowColor) {
+							boolean cancel = false;
 							if (fontSize != Float.NaN) {
 								NikiQuotes.this.fontSize = fontSize;
+							} else {
+								cancel = true;
 							}
 							if (shadowSize != Float.NaN) {
 								NikiQuotes.this.shadowSize = shadowSize;
@@ -222,7 +243,8 @@ public class NikiQuotes extends Activity {
 							if (shadowColor != Integer.MAX_VALUE) {
 								NikiQuotes.this.shadowColor = shadowColor;
 							}
-							changeColors();
+							if (!cancel)
+								changeColors();
 						}
 					});
 			dialog.show();
