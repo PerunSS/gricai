@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -67,8 +68,7 @@ public class CherFacts extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SharedPreferences sPrefs = this.getSharedPreferences("com.cerspri.cherFacts",
-				MODE_WORLD_READABLE);
+		SharedPreferences sPrefs = this.getPreferences(MODE_WORLD_READABLE);
 		fontSize = sPrefs.getFloat("font_size", 22.0f);
 		fontColor = sPrefs.getInt("font_color", 0xFFCCCC00);
 		shadowSize = sPrefs.getFloat("shadow_size", 10f);
@@ -262,14 +262,15 @@ public class CherFacts extends Activity {
 	}
 
 	private void changeColors() {
-		SharedPreferences sPrefs = this.getSharedPreferences("com.cerspri.cherFacts",
-				MODE_WORLD_WRITEABLE);
-		sPrefs.edit().putFloat("font_size", fontSize);
-		sPrefs.edit().putFloat("shadow_size", shadowSize);
-		sPrefs.edit().putInt("font_color", fontColor);
-		sPrefs.edit().putInt("shadow_color", shadowColor);
+		SharedPreferences sPrefs = this.getPreferences(MODE_WORLD_WRITEABLE);
+		Editor editor = sPrefs.edit();
+		editor.putFloat("font_size", fontSize);
+		editor.putFloat("shadow_size", shadowSize);
+		editor.putInt("font_color", fontColor);
+		editor.putInt("shadow_color", shadowColor);
 		factsTextView.setTextColor(fontColor);
 		factsTextView.setTextSize(fontSize);
 		factsTextView.setShadowLayer(shadowSize, 0, 0, shadowColor);
+		editor.commit();
 	}
 }
