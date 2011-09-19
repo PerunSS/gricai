@@ -127,12 +127,6 @@ public class SettingsDialog extends Dialog {
 
 			@Override
 			public void onClick(View v) {
-				shadowColor = Integer.MAX_VALUE;
-				shadowSize = Float.NaN;
-				fontSize = Float.NaN;
-				textColor = Integer.MAX_VALUE;
-				listener.changeSettings(fontSize, shadowSize, textColor,
-						shadowColor);
 				SettingsDialog.this.dismiss();
 			}
 		});

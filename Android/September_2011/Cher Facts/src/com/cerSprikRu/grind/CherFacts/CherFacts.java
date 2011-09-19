@@ -67,7 +67,7 @@ public class CherFacts extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref",
+		SharedPreferences sPrefs = this.getSharedPreferences("com.cerspri.cherFacts",
 				MODE_WORLD_READABLE);
 		fontSize = sPrefs.getFloat("font_size", 22.0f);
 		fontColor = sPrefs.getInt("font_color", 0xFFCCCC00);
@@ -262,7 +262,7 @@ public class CherFacts extends Activity {
 	}
 
 	private void changeColors() {
-		SharedPreferences sPrefs = this.getSharedPreferences("nikiQuotesPref",
+		SharedPreferences sPrefs = this.getSharedPreferences("com.cerspri.cherFacts",
 				MODE_WORLD_WRITEABLE);
 		sPrefs.edit().putFloat("font_size", fontSize);
 		sPrefs.edit().putFloat("shadow_size", shadowSize);
