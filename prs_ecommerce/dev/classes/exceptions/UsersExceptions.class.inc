@@ -9,16 +9,8 @@ class UsersExceptions extends Exception {
 				$creator["status"]="wrong";
 				$this->message=json_encode($creator);
 				break;
-			case Constants::CODE_WRONG_ID:
+			case Constants::CODE_EXIST_USERNAME:
 				$creator["status"]="wrong";
-				$this->message=json_encode($creator);
-				break;
-			case Constants::CODE_WRONG_PASSWORD:
-				$creator["status"]="wrong_old";
-				$this->message=json_encode($creator);
-				break;
-			case Constants::CODE_WRONG_CONFIRM_PASSWORD:
-				$creator["status"]="wrong_confirm";
 				$this->message=json_encode($creator);
 				break;
 		}
