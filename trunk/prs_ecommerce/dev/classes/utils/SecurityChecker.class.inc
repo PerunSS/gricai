@@ -2,11 +2,11 @@
 class SecurityChecker {
 
 	public static $missing_array= array(
-	"login"=>array("username", "password")
+	"korisnik_login"=>array("username", "password")
 	);
 
 	public static $empty_array= array(
-	"login"=>array("username", "password")
+	"korisnik_login"=>array("username", "password")
 	);
 
 	static function requestGET($array) {
