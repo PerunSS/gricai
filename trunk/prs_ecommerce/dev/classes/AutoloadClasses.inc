@@ -14,7 +14,9 @@ function __autoload($class_name)
 	//exceptions
 	"SecurityExceptions"=>"exceptions/", "UsersExceptions"=>"exceptions/",
 	//constants
-	"Constants"=>"constants/"
+	"Constants"=>"constants/",
+	//Admin
+	"Admin"=>"admin/"
 	);
 
 	if (isset($class_root[$class_name])){
