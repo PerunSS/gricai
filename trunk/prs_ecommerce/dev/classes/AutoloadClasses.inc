@@ -8,15 +8,15 @@ function __autoload($class_name)
 {
 	$class_root = array(
 	//utils
-	"DBManager"=>"utils/",
+	"DBManager"=>"utils/", "SecurityChecker"=>"utils/",
 	//modals
 	"Users"=>"modals/",
-	//exceptions
-	"SecurityExceptions"=>"exceptions/", "UsersExceptions"=>"exceptions/",
+	//Admin
+	"Admin"=>"admin/",
 	//constants
 	"Constants"=>"constants/",
-	//Admin
-	"Admin"=>"admin/"
+	//exceptions
+	"SecurityExceptions"=>"exceptions/","UsersExceptions"=>"exceptions/"
 	);
 
 	if (isset($class_root[$class_name])){
