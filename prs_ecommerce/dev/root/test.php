@@ -9,20 +9,37 @@
 		name="myFrame"
 	></iframe>
 	<form
-		action="TODO register action"
+		action="action.php"
 		method="post"
 		target="myFrame"
 	>
 		<fieldset>
 			<legend>Register za fizicka lica</legend>
+			Username: <input
+				type="text"
+				name="username"
+				id="username"
+			><br />
+			Password:
+			<input
+				type="password"
+				name="password"
+				id="password"
+			><br />
+			Confirm:
+			<input
+				type="password"
+				name="confirm"
+				id="confirm"
+			><br />
 			Ime: <input
 				type="text"
-				name="ime"
-				id="ime"
+				name="firstname"
+				id="firstname"
 			><br />Prezime: <input
 				type="text"
-				name="prezime"
-				id="prezime"
+				name="lastname"
+				id="lastname"
 			><br />JMBG: <input
 				type="text"
 				name="jmbg"

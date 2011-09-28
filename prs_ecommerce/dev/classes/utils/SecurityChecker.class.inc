@@ -2,26 +2,35 @@
 class SecurityChecker {
 
 	public static $missing_array= array(
-	"korisnik_login"=>array("username", "password")
+	"user_login"=>array("username", "password"),
+	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon")
 	);
 
 	public static $empty_array= array(
-	"korisnik_login"=>array("username", "password")
+	"user_login"=>array("username", "password"),
+	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon")
 	);
-	
+
 	public static $alpha_array = array(
-	"korisnik_login"=>array()
+	"user_login"=>array(),
+	"individual_register"=>array("username","firstname", "lastname")
 	);
 
 	public static $numeric_array = array(
-	"korisnik_login"=>array()
+	"user_login"=>array(),
+	"individual_register"=>array("jmbg", "telefon")
 	);
 
 	public static $date_array = array(
-	"korisnik_login"=>array()
+	"user_login"=>array(),
+	"individual_register"=>array()
+	);
+	public static $email_array = array(
+	"user_login"=>array(),
+	"individual_register"=>array("email")
 	);
 
-static function requestGET($array) {
+	static function requestGET($array) {
 		$errors=array();
 		$i=0;
 		foreach (SecurityChecker::$missing_array[$array] as $value){
@@ -52,6 +61,14 @@ static function requestGET($array) {
 			if (isset($_GET[$value]) && !empty($_GET[$value])){
 				if(!preg_match("/^[0-9]+$/", $_GET[$value])) {
 					$errors[$i]=array('error'=>'numeric_'.$value);
+					$i++;
+				}
+			}
+		}
+		foreach (SecurityChecker::$email_array[$array] as $value){
+			if (isset($_GET[$value]) && !empty($_GET[$value])){
+				if(!preg_match("/^([A-Za-z0-9_\-\.+])+\@([A-Za-z0-9_\-\.+])+\.([A-Za-z]{2,4})$/", $_GET[$value])) {
+					$errors[$i]=array('error'=>'invalid_'.$value);
 					$i++;
 				}
 			}
@@ -112,6 +129,14 @@ static function requestGET($array) {
 			if (isset($_POST[$value]) && !empty($_POST[$value])){
 				if(!preg_match("/^[0-9]+$/", $_POST[$value])) {
 					$errors[$i]=array('error'=>'numeric_'.$value);
+					$i++;
+				}
+			}
+		}
+		foreach (SecurityChecker::$email_array[$array] as $value){
+			if (isset($_POST[$value]) && !empty($_POST[$value])){
+				if(!preg_match("/^([A-Za-z0-9_\-\.+])+\@([A-Za-z0-9_\-\.+])+\.([A-Za-z]{2,4})$/", $_POST[$value])) {
+					$errors[$i]=array('error'=>'invalid_'.$value);
 					$i++;
 				}
 			}
