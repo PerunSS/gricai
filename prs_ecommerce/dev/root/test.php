@@ -14,7 +14,7 @@
 		target="myFrame"
 	>
 		<fieldset>
-			<legend>Register</legend>
+			<legend>Register za fizicka lica</legend>
 			Ime: <input
 				type="text"
 				name="ime"
@@ -37,8 +37,8 @@
 				id="email"
 			><br /> <input
 				type="submit"
-				name="sub"
-				id="sub"
+				name="register_fl"
+				id="register_fl"
 				value="Register"
 			>
 		</fieldset>
@@ -50,7 +50,7 @@
 		target="myFrame"
 	>
 		<fieldset>
-			<legend>Register</legend>
+			<legend>Register za pravna lica</legend>
 			Ime firme: <input
 				type="text"
 				name="ime"
@@ -85,8 +85,8 @@
 				id="adresa_za_dostavu"
 			><br /> <input
 				type="submit"
-				name="sub"
-				id="sub"
+				name="register_pl"
+				id="register_pl"
 				value="Register"
 			>
 		</fieldset>
@@ -114,6 +114,65 @@
 			>
 		</fieldset>
 	</form>
-	
+		<form
+		action="TODO forgot password action"
+		method="post"
+		target="myFrame"
+	>
+		<fieldset>
+			<legend>Zaboravljeni password</legend>
+			Email: <input
+				type="text"
+				name="email"
+				id="email"
+			><br /> <input
+				type="submit"
+				name="forgot"
+				id="forgot"
+				value="Forgot"
+			>
+		</fieldset>
+	</form>
+		<form
+		action="TODO update za fizicka lica action"
+		method="post"
+		target="myFrame"
+	>
+		<fieldset>
+			<legend>Update za fizicka lica</legend>
+			Novi telefon<input
+				type="text"
+				name="telefon"
+				id="telefon"
+			><br /> <input
+				type="submit"
+				name="update_pl"
+				id="update_pl"
+				value="Update"
+			>
+		</fieldset>
+	</form>
+	<form
+		action="TODO update za fizicka lica action"
+		method="post"
+		target="myFrame"
+	>
+		<fieldset>
+			<legend>Update za fizicka lica</legend>
+			Novi telefon<input
+				type="text"
+				name="telefon"
+				id="telefon"
+			><br /> <div id="input1" style="margin-bottom:4px;" class="clonedInput">
+        		Dodaj adresu za dostavu: <input type="text" name="adresa1" id="adresa1" />
+    		</div>
+			<br/><input
+				type="submit"
+				name="update_fl"
+				id="update_fl"
+				value="Update"
+			>
+		</fieldset>
+	</form>
 </body>
 </html>
