@@ -62,32 +62,49 @@
 	</form>
 
 	<form
-		action="TODO register pravnog lica action"
+		action="action.php"
 		method="post"
 		target="myFrame"
 	>
 		<fieldset>
 			<legend>Register za pravna lica</legend>
+			Username: <input
+				type="text"
+				name="username"
+				id="username"
+			><br />
+			Password:
+			<input
+				type="password"
+				name="password"
+				id="password"
+			><br />
+			Confirm:
+			<input
+				type="password"
+				name="confirm"
+				id="confirm"
+			><br />
 			Ime firme: <input
 				type="text"
-				name="ime"
-				id="ime"
+				name="name"
+				id="name"
 			><br />Adresa: <input
 				type="text"
-				name="adresa"
-				id="adresa"
+				name="address"
+				id="address"
 			><br />Grad: <input
 				type="text"
-				name="grad"
-				id="grad"
+				name="city"
+				id="city"
 			><br />PIB: <input
 				type="text"
 				name="pib"
 				id="pib"
 			><br />Maticni broj: <input
 				type="text"
-				name="maticni_broj"
-				id="maticni_broj"
+				name="maticni"
+				id="maticni"
 			><br />Kontakt telefon: <input
 				type="text"
 				name="telefon"
