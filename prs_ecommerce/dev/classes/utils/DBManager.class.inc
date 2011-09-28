@@ -32,23 +32,28 @@ class DBManager {
 	}
 	function callProcedure($procedure, $params){
 		$query = "call ".$procedure . "(";
-		if (!empty($params))
-		for($i = 0; $i<sizeof($params); $i++){
-			$query = $query."?";
-			if($i!=sizeof($params)-1)
-			$query = $query.",";
+		if (!empty($params)){
+			for($i = 0; $i<sizeof($params); $i++){
+				$query = $query."?";
+				if($i!=sizeof($params)-1)
+				$query = $query.",";
+			}
 		}
 		$query .= ");";
 		try{
 			$this->conn();
 			$stmt = $this->conn->prepare($query);
-			if($params != ''){
-				$stmt->execute($params);
-			}else{
-				$stmt->execute();
+			foreach ($params as $key=>$param){
+				if (empty($param)){
+					$stmt->bindValue($key+1, null, PDO::PARAM_NULL);
+				}
+				else {
+					$stmt->bindValue($key+1, $param);
+				}
 			}
+			$stmt->execute();
 		}catch (Exception $e){
-			
+			print_r($e->getMessage());
 		}
 		$array = $stmt->fetchAll();
 		return $array;
