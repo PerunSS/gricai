@@ -3,20 +3,36 @@
 </head>
 <body>
 	<form
-		action="TODO register fizickog lica action"
+		action="action.php"
 		method="post"
-		target="TODO target"
 	>
 		<fieldset>
 			<legend>Register</legend>
+						Username: <input
+				type="text"
+				name="username"
+				id="username"
+			><br />
+			Password:
+			<input
+				type="password"
+				name="password"
+				id="password"
+			><br />
+			Confirm:
+			<input
+				type="password"
+				name="confirm"
+				id="confirm"
+			><br />
 			Ime: <input
 				type="text"
-				name="ime"
-				id="ime"
+				name="firstname"
+				id="firstname"
 			><br />Prezime: <input
 				type="text"
-				name="prezime"
-				id="prezime"
+				name="lastname"
+				id="lastname"
 			><br />JMBG: <input
 				type="text"
 				name="jmbg"
@@ -31,8 +47,8 @@
 				id="email"
 			><br /> <input
 				type="submit"
-				name="sub"
-				id="sub"
+				name="register_fl"
+				id="register_fl"
 				value="Register"
 			>
 		</fieldset>
