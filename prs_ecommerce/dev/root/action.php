@@ -9,3 +9,6 @@ if(isset($_POST['u_login'])){
 if(isset($_POST['register_fl'])){
 	include '../actions/user/individual_register.php';
 }
+if(isset($_POST['register_pl'])){
+	include '../actions/user/entity_register.php';
+}

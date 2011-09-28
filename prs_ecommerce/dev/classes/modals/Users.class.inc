@@ -40,8 +40,8 @@ class Users {
 		if ($_POST['password']!=$_POST['confirm']) throw new UsersExceptions(Constants::CODE_WRONG_CONFIRM_PASSWORD);
 		$db = new DBManager();
 		$register= $db->callProcedure("fizicko_lice_register", array(
-			0=>$_POST['username'],1=>$_POST['password'],2=>$_POST['email'],
-			3=>$_POST['firstname'],4=>$_POST['lastname'],5=>$_POST['jmbg'],6=>$_POST['telefon'])
+		0=>$_POST['username'],1=>$_POST['password'],2=>$_POST['email'],
+		3=>$_POST['firstname'],4=>$_POST['lastname'],5=>$_POST['jmbg'],6=>$_POST['telefon'])
 		);
 		if (!is_array($register)) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		else if (count($register)==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
@@ -52,9 +52,38 @@ class Users {
 			else  throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		}
 		else {
-			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email'])) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email']) || !isset($register[0]['id'])) 
+				throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 			else {
-				$creator=array("status" => "success", "code" => $register[0]['code'], "email" => $register[0]['email']);
+				$creator=array("status" => "success", "code" => $register[0]['code'], "email" => $register[0]['email'], "id" => $register[0]['id']);
+				return json_encode($creator);
+			}
+		}
+	}
+
+	function entity_register() {
+		$valid=SecurityChecker::requestPOST("entity_register");
+		if (count($valid)>0)  throw new SecurityExceptions(Constants::CODE_MISSING_PARAM, $valid);
+		if ($_POST['password']!=$_POST['confirm']) throw new UsersExceptions(Constants::CODE_WRONG_CONFIRM_PASSWORD);
+		$db = new DBManager();
+		$register= $db->callProcedure("pravno_lice_register", array(
+		0=>$_POST['username'],1=>$_POST['password'],2=>$_POST['email'],
+		3=>$_POST['name'],4=>$_POST['address'],5=>$_POST['city'],6=>$_POST['pib'],
+		7=>$_POST['maticni'],8=>$_POST['telefon'])
+		);
+		if (!is_array($register)) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (count($register)==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (!is_array($register[0])) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (count($register[0])==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (isset($register[0]['error'])){
+			if ($register[0]['error']=='exists') throw new UsersExceptions(Constants::CODE_EXIST_USER);
+			else  throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		}
+		else {
+			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email']) || !isset($register[0]['id'])) 
+				throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+			else {
+				$creator=array("status" => "success", "code" => $register[0]['code'], "email" => $register[0]['email'], "id" => $register[0]['id']);
 				return json_encode($creator);
 			}
 		}

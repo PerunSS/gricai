@@ -3,31 +3,43 @@ class SecurityChecker {
 
 	public static $missing_array= array(
 	"user_login"=>array("username", "password"),
-	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon")
+	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon"),
+	"entity_register"=>array("username", "password","confirm", "email", "name", "address", "city", "pib","maticni","telefon")
 	);
 
 	public static $empty_array= array(
 	"user_login"=>array("username", "password"),
-	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon")
+	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon"),
+	"entity_register"=>array("username", "password","confirm", "email", "name", "address", "city", "pib","maticni","telefon")
 	);
 
 	public static $alpha_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array("username","firstname", "lastname")
+	"individual_register"=>array("username","firstname", "lastname"),
+	"entity_register"=>array("username", "city")
 	);
 
 	public static $numeric_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array("jmbg", "telefon")
+	"individual_register"=>array("jmbg", "telefon"),
+	"entity_register"=>array("pib","maticni","telefon")
 	);
 
 	public static $date_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array()
+	"individual_register"=>array(),
+	"entity_register"=>array()
 	);
 	public static $email_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array("email")
+	"individual_register"=>array("email"),
+	"entity_register"=>array("email")
+	);
+
+	public static $alphanumeric_array = array(
+	"user_login"=>array(),
+	"individual_register"=>array(),
+	"entity_register"=>array("address")
 	);
 
 	static function requestGET($array) {
@@ -69,6 +81,14 @@ class SecurityChecker {
 			if (isset($_GET[$value]) && !empty($_GET[$value])){
 				if(!preg_match("/^([A-Za-z0-9_\-\.+])+\@([A-Za-z0-9_\-\.+])+\.([A-Za-z]{2,4})$/", $_GET[$value])) {
 					$errors[$i]=array('error'=>'invalid_'.$value);
+					$i++;
+				}
+			}
+		}
+		foreach (SecurityChecker::$alphanumeric_array[$array] as $value){
+			if (isset($_GET[$value]) && !empty($_GET[$value])){
+				if(!preg_match("/^[a-zA-Z0-9 ]+$/", $_GET[$value])) {
+					$errors[$i]=array('error'=>'alphanumeric_'.$value);
 					$i++;
 				}
 			}
@@ -137,6 +157,14 @@ class SecurityChecker {
 			if (isset($_POST[$value]) && !empty($_POST[$value])){
 				if(!preg_match("/^([A-Za-z0-9_\-\.+])+\@([A-Za-z0-9_\-\.+])+\.([A-Za-z]{2,4})$/", $_POST[$value])) {
 					$errors[$i]=array('error'=>'invalid_'.$value);
+					$i++;
+				}
+			}
+		}
+		foreach (SecurityChecker::$alphanumeric_array[$array] as $value){
+			if (isset($_POST[$value]) && !empty($_POST[$value])){
+				if(!preg_match("/^[a-zA-Z0-9 ]+$/", $_POST[$value])) {
+					$errors[$i]=array('error'=>'alphanumeric_'.$value);
 					$i++;
 				}
 			}
