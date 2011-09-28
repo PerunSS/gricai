@@ -17,6 +17,14 @@ class UsersExceptions extends Exception {
 				$creator["status"]="not_activated";
 				$this->message=json_encode($creator);
 				break;
+			case Constants::CODE_EXIST_USER:
+				$creator["status"]="exists_user";
+				$this->message=json_encode($creator);
+				break;
+			case Constants::CODE_WRONG_CONFIRM_PASSWORD:
+				$creator["status"]="wrong_password";
+				$this->message=json_encode($creator);
+				break;
 		}
 		parent::__construct($this->message, $code, null);
 	}

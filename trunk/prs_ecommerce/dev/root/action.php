@@ -6,3 +6,6 @@ if(isset($_POST['a_login'])){
 if(isset($_POST['u_login'])){
 	include '../actions/user/user_login.php';
 }
+if(isset($_POST['register_fl'])){
+	include '../actions/user/individual_register.php';
+}
