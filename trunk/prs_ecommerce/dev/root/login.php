@@ -3,24 +3,23 @@
 </head>
 <body>
 	<form
-		action="TODO register fizickog lica action"
+		action="action.php"
 		method="post"
-		target="TODO target"
 	>
 		<fieldset>
 			<legend>Login</legend>
 			Korisnicko ime: <input
 				type="text"
-				name="korisnicko_ime"
-				id="korisnicko_ime"
+				name="username"
+				id="username"
 			><br />Sifra: <input
 				type="text"
-				name="sifra"
-				id="sifra"
+				name="password"
+				id="password"
 			><br /> <input
 				type="submit"
-				name="sub"
-				id="sub"
+				name="u_login"
+				id="u_login"
 				value="Login"
 			>
 		</fieldset>

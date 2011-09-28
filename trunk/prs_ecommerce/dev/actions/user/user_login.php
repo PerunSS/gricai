@@ -2,9 +2,11 @@
 try{
 	$user=new Users();
 	$login=$user->login();
-	$user_string = json_decode($login);	
-	$_SESSION['user'] = json_encode($user_string->user);
-	print_r($login);
+	$user_string = json_decode($login);
+	SecurityChecker::sessionStart();
+	$_SESSION['user'] = json_encode($user_string->user);	
+	header("Location: /user_home.php");
+
 }
 catch (SecurityExceptions $se){
 	print_r($se->getJSON());
