@@ -6,9 +6,11 @@ if(isset($_POST['a_login'])){
 if(isset($_REQUEST['a_korisnik_search'])){
 	include '../templates/user_list.php';
 }
-
 if(isset($_POST['ban_action'])){
 	include '../actions/admin/toogle_ban.php';
+}
+if(isset($_REQUEST['admin_korisnik_details'])){
+	include '../templates/user_details.php';
 }
 if(isset($_POST['u_login'])){
 	include '../actions/user/user_login.php';
