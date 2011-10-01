@@ -12,6 +12,9 @@ if(isset($_POST['ban_action'])){
 if(isset($_REQUEST['admin_korisnik_details'])){
 	include '../templates/user_details.php';
 }
+if(isset($_REQUEST['a_porudzbenica_search'])){
+	include '../templates/porudzbenica_list.php';
+}
 if(isset($_POST['u_login'])){
 	include '../actions/user/user_login.php';
 }

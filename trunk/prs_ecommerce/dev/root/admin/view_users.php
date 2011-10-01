@@ -5,6 +5,7 @@ if(!isset($_SESSION['admin'])){
 	header("Location: /admin/login.php");
 }
 ?>
+<a href="/admin/admin_panel.php">nazad</a>
 <form action="/action.php" target="results">
 Username: <input type="text" name="a_korisnik_un_search" /><br />
 Tip:<select name="a_korisnik_tip_search">
