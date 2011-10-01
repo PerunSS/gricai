@@ -1,20 +1,19 @@
 <?php
 try{
+	SecurityChecker::sessionStart();
 	$user=new Users();
 	$login=$user->login();
-	$user_string = json_decode($login);
-	SecurityChecker::sessionStart();
-	$_SESSION['user'] = json_encode($user_string->user);	
-	header("Location: /user_home.php");
-
+	$user_string = json_decode($login);	
+	$_SESSION['user'] = json_encode($user_string->user);
 }
 catch (SecurityExceptions $se){
-	print_r($se->getJSON());
+	$_SESSION['login_error']=$se->getJSON();
 }
 catch (UsersExceptions $ue){
-	print_r($ue->getJSON());
+	$_SESSION['login_error']=$ue->getJSON();
 }
 catch (Exception $e){
 	//TODO log
 }
+header("Location: shop.php");
 ?>
