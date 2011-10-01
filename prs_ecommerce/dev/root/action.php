@@ -3,8 +3,8 @@ require_once '../classes/AutoloadClasses.inc';
 if(isset($_POST['a_login'])){
 	include '../actions/admin/admin_login.php';
 }
-if(isset($_POST['a_korisnik_search'])){
-	include '../actions/admin/admin_user_search.php';
+if(isset($_REQUEST['a_korisnik_search'])){
+	include '../templates/user_list.php';
 }
 
 if(isset($_POST['ban_action'])){
