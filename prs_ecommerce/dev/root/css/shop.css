@@ -1,11 +1,46 @@
 @CHARSET "ISO-8859-1";
 
-div .user_area {
-	
-}
-
 .login_area {
 	position: absolute;
 	right: 0px;
 	width: 300px;
+}
+
+.search_items {
+	position: absolute;
+	right: 320px;
+	width: 400px;
+	height: 150px;
+}
+
+.hidden {
+	display: none;
+}
+
+.search_list fieldset {
+	position: absolute;
+	top:35%;
+    left:30%;
+    width: 600px;
+}
+.search_list table {
+	width: 400px;
+	border: none;
+	border-spacing: 0px;
+}
+.search_list th,.last_row {
+	background-color: black;
+	color: white;
+	text-align: left;
+}
+#show_cart table {
+	width: 500px;
+	border: none;
+	border-spacing: 0px;
+}
+
+#show_cart th {
+	background-color: black;
+	color: white;
+	text-align: left;
 }

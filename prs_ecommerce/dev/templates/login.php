@@ -80,6 +80,15 @@ if (!SecurityChecker::isLogged()){?>
 				<td><?php echo (isset($user->ime)?$user->ime:$user->ime_firme);?></td>
 			</tr>
 			<tr>
+				<td><input
+					type="submit"
+					name="shopping_cart"
+					id="shopping_cart"
+					value="Korpa"
+				>
+				</td>
+			</tr>
+			<tr>
 				<td>
 					<form
 						action="action.php"

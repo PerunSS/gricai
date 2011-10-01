@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../classes/AutoloadClasses.inc';
 SecurityChecker::sessionStart();
 ?>
@@ -10,12 +10,27 @@ SecurityChecker::sessionStart();
 	href="css/shop.css"
 	media="all"
 />
+<script
+	type="text/javascript"
+	src="js/jquery.js"
+></script>
+<script
+	type="text/javascript"
+	src="js/blockUI.js"
+></script>
+<script
+	type="text/javascript"
+	src="js/shop.js"
+></script>
 </head>
 <body>
-<div class="user_area">
-<?php 
-include '../templates/login.php';
+	<div>
+	<?php
+	include '../templates/login.php';
+	include '../templates/search_items.php'
 ?>
-</div>
+	</div>
+	<div id="search_list" class="search_list"></div>
+	<div id="message_content" class="hidden"></div>
 </body>
 </html>
