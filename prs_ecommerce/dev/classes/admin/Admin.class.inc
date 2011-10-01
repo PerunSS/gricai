@@ -10,6 +10,9 @@ class Admin{
 		$this->dbMan = new DBManager();
 	}
 
+	/**
+	 * 
+	 */
 	function login(){
 		$result = $this->dbMan->callProcedure('admin_login', array(0=>$this->username,1=>$this->passwrod));
 		if($result[0]['result']>0){
@@ -19,18 +22,40 @@ class Admin{
 		return 0;
 	}
 
-	function getUsers($data=''){
-		if($data==''){
-			return $this->dbMan->callProcedure('admin_get_users',array());
-		}
+	/**
+	 * 
+	 */
+	function getUsers(/*$data=''*/){
+//		if($data==''){
+		return $this->dbMan->callProcedure('admin_get_users',array());
+//		}
+//		$i = 0;
+//		$values[$i++] = (empty($data['a_korisnik_un_search'])?'%':$data['a_korisnik_un_search']);
+//		$values[$i++] = (empty($data['a_korisnik_tip_search'])
+//				?'%':$data['a_korisnik_tip_search']);
+//		$values[$i++] = (empty($data['a_korisnik_aktivan_search'])?0:1);
+//		$values[$i++] = (empty($data['a_korisnik_banovan_searcH'])?0:1);
+//		return $this->dbMan->callProcedure('admin_search_users',$values);		
 	}
-
-	function blockUser($user_id,$comment){
-		$result = $this->dbMan->callProcedure('updateUserStatus', array(0=>$user_id,1=>'1',2=>$comment,3=>$this->username));
+	
+	/**
+	 * 
+	 * @param unknown_type $user_id
+	 * @param unknown_type $comment
+	 */
+	function banUser($user_id,$comment){
+		$result = $this->dbMan->callProcedure('update_user_status', array(0=>$user_id,1=>'1',2=>$comment,3=>$this->username));
 	}
-
-	function unblockUser($user_id){
-		$result = $this->dbMan->callProcedure('updateUserStatus', array(0=>$user_id,1=>'0',2=>$this->username));
+	/**
+	 * 
+	 * @param $user_id
+	 */
+	function unbanUser($user_id){
+		$result = $this->dbMan->callProcedure('update_user_status', array(0=>$user_id,1=>'0',2=>'',3=>$this->username));
+	}
+	
+	function getUserDetails($user_id){
+		return $this->dbMan->callProcedure('get_user_details', array(0=>$user_id));
 	}
 
 	function addProduct($product){
