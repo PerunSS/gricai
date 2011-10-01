@@ -53,9 +53,18 @@ class Admin{
 	function unbanUser($user_id){
 		$result = $this->dbMan->callProcedure('update_user_status', array(0=>$user_id,1=>'0',2=>'',3=>$this->username));
 	}
-	
+	/**
+	 * 
+	 * @param unknown_type $user_id
+	 */
 	function getUserDetails($user_id){
 		return $this->dbMan->callProcedure('get_user_details', array(0=>$user_id));
+	}
+	/**
+	 * 
+	 */
+	function getPourdzbenice(){
+		return $this->dbMan->callProcedure('admin_get_porudzbenice', array());
 	}
 
 	function addProduct($product){
