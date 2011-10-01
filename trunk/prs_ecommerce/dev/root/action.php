@@ -21,3 +21,15 @@ if(isset($_POST['register_fl'])){
 if(isset($_POST['register_pl'])){
 	include '../actions/user/entity_register.php';
 }
+if(isset($_POST['u_logout'])){
+	include '../actions/user/user_logout.php';
+}
+if(isset($_POST['add_to_cart'])){
+	include '../actions/cart/add.php';
+}
+if(isset($_POST['remove_from_cart'])){
+	include '../actions/cart/remove.php';
+}
+if(isset($_POST['empty_cart'])){
+	include '../actions/cart/empty.php';
+}
