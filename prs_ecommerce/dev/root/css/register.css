@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+.register fieldset {
+	position: absolute;
+	top: 5%;
+	left: 30%;
+	width: 600px;
+}
+
+.hidden {
+	display: none;
+}
+
+.warning {
+	color: red;
+}
+
+.success {
+	color: blue;
+}
