@@ -39,3 +39,6 @@ if(isset($_POST['empty_cart'])){
 if(isset($_POST['buy_cart'])){
 	include '../actions/cart/buy.php';
 }
+if(isset($_REQUEST['a_add_product'])){
+	include '../templates/add_product.php';
+}

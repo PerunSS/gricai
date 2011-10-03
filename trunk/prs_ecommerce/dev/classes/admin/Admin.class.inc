@@ -67,12 +67,16 @@ class Admin{
 		return $this->dbMan->callProcedure('admin_get_porudzbenice', array());
 	}
 
-	function addProduct($product){
-		$result = $this->dbMan->callProcedure('blockUser', array(0=>$user_id,1=>$comment,2=>$this->username));
+	function addProduct($product_data){
+		return $this->dbMan->callProcedure('admin_add_proizvod',  array(0=>1,1=>$product_data['naziv'],
+											2=>$product_data['poreklo'],3=>$product_data['opis'],4=>$product_data['tip'],
+											5=>$product_data['pakovanje'],6=>$product_data['cena'],7=>$product_data['id_podkategorija']));
 	}
 
-	function updateProduct($product){
-		$result = $this->dbMan->callProcedure('blockUser', array(0=>$user_id,1=>$comment,2=>$this->username));
+	function updateProduct(){
+		return $this->dbMan->callProcedure('', array(0=>1,1=>$product_data['naziv'],
+											2=>$product_data['poreklo'],3=>$product_data['opis'],4=>$product_data['tip'],
+											5=>$product_data['pakovanje'],6=>$product_data['cena'],7=>$product_data['id_podkategorija']));
 	}
 
 	function toJson(){
@@ -85,4 +89,10 @@ class Admin{
 		$admin = new Admin($jsonobj->username,'',$jsonobj->id);
 		return $admin;
 	}
+	
+	function getPodkategorije(){
+		return $this->dbMan->callProcedure('admin_get_podkategorije', array());
+	}
+	
+	
 }
