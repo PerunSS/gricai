@@ -52,8 +52,8 @@ class Users {
 			else  throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		}
 		else {
-			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email']) || !isset($register[0]['id'])) 
-				throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email']) || !isset($register[0]['id']))
+			throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 			else {
 				$creator=array("status" => "success", "code" => $register[0]['code'], "email" => $register[0]['email'], "id" => $register[0]['id']);
 				return json_encode($creator);
@@ -80,10 +80,37 @@ class Users {
 			else  throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		}
 		else {
-			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email']) || !isset($register[0]['id'])) 
-				throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+			if (!isset($register[0]['status']) || !isset($register[0]['code']) || !isset($register[0]['email']) || !isset($register[0]['id']))
+			throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 			else {
 				$creator=array("status" => "success", "code" => $register[0]['code'], "email" => $register[0]['email'], "id" => $register[0]['id']);
+				return json_encode($creator);
+			}
+		}
+	}
+
+	function buy() {
+		if (!isset($_SESSION['cart'])) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		$cart="";
+		$total=0;
+		foreach ($_SESSION['cart'] as $key=>$value){
+			$pom = $value['value'] * $value['currency'];
+			$cart=$cart . $key .";" . $pom . ";" . $value['value'] . ";";
+			$total+=$pom;
+		}
+		if (!isset($_SESSION['user'])) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		$user = json_decode($_SESSION['user']);
+		$db = new DBManager();
+		$buy= $db->callProcedure("kupi", array(0=>$user->id, 1=>$total, 2=>$cart));
+		if (!is_array($buy)) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (count($buy)==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (!is_array($buy[0])) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else if (count($buy[0])==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		else {
+			if (!isset($buy[0]['status']))	throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+			if ($buy[0]['status']!="success")	throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+			else {
+				$creator=array("status" => "success");
 				return json_encode($creator);
 			}
 		}
