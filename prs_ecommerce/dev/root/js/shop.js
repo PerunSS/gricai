@@ -84,6 +84,7 @@ function returnCart(data) {
 	$("#message_content").html(data);
 	$("#close").click(removeMessage);
 	$("#empty").click(emptyCart);
+	$("#buy").click(buyCart);
 	$(".remove").click(removeFromCart);
 	showDialog("#show_cart");
 }
@@ -102,6 +103,19 @@ function emptyCart() {
 	$.post("action.php", {
 		empty_cart : "submit"
 	}, returnRemove);
+}
+
+function buyCart() {
+	removeMessage();
+	$.post("action.php", {
+		buy_cart : "submit"
+	}, returnBuy);
+}
+
+function returnBuy(data) {
+	$("#message_content").html(data);
+	$("#close").click(removeMessage);
+	showDialog("#message");
 }
 
 function returnRemove(data) {

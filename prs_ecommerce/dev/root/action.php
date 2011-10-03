@@ -36,3 +36,6 @@ if(isset($_POST['remove_from_cart'])){
 if(isset($_POST['empty_cart'])){
 	include '../actions/cart/empty.php';
 }
+if(isset($_POST['buy_cart'])){
+	include '../actions/cart/buy.php';
+}
