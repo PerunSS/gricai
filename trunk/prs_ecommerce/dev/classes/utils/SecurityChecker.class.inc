@@ -3,25 +3,25 @@ class SecurityChecker {
 
 	public static $missing_array= array(
 	"user_login"=>array("username", "password"),
-	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon"),
+	"individual_register"=>array("f_username", "f_password","f_confirm", "f_email", "f_firstname", "f_lastname", "f_jmbg", "f_telefon"),
 	"entity_register"=>array("username", "password","confirm", "email", "name", "address", "city", "pib","maticni","telefon")
 	);
 
 	public static $empty_array= array(
 	"user_login"=>array("username", "password"),
-	"individual_register"=>array("username", "password","confirm", "email", "firstname", "lastname", "jmbg", "telefon"),
+	"individual_register"=>array("f_username", "f_password","f_confirm", "f_email", "f_firstname", "f_lastname", "f_jmbg", "f_telefon"),
 	"entity_register"=>array("username", "password","confirm", "email", "name", "address", "city", "pib","maticni","telefon")
 	);
 
 	public static $alpha_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array("username","firstname", "lastname"),
+	"individual_register"=>array("f_username","f_firstname", "f_lastname"),
 	"entity_register"=>array("username", "city")
 	);
 
 	public static $numeric_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array("jmbg", "telefon"),
+	"individual_register"=>array("f_jmbg", "f_telefon"),
 	"entity_register"=>array("pib","maticni","telefon")
 	);
 
@@ -32,7 +32,7 @@ class SecurityChecker {
 	);
 	public static $email_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array("email"),
+	"individual_register"=>array("f_email"),
 	"entity_register"=>array("email")
 	);
 

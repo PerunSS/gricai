@@ -37,11 +37,11 @@ class Users {
 	function individual_register() {
 		$valid=SecurityChecker::requestPOST("individual_register");
 		if (count($valid)>0)  throw new SecurityExceptions(Constants::CODE_MISSING_PARAM, $valid);
-		if ($_POST['password']!=$_POST['confirm']) throw new UsersExceptions(Constants::CODE_WRONG_CONFIRM_PASSWORD);
+		if ($_POST['f_password']!=$_POST['f_confirm']) throw new UsersExceptions(Constants::CODE_WRONG_CONFIRM_PASSWORD);
 		$db = new DBManager();
 		$register= $db->callProcedure("fizicko_lice_register", array(
-		0=>$_POST['username'],1=>$_POST['password'],2=>$_POST['email'],
-		3=>$_POST['firstname'],4=>$_POST['lastname'],5=>$_POST['jmbg'],6=>$_POST['telefon'])
+		0=>$_POST['f_username'],1=>$_POST['f_password'],2=>$_POST['f_email'],
+		3=>$_POST['f_firstname'],4=>$_POST['f_lastname'],5=>$_POST['f_jmbg'],6=>$_POST['f_telefon'])
 		);
 		if (!is_array($register)) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		else if (count($register)==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
@@ -63,13 +63,29 @@ class Users {
 
 	function entity_register() {
 		$valid=SecurityChecker::requestPOST("entity_register");
+		if (isset($_POST['addresses'])){
+			foreach ($_POST['addresses'] as $key=>$value){
+				if (empty($value)){
+					$valid[count($valid)]=array('error'=>'empty_address_'.$key);
+				}
+				elseif(!preg_match("/^[a-zA-Z0-9 ]+$/", $value)) {
+					$valid[count($valid)]=array('error'=>'alphanumeric_address_'.$key);
+				}
+			}
+		}
 		if (count($valid)>0)  throw new SecurityExceptions(Constants::CODE_MISSING_PARAM, $valid);
 		if ($_POST['password']!=$_POST['confirm']) throw new UsersExceptions(Constants::CODE_WRONG_CONFIRM_PASSWORD);
+		$address="";
+		if (isset($_POST['addresses'])){
+			foreach ($_POST['addresses'] as $value){
+				$address.="$value;";
+			}
+		}
 		$db = new DBManager();
 		$register= $db->callProcedure("pravno_lice_register", array(
 		0=>$_POST['username'],1=>$_POST['password'],2=>$_POST['email'],
 		3=>$_POST['name'],4=>$_POST['address'],5=>$_POST['city'],6=>$_POST['pib'],
-		7=>$_POST['maticni'],8=>$_POST['telefon'])
+		7=>$_POST['maticni'],8=>$_POST['telefon'],9=>$address)
 		);
 		if (!is_array($register)) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		else if (count($register)==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
