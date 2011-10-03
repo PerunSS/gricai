@@ -5,6 +5,13 @@ if(!isset($_SESSION['admin'])){
 }
 $admin = Admin::fromJson($_SESSION['admin']);
 $porudzbenice = $admin->getPourdzbenice();
+
+$min_price = 0;
+$max_price = 0;
+$datum = 0;
+if(isset($_REQUEST['a_porudzbenica_cena_min'])) $min_price = $_REQUEST['a_porudzbenica_cena_min'];
+if(isset($_REQUEST['a_porudzbenica_cena_max'])) $max_price = $_REQUEST['a_porudzbenica_cena_max'];
+if(isset($_REQUEST['a_porudzbenica_vreme_search'])) $datum = $_REQUEST['a_porudzbenica_vreme_search']; 
 ?>
 <table class="tabela">
 	<thead>
@@ -21,6 +28,8 @@ $porudzbenice = $admin->getPourdzbenice();
 	$color = true;
 	foreach($porudzbenice as $por){
 		$color = !$color;
+		if($min_price && $por['cena']<$min_price) continue;
+		if($max_price && $por['cena']>$max_price) continue;
 		/*$banovan = $user['banovan']?'un':'';
 		if($target_banovan && !$user['banovan']){
 			continue;
@@ -49,7 +58,8 @@ $porudzbenice = $admin->getPourdzbenice();
 			<td><?=$por['status']; ?></td>
 			<td>
 			<form action="/action.php" method="POST">
-				<input type="hidden" name="user_id" value="<?=$por['id']?>" />
+				<input type="hidden" name="por_id" value="<?=$por['id']?>" />
+				<input type="hidden" name="admin_porudzbenica_details" value="ok"/>	
 				<input type="submit" value="detaljno" />
 			</form>
 			</td>

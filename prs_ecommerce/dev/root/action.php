@@ -15,6 +15,12 @@ if(isset($_REQUEST['admin_korisnik_details'])){
 if(isset($_REQUEST['a_porudzbenica_search'])){
 	include '../templates/porudzbenica_list.php';
 }
+if(isset($_REQUEST['admin_porudzbenica_details'])){
+	include '../templates/porudzbenica_details.php';
+}
+if(isset($_POST['a_change_pass'])){
+	include '../actions/admin/change_pass.php';
+}
 if(isset($_POST['u_login'])){
 	include '../actions/user/user_login.php';
 }

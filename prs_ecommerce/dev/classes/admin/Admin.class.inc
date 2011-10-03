@@ -66,6 +66,18 @@ class Admin{
 	function getPourdzbenice(){
 		return $this->dbMan->callProcedure('admin_get_porudzbenice', array());
 	}
+	
+	/**
+	 * 
+	 * @param unknown_type $id
+	 */
+	function getPorudzbenicaDetails($id){
+		return $this->dbMan->callProcedure('admin_porudzbenica_details', array(0=>$id));
+	}
+	
+	function changePass($old_pass,$new_pass,$new_pass_rep){
+		
+	}
 
 	function addProduct($product_data){
 		return $this->dbMan->callProcedure('admin_add_proizvod',  array(0=>1,1=>$product_data['naziv'],
