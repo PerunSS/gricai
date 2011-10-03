@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="facts">
+		<item>"Intellectual growth should commence at birth and cease only at death."</item>
+		<item>"Science without religion is lame, religion without science is blind."</item>
+		<item>"There are two ways to live: you can live as if nothing is a miracle; you can live as if everything is a miracle."</item>
+		<item>"If you can't explain it simply, you don't understand it well enough."</item>
+		<item>"I don't know, I don't care, and it doesn't make any difference!"</item>
+		<item>"Logic will get you from A to B. Imagination will take you everywhere."</item>
+		<item>"Only a life lived for others is a life worth while."</item>
+		<item>"The only real valuable thing is intuition."</item>
+		<item>"Peace cannot be kept by force; it can only be achieved by understanding."</item>
+		<item>"Everything that can be counted does not necessarily count; everything that counts cannot necessarily be counted."</item>
+		<item>"Few are those who see with their own eyes and feel with their own hearts."</item>
+		<item>"The important thing is not to stop questioning. Curiosity has its own reason for existing."</item>
+		<item>"Everything should be as simple as it is, but not simpler."</item>
+		<item>"If we knew what it was we were doing, it would not be called research, would it?"</item>
+		<item>"The world is not dangerous because of those who do harm but because of those who look at it without doing anything."</item>
+		<item>"It has become appallingly obvious that our technology has exceeded our humanity."</item>
+		<item>"Sometimes one pays most for the things one gets for nothing."</item>
+		<item>"Never do anything against conscience, even if the state demands it."</item>
+		<item>"Everyone should be respected as an individual, but no one idolized."</item>
+		<item>"The only thing that interferes with my learning is my education."</item>
+		<item>"It's not that I'm so smart, it's just that I stay with problems longer."</item>
+		<item>"I have no particular talent. I am merely inquisitive."</item>
+		<item>"No problem can be solved from the same level of consciousness that created it."</item>
+		<item>"Once we accept our limits, we go beyond them."</item>
+		<item>"I am a deeply religious nonbeliever - This is a somewhat new kind of religion."</item>
+		<item>"We still do not know one thousandth of one percent of what nature has revealed to us."</item>
+		<item>"If the facts don't fit the theory, change the facts."</item>
+		<item>"Force always attracts men of low morality."</item>
+		<item>"The value of a man should be seen in what he gives and not in what he is able to receive."</item>
+		<item>"Any man who reads too much and uses his own brain too little falls into lazy habits of thinking."</item>
+		<item>"Imagination is more important than knowledge. For knowledge is limited to all we now know and understand, while imagination embraces the entire world, and all there ever will be to know and understand."</item>
+		<item>"Small is the number of people who see with their eyes and think with their minds."</item>
+		<item>"After a certain high level of technical skill is achieved, science and art tend to coalesce in esthetics, plasticity, and form. The greatest scientists are always artists as well."</item>
+		<item>"The true value of a human being can be found in the degree to which he has attained liberation from the self."</item>
+		<item>"In the middle of difficulty lies opportunity."</item>
+		<item>"He who can no longer pause to wonder and stand rapt in awe, is as good as dead; his eyes are closed."</item>
+		<item>"The most incomprehensible thing about the world is that it is at all comprehensible."</item>
+		<item>"A man should look for what is, and not for what he thinks should be."</item>
+		<item>"True religion is real living; living with all one's soul, with all one's goodness and righteousness."</item>
+		<item>"Wisdom is not a product of schooling but of the lifelong attempt to acquire it"</item>
+		<item>"If you want to live a happy life, tie it to a goal, not to people or things."</item>
+		<item>"Women marry men hoping they will change. Men marry women hoping they will not. So each is inevitably disappointed."</item>
+		<item>"If A equals success, then the formula is A equals X plus Y and Z, with X being work, Y play, and Z keeping your mouth shut."</item>
+		<item>"You have to learn the rules of the game. And then you have to play better than anyone else."</item>
+		<item>"Unthinking respect for authority is the greatest enemy of truth."</item>
+		<item>"Whoever is careless with the truth in small matters cannot be trusted with important matters."</item>
+		<item>"The search for truth is more precious than its possession."</item>
+		<item>"I want to know how God created this world. I am not interested in this or that phenomenon, in the spectrum of this or that element. I want to know His thoughts; the rest are details"</item>
+		<item>"When the solution is simple, God is answering."</item>
+		<item>"I am convinced that He (God) does not play dice"</item>
+		<item>"Gravitation is not responsible for people falling in love."</item>
+		<item>"True art is characterized by an irresistible urge in the creative artist."</item>
+		<item>"Two things are infinite: the universe and human stupidity; and I'm not sure about the universe."</item>
+		<item>"When you are courting a nice girl an hour seems like a second. When you sit on a red-hot cinder a second seems like an hour. That's relativity."</item>
+		<item>"The ideals which have lighted my way, and time after time have given me new courage to face life cheerfully, have been Kindness, Beauty, and Truth ... The trite subjects of human efforts - possessions, outward success, luxury - have always seemed to me contemptible"</item>
+		<item>"The world is a dangerous place, not because of those who do evil, but because of those who look on and do nothing."</item>
+		<item>"A man's value to the community primarily depends on how far his feelings, thoughts, and actions are directed towards promoting the good of his fellows"</item>
+		<item>"When the solution is simple, God is answering."</item>
+		<item>"That deep emotional conviction of the presence of a superior reasoning power, which is revealed in the incomprehensible universe, forms my idea of God."</item>
+		<item>"Morality is of the highest importance - but for us, not for God."</item>
+		<item>"We should take care not to make the intellect our god; it has, of course, powerful muscles, but no personality."</item>
+		<item>"I shall never believe that God plays dice with the world."</item>
+		<item>"God always takes the simplest way."</item>
+		<item>"I do not believe in the God of theology who rewards good and punishes evil."</item>
+		<item>"I cannot imagine a God who rewards and punishes the objects of his creation and is but a reflection of human frailty."</item>
+		<item>"God does not play dice."</item>
+		<item>"Common sense is the collection of prejudices acquired by age eighteen."</item>
+		<item>"I believe that a simple and unassuming manner of life is best for everyone, best both for the body and the mind."</item>
+		<item>"Only a life lived for others is a life worthwhile."</item>
+		<item>"Imagination is everything. It is the preview of life's coming attractions."</item>
+		<item>"The monotony and solitude of a quiet life stimulates the creative mind."</item>
+		<item>"Without deep reflection one knows from daily life that one exists for other people."</item>
+		<item>"The devil has put a penalty on all things we enjoy in life. Either we suffer in health or we suffer in soul or we get fat."</item>
+		<item>"Intellectuals solve problems; geniuses prevent them."</item>
+		<item>"Many of the things you can count, don't count. Many of the things you can't count, really count"</item>
+		<item>"Love to travel, But hate to arrive"</item>
+		<item>"I am convinced that He (God) does not play dice."</item>
+		<item>"Before God we are all equally wise - and equally foolish."</item>
+		<item>"If A equals success, then the formula is: A = X + Y + Z, X is work. Y is play. Z is keep your mouth shut."</item>
+		<item>"Try not to become a man of success, but rather try to become a man of value."</item>
+		<item>"Only two things are infinite, the universe and human stupidity, and I'm not sure about the former."</item>
+		<item>"The difference between genius and stupidity is that genius has its limits."</item>
+		<item>"Men marry women with the hope they will never change. Women marry men with the hope they will change. Invaribly they are both disappointed."</item>
+		<item>"Example isn't another way to teach, it is the only way to teach."</item>
+		<item>"My religiosity consists in a humble admiration of the infinitely superior spirit that reveals itself in the little that we, with our weak and transitory understanding, can comprehend of reality. Morality is of the highest importance - but for us, not for God."</item>
+		<item>"The most beautiful thing we can experience is the mysterious. It is the source of all art and science."</item>
+		<item>"In order to be an immaculate member of a flock of sheep, one must above all be a sheep oneself."</item>
+		<item>"A question that sometimes drives me hazy: am I or are the others crazy?"</item>
+		<item>"If I had my life to live over again, I'd be a plumber."</item>
+		<item>"Gravitation cannot be held responsible for people falling in love."</item>
+		<item>"Common sense is merely the deposit of prejudice laid down in the human mind before the age of 18."</item>
+		<item>"Reading, after a certain age, diverts the mind too much from its creative pursuits. Any man who reads too much and uses his own brain too little falls into lazy habits of thinking."</item>
+		<item>"Perfection of means and confusion of ends seem to characterize our age."</item>
+		<item>"If you are out to describe the truth, leave elegance to the tailor."</item>
+		<item>"Whoever undertakes to set himself up as a judge of Truth and Knowledge is shipwrecked by the laughter of the gods."</item>
+		<item>"In matters of truth and justice, there is no difference between large and small problems, for issues concerning the treatment of people are all the same."</item>
+		<item>"Anyone who doesn't take truth seriously in small matters cannot be trusted in large ones either."</item>
+		<item>"Perfection of means and confusion of goals seem - in my opinion - to characterize our age."</item>
+		<item>"Strive not to be a success, but rather to be of value."</item>
+		<item>"Imagination is more important than knowledge."</item>
+		<item>"Your imagination is your preview of life's coming attractions."</item>
+		<item>"A man's moral worth is not measured by what his religious beliefs are but rather by what emotional impulses he has received from Nature during his lifetime"</item>
+		<item>"The religion of the future will be a cosmic religion. The religion which based on experience, which refuses dogmatic. If there's any religion that would cope the scientific needs it will be Buddhism...."</item>
+		<item>"The value of achievement lies in the achieving."</item>
+		<item>"Try not to become a man of success but rather try to become a man of value."</item>
+		<item>"[My] deep religiosity... found an abrupt ending at the age of twelve, through the reading of popular scientific books."</item>
+		<item>"The true sign of intelligence is not knowledge but imagination."</item>
+		<item>"The pioneers of a warless world are the young men (and women) who refuse military service."</item>
+		<item>"Confusion of goals and perfection of means seems, in my opinion, to characterize our age."</item>
+		<item>"Politics is a pendulum whose swings between anarchy and tyranny are fueled by perpetually rejuvenated illusions."</item>
+		<item>"Politics is for the present, but an equation is for eternity."</item>
+		<item>"Yes, we have to divide up our time like that, between our politics and our equations. But to me our equations are far more important, for politics are only a matter of present concern. A mathematical equation stands forever."</item>
+		<item>"Politics is far more complicated than physics."</item>
+		<item>"Equations are more important to me, because politics is for the present, but an equation is something for eternity."</item>
+		<item>"Any man who can drive safely while kissing a pretty girl is simply not giving the kiss the attention it deserves."</item>
+		<item>"Where the world ceases to be the scene of our personal hopes and wishes, where we face it as free beings admiring, asking and observing, there we enter the realm of Art and Science"</item>
+		<item>"Love is a better teacher than duty."</item>
+		<item>"If A equals success, then the formula is: A=X+Y+Z. X is work. Y is play. Z is keep your mouth shut."</item>
+		<item>"The attempt to combine wisdom and power has only rarely been successful and then only for a short while"</item>
+		<item>"In a healthy nation there is a kind of dramatic balance between the will of the people and the government, which prevents its degeneration into tyranny."</item>
+		<item>"Nothing is more destructive of respect for the government and the law of the land than passing laws which cannot be enforced."</item>
+		<item>"The ideals which have always shone before me and filled me with the joy of living are goodness, beauty, and truth. To make a goal of comfort or happiness has never appealed to me; a system of ethics built on this basis would be sufficient only for a herd of cattle."</item>
+		<item>"Great spirits have always found violent opposition from mediocrities. The latter cannot understand it when a man does not thoughtlessly submit to hereditary prejudices but honestly and courageously uses his intelligence."</item>
+		<item>"In that way imagination and intelligence enter into our existence in the part of servants of the primary instincts."</item>
+		<item>"Not thoughtlessly submit to hereditary prejudices but honestly and courageously uses his intelligence."</item>
+		<item>"Before God we are equally wise and equally foolish."</item>
+		<item>"It is a miracle that curiosity survives formal education."</item>
+		<item>"Education is not received. It is achieved."</item>
+		<item>"Intellectual growth should commence at birth and cease only at death"</item>
+		<item>"Education is what remains after one has forgotten everything he learned in school."</item>
+		<item>"I never teach my pupils; I only attempt to provide the conditions in which they can learn."</item>
+		<item>"Education is only a ladder to gather fruit from the tree of knowledge, not the fruit itself"</item>
+		<item>"It is nothing short of a miracle that modern methods of instruction have not yet entirely strangled the holy curiosity of inquiry."</item>
+		<item>"Whoever undertakes to set himself up as judge in the field of truth and knowledge is shipwrecked by the laughter of the Gods."</item>
+		<item>"Experience is a hard teacher because she gives the test first, the lesson afterwards"</item>
+		<item>"The only source of knowledge is experience"</item>
+		<item>"Anger dwells only in the bosom of fools."</item>
+		<item>"I am absolutely convinced that no wealth in the world can help humanity forward, even in the hands of the most devoted worker. The example of great and pure individuals is the only thing that can lead us to noble thoughts and deeds. Money only appeal."</item>
+		<item>"Isn't it strange that I who have written only unpopular books should be such a popular fellow?"</item>
+		<item>"It is not so very important for a person to learn facts. For that he does not really need a college. He can learn them from books. The value of an education is a liberal arts college is not learning of many facts but the training of the mind to think something that cannot be learned from textbooks."</item>
+		<item>"The human mind is not capable of grasping the Universe. We are like a little child entering a huge library. The walls are covered to the ceilings with books in many different tongues. The child knows that someone must have written these books. It doe."</item>
+		<item>"Information is not knowledge."</item>
+		<item>"There comes a time when the mind takes a higher plane of knowledge but can never prove how it got there."</item>
+		<item>"Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world."</item>
+		<item>"We can understand almost anything, but we can't understand how we understand"</item>
+		<item>"When I examine myself and my methods of thought, I come to the conclusion that the gift of fantasy has meant more to me than any talent for abstract, positive thinking."</item>
+		<item>"The pursuit of truth and beauty is a sphere of activity in which we are permitted to remain children all our lives."</item>
+		<item>"The most beautiful thing we can experience is the mysterious."</item>
+		<item>"Beauty is but skin deep, ugly lies the bone; Beauty dies and fades away, but ugly holds its own"</item>
+		<item>"I think and think for months and years. Ninety-nine times, the conclusion is false. The hundredth time I am right."</item>
+		<item>"You can't blame gravity for falling in love."</item>
+		<item>"The power of man has grown in every sphere, except over himself."</item>
+		<item>"Any power must be an enemy of mankind which enslaves the individual by terror and force, whether it arises under the Fascist or the Communist flag. All that is valuable in human society depends upon the opportunity for development accorded to the ind"</item>
+		<item>"The highest principles for our aspirations and judgements are given to us in the Jewish-Christian religious tradition. It is a very high goal which, with our weak powers, we can reach only very inadequately, but which gives a sure foundation to our aspirations and valuations."</item>
+		<item>"The only reason for time is so that everything doesn't happen at once."</item>
+		<item>"Space by itself, and time by itself, are doomed to fade away into mere shadows, and only a kind union of the two will preserve an independent reality"</item>
+		<item>"My intellectual development was retarded, as a result of which I began to wonder about space and time only when I had already grown up."</item>
+		<item>"LOVE: He to whom this emotion is a stranger, who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed."</item>
+		<item>"If I were not a physicist, I would probably be a musician. I often think in music. I live my daydreams in music. I see my life in terms of music. ... I get most joy in life out of music."</item>
+		<item>"How strange is the lot of us mortals! Each of us is here for a brief sojourn; for what purpose he knows not, though he senses it. But without deeper reflection one knows from daily life that one exists for other people."</item>
+		<item>"Life is like riding a bicycle. To keep your balance you must keep moving."</item>
+		<item>"The American lives even more for his goals, for the future, than the European. Life for him is always becoming, never being."</item>
+		<item>"There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle."</item>
+		<item>"I lived in solitude in the country and noticed how the monotony of a quiet life stimulates the creative mind."</item>
+		<item>"Only a life lived for others is worth living."</item>
+		<item>"The man who regards his own life and that of his fellow creatures as meaningless is not merely unfortunate but almost disqualified for life."</item>
+		<item>"Do you believe in immortality? No, and one life is enough for me."</item>
+		<item>"Weakness of attitude becomes weakness of character."</item>
+		<item>"My life is a simple thing that would interest no one. It is a known fact that I was born and that is all that is necessary."</item>
+		<item>"The most important human endeavor is the striving for morality in our actions. Our inner balance and even our very existence depend on it. Only morality in our actions can give beauty and dignity to life."</item>
+		<item>"All religions, arts and sciences are branches of the same tree. All these aspirations are directed toward ennobling man's life, lifting it from the sphere of mere physical existence and leading the individual towards freedom."</item>
+		<item>"Many times a day I realize how much my own life is built upon the labors of my fellowmen, and how earnestly I must exert myself in order to give in return as much as I have received."</item>
+		<item>"Why does this applied science, which saves work and makes life easier, bring us so little happiness? The simple answer runs: Because we have not yet learned to make sensible use of it."</item>
+		<item>"The further the spiritual evolution of mankind advances, the more certain it seems to me that the path to genuine religiosity does not lie through the fear of life, and the fear of death, and blind faith, but through striving after rational knowledge."</item>
+		<item>"The fear of death is the most unjustified of all fears, for there's no risk of accident for someone who's dead."</item>
+		<item>"A man's ethical behavior should be based effectually on sympathy, education, and social ties; no religious basis is necessary. Man would indeed be in a poor way if he had to be restrained by fear of punishment and hope of reward after death."</item>
+		<item>"Bureaucracy is the death of all sound work."</item>
+		<item>"Our death is not an end if we can live on in our children and the younger generation. For they are us, our bodies are only wilted leaves on the tree of life."</item>
+		<item>"We believe that an informed citizenry will act for life and not for death."</item>
+		<item>"When you do nothing, you feel overwhelmed and powerless. But when you get involved, you feel the sense of hope and accomplishment that comes from knowing you are working to make things better."</item>
+		<item>"Our task must be to free ourselves from this prison by widening our circles of compassion to embrace all living creatures and the whole of nature in its beauty."</item>
+		<item>"I don't believe in mathematics."</item>
+		<item>"Neither can I believe that the individual survives the death of his body, although feeble souls harbor such thoughts through fear or ridiculous egotisms"</item>
+		<item>"Man usually avoids attributing cleverness to somebody else unless it is an enemy."</item>
+		<item>"Many times a day I realize how much my own life is built upon the labors of my fellowmen, and how earnestly I must exert myself in order to give in return as much as I have received"</item>
+		<item>"We have to do the best we can. This is our sacred human responsibility."</item>
+		<item>"To me the worst thing seems to be a school principally to work with methods of fear, force and artificial authority. Such treatment destroys the sound sentiments, the sincerity and the self-confidence of pupils and produces a subservient subject."</item>
+		<item>"The secret to creativity is knowing how to hide your sources."</item>
+		<item>"Problems cannot be solved by the same level of thinking that created them."</item>
+		<item>"But the creative principle resides in mathematics. In a certain sense, therefore, I hold true that pure thought can grasp reality, as the ancients dreamed."</item>
+		<item>"Keep on sowing your seed, for you never know which will grow -- perhaps it all will."</item>
+		<item>"He who joyfully marches to music in rank and file has already earned my contempt. He has been given a large brain by mistake, since for him the spinal cord would surely suffice."</item>
+		<item>"Nothing will benefit human health and increase the chances for survival of life on Earth as much as the evolution to a vegetarian diet."</item>
+		<item>"The led must not be compelled, they must be able to choose their own leader"</item>
+		<item>"To raise new questions, new possibilities, to regard old problems from a new angle, requires creative imagination and marks real advance in science."</item>
+		<item>"Only a life lived for others is worth living"</item>
+		<item>"A person starts to live when he can live outside himself."</item>
+		<item>"I believe you should live each day as if it is your last, which is why I don't have any clean laundry, because, come on, who wants to wash clothes on the last day of their life?"</item>
+		<item>"No, this trick won't work...How on earth are you ever going to explain in terms of chemistry and physics so important a biological phenomenon as first love?"</item>
+		<item>"I do not believe that the Good Lord plays dice."</item>
+		<item>"It was, of course, a lie what you read about my religious convictions, a lie which is being systematically repeated. I do not believe in a personal God and I have never denied this but have expressed it clearly. If something is in me which can be called reli"</item>
+		<item>"Great spirits have always encountered violent opposition from mediocre minds."</item>
+		<item>"Well-being and happiness never appeared to me as an absolute aim. I am even inclined to compare such moral aims to the ambitions of a pig."</item>
+		<item>"It is strange to be known so universally and yet to be so lonely."</item>
+		<item>"Man tries to make for himself in the fashion that suits him best a simplified and intelligible picture of the world; he then tries to some extent to substitute this cosmos of his for the world of experience, and thus to overcome it. This is what the"</item>
+		<item>"When I read the Bhagavad-Gita and reflect about how God created this universe everything else seems so superfluous."</item>
+		<item>"God may be subtle, but he isn't plain mean."</item>
+		<item>"It is best, it seems to me, to separate one's inner striving from one's trade as far as possible. It is not good when one's daily break is tied to God's special blessing."</item>
+		<item>"Everything that is really great and inspiring is created by the individual who can labor in freedom."</item>
+		<item>"We can't solve problems by using the same kind of thinking we used when we created them."</item>
+		<item>"Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."</item>
+		<item>"Nothing truly valuable arises from ambition or from a mere sense of duty; it stems rather from love and devotion towards men and towards objective things."</item>
+		<item>"The value of a man resides in what he gives and not in what he is capable of receiving."</item>
+		<item>"If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed."</item>
+		<item>"Anyone who has never made a mistake has never tried anything new."</item>
+		<item>"We all try to escape pain and death, while we seek what is pleasant."</item>
+		<item>"Personally, I experience the greatest degree of pleasure in having contact with works of art. They furnish me with happy feelings of an intensity such as I cannot derive from other realms."</item>
+		<item>"The human mind has first to construct forms, independently, before we can find them in things."</item>
+		<item>"Joy in looking and comprehending is nature's most beautiful gift."</item>
+		<item>"The individual must not merely wait and criticize, he must defend the cause the best he can. The fate of the world will be such as the world deserves."</item>
+		<item>"A person who never made a mistake never tried anything new."</item>
+		<item>"A perfection of means, and confusion of aims, seems to be our main problem."</item>
+		<item>"Few people are capable of expressing with equanimity opinions which differ from the prejudices of their social environment. Most people are even incapable of forming such opinions."</item>
+		<item>"Education is what remains after one has forgotten what one has learned in school."</item>
+		<item>"Do not worry about your difficulties in Mathematics. I can assure you mine are still greater."</item>
+		<item>"Concern for man and his fate must always form the chief interest of all technical endeavors. Never forget this in the midst of your diagrams and equations."</item>
+		<item>"As far as the laws of mathematics refer to reality, they are not certain, and as far as they are certain, they do not refer to reality."</item>
+		<item>"As far as I'm concerned, I prefer silent vice to ostentatious virtue."</item>
+		<item>"Any intelligent fool can make things bigger and more complex... It takes a touch of genius - and a lot of courage to move in the opposite direction."</item>
+		<item>"An empty stomach is not a good political adviser."</item>
+		<item>"All these primary impulses, not easily described in words, are the springs of man's actions."</item>
+		<item>"All that is valuable in human society depends upon the opportunity for development accorded the individual."</item>
+		<item>"All religions, arts and sciences are branches of the same tree."</item>
+		<item>"A table, a chair, a bowl of fruit and a violin; what else does a man need to be happy?"</item>
+		<item>"I never think of the future - it comes soon enough."</item>
+		<item>"I live in that solitude which is painful in youth, but delicious in the years of maturity."</item>
+		<item>"I know not with what weapons World War III will be fought, but World War IV will be fought with sticks and stones."</item>
+		<item>"I have no special talent. I am only passionately curious."</item>
+		<item>"I have just got a new theory of eternity."</item>
+		<item>"I do not believe that civilization will be wiped out in a war fought with the atomic bomb. Perhaps two-thirds of the people of the earth will be killed."</item>
+		<item>"I do not believe in immortality of the individual, and I consider ethics to be an exclusively human concern with no superhuman authority behind it."</item>
+		<item>"I am not only a pacifist but a militant pacifist. I am willing to fight for peace. Nothing will end war unless the people themselves refuse to go to war."</item>
+		<item>"I am enough of an artist to draw freely upon my imagination."</item>
+		<item>"Human beings must have action; and they will make it if they cannot find it."</item>
+		<item>"Heroism on command, senseless violence, and all the loathsome nonsense that goes by the name of patriotism - how passionately I hate them!"</item>
+		<item>"It stands to the everlasting credit of science that by acting on the human mind it has overcome man's insecurity before himself and before nature."</item>
+		<item>"It should be possible to explain the laws of physics to a barmaid."</item>
+		<item>"It is the supreme art of the teacher to awaken joy in creative expression and knowledge."</item>
+		<item>"It is only to the individual that a soul is given."</item>
+		<item>"It is my conviction that killing under the cloak of war is nothing but an act of murder."</item>
+		<item>"It gives me great pleasure indeed to see the stubbornness of an incorrigible nonconformist warmly acclaimed."</item>
+		<item>"Intellectuals solve problems, geniuses prevent them."</item>
+		<item>"Insanity: doing the same thing over and over again and expecting different results."</item>
+		<item>"I want to know all Gods thoughts; all the rest are just details."</item>
+		<item>"I used to go away for weeks in a state of confusion."</item>
+		<item>"One may say the eternal mystery of the world is its comprehensibility."</item>
+		<item>"Occurrences in this domain are beyond the reach of exact prediction because of the variety of factors in operation, not because of any lack of order in nature."</item>
+		<item>"Not everything that can be counted counts, and not everything that counts can be counted."</item>
+		<item>"No amount of experimentation can ever prove me right; a single experiment can prove me wrong."</item>
+		<item>"Never lose a holy curiosity."</item>
+		<item>"Never do anything against conscience even if the state demands it."</item>
+		<item>"Nationalism is an infantile disease. It is the measles of mankind."</item>
+		<item>"My religion consists of a humble admiration of the illimitable superior spirit who reveals himself in the slight details we are able to perceive with our frail and feeble mind."</item>
+		<item>"Most people say that is it is the intellect which makes a great scientist. They are wrong: it is character."</item>
+		<item>"Most of the fundamental ideas of science are essentially simple, and may, as a rule, be expressed in a language comprehensible to everyone."</item>
+		<item>"Memory is deceptive because it is colored by today's events."</item>
+		<item>"Make everything as simple as possible, but not simpler."</item>
+		<item>"Look deep into nature, and then you will understand everything better."</item>
+		<item>"Let every man be respected as an individual and no man idolized."</item>
+		<item>"Knowledge of what is does not open the door directly to what should be."</item>
+		<item>"It was the experience of mystery - even if mixed with fear - that engendered religion."</item>
+		<item>"The environment is everything that isn't me."</item>
+		<item>"The distinction between the past, present and future is only a stubbornly persistent illusion."</item>
+		<item>"The difference between stupidity and genius is that genius has its limits."</item>
+		<item>"Technological progress is like an axe in the hands of a pathological criminal."</item>
+		<item>"Solitude is painful when one is young, but delightful when one is more mature."</item>
+		<item>"Science is a wonderful thing if one does not have to earn one's living at it."</item>
+		<item>"Reality is merely an illusion, albeit a very persistent one."</item>
+		<item>"Pure mathematics is, in its way, the poetry of logical ideas."</item>
+		<item>"People love chopping wood. In this activity one immediately sees results."</item>
+		<item>"Our task must be to free ourselves by widening our circle of compassion to embrace all living creatures and the whole of nature and its beauty."</item>
+		<item>"Only one who devotes himself to a cause with his whole strength and soul can be a true master. For this reason mastery demands all of a person."</item>
+		<item>"One strength of the communist system of the East is that it has some of the character of a religion and inspires the emotions of a religion"</item>
+		<item>"The world is a dangerous place to live; not because of the people who are evil, but because of the people who don't do anything about it."</item>
+		<item>"The whole of science is nothing more than a refinement of everyday thinking."</item>
+		<item>"The unleashed power of the atom has changed everything save our modes of thinking and we thus drift toward unparalleled catastrophe"</item>
+		<item>"The road to perdition has ever been accompanied by lip service to an ideal."</item>
+		<item>"The release of atomic energy has not created a new problem. It has merely made more urgent the necessity of solving an existing one."</item>
+		<item>"The process of scientific discovery is, in effect, a continual flight from wonder."</item>
+		<item>"The only source of knowledge is experience."</item>
+		<item>"The only real valuable thing is intuition"</item>
+		<item>"The most incomprehensible thing about the world is that it is comprehensible."</item>
+		<item>"The man of science is a poor philosopher."</item>
+		<item>"The high destiny of the individual is to serve rather than to rule."</item>
+		<item>"The hardest thing to understand in the world is the income tax."</item>
+		<item>"The grand aim of all science is to cover the greatest number of empirical facts by logical deduction from the smallest number of hypotheses or axioms."</item>
+		<item>"The gift of fantasy has meant more to me than my talent for absorbing positive knowledge."</item>
+		<item>"The faster you go, the shorter you are."</item>
+		<item>"We shall require a substantially new manner of thinking if mankind is to survive."</item>
+		<item>"We cannot solve our problems with the same thinking we used when we created them."</item>
+		<item>"We cannot despair of humanity, since we ourselves are human beings."</item>
+		<item>"Too many of us look upon Americans as dollar chasers. This is a cruel libel, even if it is reiterated thoughtlessly by the Americans themselves."</item>
+		<item>"To the Master's honor all must turn, each in its track, without a sound, forever tracing Newton's ground."</item>
+		<item>"Time is what prevents everything from happening at once."</item>
+		<item>"Things should be made as simple as possible, but not any simpler."</item>
+		<item>"There is no logical way to the discovery of these elemental laws. There is only the way of intuition, which is helped by a feeling for the order lying behind the appearance."</item>
+		<item>"There could be no fairer destiny for any physical theory than that it should point the way to a more comprehensive theory in which it lives on as a limiting case."</item>
+		<item>"You cannot simultaneously prevent and prepare for war."</item>
+		<item>"You can never solve a problem on the level on which it was created."</item>
+		<item>"You ask me if I keep a notebook to record my great ideas. I've only ever had one."</item>
+		<item>"The difference between genius and stupidity is that genius has its limits"</item>
+		<item>"Two things are infinite: the universe and human stupidity; and I'm not sure about the the universe"</item>
+		<item>"Imagination is more important than knowledgeImagination is more important than knowledge"</item>
+		<item>"All true learning is experience, everything else is just information."</item>
+		<item>"Human beings must have action and they will make it if they cannot find it."</item>
+		<item>"He who can no longer pause to wonder and stand rapt in awe, is as good as dead; his eyes are closed."</item>
+		<item>"Few are those who see with their own eyes and feel with their own hearts"</item>
+		<item>"Everything should be as simple as it is, but not simpler"</item>
+		<item>"Education is what remains after one has forgotten what one has learned in school"</item>
+		<item>"Before God we are all equally wise - and equally foolish"</item>
+		<item>"A person who never made a mistake never tried anything new"</item>
+		<item>"A man should look for what is, and not for what he thinks should be"</item>
+		<item>"Common sense is the collection of prejudices acquired by age eighteen"</item>
+		<item>"A question that sometimes drives me hazy: am I or are the others crazy?"</item>
+		<item>"As far as the laws of mathematics refer to reality, they are not certain, and as far as they are certain, they do not refer to reality"</item>
+		<item>"A perfection of means, and confusion of aims, seems to be our main problem"</item>
+		<item>"A table, a chair, a bowl of fruit and a violin; what else does a man need to be happy?"</item>
+		<item>"An empty stomach is not a good political advisor"</item>
+		<item>"Any man who reads too much and uses his own brain too little falls into lazy habits of thinking"</item>
+		<item>"Any intelligent fool can make things bigger and more complex... it takes a touch of genius - and a lot of courage to move in the opposite direction"</item>
+		<item>"Anyone who doesn't take truth seriously in small matters cannot be trusted in large ones eithe"</item>
+		<item>"As far as I'm concerned, I prefer silent vice to ostentatious virtue."</item>
+		<item>"Anger dwells only in the bosom of fools"</item>
+		<item>"All that is valuable in human society depends upon the opportunity for development accorded the individual."</item>
+		<item>"All religions, arts and sciences are branches of the same tree"</item>
+		<item>"I sometimes ask myself how it came about that I was the one to develop the theory of relativity. The reason, I think, is that a normal adult never stops to think about problems of space and time. These are things which he has thought about as a child."</item>
+		<item>"Possessions, outward success, publicity, luxury - to me these have always been contemptible. I believe that a simple and unassuming manner of life is best for every one, best both for the body and the mind."</item>
+		<item>"Desire for approval and recognition is a healthy motive, but the desire to be acknowledged as better, stronger or more intelligent than a fellow being or fellow scholar easily leads to an excessively egoistic psychological adjustment, which may become."</item>
+		<item>"Weakness of attitude becomes weakness of character."</item>
+		<item>"To punish me for my contempt for authority, fate made me an authority myself."</item>
+		<item>"The foundation of morality should not be made dependent on myth nor tied to any authority lest doubt about the myth or about the legitimacy of the authority imperil the foundation of sound judgment and action."</item>
+		<item>"If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed."</item>
+		<item>"Common sense is nothing more than a deposit of prejudices laid down in the mind before you reach eighteen."</item>
+		<item>"Any man who can drive safely while kissing a pretty girl is simply not giving the kiss the attention it deserves."</item>
+		<item>"Never do anything against conscience, even if the state demands it"</item>
+		<item>"It is a miracle that curiosity survives formal education."</item>
+		<item>"Curiosity has its own reason for existence."</item>
+		<item>"The secret to creativity is knowing how to hide your sources."</item>
+		<item>"But the creative principle resides in mathematics. In a certain sense, therefore, I hold true that pure thought can grasp reality, as the ancients dreamed."</item>
+		<item>"The process of scientific discovery is, in effect, a continual flight from wonder."</item>
+		<item>"You have to learn the rules of the game. And then you have to play better than anyone else."</item>
+		<item>"Relativity applies to physics, not ethics"</item>
+		<item>"To make a goal of comfort or happiness has never appealed to me; a system of ethics built on this basis would be sufficient only for a herd of cattle"</item>
+		<item>"Scientists investigate that which already is; Engineers create that which has never been."</item>
+		<item>"Setting an example is not the main means of influencing another, it is the only means."</item>
+		<item>"It is strange to be known so universally and yet to be so lonely."</item>
+		<item>"The gift of fantasy has meant more to me than my talent for absorbing positive knowledge."</item>
+		<item>"Force always attracts men of low morality, and I believe it to be an invariable rule that tyrants of genius are succeeded by scoundrels."</item>
+		<item>"I never think of the future. It comes soon enough."</item>
+		<item>"Generations to come will scarce believe that such a one as this walked the earth in flesh and blood."</item>
+		<item>"Great spirits have always encountered violent opposition from mediocre minds."</item>
+		<item>"The intuitive mind is a sacred gift and the rational mind is a faithful servant. We have created a society that honors the servant and has forgotten the gift."</item>
+		<item>"Teaching should be such that what is offered is perceived as a valuable gift and not as a hard duty."</item>
+		<item>"Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. THAT'S relativity."</item>
+		<item>"Well-being and happiness never appeared to me as an absolute aim. I am even inclined to compare such moral aims to the ambitions of a pig."</item>
+		<item>"I want to know how God created this world. I am not interested in this or that phenomenon, in the spectrum of this or that element. I want to know His thoughts; the rest are details."</item>
+		<item>"True religion is real living; living with all one's soul, with all one's goodness and righteousness."</item>
+		<item>"The only justifiable purpose of political institutions is to ensure the unhindered development of the individual."</item>
+		<item>"Heroism on command, senseless violence, and all the loathsome nonsense that goes by the name of patriotism -how passionately I hate them!"</item>
+		<item>"We must be prepared to make heroic sacrifices for the cause of peace that we make ungrudgingly for the cause of war. There is no task that is more important or closer to my heart."</item>
+		<item>"It has become appallingly obvious that our technology has exceeded our humanity."</item>
+		<item>"Whoever undertakes to set himself up as a judge of Truth and Knowledge is shipwrecked by the laughter of the gods."</item>
+		<item>"I know quite certainly that I myself have no special talent; curiosity, obsession and dogged endurance, combined with self-criticism, have brought me to my ideas."</item>
+		<item>"Most of the fundamental ideas of science are essentially simple, and may, as a rule, be expressed in a language comprehensible to everyone."</item>
+		<item>"Logic will get you from A to B. Imagination will take you everywhere."</item>
+		<item>"Imagination is more important than knowledge."</item>
+		<item>"Imagination is everything. It is the preview of life's coming attractions."</item>
+		<item>"To raise new questions, new possibilities, to regard old problems from a new angle, requires creative imagination and marks real advance in science."</item>
+		<item>"When I examine myself and my methods of thought, I come to the conclusion that the gift of fantasy has meant more to me than any talent for abstract, positive thinking."</item>
+		<item>"In that way imagination and intelligence enter into our existence in the part of servants of the primary instincts"</item>
+		<item>"For those who would joyously march in rank and file, they have already earned my contempt, for they were given a large brain by accident when a spinal chord would have sufficed."</item>
+		<item>"Let every man judge according to his own standards, by what he has himself read, not by what others tell him."</item>
+		<item>"Insanity: doing the same thing over and over again and expecting different results."</item>
+		<item>"The most powerful force in the universe is compound interest"</item>
+		<item>"He who joyfully marches to music in rank and file has already earned my contempt. He has been given a large brain by mistake, since for him the spinal cord would surely suffice."</item>
+		<item>"Joy in looking and comprehending is nature's most beautiful gift."</item>
+		<item>"We can understand almost anything, but we can't understand how we understand"</item>
+		<item>"There comes a time when the mind takes a higher plane of knowledge but can never prove how it got there."</item>
+		<item>"We can understand almost anything, but we can't understand how we understand"</item>
+		<item>"Nothing is more destructive of respect for the government and the law of the land than passing laws which cannot be enforced."</item>
+		<item>"The idle man does not know what it is to enjoy rest."</item>
+		<item>"When the solution is simple, God is answering."</item>
+		<item>"The difference between what the most and the least learned people know is inexpressibly trivial in relation to that which is unknown."</item>
+		<item>"Once we accept our limits, we go beyond them."</item>
+		<item>"I do not believe that the Good Lord plays dice."</item>
+		<item>"The human mind has first to construct forms, independently, before we can find them in things."</item>
+		<item>"The value of a man resides in what he gives and not in what he is capable of receiving."</item>
+		<item>"I believe that a simple and unassuming manner of life is best for everyone, best both for the body and the mind."</item>
+		<item>"Do not worry about your problems with mathematics, I assure you mine are far greater."</item>
+		<item>"Mathematics are well and good but nature keeps dragging us around by the nose."</item>
+		<item>"One reason why mathematics enjoys special esteem, above all other sciences, is that its laws are absolutely certain and indisputable, while those of other sciences are to some extent debatable and in constant danger of being overthrown by newly disco"</item>
+		<item>"As far as the laws of mathematics refer to reality, they are not certain; and as far as they are certain, they do not refer to reality."</item>
+		<item>"How can it be that mathematics, being after all a product of human thought which is independent of experience, is so admirably appropriate to the objects of reality? Is human reason, then, without experience, merely by taking thought, able to fathom"</item>
+		<item>"But there is another reason for the high repute of mathematics: it is mathematics that offers the exact natural sciences a certain measure of security which, without mathematics, they could not attain."</item>
+		<item>"I live in that solitude which is painful in youth, but delicious in the years of maturity."</item>
+		<item>"Great spirits have always encountered violent opposition from mediocre minds."</item>
+		<item>"Memory is deceptive because it is colored by today's events."</item>
+		<item>"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science."</item>
+		<item>"The eternal mystery of the world is its comprehensibility."</item>
+		<item>"The most beautiful thing we can experience is the mysterious."</item>
+		<item>"Anyone who has never made a mistake has never tried anything new."</item>
+		<item>"Joy in looking and comprehending is nature's most beautiful gift."</item>
+		<item>"What I see in Nature is a magnificent structure that we can comprehend only very imperfectly, and that must fill a thinking person with a feeling of humility. This is a genuinely religious feeling that has nothing to do with mysticism."</item>
+		<item>"The release of atom power has changed everything except our way of thinking...the solution to this problem lies in the heart of mankind. If only I had known, I should have become a watchmaker."</item>
+		<item>"That deep emotional conviction of the presence of a superior reasoning power, which is revealed in the incomprehensible universe, forms my idea of God."</item>
+		<item>"If men as individuals surrender to the call of their elementary instincts, avoiding pain and seeking satisfaction only for their own selves, the result for them all taken together must be a state of insecurity, of fear, and of promiscuous misery."</item>
+		<item>"Few people are capable of expressing with equanimity opinions which differ from the prejudices of their social environment"</item>
+		<item>"Two things are infinite: the universe and human stupidity; and I'm not sure about the the universe."</item>
+		<item>"The horizon of many people is a circle with zero radius which they call their point of view."</item>
+		<item>"Perfection of means and confusion of goals seem - in my opinion - to characterize our age"</item>
+		<item>"We should take care not to make the intellect our god; it has, of course, powerful muscles, but no personality."</item>
+		<item>"Unless Americans come to realize that they are not stronger in the world because they have the bomb but weaker because of their vulnerability to atomic attack, they are not likely to conduct their policy at Lake Success [the United Nations] or in the"</item>
+		<item>"The man of science is a poor philosopher."</item>
+		<item>"I would not think that philosophy and reason themselves will be man's guide in the foreseeable future; however, they will remain the most beautiful sanctuary they have always been for the select few"</item>
+		<item>"We can't solve problems by using the same kind of thinking we used when we created them."</item>
+		<item>"It gives me great pleasure indeed to see the stubbornness of an incorrigible nonconformist warmly acclaimed"</item>
+		<item>"All our lauded technological progress -- our very civilization - is like the axe in the hand of the pathological criminal."</item>
+		<item>"Politics is for the present, but an equation is for eternity."</item>
+		<item>"Yes, we have to divide up our time like that, between our politics and our equations. But to me our equations are far more important, for politics are only a matter of present concern. A mathematical equation stands forever."</item>
+		<item>"Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."</item>
+		<item>"Reality is merely an illusion, although a very persistent one"</item>
+		<item>"I think that a particle must have a separate reality independent of the measurements. That is an electron has spin, location and so forth even when it is not being measured. I like to think that the moon is there even if I am not looking at it."</item>
+		<item>"I would not think that philosophy and reason themselves will be man's guide in the foreseeable future; however, they will remain the most beautiful sanctuary they have always been for the select few"</item>
+		<item>"A religious person is devout in the sense that he has no doubt about the significance of those superpersonal objects and goals which neither require nor are capable of rational foundation."</item>
+		<item>"Three Rules of Work: Out of clutter find simplicity; From discord find harmony; In the middle of difficulty lies opportunity."</item>
+		<item>"Everything should be made as simple as possible, but not simpler."</item>
+		<item>"It would be possible to describe everything scientifically, but it would make no sense; it would be without meaning, as if you described a Beethoven symphony as a variation of wave pressure."</item>
+		<item>"Science is a wonderful thing if one does not have to earn one's living at it."</item>
+		<item>"My feeling is religious insofar as I am imbued with the consciousness of the insufficiency of the human mind to understand more deeply the harmony of the Universe which we try to formulate as laws of nature"</item>
+		<item>"One thing I have learned in a long life: that all our science, measured against reality, is primitive and childlike - and yet it is the most precious thing we have"</item>
+		<item>"I have no particular talent. I am merely inquisitive."</item>
+		<item>"It is appallingly obvious our technology has exceeded our humanity"</item>
+		<item>"Science is the century-old endeavor to bring together by means of systematic thought the perceptible phenomena of this world into as thorough-going an association as possible."</item>
+		<item>"Technological progress is like an axe in the hands of a pathological criminal."</item>
+		<item>"I lived in solitude in the country and noticed how the monotony of a quiet life stimulates the creative mind"</item>
+		<item>"Solitude is painful when one is young, but delightful when one is more mature."</item>
+		<item>"It is the theory that decides what can be observed"</item>
+		<item>"If the facts don't fit the theory, change the facts."</item>
+		<item>"The truth of a theory is in your mind, not in your eyes."</item>
+		<item>"It is the theory that decides what we can observe."</item>
+		<item>"I think and think for months and years. Ninety-nine times, the conclusion is false. The hundredth time I am right."</item>
+		<item>"These thoughts did not come in any verbal formulation. I rarely think in words at all. A thought comes, and I may try to express it in words afterward."</item>
+		<item>"Thought is the organizing factor in man, intersected between the causal primary instincts and the resulting actions."</item>
+		<item>"The only reason for time is so that everything doesn't happen at once."</item>
+		<item>"Look deep into nature, and then you will understand everything better."</item>
+		<item>"Two things are infinite: the universe and human stupidity; and I'm not sure about the the universe."</item>
+		<item>"It is my view that the vegetarian manner of living by its purely physical effect on the human temperament would most beneficially influence the lot of mankind."</item>
+		<item>"As far as I'm concerned, I prefer silent vice to ostentatious virtue."</item>
+		<item>"I know not with what weapons World War III will be fought, but World War IV will be fought with sticks and stones."</item>
+		<item>"You cannot simultaneously prevent and prepare for war."</item>
+		<item>"One cannot simultaneously prevent and prepare for war"</item>
+		<item>"I do not know how the third world war will be fought, but I can tell you what they will use in the fourth... rocks.""</item>
+		<item>"The world is a dangerous place. Not because of the people who are evil; but because of the people who don't do anything about it."</item>
+		<item>"What really interests me is whether God had any choice in the creation of the world."</item>
+		<item>"The world is not dangerous because of those who do harm but because of those who look at it without doing anything"</item>
+		<item>"Space by itself, and time by itself, are doomed to fade away into mere shadows, and only a kind union of the two will preserve an independent reality"</item>
+		<item>"One had to cram all this stuff into one's mind for the examinations, whether one liked it or not. This coercion had such a deterring effect on me that, after I had passed the final examination, I found the consideration of any scientific problems dis"</item>
+		<item>"Reading, after a certain age, diverts the mind too much from its creative pursuits. Any man who reads too much and uses his own brain too little falls into lazy habits of thinking."</item>
+		<item>"A man's moral worth is not measured by what his religious beliefs are but rather by what emotional impulses he has received from Nature during his lifetime"</item>
+		<item>"I cannot conceive of a personal God who would directly influence the actions of individuals, or would directly sit in judgment on creatures of his own creation. I cannot do this in spite of the fact that mechanistic causality has, to a certain extent"</item>
+		<item>"It is quite possible that we can do greater things than Jesus, for what is written in the Bible about him is poetically embellished"</item>
+		<item>"Insanity is doing the same thing over and over again and expecting different results."</item>
+		<item>"There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle."</item>
+		<item>"It stands to the everlasting credit of science that by acting on the human mind it has overcome man's insecurity before himself and before nature."</item>
+		<item>"The devil has put a penalty on all things we enjoy in life. Either we suffer in health or we suffer in soul or we get fat."</item>
+		<item>"Memory is deceptive because it is colored by today's events."</item>
+		<item>"Anyone who has never made a mistake has never tried something new."</item>
+		<item>"Insanity is doing the same thing over and over again and expecting different results."</item>
+		<item>"Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. THAT'S relativity."</item>
+		<item>"How on earth are you ever going to explain in terms of chemistry and physics so important a biological phenomenon as first love?"</item>
+		<item>"The value of a man should be seen in what he gives and not in what he is able to receive."</item>
+		<item>"It is my conviction that killing under the cloak of war is nothing but an act of murder."</item>
+		<item>"Peace cannot be kept by force. It can only be achieved by understanding."</item>
+		<item>"How vile and despicable war seems to me! I would rather be hacked to pieces than take part in such an abominable business."</item>
+		<item>"Nothing will end war unless the people themselves refuse to go to war."</item>
+		<item>"The release of atomic energy has not created a new problem. It has merely made more urgent the necessity of solving an existing one."</item>
+		<item>"Men marry women with the hope they will never change. Women marry men with the hope they will change. Invariably they are both disappointed."</item>
+		<item>"Gravitation is not responsible for people falling in love."</item>
+		<item>"There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle."</item>
+		<item>"The only thing that interferes with my learning is my education."</item>
+		<item>"Education is what remains when one has forgotten everything he learned in school."</item>
+		<item>"Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That's relativity."</item>
+		<item>"When you are courting a nice girl an hour seems like a second. When you sit on a red-hot cinder a second seems like an hour. That's relativity."</item>
+
+
+	</string-array>
+</resources>
