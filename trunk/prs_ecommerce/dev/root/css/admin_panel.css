@@ -1,0 +1,80 @@
+@CHARSET "ISO-8859-1";
+
+.admin_panel,.admin_detail {
+	position: absolute;
+	left: 50px;
+	width: 3350px;
+}
+
+.admin_panel fieldset,.admin_detail fieldset {
+	width: 300px;
+}
+
+.admin_panel {
+	top: 100px;
+}
+
+.admin_panel label {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.admin_works {
+	position: absolute;
+	left: 400px;
+}
+
+.admin_works fieldset {
+	width: 800px;
+}
+
+#list_of_user th {
+	color: white;
+	background-color: black;
+	text-align: left;
+}
+
+#list_of_user table {
+	width: 600px;
+	border: none;
+	border-spacing: 0px;
+}
+
+#list_of_buy th {
+	color: white;
+	background-color: black;
+	text-align: left;
+}
+
+#list_of_buy table {
+	width: 600px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.hidden {
+	display: none;
+}
+
+#message th {
+	color: white;
+	background-color: black;
+	text-align: left;
+}
+
+#message table {
+	width: 550px;
+	border: none;
+	border-spacing: 0px;
+}
+#search_list fieldset {
+	width: 600px;
+}
+
+#search_list fieldset {
+	width: 600px;
+}
+#proba fieldset {
+	width: 600px;
+}
