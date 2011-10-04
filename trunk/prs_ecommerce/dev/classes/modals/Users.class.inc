@@ -41,7 +41,7 @@ class Users {
 		$db = new DBManager();
 		$register= $db->callProcedure("fizicko_lice_register", array(
 		0=>$_POST['f_username'],1=>$_POST['f_password'],2=>$_POST['f_email'],
-		3=>$_POST['f_firstname'],4=>$_POST['f_lastname'],5=>$_POST['f_jmbg'],6=>$_POST['f_telefon'])
+		3=>$_POST['f_firstname'],4=>$_POST['f_lastname'],5=>$_POST['f_jmbg'],6=>$_POST['f_telefon'], 7=>$_POST['f_address'])
 		);
 		if (!is_array($register)) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		else if (count($register)==0) throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);

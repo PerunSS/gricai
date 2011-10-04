@@ -13,7 +13,8 @@ function doSmaller() {
 
 function doSub() {
 	var id = $("#categorry option:selected").val();
-	$.get("../templates/category_options.php", {
+	$.get("dispatch.php", {
+		dispatch : "category_options",
 		id : id
 	}, returnSub);
 }
@@ -24,7 +25,8 @@ function returnSub(data) {
 
 function doSmallerSearch() {
 	var name = $("#search_name").val();
-	$.get("../templates/items_search.php", {
+	$.get("dispatch.php", {
+		dispatch : "items_search",
 		name : name,
 		cat : "0",
 		sub : "0"
@@ -35,7 +37,8 @@ function doAdvancedSearch() {
 	var name = $("#search_name").val();
 	var cat = $("#categorry option:selected").val();
 	var sub = $("#sub_categorry option:selected").val();
-	$.get("../templates/items_search.php", {
+	$.get("dispatch.php", {
+		dispatch : "items_search",
 		name : name,
 		cat : cat,
 		sub : sub
@@ -76,7 +79,8 @@ function removeMessage(){
 }
 
 function showCart() {
-	$.get("../templates/shopping_cart.php", {
+	$.get("dispatch.php", {
+		dispatch : "shopping_cart"
 	}, returnCart)
 }
 
@@ -130,4 +134,5 @@ $(function() {
 	$("#s_search_items").click(doSmallerSearch);
 	$("#a_search_items").click(doAdvancedSearch);
 	$("#shopping_cart").click(showCart);
+	doSmallerSearch();
 });
