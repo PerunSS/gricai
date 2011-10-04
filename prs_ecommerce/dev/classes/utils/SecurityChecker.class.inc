@@ -3,13 +3,13 @@ class SecurityChecker {
 
 	public static $missing_array= array(
 	"user_login"=>array("username", "password"),
-	"individual_register"=>array("f_username", "f_password","f_confirm", "f_email", "f_firstname", "f_lastname", "f_jmbg", "f_telefon"),
+	"individual_register"=>array("f_username", "f_password","f_confirm", "f_email", "f_firstname", "f_lastname", "f_jmbg", "f_telefon", "f_address"),
 	"entity_register"=>array("username", "password","confirm", "email", "name", "address", "city", "pib","maticni","telefon")
 	);
 
 	public static $empty_array= array(
 	"user_login"=>array("username", "password"),
-	"individual_register"=>array("f_username", "f_password","f_confirm", "f_email", "f_firstname", "f_lastname", "f_jmbg", "f_telefon"),
+	"individual_register"=>array("f_username", "f_password","f_confirm", "f_email", "f_firstname", "f_lastname", "f_jmbg", "f_telefon", "f_address"),
 	"entity_register"=>array("username", "password","confirm", "email", "name", "address", "city", "pib","maticni","telefon")
 	);
 
@@ -38,7 +38,7 @@ class SecurityChecker {
 
 	public static $alphanumeric_array = array(
 	"user_login"=>array(),
-	"individual_register"=>array(),
+	"individual_register"=>array("f_address"),
 	"entity_register"=>array("address")
 	);
 
@@ -56,7 +56,7 @@ class SecurityChecker {
 				$errors[$i]=array('error'=>'empty_'.$value);
 				$i++;
 			}
-			elseif(preg_match("/^[ ]+$/", $_GET[$value])) {
+			elseif(isset($_GET[$value]) && preg_match("/^[ ]+$/", $_GET[$value])) {
 				$errors[$i]=array('error'=>'empty_'.$value);
 				$i++;
 			}
@@ -132,7 +132,7 @@ class SecurityChecker {
 				$errors[$i]=array('error'=>'empty_'.$value);
 				$i++;
 			}
-			elseif(preg_match("/^[ ]+$/", $_POST[$value])) {
+			elseif(isset($_POST[$value]) && preg_match("/^[ ]+$/", $_POST[$value])) {
 				$errors[$i]=array('error'=>'empty_'.$value);
 				$i++;
 			}

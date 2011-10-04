@@ -23,11 +23,10 @@ class DBManager {
 		PDO::ATTR_PERSISTENT => true
 		);
 		try{
-			$this->conn=new PDO ( $driver, $this->user, $this->pass, $options);
+			$this->conn=new PDO( $driver, $this->user, $this->pass, $options);
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		}catch (PDOException $e){
-			echo $e->getMessage();
+		}catch (Exception $e){
+			throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
 		}
 	}
 	function callProcedure($procedure, $params){
@@ -42,18 +41,25 @@ class DBManager {
 		$query .= ");";
 		try{
 			$this->conn();
-			$stmt = $this->conn->prepare($query);
-			foreach ($params as $key=>$param){
-				if (empty($param)){
-					$stmt->bindValue($key+1, null, PDO::PARAM_NULL);
+			if ($this->conn!=null){
+				$stmt = $this->conn->prepare($query);
+				foreach ($params as $key=>$param){
+					if (empty($param)){
+						$stmt->bindValue($key+1, null, PDO::PARAM_NULL);
+					}
+					else {
+						$stmt->bindValue($key+1, $param);
+					}
 				}
-				else {
-					$stmt->bindValue($key+1, $param);
-				}
+				$stmt->execute();
+				$this->close();
 			}
-			$stmt->execute();
-		}catch (Exception $e){
-			print_r($e->getMessage());
+			else throw new SecurityExceptions(Constants::CODE_TIMEOUT, null);
+		}
+		catch (SecurityExceptions $e){
+			print_r($e->getJSON());
+		}
+		catch (Exception $e){
 		}
 		$array = $stmt->fetchAll();
 		return $array;

@@ -22,7 +22,8 @@ var fizicki = new Array("#missing_f_username", "#empty_f_username",
 		"#numeric_f_telefon", "#missing_f_jmbg", "#empty_f_jmbg",
 		"#numeric_f_jmbg", "#missing_f_email", "#empty_f_email",
 		"#invalid_f_email", "#wrong_f_username", "#wrong_f_username",
-		"#f_exist_user", "#f_success", "#f_missing", "#f_timeout");
+		"#f_exist_user", "#f_success", "#f_missing", "#f_timeout",
+		"#missing_f_address", "#empty_f_address", "#alphanumeric_f_address");
 
 function doChange() {
 	var reg = $("input[@name=reg]:checked").attr('id');
@@ -49,7 +50,8 @@ function addAddress() {
 	}
 	if (pom) {
 		address[address.length] = "";
-		$.post("../templates/addresses.php", {
+		$.post("dispatch.php", {
+			dispatch : "addresses",
 			addresses : address
 		}, returnAddress);
 	}
@@ -76,7 +78,8 @@ function removeText() {
 		}
 	}
 	address = pom;
-	$.post("../templates/addresses.php", {
+	$.post("dispatch.php", {
+		dispatch : "addresses",
 		addresses : address
 	}, returnAddress);
 }
@@ -159,8 +162,10 @@ function registerFizicka(callback) {
 	var confirm = $("#f_confirm").val();
 	var firstname = $("#f_firstname").val();
 	var lastname = $("#f_lastname").val();
-	var telefon = $("#telefon").val();
+	var telefon = $("#f_telefon").val();
 	var jmbg = $("#f_jmbg").val();
+	var email = $("#f_email").val();
+	var addres = $("#f_address").val();
 
 	$.postJSON("action.php", {
 		register_fl : "submit",
@@ -170,8 +175,9 @@ function registerFizicka(callback) {
 		f_firstname : firstname,
 		f_lastname : lastname,
 		f_telefon : telefon,
-		email : email,
-		f_jmbg : jmbg
+		f_email : email,
+		f_jmbg : jmbg,
+		f_address : addres
 	}, callback);
 }
 

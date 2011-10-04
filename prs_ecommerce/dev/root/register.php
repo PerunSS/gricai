@@ -460,6 +460,27 @@ SecurityChecker::sessionStart();
 							</td>
 						</tr>
 						<tr>
+							<td>Adresa:</td>
+							<td><input
+								type="text"
+								name="f_address"
+								id="f_address"
+							></td>
+							<td><div
+									class="hidden warning"
+									id="missing_f_address"
+								>Nedostaje unos</div>
+								<div
+									class="hidden warning"
+									id="empty_f_address"
+								>Nedostaje unos</div>
+								<div
+									class="hidden warning"
+									id="alphanumeric_f_address"
+								>Pogresan unos</div>
+							</td>
+						</tr>
+						<tr>
 							<td>Kontakt telefon:</td>
 							<td><input
 								type="text"
