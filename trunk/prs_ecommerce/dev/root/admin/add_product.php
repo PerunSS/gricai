@@ -18,7 +18,7 @@ podkategorija: <select name="id_podkategorija">
 		$admin = Admin::fromJson($_SESSION['admin']); 
 		$podkategorije = $admin->getPodkategorije();
 		foreach($podkategorije as $pod){ ?>
-			<option value="<?php echo $pod['id_kategorija'];?>"><?php echo $pod['kategorija'];?></option>
+			<option value="<?php echo $pod['id'];?>"><?php echo $pod['kategorija'];?></option>
 	<?php }?>
 </select><br />
 <input type="submit" value="dodaj" /> 
