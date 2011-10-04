@@ -36,6 +36,9 @@ if(isset($_POST['u_logout'])){
 if(isset($_POST['add_to_cart'])){
 	include '../actions/cart/add.php';
 }
+if(isset($_POST['forgot_password'])){
+	include '../actions/utils/send_new_password.php';
+}
 if(isset($_POST['remove_from_cart'])){
 	include '../actions/cart/remove.php';
 }
