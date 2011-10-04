@@ -1,3 +1,4 @@
+<div id="message">
 <?php
 SecurityChecker::sessionStart();
 if(!isset($_SESSION['admin'])){
@@ -12,40 +13,54 @@ $color = true;
 foreach($result as $proizvod){
 	$color = true;
 	if($sum){
-?>
-	<div id="porudzbenica_sum">
-	vreme porudzbenice: <?=$proizvod['vreme']?>, ukupna cena: <?=$proizvod['ukupna_cena']?> RSD, status korpe: <?=$proizvod['status']?>
-	</div>
-	<table>
-		<thead>
-			<tr>
-				<th>Kategorija</th>
-				<th>Tip</th>
-				<th>Naziv</th>
-				<th>Kolicina</th>
-				<th>Cena</th>
-				<th>Poreklo</th>
-				<th>Opis</th>
-				<th>Pakovanje</th>
-			</tr>
-		</thead>
-		<tbody>
-<?php
-	$sum = false; 
+		?>
+<div id="porudzbenica_sum">
+	vreme porudzbenice:
+	<?php echo $proizvod['vreme']?>
+	<br/>ukupna cena:
+	<?php echo $proizvod['ukupna_cena']?>
+	RSD<br/>status korpe:
+	<?php echo $proizvod['status']?><br/>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th width="10%">Kategorija</th>
+			<th width="10%">Tip</th>
+			<th width="15%">Naziv</th>
+			<th width="10%">Kolicina</th>
+			<th width="10%">Cena</th>
+			<th width="15%">Poreklo</th>
+			<th width="15%">Opis</th>
+			<th width="15%">Pakovanje</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+	$sum = false;
 	}
-?>
-	<tr class="<?php echo ($color?'sivi':'svetli');?>">
-		<td><?=$proizvod['kategorija']?></td>
-		<td><?=$proizvod['tip']?></td>
-		<td><?=$proizvod['naziv']?></td>
-		<td><?=$proizvod['kolicina']?></td>
-		<td><?=$proizvod['pojedinacna_cena']?></td>
-		<td><?=$proizvod['poreklo']?></td>
-		<td><?=$proizvod['opis']?></td>
-		<td><?=$proizvod['pakovanje']?></td>
-	</tr>
-<?php 
+	?>
+		<tr class="<?php echo ($color?'sivi':'svetli');?>">
+			<td><?php echo $proizvod['kategorija']?></td>
+			<td><?php echo $proizvod['tip']?></td>
+			<td><?php echo $proizvod['naziv']?></td>
+			<td><?php echo $proizvod['kolicina']?></td>
+			<td><?php echo $proizvod['pojedinacna_cena']?></td>
+			<td><?php echo $proizvod['poreklo']?></td>
+			<td><?php echo $proizvod['opis']?></td>
+			<td><?php echo $proizvod['pakovanje']?></td>
+		</tr>
+
+		<?php
 }
 ?>
-</tbody>
+		<tr>
+			<td><input
+				type="submit"
+				value="Ok"
+				id="close"
+			></td>
+		</tr>
+	</tbody>
 </table>
+</div>
