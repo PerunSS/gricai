@@ -1,7 +1,10 @@
-<div id="show_cart">
 <?php
 require_once '../classes/AutoloadClasses.inc';
 SecurityChecker::sessionStart();
+?>
+
+<div id="show_cart">
+<?php 
 if (isset($_SESSION['cart']) && count($_SESSION['cart'])>0){?>
 	<fieldset>
 		<table>

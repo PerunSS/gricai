@@ -11,4 +11,6 @@ class Constants {
 	//register_individual
 	const CODE_EXIST_USER = 1011;
 	const CODE_WRONG_CONFIRM_PASSWORD = 1012;
+	
+	const PHP_PATH = '';//'../prs_php';
 }

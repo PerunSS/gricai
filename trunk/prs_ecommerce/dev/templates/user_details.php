@@ -1,6 +1,8 @@
-<div id="message">
 <?php
 SecurityChecker::sessionStart();
+?>
+<div id="message">
+<?php
 $admin = Admin::fromJson($_SESSION['admin']);
 
 $result = $admin->getUserDetails($_REQUEST['user_id']);
