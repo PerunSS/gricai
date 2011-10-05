@@ -1,6 +1,8 @@
-<div id="message">
 <?php
 SecurityChecker::sessionStart();
+?>
+<div id="message">
+<?php
 if(!isset($_SESSION['admin'])){
 	header("Location: /admin/login.php");
 }

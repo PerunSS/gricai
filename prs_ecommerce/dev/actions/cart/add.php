@@ -1,12 +1,16 @@
+<?php
+	require_once '../classes/AutoloadClasses.inc';
+	SecurityChecker::sessionStart();
+?>
+
 <div
 	class="message"
 	id="message"
 >
 	<table>
 		<tr>
-			<td><?php
-			require_once '../classes/AutoloadClasses.inc';
-			SecurityChecker::sessionStart();
+			<td>
+			<?php
 			if (isset($_POST['item_name']) && isset($_POST['item_id']) && isset($_POST['item_currency'])){
 				if (!isset($_SESSION['cart'])){
 					$_SESSION['cart']=array();
