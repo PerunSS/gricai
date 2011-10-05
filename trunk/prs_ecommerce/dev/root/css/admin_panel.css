@@ -26,7 +26,7 @@
 }
 
 .admin_works fieldset {
-	width: 800px;
+	width: 1000px;
 }
 
 #list_of_user th {
@@ -68,13 +68,22 @@
 	border: none;
 	border-spacing: 0px;
 }
-#search_list fieldset {
-	width: 600px;
-}
 
-#search_list fieldset {
-	width: 600px;
-}
 #proba fieldset {
 	width: 600px;
+}
+.non_editable {
+	background-color: silver;
+}
+
+.search_list th {
+	color: white;
+	background-color: black;
+	text-align: left;
+}
+
+.search_list table {
+	width: 970px;
+	border: none;
+	border-spacing: 0px;
 }

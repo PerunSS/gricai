@@ -26,6 +26,10 @@ if(!isset($_SESSION['admin'])){
 	type="text/javascript"
 	src="../js/admin_panel.js"
 ></script>
+<script
+	type="text/javascript"
+	src="../js/product.js"
+></script>
 </head>
 <body>
 <?php

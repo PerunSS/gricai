@@ -51,3 +51,12 @@ if(isset($_POST['buy_cart'])){
 if(isset($_REQUEST['a_add_product'])){
 	include '..'.Constants::PHP_PATH.'/templates/add_product.php';
 }
+if(isset($_REQUEST['delete_proizvod'])){
+	include '../actions/admin/delete_proizvod.php';
+}
+if(isset($_REQUEST['update_proizvod'])){
+	include '../actions/admin/update_proizvod.php';
+}
+if(isset($_REQUEST['add_proizvod'])){
+	include '../actions/admin/add_proizvod.php';
+}
