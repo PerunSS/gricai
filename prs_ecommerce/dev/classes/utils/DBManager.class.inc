@@ -44,7 +44,7 @@ class DBManager {
 			if ($this->conn!=null){
 				$stmt = $this->conn->prepare($query);
 				foreach ($params as $key=>$param){
-					if (empty($param)){
+					if (empty($param) && $param!=0){
 						$stmt->bindValue($key+1, null, PDO::PARAM_NULL);
 					}
 					else {
