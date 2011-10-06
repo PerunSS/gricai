@@ -1,6 +1,6 @@
 package com.cerSprikRu.grind.OneLiners.adapter;
 
-import java.util.List;
+import java.util.List; 
 
 import android.content.Context;
 import android.view.LayoutInflater;
