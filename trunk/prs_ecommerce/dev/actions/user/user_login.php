@@ -2,7 +2,7 @@
 try{
 	SecurityChecker::sessionStart();
 	$user=new Users();
-	$login=$user->login();
+	$login=$user->login();	
 	$user_string = json_decode($login);	
 	$_SESSION['user'] = json_encode($user_string->user);
 }
@@ -15,5 +15,5 @@ catch (UsersExceptions $ue){
 catch (Exception $e){
 	//TODO log
 }
-header("Location: shop.php");
+header("Location: kupovina.php");
 ?>

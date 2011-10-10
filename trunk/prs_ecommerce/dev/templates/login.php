@@ -25,8 +25,7 @@ if (!SecurityChecker::isLogged()){?>
 		}?>
 		<table>
 			<tr>
-				<td><label><?php echo $message;?> </label>
-				</td>
+				<td><label class="error_tekst"><?php echo $message;?> </label></td>
 			</tr>
 		</table>
 		<?php
@@ -39,34 +38,35 @@ if (!SecurityChecker::isLogged()){?>
 		>
 			<table>
 				<tr>
-					<td><label for="username">Korisnik</label></td>
 					<td><input
 						type="text"
 						id="username"
 						name="username"
-					></td>
-				</tr>
-				<tr>
-					<td><label for="password">Sifra</label>
+						placeholder="korisnik"
+						class="tekst"
+					>
+					</td>
 					</td>
 					<td><input
 						type="password"
 						id="password"
 						name="password"
-					></td>
-				</tr>
-				<tr>
+						placeholder="sifra"
+						class="tekst"
+					>
+					</td>
 					<td><input
 						type="submit"
 						name="u_login"
 						id="u_login"
 						value="Login"
-					></td>
+						class="dugmici"
+					>
+					</td>
 				</tr>
-			</table>
-			<table>
 				<tr>
-					<td><a href="register.php">Registruj se</a></td>
+					<td><a href="registruj.php">Registruj se</a>
+					</td>
 					<td></td>
 				</tr>
 			</table>
@@ -79,19 +79,18 @@ if (!SecurityChecker::isLogged()){?>
 	<fieldset>
 		<table>
 			<tr>
-				<td><label>Korisnik: </label></td>
-				<td><?php echo (isset($user->ime)?$user->ime:$user->ime_firme);?>
+				<td><label>Korisnik: </label>
 				</td>
-			</tr>
-			<tr>
+				<td><label class="labela"><?php echo (isset($user->ime)?$user->ime:$user->ime_firme);?>
+				</label></td>
 				<td><input
 					type="submit"
 					name="shopping_cart"
 					id="shopping_cart"
 					value="Korpa"
-				></td>
-			</tr>
-			<tr>
+					class="dugmici"
+				>
+				</td>
 				<td>
 					<form
 						action="action.php"
@@ -102,9 +101,9 @@ if (!SecurityChecker::isLogged()){?>
 							name="u_logout"
 							id="u_logout"
 							value="Logout"
+							class="dugmici"
 						>
-					</form>
-				</td>
+					</form></td>
 			</tr>
 		</table>
 	</fieldset>

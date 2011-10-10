@@ -3,20 +3,20 @@
 <?php
 foreach ($_POST['addresses'] as $key=>$value){?>
 	<tr>
-		<td><label for="adresa_<?php echo $key;?>">Adresa: </label></td>
+		<td><label for="adresa_<?php echo $key;?>" class="labela">Adresa: </label></td>
 		<td><input
 			type="text"
 			id="adresa_<?php echo $key;?>"
 			name="adresa_<?php echo $key;?>"
 			adresa="<?php echo $key;?>"
-			class="adrese"
+			class="adrese tekst"
 			value="<?php echo $value;?>"
 		></td>
 		<td><input
 			type="submit"
 			adresa="<?php echo $key;?>"
-			class="ukloni"
-			value="Ukloni"
+			class="ukloni dugmici"
+			value="x"
 		>
 		</td>
 		<td>

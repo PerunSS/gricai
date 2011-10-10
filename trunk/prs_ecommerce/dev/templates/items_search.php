@@ -13,9 +13,25 @@ $name="%";
 if (strlen($_GET['name'])>0){
 	$name="%".$_GET['name']."%";
 }
-$items=$db->callProcedure("select_proizvodi", array(0=>$name,1=>$cat,2=>$sub));
+$items=$db->callProcedure("select_proizvodi", array(0=>$name,1=>$cat,2=>$sub, 3=>$_GET['page']));
 if (is_array($items) && count($items)>0){?>
 <fieldset>
+	<div align="left">
+	<?php $broj =  $items[0]['count'];
+	if ($broj > 20){
+		$stranica = ceil($broj/20);?>
+		<label class="labela">Strana:&nbsp;&nbsp;</label>
+		<?php
+		for ($i = 1; $i <= $stranica; $i++) {
+
+			?>
+		<label class="labela<?php if($i!=$_GET['page']) echo ' stranica';?>" strana="<?php echo $i;?>">&nbsp;<?php echo $i;?></label>
+		<?php 
+		if ($i<$stranica) echo '<label class="labela">&nbsp;|&nbsp;</label>';
+		}
+	}?>
+	</div>
+	<br />
 	<table>
 		<thead>
 			<tr>
@@ -38,7 +54,7 @@ if (is_array($items) && count($items)>0){?>
 				<td><label><?php echo $value['cena']." RSD"?> </label></td>
 				<td><input
 					type="submit"
-					class="set_cart"
+					class="set_cart dugmici"
 					item_name="<?php echo $value['naziv']?>"
 					item_id="<?php echo $value['id']?>"
 					item_currency="<?php echo $value['cena']?>"
