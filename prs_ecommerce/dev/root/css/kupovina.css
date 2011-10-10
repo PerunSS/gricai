@@ -157,8 +157,126 @@
 	border-spacing: 0px;
 }
 
+.admin_login fieldset {
+	width: 500px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 200px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.admin_login table {
+	width: 400px;
+	border: none;
+	border-spacing: 0px;
+}
+
 .hidden.warning{
 	background-color: transparent;
 	color: red;
 	border: none;
+}
+
+.admin_detail fieldset {
+	width: 200px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: right;
+	margin-left: 20px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.admin_panel fieldset {
+	width: 200px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 40px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.admin_panel label, .admin_panel a {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.admin_detail table {
+	width: 200px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.user_list_div fieldset {
+	width: 900px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 20px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+.user_list_div table {
+	width: 880px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.user_list_div th {
+	background-color: #5D8AA8;
+	color: white;
+	text-align: left;
+}
+
+.view_user_div fieldset {
+	width: 400px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 20px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+.view_user_div table {
+	width: 390px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.search_list_items fieldset {
+	width: 925px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 1px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.search_list_items table {
+	width: 880px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.search_list_items th {
+	background-color: #5D8AA8;
+	color: white;
+	text-align: left;
 }

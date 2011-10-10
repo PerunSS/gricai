@@ -1,5 +1,17 @@
 var item_id = '';
 var current = false;
+var page = 1;
+var pretraga = true;
+
+function buttonSmaller() {
+	page = 1;
+	doSmallerSearch();
+}
+
+function buttonAdvanced() {
+	page = 1;
+	doAdvancedSearch();
+}
 
 function doProductList() {
 	$.get("../dispatch.php", {
@@ -12,8 +24,8 @@ function returnProduct(data) {
 	$("#advanced_search").click(doAdvanced);
 	$("#smaller_search").click(doSmaller);
 	$("#categorry").change(doSub);
-	$("#s_search_items").click(doSmallerSearch);
-	$("#a_search_items").click(doAdvancedSearch);
+	$("#s_search_items").click(buttonSmaller);
+	$("#a_search_items").click(buttonAdvanced);
 	current = false;
 	doSmallerSearch();
 }
@@ -46,16 +58,19 @@ function returnSub(data) {
 }
 
 function doSmallerSearch() {
+	pretraga = true;
 	var name = $("#search_name").val();
 	$.get("../dispatch.php", {
 		dispatch : "admin_items_search",
 		name : name,
 		cat : "0",
-		sub : "0"
+		sub : "0",
+		page : page
 	}, returnSearch);
 }
 
 function doAdvancedSearch() {
+	pretraga = false;
 	var name = $("#search_name").val();
 	var cat = $("#categorry option:selected").val();
 	var sub = $("#sub_categorry option:selected").val();
@@ -63,7 +78,8 @@ function doAdvancedSearch() {
 		dispatch : "admin_items_search",
 		name : name,
 		cat : cat,
-		sub : sub
+		sub : sub,
+		page : page
 	}, returnSearch);
 }
 
@@ -73,6 +89,17 @@ function returnSearch(data) {
 	$(".remove_cancel").click(doRemoveCancel);
 	$("#add_new").click(doAddNew);
 	$("#cancel_new").click(doCancelNew);
+	$(".stranica").click(doPage);
+}
+
+function doPage() {
+	page = $(this).attr("strana");
+	if (pretraga){
+		doSmallerSearch();
+	}
+	else {
+		doAdvancedSearch();
+	}
 }
 
 function doEditUpdate() {
