@@ -1,0 +1,164 @@
+@CHARSET "ISO-8859-1";
+
+.shop {
+	width: 90%;
+	border-radius: 15px;
+	width: 850px;
+}
+
+.login_area {
+	float: right;
+	width: 300px;
+	margin-right: 10px;
+}
+
+.login_area fieldset {
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.dugmici {
+	border-color: #5D8AA8;
+	height: 25px;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+	text-shadow: gray;
+	border-style: solid;
+	font-weight: bold;
+}
+
+.labela {
+	font-weight: bold;
+	color: black;
+}
+
+.dugmici:HOVER {
+	background: #A1CAF1;
+}
+
+.dugmici:ACTIVE {
+	background-color: #5D8AA8;
+	color: white;
+	top: -10px;
+}
+
+.tekst {
+	border-radius: 10px;
+	height: 25px;
+}
+
+.search_items {
+	float: right;
+	width: 500px;
+	margin-right: 10px;
+}
+
+.search_items fieldset {
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.search_list fieldset {
+	width: 880px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 30px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.search_list table {
+	width: 880px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.search_list th,.last_row {
+	background-color: #5D8AA8;
+	color: white;
+	text-align: left;
+}
+
+.hidden {
+	display: none;
+}
+
+.error_tekst, {
+	color: red;
+}
+
+.blockUI {
+	width: 100%;
+	height: 100%;
+	top: 30%; left : 30%;
+	background-color: transparent;
+	left: 30%;
+}
+
+.shopping_cart {
+	width: 800px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+}
+
+.shopping_cart table {
+	width: 800px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.shopping_cart th,.last_row {
+	background-color: #5D8AA8;
+	color: white;
+	text-align: left;
+}
+
+.empty_cart,.message {
+	width: 300px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+}
+
+.stranica {
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+
+.register fieldset {
+	width: 500px;
+	border-radius: 15px;
+	background-color: #BCD4E6;
+	border: none;
+	float: left;
+	margin-left: 200px;
+	-moz-box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc;
+	box-shadow: 5px 5px 5px #ccc;
+}
+
+.register table {
+	width: 400px;
+	border: none;
+	border-spacing: 0px;
+}
+
+.hidden.warning{
+	background-color: transparent;
+	color: red;
+	border: none;
+}

@@ -1,3 +1,6 @@
+var page = 1;
+var pretraga = true;
+
 function doAdvanced() {
 	$("#advanced_div").show();
 	$("#s_search_items").hide();
@@ -23,17 +26,30 @@ function returnSub(data) {
 	$("#categorry_options").html(data);
 }
 
+function buttonSmaller() {
+	page = 1;
+	doSmallerSearch();
+}
+
+function buttonAdvanced() {
+	page = 1;
+	doAdvancedSearch();
+}
+
 function doSmallerSearch() {
+	pretraga = true;
 	var name = $("#search_name").val();
 	$.get("dispatch.php", {
 		dispatch : "items_search",
 		name : name,
 		cat : "0",
-		sub : "0"
+		sub : "0",
+		page : page
 	}, returnSearch);
 }
 
 function doAdvancedSearch() {
+	pretraga = false;
 	var name = $("#search_name").val();
 	var cat = $("#categorry option:selected").val();
 	var sub = $("#sub_categorry option:selected").val();
@@ -41,16 +57,28 @@ function doAdvancedSearch() {
 		dispatch : "items_search",
 		name : name,
 		cat : cat,
-		sub : sub
+		sub : sub,
+		page : page
 	}, returnSearch);
 }
 
 function returnSearch(data) {
 	$("#search_list").html(data);
 	$(".set_cart").click(addToCart);
+	$(".stranica").click(doPage);
 }
 
-function addToCart(){
+function doPage() {
+	page = $(this).attr("strana");
+	if (pretraga){
+		doSmallerSearch();
+	}
+	else {
+		doAdvancedSearch();
+	}
+}
+
+function addToCart() {
 	var item_id = $(this).attr("item_id");
 	var item_name = $(this).attr("item_name");
 	var item_currency = $(this).attr("item_currency");
@@ -68,13 +96,13 @@ function returnAdd(data) {
 	showDialog("#message");
 }
 
-function showDialog(message){
+function showDialog(message) {
 	$.blockUI({
 		message : $(message)
 	});
 }
 
-function removeMessage(){
+function removeMessage() {
 	$.unblockUI();
 }
 
@@ -128,11 +156,12 @@ function returnRemove(data) {
 }
 
 $(function() {
+	$.blockUI.defaults.css = {};
 	$("#advanced_search").click(doAdvanced);
 	$("#smaller_search").click(doSmaller);
 	$("#categorry").change(doSub);
-	$("#s_search_items").click(doSmallerSearch);
-	$("#a_search_items").click(doAdvancedSearch);
+	$("#s_search_items").click(buttonSmaller);
+	$("#a_search_items").click(buttonAdvanced);
 	$("#shopping_cart").click(showCart);
 	doSmallerSearch();
 });

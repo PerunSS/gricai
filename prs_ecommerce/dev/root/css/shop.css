@@ -1,9 +1,28 @@
 @CHARSET "ISO-8859-1";
 
+.blockUI {
+	top: 35%;
+	left: 45%;
+}
+
 .login_area {
 	position: absolute;
 	right: 0px;
 	width: 300px;
+}
+
+#message {
+	background-color: white;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	width: 300px;
+	height: 100px;
+}
+
+#message table {
+	position: fixed;
+	margin-top: 20px;
+	margin-left: 80px;
 }
 
 .search_items {
@@ -19,20 +38,23 @@
 
 .search_list fieldset {
 	position: absolute;
-	top:35%;
-    left:30%;
-    width: 600px;
+	top: 35%;
+	left: 30%;
+	width: 600px;
 }
+
 .search_list table {
 	width: 550px;
 	border: none;
 	border-spacing: 0px;
 }
+
 .search_list th,.last_row {
 	background-color: black;
 	color: white;
 	text-align: left;
 }
+
 #show_cart table {
 	width: 500px;
 	border: none;
