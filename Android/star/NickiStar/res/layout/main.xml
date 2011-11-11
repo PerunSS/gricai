@@ -47,12 +47,30 @@
 		android:layout_marginTop="40dp">
 		<include
 			android:id="@id/content"
-			layout="@layout/pen_content" />
+			layout="@layout/menu_content" />
 		<ImageView
 			android:id="@id/handle"
 			android:layout_width="wrap_content"
 			android:layout_height="40px"
 			android:background="#FFFFFF"/>
 	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer>    
+	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
+		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
+		android:id="@+id/drawer2"
+		my:direction="bottomToTop"
+		android:layout_width="fill_parent"
+		android:layout_height="160dp"
+		my:handle="@+id/handle"
+		my:content="@+id/content"
+		android:layout_marginTop="400dp">
+		<include
+			android:id="@id/content"
+			layout="@layout/menu_content" />
+		<ImageView
+			android:id="@id/handle"
+			android:layout_width="wrap_content"
+			android:layout_height="40px"
+			android:background="#FFFFFF"/>
+	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
 
 </RelativeLayout>
