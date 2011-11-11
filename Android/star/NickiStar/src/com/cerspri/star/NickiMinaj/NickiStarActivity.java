@@ -11,6 +11,7 @@ public class NickiStarActivity extends Activity {
 	
 	Button mOpenButton;
 	MultiDirectionSlidingDrawer mDrawer;
+	MultiDirectionSlidingDrawer mDrawer2;
 	
     /** Called when the activity is first created. */
     @Override
@@ -21,6 +22,7 @@ public class NickiStarActivity extends Activity {
         mOpenButton = (Button) findViewById( R.id.cerspri_home_button );
         mDrawer = (MultiDirectionSlidingDrawer) findViewById( R.id.drawer );
         mDrawer.animateOpen();
+        mDrawer2 = (MultiDirectionSlidingDrawer) findViewById( R.id.drawer2 );
         mOpenButton.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -28,8 +30,10 @@ public class NickiStarActivity extends Activity {
 			{
 				if( !mDrawer.isOpened() ){
 					mDrawer.animateOpen();
+					mDrawer2.animateClose();
 				} else {
 					mDrawer.animateClose();
+					mDrawer2.animateOpen();
 				}
 			}
         });
