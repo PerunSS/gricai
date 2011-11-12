@@ -7,36 +7,72 @@ import android.widget.Button;
 
 import com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer;
 
+/**
+ * 
+ * @author churava
+ * main application activity
+ *	
+ */
+
 public class NickiStarActivity extends Activity {
 	
-	Button mOpenButton;
+	Button toggleMenuButton;
+	Button factsButton;
 	MultiDirectionSlidingDrawer mDrawer;
-	MultiDirectionSlidingDrawer mDrawer2;
+	MultiDirectionSlidingDrawer factsDrawer;
 	
-    /** Called when the activity is first created. */
+    /**
+     * Done on activity creation
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        mOpenButton = (Button) findViewById( R.id.cerspri_home_button );
-        mDrawer = (MultiDirectionSlidingDrawer) findViewById( R.id.drawer );
-        mDrawer.animateOpen();
-        mDrawer2 = (MultiDirectionSlidingDrawer) findViewById( R.id.drawer2 );
-        mOpenButton.setOnClickListener( new View.OnClickListener() {
+        /**
+         * layout objects asignment
+         */
+        toggleMenuButton = (Button) findViewById( R.id.toggle_menu );
+        mDrawer = (MultiDirectionSlidingDrawer) findViewById( R.id.menuDrawer );
+        factsButton = (Button) findViewById( R.id.facts_button);
+        factsDrawer = (MultiDirectionSlidingDrawer) findViewById( R.id.factsDrawer );
+        
+        
+        /**
+         * listener for opening/closing menu
+         */
+        toggleMenuButton.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
 			public void onClick( View v )
 			{
 				if( !mDrawer.isOpened() ){
+					if (factsDrawer.isOpened()){
+						factsDrawer.animateClose();
+					}
 					mDrawer.animateOpen();
-					mDrawer2.animateClose();
+					toggleMenuButton.setBackgroundResource(R.drawable.close_menu_button);
 				} else {
 					mDrawer.animateClose();
-					mDrawer2.animateOpen();
-				}
+					toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);}
 			}
         });
+        
+        
+        /**
+         * listener for facts button
+         */
+        factsButton.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mDrawer.animateClose();
+				factsDrawer.animateOpen();
+				toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
+			}
+		});
+        
+        
     }
     @Override
     public void onContentChanged(){

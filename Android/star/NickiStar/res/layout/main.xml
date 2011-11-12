@@ -12,17 +12,24 @@
 		<LinearLayout 
 			android:orientation="horizontal"
 			android:layout_width="fill_parent"
-			android:layout_height="40dp"
-			android:background="@drawable/menu_bar"
-			android:layout_marginTop="7dp"
-			android:layout_marginLeft="5dp"
-			android:layout_marginRight="5dp">
+			android:layout_height="50dp"
+			android:background="@drawable/menu_bar">
 			<Button 
-				android:layout_width="40dp"
-				android:layout_height="40dp"
-				android:layout_marginLeft="7dp"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
 				android:id="@+id/cerspri_home_button"
 				android:background="@drawable/cerspri_button"/>
+			<View
+				android:layout_width="1dp"
+				android:layout_height="1dp"
+				android:layout_weight="1"/>
+			<Button
+				android:layout_width="25dp"
+				android:layout_height="25dp"
+				android:id="@+id/toggle_menu"
+				android:layout_marginRight="15dp"
+				android:layout_gravity="center_vertical"
+				android:background="@drawable/open_menu_button"/>				
 		</LinearLayout>
 		<ScrollView  
 		    android:layout_width="200dp" 
@@ -38,10 +45,10 @@
 	</LinearLayout>	
 	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
 		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/drawer"
+		android:id="@+id/menuDrawer"
 		my:direction="topToBottom"
 		android:layout_width="fill_parent"
-		android:layout_height="400dp"
+		android:layout_height="340dp"
 		my:handle="@+id/handle"
 		my:content="@+id/content"
 		android:layout_marginTop="40dp">
@@ -51,25 +58,25 @@
 		<ImageView
 			android:id="@id/handle"
 			android:layout_width="wrap_content"
-			android:layout_height="40px"
+			android:layout_height="0dp"
 			android:background="#FFFFFF"/>
 	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer>    
 	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
 		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/drawer2"
+		android:id="@+id/factsDrawer"
 		my:direction="bottomToTop"
 		android:layout_width="fill_parent"
-		android:layout_height="160dp"
+		android:layout_height="80dp"
 		my:handle="@+id/handle"
 		my:content="@+id/content"
-		android:layout_marginTop="400dp">
+		android:layout_marginTop="440dp">
 		<include
 			android:id="@id/content"
-			layout="@layout/menu_content" />
+			layout="@layout/facts_buttons_drawer" />
 		<ImageView
 			android:id="@id/handle"
 			android:layout_width="wrap_content"
-			android:layout_height="40px"
+			android:layout_height="0dp"
 			android:background="#FFFFFF"/>
 	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
 
