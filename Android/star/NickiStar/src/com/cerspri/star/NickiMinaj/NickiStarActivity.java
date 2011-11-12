@@ -1,6 +1,10 @@
 package com.cerspri.star.NickiMinaj;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,14 +22,18 @@ public class NickiStarActivity extends Activity {
 	
 	Button toggleMenuButton;
 	Button factsButton;
+	Button newsButton;
+	Button pictButton;
+	Button videosButton;
 	MultiDirectionSlidingDrawer mDrawer;
 	MultiDirectionSlidingDrawer factsDrawer;
 	Button quotesButton;
 	int state;
-	
-    /**
-     * Done on activity creation
-     */
+	AlertDialog alert;
+
+    
+    //Done on activity creation
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +41,26 @@ public class NickiStarActivity extends Activity {
         mDrawer.animateOpen();
         state = 0;
         
-        /**
-         * layout objects asignment
-         */
+        
+        //layout objects asignment
+        
         toggleMenuButton = (Button) findViewById( R.id.toggle_menu );
         mDrawer = (MultiDirectionSlidingDrawer) findViewById( R.id.menuDrawer );
         factsButton = (Button) findViewById( R.id.facts_button);
         factsDrawer = (MultiDirectionSlidingDrawer) findViewById( R.id.factsDrawer );
         quotesButton = (Button) findViewById(R.id.quotes_button);
+        newsButton = (Button) findViewById(R.id.news_button);
+        pictButton = (Button) findViewById(R.id.pict_button);
+        videosButton = (Button) findViewById(R.id.videos_button);
         
-        /**
-         * listener for opening/closing menu
-         */
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Coming soon!!!");
+        alert = builder.create();
+        
+        
+        //listener for opening/closing menu
+         
         toggleMenuButton.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -67,9 +83,9 @@ public class NickiStarActivity extends Activity {
         });
         
         
-        /**
-         * listener for facts button
-         */
+        
+        //listener for facts button
+         
         factsButton.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -82,9 +98,8 @@ public class NickiStarActivity extends Activity {
 		});
         
         
-        /**
-         * listener for quotes button
-         */
+        
+        //listener for quotes button
         factsButton.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -97,6 +112,58 @@ public class NickiStarActivity extends Activity {
 		});
         
         
+        //listener for news button
+        newsButton.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				state = 0;
+				alert.show();
+				final Timer t = new Timer();				
+					t.schedule(new TimerTask() {
+						public void run() {
+                        	alert.dismiss();
+                        	t.cancel();
+                    	}
+					}, 2000);
+			}
+		});
+        
+        
+        //listener for pictures button
+        pictButton.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				state = 0;
+				alert.show();
+				final Timer t = new Timer();				
+					t.schedule(new TimerTask() {
+						public void run() {
+                        	alert.dismiss();
+                        	t.cancel();
+                    	}
+					}, 2000);
+			}
+		});
+        
+        
+        //listener for videos button 
+        videosButton.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				state = 0;
+				alert.show();
+				final Timer t = new Timer();				
+					t.schedule(new TimerTask() {
+						public void run() {
+                        	alert.dismiss();
+                        	t.cancel();
+                    	}
+					}, 2000);
+			}
+		});
     }
     @Override
     public void onContentChanged(){
