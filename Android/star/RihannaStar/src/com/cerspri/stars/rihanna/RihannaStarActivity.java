@@ -24,7 +24,7 @@ public class RihannaStarActivity extends Activity {
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(
-				"http://www.cerspri.com/api/stars/get_data.php?star=Rihanna&text_type=fact&version=0");
+				"http://www.google.com/search?q=nicki+minaj&hl=en&prmd=imvnso&source=lnms&tbm=nws");
 		try {
 			HttpResponse response = client.execute(httpGet);
 			StatusLine statusLine = response.getStatusLine();
@@ -35,8 +35,13 @@ public class RihannaStarActivity extends Activity {
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(content));
 				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
+				while (true) {
+					line = reader.readLine();
+					if(line!=null)
+						;//System.out.println(line);
+					else
+						break;
+					builder.append(line+"\n");
 				}
 			}
 		} catch (ClientProtocolException e) {
@@ -44,9 +49,28 @@ public class RihannaStarActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("======DATA======");
-		System.out.println(builder.toString());
-		System.out.println("================");
+		boolean hasNext = true;
+		int linkIndex = 0;
+		while(hasNext){
+			
+			linkIndex = builder.indexOf("<h3 class=r><a href=",linkIndex+1);
+			if(linkIndex >0){
+				int endIndex = builder.indexOf("</a></h3>", linkIndex);
+				System.out.println(builder.substring(linkIndex, endIndex));
+				int textIndex = builder.indexOf("<div class=st>", linkIndex);
+				if(textIndex>0){
+					endIndex = builder.indexOf("</div>", textIndex);
+					System.out.println(builder.substring(textIndex, endIndex));
+				}else{
+					hasNext = false;
+				}
+			}else{
+				hasNext = false;
+			}
+		}
+		
+		System.out.println(builder.toString().indexOf("<div class=st"));
+		
 		setContentView(R.layout.main);
 	}
 }
