@@ -53,6 +53,7 @@
 		    	android:id="@+id/scroll_text"
 		    	android:textSize="25dp" 
 		    	android:textColor="#000000"
+		    	android:textStyle="bold"
 		    	android:gravity="center"
 		    	android:layout_gravity="center"
 		    />
