@@ -28,7 +28,9 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,22 +61,21 @@ public class NickiStarActivity extends Activity {
 	AlertDialog alert;
 	private Map<String,Integer> currents;
 	private Map<String,List<String>> texts;
-	// Done on activity creation
+	ProgressDialog progressDialog;
 
+	// Done on activity creation
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		new LoaderTask().execute("Loader");
+		
 		setContentView(R.layout.main);
-		currents = new HashMap<String, Integer>();
-		currents.put("fact", 0);
-		currents.put("quote",0);
-		List<String> quotes = getData("quote");
-		List<String> facts = getData("fact");
-		Collections.shuffle(quotes);
-		Collections.shuffle(facts);
-		texts = new HashMap<String, List<String>>();
-		texts.put("quote", quotes);
-		texts.put("fact", facts);
+
+		
+
+		
 		state = 0;
 
 		// layout objects asignment
@@ -320,5 +321,37 @@ public class NickiStarActivity extends Activity {
 		super.onContentChanged();
 
 	}
+	
 
+	private class LoaderTask extends AsyncTask<String, Void, Void>{
+
+		@Override
+		protected Void doInBackground(String... params) {
+			currents = new HashMap<String, Integer>();
+			currents.put("fact", 0);
+			currents.put("quote",0);
+			List<String> quotes = getData("quote");
+			List<String> facts = getData("fact");
+			Collections.shuffle(quotes);
+			Collections.shuffle(facts);
+			texts = new HashMap<String, List<String>>();
+			texts.put("quote", quotes);
+			texts.put("fact", facts);
+			return null;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NickiStarActivity.this, "", "Loading...");
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			progressDialog.dismiss();
+			
+		}
+		
+	}	
 }
