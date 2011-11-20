@@ -29,7 +29,11 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -68,161 +72,179 @@ public class NickiStarActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		new LoaderTask().execute("Loader");
-		
-		setContentView(R.layout.main);
+		checkForNetworkAndStart();
+		new LoaderTask().execute("Loader");	
+	}
+	
+	
+	private void checkForNetworkAndStart(){
+		if(!isNetworkAvailable()){
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("No internet connection")
+			       .setCancelable(false)
+			       .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			               checkForNetworkAndStart(); 
+			           }
+			       })
+			       .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   NickiStarActivity.this.finish();
+			           }
+			       });
+			AlertDialog alert = builder.create();
+			alert.show();
+		} else {
+			setContentView(R.layout.main);			
+			state = 0;
 
-		
+			// layout objects asignment
 
-		
-		state = 0;
-
-		// layout objects asignment
-
-		toggleMenuButton = (Button) findViewById(R.id.toggle_menu);
-		mDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.menuDrawer);
-		factsButton = (Button) findViewById(R.id.facts_button);
-		factsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.factsDrawer);
-		quotesButton = (Button) findViewById(R.id.quotes_button);
-		newsButton = (Button) findViewById(R.id.news_button);
-		pictButton = (Button) findViewById(R.id.pict_button);
-		videosButton = (Button) findViewById(R.id.videos_button);
-		scrollText = (TextView) findViewById(R.id.scroll_text);
-		randomButton = (Button) findViewById(R.id.random_button);
-		shareButton = (Button) findViewById(R.id.share_button);
-		
-		mDrawer.animateOpen();
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Coming soon!!!");
-		alert = builder.create();
-
-		// listener for opening/closing menu
-
-		toggleMenuButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (!mDrawer.isOpened()) {
-					if (factsDrawer.isOpened()) {
-						factsDrawer.animateClose();
-					}
-					mDrawer.animateOpen();
-					toggleMenuButton
-							.setBackgroundResource(R.drawable.close_menu_button);
-				} else {
-					switch (state) {
-					case 1:
-						factsButton.performClick();
-						break;
-					case 2:
-						quotesButton.performClick();
-						break;
-					default:
-						mDrawer.animateClose();
-						toggleMenuButton
-								.setBackgroundResource(R.drawable.open_menu_button);
-					}
-
-				}
-			}
-		});
-
-		// listener for facts button
-
-		factsButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mDrawer.animateClose();
-				factsDrawer.animateOpen();
-				state = 1;
-				toggleMenuButton
-						.setBackgroundResource(R.drawable.open_menu_button);
-				scrollText.setText(getNext("fact"));
-				scrollText.setVisibility(View.VISIBLE);
-			}
-		});
-
-		// listener for quotes button
-		quotesButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mDrawer.animateClose();
-				factsDrawer.animateOpen();
-				state = 2;
-				toggleMenuButton
-						.setBackgroundResource(R.drawable.open_menu_button);
-				scrollText.setText(getNext("quote"));
-			}
-		});
-
-		// listener for news button
-		newsButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				state = 0;
-				alert.show();
-				final Timer t = new Timer();
-				t.schedule(new TimerTask() {
-					public void run() {
-						alert.dismiss();
-						t.cancel();
-					}
-				}, 2000);
-			}
-		});
-
-		// listener for pictures button
-		pictButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				state = 0;
-				alert.show();
-				final Timer t = new Timer();
-				t.schedule(new TimerTask() {
-					public void run() {
-						alert.dismiss();
-						t.cancel();
-					}
-				}, 2000);
-			}
-		});
-
-		// listener for videos button
-		videosButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				state = 0;
-				alert.show();
-				final Timer t = new Timer();
-				t.schedule(new TimerTask() {
-					public void run() {
-						alert.dismiss();
-						t.cancel();
-					}
-				}, 2000);
-			}
-		});
-		
-		randomButton.setOnClickListener(new View.OnClickListener() {
+			toggleMenuButton = (Button) findViewById(R.id.toggle_menu);
+			mDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.menuDrawer);
+			factsButton = (Button) findViewById(R.id.facts_button);
+			factsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.factsDrawer);
+			quotesButton = (Button) findViewById(R.id.quotes_button);
+			newsButton = (Button) findViewById(R.id.news_button);
+			pictButton = (Button) findViewById(R.id.pict_button);
+			videosButton = (Button) findViewById(R.id.videos_button);
+			scrollText = (TextView) findViewById(R.id.scroll_text);
+			randomButton = (Button) findViewById(R.id.random_button);
+			shareButton = (Button) findViewById(R.id.share_button);
 			
-			@Override
-			public void onClick(View v) {
-				String text = "";
-				if(state == 1){
-					text = getNext("fact");
-				}else if(state == 2){
-					text = getNext("quote");
+			mDrawer.animateOpen();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Coming soon!!!");
+			alert = builder.create();
+
+			// listener for opening/closing menu
+
+			toggleMenuButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					if (!mDrawer.isOpened()) {
+						if (factsDrawer.isOpened()) {
+							factsDrawer.animateClose();
+						}
+						mDrawer.animateOpen();
+						toggleMenuButton
+								.setBackgroundResource(R.drawable.close_menu_button);
+					} else {
+						switch (state) {
+						case 1:
+							factsButton.performClick();
+							break;
+						case 2:
+							quotesButton.performClick();
+							break;
+						default:
+							mDrawer.animateClose();
+							toggleMenuButton
+									.setBackgroundResource(R.drawable.open_menu_button);
+						}
+
+					}
 				}
-				System.out.println(text);
-				scrollText.setText(text);
-			}
-		});
+			});
+
+			// listener for facts button
+
+			factsButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					mDrawer.animateClose();
+					factsDrawer.animateOpen();
+					state = 1;
+					toggleMenuButton
+							.setBackgroundResource(R.drawable.open_menu_button);
+					scrollText.setText(getNext("fact"));
+					scrollText.setVisibility(View.VISIBLE);
+				}
+			});
+
+			// listener for quotes button
+			quotesButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					mDrawer.animateClose();
+					factsDrawer.animateOpen();
+					state = 2;
+					toggleMenuButton
+							.setBackgroundResource(R.drawable.open_menu_button);
+					scrollText.setText(getNext("quote"));
+				}
+			});
+
+			// listener for news button
+			newsButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					state = 0;
+					alert.show();
+					final Timer t = new Timer();
+					t.schedule(new TimerTask() {
+						public void run() {
+							alert.dismiss();
+							t.cancel();
+						}
+					}, 2000);
+				}
+			});
+
+			// listener for pictures button
+			pictButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					state = 0;
+					alert.show();
+					final Timer t = new Timer();
+					t.schedule(new TimerTask() {
+						public void run() {
+							alert.dismiss();
+							t.cancel();
+						}
+					}, 2000);
+				}
+			});
+
+			// listener for videos button
+			videosButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					state = 0;
+					alert.show();
+					final Timer t = new Timer();
+					t.schedule(new TimerTask() {
+						public void run() {
+							alert.dismiss();
+							t.cancel();
+						}
+					}, 2000);
+				}
+			});
+			
+			randomButton.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					String text = "";
+					if(state == 1){
+						text = getNext("fact");
+					}else if(state == 2){
+						text = getNext("quote");
+					}
+					System.out.println(text);
+					scrollText.setText(text);
+				}
+			});
+
+		}
 	}
 	
 	String getNext(String name){
@@ -354,4 +376,15 @@ public class NickiStarActivity extends Activity {
 		}
 		
 	}	
+	
+	private boolean isNetworkAvailable() {
+		try{
+		    ConnectivityManager connectivityManager 
+		          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		    return activeNetworkInfo.isConnected();
+		}catch (Exception e) {
+			return false;
+		}
+	}
 }
