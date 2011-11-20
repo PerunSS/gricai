@@ -73,9 +73,9 @@ public class NickiStarActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		checkForNetworkAndStart();
-		new LoaderTask().execute("Loader");	
+		new LoaderTask().execute("quote");
+		new LoaderTask().execute("fact");
 	}
-	
 	
 	private void checkForNetworkAndStart(){
 		if(!isNetworkAvailable()){
@@ -183,15 +183,7 @@ public class NickiStarActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					state = 0;
-					alert.show();
-					final Timer t = new Timer();
-					t.schedule(new TimerTask() {
-						public void run() {
-							alert.dismiss();
-							t.cancel();
-						}
-					}, 2000);
+					displayMessage();
 				}
 			});
 
@@ -200,15 +192,7 @@ public class NickiStarActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					state = 0;
-					alert.show();
-					final Timer t = new Timer();
-					t.schedule(new TimerTask() {
-						public void run() {
-							alert.dismiss();
-							t.cancel();
-						}
-					}, 2000);
+					displayMessage();
 				}
 			});
 
@@ -217,15 +201,7 @@ public class NickiStarActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					state = 0;
-					alert.show();
-					final Timer t = new Timer();
-					t.schedule(new TimerTask() {
-						public void run() {
-							alert.dismiss();
-							t.cancel();
-						}
-					}, 2000);
+					displayMessage();
 				}
 			});
 			
@@ -239,7 +215,6 @@ public class NickiStarActivity extends Activity {
 					}else if(state == 2){
 						text = getNext("quote");
 					}
-					System.out.println(text);
 					scrollText.setText(text);
 				}
 			});
@@ -247,7 +222,25 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 	
-	String getNext(String name){
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+
+	}
+	
+	protected void displayMessage(){
+		state = 0;
+		alert.show();
+		final Timer t = new Timer();
+		t.schedule(new TimerTask() {
+			public void run() {
+				alert.dismiss();
+				t.cancel();
+			}
+		}, 2000);
+	}
+	
+	private String getNext(String name){
 		List<String> data = texts.get(name);
 		int index = (currents.get(name)+1) % data.size();
 		currents.put(name, index);
@@ -256,17 +249,15 @@ public class NickiStarActivity extends Activity {
 
 	private List<String> getData(String name) {
 		int version = getPreferences(MODE_WORLD_READABLE).getInt("version_"+name, 0);
-		System.out.println("verzija: "+version);
 		List<String> data = new ArrayList<String>();
 		try {
 			Scanner sc = new Scanner(openFileInput(name));
-			System.out.println("citam iz fajla");
 			while (sc.hasNext()) {
 				data.add(sc.nextLine());
 			}
 			sc.close();
-		} catch (FileNotFoundException e) {
-			System.out.println(name + ": file not found");
+		} catch (FileNotFoundException e) { 
+			e.printStackTrace();
 		}
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
@@ -307,9 +298,6 @@ public class NickiStarActivity extends Activity {
 					if(version<elementobj.getInt("text_version")){
 						version = elementobj.getInt("text_version");
 					}
-					if(!changed){
-						System.out.println("dovuko nove podatke");
-					}
 					changed = true;
 				}
 			}
@@ -323,42 +311,42 @@ public class NickiStarActivity extends Activity {
 		if(changed){
 			try {
 				PrintWriter writer = new PrintWriter(openFileOutput(name, MODE_WORLD_WRITEABLE));
-				System.out.println("pishem u fajl");
 				for(String value:data){
 					writer.println(value);
 				}
 				writer.close();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
-		System.out.println("verzija: "+version);
 		return data;
 	}
-
-	@Override
-	public void onContentChanged() {
-		super.onContentChanged();
-
-	}
 	
+	private boolean isNetworkAvailable() {
+		try{
+		    ConnectivityManager connectivityManager 
+		          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		    return activeNetworkInfo.isConnected();
+		}catch (Exception e) {
+			return false;
+		}
+	}	
 
 	private class LoaderTask extends AsyncTask<String, Void, Void>{
 
 		@Override
 		protected Void doInBackground(String... params) {
-			currents = new HashMap<String, Integer>();
-			currents.put("fact", 0);
-			currents.put("quote",0);
-			List<String> quotes = getData("quote");
-			List<String> facts = getData("fact");
-			Collections.shuffle(quotes);
-			Collections.shuffle(facts);
-			texts = new HashMap<String, List<String>>();
-			texts.put("quote", quotes);
-			texts.put("fact", facts);
+			String name = params[0];
+			if(currents == null)
+				currents = new HashMap<String, Integer>();
+			currents.put(name, 0);
+			List<String> data = getData(name);
+			Collections.shuffle(data);
+			if(texts == null)
+				texts = new HashMap<String, List<String>>();
+			texts.put(name, data);
 			return null;
 		}
 		
@@ -376,15 +364,5 @@ public class NickiStarActivity extends Activity {
 		}
 		
 	}	
-	
-	private boolean isNetworkAvailable() {
-		try{
-		    ConnectivityManager connectivityManager 
-		          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-		    return activeNetworkInfo.isConnected();
-		}catch (Exception e) {
-			return false;
-		}
-	}
+
 }
