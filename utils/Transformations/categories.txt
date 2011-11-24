@@ -1,0 +1,1235 @@
+:
+alcohol:
+alcopop:
+	watermelon;
+	mandarin;
+	orange;
+	lime;
+	fruit;
+	citrus;
+	exotic fruit;
+	cherry;
+	lemon;
+beef bouillon:
+beer:
+	lager;
+	flavoured;
+	pumpkin;
+	guarana;
+	lager;pale;
+	ale;belgian;
+	ale;blueberry;
+	light;
+	lager;black;
+	lager;strong;
+	ginger;
+	ale;red;
+	lager;amber;
+	ale;pale;
+	strong;
+	draft;
+	lager;light;
+	lager;red;
+	dark;
+	root;
+	malt;
+	birch;
+	ale;
+	ale;dark;
+	lager;ice;
+bitters:
+	campari;
+	orange;
+	lemon and lime;
+	herbal;
+	peach;
+	piquant;
+	angosutra;
+blueberry:
+brandy:
+	cashaca;
+	flavoured;ginger;
+	flavoured;coconut;
+	flavoured;blueberry;
+	flavoured;blackberry;
+	akvavit;
+	armagnac;
+	flavoured;cherry;
+	flavoured;strawberry;
+	flavoured;apple;
+	flavoured;orange;
+	flevoured;cherry;
+	coffee;
+	flavoured;peach;
+	flavoured;pear;
+	fruit;
+	flavoured;plum;
+	aguardiente;
+	metaxa;
+	spiced;
+	arak;
+	flavoured;apricot;
+cacao:
+candy:
+	pepermint;
+	menthol;
+	gummi bears;
+	bar;
+	gummi fish;
+	chocolate-mint;
+	caramel;
+	cinnamon;
+	blaccurrant-menthol;
+cereal:
+	barley;
+	corn;
+cheese:
+	blue;
+	cream;
+	cottage;
+	parmesan;
+chocolate:
+	brownie;
+	bar;
+	dark;
+	cherry;
+	bars;
+cider:
+	apple;
+	hard;
+	pear;
+	white;
+	dry;
+	spicy;
+	spiced;
+	raspberry;
+	cherry;
+coffee:
+	latte;
+	cappuccino;
+	frapupuchino;mocha;
+	instant;
+cognac:
+	red;
+cola:
+	diet;
+	black cherry;
+	vanilla;
+	lime;
+	wild cherry;
+	lemon;
+	cherry;
+cookie:
+	fudge;
+	chocolate;
+	chocolate;oreo;
+cracker:
+	cinnamon;
+cream:
+	whipped;
+	single;
+	coconut;
+	thickened;
+	caribbean;
+	coffee;
+	light;
+	heavy;
+	vanilla;
+	double;
+	cocoa;
+	hazelnut;
+	whipping;
+dates:
+dawa:
+dill:
+dry dill:
+egg:
+	substitute;
+eggnog:
+eggs:
+elderflower cordial:
+endive:
+	purple;
+energy:
+	grape;
+	black cherry;
+	juice;orange;
+	apple;
+	berry;
+	cola;
+	strawberry;
+	fruit punch;
+	alcohol;
+	watermelon;
+	black tea;
+	lime;
+	citrus;
+	tropical;
+	raspberry;
+	cherry;
+energy drink:
+espresso:
+	double;
+essence:
+	banana;
+	rose;
+everclear:
+extract:
+	wormwood;
+	vanilla;
+	ginseng;
+	chocolate;
+	almond;
+fennel:
+fernet:
+	menta;
+fig:
+figs:
+flavoured:
+	cream;caramel;
+flavoured sugar shells:
+flour:
+	cornmeal;
+food coloring:
+fruit:
+	banana;
+	avocado;
+	blueberry;
+	currant;
+	pumpkin;
+	apple;
+	blood orange;
+	berries;
+	cranberry;
+	apricot;
+	coconut;
+	chinotto;
+	cherry;maraschino;
+	carambolas;
+	cashew;
+	watermelon;
+	blackberries;
+	cherry;sour;
+	apple;baked;
+	acerola;
+	cherry;
+fruit salad:
+fruits:
+fuit:
+	cocktail;
+garlic:
+garlic powder:
+gelatin:
+	watermelon;
+	black cherry;
+	apple;
+	cranberry;
+	raspberry;
+gelato:
+germ:
+	wheat;
+gin:
+	sweet;
+	beefeater;
+	flavoured;lemon;
+	dlavoured;orange;
+	flavoured;juniper berry;
+	dry;
+	genever;
+	lemon;
+	extra dry;
+	flavoured;lime;
+	jenever;
+	lime;
+ginger:
+	ale;
+ginger ale:
+	dry;
+	cranberry;
+	raspberry;
+glycerine:
+golden grain:
+grain alcoohol:
+grape:
+grapefruit:
+grapes:
+greek seasoning:
+half-and-half:
+hazelnuts:
+herb:
+	rosemary;
+honey:
+honeydew:
+honeydew melons:
+horchata:
+horseradish:
+hot chocolate:
+ice:
+	crushed;
+	cubes;
+ice cream:
+	fudge;
+	black cherry;
+	cocolate-mint;
+	pistachio;
+	coconut;
+	strawberry;
+	chocolate;coating;
+	coffee;
+	vanilla;
+	chocolate;
+	cherry;
+	raspberry;
+	ice-pop;
+ice pop:
+ice tea:
+	black ;
+	peach;
+	soda;raspberry;
+	raspberry;
+	lemon;
+italian ice:
+	lemon;
+jam:
+	lingonberry;
+	raspberry;
+jello:
+	grape;
+	blueberry;
+	apple;
+	lime;
+	peach;
+	sparkling;berry;
+	strawberry;
+	mango;
+	pineapple;
+	cherry;
+jello-orange:
+jello-pineapple:
+jelly:
+juece:
+	orange;
+	cherryade;
+	fruit;
+	orange-strawberry;
+juice:
+	lemon-lime;
+	agave;
+	banana;
+	raspberry-cranberry;
+	passion;fruit;
+	orange-pineapple;
+	berry;
+	orange-peach-mango;
+	persimmon;
+	apricot;
+	strawberry;
+	tomato;
+	white cranberry;
+	mixed furit;
+	pineapple;
+	lemon;
+	kiwi-strawberryww;
+	cranberry-apple;
+	fieldberry;
+	key lime;
+	white grape;
+	kiwi-strawberry;
+	lime;
+	plum;
+	fruit;
+	strawberry guava;
+	liwi-strawberry;
+	passion-fruit;
+	mango;
+	orange-banana;
+	wheatgrass;
+	cherry;
+	sour cherry;
+	orange;
+	vegetable;
+	apple;
+	olive;
+	pickle;
+	grape-peach;
+	orange-strawberry-banana;
+	clamato;
+	red grapefruit;
+	cranberry-raspberry;
+	redcurrant;
+	strawberry-banana;
+	carrot;
+	sugar cane;
+	tangerine;
+	dill;
+	pomegranate;blueberry;
+	raspberry;
+	cranberry-cherry;
+	blood-orange;
+	blackberry;
+	grape;
+	strawberry-kiwi;
+	calm;
+	lychee;
+	pine-mango-guava;
+	blueberry;
+	kiwi;
+	tropical fruit;
+	papaya;
+	wild cherry;
+	cranberry;
+	prune;
+	cactus;
+	peach-papaya;
+	mandarin;
+	watermelon;
+	melon;
+	acai;
+	banana-strawberry;
+	grapefruit;
+	citrus;
+	cranberry-strawberry;
+	tropical;
+	cranberry-grape;
+	pineapple;coconut;
+	pomegranate;
+	pineapple;starfruit;
+	pine-orange-banana;
+	blackcurrant;
+	pear;
+	pomegranate-cherry;
+	passiaon fruit;
+	coconut;
+	cranberry;cocktaill;
+	guava;
+	mango-orange;
+	strawberry;cocktaill;
+	hey lime;
+	pine-orange-strawberry;
+	grapefruit;pink;
+	peach;
+juice:apple:
+key lime:
+kiwi:
+kuice:
+	raspberry;
+kumquat:
+kurmquats:
+lager:
+lemon:
+lemon grass:
+lemonade:
+	hard;
+	hard;cranberry;
+	mix;raspberry;
+	sour;
+	raspberry;
+	yellow;
+	pink;
+lemons:
+licoice:
+light rum:
+lime:
+	soda;
+limeade:
+	cherry;
+limes:
+liquer:
+	cream;brandy;
+	cream;raspberry;
+	chocolate chiup cookie cream;
+	tropical;
+liquers:
+	cream;irish;
+liqueue:
+	curacao;blue;
+liqueuer:
+	peach;
+liqueur:
+	walnut;
+	agave;
+	banana;
+	butterscotch;
+	herbal;
+	curacao;white;
+	strawbery creme;
+	passion fruit;
+	chocolate;almond;
+	guavaberry;
+	chocolate;orange;
+	pineapple;
+	cocolate;
+	lemon;
+	cream;banana;
+	key lime;
+	vanilla;
+	irish cream;
+	plum;
+	passion-fruit;
+	mango;
+	marasca cherry;
+	sambuca;green;
+	cherry;
+	cream;marula;
+	herb;parma violet;
+	orange;triple sec;
+	caramel cream;
+	pistachio;
+	menthe;
+	orange;red;
+	anise;
+	citrus-fruit;
+	maple;
+	exotic fruit;
+	chai;
+	blackberry;
+	lychee;
+	chocolate;mint;
+	kiwi;
+	honey;
+	triple sec;
+	wild cherry;
+	chocolate;hazelnut;
+	caramel;
+	chocolade-raspberry;
+	pumpkin smash;
+	watermelon;
+	melon;
+	thyme;
+	cream;vanilla;
+	white creme de cacao;
+	vanilla-butterscotch;
+	citrus;
+	fruit creme;
+	tropical;
+	blackcurrant;
+	anise;ouzo;
+	cream;butterscotch;
+	peanut;
+	creme de menthe;
+	armagnac;
+	coconut;
+	cacao;
+	chocolate;black;
+	black raspberry;
+	aurum;
+	elderflower;
+	sugar maple;
+	chocolate;
+	peppermint;
+	herbal;absinthe;
+	avocaat;
+	green tea;
+	chocolate;white;
+	sloe berry;
+	almond;cream;
+	black cherry;
+	dry sherry;
+	cherry advocaat;
+	apricot;
+	strawberry;
+	cream;irish;
+	rye;
+	cream;whiskey;
+	ginger;
+	licorice;
+	lime;
+	cloudberry;
+	orange;cream;
+	cream;rum;
+	coffee;cappuccino;
+	non-alcoholic;menthe;
+	passion fruit;mango;
+	sambuca;white;
+	orange;
+	cream;chocolate;
+	apple;
+	cream;
+	pecan;
+	nut;
+	pastis;
+	coffee;
+	amaretto;
+	cinnamon;
+	raspberry;
+	wild blackberry;
+	cofee;
+	sambuca;gold;
+	blueberry;
+	scotch;
+	orange;trople sec;
+	tropical fruit;
+	cranberry;
+	wild;strawberry;
+	mint;
+	curacao;
+	mandarin;
+	hazelnut;
+	sambuca;red;
+	caraway;
+	curacao;orange;
+	strawberry;cream;
+	grapefruit-orange;
+	pomegranate;
+	curacao;green;
+	pear;
+	rum ;
+	wild strawberry;
+	artchoke;
+	curacao;blue;
+	chocolate;cream;
+	chocolate;dark;
+	sambuca;black;
+	peach;
+	canberry;
+	cream;tequila;
+	non-alcoholic;
+	almond;
+liqueur raki:
+liqueur,orange:
+liqueur.cream,mint:
+lqueur:
+	cream;
+lychee:
+madeira:
+malt:
+	chocolate;
+mandarinn:
+mandarins:
+mango:
+mango puree:
+mangos:
+maraschino cherry:
+margarita mix:
+	strawberry;
+marinade:
+	mixed-berry;
+marmalade:
+marshmallows:
+marshmellow:
+mayonnaise:
+meat snacks:
+melon:
+	cantaloupe;
+melons:
+mezcal:
+milk:
+	skimmed;
+	condensed;
+	sweetened-condensed;
+	chocolate;
+	evaporated;
+	coconut;
+	soy;
+mineral water:
+mint:
+mint extract:
+mix:
+	lemon-lime;
+	orange-pineapple;
+	long island ice tea;
+	strawberry;
+	lemon;
+	watermelon;
+	mdslide;
+	strawberry margarita;
+	mango;
+	cherry;
+	gin-cranberry;
+	strawberry-rhubarb;
+	leamonade tea;
+	pina-colada;
+	cosmopolitan;
+	colins;
+	sweet and sour;
+	daquiri;strawberry;
+	lemonade;
+	pina colada;
+	margarita;
+	daiquiri;
+	sour apple;
+	blueberry cocktail mix;
+	bar lime;
+	bloody mary;
+mixer:
+	raspberry;
+mix’daiquri-strawberry:
+molasses:
+mouthwash:
+	mint;
+mustard:
+nectar:
+	banana;
+	guava;
+nectarines:
+nut:
+nutmeg:
+nuts:
+oats:
+oil olive:
+	extra virgin;
+okra:
+old-fashioned mix:
+olive:
+olives:
+onion:
+onions:
+orange:
+orange crush:
+orange-pineapple:
+	juice;
+oranges:
+oregano:
+other:
+	butter;peanut;
+	walnut;
+	butter;
+	cannabis;
+	starch;cornstarch;
+	concentrate;chai;
+	woodruff;
+	concentrate;orange;
+	extract;coconut;
+	wheatgrass;
+	garnish;blody mary rimmer;
+papaya:
+papper:
+	jalapeno;
+	tuscan;
+	cayenne;
+parsley:
+passion fruit:
+peach:
+	kermel;
+peach sherbet:
+peaches:
+pear:
+pears:
+pecan nuts:
+pepper:
+	blend;
+	banana;
+	pequin;
+	black;
+	bell;red;
+	white;
+	chili;
+peppered:
+peppermint extract:
+peppers:
+	chii;
+	bell;
+	 black;
+	red cayenne;
+	cayenne;
+petrol:
+pickle:
+pineapple:
+pineapples:
+polmos:
+pomegranate:
+port:
+powder:
+	shugar;
+	blue-raspberry;
+	lemon-lime;
+	grape;
+	orange;
+	blueberry;
+	black cherry;
+	tropical fruit;
+	berry;
+	chili;
+	strawberry;
+	creamer;
+	lemon;
+	coffee;
+	watermelon-cherry;
+	cocoa;
+	chocolate;
+	fruit;
+	kiwi-lime;
+	mango;
+	onion;
+powder:orange:
+powdered drink mix:
+protein whey:
+prune:
+pudding:
+	chocolate;
+pumpkin:
+punch:
+	grape;
+	fruit;strawberry and kiwi;
+	peach;
+	downhome;
+	fruit;
+	berry;
+	juice;citrus;
+	mango;
+	citrus;
+	fruit;berry;
+	cherry;
+punsch:
+puree:
+	blueberry;
+	pear;
+	peach;
+	ramarind;
+	passion-fruit;
+	cherry;
+	raspberry;
+	guava;
+purple passion mix:
+rasians:
+raspberries:
+raspberry:
+rhubarbs:
+rum:
+	banana;
+	coconut;pineapple;
+	flavoured;
+	premium;
+	black;
+	flavoured;tropical fruit;
+	flavored;
+	dark;jamaica;
+	light;
+	amber;
+	aged;
+	overproof;
+	flavoured;vanilla;
+	mango;
+	spiced;
+	flavoured;raspberry;
+	darlk;
+	flavoured;passion fruit;
+	flavoured;coconut;
+	golden;
+	overproof;spiced;
+	apple;
+	flavoured;mango;
+	flavoured;watermelon;
+	flavoured;pineapple;
+	flavoured;lemon;
+	flavoured;tropical;
+	dark;
+	flavoured;apple;
+	flavoured;orange;
+	silver;
+	flavoured;banana;
+	flavoured;citrus;
+	gold;
+	flavoured;amber;
+	flavured;raspberry;
+rum’flavoured:
+	orange;
+safflower oil:
+sake:
+salsa:
+salt:
+	celery;
+sambuca:
+	gold;
+sangrita:
+	spiced;
+sarsaparilla:
+sauce:
+	worcestershire;
+	apple;
+	hot;
+	pepper;
+	steak;
+	haranero;pepper;
+	caramel;
+	sweet and sour;
+	papper;
+	hot pepper;
+	chocolate;
+	horseradish;
+	chili pepper;
+	smoky barbecue;
+	soy;
+sausage:
+	salami;
+schnapps:
+	blackberry;
+	grape;
+	banana;
+	root bear;
+	butterscotch;
+	black cherry;
+	blueberry;
+	flavoured;
+	tropical fruit;
+	apricot;
+	cranberry;
+	strawberry;
+	passion fruit;
+	mint;
+	lemon;
+	pepermint;
+	watermelon;
+	vanila;
+	melon;
+	vanilla;
+	lime;
+	tropical-fruit;
+	caraway;
+	grapefruit;
+	spiced;
+	citrus;
+	tropical;
+	cherry;
+	citrus;mint;
+	wildberry;
+	nut-toffee;
+	pomegranate;
+	orange;
+	apple;
+	pear;
+	b;ueberry;
+	rasperry;
+	pina colada;
+	peppermint;
+	peach;
+	cactus juice;
+	sour apple;
+	cinnamon;
+	raspberry;
+seed:
+	cumin;
+	carob;
+	almond;
+sherbet:
+	orange;
+	lime;
+	mango;
+	rainbow;
+	pineapple;
+	raspberry;
+	lemon;
+sherry:
+shiso:
+shochu:
+	lemon;
+slush:
+soda:
+	twist;
+	orange and cream;
+	black cherry;
+	strawbery;
+	bubble-gum;
+	flavoured;
+	clear lemonade;
+	orange-pineapple;
+	berry;
+	tonic;
+	strawberry;
+	pineapple;
+	lemon;
+	vanilla;
+	club;
+	ginger;
+	kiwi-strawberry;
+	lime;
+	fruit;
+	mango;
+	cherry;
+	orange;
+	cream;
+	apple;
+	celery;
+	bitter lemon;
+	grapefruit-lemon;
+	cherry-vanilla;
+	lemon;lime;
+	cinnamon;
+	raspberry;
+	grape;
+	lychee;
+	blueberry;
+	syrup;
+	cranberry;
+	cider-cherry;
+	orange-lemon;
+	lime;raspberry;
+	mandarin;
+	champagne;
+	berry lemonade;
+	grapefruit;
+	citrus;
+	pear;
+	vanilla cream;
+	peach;
+	earth;
+soju:
+sorbet:
+	peach;
+souce:
+	wasabi;
+	pepper;
+sour mix:
+	whiskey;
+soybase:
+spda:
+	lemon;
+spearmint:
+spice:
+	asafoetida;
+	cardamon;
+	clove;
+	bay leaves;
+	curry;red curry oaste;
+	allspice (pepper);
+	cinnamon;
+	coriander;
+	cardamom;
+	basil;
+spices:
+sports drink:
+	lime;
+squash:
+	orange;
+	blackcurrant;
+	lemon;
+squid:
+stout:
+	chocolate;
+strawberries:
+strawberry:
+strawberry mix:
+strawberry puree:
+sugar:
+	powdered;
+	brown;
+	superfine;
+	granulated;
+	cinnamon;
+sugarlcaster:
+sugarlmuscovado:
+sweetener:
+syrup:
+	red;
+	falemum;
+	banana;
+	currant;
+	simple;
+	apricot;
+	passion fruit;
+	strawberry;
+	pineapple;
+	lemon;
+	grenadine;
+	vanilla;
+	candy;
+	ginger;
+	lime;
+	roses;
+	gingerbread;
+	mango;
+	cherry;
+	gum;
+	orange;
+	bitter;
+	apple;
+	brown sugar;
+	orgeat;
+	coffee;
+	lilikoi ;
+	maraschino;
+	maple;
+	cinnamon;
+	raspberry;
+	blueberry;
+	kiwi;
+	honey;
+	cola;
+	caramel;
+	mint;
+	hazelnut;
+	cheerry;
+	blackcurrant;
+	pear;
+	maracuja;
+	coconut;
+	guava;
+	rose;
+	elderflower;
+	curacao;blue;
+	sugar;
+	clove;
+	peppermint;
+	chocolate;
+	corn;
+	almond;
+tamarillo:
+tamarind:
+tamarinds:
+tapioca:
+tea:
+	chai bannila;
+	sweet;
+	apple;
+	black;
+	thai;
+	ice;leamon;
+	green;
+	peach ice tea;
+tequila:
+	white;flavoured;citrus;
+	aged;
+	flavoured;citrus;
+	flavoured;
+	gold;
+	agavero;
+	white;
+	flavoured;blue agave;
+	rested;
+tictac:
+tofu:
+tomato:
+tomato ketchup:
+tomatoes:
+tonic water:
+	cherry;
+tropical fruit punch:
+tropical fruit puree:
+vanilla:
+vegetable:
+	cucumber;
+	carrot;
+	celery;
+vermouth:
+	wextra dry;
+	red;
+	sweet;
+	rosso;
+	dry;
+	extra dry;
+vinegar:
+vitamin c:
+vodka:
+	flavoured;pepper;
+	black cherry;
+	flavoured;
+	chocoloate;
+	pepper;
+	flavoured;cherry;
+	flavoured;grape;
+	strawberry;
+	lemon;
+	flavoured;peach;
+	vanilla;
+	lime;
+	spiced;
+	flavoured;passion fruit;
+	orange;
+	flavoured;coconut;
+	citron;
+	flavoured;cranberry;
+	flavoured;mango;
+	apple;
+	flavoured;lemon;
+	flavoured;apple;
+	flavoured;espresso;
+	flavoured;orange;
+	flavoured;lime;
+	coffee;
+	flavoured;chocolate;
+	flavoured;citrus;
+	peppar;
+	cinnamon;
+	raspberry;
+	blueberry;
+	black;
+	flavoured;strawberry;
+	cranberry;
+	flavoured;grapefruit;
+	flavoured;caramel;
+	watermelon;
+	melon;
+	flavoured;herbal;
+	flavoured;black cherry;
+	flavoured;vanilla;
+	flavoured;mandarin;
+	flavoured;mint;
+	citrus;
+	flavoured;raspberry;
+	blackcurrant;
+	flavoured;blueberry;
+	flavoured;blood orange;
+	flavoured;honey;
+	pear;
+	flavoured;pineapple;
+	flavoured;ginger-infused;
+	flavoured;blackcurrant;
+	flavoured;pear;
+	flavoured;wildberry;
+	flavoured;coffee;
+	flavoured;rasppberry;
+water:
+	pepermint;
+	flavoured;peach;
+	carbonated;
+	coconut;
+	vitamin;
+	orange flower;
+whiskey:
+	scotch;
+	japanese;
+	bourbon;
+	american;
+	rye;
+	canadian;liqueur;
+	schotch;
+	thailand;
+	canadian;
+	tennessee;
+	corn;
+	irish;
+	moonshine;
+	cherry;
+wine:
+	ginger;green;
+	red;
+	white;dry;
+	lychee;
+	flavoured;
+	red;sparkling;
+	sherry;dry;
+	flavoured;strawberry;
+	white;
+	strawberry;
+	white;sparkling;
+	champagne;
+	ginger;
+	sherry;
+	dry;sparkling;
+	port;
+	fruit spritzer;
+	red;dry;
+	cherry;
+	tawny port;
+	chinese;
+	sherry;sweet;
+	cooler;apple;
+	flavoured;pineapple;
+	cooler;raspberry;
+	sparkling;
+	rice;
+	rose;
+	crowberry;
+	white;flavoured;
+	ice;
+	cooler;
+	white;port;
+	sherry;fino;
+	red;sangria;
+	flavoured;plum;
+	champagne;spanish;
+	rose;sparkling;
+yeast:
+yogurt:
+	strawberry;
+	raspberry;
