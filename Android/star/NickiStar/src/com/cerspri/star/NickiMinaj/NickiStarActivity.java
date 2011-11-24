@@ -73,8 +73,7 @@ public class NickiStarActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		checkForNetworkAndStart();
-		new LoaderTask().execute("quote");
-		new LoaderTask().execute("fact");
+		new LoaderTask().execute("quote", "fact");
 	}
 	
 	private void checkForNetworkAndStart(){
@@ -338,15 +337,16 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(String... params) {
-			String name = params[0];
-			if(currents == null)
-				currents = new HashMap<String, Integer>();
-			currents.put(name, 0);
-			List<String> data = getData(name);
-			Collections.shuffle(data);
-			if(texts == null)
-				texts = new HashMap<String, List<String>>();
-			texts.put(name, data);
+			for(String name:params){
+				if(currents == null)
+					currents = new HashMap<String, Integer>();
+				currents.put(name, 0);
+				List<String> data = getData(name);
+				Collections.shuffle(data);
+				if(texts == null)
+					texts = new HashMap<String, List<String>>();
+				texts.put(name, data);
+			}
 			return null;
 		}
 		
