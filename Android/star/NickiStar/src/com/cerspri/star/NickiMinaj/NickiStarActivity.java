@@ -125,9 +125,7 @@ public class NickiStarActivity extends Activity {
 					if (!mDrawer.isOpened()) {
 						if (factsDrawer.isOpened()) {
 							factsDrawer.animateClose();
-							scrollText.setVisibility(View.INVISIBLE);
-							scrollText.setVisibility(View.GONE);
-							
+							scrollText.setVisibility(View.INVISIBLE);							
 						}
 						
 						mDrawer.animateOpen();
