@@ -117,7 +117,7 @@ public class NickiStarActivity extends Activity {
 			alert = builder.create();
 
 			// listener for opening/closing menu
-
+			
 			toggleMenuButton.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -125,7 +125,11 @@ public class NickiStarActivity extends Activity {
 					if (!mDrawer.isOpened()) {
 						if (factsDrawer.isOpened()) {
 							factsDrawer.animateClose();
+							scrollText.setVisibility(View.INVISIBLE);
+							scrollText.setVisibility(View.GONE);
+							
 						}
+						
 						mDrawer.animateOpen();
 						toggleMenuButton
 								.setBackgroundResource(R.drawable.close_menu_button);
@@ -174,6 +178,7 @@ public class NickiStarActivity extends Activity {
 					toggleMenuButton
 							.setBackgroundResource(R.drawable.open_menu_button);
 					scrollText.setText(getNext("quote"));
+					scrollText.setVisibility(View.VISIBLE);
 				}
 			});
 
