@@ -45,7 +45,6 @@ bitters:
 	peach;
 	piquant;
 	angosutra;
-blueberry:
 brandy:
 	cashaca;
 	flavoured;ginger;
@@ -73,6 +72,7 @@ cacao:
 candy:
 	pepermint;
 	menthol;
+	tictac;
 	gummi bears;
 	bar;
 	gummi fish;
@@ -87,6 +87,7 @@ cheese:
 	blue;
 	cream;
 	cottage;
+	tofu;
 	parmesan;
 chocolate:
 	brownie;
@@ -110,7 +111,6 @@ coffee:
 	frapupuchino;mocha;
 	instant;
 cognac:
-	red;
 cola:
 	diet;
 	black cherry;
@@ -295,6 +295,7 @@ jam:
 	raspberry;
 jello:
 	grape;
+	orange;
 	blueberry;
 	apple;
 	lime;
@@ -304,110 +305,106 @@ jello:
 	mango;
 	pineapple;
 	cherry;
-jello-orange:
-jello-pineapple:
 jelly:
 juece:
-	orange;
-	cherryade;
 	fruit;
-	orange-strawberry;
 juice:
-	lemon-lime;
 	agave;
+	lemon-lime;
 	banana;
-	raspberry-cranberry;
 	passion;fruit;
-	orange-pineapple;
-	berry;
-	orange-peach-mango;
 	persimmon;
-	apricot;
-	strawberry;
+	orange-peach-mango;
 	tomato;
-	white cranberry;
-	mixed furit;
 	pineapple;
 	lemon;
 	kiwi-strawberryww;
 	cranberry-apple;
-	fieldberry;
 	key lime;
-	white grape;
-	kiwi-strawberry;
-	lime;
-	plum;
+	fieldberry;
 	fruit;
+	plum;
 	strawberry guava;
-	liwi-strawberry;
-	passion-fruit;
 	mango;
-	orange-banana;
+	passion-fruit;
+	liwi-strawberry;
 	wheatgrass;
 	cherry;
-	sour cherry;
-	orange;
 	vegetable;
-	apple;
 	olive;
-	pickle;
-	grape-peach;
-	orange-strawberry-banana;
 	clamato;
 	red grapefruit;
-	cranberry-raspberry;
 	redcurrant;
-	strawberry-banana;
 	carrot;
 	sugar cane;
-	tangerine;
-	dill;
 	pomegranate;blueberry;
-	raspberry;
 	cranberry-cherry;
-	blood-orange;
 	blackberry;
 	grape;
 	strawberry-kiwi;
-	calm;
 	lychee;
-	pine-mango-guava;
-	blueberry;
+	calm;
 	kiwi;
-	tropical fruit;
-	papaya;
 	wild cherry;
-	cranberry;
-	prune;
 	cactus;
 	peach-papaya;
-	mandarin;
 	watermelon;
 	melon;
 	acai;
-	banana-strawberry;
-	grapefruit;
 	citrus;
-	cranberry-strawberry;
 	tropical;
-	cranberry-grape;
 	pineapple;coconut;
-	pomegranate;
 	pineapple;starfruit;
-	pine-orange-banana;
 	blackcurrant;
-	pear;
 	pomegranate-cherry;
 	passiaon fruit;
-	coconut;
 	cranberry;cocktaill;
+	coconut;
 	guava;
-	mango-orange;
-	strawberry;cocktaill;
 	hey lime;
+	mango-orange;
+	raspberry-cranberry;
+	orange-pineapple;
+	berry;
+	apricot;
+	strawberry;
+	mixed furit;
+	white cranberry;
+	white grape;
+	kiwi-strawberry;
+	lime;
+	orange-banana;
+	sour cherry;
+	orange;
+	apple;
+	pickle;
+	grape-peach;
+	orange-strawberry-banana;
+	cranberry-raspberry;
+	strawberry-banana;
+	tangerine;
+	dill;
+	raspberry;
+	blood-orange;
+	blueberry;
+	pine-mango-guava;
+	tropical fruit;
+	papaya;
+	cranberry;
+	prune;
+	mandarin;
+	banana-strawberry;
+	grapefruit;
+	cranberry-strawberry;
+	cranberry-grape;
+	pomegranate;
+	pine-orange-banana;
+	pear;
+	strawberry;cocktaill;
 	pine-orange-strawberry;
-	grapefruit;pink;
 	peach;
+	grapefruit;pink;
+	orange-strawberry;
 juice:apple:
 key lime:
 kiwi:
@@ -524,7 +521,6 @@ liqueur:
 	sloe berry;
 	almond;cream;
 	black cherry;
-	dry sherry;
 	cherry advocaat;
 	apricot;
 	strawberry;
@@ -751,7 +747,6 @@ powder:
 	kiwi-lime;
 	mango;
 	onion;
-powder:orange:
 powdered drink mix:
 protein whey:
 prune:
@@ -763,6 +758,7 @@ punch:
 	fruit;strawberry and kiwi;
 	peach;
 	downhome;
+	tropical fruit;
 	fruit;
 	berry;
 	juice;citrus;
@@ -776,7 +772,9 @@ puree:
 	pear;
 	peach;
 	ramarind;
+	tropical fruit;
 	passion-fruit;
+	strawberry;
 	cherry;
 	raspberry;
 	guava;
@@ -786,61 +784,46 @@ raspberries:
 raspberry:
 rhubarbs:
 rum:
-	banana;
-	coconut;pineapple;
-	flavoured;
-	premium;
-	black;
-	flavoured;tropical fruit;
-	flavored;
-	dark;jamaica;
-	light;
-	amber;
-	aged;
-	overproof;
-	flavoured;vanilla;
-	mango;
-	spiced;
-	flavoured;raspberry;
-	darlk;
-	flavoured;passion fruit;
 	flavoured;coconut;
-	golden;
+	flavoured;passion fruit;
 	overproof;spiced;
-	apple;
+	premium;
+	flavoured;
 	flavoured;mango;
 	flavoured;watermelon;
 	flavoured;pineapple;
 	flavoured;lemon;
-	flavoured;tropical;
 	dark;
 	flavoured;apple;
+	flavoured;tropical fruit;
 	flavoured;orange;
-	silver;
+	dark;jamaica;
+	light;
 	flavoured;banana;
 	flavoured;citrus;
 	gold;
-	flavoured;amber;
-	flavured;raspberry;
-rum’flavoured:
-	orange;
+	flavoured;coconut-pineapple;
+	overproof;
+	flavoured;vanilla;
+	spiced;
+	flavoured;raspberry;
 safflower oil:
 sake:
 salsa:
 salt:
 	celery;
 sambuca:
-	gold;
 sangrita:
 	spiced;
 sarsaparilla:
 sauce:
+	wasabi;
 	worcestershire;
 	apple;
-	hot;
 	pepper;
-	steak;
+	hot;
 	haranero;pepper;
+	steak;
 	caramel;
 	sweet and sour;
 	papper;
@@ -909,7 +892,6 @@ sherbet:
 	pineapple;
 	raspberry;
 	lemon;
-sherry:
 shiso:
 shochu:
 	lemon;
@@ -956,6 +938,7 @@ soda:
 	lime;raspberry;
 	mandarin;
 	champagne;
+	tonic;cherry;
 	berry lemonade;
 	grapefruit;
 	citrus;
@@ -966,14 +949,9 @@ soda:
 soju:
 sorbet:
 	peach;
-souce:
-	wasabi;
-	pepper;
 sour mix:
 	whiskey;
 soybase:
-spda:
-	lemon;
 spearmint:
 spice:
 	asafoetida;
@@ -982,6 +960,7 @@ spice:
 	bay leaves;
 	curry;red curry oaste;
 	allspice (pepper);
+	tapioca;
 	cinnamon;
 	coriander;
 	cardamom;
@@ -999,15 +978,14 @@ stout:
 strawberries:
 strawberry:
 strawberry mix:
-strawberry puree:
 sugar:
 	powdered;
+	caster;
 	brown;
 	superfine;
 	granulated;
+	muscovado;
 	cinnamon;
-sugarlcaster:
-sugarlmuscovado:
 sweetener:
 syrup:
 	red;
@@ -1066,7 +1044,6 @@ syrup:
 tamarillo:
 tamarind:
 tamarinds:
-tapioca:
 tea:
 	chai bannila;
 	sweet;
@@ -1086,22 +1063,15 @@ tequila:
 	white;
 	flavoured;blue agave;
 	rested;
-tictac:
-tofu:
-tomato:
 tomato ketchup:
 tomatoes:
-tonic water:
-	cherry;
-tropical fruit punch:
-tropical fruit puree:
 vanilla:
 vegetable:
 	cucumber;
 	carrot;
 	celery;
+	tomato;
 vermouth:
-	wextra dry;
 	red;
 	sweet;
 	rosso;
@@ -1111,58 +1081,41 @@ vinegar:
 vitamin c:
 vodka:
 	flavoured;pepper;
-	black cherry;
 	flavoured;
-	chocoloate;
-	pepper;
-	flavoured;cherry;
-	flavoured;grape;
-	strawberry;
-	lemon;
-	flavoured;peach;
-	vanilla;
-	lime;
-	spiced;
-	flavoured;passion fruit;
-	orange;
-	flavoured;coconut;
-	citron;
-	flavoured;cranberry;
-	flavoured;mango;
-	apple;
-	flavoured;lemon;
-	flavoured;apple;
-	flavoured;espresso;
-	flavoured;orange;
-	flavoured;lime;
-	coffee;
-	flavoured;chocolate;
-	flavoured;citrus;
-	peppar;
-	cinnamon;
-	raspberry;
-	blueberry;
 	black;
+	flavoured;cherry;
 	flavoured;strawberry;
-	cranberry;
+	flavoured;grape;
+	flavoured;citron;
 	flavoured;grapefruit;
 	flavoured;caramel;
-	watermelon;
-	melon;
+	flavoured;peach;
 	flavoured;herbal;
 	flavoured;black cherry;
 	flavoured;vanilla;
 	flavoured;mandarin;
 	flavoured;mint;
-	citrus;
+	spiced;
 	flavoured;raspberry;
-	blackcurrant;
+	flavoured;melon;
+	flavoured;passion fruit;
+	flavoured;coconut;
 	flavoured;blueberry;
 	flavoured;blood orange;
+	flavoured;cranberry;
+	flavoured;mango;
 	flavoured;honey;
-	pear;
+	flavoured;watermelon;
+	flavoured;lemon;
 	flavoured;pineapple;
+	flavoured;apple;
+	flavoured;cinnamon;
+	flavoured;espresso;
 	flavoured;ginger-infused;
+	flavoured;orange;
+	flavoured;lime;
+	flavoured;chocolate;
+	flavoured;citrus;
 	flavoured;blackcurrant;
 	flavoured;pear;
 	flavoured;wildberry;
@@ -1171,7 +1124,6 @@ vodka:
 water:
 	pepermint;
 	flavoured;peach;
-	carbonated;
 	coconut;
 	vitamin;
 	orange flower;
@@ -1222,6 +1174,7 @@ wine:
 	crowberry;
 	white;flavoured;
 	ice;
+	sherry;cream;
 	cooler;
 	white;port;
 	sherry;fino;
