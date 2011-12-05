@@ -48,22 +48,35 @@
 		    android:layout_height="fill_parent"
 		    android:layout_weight="1"
 		    android:layout_marginTop="40dp">
-		    <TextView
-		        android:visibility="invisible"
+		    <LinearLayout 
+		    	android:visibility="invisible"
 		    	android:layout_width="fill_parent"
 		    	android:layout_height="wrap_content"
-		    	android:id="@+id/scroll_text"
-		    	android:textSize="25dip" 
-		    	android:textColor="#244690"
-		    	android:textStyle="bold"
-		    	android:gravity="center"
-		    	android:layout_gravity="center"
-		    	android:background="@drawable/text_field"
-		    	android:paddingTop="35dp"
-		    	android:paddingBottom="40dp"
-		    	android:paddingLeft="25dp"
-		    	android:paddingRight="25dp"
-		    />
+		    	android:id="@+id/text_layout"
+		    	android:orientation="vertical"
+		  		android:layout_gravity="center">
+		    	<View 
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="35dp"
+		    		android:background="@drawable/text_field_top"/>
+			    <TextView
+			    	android:id="@+id/scroll_text"
+			    	android:layout_width="fill_parent"
+			    	android:layout_height="wrap_content"
+			    	android:textSize="25dip" 
+			    	android:textColor="#244690"
+			    	android:textStyle="bold"
+			    	android:gravity="center"
+			    	android:layout_gravity="center"
+			    	android:background="@drawable/text_field"
+			    	android:paddingLeft="25dp"
+			    	android:paddingRight="25dp"
+			    />
+			    <View
+			    	android:layout_width="fill_parent"
+		    		android:layout_height="35dp" 
+		    		android:background="@drawable/text_field_bottom"/>
+		    </LinearLayout>
 		</ScrollView>
 	</RelativeLayout>	
 	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer

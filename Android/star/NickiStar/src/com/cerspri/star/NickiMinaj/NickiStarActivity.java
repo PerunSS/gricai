@@ -39,6 +39,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer;
@@ -61,6 +62,7 @@ public class NickiStarActivity extends Activity {
 	MultiDirectionSlidingDrawer factsDrawer;
 	Button quotesButton;
 	TextView scrollText;
+	LinearLayout textLayout;
 	Button randomButton;
 	Button shareButton;
 	int state;
@@ -121,7 +123,7 @@ public class NickiStarActivity extends Activity {
 				if (!mDrawer.isOpened()) {
 					if (factsDrawer.isOpened()) {
 						factsDrawer.animateClose();
-						scrollText.setVisibility(View.INVISIBLE);	
+						textLayout.setVisibility(View.INVISIBLE);	
 					}
 					mDrawer.animateOpen();
 					toggleMenuButton
@@ -152,7 +154,7 @@ public class NickiStarActivity extends Activity {
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("fact"));
-				scrollText.setVisibility(View.VISIBLE);
+				textLayout.setVisibility(View.VISIBLE);
 			}
 		});
 		// listener for quotes button
@@ -165,7 +167,7 @@ public class NickiStarActivity extends Activity {
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("quote"));
-				scrollText.setVisibility(View.VISIBLE);
+				textLayout.setVisibility(View.VISIBLE);
 			}
 		});
 		// listener for news button
@@ -219,7 +221,8 @@ public class NickiStarActivity extends Activity {
 		scrollText = (TextView) findViewById(R.id.scroll_text);
 		randomButton = (Button) findViewById(R.id.random_button);
 		shareButton = (Button) findViewById(R.id.share_button);
-
+		textLayout = (LinearLayout) findViewById(R.id.text_layout);
+		
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
