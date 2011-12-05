@@ -60,6 +60,7 @@ public class NickiStarActivity extends Activity {
 	Button videosButton;
 	MultiDirectionSlidingDrawer mDrawer;
 	MultiDirectionSlidingDrawer factsDrawer;
+	MultiDirectionSlidingDrawer newsDrawer;
 	Button quotesButton;
 	TextView scrollText;
 	LinearLayout textLayout;
@@ -175,6 +176,11 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				new NewsLoaderTask().execute(0);
+				mDrawer.animateClose();
+				newsDrawer.animateOpen();
+				state = 3;
+				toggleMenuButton
+						.setBackgroundResource(R.drawable.open_menu_button);
 			}
 		});
 		// listener for pictures button
@@ -214,6 +220,7 @@ public class NickiStarActivity extends Activity {
 		mDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.menuDrawer);
 		factsButton = (Button) findViewById(R.id.facts_button);
 		factsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.factsDrawer);
+		newsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.newsDrawer);
 		quotesButton = (Button) findViewById(R.id.quotes_button);
 		newsButton = (Button) findViewById(R.id.news_button);
 		pictButton = (Button) findViewById(R.id.pict_button);

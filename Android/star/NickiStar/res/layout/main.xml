@@ -55,6 +55,15 @@
 		    	android:id="@+id/text_layout"
 		    	android:orientation="vertical"
 		  		android:layout_gravity="center">
+		  		<LinearLayout 
+		  			android:visibility="invisible"
+			    	android:layout_width="fill_parent"
+			    	android:layout_height="60dp"
+			    	android:id="@+id/news_layout"
+			    	android:orientation="vertical"
+			  		android:layout_gravity="center">
+			  		
+		  		</LinearLayout>
 		    	<View 
 		    		android:layout_width="fill_parent"
 		    		android:layout_height="35dp"
@@ -97,6 +106,11 @@
 			android:layout_height="0dip"
 			android:background="#FFFFFF"/>
 	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer>    
+	<View 		
+		android:layout_width="fill_parent"
+		android:layout_height="0dip"
+		android:id="@+id/anchor_bottom"
+		android:layout_alignParentBottom="true"/>
 	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
 		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
 		android:id="@+id/factsDrawer"
@@ -105,10 +119,29 @@
 		android:layout_height="60dip"
 		my:handle="@+id/handle"
 		my:content="@+id/content" 
-		android:layout_alignParentBottom="true">
+		android:layout_above="@id/anchor_bottom">
 		<include
 			android:id="@id/content"
 			layout="@layout/facts_buttons_drawer" />
+		<ImageView
+			android:id="@id/handle"
+			android:layout_width="wrap_content"
+			android:layout_height="0dip"
+			android:background="#FFFFFF"/>
+	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
+	
+	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
+		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
+		android:id="@+id/newsDrawer"
+		my:direction="bottomToTop"
+		android:layout_width="fill_parent"
+		android:layout_height="60dip"
+		my:handle="@+id/handle"
+		my:content="@+id/content" 
+		android:layout_above="@id/anchor_bottom">
+		<include
+			android:id="@id/content"
+			layout="@layout/news_buttons_drawer" />
 		<ImageView
 			android:id="@id/handle"
 			android:layout_width="wrap_content"
