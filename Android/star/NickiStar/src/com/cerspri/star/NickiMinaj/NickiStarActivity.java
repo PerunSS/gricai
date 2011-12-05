@@ -126,6 +126,10 @@ public class NickiStarActivity extends Activity {
 						factsDrawer.animateClose();
 						textLayout.setVisibility(View.INVISIBLE);	
 					}
+					if (newsDrawer.isOpened()) {
+						newsDrawer.animateClose();
+						textLayout.setVisibility(View.INVISIBLE);	
+					}
 					mDrawer.animateOpen();
 					toggleMenuButton
 							.setBackgroundResource(R.drawable.close_menu_button);
@@ -136,6 +140,9 @@ public class NickiStarActivity extends Activity {
 						break;
 					case 2:
 						quotesButton.performClick();
+						break;
+					case 3:
+						newsButton.performClick();
 						break;
 					default:
 						mDrawer.animateClose();
