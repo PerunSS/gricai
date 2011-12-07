@@ -77,6 +77,7 @@ public class NickiStarActivity extends Activity {
 	private Map<Integer, NewsHolder> news;
 	ProgressDialog progressDialog;
 
+
 	private static int PAGE_SIZE = 10;
 	private static String NEWS_LINK_START = "<h3 class=r><a href=";
 	private static String NEWS_LINK_END = "</a></h3>";
@@ -167,6 +168,9 @@ public class NickiStarActivity extends Activity {
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("fact"));
+				final float scale = getResources().getDisplayMetrics().density;
+				int padding_5dp = (int) (5 * scale + 0.5f);			
+				textLayout.setPadding(0, padding_5dp, 0, 0);
 				textLayout.setVisibility(View.VISIBLE);
 			}
 		});
@@ -180,7 +184,11 @@ public class NickiStarActivity extends Activity {
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("quote"));
+				final float scale = getResources().getDisplayMetrics().density;
+				int padding_5dp = (int) (5 * scale + 0.5f);			
+				textLayout.setPadding(0, padding_5dp, 0, 0);
 				textLayout.setVisibility(View.VISIBLE);
+				
 			}
 		});
 		// listener for news button
@@ -188,16 +196,7 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				new NewsLoaderTask().execute(0);
-				mDrawer.animateClose();
-				newsDrawer.animateOpen();
-				state = 3;
-				toggleMenuButton
-						.setBackgroundResource(R.drawable.open_menu_button);
-				scrollText.setText(Html.fromHtml("text blabblablablalbalblalablalblablbla"));
-				newsNumber.setText("1/10");
-				newsHeader.setText("link");
-				textLayout.setVisibility(View.VISIBLE);
-				newsLayout.setVisibility(View.VISIBLE);
+
 			}
 		});
 		// listener for pictures button
@@ -456,17 +455,6 @@ public class NickiStarActivity extends Activity {
 			return "(" + link + ", " + linkDescription + ", " + text + ")";
 		}
 		
-		public String getLink(){
-			return link;
-		}
-		
-		public String getLinkDescription(){
-			return linkDescription;
-		}
-		
-		public String getText(){
-			return text;
-		}
 	}
 
 	private class JSONLoaderTask extends AsyncTask<String, Void, Void> {
@@ -522,6 +510,21 @@ public class NickiStarActivity extends Activity {
 			progressDialog.dismiss();
 			System.out.println("NEWS: ");
 			System.out.println(news);
+			mDrawer.animateClose();
+			newsDrawer.animateOpen();
+			state = 3;
+			toggleMenuButton
+					.setBackgroundResource(R.drawable.open_menu_button);
+			scrollText.setText(Html.fromHtml(news.get(0).text));
+			newsNumber.setText("1/10");
+			newsHeader.setText("link");
+			
+			final float scale = getResources().getDisplayMetrics().density;
+			int padding_90dp = (int) (85 * scale + 0.5f);			
+			textLayout.setPadding(0, padding_90dp, 0, 0);
+			textLayout.setVisibility(View.VISIBLE);
+			textLayout.setVisibility(View.VISIBLE);
+			newsLayout.setVisibility(View.VISIBLE);
 		}
 	}
 
