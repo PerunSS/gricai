@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item 
     	android:state_pressed="true" 
-    	android:drawable="@drawable/random_onclick" /> 
+    	android:drawable="@drawable/previous_onclick" /> 
     <item
-		android:drawable="@drawable/random" />
+		android:drawable="@drawable/previous" />
 </selector>
