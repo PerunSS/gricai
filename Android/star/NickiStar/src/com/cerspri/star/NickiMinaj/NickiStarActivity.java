@@ -37,6 +37,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -63,7 +64,10 @@ public class NickiStarActivity extends Activity {
 	MultiDirectionSlidingDrawer newsDrawer;
 	Button quotesButton;
 	TextView scrollText;
+	TextView newsNumber;
+	TextView newsHeader;
 	LinearLayout textLayout;
+	LinearLayout newsLayout;
 	Button randomButton;
 	Button shareButton;
 	int state;
@@ -188,6 +192,11 @@ public class NickiStarActivity extends Activity {
 				state = 3;
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
+				scrollText.setText(Html.fromHtml("text blabblablablalbalblalablalblablbla"));
+				newsNumber.setText("1/10");
+				newsHeader.setText("link");
+				textLayout.setVisibility(View.VISIBLE);
+				newsLayout.setVisibility(View.VISIBLE);
 			}
 		});
 		// listener for pictures button
@@ -236,6 +245,9 @@ public class NickiStarActivity extends Activity {
 		randomButton = (Button) findViewById(R.id.random_button);
 		shareButton = (Button) findViewById(R.id.share_button);
 		textLayout = (LinearLayout) findViewById(R.id.text_layout);
+		newsNumber = (TextView) findViewById(R.id.news_number);
+		newsHeader = (TextView) findViewById(R.id.news_header);
+		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
 		
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -441,6 +453,18 @@ public class NickiStarActivity extends Activity {
 		@Override
 		public String toString() {
 			return "(" + link + ", " + linkDescription + ", " + text + ")";
+		}
+		
+		public String getLink(){
+			return link;
+		}
+		
+		public String getLinkDescription(){
+			return linkDescription;
+		}
+		
+		public String getText(){
+			return text;
 		}
 	}
 

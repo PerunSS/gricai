@@ -14,7 +14,8 @@
 			android:layout_width="fill_parent"
 			android:layout_height="60dip"
 			android:background="@drawable/menu_bar"
-			android:gravity="top">
+			android:gravity="top"
+			android:id="@+id/menu_bar">
 			<Button 
 				android:layout_width="60dip"
 				android:layout_height="60dip"
@@ -42,6 +43,23 @@
 				android:layout_width="25dip"
 				android:layout_height="50dip"/>
 		</LinearLayout>
+		<LinearLayout 
+		  	android:visibility="gone"
+			android:layout_width="fill_parent"
+			android:layout_height="60dp"
+			android:id="@+id/news_layout"
+			android:orientation="horizontal"
+			android:layout_below="@id/menu_bar">
+			<TextView 
+				android:layout_width="60dp"
+				android:layout_height="60dp"
+				android:id="@+id/news_number"/>
+			<TextView 
+				android:layout_width="60dp"
+				android:layout_height="60dp"
+				android:layout_weight="1"
+				android:id="@+id/news_header"/>
+		</LinearLayout>
 		<ScrollView  
 		    android:id="@+id/data_scroll_view"
 		    android:layout_width="fill_parent" 
@@ -55,22 +73,6 @@
 		    	android:id="@+id/text_layout"
 		    	android:orientation="vertical"
 		  		android:layout_gravity="center">
-		  		<LinearLayout 
-		  			android:visibility="gone"
-			    	android:layout_width="fill_parent"
-			    	android:layout_height="60dp"
-			    	android:id="@+id/news_layout"
-			    	android:orientation="horizontal">
-			  		<TextView 
-				    	android:layout_width="60dp"
-				    	android:layout_height="60dp"
-				    	android:id="@+id/news_number"/>
-				    <TextView 
-				    	android:layout_width="60dp"
-				    	android:layout_height="60dp"
-				    	android:layout_weight="1"
-				    	android:id="@+id/news_header"/>
-		  		</LinearLayout>
 		    	<View 
 		    		android:layout_width="fill_parent"
 		    		android:layout_height="35dp"
