@@ -132,7 +132,8 @@ public class NickiStarActivity extends Activity {
 					}
 					if (newsDrawer.isOpened()) {
 						newsDrawer.animateClose();
-						textLayout.setVisibility(View.INVISIBLE);	
+						newsLayout.setVisibility(View.GONE);	
+						textLayout.setVisibility(View.INVISIBLE);
 					}
 					mDrawer.animateOpen();
 					toggleMenuButton
