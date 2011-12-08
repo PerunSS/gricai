@@ -169,22 +169,8 @@ public class NickiStarActivity extends Activity {
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("fact"));
 				final float scale = getResources().getDisplayMetrics().density;
-				int padding_5dp = (int) (5 * scale + 0.5f);
+				int padding_5dp = (int) (20 * scale + 0.5f);
 				textLayout.setPadding(0, padding_5dp, 0, 0);
-
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						try {
-							synchronized (this) {
-								wait(100);
-							}
-						} catch (InterruptedException ex) {
-						}
-					}
-				};
-				thread.start();
-
 				textLayout.setVisibility(View.VISIBLE);
 
 			}
@@ -200,7 +186,7 @@ public class NickiStarActivity extends Activity {
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("quote"));
 				final float scale = getResources().getDisplayMetrics().density;
-				int padding_5dp = (int) (5 * scale + 0.5f);
+				int padding_5dp = (int) (20 * scale + 0.5f);
 				textLayout.setPadding(0, padding_5dp, 0, 0);
 				textLayout.setVisibility(View.VISIBLE);
 
