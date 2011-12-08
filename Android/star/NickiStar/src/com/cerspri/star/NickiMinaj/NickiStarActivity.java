@@ -32,6 +32,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -92,7 +93,7 @@ public class NickiStarActivity extends Activity {
 		checkForNetworkAndStart();
 		new JSONLoaderTask().execute("quote", "fact");
 	}
-
+	
 	private void checkForNetworkAndStart() {
 		if (!isNetworkAvailable()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -226,6 +227,22 @@ public class NickiStarActivity extends Activity {
 				scrollText.setText(text);
 			}
 		});
+		shareButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String text = scrollText.getText().toString();
+				String subject = " about "+getString(R.string.app_name);
+				String type = "";
+				if (state == 1) {
+					type = "fact";
+				} else if (state == 2) {
+					type = "quote";
+				}
+				subject = type + subject;
+				share(subject, text, type);
+			}
+		});
 	}
 
 	private void buildGUI() {
@@ -272,6 +289,16 @@ public class NickiStarActivity extends Activity {
 				t.cancel();
 			}
 		}, 2000);
+	}
+	
+	private void share(String subject, String text, String type) {
+	     final Intent intent = new Intent(Intent.ACTION_SEND);
+
+	     intent.setType("text/plain");
+	     intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+	     intent.putExtra(Intent.EXTRA_TEXT, text);
+
+	     startActivity(Intent.createChooser(intent, type + " about " + getString(R.string.app_name)));
 	}
 
 	private String getNext(String name) {
