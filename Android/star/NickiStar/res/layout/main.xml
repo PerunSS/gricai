@@ -146,7 +146,7 @@
 		android:id="@+id/factsDrawer"
 		my:direction="bottomToTop"
 		android:layout_width="fill_parent"
-		android:layout_height="60dip"
+		android:layout_height="180dip"
 		my:handle="@+id/handle"
 		my:content="@+id/content" 
 		android:layout_above="@id/anchor_bottom">

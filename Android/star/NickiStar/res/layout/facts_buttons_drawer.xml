@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
   	android:layout_width="fill_parent"
-  	android:layout_height="60dp"
-  	android:orientation="horizontal"
+  	android:layout_height="180dp"
+  	android:orientation="vertical"
   	android:layout_gravity="bottom"
   	android:gravity="bottom">
-  	<Button
-  		android:layout_width="fill_parent"
-  		android:layout_height="60dp"
-  		android:id="@+id/random_button"
-  		android:layout_weight="1"
-  		android:background="@drawable/random_button"/>
-  	<Button
-  		android:layout_width="fill_parent"
-  		android:layout_height="60dp"
-  		android:id="@+id/share_button"
-  		android:layout_weight="1"
-  		android:background="@drawable/share_button"/>
-  	
+  	<com.google.ads.AdView android:id="@+id/adView1"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14e26bb09b4e78"
+                         ads:adSize="BANNER"
+                         ads:loadAdOnCreate="true"
+                         ads:testing="true"/>
+	<LinearLayout
+	  	android:layout_width="fill_parent"
+	  	android:layout_height="60dp"
+	  	android:orientation="horizontal"
+	  	android:layout_gravity="bottom"
+	  	android:gravity="bottom">
+	  	<Button
+	  		android:layout_width="fill_parent"
+	  		android:layout_height="60dp"
+	  		android:id="@+id/random_button"
+	  		android:layout_weight="1"
+	  		android:background="@drawable/random_button"/>
+	  	<Button
+	  		android:layout_width="fill_parent"
+	  		android:layout_height="60dp"
+	  		android:id="@+id/share_button"
+	  		android:layout_weight="1"
+	  		android:background="@drawable/share_button"/>
+	  	
+	</LinearLayout>
+	  <com.google.ads.AdView android:id="@+id/adView2"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14e26bb09b4e78"
+                         ads:adSize="BANNER"
+                         ads:loadAdOnCreate="true"
+                         ads:testing="true"/>
 </LinearLayout>

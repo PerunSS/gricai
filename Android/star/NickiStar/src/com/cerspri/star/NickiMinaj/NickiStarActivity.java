@@ -78,7 +78,6 @@ public class NickiStarActivity extends Activity {
 	private Map<Integer, NewsHolder> news;
 	ProgressDialog progressDialog;
 
-
 	private static int PAGE_SIZE = 10;
 	private static String NEWS_LINK_START = "<h3 class=r><a href=";
 	private static String NEWS_LINK_END = "</a></h3>";
@@ -93,7 +92,7 @@ public class NickiStarActivity extends Activity {
 		checkForNetworkAndStart();
 		new JSONLoaderTask().execute("quote", "fact");
 	}
-	
+
 	private void checkForNetworkAndStart() {
 		if (!isNetworkAvailable()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -130,11 +129,11 @@ public class NickiStarActivity extends Activity {
 				if (!mDrawer.isOpened()) {
 					if (factsDrawer.isOpened()) {
 						factsDrawer.animateClose();
-						textLayout.setVisibility(View.INVISIBLE);	
+						textLayout.setVisibility(View.INVISIBLE);
 					}
 					if (newsDrawer.isOpened()) {
 						newsDrawer.animateClose();
-						newsLayout.setVisibility(View.GONE);	
+						newsLayout.setVisibility(View.GONE);
 						textLayout.setVisibility(View.INVISIBLE);
 					}
 					mDrawer.animateOpen();
@@ -148,9 +147,9 @@ public class NickiStarActivity extends Activity {
 					case 2:
 						quotesButton.performClick();
 						break;
-//					case 3:
-//						newsButton.performClick();
-//						break;
+					// case 3:
+					// newsButton.performClick();
+					// break;
 					default:
 						mDrawer.animateClose();
 						toggleMenuButton
@@ -170,9 +169,24 @@ public class NickiStarActivity extends Activity {
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("fact"));
 				final float scale = getResources().getDisplayMetrics().density;
-				int padding_5dp = (int) (5 * scale + 0.5f);			
+				int padding_5dp = (int) (5 * scale + 0.5f);
 				textLayout.setPadding(0, padding_5dp, 0, 0);
+
+				Thread thread = new Thread() {
+					@Override
+					public void run() {
+						try {
+							synchronized (this) {
+								wait(100);
+							}
+						} catch (InterruptedException ex) {
+						}
+					}
+				};
+				thread.start();
+
 				textLayout.setVisibility(View.VISIBLE);
+
 			}
 		});
 		// listener for quotes button
@@ -186,10 +200,10 @@ public class NickiStarActivity extends Activity {
 						.setBackgroundResource(R.drawable.open_menu_button);
 				scrollText.setText(getNext("quote"));
 				final float scale = getResources().getDisplayMetrics().density;
-				int padding_5dp = (int) (5 * scale + 0.5f);			
+				int padding_5dp = (int) (5 * scale + 0.5f);
 				textLayout.setPadding(0, padding_5dp, 0, 0);
 				textLayout.setVisibility(View.VISIBLE);
-				
+
 			}
 		});
 		// listener for news button
@@ -197,7 +211,7 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				displayMessage();
-				//new NewsLoaderTask().execute(0);
+				// new NewsLoaderTask().execute(0);
 
 			}
 		});
@@ -228,11 +242,11 @@ public class NickiStarActivity extends Activity {
 			}
 		});
 		shareButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				String text = scrollText.getText().toString();
-				String subject = " about "+getString(R.string.app_name);
+				String subject = " about " + getString(R.string.app_name);
 				String type = "";
 				if (state == 1) {
 					type = "fact";
@@ -266,7 +280,7 @@ public class NickiStarActivity extends Activity {
 		newsNumber = (TextView) findViewById(R.id.news_number);
 		newsHeader = (TextView) findViewById(R.id.news_header);
 		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
-		
+
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
@@ -290,15 +304,16 @@ public class NickiStarActivity extends Activity {
 			}
 		}, 2000);
 	}
-	
+
 	private void share(String subject, String text, String type) {
-	     final Intent intent = new Intent(Intent.ACTION_SEND);
+		final Intent intent = new Intent(Intent.ACTION_SEND);
 
-	     intent.setType("text/plain");
-	     intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-	     intent.putExtra(Intent.EXTRA_TEXT, text);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+		intent.putExtra(Intent.EXTRA_TEXT, text);
 
-	     startActivity(Intent.createChooser(intent, type + " about " + getString(R.string.app_name)));
+		startActivity(Intent.createChooser(intent, type + " about "
+				+ getString(R.string.app_name)));
 	}
 
 	private String getNext(String name) {
@@ -484,7 +499,7 @@ public class NickiStarActivity extends Activity {
 		public String toString() {
 			return "(" + link + ", " + linkDescription + ", " + text + ")";
 		}
-		
+
 	}
 
 	private class JSONLoaderTask extends AsyncTask<String, Void, Void> {
@@ -519,7 +534,6 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
-	
 	@SuppressWarnings("unused")
 	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
 
@@ -545,19 +559,20 @@ public class NickiStarActivity extends Activity {
 			mDrawer.animateClose();
 			newsDrawer.animateOpen();
 			state = 3;
-			
-			toggleMenuButton
-					.setBackgroundResource(R.drawable.open_menu_button);
+
+			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
 			scrollText.setText(Html.fromHtml(news.get(0).text));
 			newsNumber.setText("1/10");
-			newsHeader.setText(Html.fromHtml("<a href = "+news.get(0).link)+">"+news.get(0).linkDescription);
-			
+			newsHeader.setText(Html.fromHtml("<a href = " + news.get(0).link)
+					+ ">" + news.get(0).linkDescription);
+
 			final float scale = getResources().getDisplayMetrics().density;
-			int padding_50dp = (int) (90* scale + 0.5f);		
-			
+			int padding_50dp = (int) (90 * scale + 0.5f);
+
 			newsLayout.setVisibility(View.VISIBLE);
-			textLayout.setPadding(0,newsLayout.getHeight()+padding_50dp, 0, 0);
-			
+			textLayout.setPadding(0, newsLayout.getHeight() + padding_50dp, 0,
+					0);
+
 			scrollText.setText(new Integer(newsLayout.getHeight()).toString());
 			textLayout.setVisibility(View.VISIBLE);
 		}
