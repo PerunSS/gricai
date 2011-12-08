@@ -513,18 +513,21 @@ public class NickiStarActivity extends Activity {
 			mDrawer.animateClose();
 			newsDrawer.animateOpen();
 			state = 3;
+			
 			toggleMenuButton
 					.setBackgroundResource(R.drawable.open_menu_button);
 			scrollText.setText(Html.fromHtml(news.get(0).text));
 			newsNumber.setText("1/10");
-			newsHeader.setText("link");
+			newsHeader.setText(Html.fromHtml("<a href = "+news.get(0).link)+">"+news.get(0).linkDescription);
 			
 			final float scale = getResources().getDisplayMetrics().density;
-			int padding_90dp = (int) (85 * scale + 0.5f);			
-			textLayout.setPadding(0, padding_90dp, 0, 0);
-			textLayout.setVisibility(View.VISIBLE);
-			textLayout.setVisibility(View.VISIBLE);
+			int padding_50dp = (int) (90* scale + 0.5f);		
+			
 			newsLayout.setVisibility(View.VISIBLE);
+			textLayout.setPadding(0,newsLayout.getHeight()+padding_50dp, 0, 0);
+			
+			scrollText.setText(new Integer(newsLayout.getHeight()).toString());
+			textLayout.setVisibility(View.VISIBLE);
 		}
 	}
 
