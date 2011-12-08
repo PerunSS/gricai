@@ -83,7 +83,7 @@ public class NickiStarActivity extends Activity {
 	private static String NEWS_LINK_END = "</a></h3>";
 	private static String NEWS_TEXT_START = "<div class=st>";
 	private static String NEWS_TEXT_END = "</div>";
-	private static String NEWS_LINK_DATA_START = " class=l>";
+	private static String NEWS_LINK_DATA_START = "class=l>";
 
 	// Done on activity creation
 	@Override
@@ -147,9 +147,9 @@ public class NickiStarActivity extends Activity {
 					case 2:
 						quotesButton.performClick();
 						break;
-					case 3:
-						newsButton.performClick();
-						break;
+//					case 3:
+//						newsButton.performClick();
+//						break;
 					default:
 						mDrawer.animateClose();
 						toggleMenuButton
@@ -195,7 +195,8 @@ public class NickiStarActivity extends Activity {
 		newsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new NewsLoaderTask().execute(0);
+				displayMessage();
+				//new NewsLoaderTask().execute(0);
 
 			}
 		});
@@ -303,6 +304,7 @@ public class NickiStarActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(builder.toString());
 		return builder;
 	}
 
@@ -425,6 +427,7 @@ public class NickiStarActivity extends Activity {
 
 		boolean extractLink(String linkData) {
 			// +1 se dodaje da se preskoce znaci navoda
+			System.out.println(linkData);
 			try {
 				int linkIndex = NEWS_LINK_START.length() + 1;
 				int endIndex = linkData.indexOf("\" class");
@@ -489,6 +492,8 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
+	
+	@SuppressWarnings("unused")
 	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
 
 		@Override
