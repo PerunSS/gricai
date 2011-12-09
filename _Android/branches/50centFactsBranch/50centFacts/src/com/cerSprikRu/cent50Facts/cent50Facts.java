@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
-
+//branch success
 public class cent50Facts extends Activity {
 	private List<String> facts;
 	private TextView factsTextView;
