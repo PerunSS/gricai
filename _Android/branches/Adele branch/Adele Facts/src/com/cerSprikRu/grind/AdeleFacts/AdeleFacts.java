@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
-
+//branching
 public class AdeleFacts extends Activity {
 	private List<String> facts;
 	private TextView factsTextView;
