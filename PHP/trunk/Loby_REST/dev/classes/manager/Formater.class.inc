@@ -1,4 +1,4 @@
 <?php
 interface Formater{
-	public function format();
+	public function format($data);
 }

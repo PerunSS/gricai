@@ -3,8 +3,8 @@
  * 
  * @todo
  */
-class SQLStatement implements DBCall{
-	function execute(){
-		
-	}
+class SQLStatement
+		extends DBCall {
+
+	function execute() {}
 }
