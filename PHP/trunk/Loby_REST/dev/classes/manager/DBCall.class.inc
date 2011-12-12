@@ -20,35 +20,36 @@ abstract class DBCall {
 	 * @param String $name
 	 * @return StoredProcedure
 	 */
-	public static function getStoredProcedure($name) {
+
+	public static function get_stored_procedure($name) {
 		return new StoredProcedure($name);
 	}
 
-	public static function getSQLStatement() {
+	public static function get_sql_statement() {
 		return new SQLStatement();
 	}
 
-	public function setValidator($validator) {
+	public function set_validator($validator) {
 		$this->validator = $validator;
 	}
 
-	public function setFormater($formater) {
+	public function set_formater($formater) {
 		$this->formater = $formater;
 	}
-	
-	public function setManager($manager){
+
+	public function set_manager($manager) {
 		$this->manager = $manager;
 	}
 
-	public function getValidator() {
+	public function get_validator() {
 		return $this->validator;
 	}
 
-	public function getFormater() {
+	public function get_formater() {
 		return $this->formater;
 	}
-	
-	public function getManager(){
+
+	public function get_manager() {
 		return $this->manager;
 	}
 }

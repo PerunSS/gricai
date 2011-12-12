@@ -14,11 +14,11 @@ class StoredProcedure
 	}
 
 	public function execute($data) {
-		$this->getValidator()
+		$this->get_validator()
 				->validate();
-		$result = $this->getManager()
-				->executeProcedure($this->name, $data);
-		return $this->getFormater()
+		$result = $this->get_manager()
+				->execute_procedure($this->name, $data);
+		return $this->get_formater()
 				->format($result);
 	}
 
