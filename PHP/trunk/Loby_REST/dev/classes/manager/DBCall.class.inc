@@ -4,6 +4,7 @@ abstract class DBCall {
 	/**
 	 * @var Validator
 	 */
+
 	private $validator;
 	/**
 	 * @var Formater

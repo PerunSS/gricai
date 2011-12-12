@@ -12,6 +12,10 @@ class Manager {
 		$this->connection_params = ManagerIni::get_connection_params();
 	}
 
+	/**
+	 * Function that initialize new PDO object.
+	 */
+
 	private function connect() {
 		$connection_string = 'mysql:dbname='
 				. $this->connection_params['database'] . ';host='
@@ -31,9 +35,21 @@ class Manager {
 		}
 	}
 
+	/**
+	 * Function that destroy PDO object.
+	 */
+
 	private function close() {
 		$this->db = NULL;
 	}
+
+	/**
+	 * Function that call stored precodure, execute it, and return result.
+	 * @param string $name
+	 * @param array $data
+	 * @return PDOStatement $result
+	 * @throws Exception $e
+	 */
 
 	public function execute_procedure($name, $data) {
 		$statement = NULL;

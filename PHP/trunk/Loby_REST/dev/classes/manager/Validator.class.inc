@@ -1,4 +1,5 @@
 <?php
-interface Validator{
+interface Validator {
+
 	public function validate();
 }

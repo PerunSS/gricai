@@ -1,5 +1,4 @@
 <?php
-
 function __autoload($class) {
 	$classes = array(
 		'ManagerIni' => 'manager/ini/', 'Manager' => 'manager/'
