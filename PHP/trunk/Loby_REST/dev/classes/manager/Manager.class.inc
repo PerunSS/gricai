@@ -68,11 +68,10 @@ class Manager {
 				$statement = $this->db
 						->prepare($query);
 				foreach ($data as $key => $value) {
-					if (empty($value) && $value != 0) {
+					if (empty($value) && $value != 0)
 						$statement->bindValue($key + 1, null, PDO::PARAM_NULL);
-					} else {
+					else
 						$statement->bindValue($key + 1, $value);
-					}
 				}
 				$statement->execute();
 			}
