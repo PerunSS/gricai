@@ -53,6 +53,7 @@ class CheckersTest
 
 	public function test_is_date() {
 		$this->assertTrue(!Checkers::is_date("a", 2, 3));
+		$this->assertTrue(!Checkers::is_date(NULL, 2, 3));
 		$this->assertTrue(!Checkers::is_date(4, "adsd", "sasa"));
 		$this->assertTrue(!Checkers::is_date(3, 0, 3));
 		$this->assertTrue(Checkers::is_date(1, 2, 3));
@@ -105,12 +106,7 @@ class CheckersTest
 
 	public function test_is_password() {
 		$this->assertTrue(!Checkers::is_password("dsadsada", "gdgrrgdfx"));
-		$this->assertTrue(!Checkers::is_password("12345", "12345"));
-		$this->assertTrue(
-						!Checkers::is_password("123451234512345",
-								"123451234512345"));
 		$this->assertTrue(Checkers::is_password("123456", "123456"));
-		$this->assertTrue(Checkers::is_password("1234567890", "1234567890"));
 	}
 	/**
 	 * Function for testing Checkers' function is_email
@@ -122,5 +118,19 @@ class CheckersTest
 		$this->assertTrue(!Checkers::is_email("dojchilo@yahoocom"));
 		$this->assertTrue(Checkers::is_email("dojchilo@yahoo.com"));
 		$this->assertTrue(Checkers::is_email("dojchilo@yahoo.co.rs"));
+	}
+	/**
+	 * Function for testing Checkers' function is_valid_length
+	 */
+
+	public function test_is_valid_length() {
+		$this->assertTrue(Checkers::is_valid_length("dsadsada"));
+		$this->assertTrue(Checkers::is_valid_length("dsadsada",4));
+		$this->assertTrue(Checkers::is_valid_length("dsadsada",NULL,10));
+		$this->assertTrue(Checkers::is_valid_length("dsadsada",6,8));
+		$this->assertTrue(!Checkers::is_valid_length("dsadsada",10));
+		$this->assertTrue(!Checkers::is_valid_length("dsadsada",null,4));
+		$this->assertTrue(!Checkers::is_valid_length("dsadsada",4,5));
+		$this->assertTrue(!Checkers::is_valid_length("dsadsada",14,15));
 	}
 }

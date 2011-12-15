@@ -8,6 +8,8 @@ class Checkers {
 	const ERROR_CODE_NOT_MATCH = 1005;
 	const ERROR_CODE_WRONG_LENGTH = 1006;
 	const ERROR_CODE_INVALID_EMAIL = 1007;
+	const ERROR_CODE_INVALID_MAXIMUM = 1008;
+	const ERROR_CODE_INVALID_MINIMUM = 1009;
 	/**
 	 * Check if parameter is null.
 	 * @param Object $param
@@ -103,12 +105,6 @@ class Checkers {
 			$error_code = Checkers::ERROR_CODE_NOT_MATCH;
 			return false;
 		}
-		$length = ManagerIni::get_password_length();
-		if (strlen($password) > $length['max']
-				|| strlen($password) < $length['min']) {
-			$error_code = Checkers::ERROR_CODE_WRONG_LENGTH;
-			return false;
-		}
 		return true;
 	}
 	/**
@@ -121,6 +117,28 @@ class Checkers {
 		if (!preg_match("/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",
 				$email)) {
 			$error_code = Checkers::ERROR_CODE_INVALID_EMAIL;
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Check if parameter has valid length defined by maximum and minimum. 
+	 * If maximum or minimum is NULL, minimum or maximum will not be validated.
+	 * @param string $param
+	 * @param int $minimum
+	 * @param int $maximum
+	 * @param int $error_code
+	 */
+
+	final static function is_valid_length($param, $minimum = NULL,
+			$maximum = NULL, &$error_code = 0) {
+		if (!Checkers::is_null($maximum) && strlen($param) > $maximum) {
+			$error_code = Checkers::ERROR_CODE_INVALID_MAXIMUM;
+			return false;
+		}
+		if (!Checkers::is_null($minimum) && strlen($param) < $minimum) {
+			$error_code = Checkers::ERROR_CODE_INVALID_MINIMUM;
 			return false;
 		}
 		return true;

@@ -5,6 +5,7 @@ final class ManagerIni {
 	private static $properties;
 	private static $underage;
 	private static $password_length;
+	private static $date_format;
 
 	/**
 	 * Static function that takes database connection parameters from manager.ini 
@@ -38,20 +39,17 @@ final class ManagerIni {
 		return self::$underage;
 	}
 	/**
-	 * Static function that takes password length parameters from manager.ini 
-	 * file and returns them in array.
-	 * @return array 
+	 * Static function that takes date format parameter from manager.ini 
+	 * file and returns it.
+	 * @return int 
 	 */
 
-	final static function get_password_length() {
-		if (empty(self::$password_length)) {
+	final static function get_date_format() {
+		if (empty(self::$date_format)) {
 			$params = self::get_manager_ini();
-			self::$password_length = array(
-					'min' => $params['password_min'],
-					'max' => $params['password_max']
-			);
+			self::$date_format = $params['date_format'];
 		}
-		return self::$password_length;
+		return self::$date_format;
 	}
 
 	private static function get_manager_ini() {
