@@ -1,6 +1,6 @@
 <?php
 class User
-		implements Modal {
+		extends Modal {
 
 	public function to_json() {
 	}

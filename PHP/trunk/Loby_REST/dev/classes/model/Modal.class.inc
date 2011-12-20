@@ -1,5 +1,7 @@
 <?php
-interface Modal {
+abstract class Modal {
 
-	public function to_json();
+	public $error;
+
+	abstract public function to_json();
 }

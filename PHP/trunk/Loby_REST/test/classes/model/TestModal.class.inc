@@ -1,6 +1,6 @@
 <?php
 class TestModal
-		implements Modal {
+		extends Modal {
 			public $id;
 			public $nesto;
 			public $datum;

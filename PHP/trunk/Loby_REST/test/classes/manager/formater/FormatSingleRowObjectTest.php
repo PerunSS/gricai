@@ -17,5 +17,17 @@ class FormatSingleRowObjectTest
 						));
 		$formater = new FormatSingleRowObject('TestModal');
 		$this->assertTrue($formater->format($result) instanceof TestModal);
+		$result = $manager->execute_procedure('test_dva',
+						array(
+							0 => 1, 1 => 'tr'
+						));
+		$formater = new FormatSingleRowObject('TestModal');
+		$this->assertTrue($formater->format($result) instanceof Error);
+		$result = $manager->execute_procedure('test_pet',
+						array(
+							0 => 1, 1 => 'tr'
+						));
+		$formater = new FormatSingleRowObject('TestModal');
+		$this->assertTrue($formater->format($result) instanceof Error);
 	}
 }

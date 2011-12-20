@@ -1,4 +1,5 @@
 <?php
+
 function __autoload($class) {
 	$classes = array(
 			//ManagerIni
@@ -10,7 +11,7 @@ function __autoload($class) {
 			//Checkers
 			'Checkers' => 'utils/', 
 			//Modals
-			'User' => 'model/', 'Modal' => 'model/',
+			'User' => 'model/', 'Modal' => 'model/', 'Error' => 'model/',
 			//Formaters
 			'FormatSingleRowObject' => 'manager/formater/',
 			'Formater' => 'manager/'
