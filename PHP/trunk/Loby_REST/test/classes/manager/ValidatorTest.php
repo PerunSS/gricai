@@ -115,8 +115,8 @@ class ValidatorTest
 		$v = new Validator($parameters);
 		$v->add_non_missing_parameters('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 						'i', 'j', 'l', 'm', 'n', 'p');
-		$v->add_non_null_parameters('a', 'b', 'c', 'd', 'h',
-						'm', 'n', 'p','password');
+		$v->add_non_null_parameters('a', 'b', 'c', 'd', 'h','f','g',
+						'm', 'n', 'p');
 		$v->add_is_underage_parameters('i', 'j', 'l', 'under');
 		$v->add_is_date_parameters('m', 'n', 'p', 'date');
 		$v->add_is_email_parameters('c');
@@ -148,6 +148,5 @@ class ValidatorTest
 		$v->add_order_parameters('a', 'b', 'c', 'd', 'e', 'password', 'h',
 						'date', 'under');
 		$this->assertTrue($v->validate($result));
-		print_r($result);
 	}
 }
