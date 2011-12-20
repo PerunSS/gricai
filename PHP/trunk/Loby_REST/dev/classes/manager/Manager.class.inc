@@ -1,11 +1,23 @@
 <?php
+/**
+ * Util class for managing database connection
+ * 
+ * @todo abstrat class for DB management and subclasses for particular DBMS
+ * @author Author <author@domain.com>
+ * @version 1.0
+ */
 class Manager {
 
 	/**
+	 * Database connection handler
 	 * @var PDO
 	 */
-
 	private $db = NULL;
+	/**
+	 * String values necessary to establish DB connection
+	 * host, database, username, password
+	 * @var array
+	 */
 	private $connection_params = array();
 
 	public function __construct() {
@@ -13,9 +25,9 @@ class Manager {
 	}
 
 	/**
-	 * Function that initialize new PDO object.
+	 * Open DB connection
+	 * @throws PDOException If connection fails
 	 */
-
 	private function connect() {
 		$connection_string = 'mysql:dbname='
 				. $this->connection_params['database'] . ';host='
@@ -36,21 +48,19 @@ class Manager {
 	}
 
 	/**
-	 * Function that destroy PDO object.
+	 * Close DB connection
 	 */
-
 	private function close() {
 		$this->db = NULL;
 	}
 
 	/**
-	 * Function that call stored precodure, execute it, and return result.
-	 * @param string $name
-	 * @param array $data
-	 * @return PDOStatement $result
-	 * @throws Exception $e
+	 * Function that calls stored precodure, execute it, and return result.
+	 * @param string $name Name of the procedure
+	 * @param array $data Optional arguments if required by the procedure
+	 * @return PDOStatement $result Procedure result set
+	 * @throws Exception If procedure fails to execute
 	 */
-
 	public function execute_procedure($name, $data) {
 		$statement = NULL;
 		$query = "call " . $name . "(";
