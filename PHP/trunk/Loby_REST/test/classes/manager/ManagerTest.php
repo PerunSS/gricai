@@ -13,9 +13,22 @@ class ManagerTest
 		$manager = new Manager();
 		$result = $manager->execute_procedure('test', array());
 		$this->assertTrue($result instanceof PDOStatement);
-		$result = $manager->execute_procedure('test_dva', array(
-					0 => 1, 1 => 'prvi'
-				));
+		$result = $manager->execute_procedure('test_dva',
+						array(
+							0 => 1, 1 => 'prvi'
+						));
 		$this->assertTrue($result instanceof PDOStatement);
+	}
+	/**
+	 * Function for testing Manager's function execute_function
+	 */
+
+	public function test_execute_function() {
+		$manager = new Manager();
+		$result = $manager->execute_function('test_cetiri',
+						array(
+							0 => 'prvi'
+						));
+		$this->assertEqual(1000, $result);
 	}
 }

@@ -12,6 +12,7 @@ class Manager {
 	 * Database connection handler
 	 * @var PDO
 	 */
+
 	private $db = NULL;
 	/**
 	 * String values necessary to establish DB connection
@@ -28,6 +29,7 @@ class Manager {
 	 * Open DB connection
 	 * @throws PDOException If connection fails
 	 */
+
 	private function connect() {
 		$connection_string = 'mysql:dbname='
 				. $this->connection_params['database'] . ';host='
@@ -50,17 +52,19 @@ class Manager {
 	/**
 	 * Close DB connection
 	 */
+
 	private function close() {
 		$this->db = NULL;
 	}
 
 	/**
-	 * Function that calls stored precodure, execute it, and return result.
+	 * Function that calls stored procedure, execute it, and return result.
 	 * @param string $name Name of the procedure
 	 * @param array $data Optional arguments if required by the procedure
 	 * @return PDOStatement $result Procedure result set
 	 * @throws Exception If procedure fails to execute
 	 */
+
 	public function execute_procedure($name, $data) {
 		$statement = NULL;
 		$query = "call " . $name . "(";
@@ -90,5 +94,47 @@ class Manager {
 			throw new Exception($e->getMessage(), $e->getCode());
 		}
 		return $statement;
+	}
+
+	/**
+	 * Function that calls stored function, execute it, and return result.
+	 * @param string $name Name of the procedure
+	 * @param array $data Optional arguments if required by the procedure
+	 * @return Object $result Result of query
+	 * @throws Exception If procedure fails to execute
+	 */
+
+	public function execute_function($name, $data) {
+		$statement = NULL;
+		$result = false;
+		$query = "select " . $name . "(";
+		if (is_array($data)) {
+			for ($i = 0; $i < sizeof($data); $i++) {
+				$query = $query . "?";
+				if ($i != sizeof($data) - 1)
+					$query = $query . ",";
+			}
+		}
+		$query .= ") as status;";
+		try {
+			$this->connect();
+			if ($this->db != NULL) {
+				$statement = $this->db
+						->prepare($query);
+				foreach ($data as $key => $value) {
+					if (empty($value) && $value != 0)
+						$statement->bindValue($key + 1, null, PDO::PARAM_NULL);
+					else
+						$statement->bindValue($key + 1, $value);
+				}
+				$statement->execute();
+				$array = $statement->fetchAll();
+				$result = $array[0]["status"];
+			}
+			$this->close();
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage(), $e->getCode());
+		}
+		return $result;
 	}
 }
