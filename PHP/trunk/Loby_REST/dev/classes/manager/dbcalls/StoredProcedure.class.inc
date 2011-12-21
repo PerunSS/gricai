@@ -13,9 +13,10 @@ class StoredProcedure
 		$this->setManager(new Manager());
 	}
 
-	public function execute($data) {
-		$this->get_validator()
-				->validate();
+	public function execute() {
+		if (!$this->get_validator()
+				->validate($data))
+			return Error::get_error(Error::CODE_INVALID_PARAMETERS, $data);
 		$result = $this->get_manager()
 				->execute_procedure($this->name, $data);
 		return $this->get_formater()

@@ -29,5 +29,9 @@ class FormatSingleRowObjectTest
 						));
 		$formater = new FormatSingleRowObject('TestModal');
 		$this->assertTrue($formater->format($result) instanceof Error);
+		$manager = new Manager();
+		$result = $manager->execute_procedure('test', array());
+		$formater = new FormatSingleRowObject('TestModal');
+		$this->assertTrue($formater->format($result) instanceof Error);
 	}
 }

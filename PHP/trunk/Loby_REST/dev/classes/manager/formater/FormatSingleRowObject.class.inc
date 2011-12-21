@@ -15,20 +15,16 @@ class FormatSingleRowObject
 	 */
 
 	public function format($data) {
-		if ($data->rowCount()) {
+		if ($data->rowCount() == 1) {
 			$data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
 							$this->class_name);
 			$object = $data->fetch();
-			if (!is_null($object->error)) {
-				$error = new Error();
-				$error->code = $object->error;
-				return $error;
-			}
+			if (!is_null($object->error))
+				return Error::get_error($object->error);
 			return $object;
-		} else {
-			$error = new Error();
-			$error->code = Error::FORMAT_SINGLE_ROW_OBJECT_EMPTY;
-			return $error;
-		}
+		} elseif ($data->rowCount() == 0)
+			return Error::get_error(Error::CODE_FORMAT_SINGLE_ROW_OBJECT_EMPTY);
+		else
+			return Error::get_error(Error::CODE_FORMAT_SINGLE_ROW_OBJECT_MULTY);
 	}
 }
