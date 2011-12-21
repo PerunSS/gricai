@@ -14,8 +14,8 @@ beef bouillon:
 beer:
 	lager;
 	flavoured;
-	pumpkin;
 	guarana;
+	ale;pumpkin;
 	lager;pale;
 	ale;belgian;
 	ale;blueberry;
@@ -194,25 +194,38 @@ food coloring:
 fruit:
 	banana;
 	avocado;
-	blueberry;
 	currant;
+	blueberry;
 	pumpkin;
-	apple;
 	blood orange;
-	berries;
+	papaya;
 	cranberry;
 	apricot;
-	coconut;
+	strawberry;
+	passion fruit;
+	prune;
+	peach;kernel;
+	pineapple;
 	chinotto;
-	cherry;maraschino;
 	carambolas;
 	cashew;
 	watermelon;
-	blackberries;
+	tamarillo;
 	cherry;sour;
 	apple;baked;
 	acerola;
 	cherry;
+	honeydew;
+	pomegranate;
+	orange;
+	apple;
+	pear;
+	berries;
+	coconut;
+	cherry;maraschino;
+	blackberries;
+	peach;
+	raspberry;
 fruit salad:
 fruits:
 fuit:
@@ -242,7 +255,6 @@ gin:
 	jenever;
 	lime;
 ginger:
-	ale;
 ginger ale:
 	dry;
 	cranberry;
@@ -255,12 +267,12 @@ grapefruit:
 grapes:
 greek seasoning:
 half-and-half:
-hazelnuts:
+hazelnut:
 herb:
 	rosemary;
+	spearmint;
+	parsley;
 honey:
-honeydew:
-honeydew melons:
 horchata:
 horseradish:
 hot chocolate:
@@ -272,22 +284,22 @@ ice cream:
 	black cherry;
 	cocolate-mint;
 	pistachio;
-	coconut;
 	strawberry;
+	coconut;
 	chocolate;coating;
 	coffee;
 	vanilla;
 	chocolate;
 	cherry;
 	raspberry;
-	ice-pop;
 ice pop:
 ice tea:
+	leamon;
 	black ;
 	peach;
-	soda;raspberry;
 	raspberry;
 	lemon;
+ice-pop:
 italian ice:
 	lemon;
 jam:
@@ -306,8 +318,6 @@ jello:
 	pineapple;
 	cherry;
 jelly:
-juece:
-	fruit;
 juice:
 	agave;
 	lemon-lime;
@@ -431,17 +441,6 @@ lime:
 limeade:
 	cherry;
 limes:
-liquer:
-	cream;brandy;
-	cream;raspberry;
-	chocolate chiup cookie cream;
-	tropical;
-liquers:
-	cream;irish;
-liqueue:
-	curacao;blue;
-liqueuer:
-	peach;
 liqueur:
 	walnut;
 	agave;
@@ -459,8 +458,10 @@ liqueur:
 	lemon;
 	cream;banana;
 	key lime;
+	sambuca;
 	vanilla;
 	irish cream;
+	cream;brandy;
 	plum;
 	passion-fruit;
 	mango;
@@ -528,9 +529,10 @@ liqueur:
 	rye;
 	cream;whiskey;
 	ginger;
+	punsch;
+	cloudberry;
 	licorice;
 	lime;
-	cloudberry;
 	orange;cream;
 	cream;rum;
 	coffee;cappuccino;
@@ -539,8 +541,8 @@ liqueur:
 	sambuca;white;
 	orange;
 	cream;chocolate;
-	apple;
 	cream;
+	apple;
 	pecan;
 	nut;
 	pastis;
@@ -570,6 +572,7 @@ liqueur:
 	curacao;green;
 	pear;
 	rum ;
+	chocolate chiup cookie cream;
 	wild strawberry;
 	artchoke;
 	curacao;blue;
@@ -627,9 +630,9 @@ mix:
 	strawberry;
 	lemon;
 	watermelon;
-	mdslide;
 	strawberry margarita;
 	mango;
+	mudslide;
 	cherry;
 	gin-cranberry;
 	strawberry-rhubarb;
@@ -639,17 +642,17 @@ mix:
 	colins;
 	sweet and sour;
 	daquiri;strawberry;
+	daiquri;strawberry;
 	lemonade;
 	pina colada;
 	margarita;
 	daiquiri;
+	sour whiskey;
 	sour apple;
+	raspberry;
 	blueberry cocktail mix;
 	bar lime;
 	bloody mary;
-mixer:
-	raspberry;
-mix’daiquri-strawberry:
 molasses:
 mouthwash:
 	mint;
@@ -670,11 +673,7 @@ olive:
 olives:
 onion:
 onions:
-orange:
 orange crush:
-orange-pineapple:
-	juice;
-oranges:
 oregano:
 other:
 	butter;peanut;
@@ -688,19 +687,10 @@ other:
 	extract;coconut;
 	wheatgrass;
 	garnish;blody mary rimmer;
-papaya:
 papper:
 	jalapeno;
 	tuscan;
 	cayenne;
-parsley:
-passion fruit:
-peach:
-	kermel;
-peach sherbet:
-peaches:
-pear:
-pears:
 pecan nuts:
 pepper:
 	blend;
@@ -715,24 +705,21 @@ peppermint extract:
 peppers:
 	chii;
 	bell;
-	 black;
+	black;
 	red cayenne;
 	cayenne;
 petrol:
 pickle:
-pineapple:
-pineapples:
 polmos:
-pomegranate:
-port:
 powder:
 	shugar;
 	blue-raspberry;
 	lemon-lime;
 	grape;
 	orange;
-	blueberry;
 	black cherry;
+	blueberry;
+	tangarine;
 	tropical fruit;
 	berry;
 	chili;
@@ -747,12 +734,9 @@ powder:
 	kiwi-lime;
 	mango;
 	onion;
-powdered drink mix:
 protein whey:
-prune:
 pudding:
 	chocolate;
-pumpkin:
 punch:
 	grape;
 	fruit;strawberry and kiwi;
@@ -766,9 +750,9 @@ punch:
 	citrus;
 	fruit;berry;
 	cherry;
-punsch:
 puree:
 	blueberry;
+	pumpkin;
 	pear;
 	peach;
 	ramarind;
@@ -779,10 +763,7 @@ puree:
 	raspberry;
 	guava;
 purple passion mix:
-rasians:
-raspberries:
-raspberry:
-rhubarbs:
+raisins:
 rum:
 	flavoured;coconut;
 	flavoured;passion fruit;
@@ -812,7 +793,6 @@ sake:
 salsa:
 salt:
 	celery;
-sambuca:
 sangrita:
 	spiced;
 sarsaparilla:
@@ -871,7 +851,6 @@ schnapps:
 	orange;
 	apple;
 	pear;
-	b;ueberry;
 	rasperry;
 	pina colada;
 	peppermint;
@@ -887,6 +866,7 @@ seed:
 sherbet:
 	orange;
 	lime;
+	peach;
 	mango;
 	rainbow;
 	pineapple;
@@ -897,62 +877,57 @@ shochu:
 	lemon;
 slush:
 soda:
-	twist;
+	grape;
+	lychee;
 	orange and cream;
-	black cherry;
 	strawbery;
-	bubble-gum;
+	black cherry;
+	blueberry;
 	flavoured;
+	bubble-gum;
+	syrup;
 	clear lemonade;
 	orange-pineapple;
 	berry;
-	tonic;
+	cranberry;
 	strawberry;
+	tonic;
 	pineapple;
 	lemon;
+	orange-lemon;
+	cider-cherry;
+	lime;raspberry;
+	mandarin;
 	vanilla;
 	club;
-	ginger;
+	champagne;
 	kiwi-strawberry;
+	ginger;
+	tonic;cherry;
 	lime;
 	fruit;
+	berry lemonade;
 	mango;
+	grapefruit;
+	citrus;
 	cherry;
 	orange;
-	cream;
 	apple;
+	cream;
+	pear;
 	celery;
+	grape-cranberry;
 	bitter lemon;
 	grapefruit-lemon;
 	cherry-vanilla;
 	lemon;lime;
+	peach;
 	cinnamon;
 	raspberry;
-	grape;
-	lychee;
-	blueberry;
-	syrup;
-	cranberry;
-	cider-cherry;
-	orange-lemon;
-	lime;raspberry;
-	mandarin;
-	champagne;
-	tonic;cherry;
-	berry lemonade;
-	grapefruit;
-	citrus;
-	pear;
-	vanilla cream;
-	peach;
-	earth;
 soju:
 sorbet:
 	peach;
-sour mix:
-	whiskey;
 soybase:
-spearmint:
 spice:
 	asafoetida;
 	cardamon;
@@ -965,7 +940,6 @@ spice:
 	coriander;
 	cardamom;
 	basil;
-spices:
 sports drink:
 	lime;
 squash:
@@ -975,9 +949,6 @@ squash:
 squid:
 stout:
 	chocolate;
-strawberries:
-strawberry:
-strawberry mix:
 sugar:
 	powdered;
 	caster;
@@ -1041,18 +1012,14 @@ syrup:
 	chocolate;
 	corn;
 	almond;
-tamarillo:
 tamarind:
-tamarinds:
 tea:
 	chai bannila;
 	sweet;
 	apple;
 	black;
 	thai;
-	ice;leamon;
 	green;
-	peach ice tea;
 tequila:
 	white;flavoured;citrus;
 	aged;
@@ -1064,9 +1031,9 @@ tequila:
 	flavoured;blue agave;
 	rested;
 tomato ketchup:
-tomatoes:
 vanilla:
 vegetable:
+	rhubarbs;
 	cucumber;
 	carrot;
 	celery;
@@ -1176,6 +1143,7 @@ wine:
 	ice;
 	sherry;cream;
 	cooler;
+	red;port;
 	white;port;
 	sherry;fino;
 	red;sangria;

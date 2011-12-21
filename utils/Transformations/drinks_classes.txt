@@ -8,7 +8,7 @@ Boone's Farm Blue Hawaiian|wine;fruit spritzer
 Hi-C&reg; fruit punch|punch;fruit
 ice cream|ice cream;
 DeKuyper&reg; Key Largo schnapps|schnapps;tropical
-Snapple&reg; Earth soda|soda;earth
+Snapple&reg; Earth soda|soda;grape-cranberry
 Alize&reg; Gold Passion liqueur|liqueur;passion fruit
 watermelons|fruit;watermelon;
 raspberry liqueur|liqueur;raspberry
@@ -37,10 +37,10 @@ Tahitian Treat&reg; soda|soda;
 Rose wine|wine;rose
 Smirnoff&reg; Silver Label vodka|vodka
 lime soda|soda;lime
-pineapples|pineapples
+pineapples|fruit;pineapple
 Jack Daniel's&reg; Tennessee whiskey|whiskey;tennessee
 Marie Brizard&reg; white creme de cacao liqueur|liqueur;white creme de cacao
-sambuca|sambuca;
+sambuca|liqueur;sambuca
 McCormick's&reg; vanilla vodka|vodka;flavoured;vanilla
 Larios&reg; gin|gin;dry
 Powerade&reg; energy drink|energy drink;
@@ -88,7 +88,7 @@ Canada Dry&reg; cranberry soda|soda;cranberry
 oregano|oregano
 Grey Goose&reg; Le Citron vodka|vodka;flavoured;citron
 chocolate vodka|vodka;flavoured;chocolate
-pumpkin|pumpkin
+pumpkin|fruit;pumpkin
 mango rum|rum;flavoured;mango
 Pusser's&reg; dark rum|rum;dark
 Monin&reg; hazelnut syrup|syrup;hazelnut
@@ -96,7 +96,7 @@ TicTac|candy;tictac
 Old-fashioned mix|old-fashioned mix
 Raspberry di Amore&reg;|liqueur;raspberry
 Go Fast&reg; energy drink|energy
-Southern Comfort&reg; peach liqueur|liqueuer;peach
+Southern Comfort&reg; peach liqueur|liqueur;peach
 watermelon vodka|vodka;flavoured;watermelon
 Stoli&reg; Zinamon vodka|vodka;flavoured;cinnamon
 Angostura&reg; bitters|bitters;angosutra
@@ -106,7 +106,7 @@ Looza&reg; banana nectar|nectar;banana
 Orange-Strawberry Sunny Delight|juice;orange-strawberry
 Beefeater&reg; gin|gin;beefeater
 baked apple|fruit;apple;baked
-Just Desserts&reg; chocolate chip cookie cream liqueur|liquer;chocolate chiup cookie cream
+Just Desserts&reg; chocolate chip cookie cream liqueur|liqueur;chocolate chiup cookie cream
 sarsaparilla|sarsaparilla
 Carnation&reg; creamy evaporated milk|milk;evaporated
 Firewater&reg; cinnamon schnapps|schnapps;cinnamon
@@ -132,16 +132,16 @@ cream sherry|wine;sherry;cream
 Avalanche&reg; peppermint schnapps|schnapps;peppermint
 Kleiner Feigling&reg; vodka|vodka
 latte|coffee;latte
-tamarillo|tamarillo
+tamarillo|fruit;tamarillo
 Smirnoff&reg; raspberry vodka|vodka;flavoured;raspberry
-peach sherbet|peach sherbet
+peach sherbet|sherbet;peach
 Pear vodka|vodka;flavoured;pear
 Skyy&reg; orange vodka|vodka;flavoured;orange
 Milo's&reg; sweet tea|tea;sweet
-peach|peach
+peach|fruit;peach
 Asti Spumanti&reg; champagne|wine;champagne
 Jone's Soda&reg; Berry Lemonade|soda;berry lemonade
-Faygo&reg; Twist soda|soda;twist
+Faygo&reg; Twist soda|soda;lime
 Ocean Spray&reg; cran-grape juice|juice;grape
 wine cooler|wine;cooler
 Crown Royal&reg; Reserve Canadian whisky|whiskey;canadian
@@ -149,7 +149,7 @@ creme de menthe|liqueur;creme de menthe
 mint extract|mint extract
 strawberry schnapps|schnapps;strawberry
 Thor's&reg; Hammer vodka|vodka
-Hawaiian Punch&reg; Fruit Juicy Red|juece;fruit
+Hawaiian Punch&reg; Fruit Juicy Red|juice;fruit
 Hammer&reg; lime vodka|vodka;flavoured;lime
 Orange Reef&reg; vodka|vodka
 raspberry jell-o|gelatin;raspberry
@@ -166,7 +166,7 @@ Nestle&reg; condensed milk|milk;condensed
 honey|honey
 Bols&reg; butterscotch schnapps|schnapps;
 Corona&reg; Extra lager;beer|lager
-Kool-Aid&reg; Tangerine mix|powdered drink mix
+Kool-Aid&reg; Tangerine mix|powder;tangarine
 cherry cider|cider;cherry
 Bandolero&reg; triple sec|liqueur;triple sec
 chocolate milk|milk;chocolate
@@ -197,7 +197,7 @@ Stoli&reg; Strasberi vodka|vodka;flavoured;strawberry
 Myer's&reg; dark rum|rum;dark
 agave juice|juice;agave
 syrup of roses|syrup;roses
-Tony Chachere's&reg; Creole Seasoning|spices
+Tony Chachere's&reg; Creole Seasoning|spice
 Safflower Oil|safflower oil
 brandy|brandy
 peach sorbet|sorbet;peach
@@ -210,7 +210,7 @@ mangos|mangos
 Royal Crown&reg; cola|cola
 Tropicana&reg; orange juice|juice;orange
 St-Germain Elderflower Liqueur|liqueur;elderflower
-Nestea&reg; peach iced tea|tea;peach ice tea
+Nestea&reg; peach iced tea|ice tea;peach
 armagnac|brandy;armagnac
 peppermint extract|peppermint extract
 San Pellegrino&reg|mineral water
@@ -224,7 +224,7 @@ Metaxa Brandy|brandy;metaxa
 black rum|rum;dark
 Manischewitz&reg; red wine|wine;red
 pear liqueur|liqueur;pear
-Pumpkin puree|fruit;pumpkin
+Pumpkin puree|puree;pumpkin
 Ale-8-One&reg; soda|soda
 cranberry soda|soda;cranberry
 Parmesan cheese|cheese;parmesan
@@ -324,7 +324,7 @@ grape jello|jello;grape
 Bushmills&reg; Irish Cream|liqueur;cream;irish
 Dole&reg; orchard peach juice|juice;peach
 Orange Curacao liqueur|liqueur;curacao;orange
-Rose's&reg; blue raspberry mixer|mixer;raspberry
+Rose's&reg; blue raspberry mixer|mix;raspberry
 bitters|bitters
 Lismore&reg; scotch whisky|whiskey;scotch
 kiwi liqueur|liqueur;kiwi
@@ -396,7 +396,7 @@ Inferno&reg; Pepper Pot vodka|vodka;flavoured;pepper
 Smirnoff&reg; Ice|alcopop;lime
 Phillips&reg; peppermint schnapps|schnapps;peppermint
 Strawberry-Kiwi V8 Splash|juice;strawberry-kiwi
-orange|orange
+orange|fruit;orange
 Vandermint&reg; chocolate mint liqueur|liqueur;chocolate;mint
 Schweppes&reg; Duet soda|soda;orange-lemon
 Haagen Dazs&reg; cream liqueur|liqueur;cream
@@ -471,10 +471,10 @@ D'Aristi&reg; Xtabentun liqueur|liqueur;honey
 Marie Brizard&reg; peach liqueur|liqueur;peach
 fruit punch|punch;fruit
 cinnamon|spice;cinnamon
-raspberry|raspberry
+raspberry|fruit;raspberry
 Bacardi Breezer&reg; Lime|alcopop;lime
 99 Bananas&reg; banana schnapps|schnapps;banana
-orange-pineapple juice|orange-pineapple;juice
+orange-pineapple juice|juice;orange-pineapple
 pineapple vodka|vodka;flavoured;pineapple
 kumquat|kumquat
 grape soda|soda;grape
@@ -562,7 +562,7 @@ DeKuyper&reg; cherry brandy|brandy;flavoured;cherry
 Mozart&reg; Original chocolate liqueur|liqueur;chocolate
 creamer|cream
 Cutty Black&reg; Scotch whisky|whiskey;scotch
-Bartlett pear|pear
+Bartlett pear|fruit;pear
 Oliphant&reg; orange vodka|vodka;flavoured;orange
 bloody mary mix|mix;bloody mary
 Monin&reg; lime syrup|syrup;lime
@@ -577,7 +577,7 @@ cinnamon sugar|sugar;cinnamon
 Seagram's&reg; gin|gin;extra dry
 Mozart&reg; Black chocolate liqueur|liqueur;chocolate;black
 banana schnapps|schnapps;banana
-oranges|oranges
+oranges|fruit;orange
 Continental&reg; cherry advocaat liqueur|liqueur;cherry advocaat
 Thunderbird&reg; Red Label wine|wine;red
 Falerno del Massico&reg; white wine|wine;white
@@ -665,7 +665,7 @@ Thai tea|tea;thai
 Dom Perignon&reg; Champagne|wine;champagne
 Mexican chocolate|chocolate
 Currant|fruit;currant
-Offley Rich&reg; tawny port|wine;red
+Offley Rich&reg; tawny port|wine;red;port
 Canada Dry&reg; Tahitian Treat punch|punch;fruit
 lemon rum|rum;flavoured;lemon
 Creme de peche|liqueur;peach
@@ -674,7 +674,7 @@ Gosling's&reg; black rum|rum;dark
 Schnapps|schnapps
 Spanish brandy|brandy
 Seagram's&reg; Raspberry Cooler|wine;cooler;raspberry
-Buffalo Rock&reg; ginger ale|ginger;ale
+Buffalo Rock&reg; ginger ale|ginger ale
 Fire and Ice&reg; vodka|vodka
 cherry limeade|limeade;cherry
 Heering&reg; cherry liqueur|liqueur;cherry
@@ -803,7 +803,7 @@ Fudge|cookie;fudge
 Clearly Canadian&reg; sparkling water|soda
 Gatorade&reg; Fierce Melon energy drink|energy
 Finest Call&reg; triple sec|liqueur;orange;triple sec
-Mudslide mix|mix;mdslide
+Mudslide mix|mix;mudslide
 Fruitopia&reg; fruit juice|juice;fruit
 silver tequila|tequila;white
 strawberry juice|juice;strawberry
@@ -894,7 +894,7 @@ onions|onions
 aged rum|rum;gold
 Sprite Remix|soda;fruit
 cayenne peppers|peppers;cayenne
-tamarinds|tamarinds
+tamarinds|tamarind
 tangerine schnapps|schnapps;citrus
 Ultimat&reg; chocolate vanilla vodka
 lemon-lime soda|soda;lime
@@ -957,7 +957,7 @@ Captain Morgan&reg; Original spiced rum|rum;spiced
 caramel liqueur|liqueur;caramel
 Arandas&reg; white tequila|tequila;white
 blueberry juice|juice;blueberry
-pears|pears
+pears|fruit;pear
 Cinzano&reg; Orancio French vermouth|vermouth;dry
 cardamom|spice;cardamom
 Stroh&reg; 60 rum|rum;overproof;spiced
@@ -976,7 +976,7 @@ blueberry liqueur|liqueur;blueberry
 Countrytime&reg; pink lemonade|lemonade;pink
 Minute Maid&reg; limeade soda|lime;soda
 Ballatore&reg; Rosso Spumante|wine;rose;sparkling
-Mr & Mrs T&reg; strawberry daiquiri mix|mix’daiquri-strawberry
+Mr & Mrs T&reg; strawberry daiquiri mix|mix;daiquri;strawberry
 Dr. McGillicuddy's&reg; Fireball Canadian whisky|whiskey;canadian
 bell peppers|peppers;bell
 wild strawberry liqueur|liqueur;wild;strawberry
@@ -1061,7 +1061,7 @@ El Tesoro&reg; Reposado tequila|tequila;rested
 Players Extreme&reg; caramel-infused vodka|vodka;flavoured;caramel
 Hiram Walker&reg; apricot brandy|brandy;flavoured;apricot
 melons|melons
-Parsley|parsley
+Parsley|herb;parsley
 mango schnapps|schnapps;melon
 cannabis|other;cannabis
 Schweppes&reg; Indian tonic water|soda;tonic
@@ -1259,7 +1259,7 @@ Milwaukee's&reg; Best Ice lager|beer;lager;ice
 DeKuyper&reg; wild strawberry liqueur|liqueur;wild strawberry
 Becherovka&reg; herbal liqueur|liqueur;herbal
 Pineau des Charentes&reg; white wine|wine;white
-raspberries|raspberries
+raspberries|fruit;raspberry
 cream|cream
 key lime juice|juice;key lime
 Fresca&reg; lemon-lime soda|soda;lemon;lime
@@ -1288,7 +1288,7 @@ Xyience&reg; Big Apple energy drink|energy;apple
 creme de cerise|liqueur;black cherry
 greek seasoning|greek seasoning
 Crystal Palace&reg; vodka|vodka
-rhubarbs|rhubarbs
+rhubarbs|vegetable;rhubarbs
 Bols&reg; green creme de menthe|liqueur;menthe
 Green Curacao liqueur|liqueur;curacao;green
 Bols&reg; kiwi liqueur|liqueur;kiwi
@@ -1316,7 +1316,7 @@ Captain Morgan&reg; Parrot Bay coconut rum|rum;flavoured;coconut
 Sobe&reg; Energy drink|energy
 Dr. Mcgillicuddy's&reg; peach schnapps|schnapps;peach
 dark rum|rum;dark
-pineapple|pineapple
+pineapple|fruit;pineapple
 whipping cream|cream;whipping
 Kool-Aid&reg; Watermelon-Cherry|powder;watermelon-cherry
 tomato|vegetable;tomato
@@ -1328,7 +1328,7 @@ jalapeno pepper|papper;jalapeno
 Creme de Fraise des Bois|liqueur;cream
 Stoli&reg; Persik vodka|vodka;flavoured;peach
 superfine sugar|sugar;superfine
-Swedish punsch|punsch
+Swedish punsch|liqueur;punsch
 Kilkenny&reg; beer|beer;ale;red
 raspberry ice cream|ice cream;raspberry
 mango juice|juice;mango
@@ -1340,8 +1340,8 @@ wheatgrass juice|juice;wheatgrass
 strawberry margarita mix|mix;strawberry margarita
 grain alcohol|grain alcoohol
 coconut rum|rum;flavoured;coconut
-spearmint|spearmint
-strawberry|strawberry
+spearmint|herb;spearmint
+strawberry|fruit;strawberry
 cherry schnapps|schnapps;cherry
 orange jell-o|jello;orange
 Archers&reg; peach schnapps|schnapps;peach
@@ -1356,7 +1356,7 @@ London dry gin|gin;dry
 peanut liqueur|liqueur;peanut
 coconut vodka|vodka;flavoured;coconut
 cherries|fruit;cherry
-honeydew melon|honeydew
+honeydew melon|fruit;honeydew
 Phillips&reg; raspberry schnapps|schnapps;raspberry
 Monin&reg; strawberry syrup|syrup;strawberry
 peach liqueur|liqueur;peach
@@ -1396,7 +1396,7 @@ Fleissmann's&reg; vodka|vodka
 strawberry soda|soda;strawbery
 mint syrup|syrup;mint
 UV&reg; Citruv citrus vodka|vodka;flavoured;citrus
-passion-fruit|passion fruit
+passion-fruit|fruit;passion fruit
 gold rum|rum;gold
 Bass&reg; pale ale|beer;ale;pale
 Chiquita Kiwi-Strawberry Juice|juice;strawberry
@@ -1513,7 +1513,7 @@ San Pellegrino&reg; Limonata soda|soda;lemon
 Barq's&reg; root beer|beer;root
 McGuinness&reg; melon liqueur|liqueur;melon
 Hershey's&reg; chocolate bars|chocolate;bars
-A&W&reg; vanilla cream soda|soda;vanilla cream
+A&W&reg; vanilla cream soda|soda;vanilla
 Early Times&reg; bourbon whiskey|whiskey;bourbon
 Lamb's&reg; navy rum|rum;dark
 Schweppes&reg; ginger ale|ginger ale
@@ -1546,7 +1546,7 @@ Bols&reg; triple sec|liqueur;orange;triple sec
 Gilbey's&reg; gin|gin
 Fernet Branca&reg; Menta|fernet;menta
 West Coast Cooler&reg; wine|wine;white;flavoured
-Buffalo Bill's&reg; pumpkin ale|beer;pumpkin
+Buffalo Bill's&reg; pumpkin ale|beer;ale;pumpkin
 berries|fruit;berries
 Bacardi&reg; Silver O3|alcopop;mandarin
 cranberry-grape juice|juice;cranberry-grape
@@ -1578,7 +1578,7 @@ Bols&reg; Kontiki red orange liqueur|liqueur;orange;red
 gold sambuca|liqueur;sambuca;gold
 sour cherries|fruit;cherry;sour
 PAMA&reg; pomegranate liqueur|liqueur;pomegranate
-peaches|peaches
+peaches|fruit;peach
 Smirnoff&reg; vodka|vodka
 Absolut&reg; Ruby Red vodka|vodka;flavoured;grapefruit
 Scorned Woman&reg; hot sauce|sauce;pepper
@@ -1589,7 +1589,7 @@ Cruzan&reg; banana rum|rum;flavoured;banana
 caramel sauce|sauce;caramel
 Petrol|petrol
 1800&reg; Silver Tequila|tequila;white
-hazelnuts|hazelnuts
+hazelnuts|hazelnut
 Stolichnaya&reg; lemon vodka|vodka;flavoured;lemon
 raspberry schnapps|schnapps;rasperry
 apple cider|cider;apple
@@ -1617,7 +1617,7 @@ moonshine whiskey|whiskey;moonshine
 egg substitute|egg;substitute
 vodka|vodka
 lime jell-o|jello;lime
-tomatoes|tomatoes
+tomatoes|vegetable;tomato
 Fresca&reg; grapefruit soda|soda;grapefruit
 V8&reg; vegetable juice|juice;vegetable
 Bols&reg; peppermint liqueur|liqueur;peppermint
@@ -1626,7 +1626,7 @@ orange squash|squash;orange
 Surge&reg; citrus soda|soda;citrus
 crackers|cracker
 lemon|lemon
-port|port
+port|wine;port
 Mozart&reg; White chocolate liqueur|liqueur;chocolate;white
 Chambord&reg; raspberry liqueur|liqueur;raspberry
 powdered sugar|sugar;powdered
@@ -1685,12 +1685,12 @@ cola|cola
 Moxie&reg; energy drink|energy
 ginger liqueur|liqueur;ginger
 beer|beer
-raisins|rasians
+raisins|raisins
 Metaxa 5 Star|brandy;metaxa
 Nescafe&reg; Ice Java coffee syrup|syrup;coffee
 sweetened condensed milk|milk;sweetened-condensed
 Johnnie Walker&reg; Scotch whisky|whiskey;schotch
-Pop-Ice&reg;|ice cream;ice-pop
+Pop-Ice&reg;|ice-pop
 Worcestershire sauce|sauce;worcestershire
 Jamaican coconut rum|rum;flavoured;coconut
 Cabernet Sauvignon red wine|wine;red
@@ -1751,7 +1751,7 @@ Tropicana&reg; Peach Orchard Punch juice|punch;peach
 white rum|rum;light
 crushed ice|ice;crushed
 Cointreau&reg; orange liqueur|liqueur;orange
-blueberry schnapps|schnapps;b;ueberry
+blueberry schnapps|schnapps;blueberry
 white port|wine;white;port
 Cruzan&reg; mango rum|rum;flavoured;mango
 Tanqueray&reg; malacca gin|gin
@@ -1775,7 +1775,7 @@ Gatorade&reg; strawberry energy drink|energy;strawberry
 peppermint cordial|syrup;peppermint
 white creme de menthe|liqueur;mint
 Petit Syrah&reg; wine|wine;red
-Snapple&reg; Raspberry Iced Tea soda|ice tea;soda;raspberry
+Snapple&reg; Raspberry Iced Tea soda|ice tea;raspberry
 Sharp's&reg; blackcurrant menthol candy|candy;blaccurrant-menthol
 Ocean Spray White Cranberry & Strawberry Juice|juice;cranberry-strawberry
 Arrow&reg; peach schnapps|schnapps;peach
@@ -1796,7 +1796,7 @@ Bols&reg; advocaat liqueur|liqueur;avocaat
 A&W&reg; cream soda|soda;cream
 Caribbean cream|cream;caribbean
 Coca-Cola&reg; Vanilla Coke|cola;vanilla
-strawberries|strawberries
+strawberries|fruit;strawberry
 pina colada mix|mix;pina colada
 Havana Club&reg; Anejo Especial rum|rum;gold
 Baja Luna&reg; black raspberry liqueur|liqueur;black raspberry
@@ -1824,9 +1824,9 @@ Orange Pekoe&reg; tea|tea;black
 coke syrup|syrup;cola
 Harveys&reg; Bristol Cream sherry|wine;sherry
 Mekhong&reg; whiskey|whiskey;thailand
-pear|pear
+pear|fruit;pear
 Mickey Finn's butterscotch and vanilla liqueur|liqueur;vanilla-butterscotch
-Blue Curacao liqueur|liqueue;curacao;blue
+Blue Curacao liqueur|liqueur;curacao;blue
 Rose's&reg; Watermelon Cocktail Infusion|alcopop;watermelon
 Tofu|cheese;tofu
 apricot nectar|juice;apricot
@@ -1867,7 +1867,7 @@ Dole Pine-Orange-Banana Juice|juice;orange-banana
 madeira|madeira
 Minute Maid&reg; lemonade|lemonade
 Bols&reg; melon liqueur|liqueur;melon
-honeydew melons|honeydew melons
+honeydew melons|fruit;honeydew
 vanilla Chai tea|tea;chai bannila
 pear brandy|brandy;flavoured;pear
 cappuccino|coffee;cappuccino
@@ -1878,7 +1878,7 @@ V8&reg; Splash raspberry lemonade|lemonade;raspberry
 Prosecco&reg; sparkling wine|wine;white;sparkling
 ale|beer;ale
 ginseng extract|extract;ginseng
-Sourz&reg; tropical liqueur|liquer;tropical
+Sourz&reg; tropical liqueur|liqueur;tropical
 blackberries|fruit;blackberries
 Jose Cuervo&reg; Reserva de la Familia tequila|tequila;aged
 Bols&reg; white creme de cacao|liqueur;chocolate
@@ -1910,7 +1910,7 @@ St. Vincent&reg; Sunset 169 proof rum|rum;overproof
 Red Grapefruit Juice|juice;red grapefruit
 cantaloupe melons|melon;cantaloupe
 kiwi-strawberry juice|juice;liwi-strawberry
-papaya|papaya
+papaya|fruit;papaya
 black sambuca|liqueur;anise
 lemon squash|squash;lemon
 creme de noyaux|liqueur;almond
@@ -2050,7 +2050,7 @@ Jones&reg; Blue Bubble-gum soda|soda;bubble-gum
 Pepe Lopez&reg; cream of coconut|cream;coconut
 100 proof vodka|vodka
 Cactus Cooler&reg; orange-pineapple soda|soda;orange-pineapple
-La Grande Passion&reg; liqueur|liqueur|passion fruit
+La Grande Passion&reg; liqueur|liqueur;passion fruit
 Natural&reg; Ice lager|beer|lager
 Johnnie Walker&reg; Black Label Scotch whisky|whiskey;scotch
 Bacardi&reg; Carta Blanca white rum|light rum
@@ -2062,14 +2062,14 @@ Faygo&reg; grape soda|soda;grape
 Malibu&reg; pineapple rum|rum;flavoured;pineapple
 Mountain Dew&reg; Baja Blast lime soda|soda;lime
 La Paz&reg; strawberry margarita mix|margarita mix;strawberry
-Mcguire's&reg; Irish cream|liquers;cream;irish
+Mcguire's&reg; Irish cream|liqueur;cream;irish
 Tampico&reg; fruit punch|punch;fruit
 Rumple Minze&reg; peppermint liqueur|liqueur;peppermint
 berry juice|juice;berry
 black pepper|pepper;black
 strawberry guava juice|juice;strawberry guava
 7-Up&reg; Plus Island Fruit soda|soda;fruit
-pomegranate|pomegranate
+pomegranate|fruit;pomegranate
 vanilla extract|extract;vanilla
 raki liqueur|liqueur raki
 lychee liqueur|liqueur;lychee
@@ -2107,7 +2107,7 @@ sweet gin|gin;sweet
 Marie Brizard&reg; orange curacao|liqueur;curacao
 melon vodka|vodka;flavoured;melon
 Manila&reg; dark rum|rum;dark
-strawberry daiquiri mix|strawberry mix
+strawberry daiquiri mix|mix;strawberry
 Mountain Dew&reg; MDX energy drink|energy
 DaVinci Gourmet&reg; vanilla syrup|syrup;vanilla
 Bacardi&reg; black rum|rum;dark
@@ -2130,7 +2130,7 @@ wild cherry liqueur|liqueur;wild cherry
 Mad Dog&reg; grape wine|wine;red
 Tio Pepe&reg; sherry|wine;sherry
 Vermeer&reg; Dutch Chocolate Cream liqueur|liqueur;chocolate
-peach kernel|peach;kermel
+peach kernel|fruit;peach;kernel
 Two Fingers&reg; gold tequila|tequila;gold
 mango nectar|juice;mango
 Country Time&reg; raspberry lemonade mix|lemonade;mix;raspberry
@@ -2165,7 +2165,7 @@ Luxardo&reg; limoncello|liqueur;lemon
 Ricard&reg; pastis|liqueur;anise
 Aqualibra&reg; fruit juice|juice;melon
 Captain Morgan&reg; Parrot Bay mango rum|rum;flavoured;mango
-prune|prune
+prune|fruit;prune
 McCormick's&reg; Hot Shot|pepper;blend
 CocoRibe&reg; coconut rum|rum;flavoured;coconut
 7-Up&reg; soda|soda;lime
@@ -2173,7 +2173,7 @@ Yukon Jack&reg; Canadian whisky|whiskey;canadian
 Dr. Pepper&reg; soda|soda;flavoured
 Welch's&reg; apple juice|juice;apple
 Luxardo&reg; maraschino liqueur|liqueur;cherry
-black peppers|peppers; black
+black peppers|peppers;black
 blood orange vodka|vodka;flavoured;blood orange
 raspberry ginger ale|ginger ale;raspberry
 Martini & Rossi&reg; extra dry vermouth|vermouth;extra dry
@@ -2187,7 +2187,7 @@ creme de fraise|liqueur;strawberry
 Bailey's&reg; Irish cream|liqueur;cream;whiskey
 glycerine|glycerine
 A&W&reg; root beer|beer;root
-whisky sour mix|sour mix;whiskey
+whisky sour mix|mix;sour whiskey
 Jolt&reg; cola|cola
 Smirnoff&reg; Maracuja Twist vodka|vodka;flavoured;passion fruit
 Haitian dark rum|rum;dark
@@ -2221,7 +2221,7 @@ Coca-Cola&reg; Diet Lime Coke|cola;lime
 eau de vie brandy|brandy;fruit
 Kool-Aid&reg; Grape mix|powder;grape
 spiced cider|cider;spiced
-lemon iced tea|tea;ice;leamon
+lemon iced tea|ice tea;leamon
 Marie Brizard&reg; creme de banane|liqueur;banana
 celery|vegetable;celery
 Underberg&reg; bitters|bitters;herbal
@@ -2248,12 +2248,12 @@ chocolate fudge brownie|chocolate;brownie
 Aftershock&reg; Cool Citrus mint schnapps|schnapps;citrus;mint
 Polish vodka|vodka
 Caramel|candy;caramel
-creme de framboise|liquer;cream;raspberry
+creme de framboise|liqueur;raspberry
 Seagram's&reg; ginger ale|ginger ale
 Sailor Jerry&reg; spiced navy rum|rum;spiced
 green apple wine cooler|wine;cooler;apple
 Green Chili
-E&J&reg; Cask & Cream brandy|liquer;cream;brandy
+E&J&reg; Cask & Cream brandy|liqueur;cream;brandy
 Red Zinfandel wine|wine;red
 Aristocrat&reg; triple sec|liqueur;orange;trople sec
 Casa Noble&reg; Reposado tequila|tequila;aged
