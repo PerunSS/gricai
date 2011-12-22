@@ -37,6 +37,8 @@ beer:
 	ale;
 	ale;dark;
 	lager;ice;
+bitter:
+	fernet;menta;
 bitters:
 	campari;
 	orange;
@@ -75,14 +77,19 @@ candy:
 	tictac;
 	gummi bears;
 	bar;
+	flavoured sugar shells;
 	gummi fish;
 	chocolate-mint;
 	caramel;
 	cinnamon;
 	blaccurrant-menthol;
 cereal:
+	wheat;germ;
+	oats;
+	malt;chocolate;
 	barley;
 	corn;
+	malt;
 cheese:
 	blue;
 	cream;
@@ -110,6 +117,8 @@ coffee:
 	cappuccino;
 	frapupuchino;mocha;
 	instant;
+	espresso;double;
+	espresso;
 cognac:
 cola:
 	diet;
@@ -121,6 +130,7 @@ cola:
 	cherry;
 cookie:
 	fudge;
+	marshmellow;
 	chocolate;
 	chocolate;oreo;
 cracker:
@@ -139,17 +149,10 @@ cream:
 	cocoa;
 	hazelnut;
 	whipping;
-dates:
 dawa:
-dill:
-dry dill:
 egg:
 	substitute;
 eggnog:
-eggs:
-elderflower cordial:
-endive:
-	purple;
 energy:
 	grape;
 	black cherry;
@@ -167,71 +170,74 @@ energy:
 	tropical;
 	raspberry;
 	cherry;
-energy drink:
-espresso:
-	double;
 essence:
 	banana;
 	rose;
-everclear:
 extract:
 	wormwood;
 	vanilla;
 	ginseng;
 	chocolate;
+	peppermint;
+	mint;
 	almond;
-fennel:
-fernet:
-	menta;
 fig:
-figs:
-flavoured:
-	cream;caramel;
-flavoured sugar shells:
-flour:
-	cornmeal;
-food coloring:
 fruit:
+	tamarind;
+	kumquat;
 	banana;
-	avocado;
 	currant;
-	blueberry;
 	pumpkin;
-	blood orange;
-	papaya;
-	cranberry;
+	nutmeg;
 	apricot;
 	strawberry;
 	passion fruit;
-	prune;
 	peach;kernel;
 	pineapple;
-	chinotto;
+	lemon;
 	carambolas;
 	cashew;
-	watermelon;
-	tamarillo;
-	cherry;sour;
-	apple;baked;
-	acerola;
+	key lime;
+	lime;
+	mango;
 	cherry;
-	honeydew;
-	pomegranate;
 	orange;
+	olive;
 	apple;
-	pear;
 	berries;
-	coconut;
+	nut;
 	cherry;maraschino;
 	blackberries;
-	peach;
 	raspberry;
+	grape;
+	avocado;
+	blueberry;
+	kiwi;
+	blood orange;
+	papaya;
+	cranberry;
+	prune;
+	peach;nectarine;
+	chinotto;
+	mandarin;
+	watermelon;
+	melon;
+	hazelnut;
+	pecan nuts;
+	tamarillo;
+	grapefruit;
+	apple;baked;
+	cherry;sour;
+	acerola;
+	honeydew;
+	pomegranate;
+	melon;cantaloupe;
+	pear;
+	dates;
+	coconut;
+	peach;
+fruit cocktail:
 fruit salad:
-fruits:
-fuit:
-	cocktail;
-garlic:
-garlic powder:
 gelatin:
 	watermelon;
 	black cherry;
@@ -239,8 +245,6 @@ gelatin:
 	cranberry;
 	raspberry;
 gelato:
-germ:
-	wheat;
 gin:
 	sweet;
 	beefeater;
@@ -254,27 +258,26 @@ gin:
 	flavoured;lime;
 	jenever;
 	lime;
-ginger:
 ginger ale:
 	dry;
 	cranberry;
 	raspberry;
 glycerine:
 golden grain:
+grain alcohol:
+	everclear;
 grain alcoohol:
-grape:
-grapefruit:
-grapes:
-greek seasoning:
 half-and-half:
-hazelnut:
 herb:
 	rosemary;
+	fennel;
 	spearmint;
 	parsley;
+	dill;dry;
+	mint;
+	dill;
 honey:
 horchata:
-horseradish:
 hot chocolate:
 ice:
 	crushed;
@@ -299,11 +302,11 @@ ice tea:
 	peach;
 	raspberry;
 	lemon;
-ice-pop:
 italian ice:
 	lemon;
 jam:
 	lingonberry;
+	marmalade;
 	raspberry;
 jello:
 	grape;
@@ -317,7 +320,6 @@ jello:
 	mango;
 	pineapple;
 	cherry;
-jelly:
 juice:
 	agave;
 	lemon-lime;
@@ -344,6 +346,7 @@ juice:
 	olive;
 	clamato;
 	red grapefruit;
+	cherry;maraschino;
 	redcurrant;
 	carrot;
 	sugar cane;
@@ -352,8 +355,8 @@ juice:
 	blackberry;
 	grape;
 	strawberry-kiwi;
-	lychee;
 	calm;
+	lychee;
 	kiwi;
 	wild cherry;
 	cactus;
@@ -415,16 +418,6 @@ juice:
 	peach;
 	grapefruit;pink;
 	orange-strawberry;
-juice:apple:
-key lime:
-kiwi:
-kuice:
-	raspberry;
-kumquat:
-kurmquats:
-lager:
-lemon:
-lemon grass:
 lemonade:
 	hard;
 	hard;cranberry;
@@ -433,14 +426,8 @@ lemonade:
 	raspberry;
 	yellow;
 	pink;
-lemons:
-licoice:
-light rum:
-lime:
-	soda;
 limeade:
 	cherry;
-limes:
 liqueur:
 	walnut;
 	agave;
@@ -471,9 +458,9 @@ liqueur:
 	cream;marula;
 	herb;parma violet;
 	orange;triple sec;
-	caramel cream;
 	pistachio;
 	menthe;
+	raki;
 	orange;red;
 	anise;
 	citrus-fruit;
@@ -522,6 +509,7 @@ liqueur:
 	sloe berry;
 	almond;cream;
 	black cherry;
+	cream;caramel;
 	cherry advocaat;
 	apricot;
 	strawberry;
@@ -563,6 +551,7 @@ liqueur:
 	curacao;
 	mandarin;
 	hazelnut;
+	cream;mint;
 	sambuca;red;
 	caraway;
 	curacao;orange;
@@ -584,33 +573,11 @@ liqueur:
 	cream;tequila;
 	non-alcoholic;
 	almond;
-liqueur raki:
-liqueur,orange:
-liqueur.cream,mint:
-lqueur:
-	cream;
 lychee:
-madeira:
-malt:
-	chocolate;
-mandarinn:
-mandarins:
-mango:
-mango puree:
-mangos:
-maraschino cherry:
-margarita mix:
-	strawberry;
 marinade:
 	mixed-berry;
-marmalade:
-marshmallows:
-marshmellow:
 mayonnaise:
 meat snacks:
-melon:
-	cantaloupe;
-melons:
 mezcal:
 milk:
 	skimmed;
@@ -621,10 +588,9 @@ milk:
 	coconut;
 	soy;
 mineral water:
-mint:
-mint extract:
 mix:
 	lemon-lime;
+	purple passion;
 	orange-pineapple;
 	long island ice tea;
 	strawberry;
@@ -633,6 +599,7 @@ mix:
 	strawberry margarita;
 	mango;
 	mudslide;
+	old-fashioned;
 	cherry;
 	gin-cranberry;
 	strawberry-rhubarb;
@@ -651,30 +618,14 @@ mix:
 	sour apple;
 	raspberry;
 	blueberry cocktail mix;
-	bar lime;
 	bloody mary;
+	bar lime;
 molasses:
 mouthwash:
 	mint;
 mustard:
-nectar:
-	banana;
-	guava;
-nectarines:
-nut:
-nutmeg:
-nuts:
-oats:
 oil olive:
 	extra virgin;
-okra:
-old-fashioned mix:
-olive:
-olives:
-onion:
-onions:
-orange crush:
-oregano:
 other:
 	butter;peanut;
 	walnut;
@@ -682,32 +633,27 @@ other:
 	cannabis;
 	starch;cornstarch;
 	concentrate;chai;
+	food coloring;
 	woodruff;
 	concentrate;orange;
 	extract;coconut;
 	wheatgrass;
 	garnish;blody mary rimmer;
-papper:
-	jalapeno;
-	tuscan;
-	cayenne;
-pecan nuts:
 pepper:
+	chii;
 	blend;
 	banana;
+	bell;
+	jalapeno;
 	pequin;
 	black;
-	bell;red;
+	tuscan;
 	white;
+	bell;red;
 	chili;
-peppered:
-peppermint extract:
-peppers:
-	chii;
-	bell;
-	black;
 	red cayenne;
 	cayenne;
+peppered:
 petrol:
 pickle:
 polmos:
@@ -726,6 +672,7 @@ powder:
 	strawberry;
 	creamer;
 	lemon;
+	flour;cornmeal;
 	coffee;
 	watermelon-cherry;
 	cocoa;
@@ -734,6 +681,7 @@ powder:
 	kiwi-lime;
 	mango;
 	onion;
+	garlic;
 protein whey:
 pudding:
 	chocolate;
@@ -758,11 +706,11 @@ puree:
 	ramarind;
 	tropical fruit;
 	passion-fruit;
+	mango;
 	strawberry;
 	cherry;
 	raspberry;
 	guava;
-purple passion mix:
 raisins:
 rum:
 	flavoured;coconut;
@@ -806,7 +754,6 @@ sauce:
 	steak;
 	caramel;
 	sweet and sour;
-	papper;
 	hot pepper;
 	chocolate;
 	horseradish;
@@ -929,22 +876,28 @@ sorbet:
 	peach;
 soybase:
 spice:
-	asafoetida;
-	cardamon;
-	clove;
-	bay leaves;
+	lemongrass;
 	curry;red curry oaste;
 	allspice (pepper);
 	tapioca;
+	asafoetida;
+	cardamon;
+	vanilla;
+	clove;
+	bay leaves;
+	oregano;
+	licorice;
+	greek seasoning;
 	cinnamon;
-	coriander;
 	cardamom;
+	coriander;
 	basil;
 sports drink:
 	lime;
 squash:
 	orange;
 	blackcurrant;
+	elderflower cordial;
 	lemon;
 squid:
 stout:
@@ -1012,7 +965,6 @@ syrup:
 	chocolate;
 	corn;
 	almond;
-tamarind:
 tea:
 	chai bannila;
 	sweet;
@@ -1031,13 +983,18 @@ tequila:
 	flavoured;blue agave;
 	rested;
 tomato ketchup:
-vanilla:
 vegetable:
+	endive;purple;
 	rhubarbs;
 	cucumber;
+	ginger;
 	carrot;
 	celery;
+	horseradish;
 	tomato;
+	okra;
+	garlic;
+	onion;
 vermouth:
 	red;
 	sweet;
@@ -1134,6 +1091,7 @@ wine:
 	sherry;sweet;
 	cooler;apple;
 	flavoured;pineapple;
+	madeira;
 	cooler;raspberry;
 	sparkling;
 	rice;
