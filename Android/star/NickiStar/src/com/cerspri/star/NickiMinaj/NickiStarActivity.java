@@ -36,6 +36,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -205,7 +206,13 @@ public class NickiStarActivity extends Activity {
 		pictButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				displayMessage();
+				Uri uriUrl = Uri.parse("http://www.google.rs/search?q="
+						+ getString(R.string.app_name).toLowerCase().replace(
+								' ', '+')
+						+ "&hl=sr&prmd=imvnso&source=lnms&tbm=isch");
+				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+				startActivity(launchBrowser);
+				// displayMessage();
 			}
 		});
 		// listener for videos button
