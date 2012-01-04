@@ -25,6 +25,11 @@
 	  		android:id="@+id/share_button"
 	  		android:layout_weight="1"
 	  		android:background="@drawable/share_button"/>
+	  	<Button 
+	  	   	android:layout_width="60dp"
+	  		android:layout_height="60dp"
+	  		android:id="@+id/refresh_button"
+	  		android:background="@drawable/refresh_button"/>
 	  	
 	</LinearLayout>
 	  <com.google.ads.AdView android:id="@+id/adView2"
