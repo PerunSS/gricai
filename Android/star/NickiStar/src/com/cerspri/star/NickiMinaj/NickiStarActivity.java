@@ -79,8 +79,8 @@ public class NickiStarActivity extends Activity {
 	private Map<String, Integer> currents;
 	private Map<String, List<String>> texts;
 	private Map<Integer, NewsHolder> news;
+	private Map<String, Integer> numberOfChanges = new HashMap<String, Integer>();
 	ProgressDialog progressDialog;
-	int numberOfChanges;
 	Context mContext = this;
 
 	private static int PAGE_SIZE = 10;
@@ -90,34 +90,46 @@ public class NickiStarActivity extends Activity {
 	private static String NEWS_TEXT_END = "</div>";
 	private static String NEWS_LINK_DATA_START = "class=l>";
 
+	private boolean loadData() {
+		new JSONLoaderTask().execute("quote", "fact");
+		if (numberOfChanges.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
 	// Done on activity creation
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.disclaimer);
-		checkForNetworkAndStart();
 		SharedPreferences sPrefs = this.getSharedPreferences("nikiStarPrefs",
 				MODE_WORLD_READABLE);
 		if (sPrefs.getInt("isFirstTime", 1) == 1) {
-			Intent myIntent = new Intent(this, Disclaimer.class);
-			startActivityForResult(myIntent, 0);
+			firstStart();
 		} else {
-			successStart();
+			startApp();
 		}
 	}
-	
-	private void successStart(){
+
+	private void startApp() {
 		buildGUI();
 		texts = new HashMap<String, List<String>>();
-		texts.put("fact",getData("fact",false));
-		texts.put("quote",getData("quote",false));
+		texts.put("fact", getData("fact", false));
+		texts.put("quote", getData("quote", false));
 		currents = new HashMap<String, Integer>();
 		currents.put("fact", 0);
 		currents.put("quote", 0);
 		addButtonActions();
 	}
-	
-	private void checkForNetworkAndStart() {
+
+	private void firstStart() {
+		checkForNetwork();
+		Intent myIntent = new Intent(this, Disclaimer.class);
+		startActivityForResult(myIntent, 0);
+	}
+
+	private void checkForNetwork() {
 		if (!isNetworkAvailable()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(
@@ -127,7 +139,7 @@ public class NickiStarActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									checkForNetworkAndStart();
+									checkForNetwork();
 								}
 							})
 					.setNegativeButton("Close",
@@ -264,7 +276,7 @@ public class NickiStarActivity extends Activity {
 				}
 			}
 		});
-		
+
 		shareButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -305,7 +317,7 @@ public class NickiStarActivity extends Activity {
 		newsHeader = (TextView) findViewById(R.id.news_header);
 		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
 		refreshButton = (Button) findViewById(R.id.refresh_button);
-		
+
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
@@ -374,6 +386,7 @@ public class NickiStarActivity extends Activity {
 		System.out.println(builder.toString());
 		return builder;
 	}
+
 	private List<String> getData(String name, boolean checkUpdates) {
 		int version = getPreferences(MODE_WORLD_READABLE).getInt(
 				"version_" + name, 0);
@@ -396,7 +409,7 @@ public class NickiStarActivity extends Activity {
 			try {
 				JSONObject jsonobj = new JSONObject(builder.toString());
 				JSONArray elements = jsonobj.getJSONArray("data");
-				numberOfChanges = elements.length();
+				numberOfChanges.put(name, elements.length());
 				for (int i = 0; i < elements.length(); i++) {
 					JSONObject elementobj = elements.getJSONObject(i);
 					if (elementobj.getString("text_type")
@@ -538,7 +551,7 @@ public class NickiStarActivity extends Activity {
 				if (currents == null)
 					currents = new HashMap<String, Integer>();
 				currents.put(name, 0);
-				List<String> data = getData(name,true);
+				List<String> data = getData(name, true);
 				Collections.shuffle(data);
 				if (texts == null)
 					texts = new HashMap<String, List<String>>();
@@ -558,8 +571,19 @@ public class NickiStarActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			progressDialog.dismiss();
-			Toast toast = Toast.makeText(mContext, new Integer(numberOfChanges).toString()+" new items loaded", 1000);
+			String text = "";
+			int i = 0;
+			for (Map.Entry<String, Integer> entry : numberOfChanges.entrySet()) {
+				text += entry.getValue() + " " + entry.getKey() + "s loaded";
+				if (i < numberOfChanges.size() - 1) {
+					text += "\n";
+				}
+				i++;
+			}
+			Toast toast = Toast.makeText(mContext, text, 1000);
 			toast.show();
+			if(numberOfChanges.size()>0)
+				updatePrefs();
 		}
 	}
 
@@ -609,13 +633,23 @@ public class NickiStarActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		System.out.println(resultCode);
 		if (requestCode == 0) {
 			if (resultCode == 4373) {
 				finish();
-			} else if (resultCode == 4372) {
-				checkForNetworkAndStart();
-				new JSONLoaderTask().execute("quote", "fact");
+			} else if (resultCode == 4374) {
+				checkForNetwork();
+				startApp();
+				loadData();
 			}
 		}
+	}
+	
+	private void updatePrefs(){
+		SharedPreferences sPrefs = getSharedPreferences(
+				"nikiStarPrefs", MODE_WORLD_READABLE);
+		SharedPreferences.Editor editor = sPrefs.edit();
+		editor.putInt("isFirstTime", 0);
+		editor.commit();
 	}
 }
