@@ -593,7 +593,6 @@ public class NickiStarActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		System.out.println(resultCode);
 		if (requestCode == 0) {
 			if (resultCode == 4373) {
 				finish();
