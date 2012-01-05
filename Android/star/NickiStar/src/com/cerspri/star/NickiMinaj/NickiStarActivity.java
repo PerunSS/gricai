@@ -31,11 +31,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -124,34 +121,8 @@ public class NickiStarActivity extends Activity {
 	}
 
 	private void firstStart() {
-		checkForNetwork();
 		Intent myIntent = new Intent(this, Disclaimer.class);
 		startActivityForResult(myIntent, 0);
-	}
-
-	private void checkForNetwork() {
-		if (!isNetworkAvailable()) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(
-					"Internet connection is required for application to work. Try again?")
-					.setCancelable(false)
-					.setPositiveButton("Try again",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									checkForNetwork();
-								}
-							})
-					.setNegativeButton("Close",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									NickiStarActivity.this.finish();
-								}
-							});
-			AlertDialog alert = builder.create();
-			alert.show();
-		}
 	}
 
 	private void addButtonActions() {
@@ -450,17 +421,6 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
-	private boolean isNetworkAvailable() {
-		try {
-			ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo activeNetworkInfo = connectivityManager
-					.getActiveNetworkInfo();
-			return activeNetworkInfo.isConnected();
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
 	private Map<Integer, NewsHolder> getNews(int page) {
 		if (news == null) {
 			news = new TreeMap<Integer, NickiStarActivity.NewsHolder>();
@@ -638,9 +598,10 @@ public class NickiStarActivity extends Activity {
 			if (resultCode == 4373) {
 				finish();
 			} else if (resultCode == 4374) {
-				checkForNetwork();
 				startApp();
 				loadData();
+			} else if (resultCode == 4372) {
+				finish();
 			}
 		}
 	}
