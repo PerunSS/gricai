@@ -95,16 +95,28 @@ public class NickiStarActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.disclaimer);
+		checkForNetworkAndStart();
 		SharedPreferences sPrefs = this.getSharedPreferences("nikiStarPrefs",
 				MODE_WORLD_READABLE);
 		if (sPrefs.getInt("isFirstTime", 1) == 1) {
 			Intent myIntent = new Intent(this, Disclaimer.class);
 			startActivityForResult(myIntent, 0);
 		} else {
-			checkForNetworkAndStart();
+			successStart();
 		}
 	}
-
+	
+	private void successStart(){
+		buildGUI();
+		texts = new HashMap<String, List<String>>();
+		texts.put("fact",getData("fact",false));
+		texts.put("quote",getData("quote",false));
+		currents = new HashMap<String, Integer>();
+		currents.put("fact", 0);
+		currents.put("quote", 0);
+		addButtonActions();
+	}
+	
 	private void checkForNetworkAndStart() {
 		if (!isNetworkAvailable()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -127,15 +139,6 @@ public class NickiStarActivity extends Activity {
 							});
 			AlertDialog alert = builder.create();
 			alert.show();
-		} else {
-			buildGUI();
-			texts = new HashMap<String, List<String>>();
-			texts.put("fact",getData("fact",false));
-			texts.put("quote",getData("quote",false));
-			currents = new HashMap<String, Integer>();
-			currents.put("fact", 0);
-			currents.put("quote", 0);
-			addButtonActions();
 		}
 	}
 
