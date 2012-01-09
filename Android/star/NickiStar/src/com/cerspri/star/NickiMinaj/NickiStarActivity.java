@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,6 +30,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -421,6 +428,10 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
+	private List<VideoHolder> getVideos(Integer integer) {
+		return null;
+	}
+
 	private Map<Integer, NewsHolder> getNews(int page) {
 		if (news == null) {
 			news = new TreeMap<Integer, NickiStarActivity.NewsHolder>();
@@ -503,6 +514,58 @@ public class NickiStarActivity extends Activity {
 
 	}
 
+	private class VideoHolder {
+		String link;
+		String description;
+		String imagePath;
+
+		boolean extractFromTag(String videoTag) {
+			try {
+				URL url = new URL("http://gdata.youtube.com/feeds/api/videos/"
+						+ videoTag);
+				XmlPullParser parser = XmlPullParserFactory.newInstance()
+						.newPullParser();
+				StringBuffer buffer = new StringBuffer();
+				BufferedReader stream = new BufferedReader(
+						new InputStreamReader(url.openStream(), "UTF-8"),
+						64 * 1024);
+				String line;
+				while ((line = stream.readLine()) != null) {
+					buffer.append(line);
+				}
+				stream.close();
+				String result = new String(buffer.toString().getBytes(),
+						"UTF-8");
+				result = result.replaceAll("&", "&amp;");
+				parser.setInput(new StringReader(result));
+				int parserEvent = parser.getEventType();
+				String tag = "";
+				while (parserEvent != XmlPullParser.END_DOCUMENT) {
+					switch (parserEvent) {
+					case XmlPullParser.START_TAG:
+						tag = parser.getName();
+						System.out.println(tag);
+						System.out.println(parser.getAttributeCount());
+						break;
+					}
+					parserEvent = parser.next();
+				}
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+		}
+	}
+
 	private class JSONLoaderTask extends AsyncTask<String, Void, Void> {
 
 		@Override
@@ -542,9 +605,19 @@ public class NickiStarActivity extends Activity {
 			}
 			Toast toast = Toast.makeText(mContext, text, 1000);
 			toast.show();
-			if(numberOfChanges.size()>0)
+			if (numberOfChanges.size() > 0)
 				updatePrefs();
 		}
+	}
+
+	private class VideosLodaerTask extends AsyncTask<Integer, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			getVideos(params[0]);
+			return null;
+		}
+
 	}
 
 	@SuppressWarnings("unused")
@@ -604,10 +677,10 @@ public class NickiStarActivity extends Activity {
 			}
 		}
 	}
-	
-	private void updatePrefs(){
-		SharedPreferences sPrefs = getSharedPreferences(
-				"nikiStarPrefs", MODE_WORLD_READABLE);
+
+	private void updatePrefs() {
+		SharedPreferences sPrefs = getSharedPreferences("nikiStarPrefs",
+				MODE_WORLD_READABLE);
 		SharedPreferences.Editor editor = sPrefs.edit();
 		editor.putInt("isFirstTime", 0);
 		editor.commit();
