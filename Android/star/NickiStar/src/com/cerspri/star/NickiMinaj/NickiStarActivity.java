@@ -229,7 +229,7 @@ public class NickiStarActivity extends Activity {
 		videosButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				displayMessage();
+				new VideosLodaerTask().execute(0);
 			}
 		});
 		randomButton.setOnClickListener(new View.OnClickListener() {
@@ -429,6 +429,24 @@ public class NickiStarActivity extends Activity {
 	}
 
 	private List<VideoHolder> getVideos(Integer integer) {
+		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_videos.php?star=Nicki+Minaj&last=0");
+		try{
+			JSONObject jsonobj = new JSONObject(builder.toString());
+			JSONArray elements = jsonobj.getJSONArray("data");
+			for (int i = 0; i < elements.length(); i++) {
+				JSONObject elementobj = elements.getJSONObject(i);
+				String tag = elementobj.getString("video_tag");
+				int id = elementobj.getInt("video_number");
+				VideoHolder holder = new VideoHolder();
+				holder.id = id;
+				holder.extractFromTag(tag);
+				System.out.println(holder.id+" "+holder.title+" ");
+				System.out.println(holder.description);
+				System.out.println(holder.imagePath);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -515,9 +533,10 @@ public class NickiStarActivity extends Activity {
 	}
 
 	private class VideoHolder {
-		String link;
+		String title;
 		String description;
 		String imagePath;
+		int id;
 
 		boolean extractFromTag(String videoTag) {
 			try {
@@ -540,16 +559,29 @@ public class NickiStarActivity extends Activity {
 				parser.setInput(new StringReader(result));
 				int parserEvent = parser.getEventType();
 				String tag = "";
+				int i=0;
 				while (parserEvent != XmlPullParser.END_DOCUMENT) {
 					switch (parserEvent) {
 					case XmlPullParser.START_TAG:
-						tag = parser.getName();
-						System.out.println(tag);
-						System.out.println(parser.getAttributeCount());
+						tag = parser.getName().replace(':', '_');
+						if(tag.equalsIgnoreCase("media_thumbnail")){
+							 i++;
+							 if(i>1 && imagePath == null){
+								 imagePath = parser.getAttributeValue(null,"url");
+							 }
+						 }
 						break;
+					 case XmlPullParser.TEXT:
+						 if(tag.equalsIgnoreCase("title")){
+							 title = parser.getText();
+						 }else if(tag.equalsIgnoreCase("content")){
+							 description = parser.getText();
+						 }
+						 break;
 					}
 					parserEvent = parser.next();
 				}
+				return true;
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (XmlPullParserException e) {
