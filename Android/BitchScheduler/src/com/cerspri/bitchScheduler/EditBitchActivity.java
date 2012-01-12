@@ -1,5 +1,6 @@
 package com.cerspri.bitchScheduler;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -15,10 +16,11 @@ import com.cerspri.bitchScheduler.model.Bitch;
 
 public class EditBitchActivity extends Activity {
 
-	Button addButton;
+	Button editButton;
 	Bitch bitch;
 	EditText bitchName;
 	DatePicker datePicker;
+	int position;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,17 @@ public class EditBitchActivity extends Activity {
         datePicker = (DatePicker)findViewById(R.id.period_start);
         bitchName = (EditText)findViewById(R.id.bitch_name);
         
+        position = (Integer)getIntent().getExtras().get("position");
         bitch = (Bitch)getIntent().getExtras().get("bitch");
         bitchName.setText(bitch.getName());
-        datePicker.updateDate(bitch.getPeriodStart().getYear(), bitch.getPeriodStart().getMonth(), bitch.getPeriodStart().getDay());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(bitch.getPeriodStart());
+//        System.out.println(calendar.get(Calendar.YEAR)+"month   "+calendar.get(Calendar.MONTH) + "day   "+calendar.get(Calendar.DAY_OF_MONTH));
+        datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         
-        addButton = (Button) findViewById(R.id.add_bitch);
-        addButton.setOnClickListener(new OnClickListener() {
+        editButton = (Button) findViewById(R.id.add_bitch);
+        editButton.setText("Edit");
+        editButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -45,9 +52,12 @@ public class EditBitchActivity extends Activity {
 		        bitch.setName(bitchName.getText().toString());
 		        calendar.set(datePicker.getYear(),datePicker.getMonth(),datePicker.getDayOfMonth());
 		        bitch.setPeriodStart(calendar.getTime());
+//	    		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//	    		System.out.println(format.format(bitch.getPeriodStart()));
 		        Intent resultIntent = new Intent();
 		        resultIntent.putExtra("bitch", bitch);
-				setResult(1221,resultIntent);
+		        resultIntent.putExtra("position", position);
+				setResult(1331,resultIntent);
                 finish();
 			}
 		});

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,12 +16,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 import com.cerspri.bitchScheduler.model.Bitch;
@@ -30,7 +33,9 @@ public class BitchSchedulerActivity extends Activity {
 	List<Bitch> bitches = new ArrayList<Bitch>();
 	BitchListAdapter adapter;
 	Context myContext = this;
-	int position;
+	int itemPosition;
+	
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,35 +66,37 @@ public class BitchSchedulerActivity extends Activity {
 //        calendar.add(Calendar.MONTH,14);
 //        bitch3.setPeriodStart(calendar.getTime());
 //        bitches.add(bitch3);
+        registerForContextMenu(view);
         adapter = new BitchListAdapter(this,bitches);
         view.setAdapter(adapter);
-        view.setOnItemClickListener(new OnItemClickListener() {
-        	@Override
-        	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-        			long arg3) {
-        		position = arg2;
-        		AlertDialog.Builder builder = new AlertDialog.Builder(myContext);
-    			builder.setMessage(
-    					"")
-    					.setCancelable(false)
-    					.setPositiveButton("Edit",
-    							new DialogInterface.OnClickListener() {
-    								public void onClick(DialogInterface dialog,
-    										int id) {
-    									edit(position);
-    								}
-    							})
-    					.setNegativeButton("Delete",
-    							new DialogInterface.OnClickListener() {
-    								public void onClick(DialogInterface dialog,
-    										int id) {
-    									
-    								}
-    							});
-    			AlertDialog alert = builder.create();
-    			alert.show();
-        	}
-		});
+//        view.setOnItemLongClickListener(new OnItemLongClickListener() {
+//        	@Override
+//        	public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+//        			int arg2, long arg3) {
+////        		position = arg2;
+////        		AlertDialog.Builder builder = new AlertDialog.Builder(myContext);
+////    			builder.setMessage(
+////    					"")
+////    					.setCancelable(false)
+////    					.setPositiveButton("Edit",
+////    							new DialogInterface.OnClickListener() {
+////    								public void onClick(DialogInterface dialog,
+////    										int id) {
+////    									edit(position);
+////    								}
+////    							})
+////    					.setNegativeButton("Delete",
+////    							new DialogInterface.OnClickListener() {
+////    								public void onClick(DialogInterface dialog,
+////    										int id) {
+////    									
+////    								}
+////    							});
+////    			AlertDialog alert = builder.create();
+////    			alert.show();
+//        		return false;
+//        	}
+//		});
 //        save();
     }
     
@@ -131,10 +138,18 @@ public class BitchSchedulerActivity extends Activity {
 		}
     }
     
-    private void edit(int id){
+    private void editBitch(int id){
 		Intent intent = new Intent(myContext, EditBitchActivity.class);	
     	intent.putExtra("bitch", bitches.get(id));
-		startActivityForResult(intent, 1331);
+    	intent.putExtra("position", id);
+		startActivityForResult(intent, 1112);
+    }
+    
+    private void deleteBitch(int id){
+    	bitches.remove(id);
+		Collections.sort(bitches);
+		save();
+		adapter.notifyDataSetChanged();
     }
     
     @Override
@@ -153,7 +168,7 @@ public class BitchSchedulerActivity extends Activity {
 					AddBitchActivity.class);
         	
         	intent.putExtra("size", bitches.size());
-			startActivityForResult(intent, 1221);
+			startActivityForResult(intent, 1111);
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -161,15 +176,45 @@ public class BitchSchedulerActivity extends Activity {
         }
     }
     
+    @Override  
+    public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+    	super.onCreateContextMenu(menu, v, menuInfo);    
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+        itemPosition = info.position;
+        menu.add(0, itemPosition, 0, "Edit");
+        menu.add(0, itemPosition, 1, "Delete");
+    } 
     
+    @Override  
+    public boolean onContextItemSelected(MenuItem item) {
+            if(item.getTitle()=="Edit"){
+            	editBitch(item.getItemId());
+        }
+        else if(item.getTitle()=="Delete"){
+        	deleteBitch(item.getItemId());
+        }  
+        else {
+        	return false;
+        }  
+    return true;  
+    } 
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {   	
     	super.onActivityResult(requestCode, resultCode, data);
-    	Bundle extras = data.getExtras();
     	if (resultCode == 1221){
+        	Bundle extras = data.getExtras();
     		bitches.add((Bitch)extras.get("bitch"));
     		Collections.sort(bitches);
+    		save();
+    		adapter.notifyDataSetChanged();
+    	} else if (resultCode == 1331){
+        	Bundle extras = data.getExtras();
+    		bitches.set((Integer)extras.get("position"), (Bitch)extras.get("bitch"));
+    		Collections.sort(bitches);
+    		System.out.println(bitches.size());
     		save();
     		adapter.notifyDataSetChanged();
     	}
