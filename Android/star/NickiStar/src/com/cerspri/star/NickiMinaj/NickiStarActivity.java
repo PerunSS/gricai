@@ -1,38 +1,14 @@
 package com.cerspri.star.NickiMinaj;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.TreeMap;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,12 +20,16 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cerspri.star.NickiMinaj.model.Model;
+import com.cerspri.star.NickiMinaj.model.News;
 import com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer;
 
 /**
@@ -80,23 +60,15 @@ public class NickiStarActivity extends Activity {
 	Button refreshButton;
 	int state;
 	AlertDialog alert;
-	private Map<String, Integer> currents;
-	private Map<String, List<String>> texts;
-	private Map<Integer, NewsHolder> news;
-	private Map<String, Integer> numberOfChanges = new HashMap<String, Integer>();
 	ProgressDialog progressDialog;
 	Context mContext = this;
 
-	private static int PAGE_SIZE = 10;
-	private static String NEWS_LINK_START = "<h3 class=r><a href=";
-	private static String NEWS_LINK_END = "</a></h3>";
-	private static String NEWS_TEXT_START = "<div class=st>";
-	private static String NEWS_TEXT_END = "</div>";
-	private static String NEWS_LINK_DATA_START = "class=l>";
+	private boolean isToogle = false;
+	private boolean menuShown = true;
 
 	private boolean loadData() {
 		new JSONLoaderTask().execute("quote", "fact");
-		if (numberOfChanges.size() > 0) {
+		if (Model.getInstance().getNumberOfChanges().size() > 0) {
 			return true;
 		}
 		return false;
@@ -118,12 +90,9 @@ public class NickiStarActivity extends Activity {
 
 	private void startApp() {
 		buildGUI();
-		texts = new HashMap<String, List<String>>();
-		texts.put("fact", getData("fact", false));
-		texts.put("quote", getData("quote", false));
-		currents = new HashMap<String, Integer>();
-		currents.put("fact", 0);
-		currents.put("quote", 0);
+		Model.getInstance().createMaps();
+		getData("fact", false);
+		getData("quote", false);
 		addButtonActions();
 	}
 
@@ -134,7 +103,7 @@ public class NickiStarActivity extends Activity {
 
 	private void addButtonActions() {
 		// listener for opening/closing menu
-		toggleMenuButton.setOnClickListener(new View.OnClickListener() {
+		OnClickListener toggleMenuButtonListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (!mDrawer.isOpened()) {
@@ -150,12 +119,16 @@ public class NickiStarActivity extends Activity {
 					mDrawer.animateOpen();
 					toggleMenuButton
 							.setBackgroundResource(R.drawable.close_menu_button);
+					menuShown = true;
 				} else {
+					menuShown = false;
 					switch (state) {
 					case 1:
+						isToogle = true;
 						factsButton.performClick();
 						break;
 					case 2:
+						isToogle = true;
 						quotesButton.performClick();
 						break;
 					// case 3:
@@ -168,7 +141,8 @@ public class NickiStarActivity extends Activity {
 					}
 				}
 			}
-		});
+		};
+		toggleMenuButton.setOnClickListener(toggleMenuButtonListener);
 		// listener for facts button
 		factsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -178,12 +152,14 @@ public class NickiStarActivity extends Activity {
 				state = 1;
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
-				scrollText.setText(getNext("fact"));
+				if (!isToogle)
+					scrollText.setText(Model.getInstance().getNext("fact"));
 				final float scale = getResources().getDisplayMetrics().density;
 				int padding_5dp = (int) (20 * scale + 0.5f);
 				textLayout.setPadding(0, padding_5dp, 0, 0);
 				textLayout.setVisibility(View.VISIBLE);
-
+				isToogle = false;
+				menuShown = false;
 			}
 		});
 		// listener for quotes button
@@ -195,12 +171,14 @@ public class NickiStarActivity extends Activity {
 				state = 2;
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
-				scrollText.setText(getNext("quote"));
+				if (!isToogle)
+					scrollText.setText(Model.getInstance().getNext("quote"));
 				final float scale = getResources().getDisplayMetrics().density;
 				int padding_5dp = (int) (20 * scale + 0.5f);
 				textLayout.setPadding(0, padding_5dp, 0, 0);
 				textLayout.setVisibility(View.VISIBLE);
-
+				isToogle = false;
+				menuShown = false;
 			}
 		});
 		// listener for news button
@@ -237,9 +215,9 @@ public class NickiStarActivity extends Activity {
 			public void onClick(View v) {
 				String text = "";
 				if (state == 1) {
-					text = getNext("fact");
+					text = Model.getInstance().getNext("fact");
 				} else if (state == 2) {
-					text = getNext("quote");
+					text = Model.getInstance().getNext("quote");
 				}
 				scrollText.setText(text);
 			}
@@ -302,12 +280,6 @@ public class NickiStarActivity extends Activity {
 		alert = builder.create();
 	}
 
-	@Override
-	public void onContentChanged() {
-		super.onContentChanged();
-
-	}
-
 	protected void displayMessage() {
 		state = 0;
 		alert.show();
@@ -331,91 +303,37 @@ public class NickiStarActivity extends Activity {
 				+ getString(R.string.app_name)));
 	}
 
-	private String getNext(String name) {
-		List<String> data = texts.get(name);
-		int index = (currents.get(name) + 1) % data.size();
-		currents.put(name, index);
-		return data.get(index);
-	}
-
-	private StringBuilder readFromLink(String url) {
-		StringBuilder builder = new StringBuilder();
-		HttpClient client = new DefaultHttpClient();
-		HttpGet httpGet = new HttpGet(url);
-		try {
-			HttpResponse response = client.execute(httpGet);
-			StatusLine statusLine = response.getStatusLine();
-			int statusCode = statusLine.getStatusCode();
-			if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
-				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(content));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
-				}
-			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(builder.toString());
-		return builder;
-	}
-
-	private List<String> getData(String name, boolean checkUpdates) {
-		int version = getPreferences(MODE_WORLD_READABLE).getInt(
-				"version_" + name, 0);
+	private void getData(String type, boolean shouldUpdate){
 		List<String> data = new ArrayList<String>();
 		try {
-			Scanner sc = new Scanner(openFileInput(name));
+			Scanner sc = new Scanner(openFileInput(type));
 			while (sc.hasNext()) {
 				data.add(sc.nextLine());
 			}
+			Collections.shuffle(data);
 			sc.close();
+			Model.getInstance().getTexts().put(type, data);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (checkUpdates) {
-			StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_data.php?"
-					+ "star="
-					+ getString(R.string.app_name).replaceAll(" ", "%20")
-					+ "&text_type=" + name + "&version=" + version);
-			boolean changed = false;
-			try {
-				JSONObject jsonobj = new JSONObject(builder.toString());
-				JSONArray elements = jsonobj.getJSONArray("data");
-				numberOfChanges.put(name, elements.length());
-				for (int i = 0; i < elements.length(); i++) {
-					JSONObject elementobj = elements.getJSONObject(i);
-					if (elementobj.getString("text_type")
-							.equalsIgnoreCase(name)) {
-						data.add(elementobj.getString("text_value"));
-						if (version < elementobj.getInt("text_version")) {
-							version = elementobj.getInt("text_version");
-						}
-						changed = true;
-					}
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
+		if(shouldUpdate){
+			int version = getPreferences(MODE_WORLD_READABLE)
+					.getInt("version_" + type, 0);
+			if(Model.getInstance().loadData(type, getString(R.string.app_name), version)){
+				saveToPhone(type, version, Model.getInstance().getTexts().get(type), true);
 			}
-			saveToPhone(name, version, data, changed);
 		}
-		return data;
 	}
 
-	private void saveToPhone(String name, int version, List<String> data,
+	private void saveToPhone(String type, int version, List<String> data,
 			boolean changed) {
 		SharedPreferences preferences = getPreferences(MODE_WORLD_WRITEABLE);
 		SharedPreferences.Editor editor = preferences.edit();
-		editor.putInt("version_" + name, version);
+		editor.putInt("version_" + type, version);
 		editor.commit();
 		if (changed) {
 			try {
-				PrintWriter writer = new PrintWriter(openFileOutput(name,
+				PrintWriter writer = new PrintWriter(openFileOutput(type,
 						MODE_WORLD_WRITEABLE));
 				for (String value : data) {
 					writer.println(value);
@@ -427,175 +345,41 @@ public class NickiStarActivity extends Activity {
 
 		}
 	}
+	
 
-	private List<VideoHolder> getVideos(Integer integer) {
-		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_videos.php?star=Nicki+Minaj&last=0");
-		try{
-			JSONObject jsonobj = new JSONObject(builder.toString());
-			JSONArray elements = jsonobj.getJSONArray("data");
-			for (int i = 0; i < elements.length(); i++) {
-				JSONObject elementobj = elements.getJSONObject(i);
-				String tag = elementobj.getString("video_tag");
-				int id = elementobj.getInt("video_number");
-				VideoHolder holder = new VideoHolder();
-				holder.id = id;
-				holder.extractFromTag(tag);
-				System.out.println(holder.id+" "+holder.title+" ");
-				System.out.println(holder.description);
-				System.out.println(holder.imagePath);
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 0) {
+			if (resultCode == 4373) {
+				finish();
+			} else if (resultCode == 4374) {
+				startApp();
+				loadData();
+			} else if (resultCode == 4372) {
+				finish();
 			}
-		} catch (JSONException e) {
-			e.printStackTrace();
 		}
-		return null;
 	}
 
-	private Map<Integer, NewsHolder> getNews(int page) {
-		if (news == null) {
-			news = new TreeMap<Integer, NickiStarActivity.NewsHolder>();
-		}
-		StringBuilder builder = readFromLink("http://www.google.com/search?q="
-				+ getString(R.string.app_name).toLowerCase().replace(' ', '+')
-				+ "&hl=en&prmd=imvnso&source=lnms&tbm=nws");
-		boolean hasNext = true;
-		int linkIndex = 0;
-		int index = page * PAGE_SIZE;
-		while (hasNext) {
-
-			linkIndex = builder.indexOf(NEWS_LINK_START, linkIndex + 1);
-			NewsHolder holder = news.get(index);
-			if (holder == null) {
-				holder = new NewsHolder();
-			}
-			boolean shouldAdd = false;
-			if (linkIndex > 0) {
-				int endIndex = builder.indexOf(NEWS_LINK_END, linkIndex);
-				shouldAdd = holder.extractLink(builder.substring(linkIndex,
-						endIndex));
-				int textIndex = builder.indexOf(NEWS_TEXT_START, linkIndex);
-				if (textIndex > 0 && shouldAdd) {
-					endIndex = builder.indexOf(NEWS_TEXT_END, textIndex);
-					shouldAdd = holder.extractText(builder.substring(textIndex,
-							endIndex));
-				} else {
-					hasNext = false;
-				}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			if (menuShown) {
+				return super.onKeyDown(keyCode, event);
 			} else {
-				hasNext = false;
-			}
-			if (shouldAdd) {
-				news.put(index, holder);
-				index++;
+				toggleMenuButton.performClick();
+				return true;
 			}
 		}
-
-		return news;
+		return super.onKeyDown(keyCode, event);
 	}
 
-	private class NewsHolder {
-		String link;
-		String linkDescription;
-		String text;
-
-		boolean extractLink(String linkData) {
-			// +1 se dodaje da se preskoce znaci navoda
-			System.out.println(linkData);
-			try {
-				int linkIndex = NEWS_LINK_START.length() + 1;
-				int endIndex = linkData.indexOf("\" class");
-				link = linkData.substring(linkIndex, endIndex);
-				int linkDescIndex = linkData.indexOf(NEWS_LINK_DATA_START);
-				linkDescIndex += NEWS_LINK_DATA_START.length();
-				linkDescription = linkData.substring(linkDescIndex).replaceAll(
-						"em>", "b>");
-				return true;
-			} catch (IndexOutOfBoundsException exception) {
-				return false;
-			}
-		}
-
-		boolean extractText(String textData) {
-			try {
-				int textStartIndex = NEWS_TEXT_START.length();
-				text = textData.substring(textStartIndex).replaceAll("em>",
-						"b>");
-				return true;
-			} catch (IndexOutOfBoundsException exception) {
-				return false;
-			}
-		}
-
-		@Override
-		public String toString() {
-			return "(" + link + ", " + linkDescription + ", " + text + ")";
-		}
-
-	}
-
-	private class VideoHolder {
-		String title;
-		String description;
-		String imagePath;
-		int id;
-
-		boolean extractFromTag(String videoTag) {
-			try {
-				URL url = new URL("http://gdata.youtube.com/feeds/api/videos/"
-						+ videoTag);
-				XmlPullParser parser = XmlPullParserFactory.newInstance()
-						.newPullParser();
-				StringBuffer buffer = new StringBuffer();
-				BufferedReader stream = new BufferedReader(
-						new InputStreamReader(url.openStream(), "UTF-8"),
-						64 * 1024);
-				String line;
-				while ((line = stream.readLine()) != null) {
-					buffer.append(line);
-				}
-				stream.close();
-				String result = new String(buffer.toString().getBytes(),
-						"UTF-8");
-				result = result.replaceAll("&", "&amp;");
-				parser.setInput(new StringReader(result));
-				int parserEvent = parser.getEventType();
-				String tag = "";
-				int i=0;
-				while (parserEvent != XmlPullParser.END_DOCUMENT) {
-					switch (parserEvent) {
-					case XmlPullParser.START_TAG:
-						tag = parser.getName().replace(':', '_');
-						if(tag.equalsIgnoreCase("media_thumbnail")){
-							 i++;
-							 if(i>1 && imagePath == null){
-								 imagePath = parser.getAttributeValue(null,"url");
-							 }
-						 }
-						break;
-					 case XmlPullParser.TEXT:
-						 if(tag.equalsIgnoreCase("title")){
-							 title = parser.getText();
-						 }else if(tag.equalsIgnoreCase("content")){
-							 description = parser.getText();
-						 }
-						 break;
-					}
-					parserEvent = parser.next();
-				}
-				return true;
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (XmlPullParserException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return false;
-		}
+	private void updatePrefs() {
+		SharedPreferences sPrefs = getSharedPreferences("nikiStarPrefs",
+				MODE_WORLD_READABLE);
+		SharedPreferences.Editor editor = sPrefs.edit();
+		editor.putInt("isFirstTime", 0);
+		editor.commit();
 	}
 
 	private class JSONLoaderTask extends AsyncTask<String, Void, Void> {
@@ -603,14 +387,7 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected Void doInBackground(String... params) {
 			for (String name : params) {
-				if (currents == null)
-					currents = new HashMap<String, Integer>();
-				currents.put(name, 0);
-				List<String> data = getData(name, true);
-				Collections.shuffle(data);
-				if (texts == null)
-					texts = new HashMap<String, List<String>>();
-				texts.put(name, data);
+				getData(name, true);
 			}
 			return null;
 		}
@@ -628,16 +405,21 @@ public class NickiStarActivity extends Activity {
 			progressDialog.dismiss();
 			String text = "";
 			int i = 0;
-			for (Map.Entry<String, Integer> entry : numberOfChanges.entrySet()) {
-				text += entry.getValue() + " " + entry.getKey() + "s loaded";
-				if (i < numberOfChanges.size() - 1) {
-					text += "\n";
+			for (Map.Entry<String, Integer> entry : Model.getInstance().getNumberOfChanges().entrySet()) {
+				if(entry.getValue() > 0){
+					text += entry.getValue() + " " + entry.getKey() + "s loaded";
+					if (i < Model.getInstance().getNumberOfChanges().size() - 1) {
+						text += "\n";
+					}
+					i++;
 				}
-				i++;
+			}
+			if(i == 0){
+				text = "There are no new data";
 			}
 			Toast toast = Toast.makeText(mContext, text, 1000);
 			toast.show();
-			if (numberOfChanges.size() > 0)
+			if (Model.getInstance().getNumberOfChanges().size() > 0)
 				updatePrefs();
 		}
 	}
@@ -645,9 +427,22 @@ public class NickiStarActivity extends Activity {
 	private class VideosLodaerTask extends AsyncTask<Integer, Void, Void> {
 
 		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
+					"Loading...");
+		}
+
+		@Override
 		protected Void doInBackground(Integer... params) {
-			getVideos(params[0]);
+			Model.getInstance().loadVideos(params[0],getString(R.string.app_name));
 			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			progressDialog.dismiss();
 		}
 
 	}
@@ -657,7 +452,7 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			getNews(params[0]);
+			Model.getInstance().loadNews(params[0], getString(R.string.app_name));
 			return null;
 		}
 
@@ -672,17 +467,16 @@ public class NickiStarActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			progressDialog.dismiss();
-			System.out.println("NEWS: ");
-			System.out.println(news);
 			mDrawer.animateClose();
 			newsDrawer.animateOpen();
 			state = 3;
 
 			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
-			scrollText.setText(Html.fromHtml(news.get(0).text));
+			News news = Model.getInstance().getNews().get(0);
+			scrollText.setText(Html.fromHtml(news.getText()));
 			newsNumber.setText("1/10");
-			newsHeader.setText(Html.fromHtml("<a href = " + news.get(0).link)
-					+ ">" + news.get(0).linkDescription);
+			newsHeader.setText(Html.fromHtml("<a href = " + news.getLink())
+					+ ">" + news.getLinkDescription());
 
 			final float scale = getResources().getDisplayMetrics().density;
 			int padding_50dp = (int) (90 * scale + 0.5f);
@@ -694,27 +488,5 @@ public class NickiStarActivity extends Activity {
 			scrollText.setText(new Integer(newsLayout.getHeight()).toString());
 			textLayout.setVisibility(View.VISIBLE);
 		}
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 0) {
-			if (resultCode == 4373) {
-				finish();
-			} else if (resultCode == 4374) {
-				startApp();
-				loadData();
-			} else if (resultCode == 4372) {
-				finish();
-			}
-		}
-	}
-
-	private void updatePrefs() {
-		SharedPreferences sPrefs = getSharedPreferences("nikiStarPrefs",
-				MODE_WORLD_READABLE);
-		SharedPreferences.Editor editor = sPrefs.edit();
-		editor.putInt("isFirstTime", 0);
-		editor.commit();
 	}
 }
