@@ -238,7 +238,18 @@ public class NickiStarActivity extends Activity {
 		videosButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new VideosLodaerTask().execute(0);
+				if (videoPosition>0){
+					mDrawer.animateClose();
+					videoButtonsDrawer.animateOpen();
+					videosLayout.setVisibility(View.VISIBLE);
+					state = 3;
+					toggleMenuButton
+							.setBackgroundResource(R.drawable.open_menu_button);
+					isToogle = false;
+					menuShown = false;
+				}else {
+					new VideosLodaerTask().execute(0);
+				}
 			}
 		});
 		randomButton.setOnClickListener(new View.OnClickListener() {
