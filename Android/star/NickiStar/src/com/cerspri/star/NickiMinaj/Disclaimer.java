@@ -32,7 +32,7 @@ public class Disclaimer extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									setResult(4372);
+									setResult(Codes.NO_INTERNET_CONNECTION);
 									finish();
 								}
 							});
@@ -46,14 +46,14 @@ public class Disclaimer extends Activity {
 					.setCancelable(false)
 					.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							setResult(4374);
+							setResult(Codes.ACCEPT_LOAD);
 							finish();
 						}
 					})
 					.setNegativeButton("Cancel",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int id) {
-									setResult(4373);
+									setResult(Codes.NO_DATA_LOAD_ALLOWED);
 									finish();
 								}
 							});

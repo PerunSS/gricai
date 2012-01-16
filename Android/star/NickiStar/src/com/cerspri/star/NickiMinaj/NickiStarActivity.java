@@ -350,12 +350,12 @@ public class NickiStarActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 0) {
-			if (resultCode == 4373) {
+			if (resultCode == Codes.NO_DATA_LOAD_ALLOWED) {
 				finish();
-			} else if (resultCode == 4374) {
+			} else if (resultCode == Codes.ACCEPT_LOAD) {
 				startApp();
 				loadData();
-			} else if (resultCode == 4372) {
+			} else if (resultCode == Codes.NO_INTERNET_CONNECTION) {
 				finish();
 			}
 		}
@@ -415,7 +415,7 @@ public class NickiStarActivity extends Activity {
 				}
 			}
 			if(i == 0){
-				text = "There are no new data";
+				text = "There is no new data";
 			}
 			Toast toast = Toast.makeText(mContext, text, 1000);
 			toast.show();

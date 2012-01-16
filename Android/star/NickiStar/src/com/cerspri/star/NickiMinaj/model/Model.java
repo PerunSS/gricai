@@ -125,6 +125,7 @@ public class Model {
 	}
 
 	public boolean loadData(String type, String name, int version) {
+		numberOfChanges.clear();
 		List<String> data = texts.get(type);
 		if(data == null){
 			data = new ArrayList<String>();
