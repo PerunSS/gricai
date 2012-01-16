@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -103,7 +102,7 @@ public class NickiStarActivity extends Activity {
 
 	private void addButtonActions() {
 		// listener for opening/closing menu
-		OnClickListener toggleMenuButtonListener = new View.OnClickListener() {
+		toggleMenuButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (!mDrawer.isOpened()) {
@@ -141,8 +140,7 @@ public class NickiStarActivity extends Activity {
 					}
 				}
 			}
-		};
-		toggleMenuButton.setOnClickListener(toggleMenuButtonListener);
+		});
 		// listener for facts button
 		factsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
