@@ -1,7 +1,10 @@
 package com.cerspri.star.NickiMinaj;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,13 +19,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,19 +54,27 @@ public class NickiStarActivity extends Activity {
 	Button newsButton;
 	Button pictButton;
 	Button videosButton;
+	Button videoBackButton;
+	Button videoNextButton;
 	MultiDirectionSlidingDrawer mDrawer;
 	MultiDirectionSlidingDrawer factsDrawer;
+	MultiDirectionSlidingDrawer videoButtonsDrawer;
 	MultiDirectionSlidingDrawer newsDrawer;
 	Button quotesButton;
 	TextView scrollText;
 	TextView newsNumber;
 	TextView newsHeader;
+	TextView videoTitle;
+	TextView videoDescription;
+	ImageView videoImage;
 	LinearLayout textLayout;
 	LinearLayout newsLayout;
+	LinearLayout videosLayout;
 	Button randomButton;
 	Button shareButton;
 	Button refreshButton;
 	int state;
+	int videoPosition = 0;
 	AlertDialog alert;
 	ProgressDialog progressDialog;
 	Context mContext = this;
@@ -102,18 +119,18 @@ public class NickiStarActivity extends Activity {
 
 	private void addButtonActions() {
 		// listener for opening/closing menu
-		toggleMenuButton.setOnClickListener(new View.OnClickListener() {
+		OnClickListener toggleMenuButtonListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (!mDrawer.isOpened()) {
 					if (factsDrawer.isOpened()) {
 						factsDrawer.animateClose();
-						textLayout.setVisibility(View.INVISIBLE);
+						textLayout.setVisibility(View.GONE);
 					}
-					if (newsDrawer.isOpened()) {
-						newsDrawer.animateClose();
-						newsLayout.setVisibility(View.GONE);
-						textLayout.setVisibility(View.INVISIBLE);
+					if (videoButtonsDrawer.isOpened()) {
+						videoButtonsDrawer.animateClose();
+						videosLayout.setVisibility(View.GONE);
+						textLayout.setVisibility(View.GONE);
 					}
 					mDrawer.animateOpen();
 					toggleMenuButton
@@ -130,6 +147,21 @@ public class NickiStarActivity extends Activity {
 						isToogle = true;
 						quotesButton.performClick();
 						break;
+					case 3:
+						isToogle = true;
+						if (videoPosition > 0){
+							mDrawer.animateClose();
+							videoButtonsDrawer.animateOpen();
+							videosLayout.setVisibility(View.VISIBLE);
+							state = 3;
+							toggleMenuButton
+									.setBackgroundResource(R.drawable.open_menu_button);
+							isToogle = false;
+							menuShown = false;
+						} else {
+							videosButton.performClick();
+						}
+						break;
 					// case 3:
 					// newsButton.performClick();
 					// break;
@@ -140,7 +172,8 @@ public class NickiStarActivity extends Activity {
 					}
 				}
 			}
-		});
+		};
+		toggleMenuButton.setOnClickListener(toggleMenuButtonListener);
 		// listener for facts button
 		factsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -247,6 +280,42 @@ public class NickiStarActivity extends Activity {
 				share(subject, text, type);
 			}
 		});
+		
+		videoBackButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (videoPosition>1){
+					videoPosition-=1;
+					videoTitle.setText(Model.getInstance().getVideos().get(videoPosition).getTitle());
+					videoDescription.setText(Model.getInstance().getVideos().get(videoPosition).getDescription());
+					new LoadImageTask(videoImage, Model.getInstance().getVideos().get(videoPosition).getImagePath()).execute();
+				}
+				if (videoPosition==1){
+					videoBackButton.setVisibility(View.INVISIBLE);
+				} else if (videoPosition==Model.getInstance().getVideos().size()-1){
+					videoNextButton.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+		
+		videoNextButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (videoPosition<Model.getInstance().getVideos().size()){
+					videoPosition+=1;
+					videoTitle.setText(Model.getInstance().getVideos().get(videoPosition).getTitle());
+					videoDescription.setText(Model.getInstance().getVideos().get(videoPosition).getDescription());
+					new LoadImageTask(videoImage, Model.getInstance().getVideos().get(videoPosition).getImagePath()).execute();
+				}
+				if (videoPosition==Model.getInstance().getVideos().size()){
+					videoNextButton.setVisibility(View.INVISIBLE);
+				} else if (videoPosition==2){
+					videoBackButton.setVisibility(View.VISIBLE);
+				}
+			}
+		});
 	}
 
 	private void buildGUI() {
@@ -258,7 +327,7 @@ public class NickiStarActivity extends Activity {
 		mDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.menuDrawer);
 		factsButton = (Button) findViewById(R.id.facts_button);
 		factsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.factsDrawer);
-		newsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.newsDrawer);
+		videoButtonsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.videoButtonDrawer);
 		quotesButton = (Button) findViewById(R.id.quotes_button);
 		newsButton = (Button) findViewById(R.id.news_button);
 		pictButton = (Button) findViewById(R.id.pict_button);
@@ -271,7 +340,13 @@ public class NickiStarActivity extends Activity {
 		newsHeader = (TextView) findViewById(R.id.news_header);
 		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
 		refreshButton = (Button) findViewById(R.id.refresh_button);
-
+		videosLayout = (LinearLayout) findViewById(R.id.videos_layout);
+		videoTitle = (TextView) findViewById(R.id.video_title);
+		videoDescription = (TextView) findViewById(R.id.video_description);
+		videoImage = (ImageView) findViewById(R.id.video_picture_link);
+		videoBackButton = (Button) findViewById(R.id.video_back_button);
+		videoNextButton = (Button) findViewById(R.id.video_next_button);
+		
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
@@ -441,6 +516,19 @@ public class NickiStarActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			progressDialog.dismiss();
+			mDrawer.animateClose();
+			videoButtonsDrawer.animateOpen();
+			videosLayout.setVisibility(View.VISIBLE);
+			state = 3;
+			toggleMenuButton
+					.setBackgroundResource(R.drawable.open_menu_button);
+			isToogle = false;
+			menuShown = false;
+			videoTitle.setText(Model.getInstance().getVideos().get(1).getTitle());
+			videoDescription.setText(Model.getInstance().getVideos().get(1).getDescription());
+			new LoadImageTask(videoImage, Model.getInstance().getVideos().get(1).getImagePath()).execute();
+			videoPosition = 1;
+			videoBackButton.setVisibility(View.INVISIBLE);
 		}
 
 	}
@@ -487,4 +575,48 @@ public class NickiStarActivity extends Activity {
 			textLayout.setVisibility(View.VISIBLE);
 		}
 	}
+	
+	private class LoadImageTask extends AsyncTask<Void, Void, Drawable>{
+		private ImageView view;
+		private String url;
+		
+		LoadImageTask(ImageView view, String url){
+			this.view = view;
+			this.url = url;
+		}
+		
+
+		@Override
+		protected Drawable doInBackground(Void ... params) {
+			InputStream is = null;
+			if (url != null) {
+				url = url.replaceAll(" ", "%20");
+				try {
+					is = new URL(url).openStream();
+					BitmapFactory.Options options = new BitmapFactory.Options();
+					Bitmap bitmap = BitmapFactory.decodeStream(is,null, options);
+
+					Drawable drawable = new BitmapDrawable(bitmap);
+					return drawable;
+				} catch (Exception e) {
+				} finally {
+					try {
+						is.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Drawable result) {
+			if (result != null){
+				view.setImageDrawable(result);
+			}
+		}
+		
+	}
+	
 }
