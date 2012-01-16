@@ -31,8 +31,7 @@
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"		
-		android:layout_above="@id/factsDrawer"
-		android:layout_weight="1">	
+		android:layout_above="@id/factsDrawer">	
 		<LinearLayout 
 			android:orientation="horizontal"
 			android:layout_width="fill_parent"
@@ -47,7 +46,7 @@
 				android:background="@drawable/cerspri_button"/>
 
 			<TextView
-			    android:layout_width="fill_parent"
+			    android:layout_width="0dip"
 			    android:layout_height="fill_parent"
 			    android:layout_weight="1"
 			    android:gravity="center|center_horizontal"
@@ -76,68 +75,126 @@
 				android:layout_width="25dip"
 				android:layout_height="50dip"/>
 		</LinearLayout>
-		<LinearLayout 
-		  	android:visibility="gone"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:id="@+id/news_layout"
-			android:orientation="horizontal"
-			android:layout_below="@id/menu_bar"
-			android:paddingLeft="7dip"
-			android:paddingRight="7dip">
-			<TextView 
-			    android:visibility="gone"
-				android:layout_width="50dip"
-				android:layout_height="50dip"
-				android:id="@+id/news_number"
-				android:background="@drawable/field"
-				android:gravity="center"
-				android:textColor="#244690"/>
-			<TextView 
-				android:layout_width="50dip"
-				android:layout_height="60dp"
-				android:layout_weight="1"
-				android:id="@+id/news_header"
-				android:background="@drawable/field"
-				android:gravity="center"
-				android:textColor="#244690"
-				android:textSize="25dip" />
-		</LinearLayout>
 		<ScrollView  
 		    android:id="@+id/data_scroll_view"
 		    android:layout_width="fill_parent" 
 		    android:layout_height="fill_parent"
-		    android:layout_below="@id/news_layout">
-		    <LinearLayout 
-		    	android:visibility="invisible"
-		    	android:layout_width="fill_parent"
-		    	android:layout_height="fill_parent"
-		    	android:id="@+id/text_layout"
-		    	android:orientation="vertical"
-		  		android:layout_gravity="center"
-		  		android:paddingTop="5dip">
-		    	<View 
-		    		android:layout_width="fill_parent"
-		    		android:layout_height="35dp"
-		    		android:background="@drawable/text_field_top"/>
-			    <TextView
-			    	android:id="@+id/scroll_text"
+			android:layout_marginTop="45dp">
+			<LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:id="@+id/content_inner_layout"
+			    android:orientation="vertical"
+			  	android:paddingTop="5dip"
+			  	android:layout_gravity="center">
+				<LinearLayout 
+					android:visibility="gone"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:id="@+id/news_layout"
+					android:orientation="horizontal"
+					android:paddingLeft="7dip"
+					android:paddingRight="7dip">
+					<TextView 
+					    android:visibility="gone"
+						android:layout_width="50dip"
+						android:layout_height="50dip"
+						android:id="@+id/news_number"
+						android:background="@drawable/field"
+						android:gravity="center"
+						android:textColor="#244690"/>
+					<TextView 
+						android:layout_width="50dip"
+						android:layout_height="60dp"
+						android:layout_weight="1"
+						android:id="@+id/news_header"
+						android:background="@drawable/field"
+						android:gravity="center"
+						android:textColor="#244690"
+						android:textSize="25dip" />
+				</LinearLayout>
+				<LinearLayout 
+			    	android:visibility="gone"
 			    	android:layout_width="fill_parent"
-			    	android:layout_height="wrap_content"
-			    	android:layout_weight="1"
-			    	android:textSize="25dip" 
-			    	android:textColor="#244690"
-			    	android:textStyle="bold"
-			    	android:gravity="center"
-			    	android:layout_gravity="center"
-			    	android:background="@drawable/text_field"
-			    	android:paddingLeft="25dp"
-			    	android:paddingRight="25dp"
-			    />
-			    <View
+			    	android:layout_height="fill_parent"
+			    	android:id="@+id/videos_layout"
+			    	android:orientation="vertical"
+			  		android:layout_gravity="center">
+			    	<View 
+			    		android:layout_width="fill_parent"
+			    		android:layout_height="35dp"
+			    		android:background="@drawable/text_field_top"/>
+			    	<LinearLayout 
+			    	    android:layout_width="fill_parent"
+				    	android:layout_height="wrap_content"
+			    	    android:background="@drawable/text_field"
+			    	    android:orientation="vertical">
+					    <TextView
+					    	android:id="@+id/video_title"
+					    	android:layout_width="fill_parent"
+					    	android:layout_height="wrap_content"
+					    	android:textSize="18dip" 
+					    	android:textColor="#244690"
+					    	android:textStyle="bold"
+					    	android:gravity="center"
+					    	android:paddingLeft="25dp"
+					    	android:paddingRight="25dp"
+					    />
+					    <ImageView android:id="@+id/video_picture_link"
+					    	android:layout_width="fill_parent"
+					    	android:layout_height="80dp"
+					    	android:textSize="18dip" 
+					    	android:textColor="#244690"
+					    	android:textStyle="bold"
+					    	android:gravity="center"
+					    	android:paddingLeft="25dp"
+					    	android:paddingRight="25dp"/>
+					    <TextView
+					    	android:id="@+id/video_description"
+					    	android:layout_width="fill_parent"
+					    	android:layout_height="wrap_content"
+					    	android:textSize="13dip" 
+					    	android:textColor="#244690"
+					    	android:textStyle="bold"
+					    	android:gravity="center"
+					    	android:paddingLeft="25dp"
+					    	android:paddingRight="25dp"
+					    />
+				    </LinearLayout>
+				    <View
+				    	android:layout_width="fill_parent"
+			    		android:layout_height="35dp" 
+			    		android:background="@drawable/text_field_bottom"/>
+			    </LinearLayout>
+			    <LinearLayout 
+			    	android:visibility="gone"
 			    	android:layout_width="fill_parent"
-		    		android:layout_height="35dp" 
-		    		android:background="@drawable/text_field_bottom"/>
+			    	android:layout_height="fill_parent"
+			    	android:id="@+id/text_layout"
+			    	android:orientation="vertical"
+			  		android:layout_gravity="center">
+			    	<View 
+			    		android:layout_width="fill_parent"
+			    		android:layout_height="35dp"
+			    		android:background="@drawable/text_field_top"/>
+				    <TextView
+				    	android:id="@+id/scroll_text"
+				    	android:layout_width="fill_parent"
+				    	android:layout_height="wrap_content"
+				    	android:textSize="25dip" 
+				    	android:textColor="#244690"
+				    	android:textStyle="bold"
+				    	android:gravity="center"
+				    	android:layout_gravity="center"
+				    	android:background="@drawable/text_field"
+				    	android:paddingLeft="25dp"
+				    	android:paddingRight="25dp"
+				    />
+				    <View
+				    	android:layout_width="fill_parent"
+			    		android:layout_height="35dp" 
+			    		android:background="@drawable/text_field_bottom"/>
+			    </LinearLayout>
 		    </LinearLayout>
 		</ScrollView>
 	</RelativeLayout>	
@@ -163,7 +220,7 @@
 	
 	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
 		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/newsDrawer"
+		android:id="@+id/videoButtonDrawer"
 		my:direction="bottomToTop"
 		android:layout_width="fill_parent"
 		android:layout_height="60dip"
@@ -172,7 +229,7 @@
 		android:layout_above="@id/anchor_bottom">
 		<include
 			android:id="@id/content"
-			layout="@layout/news_buttons_drawer" />
+			layout="@layout/video_buttons_drawer" />
 		<ImageView
 			android:id="@id/handle"
 			android:layout_width="wrap_content"

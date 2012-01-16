@@ -14,20 +14,20 @@
 	  	<Button
 	  		android:layout_width="fill_parent"
 	  		android:layout_height="60dp"
-	  		android:id="@+id/back_button"
+	  		android:id="@+id/video_back_button"
 	  		android:layout_weight="1"
 	  		android:background="@drawable/back_button"/>
 	  	<Button
 	  		android:layout_width="fill_parent"
 	  		android:layout_height="60dp"
-	  		android:id="@+id/next_button"
+	  		android:id="@+id/video_next_button"
 	  		android:layout_weight="1"
 	  		android:background="@drawable/next_button"/>
   	</LinearLayout>
   	<Button
   		android:layout_width="fill_parent"
   		android:layout_height="60dp"
-  		android:id="@+id/share_news_button"
+  		android:id="@+id/share_video_button"
   		android:layout_weight="1"
   		android:background="@drawable/share_button"/>
 </LinearLayout>
