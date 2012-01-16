@@ -17,8 +17,10 @@ public class Video {
 	private String description;
 	private String imagePath;
 	private int id;
+	private String videoTag;
 
 	boolean extractFromTag(String videoTag) {
+		this.videoTag = videoTag;
 		try {
 			URL url = new URL("http://gdata.youtube.com/feeds/api/videos/"
 					+ videoTag);
@@ -57,6 +59,9 @@ public class Video {
 						title = parser.getText();
 					} else if (tag.equalsIgnoreCase("content")) {
 						description = parser.getText();
+						if(description.length()>150){
+							description = description.substring(0,150)+"...";
+						}
 					}
 					break;
 				}
@@ -96,5 +101,9 @@ public class Video {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getVideoTag() {
+		return videoTag;
 	}
 }
