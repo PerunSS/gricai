@@ -19,6 +19,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -311,7 +313,12 @@ public class NickiStarActivity extends Activity {
 											+ Model.getInstance().getVideos()
 													.get(videoPosition)
 													.getVideoTag()));
-							startActivity(videoIntent);
+							List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
+							if(activities.size()>0){
+								startActivity(videoIntent);
+							}else{
+								Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
+							}
 						}
 					});
 					new LoadImageTask(videoImage, Model.getInstance()
@@ -346,7 +353,12 @@ public class NickiStarActivity extends Activity {
 											+ Model.getInstance().getVideos()
 													.get(videoPosition)
 													.getVideoTag()));
-							startActivity(videoIntent);
+							List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
+							if(activities.size()>0){
+								startActivity(videoIntent);
+							}else{
+								Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
+							}
 						}
 					});
 					new LoadImageTask(videoImage, Model.getInstance()
@@ -588,7 +600,12 @@ public class NickiStarActivity extends Activity {
 									+ Model.getInstance().getVideos()
 											.get(videoPosition)
 											.getVideoTag()));
-					startActivity(videoIntent);
+					List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
+					if(activities.size()>0){
+						startActivity(videoIntent);
+					}else{
+						Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
+					}
 				}
 			});
 		}
