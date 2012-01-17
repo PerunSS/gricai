@@ -41,14 +41,12 @@ public class Video {
 			parser.setInput(new StringReader(result));
 			int parserEvent = parser.getEventType();
 			String tag = "";
-			int i = 0;
 			while (parserEvent != XmlPullParser.END_DOCUMENT) {
 				switch (parserEvent) {
 				case XmlPullParser.START_TAG:
 					tag = parser.getName().replace(':', '_');
 					if (tag.equalsIgnoreCase("media_thumbnail")) {
-						i++;
-						if (i > 1 && imagePath == null) {
+						if (imagePath == null) {
 							imagePath = parser.getAttributeValue(null,
 									"url");
 						}

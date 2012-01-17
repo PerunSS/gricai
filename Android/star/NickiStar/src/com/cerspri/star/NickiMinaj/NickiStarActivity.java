@@ -149,7 +149,7 @@ public class NickiStarActivity extends Activity {
 						break;
 					case 3:
 						isToogle = true;
-						if (videoPosition > 0){
+						if (videoPosition > 0) {
 							mDrawer.animateClose();
 							videoButtonsDrawer.animateOpen();
 							videosLayout.setVisibility(View.VISIBLE);
@@ -238,7 +238,7 @@ public class NickiStarActivity extends Activity {
 		videosButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (videoPosition>0){
+				if (videoPosition > 0) {
 					mDrawer.animateClose();
 					videoButtonsDrawer.animateOpen();
 					videosLayout.setVisibility(View.VISIBLE);
@@ -247,7 +247,7 @@ public class NickiStarActivity extends Activity {
 							.setBackgroundResource(R.drawable.open_menu_button);
 					isToogle = false;
 					menuShown = false;
-				}else {
+				} else {
 					new VideosLodaerTask().execute(0);
 				}
 			}
@@ -291,38 +291,71 @@ public class NickiStarActivity extends Activity {
 				share(subject, text, type);
 			}
 		});
-		
+
 		videoBackButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				if (videoPosition>1){
-					videoPosition-=1;
-					videoTitle.setText(Model.getInstance().getVideos().get(videoPosition).getTitle());
-					videoDescription.setText(Model.getInstance().getVideos().get(videoPosition).getDescription());
-					new LoadImageTask(videoImage, Model.getInstance().getVideos().get(videoPosition).getImagePath()).execute();
+				if (videoPosition > 1) {
+					videoPosition -= 1;
+					videoTitle.setText(Model.getInstance().getVideos()
+							.get(videoPosition).getTitle());
+					videoDescription.setText(Model.getInstance().getVideos()
+							.get(videoPosition).getDescription());
+					videoImage.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							Intent videoIntent = new Intent(Intent.ACTION_VIEW,
+									Uri.parse("vnd.youtube:"
+											+ Model.getInstance().getVideos()
+													.get(videoPosition)
+													.getVideoTag()));
+							startActivity(videoIntent);
+						}
+					});
+					new LoadImageTask(videoImage, Model.getInstance()
+							.getVideos().get(videoPosition).getImagePath())
+							.execute();
 				}
-				if (videoPosition==1){
+				if (videoPosition == 1) {
 					videoBackButton.setVisibility(View.INVISIBLE);
-				} else if (videoPosition==Model.getInstance().getVideos().size()-1){
+				} else if (videoPosition == Model.getInstance().getVideos()
+						.size() - 1) {
 					videoNextButton.setVisibility(View.VISIBLE);
 				}
 			}
 		});
-		
+
 		videoNextButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				if (videoPosition<Model.getInstance().getVideos().size()){
-					videoPosition+=1;
-					videoTitle.setText(Model.getInstance().getVideos().get(videoPosition).getTitle());
-					videoDescription.setText(Model.getInstance().getVideos().get(videoPosition).getDescription());
-					new LoadImageTask(videoImage, Model.getInstance().getVideos().get(videoPosition).getImagePath()).execute();
+				if (videoPosition < Model.getInstance().getVideos().size()) {
+					videoPosition += 1;
+					videoTitle.setText(Model.getInstance().getVideos()
+							.get(videoPosition).getTitle());
+					videoDescription.setText(Model.getInstance().getVideos()
+							.get(videoPosition).getDescription());
+					videoImage.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							Intent videoIntent = new Intent(Intent.ACTION_VIEW,
+									Uri.parse("vnd.youtube:"
+											+ Model.getInstance().getVideos()
+													.get(videoPosition)
+													.getVideoTag()));
+							startActivity(videoIntent);
+						}
+					});
+					new LoadImageTask(videoImage, Model.getInstance()
+							.getVideos().get(videoPosition).getImagePath())
+							.execute();
 				}
-				if (videoPosition==Model.getInstance().getVideos().size()){
+				if (videoPosition == Model.getInstance().getVideos().size()) {
 					videoNextButton.setVisibility(View.INVISIBLE);
-				} else if (videoPosition==2){
+				} else if (videoPosition == 2) {
 					videoBackButton.setVisibility(View.VISIBLE);
 				}
 			}
@@ -357,7 +390,7 @@ public class NickiStarActivity extends Activity {
 		videoImage = (ImageView) findViewById(R.id.video_picture_link);
 		videoBackButton = (Button) findViewById(R.id.video_back_button);
 		videoNextButton = (Button) findViewById(R.id.video_next_button);
-		
+
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
@@ -387,7 +420,7 @@ public class NickiStarActivity extends Activity {
 				+ getString(R.string.app_name)));
 	}
 
-	private void getData(String type, boolean shouldUpdate){
+	private void getData(String type, boolean shouldUpdate) {
 		List<String> data = new ArrayList<String>();
 		try {
 			Scanner sc = new Scanner(openFileInput(type));
@@ -400,11 +433,13 @@ public class NickiStarActivity extends Activity {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		if(shouldUpdate){
-			int version = getPreferences(MODE_WORLD_READABLE)
-					.getInt("version_" + type, 0);
-			if(Model.getInstance().loadData(type, getString(R.string.app_name), version)){
-				saveToPhone(type, version, Model.getInstance().getTexts().get(type), true);
+		if (shouldUpdate) {
+			int version = getPreferences(MODE_WORLD_READABLE).getInt(
+					"version_" + type, 0);
+			if (Model.getInstance().loadData(type,
+					getString(R.string.app_name), version)) {
+				saveToPhone(type, version,
+						Model.getInstance().getTexts().get(type), true);
 			}
 		}
 	}
@@ -429,7 +464,6 @@ public class NickiStarActivity extends Activity {
 
 		}
 	}
-	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -489,16 +523,18 @@ public class NickiStarActivity extends Activity {
 			progressDialog.dismiss();
 			String text = "";
 			int i = 0;
-			for (Map.Entry<String, Integer> entry : Model.getInstance().getNumberOfChanges().entrySet()) {
-				if(entry.getValue() > 0){
-					text += entry.getValue() + " " + entry.getKey() + "s loaded";
+			for (Map.Entry<String, Integer> entry : Model.getInstance()
+					.getNumberOfChanges().entrySet()) {
+				if (entry.getValue() > 0) {
+					text += entry.getValue() + " " + entry.getKey()
+							+ "s loaded";
 					if (i < Model.getInstance().getNumberOfChanges().size() - 1) {
 						text += "\n";
 					}
 					i++;
 				}
 			}
-			if(i == 0){
+			if (i == 0) {
 				text = "There is no new data";
 			}
 			Toast toast = Toast.makeText(mContext, text, 1000);
@@ -519,7 +555,8 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			Model.getInstance().loadVideos(params[0],getString(R.string.app_name));
+			Model.getInstance().loadVideos(params[0],
+					getString(R.string.app_name));
 			return null;
 		}
 
@@ -531,15 +568,29 @@ public class NickiStarActivity extends Activity {
 			videoButtonsDrawer.animateOpen();
 			videosLayout.setVisibility(View.VISIBLE);
 			state = 3;
-			toggleMenuButton
-					.setBackgroundResource(R.drawable.open_menu_button);
+			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
 			isToogle = false;
 			menuShown = false;
-			videoTitle.setText(Model.getInstance().getVideos().get(1).getTitle());
-			videoDescription.setText(Model.getInstance().getVideos().get(1).getDescription());
-			new LoadImageTask(videoImage, Model.getInstance().getVideos().get(1).getImagePath()).execute();
+			videoTitle.setText(Model.getInstance().getVideos().get(1)
+					.getTitle());
+			videoDescription.setText(Model.getInstance().getVideos().get(1)
+					.getDescription());
+			new LoadImageTask(videoImage, Model.getInstance().getVideos()
+					.get(1).getImagePath()).execute();
 			videoPosition = 1;
 			videoBackButton.setVisibility(View.INVISIBLE);
+			videoImage.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Intent videoIntent = new Intent(Intent.ACTION_VIEW,
+							Uri.parse("vnd.youtube:"
+									+ Model.getInstance().getVideos()
+											.get(videoPosition)
+											.getVideoTag()));
+					startActivity(videoIntent);
+				}
+			});
 		}
 
 	}
@@ -549,7 +600,8 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			Model.getInstance().loadNews(params[0], getString(R.string.app_name));
+			Model.getInstance().loadNews(params[0],
+					getString(R.string.app_name));
 			return null;
 		}
 
@@ -586,26 +638,26 @@ public class NickiStarActivity extends Activity {
 			textLayout.setVisibility(View.VISIBLE);
 		}
 	}
-	
-	private class LoadImageTask extends AsyncTask<Void, Void, Drawable>{
+
+	private class LoadImageTask extends AsyncTask<Void, Void, Drawable> {
 		private ImageView view;
 		private String url;
-		
-		LoadImageTask(ImageView view, String url){
+
+		LoadImageTask(ImageView view, String url) {
 			this.view = view;
 			this.url = url;
 		}
-		
 
 		@Override
-		protected Drawable doInBackground(Void ... params) {
+		protected Drawable doInBackground(Void... params) {
 			InputStream is = null;
 			if (url != null) {
 				url = url.replaceAll(" ", "%20");
 				try {
 					is = new URL(url).openStream();
 					BitmapFactory.Options options = new BitmapFactory.Options();
-					Bitmap bitmap = BitmapFactory.decodeStream(is,null, options);
+					Bitmap bitmap = BitmapFactory.decodeStream(is, null,
+							options);
 
 					Drawable drawable = new BitmapDrawable(bitmap);
 					return drawable;
@@ -620,14 +672,14 @@ public class NickiStarActivity extends Activity {
 			}
 			return null;
 		}
-		
+
 		@Override
 		protected void onPostExecute(Drawable result) {
-			if (result != null){
+			if (result != null) {
 				view.setImageDrawable(result);
 			}
 		}
-		
+
 	}
-	
+
 }
