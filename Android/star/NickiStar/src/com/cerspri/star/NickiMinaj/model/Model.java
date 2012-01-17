@@ -30,7 +30,8 @@ public class Model {
 	private Map<Integer, News> news;
 	private Map<String, Integer> numberOfChanges;
 	private Map<Integer, Video> videos;
-
+	private int lastVideoID = 0;
+	
 	private Model() {
 	}
 
@@ -102,6 +103,7 @@ public class Model {
 	}
 
 	public void loadVideos(Integer lastID, String name) {
+		System.out.println("lastid: "+lastID);
 		if (videos == null) {
 			videos = new HashMap<Integer, Video>();
 		}
@@ -114,6 +116,9 @@ public class Model {
 				JSONObject elementobj = elements.getJSONObject(i);
 				String tag = elementobj.getString("video_tag");
 				int id = elementobj.getInt("video_number");
+				if(id > lastVideoID){
+					lastVideoID = id;
+				}
 				Video holder = new Video();
 				holder.setId(id);
 				holder.extractFromTag(tag);
@@ -203,6 +208,15 @@ public class Model {
 
 	public Map<Integer, Video> getVideos() {
 		return videos;
+	}
+
+	public int getLastVideoID() {
+		return lastVideoID;
+	}
+
+	public void setLastVideoID(int lastVideoID) {
+		this.lastVideoID = lastVideoID;
+		System.out.println(lastVideoID+" set");
 	}
 
 }

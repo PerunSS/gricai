@@ -3,7 +3,10 @@ package com.cerspri.star.NickiMinaj;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.StreamCorruptedException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +43,7 @@ import android.widget.Toast;
 
 import com.cerspri.star.NickiMinaj.model.Model;
 import com.cerspri.star.NickiMinaj.model.News;
+import com.cerspri.star.NickiMinaj.model.Video;
 import com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer;
 
 /**
@@ -111,6 +115,8 @@ public class NickiStarActivity extends Activity {
 		Model.getInstance().createMaps();
 		getData("fact", false);
 		getData("quote", false);
+		getVideos();
+		
 		addButtonActions();
 	}
 
@@ -250,7 +256,7 @@ public class NickiStarActivity extends Activity {
 					isToogle = false;
 					menuShown = false;
 				} else {
-					new VideosLodaerTask().execute(0);
+					new VideosLodaerTask().execute(Model.getInstance().getLastVideoID());
 				}
 			}
 		});
@@ -455,6 +461,48 @@ public class NickiStarActivity extends Activity {
 			}
 		}
 	}
+	
+	private void getVideos(){
+		try {
+			ObjectInputStream ois = new ObjectInputStream(openFileInput("videos"));
+			boolean read = true;
+			int max = 0;
+			while(read){
+				try{
+					Video video = (Video)ois.readObject();
+					Model.getInstance().getVideos().put(video.getId(), video);
+					if(video.getId() > max){
+						max = video.getId();
+					}
+				}catch (Exception e) {
+					read = false;
+				}
+			}
+			ois.close();
+			Model.getInstance().setLastVideoID(max);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (StreamCorruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void saveVideoToPhone(){
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput("videos", MODE_WORLD_WRITEABLE));
+			for(Map.Entry<Integer, Video> entry: Model.getInstance().getVideos().entrySet()){
+				oos.writeObject(entry.getValue());
+				System.out.println(entry.getValue().getId()+" "+entry.getValue().getVideoTag());
+			}
+			oos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private void saveToPhone(String type, int version, List<String> data,
 			boolean changed) {
@@ -569,6 +617,7 @@ public class NickiStarActivity extends Activity {
 		protected Void doInBackground(Integer... params) {
 			Model.getInstance().loadVideos(params[0],
 					getString(R.string.app_name));
+			saveVideoToPhone();
 			return null;
 		}
 
