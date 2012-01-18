@@ -88,6 +88,7 @@ public class NickiStarActivity extends Activity {
 
 	private boolean isToogle = false;
 	private boolean menuShown = true;
+	private OnClickListener videoPlayListener;
 
 	private boolean loadData() {
 		new JSONLoaderTask().execute("quote", "fact");
@@ -311,23 +312,7 @@ public class NickiStarActivity extends Activity {
 							.get(videoPosition).getTitle());
 					videoDescription.setText(Model.getInstance().getVideos()
 							.get(videoPosition).getDescription());
-					videoImage.setOnClickListener(new View.OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							Intent videoIntent = new Intent(Intent.ACTION_VIEW,
-									Uri.parse("vnd.youtube:"
-											+ Model.getInstance().getVideos()
-													.get(videoPosition)
-													.getVideoTag()));
-							List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
-							if(activities.size()>0){
-								startActivity(videoIntent);
-							}else{
-								Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
-							}
-						}
-					});
+					videoImage.setOnClickListener(videoPlayListener);
 					new LoadImageTask(videoImage, Model.getInstance()
 							.getVideos().get(videoPosition).getImagePath())
 							.execute();
@@ -351,23 +336,7 @@ public class NickiStarActivity extends Activity {
 							.get(videoPosition).getTitle());
 					videoDescription.setText(Model.getInstance().getVideos()
 							.get(videoPosition).getDescription());
-					videoImage.setOnClickListener(new View.OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							Intent videoIntent = new Intent(Intent.ACTION_VIEW,
-									Uri.parse("vnd.youtube:"
-											+ Model.getInstance().getVideos()
-													.get(videoPosition)
-													.getVideoTag()));
-							List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
-							if(activities.size()>0){
-								startActivity(videoIntent);
-							}else{
-								Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
-							}
-						}
-					});
+					videoImage.setOnClickListener(videoPlayListener);
 					new LoadImageTask(videoImage, Model.getInstance()
 							.getVideos().get(videoPosition).getImagePath())
 							.execute();
@@ -380,23 +349,7 @@ public class NickiStarActivity extends Activity {
 			}
 		});
 		
-		videoPlayButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent videoIntent = new Intent(Intent.ACTION_VIEW,
-						Uri.parse("vnd.youtube:"
-								+ Model.getInstance().getVideos()
-										.get(videoPosition)
-										.getVideoTag()));
-				List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
-				if(activities.size()>0){
-					startActivity(videoIntent);
-				}else{
-					Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
-				}
-			}
-		});
+		videoPlayButton.setOnClickListener(videoPlayListener);
 	}
 
 	private void buildGUI() {
@@ -433,6 +386,24 @@ public class NickiStarActivity extends Activity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
 		alert = builder.create();
+		
+		videoPlayListener = new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent videoIntent = new Intent(Intent.ACTION_VIEW,
+						Uri.parse("vnd.youtube:"
+								+ Model.getInstance().getVideos()
+										.get(videoPosition)
+										.getVideoTag()));
+				List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
+				if(activities.size()>0){
+					startActivity(videoIntent);
+				}else{
+					Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
+				}
+			}
+		};
 	}
 
 	protected void displayMessage() {
@@ -660,23 +631,7 @@ public class NickiStarActivity extends Activity {
 					.get(1).getImagePath()).execute();
 			videoPosition = 1;
 			videoBackButton.setVisibility(View.INVISIBLE);
-			videoImage.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Intent videoIntent = new Intent(Intent.ACTION_VIEW,
-							Uri.parse("vnd.youtube:"
-									+ Model.getInstance().getVideos()
-											.get(videoPosition)
-											.getVideoTag()));
-					List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
-					if(activities.size()>0){
-						startActivity(videoIntent);
-					}else{
-						Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
-					}
-				}
-			});
+			videoImage.setOnClickListener(videoPlayListener);
 		}
 
 	}
