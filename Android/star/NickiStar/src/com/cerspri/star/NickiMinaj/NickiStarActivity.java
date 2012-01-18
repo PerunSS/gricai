@@ -62,6 +62,7 @@ public class NickiStarActivity extends Activity {
 	Button videosButton;
 	Button videoBackButton;
 	Button videoNextButton;
+	Button videoPlayButton;
 	MultiDirectionSlidingDrawer mDrawer;
 	MultiDirectionSlidingDrawer factsDrawer;
 	MultiDirectionSlidingDrawer videoButtonsDrawer;
@@ -378,6 +379,24 @@ public class NickiStarActivity extends Activity {
 				}
 			}
 		});
+		
+		videoPlayButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent videoIntent = new Intent(Intent.ACTION_VIEW,
+						Uri.parse("vnd.youtube:"
+								+ Model.getInstance().getVideos()
+										.get(videoPosition)
+										.getVideoTag()));
+				List<ResolveInfo> activities = getPackageManager().queryIntentActivities(videoIntent, PackageManager.MATCH_DEFAULT_ONLY );
+				if(activities.size()>0){
+					startActivity(videoIntent);
+				}else{
+					Toast.makeText(NickiStarActivity.this, "You do not have application that support playing video files!", Toast.LENGTH_LONG).show();
+				}
+			}
+		});
 	}
 
 	private void buildGUI() {
@@ -408,7 +427,8 @@ public class NickiStarActivity extends Activity {
 		videoImage = (ImageView) findViewById(R.id.video_picture_link);
 		videoBackButton = (Button) findViewById(R.id.video_back_button);
 		videoNextButton = (Button) findViewById(R.id.video_next_button);
-
+		videoPlayButton = (Button) findViewById(R.id.play_video_button);
+		
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");

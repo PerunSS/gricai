@@ -27,7 +27,7 @@
   	<Button
   		android:layout_width="fill_parent"
   		android:layout_height="60dp"
-  		android:id="@+id/share_video_button"
+  		android:id="@+id/play_video_button"
   		android:layout_weight="1"
-  		android:background="@drawable/share_button"/>
+  		android:background="@drawable/play_button"/>
 </LinearLayout>
