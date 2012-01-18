@@ -141,11 +141,11 @@
 					    	android:paddingRight="25dp"
 					    />
 					    <ImageView android:id="@+id/video_picture_link"
-					    	android:layout_width="wrap_content"
-					    	android:layout_height="wrap_content"
+					    	android:layout_width="fill_parent"
+					    	android:layout_height="160dp"
 					    	android:layout_centerHorizontal="true"
 					    	android:layout_centerInParent="true"
-					    	android:gravity="center"
+					    	android:layout_gravity="center_horizontal"
 					    	android:paddingLeft="25dp"
 					    	android:paddingRight="25dp"/>
 					    <TextView
