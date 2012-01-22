@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   	xmlns:android="http://schemas.android.com/apk/res/android"
+  	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
   	android:layout_width="fill_parent"
-  	android:layout_height="60dp"
-  	android:orientation="horizontal"
+  	android:layout_height="wrap_content"
+  	android:orientation="vertical"
   	android:layout_gravity="bottom"
   	android:gravity="bottom">
-  	<LinearLayout
+	<LinearLayout
 	  	android:layout_width="fill_parent"
 	  	android:layout_height="60dp"
-	  	android:layout_weight="1"
-	  	android:orientation="horizontal">
+	  	android:orientation="horizontal"
+	  	android:layout_gravity="bottom"
+	  	android:gravity="bottom">
+	  	<LinearLayout
+		  	android:layout_width="fill_parent"
+		  	android:layout_height="60dp"
+		  	android:layout_weight="1"
+		  	android:orientation="horizontal">
+		  	<Button
+		  		android:layout_width="fill_parent"
+		  		android:layout_height="60dp"
+		  		android:id="@+id/video_back_button"
+		  		android:layout_weight="1"
+		  		android:background="@drawable/back_button"/>
+		  	<Button
+		  		android:layout_width="fill_parent"
+		  		android:layout_height="60dp"
+		  		android:id="@+id/video_next_button"
+		  		android:layout_weight="1"
+		  		android:background="@drawable/next_button"/>
+	  	</LinearLayout>
 	  	<Button
 	  		android:layout_width="fill_parent"
 	  		android:layout_height="60dp"
-	  		android:id="@+id/video_back_button"
+	  		android:id="@+id/play_video_button"
 	  		android:layout_weight="1"
-	  		android:background="@drawable/back_button"/>
-	  	<Button
-	  		android:layout_width="fill_parent"
-	  		android:layout_height="60dp"
-	  		android:id="@+id/video_next_button"
-	  		android:layout_weight="1"
-	  		android:background="@drawable/next_button"/>
-  	</LinearLayout>
-  	<Button
-  		android:layout_width="fill_parent"
-  		android:layout_height="60dp"
-  		android:id="@+id/play_video_button"
-  		android:layout_weight="1"
-  		android:background="@drawable/play_button"/>
+	  		android:background="@drawable/play_button"/>
+	</LinearLayout>
+	<com.google.ads.AdView android:id="@+id/adView3"
+    	android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="a14ee62dcb57886"
+        ads:adSize="BANNER"
+        ads:loadAdOnCreate="true"/>
 </LinearLayout>
