@@ -10,41 +10,155 @@ class CheckersTest
 	 */
 
 	public function test_is_null() {
-		$this->assertTrue(Checkers::is_null(null, $error));
-		$this->assertTrue(Checkers::is_null("", $error));
-		$this->assertTrue(Checkers::is_null("        ", $error));
-		$this->assertTrue(Checkers::is_null("\t", $error));
-		$this->assertTrue(Checkers::is_null("\n", $error));
-		$this->assertTrue(!Checkers::is_null(0, $error));
-		$this->assertTrue(!Checkers::is_null(23, $error));
-		$this->assertTrue(!Checkers::is_null("sdas", $error));
-		$this->assertTrue(!Checkers::is_null("0", $error));
-		$this->assertTrue(!Checkers::is_null("3434", $error));
-		$this->assertTrue(!Checkers::is_null(24.5454, $error));
+		$error = array();
+		$array = array(
+			'null' => null
+		);
+		$checks = array(
+			'null'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NULL . "null");
+		$error = array();
+		$array = array(
+			'null' => ""
+		);
+		$checks = array(
+			'null'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NULL . "null");
+		$error = array();
+		$array = array(
+			'null' => "      "
+		);
+		$checks = array(
+			'null'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NULL . "null");
+		$error = array();
+		$array = array(
+			'null' => "\t"
+		);
+		$checks = array(
+			'null'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NULL . "null");
+		$error = array();
+		$array = array(
+			'null' => "\n"
+		);
+		$checks = array(
+			'null'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NULL . "null");
+		$error = array();
+		$array = array(
+				'p1' => 0, 'p2' => 23, 'p3' => "sdas", 'p4' => "343",
+				'p5' => "24.545"
+		);
+		$checks = array(
+			'p1', 'p2', 'p3', 'p4', 'p5'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
 	}
 
 	/**
 	 * Function for testing Checkers' function is_number
 	 */
 
-	public function test_is_integer() {
-		$this->assertTrue(!Checkers::is_number(null));
-		$this->assertTrue(!Checkers::is_number(""));
-		$this->assertTrue(!Checkers::is_number("a"));
-		$this->assertTrue(!Checkers::is_number("43fdsfd"));
-		$this->assertTrue(Checkers::is_number("04342"));
-		$this->assertTrue(Checkers::is_number(043543));
-		$this->assertTrue(!Checkers::is_number(23.43));
-		$this->assertTrue(!Checkers::is_number(0.434));
-		$this->assertTrue(!Checkers::is_number(.434));
-		$this->assertTrue(!Checkers::is_number(".434"));
-		$this->assertTrue(Checkers::is_number(0));
-		$this->assertTrue(Checkers::is_number(21));
-		$this->assertTrue(Checkers::is_number(23.43, $error, false));
-		$this->assertTrue(Checkers::is_number(0.434, $error, false));
-		$this->assertTrue(Checkers::is_number(.434, $error, false));
-		$this->assertTrue(Checkers::is_number(".434", $error, false));
-		$this->assertTrue(Checkers::is_number("00.434", $error, false));
+	public function test_is_number() {
+		$error = array();
+		$array = array(
+			'none' => "a"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_number($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_NUMBER . "none");
+		$error = array();
+		$array = array(
+			'none' => "43fds"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_number($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_NUMBER . "none");
+		$error = array();
+		$array = array(
+			'none' => 23.43
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_number($array, $checks, $error, true);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_INTEGER . "none");
+		$error = array();
+		$array = array(
+			'none' => .54
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_number($array, $checks, $error, true);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_INTEGER . "none");
+		$error = array();
+		$array = array(
+			'none' => ".65"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_number($array, $checks, $error, true);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_INTEGER . "none");
+		$error = array();
+		$array = array(
+				'p1' => 0, 'p2' => 23.4, 'p3' => "043", 'p4' => "0",
+				'p5' => ".545", 'p6' => .45, 'p7' => 0675, 'p8' => "00.43"
+		);
+		$checks = array(
+			'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'
+		);
+		Checkers::is_null($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+		$error = array();
+		$array = array(
+			'p1' => 0, 'p2' => 23, 'p3' => "043", 'p4' => "0", 'p5' => "545"
+		);
+		$checks = array(
+			'p1', 'p2', 'p3', 'p4', 'p5'
+		);
+		Checkers::is_null($array, $checks, $error, true);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
 	}
 
 	/**
@@ -52,29 +166,69 @@ class CheckersTest
 	 */
 
 	public function test_is_date() {
-		$this->assertTrue(!Checkers::is_date("a", 2, 3));
-		$this->assertTrue(!Checkers::is_date(NULL, 2, 3));
-		$this->assertTrue(!Checkers::is_date(4, "adsd", "sasa"));
-		$this->assertTrue(!Checkers::is_date(3, 0, 3));
-		$this->assertTrue(Checkers::is_date(1, 2, 3));
-		$this->assertTrue(!Checkers::is_date(31, 2, 3));
-		$this->assertTrue(Checkers::is_date("1", "    2", "2"));
+		$error = array();
+		$array = array(
+			"day_b" => "A", "month_b" => 12, "year_b" => 1912
+		);
+		$checks = array(
+				array(
+					"day" => "day_b", "month" => "month_b", "year" => "year_b"
+				)
+		);
+		Checkers::is_date($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_NUMBER . "day_b");
+		$error = array();
+		$array = array(
+			"day_b" => "13", "month_b" => "2.3", "year_b" => 1912
+		);
+		$checks = array(
+				array(
+					"day" => "day_b", "month" => "month_b", "year" => "year_b"
+				)
+		);
+		Checkers::is_date($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue(
+						$error[0] == Checkers::MESSAGE_NON_INTEGER . "month_b");
+		$error = array();
+		$array = array(
+			"day_b" => "13", "month_b" => "2", "year_b" => ".3"
+		);
+		$checks = array(
+				array(
+					"day" => "day_b", "month" => "month_b", "year" => "year_b"
+				)
+		);
+		Checkers::is_date($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_INTEGER . "year_b");
+		$error = array();
+		$array = array(
+			"day_b" => "31", "month_b" => "2", "year_b" => "1994"
+		);
+		$checks = array(
+				array(
+					"day" => "day_b", "month" => "month_b", "year" => "year_b"
+				)
+		);
+		Checkers::is_date($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue(
+						$error[0] == Checkers::MESSAGE_NON_DATE . "day_b"
+								&& $error[1]
+										== Checkers::MESSAGE_NON_DATE
+												. "month_b"
+								&& $error[2]
+										== Checkers::MESSAGE_NON_DATE
+												. "year_b");
 		$year = date("Y");
 		$month = date("n");
 		$day = date("j");
-		$this->assertTrue(!Checkers::is_date($day, $month, $year, $error, true));
-		$check_day = date("j",
-				mktime(0, 0, 0, $month, $day,
-						$year - ManagerIni::get_underage()));
-		$check_month = date("n",
-				mktime(0, 0, 0, $month, $day,
-						$year - ManagerIni::get_underage()));
-		$check_year = date("Y",
-				mktime(0, 0, 0, $month, $day,
-						$year - ManagerIni::get_underage()));
-		$this->assertTrue(
-						Checkers::is_date($check_day, $check_month,
-								$check_year, $error, true));
 		$check_day = date("j",
 				mktime(0, 0, 0, $month, $day + 1,
 						$year - ManagerIni::get_underage()));
@@ -82,11 +236,43 @@ class CheckersTest
 				mktime(0, 0, 0, $month, $day + 1,
 						$year - ManagerIni::get_underage()));
 		$check_year = date("Y",
-				mktime(0, 0, 0, $month, $day,
+				mktime(0, 0, 0, $month, $day + 1,
 						$year - ManagerIni::get_underage()));
+		$error = array();
+		$array = array(
+				"day_b" => $check_day, "month_b" => $check_month,
+				"year_b" => $check_year
+		);
+		$checks = array(
+				array(
+					"day" => "day_b", "month" => "month_b", "year" => "year_b"
+				)
+		);
+		Checkers::is_date($array, $checks, $error, true);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
 		$this->assertTrue(
-						!Checkers::is_date($check_day, $check_month,
-								$check_year, $error, true));
+						$error[0] == Checkers::MESSAGE_NON_UNDERAGE . "year_b"
+								|| $error[0]
+										== Checkers::MESSAGE_NON_UNDERAGE
+												. "month_b"
+								|| $error[0]
+										== Checkers::MESSAGE_NON_UNDERAGE
+												. "day_b");
+		$error = array();
+		$array = array(
+			"day_b" => "28", "month_b" => "2", "year_b" => "1994"
+		);
+		$checks = array(
+				array(
+						"day" => "day_b", "month" => "month_b",
+						"year" => "year_b", "new_parameter" => "date"
+				)
+		);
+		Checkers::is_date($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+		$this->assertTrue(isset($array['date']));
 		$check_day = date("j",
 				mktime(0, 0, 0, $month, $day - 1,
 						$year - ManagerIni::get_underage()));
@@ -94,43 +280,252 @@ class CheckersTest
 				mktime(0, 0, 0, $month, $day - 1,
 						$year - ManagerIni::get_underage()));
 		$check_year = date("Y",
-				mktime(0, 0, 0, $month, $day,
+				mktime(0, 0, 0, $month, $day - 1,
 						$year - ManagerIni::get_underage()));
-		$this->assertTrue(
-						Checkers::is_date($check_day, $check_month,
-								$check_year, $error, true));
+		$error = array();
+		$array = array(
+				"day_b" => $check_day, "month_b" => $check_month,
+				"year_b" => $check_year
+		);
+		$checks = array(
+				array(
+						"day" => "day_b", "month" => "month_b",
+						"year" => "year_b", "new_parameter" => "date"
+				)
+		);
+		Checkers::is_date($array, $checks, $error, true);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+		$this->assertTrue(isset($array['date']));
 	}
 	/**
 	 * Function for testing Checkers' function is_password
 	 */
 
 	public function test_is_password() {
-		$this->assertTrue(!Checkers::is_password("dsadsada", "gdgrrgdfx"));
-		$this->assertTrue(Checkers::is_password("123456", "123456"));
+		$error = array();
+		$array = array(
+			"p" => "As", "c" => "1"
+		);
+		$checks = array(
+			array(
+				"password" => "p", "confirm_password" => "c"
+			)
+		);
+		Checkers::is_password($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_MATCH . "c");
+
+		$error = array();
+		$array = array(
+			"p" => "As", "c" => "as"
+		);
+		$checks = array(
+			array(
+				"password" => "p", "confirm_password" => "c"
+			)
+		);
+		Checkers::is_password($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_MATCH . "c");
+
+		$error = array();
+		$array = array(
+			"p" => "As", "c" => "As"
+		);
+		$checks = array(
+			array(
+				"password" => "p", "confirm_password" => "c"
+			)
+		);
+		Checkers::is_password($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+
+		$error = array();
+		$array = array(
+			"p" => "As", "c" => "As"
+		);
+		$checks = array(
+				array(
+						"password" => "p", "confirm_password" => "c",
+						"new_parameter" => "sifra"
+				)
+		);
+		Checkers::is_password($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+		$this->assertTrue(isset($array['sifra']));
 	}
 	/**
 	 * Function for testing Checkers' function is_email
 	 */
 
 	public function test_is_email() {
-		$this->assertTrue(!Checkers::is_email("dsadsada"));
-		$this->assertTrue(!Checkers::is_email("dojchiloyahoo.com"));
-		$this->assertTrue(!Checkers::is_email("dojchilo@yahoocom"));
-		$this->assertTrue(Checkers::is_email("dojchilo@yahoo.com"));
-		$this->assertTrue(Checkers::is_email("dojchilo@yahoo.co.rs"));
+		$error = array();
+		$array = array(
+			'none' => "a"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_email($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_EMAIL . "none");
+
+		$error = array();
+		$array = array(
+			'none' => "a@s"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_email($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_EMAIL . "none");
+
+		$error = array();
+		$array = array(
+			'none' => "a.com"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_email($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_EMAIL . "none");
+
+		$error = array();
+		$array = array(
+			'none' => "a@.com"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_email($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_EMAIL . "none");
+
+		$error = array();
+		$array = array(
+			'none' => "@a.com"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_email($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_NON_EMAIL . "none");
+
+		$error = array();
+		$array = array(
+			'none' => "a@a.com"
+		);
+		$checks = array(
+			'none'
+		);
+		Checkers::is_email($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
 	}
 	/**
 	 * Function for testing Checkers' function is_valid_length
 	 */
 
 	public function test_is_valid_length() {
-		$this->assertTrue(Checkers::is_valid_length("dsadsada"));
-		$this->assertTrue(Checkers::is_valid_length("dsadsada",4));
-		$this->assertTrue(Checkers::is_valid_length("dsadsada",NULL,10));
-		$this->assertTrue(Checkers::is_valid_length("dsadsada",6,8));
-		$this->assertTrue(!Checkers::is_valid_length("dsadsada",10));
-		$this->assertTrue(!Checkers::is_valid_length("dsadsada",null,4));
-		$this->assertTrue(!Checkers::is_valid_length("dsadsada",4,5));
-		$this->assertTrue(!Checkers::is_valid_length("dsadsada",14,15));
+		$error = array();
+		$array = array(
+			"c" => "As",
+		);
+		$checks = array(
+			array(
+				"parameter" => "c", "minimum" => 3
+			)
+		);
+		Checkers::is_valid_length($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_INVALID_MINIMUM . "c");
+
+		$error = array();
+		$array = array(
+			"c" => "As",
+		);
+		$checks = array(
+			array(
+				"parameter" => "c", "maximum" => 1
+			)
+		);
+		Checkers::is_valid_length($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_INVALID_MAXIMUM . "c");
+
+		$error = array();
+		$array = array(
+			"c" => "As",
+		);
+		$checks = array(
+				array(
+					"parameter" => "c", "minimum" => 3, "maximum" => 1
+				)
+		);
+		Checkers::is_valid_length($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_INVALID_MINIMUM . "c");
+		$this->assertTrue($error[1] == Checkers::MESSAGE_INVALID_MAXIMUM . "c");
+
+		$error = array();
+		$array = array(
+			"c" => "As",
+		);
+		$checks = array(
+				array(
+					"parameter" => "c", "minimum" => 1, "maximum" => 3
+				)
+		);
+		Checkers::is_valid_length($array, $checks, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+	}
+
+	/**
+	 * Function for testing Checkers' function set_order
+	 */
+
+	public function test_set_order() {
+		$error = array();
+		$array = array(
+			"b" => "B", "c" => "C"
+		);
+		$checks = array(
+			0 => "c", 1 => "e"
+		);
+		Checkers::set_order($array, $checks, $order, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertTrue(count($error));
+		$this->assertTrue($error[0] == Checkers::MESSAGE_INVALID_ORDER . "e");
+		
+		$error = array();
+		$array = array(
+			"b" => "B", "c" => "C"
+		);
+		$checks = array(
+			0 => "c", 1 => "b"
+		);
+		Checkers::set_order($array, $checks, $order, $error);
+		$this->assertTrue(is_array($error));
+		$this->assertFalse(count($error));
+		$this->assertTrue(count($order));
+		$this->assertTrue($order[0] == "C");
+		$this->assertTrue($order[1] == "B");
 	}
 }

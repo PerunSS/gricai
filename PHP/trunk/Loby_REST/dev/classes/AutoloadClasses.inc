@@ -13,8 +13,7 @@ function __autoload($class) {
 			//Modals
 			'User' => 'model/', 'Modal' => 'model/', 'Error' => 'model/',
 			//Formaters
-			'FormatSingleRowObject' => 'manager/formater/',
-			'Formater' => 'manager/'
+			'Formaters' => 'utils/'
 	);
 	if (isset($classes[$class])) {
 		require_once $classes[$class] . $class . '.class.inc';
