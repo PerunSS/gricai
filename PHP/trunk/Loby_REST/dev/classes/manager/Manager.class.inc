@@ -26,6 +26,36 @@ class Manager {
 	}
 
 	/**
+	 * Function that execute query, and return result.
+	 * @param string $query Query that will be executed 
+	 * @param array $data Optional arguments if required by the query	 
+	 * @return PDOStatement $result Query result set
+	 * @throws Exception If query fails to execute
+	 */
+
+	public function execute($query,$data) {
+		$statement = NULL;
+		try {
+			$this->connect();
+			if ($this->db != NULL) {
+				$statement = $this->db
+						->prepare($query);
+				foreach ($data as $key => $value) {
+					if (empty($value) && $value != 0)
+						$statement->bindValue($key + 1, null, PDO::PARAM_NULL);
+					else
+						$statement->bindValue($key + 1, $value);
+				}
+				$statement->execute();
+			}
+			$this->close();
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage(), $e->getCode());
+		}
+		return $statement;
+	}
+
+	/**
 	 * Open DB connection
 	 * @throws PDOException If connection fails
 	 */
@@ -55,86 +85,5 @@ class Manager {
 
 	private function close() {
 		$this->db = NULL;
-	}
-
-	/**
-	 * Function that calls stored procedure, execute it, and return result.
-	 * @param string $name Name of the procedure
-	 * @param array $data Optional arguments if required by the procedure
-	 * @return PDOStatement $result Procedure result set
-	 * @throws Exception If procedure fails to execute
-	 */
-
-	public function execute_procedure($name, $data) {
-		$statement = NULL;
-		$query = "call " . $name . "(";
-		if (is_array($data)) {
-			for ($i = 0; $i < sizeof($data); $i++) {
-				$query = $query . "?";
-				if ($i != sizeof($data) - 1)
-					$query = $query . ",";
-			}
-		}
-		$query .= ");";
-		try {
-			$this->connect();
-			if ($this->db != NULL) {
-				$statement = $this->db
-						->prepare($query);
-				foreach ($data as $key => $value) {
-					if (empty($value) && $value != 0)
-						$statement->bindValue($key + 1, null, PDO::PARAM_NULL);
-					else
-						$statement->bindValue($key + 1, $value);
-				}
-				$statement->execute();
-			}
-			$this->close();
-		} catch (Exception $e) {
-			throw new Exception($e->getMessage(), $e->getCode());
-		}
-		return $statement;
-	}
-
-	/**
-	 * Function that calls stored function, execute it, and return result.
-	 * @param string $name Name of the procedure
-	 * @param array $data Optional arguments if required by the procedure
-	 * @return Object $result Result of query
-	 * @throws Exception If procedure fails to execute
-	 */
-
-	public function execute_function($name, $data) {
-		$statement = NULL;
-		$result = false;
-		$query = "select " . $name . "(";
-		if (is_array($data)) {
-			for ($i = 0; $i < sizeof($data); $i++) {
-				$query = $query . "?";
-				if ($i != sizeof($data) - 1)
-					$query = $query . ",";
-			}
-		}
-		$query .= ") as status;";
-		try {
-			$this->connect();
-			if ($this->db != NULL) {
-				$statement = $this->db
-						->prepare($query);
-				foreach ($data as $key => $value) {
-					if (empty($value) && $value != 0)
-						$statement->bindValue($key + 1, null, PDO::PARAM_NULL);
-					else
-						$statement->bindValue($key + 1, $value);
-				}
-				$statement->execute();
-				$array = $statement->fetchAll();
-				$result = $array[0]["status"];
-			}
-			$this->close();
-		} catch (Exception $e) {
-			throw new Exception($e->getMessage(), $e->getCode());
-		}
-		return $result;
 	}
 }
