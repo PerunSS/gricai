@@ -445,8 +445,10 @@ public class NickiStarActivity extends Activity {
 		if (shouldUpdate) {
 			int version = getPreferences(MODE_WORLD_READABLE).getInt(
 					"version_" + type, 0);
-			if (Model.getInstance().loadData(type,
-					getString(R.string.app_name), version)) {
+			int newVersion = Model.getInstance().loadData(type,
+					getString(R.string.app_name), version);
+			if (newVersion > version){
+				version = newVersion;
 				saveToPhone(type, version,
 						Model.getInstance().getTexts().get(type), true);
 			}

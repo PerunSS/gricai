@@ -129,7 +129,7 @@ public class Model {
 		}
 	}
 
-	public boolean loadData(String type, String name, int version) {
+	public int loadData(String type, String name, Integer version) {
 		numberOfChanges.clear();
 		List<String> data = texts.get(type);
 		if(data == null){
@@ -141,7 +141,6 @@ public class Model {
 				+ "&text_type="
 				+ type
 				+ "&version=" + version);
-		boolean changed = false;
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
 			JSONArray elements = jsonobj.getJSONArray("data");
@@ -153,7 +152,7 @@ public class Model {
 					if (version < elementobj.getInt("text_version")) {
 						version = elementobj.getInt("text_version");
 					}
-					changed = true;
+					
 				}
 			}
 		} catch (JSONException e) {
@@ -161,7 +160,7 @@ public class Model {
 		}
 		Collections.shuffle(data);
 		texts.put(type, data);
-		return changed;
+		return version;
 	}
 
 	private StringBuilder readFromLink(String url) {
