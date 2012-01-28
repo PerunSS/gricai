@@ -332,6 +332,13 @@ public class NickiStarActivity extends Activity {
 			public void onClick(View v) {
 				if (videoPosition < Model.getInstance().getVideos().size()) {
 					videoPosition += 1;
+					if (Model.getInstance().getVideos()
+							.get(videoPosition).getTitle()==null){
+						Video video = new Video();
+						video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
+						Model.getInstance().getVideos().put(videoPosition, video);
+						saveVideoToPhone();
+					}
 					videoTitle.setText(Model.getInstance().getVideos()
 							.get(videoPosition).getTitle());
 					videoDescription.setText(Model.getInstance().getVideos()
@@ -625,13 +632,17 @@ public class NickiStarActivity extends Activity {
 			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
 			isToogle = false;
 			menuShown = false;
-			videoTitle.setText(Model.getInstance().getVideos().get(1)
+			videoPosition++;
+			Video video = new Video();
+			video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
+			Model.getInstance().getVideos().put(videoPosition, video);
+			saveVideoToPhone();
+			videoTitle.setText(Model.getInstance().getVideos().get(videoPosition)
 					.getTitle());
-			videoDescription.setText(Model.getInstance().getVideos().get(1)
+			videoDescription.setText(Model.getInstance().getVideos().get(videoPosition)
 					.getDescription());
 			new LoadImageTask(videoImage, Model.getInstance().getVideos()
-					.get(1).getImagePath()).execute();
-			videoPosition = 1;
+					.get(videoPosition).getImagePath()).execute();
 			videoBackButton.setVisibility(View.INVISIBLE);
 			videoImage.setOnClickListener(videoPlayListener);
 		}

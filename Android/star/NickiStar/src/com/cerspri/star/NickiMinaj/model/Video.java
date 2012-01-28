@@ -24,7 +24,7 @@ public class Video implements Serializable{
 	private int id;
 	private String videoTag;
 
-	boolean extractFromTag(String videoTag) {
+	public boolean extractFromTag(String videoTag) {
 		this.videoTag = videoTag;
 		try {
 			URL url = new URL("http://gdata.youtube.com/feeds/api/videos/"
@@ -108,5 +108,9 @@ public class Video implements Serializable{
 
 	public String getVideoTag() {
 		return videoTag;
+	}
+	
+	public void setVideoTag(String videoTag) {
+		this.videoTag=videoTag;
 	}
 }

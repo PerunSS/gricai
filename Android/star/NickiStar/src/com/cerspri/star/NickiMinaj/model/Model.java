@@ -121,7 +121,8 @@ public class Model {
 				}
 				Video holder = new Video();
 				holder.setId(id);
-				holder.extractFromTag(tag);
+				holder.setVideoTag(tag);
+				//holder.extractFromTag(tag);
 				videos.put(holder.getId(), holder);
 			}
 		} catch (JSONException e) {
