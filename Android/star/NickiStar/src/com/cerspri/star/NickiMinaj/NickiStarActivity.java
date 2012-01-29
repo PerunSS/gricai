@@ -31,7 +31,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +41,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cerspri.star.NickiMinaj.model.Model;
-import com.cerspri.star.NickiMinaj.model.News;
 import com.cerspri.star.NickiMinaj.model.Video;
 import com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer;
 
@@ -676,49 +674,49 @@ public class NickiStarActivity extends Activity {
 	}
 	
 
-	@SuppressWarnings("unused")
-	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
-
-		@Override
-		protected Void doInBackground(Integer... params) {
-			Model.getInstance().loadNews(params[0],
-					getString(R.string.app_name));
-			return null;
-		}
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
-					"Loading...");
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-			progressDialog.dismiss();
-			mDrawer.animateClose();
-			newsDrawer.animateOpen();
-			state = 3;
-
-			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
-			News news = Model.getInstance().getNews().get(0);
-			scrollText.setText(Html.fromHtml(news.getText()));
-			newsNumber.setText("1/10");
-			newsHeader.setText(Html.fromHtml("<a href = " + news.getLink())
-					+ ">" + news.getLinkDescription());
-
-			final float scale = getResources().getDisplayMetrics().density;
-			int padding_50dp = (int) (90 * scale + 0.5f);
-
-			newsLayout.setVisibility(View.VISIBLE);
-			textLayout.setPadding(0, newsLayout.getHeight() + padding_50dp, 0,
-					0);
-
-			scrollText.setText(new Integer(newsLayout.getHeight()).toString());
-			textLayout.setVisibility(View.VISIBLE);
-		}
-	}
+//	@SuppressWarnings("unused")
+//	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
+//
+//		@Override
+//		protected Void doInBackground(Integer... params) {
+//			Model.getInstance().loadNews(params[0],
+//					getString(R.string.app_name));
+//			return null;
+//		}
+//
+//		@Override
+//		protected void onPreExecute() {
+//			super.onPreExecute();
+//			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
+//					"Loading...");
+//		}
+//
+//		@Override
+//		protected void onPostExecute(Void result) {
+//			super.onPostExecute(result);
+//			progressDialog.dismiss();
+//			mDrawer.animateClose();
+//			newsDrawer.animateOpen();
+//			state = 3;
+//
+//			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
+//			News news = Model.getInstance().getNews().get(0);
+//			scrollText.setText(Html.fromHtml(news.getText()));
+//			newsNumber.setText("1/10");
+//			newsHeader.setText(Html.fromHtml("<a href = " + news.getLink())
+//					+ ">" + news.getLinkDescription());
+//
+//			final float scale = getResources().getDisplayMetrics().density;
+//			int padding_50dp = (int) (90 * scale + 0.5f);
+//
+//			newsLayout.setVisibility(View.VISIBLE);
+//			textLayout.setPadding(0, newsLayout.getHeight() + padding_50dp, 0,
+//					0);
+//
+//			scrollText.setText(new Integer(newsLayout.getHeight()).toString());
+//			textLayout.setVisibility(View.VISIBLE);
+//		}
+//	}
 
 	private class LoadImageTask extends AsyncTask<Void, Void, Drawable> {
 		private ImageView view;

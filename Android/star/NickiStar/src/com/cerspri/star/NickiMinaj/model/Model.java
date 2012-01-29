@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,11 +26,11 @@ public class Model {
 	private static Model instance = new Model();
 	private Map<String, Integer> currents;
 	private Map<String, List<String>> texts;
-	private Map<Integer, News> news;
+	private Map<String, News> news;
 	private Map<String, Integer> numberOfChanges;
 	private Map<Integer, Video> videos;
 	private int lastVideoID = 0;
-	
+	private int version = 0;
 	private Model() {
 	}
 
@@ -46,7 +45,7 @@ public class Model {
 		if (numberOfChanges == null)
 			numberOfChanges = new HashMap<String, Integer>();
 		if (news == null)
-			news = new HashMap<Integer, News>();
+			news = new HashMap<String, News>();
 		if (videos == null)
 			videos = new HashMap<Integer, Video>();
 	}
@@ -61,45 +60,34 @@ public class Model {
 		return texts.get(type).get(index);
 	}
 
-	public void loadNews(int page, String name) {
+	public int loadNews(Integer version,String name) {
+		this.version = version;
+		System.out.println("version: "+version);
 		if (news == null) {
-			news = new TreeMap<Integer, News>();
+			news = new HashMap<String, News>();
 		}
-		StringBuilder builder = readFromLink("http://www.google.com/search?q="
-				+ name.toLowerCase().replace(' ', '+')
-				+ "&hl=en&prmd=imvnso&source=lnms&tbm=nws");
-		boolean hasNext = true;
-		int linkIndex = 0;
-		int index = page * News.PAGE_SIZE;
-		while (hasNext) {
-
-			linkIndex = builder.indexOf(News.NEWS_LINK_START, linkIndex + 1);
-			News holder = news.get(index);
-			if (holder == null) {
-				holder = new News();
-			}
-			boolean shouldAdd = false;
-			if (linkIndex > 0) {
-				int endIndex = builder.indexOf(News.NEWS_LINK_END, linkIndex);
-				shouldAdd = holder.extractLink(builder.substring(linkIndex,
-						endIndex));
-				int textIndex = builder
-						.indexOf(News.NEWS_TEXT_START, linkIndex);
-				if (textIndex > 0 && shouldAdd) {
-					endIndex = builder.indexOf(News.NEWS_TEXT_END, textIndex);
-					shouldAdd = holder.extractText(builder.substring(textIndex,
-							endIndex));
-				} else {
-					hasNext = false;
+		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
+				+ name.toLowerCase().replace(' ', '+') + "&version=" + version);
+		try {
+			JSONObject jsonobj = new JSONObject(builder.toString());
+			JSONArray elements = jsonobj.getJSONArray("data");
+			for (int i = 0; i < elements.length(); i++) {
+				JSONObject elementobj = elements.getJSONObject(i);
+				if(elementobj.getInt("version")>this.version){
+					this.version=elementobj.getInt("version");
 				}
-			} else {
-				hasNext = false;
+				News holder = new News();
+				holder.setContent(elementobj.getString("content"));
+				holder.setImagePath(elementobj.getString("image"));
+				holder.setNewsUrl(elementobj.getString("url"));
+				holder.setPubDate(elementobj.getString("pub_date"));
+				holder.setTitle(elementobj.getString("title"));
+				news.put(holder.getPubDate(), holder);
 			}
-			if (shouldAdd) {
-				news.put(index, holder);
-				index++;
-			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
+		return this.version;
 	}
 
 	public void loadVideos(Integer lastID, String name) {
@@ -190,7 +178,7 @@ public class Model {
 		return builder;
 	}
 
-	public Map<Integer, News> getNews() {
+	public Map<String, News> getNews() {
 		return news;
 	}
 
