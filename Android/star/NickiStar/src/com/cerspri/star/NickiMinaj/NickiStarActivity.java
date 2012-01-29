@@ -334,11 +334,8 @@ public class NickiStarActivity extends Activity {
 					videoPosition += 1;
 					if (Model.getInstance().getVideos()
 							.get(videoPosition).getTitle()==null){
-						Video video = new Video();
-						video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
-						Model.getInstance().getVideos().put(videoPosition, video);
-						saveVideoToPhone();
-					}
+						new VideoLodaerTask().execute();
+					}else{
 					videoTitle.setText(Model.getInstance().getVideos()
 							.get(videoPosition).getTitle());
 					videoDescription.setText(Model.getInstance().getVideos()
@@ -347,6 +344,7 @@ public class NickiStarActivity extends Activity {
 					new LoadImageTask(videoImage, Model.getInstance()
 							.getVideos().get(videoPosition).getImagePath())
 							.execute();
+					}
 				}
 				if (videoPosition == Model.getInstance().getVideos().size()) {
 					videoNextButton.setVisibility(View.INVISIBLE);
@@ -633,21 +631,47 @@ public class NickiStarActivity extends Activity {
 			isToogle = false;
 			menuShown = false;
 			videoPosition++;
-			Video video = new Video();
-			video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
-			Model.getInstance().getVideos().put(videoPosition, video);
-			saveVideoToPhone();
-			videoTitle.setText(Model.getInstance().getVideos().get(videoPosition)
-					.getTitle());
-			videoDescription.setText(Model.getInstance().getVideos().get(videoPosition)
-					.getDescription());
-			new LoadImageTask(videoImage, Model.getInstance().getVideos()
-					.get(videoPosition).getImagePath()).execute();
+			new VideoLodaerTask().execute();
 			videoBackButton.setVisibility(View.INVISIBLE);
 			videoImage.setOnClickListener(videoPlayListener);
 		}
 
 	}
+	
+	private class VideoLodaerTask extends AsyncTask<Integer, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
+					"Loading...");
+		}
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			Video video = new Video();
+			video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
+			Model.getInstance().getVideos().put(videoPosition, video);
+			saveVideoToPhone();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			progressDialog.dismiss();
+			videoTitle.setText(Model.getInstance().getVideos()
+					.get(videoPosition).getTitle());
+			videoDescription.setText(Model.getInstance().getVideos()
+					.get(videoPosition).getDescription());
+			videoImage.setOnClickListener(videoPlayListener);
+			new LoadImageTask(videoImage, Model.getInstance()
+					.getVideos().get(videoPosition).getImagePath())
+					.execute();
+		}
+
+	}
+	
 
 	@SuppressWarnings("unused")
 	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
