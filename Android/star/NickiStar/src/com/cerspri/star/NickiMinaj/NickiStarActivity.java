@@ -469,6 +469,9 @@ public class NickiStarActivity extends Activity {
 				try{
 					Video video = (Video)ois.readObject();
 					Model.getInstance().getVideos().put(video.getId(), video);
+					System.out.println(video.getId());
+					System.out.println(video.getVideoTag());
+					System.out.println(video.getTitle());
 					if(video.getId() > max){
 						max = video.getId();
 					}
@@ -615,13 +618,13 @@ public class NickiStarActivity extends Activity {
 		protected Void doInBackground(Integer... params) {
 			Model.getInstance().loadVideos(params[0],
 					getString(R.string.app_name));
-			saveVideoToPhone();
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			saveVideoToPhone();
 			progressDialog.dismiss();
 			mDrawer.animateClose();
 			videoButtonsDrawer.animateOpen();
@@ -652,13 +655,13 @@ public class NickiStarActivity extends Activity {
 			Video video = new Video();
 			video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
 			Model.getInstance().getVideos().put(videoPosition, video);
-			saveVideoToPhone();
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			saveVideoToPhone();
 			progressDialog.dismiss();
 			videoTitle.setText(Model.getInstance().getVideos()
 					.get(videoPosition).getTitle());
@@ -724,6 +727,7 @@ public class NickiStarActivity extends Activity {
 		LoadImageTask(ImageView view, String url) {
 			this.view = view;
 			this.url = url;
+			this.view.setImageResource(R.drawable.loading);
 		}
 
 		@Override
