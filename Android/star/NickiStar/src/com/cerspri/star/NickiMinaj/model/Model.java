@@ -62,7 +62,7 @@ public class Model {
 
 	public int loadNews(Integer version,String name) {
 		this.version = version;
-		System.out.println("version: "+version);
+//		System.out.println("version: "+version);
 		if (news == null) {
 			news = new HashMap<String, News>();
 		}
@@ -91,7 +91,7 @@ public class Model {
 	}
 
 	public void loadVideos(Integer lastID, String name) {
-		System.out.println("lastid: "+lastID);
+		//System.out.println("lastid: "+lastID);
 		if (videos == null) {
 			videos = new HashMap<Integer, Video>();
 		}
@@ -113,6 +113,7 @@ public class Model {
 				//holder.extractFromTag(tag);
 				videos.put(holder.getId(), holder);
 			}
+//			System.out.println(videos);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -204,7 +205,7 @@ public class Model {
 
 	public void setLastVideoID(int lastVideoID) {
 		this.lastVideoID = lastVideoID;
-		System.out.println(lastVideoID+" set");
+//		System.out.println(lastVideoID+" set");
 	}
 
 }

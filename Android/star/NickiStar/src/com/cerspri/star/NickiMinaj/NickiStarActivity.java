@@ -344,7 +344,7 @@ public class NickiStarActivity extends Activity {
 							.execute();
 					}
 				}
-				if (videoPosition == Model.getInstance().getVideos().size()) {
+				if (videoPosition + 1 == Model.getInstance().getVideos().size()) {
 					videoNextButton.setVisibility(View.INVISIBLE);
 				} else if (videoPosition == 2) {
 					videoBackButton.setVisibility(View.VISIBLE);
@@ -467,9 +467,10 @@ public class NickiStarActivity extends Activity {
 				try{
 					Video video = (Video)ois.readObject();
 					Model.getInstance().getVideos().put(video.getId(), video);
-					System.out.println(video.getId());
-					System.out.println(video.getVideoTag());
-					System.out.println(video.getTitle());
+//					System.out.println("====================================");
+//					System.out.println(video.getId());
+//					System.out.println(video.getVideoTag());
+//					System.out.println(video.getTitle());
 					if(video.getId() > max){
 						max = video.getId();
 					}
@@ -493,7 +494,7 @@ public class NickiStarActivity extends Activity {
 			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput("videos", MODE_WORLD_WRITEABLE));
 			for(Map.Entry<Integer, Video> entry: Model.getInstance().getVideos().entrySet()){
 				oos.writeObject(entry.getValue());
-				System.out.println(entry.getValue().getId()+" "+entry.getValue().getVideoTag());
+//				System.out.println(entry.getValue());
 			}
 			oos.close();
 		} catch (FileNotFoundException e) {
@@ -603,6 +604,11 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
+	/**
+	 * tasks request all video tags from cerspri.com
+	 * @author aleksandarvaricak
+	 *
+	 */
 	private class VideosLodaerTask extends AsyncTask<Integer, Void, Void> {
 
 		@Override
@@ -639,7 +645,12 @@ public class NickiStarActivity extends Activity {
 
 	}
 	
-	private class VideoLodaerTask extends AsyncTask<Integer, Void, Void> {
+	/**
+	 * task gets all data from youtube according to video tag
+	 * @author aleksandarvaricak
+	 *
+	 */
+	private class VideoLodaerTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
 		protected void onPreExecute() {
@@ -649,9 +660,9 @@ public class NickiStarActivity extends Activity {
 		}
 
 		@Override
-		protected Void doInBackground(Integer... params) {
-			Video video = new Video();
-			video.extractFromTag(Model.getInstance().getVideos().get(videoPosition).getVideoTag());
+		protected Void doInBackground(Void... params) {
+			Video video = Model.getInstance().getVideos().get(videoPosition);
+			video.extractFromTag(video.getVideoTag());
 			Model.getInstance().getVideos().put(videoPosition, video);
 			return null;
 		}

@@ -113,4 +113,9 @@ public class Video implements Serializable{
 	public void setVideoTag(String videoTag) {
 		this.videoTag=videoTag;
 	}
+	
+	@Override
+	public String toString() {
+		return id+" "+videoTag+" "+title+" "+description+" "+imagePath;
+	}
 }
