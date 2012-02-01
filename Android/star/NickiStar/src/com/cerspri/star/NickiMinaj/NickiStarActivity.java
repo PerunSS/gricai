@@ -41,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cerspri.star.NickiMinaj.model.Model;
+import com.cerspri.star.NickiMinaj.model.News;
 import com.cerspri.star.NickiMinaj.model.Video;
 import com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer;
 
@@ -80,6 +81,7 @@ public class NickiStarActivity extends Activity {
 	Button refreshButton;
 	int state;
 	int videoPosition = 0;
+	int newsVersion = -1;
 	AlertDialog alert;
 	ProgressDialog progressDialog;
 	Context mContext = this;
@@ -103,8 +105,8 @@ public class NickiStarActivity extends Activity {
 		setContentView(R.layout.disclaimer);
 		SharedPreferences sPrefs = this.getSharedPreferences("nikiStarPrefs",
 				MODE_WORLD_READABLE);
-		if (sPrefs.getInt("isFirstTime", 1) == 1) {
-			firstStart();
+		if (sPrefs.getInt("isFirstTime", 1) == 1) {		
+			firstStart();		
 		} else {
 			startApp();
 		}
@@ -116,6 +118,8 @@ public class NickiStarActivity extends Activity {
 		getData("fact", false);
 		getData("quote", false);
 		getVideos();
+		getNews();
+	
 		
 		addButtonActions();
 	}
@@ -224,9 +228,23 @@ public class NickiStarActivity extends Activity {
 		newsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				displayMessage();
+//				displayMessage();
 				// new NewsLoaderTask().execute(0);
-
+				mDrawer.animateClose();
+				newsDrawer.animateOpen();
+				videosLayout.setVisibility(View.VISIBLE);
+				state = 4;
+				toggleMenuButton
+				.setBackgroundResource(R.drawable.open_menu_button);
+				isToogle = false;
+				menuShown = false;
+				videoTitle.setText(Model.getInstance().getNews().get(0).getTitle());
+				videoDescription.setText(Model.getInstance().getNews()
+						.get(0).getContent());
+				videoImage.setOnClickListener(videoPlayListener);
+				new LoadImageTask(videoImage, Model.getInstance()
+						.getNews().get(0).getImagePath())
+						.execute();
 			}
 		});
 		// listener for pictures button
@@ -376,6 +394,7 @@ public class NickiStarActivity extends Activity {
 		newsNumber = (TextView) findViewById(R.id.news_number);
 		newsHeader = (TextView) findViewById(R.id.news_header);
 		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
+		newsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.newsButtonDrawer);
 		refreshButton = (Button) findViewById(R.id.refresh_button);
 		videosLayout = (LinearLayout) findViewById(R.id.videos_layout);
 		videoTitle = (TextView) findViewById(R.id.video_title);
@@ -384,6 +403,7 @@ public class NickiStarActivity extends Activity {
 		videoBackButton = (Button) findViewById(R.id.video_back_button);
 		videoNextButton = (Button) findViewById(R.id.video_next_button);
 		videoPlayButton = (Button) findViewById(R.id.play_video_button);
+		
 		
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -483,6 +503,64 @@ public class NickiStarActivity extends Activity {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (StreamCorruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void getNews(){
+		int count = 0;
+		try {
+			ObjectInputStream ois = new ObjectInputStream(openFileInput("news"));
+			boolean read = true;
+			
+			while(read){
+				try{
+					News news = (News)ois.readObject();
+					Model.getInstance().getNews().put(count++, news);
+//					System.out.println("====================================");
+//					System.out.println(video.getId());
+//					System.out.println(video.getVideoTag());
+//					System.out.println(video.getTitle());
+//					if(video.getId() > max){
+//						max = video.getId();
+////					}
+				}catch (Exception e) {
+					read = false;
+				}
+			}
+			ois.close();
+//			Model.getInstance().setLastVideoID(max);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (StreamCorruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt(
+				"news_version", 0);
+		int newNewsVersion = Model.getInstance().loadNews(newsVersion, count, getString(R.string.app_name));
+		if (newNewsVersion > newsVersion){
+			newsVersion = newNewsVersion;
+			saveNewsToPhone();
+		}
+	}
+	
+	private void saveNewsToPhone(){
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput("news", MODE_WORLD_WRITEABLE));
+			for(Map.Entry<Integer, News> entry: Model.getInstance().getNews().entrySet()){
+				oos.writeObject(entry.getValue());
+				System.out.println(entry.getValue());
+			SharedPreferences preferences = getPreferences(MODE_WORLD_WRITEABLE);
+			SharedPreferences.Editor editor = preferences.edit();
+			editor.putInt("news_version" , newsVersion);
+			editor.commit();
+			}
+			oos.close();
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -235,5 +235,24 @@
 			android:layout_height="0dip"
 			android:background="#FFFFFF"/>
 	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
+	
+	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
+		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
+		android:id="@+id/newsButtonDrawer"
+		my:direction="bottomToTop"
+		android:layout_width="fill_parent"
+		android:layout_height="120dip"
+		my:handle="@+id/handle"
+		my:content="@+id/content" 
+		android:layout_above="@id/anchor_bottom">
+		<include
+			android:id="@id/content"
+			layout="@layout/news_button_drawer" />
+		<ImageView
+			android:id="@id/handle"
+			android:layout_width="wrap_content"
+			android:layout_height="0dip"
+			android:background="#FFFFFF"/>
+	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
 
 </RelativeLayout>

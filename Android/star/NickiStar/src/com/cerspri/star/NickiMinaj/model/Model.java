@@ -26,7 +26,7 @@ public class Model {
 	private static Model instance = new Model();
 	private Map<String, Integer> currents;
 	private Map<String, List<String>> texts;
-	private Map<String, News> news;
+	private Map<Integer, News> news;
 	private Map<String, Integer> numberOfChanges;
 	private Map<Integer, Video> videos;
 	private int lastVideoID = 0;
@@ -45,7 +45,7 @@ public class Model {
 		if (numberOfChanges == null)
 			numberOfChanges = new HashMap<String, Integer>();
 		if (news == null)
-			news = new HashMap<String, News>();
+			news = new HashMap<Integer, News>();
 		if (videos == null)
 			videos = new HashMap<Integer, Video>();
 	}
@@ -60,11 +60,11 @@ public class Model {
 		return texts.get(type).get(index);
 	}
 
-	public int loadNews(Integer version,String name) {
+	public int loadNews(Integer version, Integer lastID, String name) {
 		this.version = version;
 //		System.out.println("version: "+version);
 		if (news == null) {
-			news = new HashMap<String, News>();
+			news = new HashMap<Integer, News>();
 		}
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
 				+ name.toLowerCase().replace(' ', '+') + "&version=" + version);
@@ -82,7 +82,7 @@ public class Model {
 				holder.setNewsUrl(elementobj.getString("url"));
 				holder.setPubDate(elementobj.getString("pub_date"));
 				holder.setTitle(elementobj.getString("title"));
-				news.put(holder.getPubDate(), holder);
+				news.put(lastID+i, holder);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -179,7 +179,7 @@ public class Model {
 		return builder;
 	}
 
-	public Map<String, News> getNews() {
+	public Map<Integer, News> getNews() {
 		return news;
 	}
 
