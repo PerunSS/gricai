@@ -317,7 +317,7 @@ public class NickiStarActivity extends Activity {
 				}
 				if (videoPosition == 1) {
 					videoBackButton.setVisibility(View.INVISIBLE);
-				} else if (videoPosition == Model.getInstance().getVideos()
+				} else if (videoPosition < Model.getInstance().getVideos()
 						.size() - 1) {
 					videoNextButton.setVisibility(View.VISIBLE);
 				}
@@ -346,7 +346,7 @@ public class NickiStarActivity extends Activity {
 				}
 				if (videoPosition + 1 == Model.getInstance().getVideos().size()) {
 					videoNextButton.setVisibility(View.INVISIBLE);
-				} else if (videoPosition == 2) {
+				} else if (videoPosition > 1) {
 					videoBackButton.setVisibility(View.VISIBLE);
 				}
 			}
