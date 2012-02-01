@@ -31,6 +31,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -68,10 +69,11 @@ public class NickiStarActivity extends Activity {
 	MultiDirectionSlidingDrawer newsDrawer;
 	Button quotesButton;
 	TextView scrollText;
-	TextView newsNumber;
-	TextView newsHeader;
+	TextView newsTitle;
+	TextView newsText;
 	TextView videoTitle;
 	TextView videoDescription;
+	ImageView newsImage;
 	ImageView videoImage;
 	LinearLayout textLayout;
 	LinearLayout newsLayout;
@@ -232,17 +234,17 @@ public class NickiStarActivity extends Activity {
 				// new NewsLoaderTask().execute(0);
 				mDrawer.animateClose();
 				newsDrawer.animateOpen();
-				videosLayout.setVisibility(View.VISIBLE);
+				newsLayout.setVisibility(View.VISIBLE);
 				state = 4;
 				toggleMenuButton
 				.setBackgroundResource(R.drawable.open_menu_button);
 				isToogle = false;
 				menuShown = false;
-				videoTitle.setText(Model.getInstance().getNews().get(0).getTitle());
-				videoDescription.setText(Model.getInstance().getNews()
-						.get(0).getContent());
-				videoImage.setOnClickListener(videoPlayListener);
-				new LoadImageTask(videoImage, Model.getInstance()
+				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews().get(0).getTitle()));
+				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(0).getContent()));
+				newsImage.setOnClickListener(videoPlayListener);
+				new LoadImageTask(newsImage, Model.getInstance()
 						.getNews().get(0).getImagePath())
 						.execute();
 			}
@@ -391,8 +393,9 @@ public class NickiStarActivity extends Activity {
 		randomButton = (Button) findViewById(R.id.random_button);
 		shareButton = (Button) findViewById(R.id.share_button);
 		textLayout = (LinearLayout) findViewById(R.id.text_layout);
-		newsNumber = (TextView) findViewById(R.id.news_number);
-		newsHeader = (TextView) findViewById(R.id.news_header);
+		newsTitle = (TextView) findViewById(R.id.news_title);
+		newsImage = (ImageView) findViewById(R.id.news_picture_link);
+		newsText = (TextView) findViewById(R.id.news_text);
 		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
 		newsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.newsButtonDrawer);
 		refreshButton = (Button) findViewById(R.id.refresh_button);
