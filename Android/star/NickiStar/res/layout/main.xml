@@ -66,7 +66,7 @@
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"
 				    android:background="@drawable/close_menu_button" 
-				    android:layout_marginTop="9dip"
+				    android:layout_marginTop="10dip"
 				    android:layout_marginRight="20dip"/>
 			</LinearLayout>
 		</LinearLayout>
@@ -75,7 +75,7 @@
 		    android:layout_width="fill_parent" 
 		    android:layout_height="match_parent"
 		    android:layout_below="@id/menu_bar"
-			>
+		>
 			<LinearLayout 
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
 					android:paddingRight="7dip">
 					<View 
 			    		android:layout_width="fill_parent"
-			    		android:layout_height="35dp"
+			    		android:layout_height="wrap_content"
 			    		android:background="@drawable/text_field_top"/>
 			    	<LinearLayout 
 			    	    android:layout_width="fill_parent"
@@ -145,7 +145,7 @@
 				    </LinearLayout>
 				    <View
 				    	android:layout_width="fill_parent"
-			    		android:layout_height="35dp" 
+			    		android:layout_height="wrap_content" 
 			    		android:background="@drawable/text_field_bottom"/>
 				</LinearLayout>
 				<LinearLayout 
@@ -156,7 +156,7 @@
 			    	android:orientation="vertical">
 			    	<View 
 			    		android:layout_width="fill_parent"
-			    		android:layout_height="35dp"
+			    		android:layout_height="wrap_content"
 			    		android:background="@drawable/text_field_top"/>
 			    	<LinearLayout 
 			    	    android:layout_width="fill_parent"
@@ -196,7 +196,7 @@
 				    </LinearLayout>
 				    <View
 				    	android:layout_width="fill_parent"
-			    		android:layout_height="35dp" 
+			    		android:layout_height="wrap_content" 
 			    		android:background="@drawable/text_field_bottom"/>
 			    </LinearLayout>
 			    <LinearLayout 
