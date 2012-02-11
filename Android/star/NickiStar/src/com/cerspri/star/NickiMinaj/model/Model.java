@@ -61,7 +61,7 @@ public class Model {
 		return texts.get(type).get(index);
 	}
 
-	public int loadNews(Integer version, Integer lastID, String name) {
+	public int loadNews(Integer version, String name) {
 		this.version = version;
 		// System.out.println("version: "+version);
 		if (news == null) {

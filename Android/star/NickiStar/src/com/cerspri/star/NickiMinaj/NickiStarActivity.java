@@ -98,7 +98,7 @@ public class NickiStarActivity extends Activity {
 	private boolean menuShown = true;
 	private OnClickListener videoPlayListener;
 	private ImageLoaderTask imageTask;
-	
+
 	private enum State {
 		FACTS, QUOTES, VIDEOS, NEWS, NULL
 	}
@@ -131,7 +131,7 @@ public class NickiStarActivity extends Activity {
 		getData("fact", false);
 		getData("quote", false);
 		getVideos();
-		getNews();
+		getNews(false);
 
 		addButtonActions();
 	}
@@ -509,8 +509,7 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
-	private void getNews() {
-		int count = 0;
+	private void getNews(boolean shouldUpdate) {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(openFileInput("news"));
 			boolean read = true;
@@ -533,11 +532,13 @@ public class NickiStarActivity extends Activity {
 		}
 		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt(
 				"news_version", 0);
-		int newNewsVersion = Model.getInstance().loadNews(newsVersion, count,
-				getString(R.string.app_name));
-		if (newNewsVersion > newsVersion) {
-			newsVersion = newNewsVersion;
-			saveNewsToPhone();
+		if(shouldUpdate){
+			int newNewsVersion = Model.getInstance().loadNews(newsVersion,
+					getString(R.string.app_name));
+			if (newNewsVersion > newsVersion) {
+				newsVersion = newNewsVersion;
+				saveNewsToPhone();
+			}
 		}
 	}
 
@@ -744,6 +745,35 @@ public class NickiStarActivity extends Activity {
 
 	}
 
+	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
+					"Loading...");
+		}
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			getNews(true);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			saveNewsToPhone();
+			state = State.NEWS;
+			progressDialog.dismiss();
+			mDrawer.animateClose();
+			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
+			isToogle = false;
+			menuShown = false;
+		}
+
+	}
+
 	/**
 	 * task gets all data from youtube according to video tag
 	 * 
@@ -773,15 +803,6 @@ public class NickiStarActivity extends Activity {
 			saveVideoToPhone();
 			progressDialog.dismiss();
 			showCurrentVideo();
-		}
-
-	}
-
-	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
-
-		@Override
-		protected Void doInBackground(Integer... params) {
-			return null;
 		}
 
 	}
