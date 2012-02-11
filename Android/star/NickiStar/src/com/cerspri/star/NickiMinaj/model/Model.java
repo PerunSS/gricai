@@ -26,11 +26,12 @@ public class Model {
 	private static Model instance = new Model();
 	private Map<String, Integer> currents;
 	private Map<String, List<String>> texts;
-	private Map<Integer, News> news;
+	private NewsQueue news;
 	private Map<String, Integer> numberOfChanges;
 	private Map<Integer, Video> videos;
 	private int lastVideoID = 0;
 	private int version = 0;
+
 	private Model() {
 	}
 
@@ -45,7 +46,7 @@ public class Model {
 		if (numberOfChanges == null)
 			numberOfChanges = new HashMap<String, Integer>();
 		if (news == null)
-			news = new HashMap<Integer, News>();
+			news = new NewsQueue(20);
 		if (videos == null)
 			videos = new HashMap<Integer, Video>();
 	}
@@ -62,9 +63,9 @@ public class Model {
 
 	public int loadNews(Integer version, Integer lastID, String name) {
 		this.version = version;
-//		System.out.println("version: "+version);
+		// System.out.println("version: "+version);
 		if (news == null) {
-			news = new HashMap<Integer, News>();
+			news = new NewsQueue(20);
 		}
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
 				+ name.toLowerCase().replace(' ', '+') + "&version=" + version);
@@ -73,8 +74,8 @@ public class Model {
 			JSONArray elements = jsonobj.getJSONArray("data");
 			for (int i = 0; i < elements.length(); i++) {
 				JSONObject elementobj = elements.getJSONObject(i);
-				if(elementobj.getInt("version")>this.version){
-					this.version=elementobj.getInt("version");
+				if (elementobj.getInt("version") > this.version) {
+					this.version = elementobj.getInt("version");
 				}
 				News holder = new News();
 				holder.setContent(elementobj.getString("content"));
@@ -82,7 +83,7 @@ public class Model {
 				holder.setNewsUrl(elementobj.getString("url"));
 				holder.setPubDate(elementobj.getString("pub_date"));
 				holder.setTitle(elementobj.getString("title"));
-				news.put(lastID+i, holder);
+				news.add(holder);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -91,7 +92,7 @@ public class Model {
 	}
 
 	public void loadVideos(Integer lastID, String name) {
-		//System.out.println("lastid: "+lastID);
+		// System.out.println("lastid: "+lastID);
 		if (videos == null) {
 			videos = new HashMap<Integer, Video>();
 		}
@@ -104,16 +105,16 @@ public class Model {
 				JSONObject elementobj = elements.getJSONObject(i);
 				String tag = elementobj.getString("video_tag");
 				int id = elementobj.getInt("video_number");
-				if(id > lastVideoID){
+				if (id > lastVideoID) {
 					lastVideoID = id;
 				}
 				Video holder = new Video();
 				holder.setId(id);
 				holder.setVideoTag(tag);
-				//holder.extractFromTag(tag);
+				// holder.extractFromTag(tag);
 				videos.put(holder.getId(), holder);
 			}
-//			System.out.println(videos);
+			// System.out.println(videos);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -122,7 +123,7 @@ public class Model {
 	public int loadData(String type, String name, Integer version) {
 		numberOfChanges.clear();
 		List<String> data = texts.get(type);
-		if(data == null){
+		if (data == null) {
 			data = new ArrayList<String>();
 		}
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_data.php?"
@@ -142,7 +143,7 @@ public class Model {
 					if (version < elementobj.getInt("text_version")) {
 						version = elementobj.getInt("text_version");
 					}
-					
+
 				}
 			}
 		} catch (JSONException e) {
@@ -165,7 +166,7 @@ public class Model {
 				HttpEntity entity = response.getEntity();
 				InputStream content = entity.getContent();
 				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(content),8192);
+						new InputStreamReader(content), 8192);
 				String line;
 				while ((line = reader.readLine()) != null) {
 					builder.append(line);
@@ -179,8 +180,10 @@ public class Model {
 		return builder;
 	}
 
-	public Map<Integer, News> getNews() {
-		return news;
+	public List<News> getNews() {
+		if (news != null)
+			return news.list();
+		return null;
 	}
 
 	public Map<String, Integer> getCurrents() {
@@ -205,7 +208,7 @@ public class Model {
 
 	public void setLastVideoID(int lastVideoID) {
 		this.lastVideoID = lastVideoID;
-//		System.out.println(lastVideoID+" set");
+		// System.out.println(lastVideoID+" set");
 	}
 
 }

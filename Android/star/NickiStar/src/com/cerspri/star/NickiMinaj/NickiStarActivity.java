@@ -37,6 +37,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -86,7 +87,7 @@ public class NickiStarActivity extends Activity {
 	Button randomButton;
 	Button shareButton;
 	Button refreshButton;
-	int state;
+	State state;
 	int videoPosition = 0;
 	int newsVersion = -1;
 	AlertDialog alert;
@@ -96,7 +97,11 @@ public class NickiStarActivity extends Activity {
 	private boolean isToogle = false;
 	private boolean menuShown = true;
 	private OnClickListener videoPlayListener;
-	private LoadImageTask imageTask;
+	private ImageLoaderTask imageTask;
+	
+	private enum State {
+		FACTS, QUOTES, VIDEOS, NEWS, NULL
+	}
 
 	private boolean loadData() {
 		new JSONLoaderTask().execute("quote", "fact");
@@ -158,21 +163,21 @@ public class NickiStarActivity extends Activity {
 				} else {
 					menuShown = false;
 					switch (state) {
-					case 1:
+					case FACTS:
 						isToogle = true;
 						factsButton.performClick();
 						break;
-					case 2:
+					case QUOTES:
 						isToogle = true;
 						quotesButton.performClick();
 						break;
-					case 3:
+					case VIDEOS:
 						isToogle = true;
 						if (videoPosition > 0) {
 							mDrawer.animateClose();
 							videoButtonsDrawer.animateOpen();
 							videosLayout.setVisibility(View.VISIBLE);
-							state = 3;
+							state = State.VIDEOS;
 							toggleMenuButton
 									.setBackgroundResource(R.drawable.open_menu_button);
 							isToogle = false;
@@ -199,7 +204,7 @@ public class NickiStarActivity extends Activity {
 			public void onClick(View v) {
 				mDrawer.animateClose();
 				factsDrawer.animateOpen();
-				state = 1;
+				state = State.FACTS;
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
 				if (!isToogle)
@@ -218,7 +223,7 @@ public class NickiStarActivity extends Activity {
 			public void onClick(View v) {
 				mDrawer.animateClose();
 				factsDrawer.animateOpen();
-				state = 2;
+				state = State.QUOTES;
 				toggleMenuButton
 						.setBackgroundResource(R.drawable.open_menu_button);
 				if (!isToogle)
@@ -237,21 +242,21 @@ public class NickiStarActivity extends Activity {
 			public void onClick(View v) {
 				displayMessage();
 				// new NewsLoaderTask().execute(0);
-				// mDrawer.animateClose();
-				// newsDrawer.animateOpen();
-				// newsLayout.setVisibility(View.VISIBLE);
-				// state = 4;
-				// toggleMenuButton
-				// .setBackgroundResource(R.drawable.open_menu_button);
-				// isToogle = false;
-				// menuShown = false;
-				// newsTitle.setText(Html.fromHtml(Model.getInstance().getNews().get(0).getTitle()));
-				// newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-				// .get(0).getContent()));
-				// newsImage.setOnClickListener(videoPlayListener);
-				// new LoadImageTask(newsImage, Model.getInstance()
-				// .getNews().get(0).getImagePath())
-				// .execute();
+				mDrawer.animateClose();
+				newsDrawer.animateOpen();
+				newsLayout.setVisibility(View.VISIBLE);
+				state = State.NEWS;
+				toggleMenuButton
+						.setBackgroundResource(R.drawable.open_menu_button);
+				isToogle = false;
+				menuShown = false;
+				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(0).getTitle()));
+				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(0).getContent()));
+				newsImage.setOnClickListener(videoPlayListener);
+				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+						.get(0).getImagePath()).execute();
 			}
 		});
 		// listener for pictures button
@@ -275,7 +280,7 @@ public class NickiStarActivity extends Activity {
 					mDrawer.animateClose();
 					videoButtonsDrawer.animateOpen();
 					videosLayout.setVisibility(View.VISIBLE);
-					state = 3;
+					state = State.VIDEOS;
 					toggleMenuButton
 							.setBackgroundResource(R.drawable.open_menu_button);
 					isToogle = false;
@@ -290,9 +295,9 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				String text = "";
-				if (state == 1) {
+				if (state == State.FACTS) {
 					text = Model.getInstance().getNext("fact");
-				} else if (state == 2) {
+				} else if (state == State.QUOTES) {
 					text = Model.getInstance().getNext("quote");
 				}
 				scrollText.setText(text);
@@ -301,9 +306,9 @@ public class NickiStarActivity extends Activity {
 		refreshButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (state == 1) {
+				if (state == State.FACTS) {
 					new JSONLoaderTask().execute("fact");
-				} else if (state == 2) {
+				} else if (state == State.QUOTES) {
 					new JSONLoaderTask().execute("quote");
 				}
 			}
@@ -316,9 +321,9 @@ public class NickiStarActivity extends Activity {
 				String text = scrollText.getText().toString();
 				String subject = " about " + getString(R.string.app_name);
 				String type = "";
-				if (state == 1) {
+				if (state == State.FACTS) {
 					type = "fact";
-				} else if (state == 2) {
+				} else if (state == State.QUOTES) {
 					type = "quote";
 				}
 				subject = type + subject;
@@ -351,7 +356,7 @@ public class NickiStarActivity extends Activity {
 					videoPosition += 1;
 					if (Model.getInstance().getVideos().get(videoPosition)
 							.getTitle() == null) {
-						new VideoLodaerTask().execute();
+						new YoutubeMetadataLodaerTask().execute();
 					} else {
 						showCurrentVideo();
 					}
@@ -369,7 +374,7 @@ public class NickiStarActivity extends Activity {
 
 	private void buildGUI() {
 		setContentView(R.layout.main);
-		state = 0;
+		state = State.NULL;
 
 		// layout objects asignment
 		toggleMenuButton = (Button) findViewById(R.id.toggle_menu);
@@ -428,7 +433,7 @@ public class NickiStarActivity extends Activity {
 	}
 
 	protected void displayMessage() {
-		state = 0;
+		state = State.NULL;
 		alert.show();
 		final Timer t = new Timer();
 		t.schedule(new TimerTask() {
@@ -513,7 +518,7 @@ public class NickiStarActivity extends Activity {
 			while (read) {
 				try {
 					News news = (News) ois.readObject();
-					Model.getInstance().getNews().put(count++, news);
+					Model.getInstance().getNews().add(news);
 				} catch (Exception e) {
 					read = false;
 				}
@@ -540,10 +545,8 @@ public class NickiStarActivity extends Activity {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(
 					"news", MODE_WORLD_WRITEABLE));
-			for (Map.Entry<Integer, News> entry : Model.getInstance().getNews()
-					.entrySet()) {
-				oos.writeObject(entry.getValue());
-				System.out.println(entry.getValue());
+			for (News entry : Model.getInstance().getNews()) {
+				oos.writeObject(entry);
 				SharedPreferences preferences = getPreferences(MODE_WORLD_WRITEABLE);
 				SharedPreferences.Editor editor = preferences.edit();
 				editor.putInt("news_version", newsVersion);
@@ -640,15 +643,21 @@ public class NickiStarActivity extends Activity {
 		videoImage.setOnClickListener(videoPlayListener);
 		if (v != null && v.getImagePath() != null) {
 			if (imageTask != null
-					&& imageTask.getStatus() == LoadImageTask.Status.RUNNING) {
+					&& imageTask.getStatus() == ImageLoaderTask.Status.RUNNING) {
 				imageTask.cancel(true);
 				imageTask = null;
 			}
-			imageTask = new LoadImageTask(videoImage, v.getImagePath());
+			imageTask = new ImageLoaderTask(videoImage, v.getImagePath());
 			imageTask.execute();
 		}
 	}
 
+	/**
+	 * Task for getting facts and quotes from server
+	 * 
+	 * @author aleksandarvaricak
+	 * 
+	 */
 	private class JSONLoaderTask extends AsyncTask<String, Void, Void> {
 
 		@Override
@@ -723,12 +732,12 @@ public class NickiStarActivity extends Activity {
 			mDrawer.animateClose();
 			videoButtonsDrawer.animateOpen();
 			videosLayout.setVisibility(View.VISIBLE);
-			state = 3;
+			state = State.VIDEOS;
 			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
 			isToogle = false;
 			menuShown = false;
 			videoPosition++;
-			new VideoLodaerTask().execute();
+			new YoutubeMetadataLodaerTask().execute();
 			videoBackButton.setVisibility(View.INVISIBLE);
 			videoImage.setOnClickListener(videoPlayListener);
 		}
@@ -741,7 +750,7 @@ public class NickiStarActivity extends Activity {
 	 * @author aleksandarvaricak
 	 * 
 	 */
-	private class VideoLodaerTask extends AsyncTask<Void, Void, Void> {
+	private class YoutubeMetadataLodaerTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
 		protected void onPreExecute() {
@@ -768,12 +777,27 @@ public class NickiStarActivity extends Activity {
 
 	}
 
-	private class LoadImageTask extends AsyncTask<Void, Void, Drawable> {
+	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			return null;
+		}
+
+	}
+
+	/**
+	 * Task for loading image
+	 * 
+	 * @author aleksandarvaricak
+	 * 
+	 */
+	private class ImageLoaderTask extends AsyncTask<Void, Void, Drawable> {
 		private ImageView view;
 		private String url;
 		Bitmap bitmap = null;
 
-		LoadImageTask(ImageView view, String url) {
+		ImageLoaderTask(ImageView view, String url) {
 			this.view = view;
 			this.url = url;
 			this.view.setImageResource(R.drawable.loading);
