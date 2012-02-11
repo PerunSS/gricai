@@ -90,6 +90,7 @@ public class NickiStarActivity extends Activity {
 	State state;
 	int videoPosition = 0;
 	int newsVersion = -1;
+	int newsPosition = 0;
 	AlertDialog alert;
 	ProgressDialog progressDialog;
 	Context mContext = this;
@@ -242,21 +243,25 @@ public class NickiStarActivity extends Activity {
 			public void onClick(View v) {
 				displayMessage();
 				// new NewsLoaderTask().execute(0);
-				mDrawer.animateClose();
-				newsDrawer.animateOpen();
-				newsLayout.setVisibility(View.VISIBLE);
-				state = State.NEWS;
-				toggleMenuButton
-						.setBackgroundResource(R.drawable.open_menu_button);
-				isToogle = false;
-				menuShown = false;
-				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-						.get(0).getTitle()));
-				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-						.get(0).getContent()));
-				newsImage.setOnClickListener(videoPlayListener);
-				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
-						.get(0).getImagePath()).execute();
+//				if(newsPosition>0){
+//					mDrawer.animateClose();
+//					newsDrawer.animateOpen();
+//					newsLayout.setVisibility(View.VISIBLE);
+//					state = State.NEWS;
+//					toggleMenuButton
+//							.setBackgroundResource(R.drawable.open_menu_button);
+//					isToogle = false;
+//					menuShown = false;
+//					newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+//							.get(newsPosition).getTitle()));
+//					newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+//							.get(newsPosition).getContent()));
+//					newsImage.setOnClickListener(videoPlayListener);
+//					new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+//							.get(newsPosition).getImagePath()).execute();
+//				}else{
+//					new NewsLoaderTask().execute(newsVersion);
+//				}
 			}
 		});
 		// listener for pictures button
@@ -500,6 +505,8 @@ public class NickiStarActivity extends Activity {
 			}
 			ois.close();
 			Model.getInstance().setLastVideoID(max);
+//			if(max>0)
+//				videoPosition = 0;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (StreamCorruptedException e) {
