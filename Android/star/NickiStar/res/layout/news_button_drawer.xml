@@ -36,11 +36,11 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/goto_news_button"
+            android:id="@+id/read_news_button"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="@drawable/play_button" />
+            android:background="@drawable/read_button" />
     </LinearLayout>
 
     <com.google.ads.AdView

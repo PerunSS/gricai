@@ -65,6 +65,9 @@ public class NickiStarActivity extends Activity {
 	Button factsButton;
 	Button newsButton;
 	Button pictButton;
+	Button newsNextButton;
+	Button newsBackButton;
+	Button newsReadButton;
 	Button videosButton;
 	Button videoBackButton;
 	Button videoNextButton;
@@ -77,6 +80,7 @@ public class NickiStarActivity extends Activity {
 	TextView scrollText;
 	TextView newsTitle;
 	TextView newsText;
+	TextView newsDate;
 	TextView videoTitle;
 	TextView videoDescription;
 	ImageView newsImage;
@@ -84,6 +88,7 @@ public class NickiStarActivity extends Activity {
 	LinearLayout textLayout;
 	LinearLayout newsLayout;
 	LinearLayout videosLayout;
+	LinearLayout newsLinkLayout;
 	Button randomButton;
 	Button shareButton;
 	Button refreshButton;
@@ -122,7 +127,11 @@ public class NickiStarActivity extends Activity {
 		if (sPrefs.getInt("isFirstTime", 1) == 1) {
 			firstStart();
 		} else {
-			startApp();
+			if (sPrefs.getInt("newsVersion", 0)>0){
+				newsVersion = sPrefs.getInt("newsVersion", 0);
+				startApp();
+			}
+			startAppGetNews();
 		}
 	}
 
@@ -133,6 +142,17 @@ public class NickiStarActivity extends Activity {
 		getData("quote", false);
 		getVideos();
 		getNews(false);
+
+		addButtonActions();
+	}
+	
+	private void startAppGetNews() {
+		buildGUI();
+		Model.getInstance().createMaps();
+		getData("fact", false);
+		getData("quote", false);
+		getVideos();
+		getNews(true);
 
 		addButtonActions();
 	}
@@ -155,7 +175,10 @@ public class NickiStarActivity extends Activity {
 					if (videoButtonsDrawer.isOpened()) {
 						videoButtonsDrawer.animateClose();
 						videosLayout.setVisibility(View.GONE);
-						textLayout.setVisibility(View.GONE);
+					}
+					if (newsDrawer.isOpened()){
+						newsDrawer.animateClose();
+						newsLayout.setVisibility(View.GONE);
 					}
 					mDrawer.animateOpen();
 					toggleMenuButton
@@ -186,6 +209,10 @@ public class NickiStarActivity extends Activity {
 						} else {
 							videosButton.performClick();
 						}
+						break;
+					case NEWS:
+						isToogle = true;
+						newsButton.performClick();
 						break;
 					// case 3:
 					// newsButton.performClick();
@@ -237,31 +264,92 @@ public class NickiStarActivity extends Activity {
 				menuShown = false;
 			}
 		});
+		
+		newsNextButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				newsPosition++;
+				if (newsPosition == Model.getInstance().getNews().size()){
+					newsNextButton.setVisibility(View.INVISIBLE);
+				}
+				if (newsPosition == 1){
+					newsBackButton.setVisibility(View.VISIBLE);
+				}
+				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(newsPosition).getTitle()));
+				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(newsPosition).getContent()));
+				newsImage.setOnClickListener(videoPlayListener);
+				newsDate.setText(Model.getInstance().getNews().get(newsPosition).getPubDate());
+				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+						.get(newsPosition).getImagePath()).execute();
+			}
+		});
+		
+		newsBackButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				newsPosition--;
+				if (newsPosition == 0){
+					newsBackButton.setVisibility(View.INVISIBLE);
+				}
+				if (newsPosition == Model.getInstance().getNews().size()-1){
+					newsNextButton.setVisibility(View.VISIBLE);
+				}
+				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(newsPosition).getTitle()));
+				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(newsPosition).getContent()));
+				newsImage.setOnClickListener(videoPlayListener);
+				newsDate.setText(Model.getInstance().getNews().get(newsPosition).getPubDate());
+				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+						.get(newsPosition).getImagePath()).execute();
+			}
+		});
+		
 		// listener for news button
 		newsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				displayMessage();
-				// new NewsLoaderTask().execute(0);
-//				if(newsPosition>0){
-//					mDrawer.animateClose();
-//					newsDrawer.animateOpen();
-//					newsLayout.setVisibility(View.VISIBLE);
-//					state = State.NEWS;
-//					toggleMenuButton
-//							.setBackgroundResource(R.drawable.open_menu_button);
-//					isToogle = false;
-//					menuShown = false;
-//					newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-//							.get(newsPosition).getTitle()));
-//					newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-//							.get(newsPosition).getContent()));
-//					newsImage.setOnClickListener(videoPlayListener);
-//					new ImageLoaderTask(newsImage, Model.getInstance().getNews()
-//							.get(newsPosition).getImagePath()).execute();
-//				}else{
-//					new NewsLoaderTask().execute(newsVersion);
-//				}
+//				displayMessage();
+//				new NewsLoaderTask().execute(0);
+					mDrawer.animateClose();
+					newsDrawer.animateOpen();
+					newsLayout.setVisibility(View.VISIBLE);
+					state = State.NEWS;
+					toggleMenuButton
+							.setBackgroundResource(R.drawable.open_menu_button);
+					isToogle = false;
+					menuShown = false;
+					newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+							.get(newsPosition).getTitle()));
+					newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+							.get(newsPosition).getContent()));
+					newsImage.setOnClickListener(videoPlayListener);
+					newsDate.setText(Model.getInstance().getNews().get(newsPosition).getPubDate());
+					newsBackButton.setVisibility(View.INVISIBLE);
+					new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+							.get(newsPosition).getImagePath()).execute();
+			}
+		});
+		
+		newsReadButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Uri uriUrl = Uri.parse(Model.getInstance().getNews().get(newsPosition).getNewsUrl());
+				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+				startActivity(launchBrowser);
+			}
+		});
+		
+		newsLinkLayout.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				newsReadButton.performClick();
 			}
 		});
 		// listener for pictures button
@@ -398,6 +486,7 @@ public class NickiStarActivity extends Activity {
 		newsTitle = (TextView) findViewById(R.id.news_title);
 		newsImage = (ImageView) findViewById(R.id.news_picture_link);
 		newsText = (TextView) findViewById(R.id.news_text);
+		newsDate = (TextView) findViewById(R.id.news_date);
 		newsLayout = (LinearLayout) findViewById(R.id.news_layout);
 		newsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.newsButtonDrawer);
 		refreshButton = (Button) findViewById(R.id.refresh_button);
@@ -408,6 +497,10 @@ public class NickiStarActivity extends Activity {
 		videoBackButton = (Button) findViewById(R.id.video_back_button);
 		videoNextButton = (Button) findViewById(R.id.video_next_button);
 		videoPlayButton = (Button) findViewById(R.id.play_video_button);
+		newsNextButton = (Button) findViewById(R.id.news_next_button);
+		newsBackButton = (Button) findViewById(R.id.news_back_button);
+		newsReadButton = (Button) findViewById(R.id.read_news_button);
+		newsLinkLayout = (LinearLayout) findViewById(R.id.news_link_layout);
 
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -538,7 +631,7 @@ public class NickiStarActivity extends Activity {
 			e.printStackTrace();
 		}
 		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt(
-				"news_version", 0);
+				"newsVersion", 0);
 		if(shouldUpdate){
 			int newNewsVersion = Model.getInstance().loadNews(newsVersion,
 					getString(R.string.app_name));
@@ -557,7 +650,7 @@ public class NickiStarActivity extends Activity {
 				oos.writeObject(entry);
 				SharedPreferences preferences = getPreferences(MODE_WORLD_WRITEABLE);
 				SharedPreferences.Editor editor = preferences.edit();
-				editor.putInt("news_version", newsVersion);
+				editor.putInt("newsVersion", newsVersion);
 				editor.commit();
 			}
 			oos.close();
