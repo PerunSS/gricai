@@ -106,26 +106,26 @@
 			    	        android:id="@+id/news_link_layout">
 			    	        <TextView
 						    	android:id="@+id/news_title"
-						    	android:layout_width="60dp"
-						    	android:layout_height="80dp"
+						    	android:layout_width="100dp"
+						    	android:layout_height="wrap_content"
 						    	android:layout_weight="1"
-						    	android:textSize="16dip" 
+						    	android:textSize="18dip" 
 						    	android:textColor="#244690"
 						    	android:textStyle="bold"
 						    	android:gravity="center"
 						    	android:paddingLeft="25dp"
-						    	android:paddingRight="25dp"
+						    	android:paddingRight="5dp"
 						    />
 						    <ImageView android:id="@+id/news_picture_link"
-						    	android:layout_width="115dp"
+						    	android:layout_width="100dp"
 						    	android:layout_height="80dp"
 						    	android:paddingRight="25dp"/>
 					    </LinearLayout>
 					    <TextView
 					        android:id= "@+id/news_date"
 					        android:layout_width="fill_parent"
-					        android:layout_height="15dp"
-					        android:textSize="8dp"
+					        android:layout_height="17dp"
+					        android:textSize="10dp"
 					        android:textColor="#687fb2"
 					        android:gravity="left"
 					        android:paddingLeft="25dp"
@@ -136,7 +136,7 @@
 					    	android:id="@+id/news_text"
 					    	android:layout_width="fill_parent"
 					    	android:layout_height="wrap_content"
-					    	android:textSize="12dip" 
+					    	android:textSize="14dip" 
 					    	android:textColor="#244690"
 					    	android:textStyle="bold"
 					    	android:gravity="center"
