@@ -19,7 +19,7 @@ import com.cerspri.games.tapit.model.TapITObject;
 
 public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 
-	private static final long START_GAME_TIME = 1000;
+	private static final long START_GAME_TIME = 20000;
 
 	private TapITThread thread;
 	private TapITCreatorThread creator;
