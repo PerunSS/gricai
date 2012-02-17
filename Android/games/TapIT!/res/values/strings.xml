@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TapIT!</string>
+    <string name="new_game">New Game</string>
+    <string name="highscores">Highscores</string>
+    <string name="instructions">Instructions</string>
+    <string name="submit">Submit score</string>
+    <string name="back">Back to menu</string>
+    <string name="game_score">game score:</string>
+    <string name="max_time">max time:</string>
+    <string name="total">TOTAL:</string>
+
+</resources>
