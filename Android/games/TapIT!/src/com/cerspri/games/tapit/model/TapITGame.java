@@ -85,7 +85,7 @@ public class TapITGame {
 			icon = BitmapFactory.decodeResource(res, R.drawable.value_n_10);
 			break;
 		case NEGATIVE_2:
-			icon = BitmapFactory.decodeResource(res, R.drawable.ic_launcher);
+			icon = BitmapFactory.decodeResource(res, R.drawable.value_n_5);
 			break;
 		case NEGATIVE_1:
 			icon = BitmapFactory.decodeResource(res, R.drawable.value_n_2);

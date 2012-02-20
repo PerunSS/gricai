@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -32,6 +33,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 	private long totalTime = 0;
 	private long lvlUP = 40000;
 	private long maxTime = 0;
+	private long lastTouch = 0;
+	private long tick = 0;
 
 	public TapITPanel(Context context) {
 		super(context);
@@ -64,10 +67,25 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		removeObjects();
+		
 		canvas.drawColor(Color.BLACK);
 		canvas.drawText("time: " + ((double) timer.getTime()) / 1000, 7, 22,
 				paint);
-		canvas.drawText("score: " + score, 150, 22, paint);
+		String scoreText = score + "";
+		if (tick > 0)
+			if (lastTouch > 0) {
+				scoreText += " + " + lastTouch;
+			} else if (lastTouch < 0) {
+				scoreText += " - " + Math.abs(lastTouch);
+			}
+		
+		if (Math.abs(tick - timer.getTime())> 5000){
+			System.out.println(tick+ " "+timer.getTime());
+			tick = 0;
+		}
+		Bitmap score = BitmapFactory.decodeResource(getResources(), R.drawable.score);
+		canvas.drawBitmap(score, 125,2,null);
+		canvas.drawText(scoreText, 150, 22, paint);
 		Bitmap bitmap;
 		Coordinates coords;
 		for (TapITObject graphic : TapITGame.getInstance().getGraphics()) {
@@ -76,21 +94,24 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 			canvas.drawBitmap(bitmap, coords.getXForDraw(),
 					coords.getYForDraw(), null);
 		}
+		
 	}
-
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int x = (int) event.getX();
 		int y = (int) event.getY();
 		synchronized (getHolder()) {
+			lastTouch = 0;
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {
 					object.click();
 					timer.updateTime(object.getTimeValue());
+					lastTouch += object.getTimeValue() / 1000;
 					long time = timer.getTime();
 					if (time > 0) {
 						score += object.getTimeValue() / 1000;
-
+						tick = time;
 						if (object.getTimeValue() > 0) {
 							totalTime += object.getTimeValue();
 						}
