@@ -32,7 +32,9 @@ public class TapITThread implements Runnable {
 		paused = false;
 		synchronized (mutex) {
 			mutex.notifyAll();
+			startTime = new Date().getTime();
 		}
+		
 	}
 
 	@Override

@@ -15,5 +15,7 @@
     <string name="negative">Negative Boxes:</string>
     <string name="rules_2">Also try to get as much time in one moment as possible, because that affects final score (e.g at one moment you have 93.2 s and value 923.2 will be added to your score as final score)</string>
     <string name="rules_3">One last thing - if boxes overlay and you tap there - you will tap BOTH boxes - so be careful! Good luck!</string>
+    <string name="continue_game">Continue Game</string>
+    <string name="pause">Pause</string>
 
 </resources>

@@ -56,11 +56,15 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 
 	public void pause() {
 		thread.suspend();
+		timer.suspend();
+		creator.suspend();
 	}
 
 	public void continiue() {
 		if (thread != null) {
 			thread.resume();
+			timer.resume();
+			creator.resume();
 		}
 	}
 
@@ -80,7 +84,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 			}
 		
 		if (Math.abs(tick - timer.getTime())> 5000){
-			System.out.println(tick+ " "+timer.getTime());
 			tick = 0;
 		}
 		Bitmap score = BitmapFactory.decodeResource(getResources(), R.drawable.score);
@@ -218,6 +221,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 
 	public long getScore() {
 		return score;
+	}
+
+	public long getMaxTime() {
+		return maxTime;
 	}
 
 }
