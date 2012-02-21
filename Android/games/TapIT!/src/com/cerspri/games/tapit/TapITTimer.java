@@ -51,7 +51,7 @@ public class TapITTimer implements Runnable {
 				run = false;
 			}
 		}
-		panel.endGame();
+		panel.endGame(true);
 	}
 
 	public synchronized void updateTime(long delay) {

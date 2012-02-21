@@ -148,7 +148,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 		TapITGame.getInstance().removeObjects();
 	}
 
-	public void endGame() {
+	public void endGame(boolean finishActivity) {
 		setFocusable(false);
 		boolean retry = true;
 		thread.setRunning(false);
@@ -162,12 +162,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 				e.printStackTrace();
 			}
 		}
-		Activity activity = ((Activity) getContext());
-		Intent intent = new Intent();
-		intent.putExtra("score", score);
-		intent.putExtra("max", maxTime / 1000.0);
-		activity.setResult(TapITActivity.CLICKIT_PLAY_CODE, intent);
-		activity.finish();
+		if(finishActivity){
+			Activity activity = ((Activity) getContext());
+			Intent intent = new Intent();
+			intent.putExtra("score", score);
+			intent.putExtra("max", maxTime / 1000.0);
+			activity.setResult(TapITActivity.CLICKIT_PLAY_CODE, intent);
+			activity.finish();
+		}
 
 	}
 

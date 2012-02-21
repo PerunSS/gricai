@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class TapITPlayActivity extends Activity {
 
 	private TapITPanel panel;
+	private Dialog dialog;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -33,11 +34,18 @@ public class TapITPlayActivity extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	@Override
+	protected void onPause() {
+		if(dialog!=null && dialog.isShowing())
+			dialog.dismiss();
+		super.onPause();
+	}
 
 	@Override
 	public void onBackPressed() {
 		panel.pause();
-		final Dialog dialog = new Dialog(this, android.R.style.Theme_Black){
+		dialog = new Dialog(this, android.R.style.Theme_Black){
 			 @Override
 	            public boolean onKeyDown(int keyCode, KeyEvent event) {
 	                if(keyCode == KeyEvent.KEYCODE_BACK) {
@@ -61,7 +69,9 @@ public class TapITPlayActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				dialog.dismiss();
+				panel.continiue();
+				panel.endGame(false);
+				//dialog.dismiss();
 				finish();
 			}
 		});
