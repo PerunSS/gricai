@@ -17,5 +17,7 @@
     <string name="rules_3">One last thing - if boxes overlay and you tap there - you will tap BOTH boxes - so be careful! Good luck!</string>
     <string name="continue_game">Continue Game</string>
     <string name="pause">Pause</string>
+    <string name="game_score_pause">current game score:</string>
+    <string name="max_time_pause">current max time:</string>
 
 </resources>
