@@ -69,6 +69,7 @@ public class TapITPlayActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				TapITGame.getInstance().clear();
 				panel.continiue();
 				panel.endGame(false);
 				//dialog.dismiss();
