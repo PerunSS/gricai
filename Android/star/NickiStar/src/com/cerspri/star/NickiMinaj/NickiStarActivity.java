@@ -99,6 +99,7 @@ public class NickiStarActivity extends Activity {
 	AlertDialog alert;
 	ProgressDialog progressDialog;
 	Context mContext = this;
+	boolean initial = false;
 
 	private boolean isToogle = false;
 	private boolean menuShown = true;
@@ -110,6 +111,7 @@ public class NickiStarActivity extends Activity {
 	}
 
 	private boolean loadData() {
+		initial = true;
 		new JSONLoaderTask().execute("quote", "fact");
 		if (Model.getInstance().getNumberOfChanges().size() > 0) {
 			return true;
@@ -129,34 +131,22 @@ public class NickiStarActivity extends Activity {
 		} else {
 			if (sPrefs.getInt("newsVersion", 0) > 0) {
 				newsVersion = sPrefs.getInt("newsVersion", 0);
-				startApp();
 			}
-			startAppGetNews();
+			startApp();
 		}
 	}
 
 	private void startApp() {
 		buildGUI();
 		Model.getInstance().createMaps();
-		getData("fact", false);
-		getData("quote", false);
-		getVideos();
-		getNews(false);
-
+		if(!initial){
+			getData("fact", false, false);
+			getData("quote", false, false);
+			getVideos();
+			getNews(false);
+		}
 		addButtonActions();
 	}
-
-	private void startAppGetNews() {
-		buildGUI();
-		Model.getInstance().createMaps();
-		getData("fact", false);
-		getData("quote", false);
-		getVideos();
-		getNews(true);
-
-		addButtonActions();
-	}
-
 	private void firstStart() {
 		Intent myIntent = new Intent(this, Disclaimer.class);
 		startActivityForResult(myIntent, 0);
@@ -546,7 +536,7 @@ public class NickiStarActivity extends Activity {
 				+ getString(R.string.app_name)));
 	}
 
-	private void getData(String type, boolean shouldUpdate) {
+	private void getData(String type, boolean shouldUpdate, boolean initial) {
 		List<String> data = new ArrayList<String>();
 		try {
 			Scanner sc = new Scanner(openFileInput(type));
@@ -563,7 +553,7 @@ public class NickiStarActivity extends Activity {
 			int version = getPreferences(MODE_WORLD_READABLE).getInt(
 					"version_" + type, 0);
 			int newVersion = Model.getInstance().loadData(type,
-					getString(R.string.app_name), version);
+					getString(R.string.app_name), version, initial);
 			if (newVersion > version) {
 				version = newVersion;
 				saveToPhone(type, version,
@@ -699,6 +689,7 @@ public class NickiStarActivity extends Activity {
 			if (resultCode == Codes.NO_DATA_LOAD_ALLOWED) {
 				finish();
 			} else if (resultCode == Codes.ACCEPT_LOAD) {
+				initial = true;
 				startApp();
 				loadData();
 			} else if (resultCode == Codes.NO_INTERNET_CONNECTION) {
@@ -774,7 +765,7 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected Void doInBackground(String... params) {
 			for (String name : params) {
-				getData(name, true);
+				getData(name, true, initial);
 			}
 			return null;
 		}
@@ -792,6 +783,7 @@ public class NickiStarActivity extends Activity {
 			progressDialog.dismiss();
 			String text = "";
 			int i = 0;
+			initial = false;
 			for (Map.Entry<String, Integer> entry : Model.getInstance()
 					.getNumberOfChanges().entrySet()) {
 				if (entry.getValue() > 0) {
@@ -806,6 +798,7 @@ public class NickiStarActivity extends Activity {
 			if (i == 0) {
 				text = "There is no new data";
 			}
+			System.out.println(text);
 			Toast toast = Toast.makeText(mContext, text, 1000);
 			toast.show();
 			if (Model.getInstance().getNumberOfChanges().size() > 0)

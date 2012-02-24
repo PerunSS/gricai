@@ -120,8 +120,9 @@ public class Model {
 		}
 	}
 
-	public int loadData(String type, String name, Integer version) {
-		numberOfChanges.clear();
+	public int loadData(String type, String name, Integer version, boolean initial) {
+		if(!initial)
+			numberOfChanges.clear();
 		List<String> data = texts.get(type);
 		if (data == null) {
 			data = new ArrayList<String>();
