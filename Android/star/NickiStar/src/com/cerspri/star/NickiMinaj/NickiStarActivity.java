@@ -93,9 +93,9 @@ public class NickiStarActivity extends Activity {
 	Button shareButton;
 	Button refreshButton;
 	State state;
-	int videoPosition = 0;
+	int videoPosition = -1;
 	int newsVersion = -1;
-	int newsPosition = 0;
+	int newsPosition = -1;
 	AlertDialog alert;
 	ProgressDialog progressDialog;
 	Context mContext = this;
@@ -127,7 +127,7 @@ public class NickiStarActivity extends Activity {
 		if (sPrefs.getInt("isFirstTime", 1) == 1) {
 			firstStart();
 		} else {
-			if (sPrefs.getInt("newsVersion", 0)>0){
+			if (sPrefs.getInt("newsVersion", 0) > 0) {
 				newsVersion = sPrefs.getInt("newsVersion", 0);
 				startApp();
 			}
@@ -145,7 +145,7 @@ public class NickiStarActivity extends Activity {
 
 		addButtonActions();
 	}
-	
+
 	private void startAppGetNews() {
 		buildGUI();
 		Model.getInstance().createMaps();
@@ -176,7 +176,7 @@ public class NickiStarActivity extends Activity {
 						videoButtonsDrawer.animateClose();
 						videosLayout.setVisibility(View.GONE);
 					}
-					if (newsDrawer.isOpened()){
+					if (newsDrawer.isOpened()) {
 						newsDrawer.animateClose();
 						newsLayout.setVisibility(View.GONE);
 					}
@@ -264,57 +264,46 @@ public class NickiStarActivity extends Activity {
 				menuShown = false;
 			}
 		});
-		
+
 		newsNextButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				newsPosition++;
-				if (newsPosition == Model.getInstance().getNews().size()){
-					newsNextButton.setVisibility(View.INVISIBLE);
+				if (newsPosition < Model.getInstance().getNews().size() - 1) {
+					newsPosition++;
+					showCurrentNews();
 				}
-				if (newsPosition == 1){
+				if (newsPosition + 1 == Model.getInstance().getVideos().size()) {
+					newsNextButton.setVisibility(View.INVISIBLE);
+				} else if (newsPosition > 0) {
 					newsBackButton.setVisibility(View.VISIBLE);
 				}
-				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-						.get(newsPosition).getTitle()));
-				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-						.get(newsPosition).getContent()));
-				newsImage.setOnClickListener(videoPlayListener);
-				newsDate.setText(Model.getInstance().getNews().get(newsPosition).getPubDate());
-				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
-						.get(newsPosition).getImagePath()).execute();
 			}
 		});
-		
+
 		newsBackButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				newsPosition--;
-				if (newsPosition == 0){
-					newsBackButton.setVisibility(View.INVISIBLE);
+				if (newsPosition > 0) {
+					newsPosition--;
+					showCurrentNews();
 				}
-				if (newsPosition == Model.getInstance().getNews().size()-1){
+				if (newsPosition == 0) {
+					newsBackButton.setVisibility(View.INVISIBLE);
+				} else if (newsPosition < Model.getInstance().getNews().size() - 1) {
 					newsNextButton.setVisibility(View.VISIBLE);
 				}
-				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-						.get(newsPosition).getTitle()));
-				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-						.get(newsPosition).getContent()));
-				newsImage.setOnClickListener(videoPlayListener);
-				newsDate.setText(Model.getInstance().getNews().get(newsPosition).getPubDate());
-				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
-						.get(newsPosition).getImagePath()).execute();
 			}
 		});
-		
+
 		// listener for news button
 		newsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				displayMessage();
-//				new NewsLoaderTask().execute(0);
+				// displayMessage();
+				// new NewsLoaderTask().execute(0);
+				if (newsPosition >= 0) {
 					mDrawer.animateClose();
 					newsDrawer.animateOpen();
 					newsLayout.setVisibility(View.VISIBLE);
@@ -323,30 +312,29 @@ public class NickiStarActivity extends Activity {
 							.setBackgroundResource(R.drawable.open_menu_button);
 					isToogle = false;
 					menuShown = false;
-					newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-							.get(newsPosition).getTitle()));
-					newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-							.get(newsPosition).getContent()));
-					newsImage.setOnClickListener(videoPlayListener);
-					newsDate.setText(Model.getInstance().getNews().get(newsPosition).getPubDate());
-					newsBackButton.setVisibility(View.INVISIBLE);
-					new ImageLoaderTask(newsImage, Model.getInstance().getNews()
-							.get(newsPosition).getImagePath()).execute();
+					if (newsPosition == 0) {
+						newsBackButton.setVisibility(View.INVISIBLE);
+					}
+					showCurrentNews();
+				} else {
+					new NewsLoaderTask().execute(newsVersion);
+				}
 			}
 		});
-		
+
 		newsReadButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				Uri uriUrl = Uri.parse(Model.getInstance().getNews().get(newsPosition).getNewsUrl());
+				Uri uriUrl = Uri.parse(Model.getInstance().getNews()
+						.get(newsPosition).getNewsUrl());
 				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
 				startActivity(launchBrowser);
 			}
 		});
-		
+
 		newsLinkLayout.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				newsReadButton.performClick();
@@ -370,6 +358,7 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (videoPosition > 0) {
+
 					mDrawer.animateClose();
 					videoButtonsDrawer.animateOpen();
 					videosLayout.setVisibility(View.VISIBLE);
@@ -378,6 +367,10 @@ public class NickiStarActivity extends Activity {
 							.setBackgroundResource(R.drawable.open_menu_button);
 					isToogle = false;
 					menuShown = false;
+					if (videoPosition == 1) {
+						videoBackButton.setVisibility(View.INVISIBLE);
+					}
+					showCurrentVideo();
 				} else {
 					new VideosLodaerTask().execute(Model.getInstance()
 							.getLastVideoID());
@@ -429,13 +422,13 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (videoPosition > 1) {
-					videoPosition -= 1;
+					videoPosition--;
 					showCurrentVideo();
 				}
 				if (videoPosition == 1) {
 					videoBackButton.setVisibility(View.INVISIBLE);
 				} else if (videoPosition < Model.getInstance().getVideos()
-						.size() - 1) {
+						.size()) {
 					videoNextButton.setVisibility(View.VISIBLE);
 				}
 			}
@@ -446,7 +439,7 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (videoPosition < Model.getInstance().getVideos().size()) {
-					videoPosition += 1;
+					videoPosition++;
 					if (Model.getInstance().getVideos().get(videoPosition)
 							.getTitle() == null) {
 						new YoutubeMetadataLodaerTask().execute();
@@ -454,7 +447,7 @@ public class NickiStarActivity extends Activity {
 						showCurrentVideo();
 					}
 				}
-				if (videoPosition + 1 == Model.getInstance().getVideos().size()) {
+				if (videoPosition == Model.getInstance().getVideos().size()) {
 					videoNextButton.setVisibility(View.INVISIBLE);
 				} else if (videoPosition > 1) {
 					videoBackButton.setVisibility(View.VISIBLE);
@@ -598,8 +591,8 @@ public class NickiStarActivity extends Activity {
 			}
 			ois.close();
 			Model.getInstance().setLastVideoID(max);
-//			if(max>0)
-//				videoPosition = 0;
+			if (max > 0)
+				videoPosition = 1;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (StreamCorruptedException e) {
@@ -618,6 +611,7 @@ public class NickiStarActivity extends Activity {
 				try {
 					News news = (News) ois.readObject();
 					Model.getInstance().getNews().add(news);
+					newsPosition = 0;
 				} catch (Exception e) {
 					read = false;
 				}
@@ -630,9 +624,9 @@ public class NickiStarActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt(
-				"newsVersion", 0);
-		if(shouldUpdate){
+		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt("newsVersion",
+				0);
+		if (shouldUpdate) {
 			int newNewsVersion = Model.getInstance().loadNews(newsVersion,
 					getString(R.string.app_name));
 			if (newNewsVersion > newsVersion) {
@@ -723,6 +717,10 @@ public class NickiStarActivity extends Activity {
 				return true;
 			}
 		}
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			toggleMenuButton.performClick();
+			return true;
+		}
 		return super.onKeyDown(keyCode, event);
 	}
 
@@ -751,6 +749,18 @@ public class NickiStarActivity extends Activity {
 			imageTask = new ImageLoaderTask(videoImage, v.getImagePath());
 			imageTask.execute();
 		}
+	}
+
+	private void showCurrentNews() {
+		newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+				.get(newsPosition).getTitle()));
+		newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+				.get(newsPosition).getContent()));
+		newsImage.setOnClickListener(videoPlayListener);
+		newsDate.setText(Model.getInstance().getNews().get(newsPosition)
+				.getPubDate());
+		new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+				.get(newsPosition).getImagePath()).execute();
 	}
 
 	/**
@@ -837,7 +847,7 @@ public class NickiStarActivity extends Activity {
 			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
 			isToogle = false;
 			menuShown = false;
-			videoPosition++;
+			videoPosition = 1;
 			new YoutubeMetadataLodaerTask().execute();
 			videoBackButton.setVisibility(View.INVISIBLE);
 			videoImage.setOnClickListener(videoPlayListener);
@@ -864,12 +874,25 @@ public class NickiStarActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			saveNewsToPhone();
-			state = State.NEWS;
 			progressDialog.dismiss();
 			mDrawer.animateClose();
+			newsDrawer.animateOpen();
+			newsLayout.setVisibility(View.VISIBLE);
+			state = State.NEWS;
 			toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
 			isToogle = false;
 			menuShown = false;
+			newsPosition = 0;
+			newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+					.get(newsPosition).getTitle()));
+			newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+					.get(newsPosition).getContent()));
+			newsImage.setOnClickListener(videoPlayListener);
+			newsDate.setText(Model.getInstance().getNews().get(newsPosition)
+					.getPubDate());
+			newsBackButton.setVisibility(View.INVISIBLE);
+			new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+					.get(newsPosition).getImagePath()).execute();
 		}
 
 	}
