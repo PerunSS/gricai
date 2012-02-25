@@ -72,6 +72,7 @@ public class NickiStarActivity extends Activity {
 	Button videoBackButton;
 	Button videoNextButton;
 	Button videoPlayButton;
+	Button updateButton;
 	MultiDirectionSlidingDrawer mDrawer;
 	MultiDirectionSlidingDrawer factsDrawer;
 	MultiDirectionSlidingDrawer videoButtonsDrawer;
@@ -446,6 +447,15 @@ public class NickiStarActivity extends Activity {
 		});
 
 		videoPlayButton.setOnClickListener(videoPlayListener);
+		
+		updateButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				new UpdateContentTask().execute(Model.getInstance()
+							.getLastVideoID());
+			}
+		});
 	}
 
 	private void buildGUI() {
@@ -484,6 +494,7 @@ public class NickiStarActivity extends Activity {
 		newsBackButton = (Button) findViewById(R.id.news_back_button);
 		newsReadButton = (Button) findViewById(R.id.read_news_button);
 		newsLinkLayout = (LinearLayout) findViewById(R.id.news_link_layout);
+		updateButton = (Button) findViewById(R.id.update_button);
 
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -888,6 +899,33 @@ public class NickiStarActivity extends Activity {
 					.get(newsPosition).getImagePath()).execute();
 		}
 
+	}
+	
+	private class UpdateContentTask extends AsyncTask<Integer, Void, Void> {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
+					"Loading...");
+		}
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			getData("fact", true, initial);
+			getData("quote", true, initial);
+			getNews(true);
+			Model.getInstance().loadVideos(params[0],
+					getString(R.string.app_name));
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			saveVideoToPhone();
+			saveNewsToPhone();
+			progressDialog.dismiss();
+		}
 	}
 
 	/**
