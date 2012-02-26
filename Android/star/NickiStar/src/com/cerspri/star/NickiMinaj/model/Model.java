@@ -61,17 +61,20 @@ public class Model {
 		return texts.get(type).get(index);
 	}
 
-	public int loadNews(Integer version, String name) {
+	public int loadNews(Integer version, String name, boolean initial) {
 		this.version = version;
 		// System.out.println("version: "+version);
 		if (news == null) {
 			news = new NewsQueue(20);
 		}
+		if(!initial)
+			numberOfChanges.clear();
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
 				+ name.toLowerCase().replace(' ', '+') + "&version=" + version);
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
 			JSONArray elements = jsonobj.getJSONArray("data");
+			numberOfChanges.put("new", elements.length());
 			for (int i = 0; i < elements.length(); i++) {
 				JSONObject elementobj = elements.getJSONObject(i);
 				if (elementobj.getInt("version") > this.version) {
@@ -91,16 +94,19 @@ public class Model {
 		return this.version;
 	}
 
-	public void loadVideos(Integer lastID, String name) {
+	public void loadVideos(Integer lastID, String name, boolean initial) {
 		// System.out.println("lastid: "+lastID);
 		if (videos == null) {
 			videos = new HashMap<Integer, Video>();
 		}
+		if(!initial)
+			numberOfChanges.clear();
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_videos.php?star="
 				+ name.toLowerCase().replace(' ', '+') + "&last=" + lastID);
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
 			JSONArray elements = jsonobj.getJSONArray("data");
+			numberOfChanges.put("video", elements.length());
 			for (int i = 0; i < elements.length(); i++) {
 				JSONObject elementobj = elements.getJSONObject(i);
 				String tag = elementobj.getString("video_tag");

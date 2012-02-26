@@ -144,7 +144,7 @@ public class NickiStarActivity extends Activity {
 			getData("fact", false, false);
 			getData("quote", false, false);
 			getVideos();
-			getNews(false);
+			getNews(false, false);
 		}
 		addButtonActions();
 	}
@@ -264,7 +264,7 @@ public class NickiStarActivity extends Activity {
 					newsPosition++;
 					showCurrentNews();
 				}
-				if (newsPosition + 1 == Model.getInstance().getVideos().size()) {
+				if (newsPosition + 1 == Model.getInstance().getNews().size()) {
 					newsNextButton.setVisibility(View.INVISIBLE);
 				} else if (newsPosition > 0) {
 					newsBackButton.setVisibility(View.VISIBLE);
@@ -603,7 +603,7 @@ public class NickiStarActivity extends Activity {
 		}
 	}
 
-	private void getNews(boolean shouldUpdate) {
+	private void getNews(boolean shouldUpdate, boolean initial) {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(openFileInput("news"));
 			boolean read = true;
@@ -629,7 +629,7 @@ public class NickiStarActivity extends Activity {
 				0);
 		if (shouldUpdate) {
 			int newNewsVersion = Model.getInstance().loadNews(newsVersion,
-					getString(R.string.app_name));
+					getString(R.string.app_name), initial);
 			if (newNewsVersion > newsVersion) {
 				newsVersion = newNewsVersion;
 				saveNewsToPhone();
@@ -835,7 +835,7 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected Void doInBackground(Integer... params) {
 			Model.getInstance().loadVideos(params[0],
-					getString(R.string.app_name));
+					getString(R.string.app_name),false);
 			return null;
 		}
 
@@ -870,7 +870,7 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			getNews(true);
+			getNews(true,false);
 			return null;
 		}
 
@@ -911,11 +911,11 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			getData("fact", true, initial);
-			getData("quote", true, initial);
-			getNews(true);
+			getData("fact", true, true);
+			getData("quote", true, true);
+			getNews(true,true);
 			Model.getInstance().loadVideos(params[0],
-					getString(R.string.app_name));
+					getString(R.string.app_name),true);
 			return null;
 		}
 
@@ -925,6 +925,27 @@ public class NickiStarActivity extends Activity {
 			saveVideoToPhone();
 			saveNewsToPhone();
 			progressDialog.dismiss();
+			String text = "";
+			int i = 0;
+			for (Map.Entry<String, Integer> entry : Model.getInstance()
+					.getNumberOfChanges().entrySet()) {
+				if (entry.getValue() > 0) {
+					text += entry.getValue() + " " + entry.getKey()
+							+ "s loaded";
+					if (i < Model.getInstance().getNumberOfChanges().size() - 1) {
+						text += "\n";
+					}
+					i++;
+				}
+			}
+			if (i == 0) {
+				text = "There is no new data";
+			}
+			newsPosition = 0;
+			videoPosition = 1;
+			new YoutubeMetadataLodaerTask().execute();
+			Toast toast = Toast.makeText(mContext, text, 1000);
+			toast.show();
 		}
 	}
 
@@ -981,7 +1002,7 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected Drawable doInBackground(Void... params) {
 			InputStream is = null;
-			if (url != null) {
+			if (url != null && url.length()>0) {
 				url = url.replaceAll(" ", "%20");
 
 				try {
@@ -1008,7 +1029,8 @@ public class NickiStarActivity extends Activity {
 					bitmap = null;
 					System.gc();
 					try {
-						is.close();
+						if(is!=null)
+							is.close();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
