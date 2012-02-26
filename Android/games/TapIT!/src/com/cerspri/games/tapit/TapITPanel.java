@@ -8,6 +8,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -35,9 +38,19 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 	private long maxTime = 0;
 	private long lastTouch = 0;
 	private long tick = 0;
+	private SoundPool soundPool;
+	private int clickPos, clickNeg;
+	private MediaPlayer gameMusic;
 
 	public TapITPanel(Context context) {
 		super(context);
+		soundPool = new SoundPool(20,AudioManager.STREAM_MUSIC,100);
+		clickPos = soundPool.load(context, R.raw.click,0);
+		clickNeg = soundPool.load(context, R.raw.click_n, 0);
+		gameMusic = MediaPlayer.create(context, R.raw.game_play);
+		gameMusic.setLooping(true);
+		gameMusic.setVolume(1, 1);
+		gameMusic.start();
 		getHolder().addCallback(this);
 		thread = new TapITThread(getHolder(), this);
 		creator = new TapITCreatorThread(this);
@@ -52,12 +65,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 		generateRandomObject();
 		paint = new Paint();
 		paint.setColor(Color.WHITE);
+		
 	}
 
 	public void pause() {
 		thread.suspend();
 		timer.suspend();
 		creator.suspend();
+		gameMusic.pause();
 	}
 
 	public void continiue() {
@@ -65,6 +80,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 			thread.resume();
 			timer.resume();
 			creator.resume();
+			gameMusic.start();
 		}
 	}
 
@@ -109,6 +125,11 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {
 					object.click();
+					if(object.getTimeValue()>0)
+						soundPool.play(clickPos, 1, 1, 0, 0, 1);
+					else{
+						soundPool.play(clickNeg, 1, 1, 0, 0, 1);
+					}
 					timer.updateTime(object.getTimeValue());
 					lastTouch += object.getTimeValue() / 1000;
 					long time = timer.getTime();

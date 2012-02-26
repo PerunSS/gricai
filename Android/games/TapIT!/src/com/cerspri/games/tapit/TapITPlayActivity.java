@@ -1,7 +1,5 @@
 package com.cerspri.games.tapit;
 
-import com.cerspri.games.tapit.model.TapITGame;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.cerspri.games.tapit.model.TapITGame;
 
 public class TapITPlayActivity extends Activity {
 
