@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 
 public class TapITActivity extends Activity {
 	public static final int CLICKIT_PLAY_CODE = 12345;
+	private MediaPlayer displayScore;
+	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -45,9 +49,23 @@ public class TapITActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == CLICKIT_PLAY_CODE) {
+			displayScore = MediaPlayer.create(this, R.raw.display_score_end);
+			displayScore.setLooping(true);
+			displayScore.start();
 			long score = data.getExtras().getLong("score");
 			double max = data.getExtras().getDouble("max");
-			final Dialog dialog = new Dialog(this, android.R.style.Theme_Black);
+			final Dialog dialog = new Dialog(this, android.R.style.Theme_Black){
+				@Override
+				public boolean onKeyDown(int keyCode, KeyEvent event) {
+					if(keyCode == KeyEvent.KEYCODE_BACK) {
+						displayScore.stop();
+						displayScore.release();
+						dismiss();
+						return true;
+					}
+					return super.onKeyDown(keyCode, event);
+				}
+			};
 			dialog.setContentView(R.layout.game_over_dialog);
 			dialog.setTitle("SCORE");
 			TextView gameScoreVeiw = (TextView) dialog
@@ -64,6 +82,8 @@ public class TapITActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
+					displayScore.stop();
+					displayScore.release();
 					dialog.dismiss();
 				}
 			});
