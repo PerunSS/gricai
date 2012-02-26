@@ -170,6 +170,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void endGame(boolean finishActivity) {
+		if(gameMusic.isPlaying()){
+			gameMusic.stop();
+		}
+		gameMusic.release();
 		setFocusable(false);
 		boolean retry = true;
 		thread.setRunning(false);
