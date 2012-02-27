@@ -1,6 +1,7 @@
 package com.cerspri.games.tapit;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,7 +22,7 @@ import com.cerspri.games.tapit.model.Coordinates;
 import com.cerspri.games.tapit.model.TapITGame;
 import com.cerspri.games.tapit.model.TapITObject;
 
-public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
+public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener {
 
 	private static final long START_GAME_TIME = 20000;
 
@@ -41,6 +42,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
 	private MediaPlayer gameMusic;
+	private ProgressDialog progressDialog;
 
 	public TapITPanel(Context context) {
 		super(context);
@@ -51,20 +53,9 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 		gameMusic.setLooping(true);
 		gameMusic.setVolume(1, 1);
 		gameMusic.start();
-		getHolder().addCallback(this);
-		thread = new TapITThread(getHolder(), this);
-		creator = new TapITCreatorThread(this);
-		timer = new TapITTimer(START_GAME_TIME, this);
-		setFocusable(true);
-		WindowManager wm = (WindowManager) context
-				.getSystemService(Context.WINDOW_SERVICE);
-		DisplayMetrics metrics = new DisplayMetrics();
-		wm.getDefaultDisplay().getMetrics(metrics);
-		width = metrics.widthPixels;
-		height = metrics.heightPixels;
-		generateRandomObject();
-		paint = new Paint();
-		paint.setColor(Color.WHITE);
+		gameMusic.setOnPreparedListener(this);
+		progressDialog = ProgressDialog.show(context, "",
+				"Loading...");
 		
 	}
 
@@ -252,6 +243,28 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback {
 
 	public long getMaxTime() {
 		return maxTime;
+	}
+
+	/****************************************************/
+	/*********continue app when media prepared***********/
+	/****************************************************/
+	@Override
+	public void onPrepared(MediaPlayer mp) {
+		getHolder().addCallback(this);
+		thread = new TapITThread(getHolder(), this);
+		creator = new TapITCreatorThread(this);
+		timer = new TapITTimer(START_GAME_TIME, this);
+		setFocusable(true);
+		WindowManager wm = (WindowManager) getContext()
+				.getSystemService(Context.WINDOW_SERVICE);
+		DisplayMetrics metrics = new DisplayMetrics();
+		wm.getDefaultDisplay().getMetrics(metrics);
+		width = metrics.widthPixels;
+		height = metrics.heightPixels;
+		generateRandomObject();
+		paint = new Paint();
+		paint.setColor(Color.WHITE);
+		progressDialog.dismiss();
 	}
 
 }
