@@ -160,19 +160,33 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 		TapITGame.getInstance().removeObjects();
 	}
 
-	public void endGame(boolean finishActivity) {
-		if(gameMusic.isPlaying()){
-			gameMusic.stop();
-		}
+	public void endGame(boolean finishActivity, boolean wasSuspended) {
+		//if(gameMusic.isPlaying()){
+		//	gameMusic.stop();
+		//}
+		System.out.println(gameMusic);
 		gameMusic.release();
+		System.out.println("*");
+		if(wasSuspended){
+			thread.resume();
+			timer.resume();
+			creator.resume();
+			timer.backToMenu();
+		}
 		setFocusable(false);
 		boolean retry = true;
 		thread.setRunning(false);
 		creator.setRunning(false);
+		if(wasSuspended){
+			timer.setRunning(false);
+		}
 		while (retry) {
 			try {
 				runningThread.join();
 				generatorThread.join();
+				if(wasSuspended){
+					timerThread.join();
+				}
 				retry = false;
 			} catch (InterruptedException e) {
 				e.printStackTrace();

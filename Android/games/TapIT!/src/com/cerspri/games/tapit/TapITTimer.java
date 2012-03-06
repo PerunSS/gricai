@@ -9,6 +9,7 @@ public class TapITTimer implements Runnable {
 	private TapITPanel panel;
 	private boolean paused = false;
 	private Object mutex = new Object();
+	private boolean backToMenu = false;
 
 	public TapITTimer(long time, TapITPanel panel) {
 		this.time = time;
@@ -28,6 +29,10 @@ public class TapITTimer implements Runnable {
 		synchronized (mutex) {
 			mutex.notifyAll();
 		}
+	}
+	
+	public void backToMenu(){
+		backToMenu = true;
 	}
 
 	@Override
@@ -51,7 +56,8 @@ public class TapITTimer implements Runnable {
 				run = false;
 			}
 		}
-		panel.endGame(true);
+		if(!backToMenu)
+			panel.endGame(true,false);
 	}
 
 	public synchronized void updateTime(long delay) {
