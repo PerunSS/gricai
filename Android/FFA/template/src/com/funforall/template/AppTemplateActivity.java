@@ -1,6 +1,8 @@
 package com.funforall.template;
 
-import com.funforall.template.R;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,5 +13,7 @@ public class AppTemplateActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+//        AdView view = (AdView)findViewById(R.id.adView);
+//        view.loadAd(new AdRequest());
     }
 }
