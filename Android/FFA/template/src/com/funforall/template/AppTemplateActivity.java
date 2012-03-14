@@ -22,5 +22,16 @@ public class AppTemplateActivity extends Activity {
 				startActivity(readItent);
 			}
 		});
+        
+        final Button listFavorites = (Button)findViewById(R.id.listFavorites);
+        listFavorites.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent listIntent = new Intent(AppTemplateActivity.this, ListActivity.class);
+				startActivity(listIntent);
+				
+			}
+		});
     }
 }

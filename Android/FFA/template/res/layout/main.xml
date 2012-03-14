@@ -13,6 +13,7 @@
         <Button
             android:layout_width="240dp"
             android:layout_height="48dp"
+            android:textSize="18dp"
             android:background="@drawable/button_main"
             android:text="Let the fun start!"
             android:id="@+id/start" />
@@ -24,8 +25,10 @@
         <Button
             android:layout_width="240dp"
             android:layout_height="48dp"
+            android:textSize="18dp"
             android:background="@drawable/button_main"
-            android:text="Favorite stuff!" />
+            android:text="Favorite stuff!"
+            android:id="@+id/listFavorites" />
 
         <View
             android:layout_width="fill_parent"
@@ -34,6 +37,7 @@
         <Button
             android:layout_width="240dp"
             android:layout_height="48dp"
+            android:textSize="18dp"
             android:background="@drawable/button_main"
             android:text="Search for fun!" />
 
@@ -44,6 +48,7 @@
         <Button
             android:layout_width="240dp"
             android:layout_height="48dp"
+            android:textSize="18dp"
             android:background="@drawable/button_main"
             android:text="Rate us!" />
     </LinearLayout>

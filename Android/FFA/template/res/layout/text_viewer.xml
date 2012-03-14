@@ -26,8 +26,9 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:layout_gravity="center"
             android:layout_weight=".25"
-            android:background="@drawable/back" />
+            android:background="@drawable/button_back" />
     </LinearLayout>
 
     <ScrollView

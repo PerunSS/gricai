@@ -22,12 +22,13 @@
             android:textColor="#33b5e5"
             android:textSize="18dp"
             android:textStyle="bold" />
-        <Button
+         <Button
             android:id="@+id/backList"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:layout_gravity="center"
             android:layout_weight=".25"
-            android:background="@drawable/back" />
+            android:background="@drawable/button_back" />
     </LinearLayout>
     
         

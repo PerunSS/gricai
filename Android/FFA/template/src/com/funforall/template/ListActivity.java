@@ -1,18 +1,18 @@
 package com.funforall.template;
 
-import android.app.Activity;
-import android.os.Bundle;
-
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
-public class ReadingActivity extends Activity {
+import android.app.Activity;
+import android.os.Bundle;
+
+public class ListActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.text_viewer);
-		AdView view = (AdView) findViewById(R.id.adView);
+		setContentView(R.layout.list);
+		AdView view = (AdView) findViewById(R.id.adViewList);
 		view.loadAd(new AdRequest());
 	}
 }
