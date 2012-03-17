@@ -11,46 +11,48 @@
         android:orientation="vertical" >
 
         <Button
+            android:id="@+id/start"
             android:layout_width="240dp"
             android:layout_height="48dp"
-            android:textSize="18dp"
             android:background="@drawable/button_main"
             android:text="Let the fun start!"
-            android:id="@+id/start" />
+            android:textSize="18dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="6dp" />
 
         <Button
+            android:id="@+id/listFavorites"
             android:layout_width="240dp"
             android:layout_height="48dp"
-            android:textSize="18dp"
             android:background="@drawable/button_main"
             android:text="Favorite stuff!"
-            android:id="@+id/listFavorites" />
+            android:textSize="18dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="6dp" />
 
         <Button
+            android:id="@+id/market"
             android:layout_width="240dp"
             android:layout_height="48dp"
-            android:textSize="18dp"
             android:background="@drawable/button_main"
-            android:text="Search for fun!" />
+            android:text="Visit us on Market!"
+            android:textSize="18dp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="6dp" />
 
         <Button
+            android:id="@+id/rateUs"
             android:layout_width="240dp"
             android:layout_height="48dp"
-            android:textSize="18dp"
             android:background="@drawable/button_main"
-            android:text="Rate us!" />
+            android:text="Rate us!"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <TextView
