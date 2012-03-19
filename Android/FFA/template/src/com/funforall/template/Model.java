@@ -7,6 +7,7 @@ public class Model {
 
 	private static Model instance = new Model();
 	private List<Text> data = new ArrayList<Text>();
+	private List<Text> searchResult;
 
 	private Model() {
 	}
@@ -34,8 +35,20 @@ public class Model {
 		return data.get(i);
 	}
 	
+	public int getSize(){
+		return data.size();
+	}
+	
 	public void setData(List<Text> data){
 		this.data = data;
+	}
+
+	public List<Text> getSearchResult() {
+		return searchResult;
+	}
+
+	public void setSearchResult(List<Text> searchResult) {
+		this.searchResult = searchResult;
 	}
 	
 }

@@ -8,8 +8,8 @@ import android.database.Cursor;
 
 public class DBManager {
 
-	private static final String dbName = "AmazingFacts";
-	private static final String projectPath = "com.cerSprikRu.AmazingFacts";
+	private static final String dbName = "template";
+	private static final String projectPath = "com.funforall."+DBManager.dbName;
 	DBAdapter adapter;
 
 	public DBManager(Context context) {
@@ -19,7 +19,7 @@ public class DBManager {
 	public List<Text> read(boolean rated) {
 		adapter.openDataBase();
 		List<Text> result = new ArrayList<Text>();
-		String sql = "select * from AllFacts";
+		String sql = "select * from all_text";
 		if(!rated)
 			sql+= " limit 100";
 
@@ -27,7 +27,7 @@ public class DBManager {
 		if (c != null) {
 			if (c.moveToFirst()) {
 				do {
-					String text = c.getString(c.getColumnIndex("fact"));
+					String text = c.getString(c.getColumnIndex("text"));
 					int id = c.getInt(c.getColumnIndex("_id"));
 					boolean fav = false;
 					try {
@@ -49,9 +49,9 @@ public class DBManager {
 		return result;
 	}
 
-	public void updateFact(Text textObj) {
+	public void updateText(Text textObj) {
 		adapter.openDataBase();
-		String sql = "update AllFacts set fav = "
+		String sql = "update all_text set fav = "
 				+ (textObj.isFavorite ? 1 : 0) + " where _id = " + textObj.id;
 		adapter.update(sql);
 		adapter.close();

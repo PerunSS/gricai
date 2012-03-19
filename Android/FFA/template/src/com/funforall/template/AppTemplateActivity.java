@@ -22,7 +22,6 @@ public class AppTemplateActivity extends Activity {
         rated = preferences.getBoolean("isRated", false);
         Model.getInstance().setData(manager.read(rated));
         
-        
         final Button read = (Button)findViewById(R.id.start);
         read.setOnClickListener(new View.OnClickListener() {
 			
