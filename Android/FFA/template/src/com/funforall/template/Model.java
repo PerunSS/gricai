@@ -8,6 +8,7 @@ public class Model {
 	private static Model instance = new Model();
 	private List<Text> data = new ArrayList<Text>();
 	private List<Text> searchResult;
+	private DBManager manager;
 
 	private Model() {
 	}
@@ -16,11 +17,11 @@ public class Model {
 		return instance;
 	}
 
-	public List<String> getFavorites() {
-		List<String> favorites = new ArrayList<String>();
+	public List<Text> getFavorites() {
+		List<Text> favorites = new ArrayList<Text>();
 		for (Text element : data) {
 			if (element.isFavorite)
-				favorites.add(element.text);
+				favorites.add(element);
 		}
 		return favorites;
 	}
@@ -28,18 +29,22 @@ public class Model {
 	public void toogleFavorite(int i) {
 		i %= data.size();
 		data.get(i).isFavorite = !data.get(i).isFavorite;
+		manager.updateText(data.get(i));
 	}
 
 	public Text getText(int i) {
-		i %= data.size();
-		return data.get(i);
+		if (data.size() > 0) {
+			i %= data.size();
+			return data.get(i);
+		}
+		return null;
 	}
-	
-	public int getSize(){
+
+	public int getSize() {
 		return data.size();
 	}
-	
-	public void setData(List<Text> data){
+
+	public void setData(List<Text> data) {
 		this.data = data;
 	}
 
@@ -50,5 +55,9 @@ public class Model {
 	public void setSearchResult(List<Text> searchResult) {
 		this.searchResult = searchResult;
 	}
-	
+
+	public void setManager(DBManager manager) {
+		this.manager = manager;
+	}
+
 }

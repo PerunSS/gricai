@@ -26,8 +26,14 @@ public class ReadingActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.text_viewer);
+		handleIntent(getIntent());
 		final TextView text = (TextView) findViewById(R.id.text);
-		text.setText(Model.getInstance().getText(0).text);
+		Text initial = Model.getInstance().getText(current);
+		if(initial == null){
+			finish();
+			return;
+		}
+		text.setText(initial.text);
 
 		final Button favorite = (Button) findViewById(R.id.favourite);
 		favorite.setOnClickListener(new View.OnClickListener() {
@@ -88,10 +94,12 @@ public class ReadingActivity extends Activity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				finish();
+				Intent intent = new Intent(getApplicationContext(), Constants.application);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 			}
 		});
-
+		
 		final Button search = (Button) findViewById(R.id.search);
 		search.setOnClickListener(new View.OnClickListener() {
 
@@ -115,7 +123,10 @@ public class ReadingActivity extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			finish();
+			Intent intent = new Intent(getApplicationContext(), Constants.application);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			//finish();
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
@@ -161,6 +172,9 @@ public class ReadingActivity extends Activity {
 			maxCount--;
 		}
 		Model.getInstance().setSearchResult(searchResult);
+		Intent intent = new Intent(this, ListActivity.class);
+		intent.putExtra("search", true);
+		startActivity(intent);
 	}
 
 	private void showSearch() {

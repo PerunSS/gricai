@@ -21,13 +21,14 @@ public class AppTemplateActivity extends Activity {
         SharedPreferences preferences = getPreferences(MODE_WORLD_READABLE);
         rated = preferences.getBoolean("isRated", false);
         Model.getInstance().setData(manager.read(rated));
+        Model.getInstance().setManager(manager);
         
         final Button read = (Button)findViewById(R.id.start);
         read.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent readItent = new Intent(AppTemplateActivity.this, ReadingActivity.class);
+				Intent readItent = new Intent(getApplicationContext(), ReadingActivity.class);
 				startActivity(readItent);
 			}
 		});
@@ -37,7 +38,7 @@ public class AppTemplateActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent listIntent = new Intent(AppTemplateActivity.this, ListActivity.class);
+				Intent listIntent = new Intent(getApplicationContext(), ListActivity.class);
 				startActivity(listIntent);
 				
 			}

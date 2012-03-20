@@ -7,13 +7,11 @@ import android.content.Context;
 import android.database.Cursor;
 
 public class DBManager {
-
-	private static final String dbName = "template";
-	private static final String projectPath = "com.funforall."+DBManager.dbName;
+	
 	DBAdapter adapter;
 
 	public DBManager(Context context) {
-		adapter = new DBAdapter(context, dbName, projectPath);
+		adapter = new DBAdapter(context, Constants.dbName, Constants.projectPath);
 	}
 
 	public List<Text> read(boolean rated) {
@@ -21,7 +19,7 @@ public class DBManager {
 		List<Text> result = new ArrayList<Text>();
 		String sql = "select * from all_text";
 		if(!rated)
-			sql+= " limit 100";
+			sql+= " limit "+Constants.limit;
 
 		Cursor c = adapter.executeSql(sql, null);
 		if (c != null) {
