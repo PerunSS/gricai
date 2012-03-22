@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_main"
+            android:text="Let the fun start!"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="6dp" />
+
+        <Button
+            android:id="@+id/listFavorites"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_main"
+            android:text="Favorite stuff!"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="6dp" />
+
+        <Button
+            android:id="@+id/market"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_main"
+            android:text="Visit us on Market!"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="6dp" />
+
+        <Button
+            android:id="@+id/rateUs"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_main"
+            android:text="Rate us!"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="@string/bottom_message" />
+
+</RelativeLayout>
