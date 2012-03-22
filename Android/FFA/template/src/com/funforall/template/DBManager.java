@@ -11,7 +11,7 @@ public class DBManager {
 	DBAdapter adapter;
 
 	public DBManager(Context context) {
-		adapter = new DBAdapter(context, Constants.dbName, Constants.projectPath);
+		adapter = new DBAdapter(context, Constants.DB_NAME, Constants.PROJECT_PATH);
 	}
 
 	public List<Text> read(boolean rated) {
@@ -19,7 +19,7 @@ public class DBManager {
 		List<Text> result = new ArrayList<Text>();
 		String sql = "select * from all_text";
 		if(!rated)
-			sql+= " limit "+Constants.limit;
+			sql+= " limit "+Constants.LIMIT;
 
 		Cursor c = adapter.executeSql(sql, null);
 		if (c != null) {

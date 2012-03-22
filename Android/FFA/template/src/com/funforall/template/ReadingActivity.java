@@ -94,7 +94,7 @@ public class ReadingActivity extends Activity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), Constants.application);
+				Intent intent = new Intent(getApplicationContext(), Constants.APPLICATION);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
@@ -123,7 +123,7 @@ public class ReadingActivity extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Intent intent = new Intent(getApplicationContext(), Constants.application);
+			Intent intent = new Intent(getApplicationContext(), Constants.APPLICATION);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			//finish();

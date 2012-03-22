@@ -44,7 +44,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	 * */
 	public void createDataBase() throws IOException {
 		boolean dbExist = checkDataBase();
-		if(Constants.rewriteDb)
+		if(Constants.REWRITE_DB)
 			dbExist = false;
 		if (dbExist) {
 			// do nothing - database already exist

@@ -15,7 +15,6 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:layout_centerInParent="true"
             android:layout_weight=".75"
             android:gravity="center"
             android:text="@string/app_name"
@@ -52,7 +51,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="demo text"
             android:textSize="20dp" />
     </ScrollView>
 
@@ -98,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="a14f5b5f2e5ec00"
+        ads:adUnitId="@string/add_id"
         ads:loadAdOnCreate="true" />
 
 </RelativeLayout>
