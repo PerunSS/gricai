@@ -236,7 +236,7 @@
 		android:id="@+id/menuDrawer"
 		my:direction="topToBottom"
 		android:layout_width="fill_parent"
-		android:layout_height="340dip"
+		android:layout_height="360dip"
 		my:handle="@+id/handle"
 		my:content="@+id/content"
 		android:layout_marginTop="40dip">

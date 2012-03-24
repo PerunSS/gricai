@@ -73,6 +73,7 @@ public class NickiStarActivity extends Activity {
 	Button videoNextButton;
 	Button videoPlayButton;
 	Button updateButton;
+	Button rateButton;
 	MultiDirectionSlidingDrawer mDrawer;
 	MultiDirectionSlidingDrawer factsDrawer;
 	MultiDirectionSlidingDrawer videoButtonsDrawer;
@@ -456,6 +457,16 @@ public class NickiStarActivity extends Activity {
 							.getLastVideoID());
 			}
 		});
+		
+		rateButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("market://details?id=com.cerspri.star.NickiMinaj"));
+                startActivity(intent);
+			}
+		});
 	}
 
 	private void buildGUI() {
@@ -495,7 +506,8 @@ public class NickiStarActivity extends Activity {
 		newsReadButton = (Button) findViewById(R.id.read_news_button);
 		newsLinkLayout = (LinearLayout) findViewById(R.id.news_link_layout);
 		updateButton = (Button) findViewById(R.id.update_button);
-
+		rateButton = (Button) findViewById(R.id.rate_button);
+		
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
