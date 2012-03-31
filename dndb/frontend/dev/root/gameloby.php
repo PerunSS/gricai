@@ -83,7 +83,7 @@ foreach($json->players as $element){
 			<input type="submit" value="update" <?php if(isset($_SESSION['ready'])) echo 'disabled="disabled"'?>/>
 			<input type="hidden" name="change_team" value="true"/>	
 		</form>
-		<label>Class: <?=$hero?></label>
+		<label>Class: <?php echo "<img src=\"images/".strtolower($hero)."_small.png\"/>";?></label>
 		<form action="gameloby.php">
 			<input type="hidden" name="ready" value="true" />	
 			<input type="submit" value="ready" <?php if(isset($_SESSION['ready'])) echo 'disabled="disabled"'?>/>
@@ -93,7 +93,7 @@ foreach($json->players as $element){
 		?>
 		<label>Name: <?=$element->name?></label><br/>
 		<label>Team: <?=$element->team?></label><br/>
-		<label>Class: <?=$element->hero?></label><br/>
+		<label>Class: <?php echo "<img src=\"images/".strtolower($element->hero)."_small.png\"/>";?></label>
 		<?php 	
 	}
 }

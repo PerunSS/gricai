@@ -9,12 +9,7 @@ class Map{
 
 	
 	function getField($x, $y){
-		foreach($this->fields as $field){
-			if($field->x == $x && $field->y == $y){
-				return $field;
-			}
-		}
-		return NULL;
+		return $this->fields[$y][$x];
 	}
 	
 	/**
@@ -29,7 +24,8 @@ class Map{
 		$count_nb = 0;
 		$count_gr=0;
 
-		foreach($this->fields as $single_field){
+		foreach($this->fields as $row)
+		foreach($row as $single_field){
 			if($x+$range>=$single_field->x && $x-$range<=$single_field->x && $y+$range>=$single_field->y && $y-$range<=$single_field->y){
 				$grid[$count_gr++]=$single_field;
 			}

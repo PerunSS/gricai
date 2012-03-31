@@ -42,6 +42,28 @@ class Communicator{
 		$this->call_api("GET","get_map",array(), $result);
 		return $result;	
 	}
+	
+	function move($x, $y, $name){
+		$data['x'] = $x;
+		$data['y'] = $y;
+		$data['name'] = $name;
+		$this->call_api("GET","do_move",$data, $result);
+		return $result;	
+	}
+	
+	function endTurn($name){
+		$data['name'] = $name;
+		$this->call_api("GET","end_turn",$data, $result);
+		return $result;	
+	}
+	
+	function attack($source, $target){
+		$data['source'] = $source;
+		$data['target'] = $target;
+		$this->call_api("GET","do_attack",$data, $result);
+		return $result;	
+		
+	}
 
 	function call_api($http_method, $function, $input_data, &$output_data){
 		// URL of function

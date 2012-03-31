@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<LINK href="../root/css/index.css" rel="stylesheet" type="text/css">
+		<LINK href="css/index.css" rel="stylesheet" type="text/css">
 		<title>Login</title>
 	</head>
 <body>

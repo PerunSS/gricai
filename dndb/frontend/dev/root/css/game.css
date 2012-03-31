@@ -34,7 +34,7 @@ body {
 }
 
 .enemy {
-	background: red;
+	
 }
 
 .obstacle {
@@ -42,21 +42,37 @@ body {
 }
 
 .player {
-	background: blue;
+	
 }
 
 .admin {
-
+	background-image:url('../images/admin_small.png');
 }
 
 .frontend {
+	background-image:url('../images/frontend_small.png');
 }
 
 .backend {
+	background-image:url('../images/backend_small.png');
 }
 
 .qa {
+	background-image:url('../images/qa_small.png');
 }
 
 .manager {
+	background-image:url('../images/manager_small.png');
+}
+
+.image_display{
+float:left;
+width:50%;
+}
+.basic_data{
+float:left;
+width:45%;
+}
+.player_top{
+width:100%;
 }
