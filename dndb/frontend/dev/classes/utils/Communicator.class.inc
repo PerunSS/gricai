@@ -1,7 +1,23 @@
 <?php
 class Communicator{
 
-	const PATH ="localhost/";
+	const PATH ="192.168.100.122:8080/";
+	
+	function getClasses(){
+		$this->call_api("GET","classes",array(),$result);
+		return $result;
+	}
+	
+	function addHero($name, $hero){
+		$data['name'] = $name;
+		$data['hero'] = $hero;
+		$this->call_api("GET","add_hero",$data,$result);
+	}
+	
+	function getList(){
+		$this->call_api("GET","list",array(), $result);
+		return $result;		
+	}
 
 	function call_api($http_method, $function, $input_data, &$output_data){
 		// URL of function
