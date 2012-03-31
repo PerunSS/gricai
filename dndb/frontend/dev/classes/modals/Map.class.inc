@@ -7,6 +7,16 @@ class Map{
 		$this->fields = $fields;
 	}
 
+	
+	function getField($x, $y){
+		foreach($this->fields as $field){
+			if($field->x == $x && $field->y == $y){
+				return $field;
+			}
+		}
+		return NULL;
+	}
+	
 	/**
 	 *
 	 * @param $field

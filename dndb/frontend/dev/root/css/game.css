@@ -1,16 +1,62 @@
 @CHARSET "ISO-8859-1";
 
 body {
-    padding: 0;
+	padding: 0;
+}
+
+.map {
+	width: 640px;
+	height: 640px;
+	float: left;
 }
 
 .grid {
-    border: 1px solid #ccc;
-    border-width: 1px 0 0 1px;
+	border: 1px solid #ccc;
+	width: 30px;
+	height: 30px;
+	float: left;
 }
 
-.grid div {
-    border: 1px solid #ccc;
-    border-width: 0 1px 1px 0;
-    float: left;
-}​
+.details_enemy {
+	float: left;
+	width: 20%;
+	margin-left: 20px;
+}
+
+.details_player {
+	float: left;
+	width: 20%;
+	
+}
+
+.avaliable {
+	background: green;
+}
+
+.enemy {
+	background: red;
+}
+
+.obstacle {
+	background: black;
+}
+
+.player {
+	background: blue;
+}
+
+.admin {
+
+}
+
+.frontend {
+}
+
+.backend {
+}
+
+.qa {
+}
+
+.manager {
+}

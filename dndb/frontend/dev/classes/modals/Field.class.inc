@@ -2,15 +2,14 @@
 class Field {
 	
 	var $x, $y;
-	var $obstacle;
-	var $hero;
-	var $colour;
+	var $blocking;
+	var $item; //hero
 	
-	function __construct($x, $y, $obstacle = null, $hero = null){
+	function __construct($x, $y, $blocking = null, $item = null){
 		$this->x = $x;
 		$this->y = $y;
-		$this->obstacle = $obstacle;
-		$this->hero = $hero;
+		$this->blocking = $blocking;
+		$this->item = $item;
 	}
 	
 }

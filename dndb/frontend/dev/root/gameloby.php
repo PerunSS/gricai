@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta http-equiv="refresh" content="10;url=gameloby.php">
+<title>game loby</title>
 </head>
 <body>
 <?php

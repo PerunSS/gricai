@@ -37,6 +37,11 @@ class Communicator{
 		$this->call_api("GET","list_players",array(), $result);
 		return $result;		
 	}
+	
+	function getMap(){
+		$this->call_api("GET","get_map",array(), $result);
+		return $result;	
+	}
 
 	function call_api($http_method, $function, $input_data, &$output_data){
 		// URL of function

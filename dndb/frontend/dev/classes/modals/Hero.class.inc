@@ -6,14 +6,21 @@ class Hero{
 	var $name, $level, $money;
 	var $field;
 	var $points;
+	var $a; //akcije za magije
+	var $player_name;
+	var $player_team;
+	var $m; //akcije za movement
+	var $t; //totalni broj poena
+	var $player_isTurn; //govori da li je igracev potez
+	var $player_isReady; //nebitno
 	var $remaining_points;
 
-	function __construct($hp, $ac, $ab, $characteristics, $items, $name, $field){
-		$this->hp = $hp;
-		$this->ac = $ac;
-		$this->ab = $ab;
-		$this->name = $name;
-		$this->field = $field;
+	function __construct($json, $map){
+		$this->hp = $json->hp;
+		$this->ac = $json->ac;
+		$this->ab = $json->ab;
+		$this->name = $json->name;
+		$this->field = $map->getField($json->x, $json->y);
 		$this->costitution = $characteristics['constitution'];
 		$this->strength = $characteristics['strength'];
 		$this->dexterity = $characteristics['dexterity'];
