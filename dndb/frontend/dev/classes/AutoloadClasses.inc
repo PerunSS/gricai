@@ -9,6 +9,7 @@ function __autoload($class_name) {
 		"Field"=>"modals/",
 		"Hero"=>"modals/",
 		"Map"=>"modals/",
+		"Weapon"=>"modals/",
 		"Communicator"=>"utils/",
 	);
 
