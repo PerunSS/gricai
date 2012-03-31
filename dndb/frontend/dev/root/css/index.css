@@ -1,0 +1,37 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background-image: url("../images/login.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	font-size: 10em;
+	background-color: lightgray;
+}
+
+.login{
+	display:block;
+	font-size: 30px;
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-left: 400px;	
+}
+.login>div.name{
+	display: block;
+	width: 200px;
+	height: auto;
+	float:left;
+	padding-left: 5px;
+	
+	
+}
+.login>input.button{
+	display:block;
+	float:left;
+	padding-left:5px;
+	width: 150px;
+	height: 30px;
+	background-color: black;
+	color: white;
+	font-size: 25px;
+	
+}
