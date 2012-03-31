@@ -9,6 +9,9 @@ require_once "../classes/AutoloadClasses.inc";
 if (!isset($_SESSION)) {
 	session_start();
 }
-?>
 
+?>
+<script src="../js/grid.js">	
+
+</script>
 </html>
