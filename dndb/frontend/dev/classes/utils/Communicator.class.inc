@@ -11,11 +11,30 @@ class Communicator{
 	function addHero($name, $hero){
 		$data['name'] = $name;
 		$data['hero'] = $hero;
-		$this->call_api("GET","add_hero",$data,$result);
+		$this->call_api("GET","add_player",$data,$result);
+		return $result;
+	}
+	
+	function changeTeam($name, $team){
+		$data['name'] = $name;
+		$data['team'] = $team;
+		$this->call_api("GET","change_team",$data,$result);
+		return $result;
+	}
+	
+	function ready($name){
+		$data['name'] = $name;
+		$this->call_api("GET","ready",$data,$result);
+		return $result;
+	}
+	
+	function delete(){
+		$this->call_api("GET","delete_all",array(),$result);
+		return $result;
 	}
 	
 	function getList(){
-		$this->call_api("GET","list",array(), $result);
+		$this->call_api("GET","list_players",array(), $result);
 		return $result;		
 	}
 

@@ -13,7 +13,7 @@ $json = json_decode($result);
 <select name="class">  
 <?php 
 	foreach($json->heroes as $name){
-		echo "<option name=\"".$name."\"/>".$name."</option>";
+		echo "<option value=\"".$name."\"/>".$name."</option>";
 	}
 ?>
 </select>
