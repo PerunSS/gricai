@@ -11,6 +11,7 @@ if (!isset($_SESSION)) {
 }
 
 ?>
+<script src="../js/jquery.js">
 <script src="../js/grid.js">	
 
 </script>
