@@ -141,7 +141,7 @@ public class NickiStarActivity extends Activity {
 	private void startApp() {
 		buildGUI();
 		Model.getInstance().createMaps();
-		if(!initial){
+		if (!initial) {
 			getData("fact", false, false);
 			getData("quote", false, false);
 			getVideos();
@@ -149,6 +149,7 @@ public class NickiStarActivity extends Activity {
 		}
 		addButtonActions();
 	}
+
 	private void firstStart() {
 		Intent myIntent = new Intent(this, Disclaimer.class);
 		startActivityForResult(myIntent, 0);
@@ -448,23 +449,24 @@ public class NickiStarActivity extends Activity {
 		});
 
 		videoPlayButton.setOnClickListener(videoPlayListener);
-		
+
 		updateButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				new UpdateContentTask().execute(Model.getInstance()
-							.getLastVideoID());
+						.getLastVideoID());
 			}
 		});
-		
+
 		rateButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("market://details?id=com.cerspri.star.NickiMinaj"));
-                startActivity(intent);
+				intent.setData(Uri
+						.parse("market://details?id=com.cerspri.star.NickiMinaj"));
+				startActivity(intent);
 			}
 		});
 	}
@@ -507,7 +509,7 @@ public class NickiStarActivity extends Activity {
 		newsLinkLayout = (LinearLayout) findViewById(R.id.news_link_layout);
 		updateButton = (Button) findViewById(R.id.update_button);
 		rateButton = (Button) findViewById(R.id.rate_button);
-		
+
 		mDrawer.animateOpen();
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("Coming soon!!!");
@@ -847,7 +849,7 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected Void doInBackground(Integer... params) {
 			Model.getInstance().loadVideos(params[0],
-					getString(R.string.app_name),false);
+					getString(R.string.app_name), false);
 			return null;
 		}
 
@@ -882,7 +884,7 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			getNews(true,false);
+			getNews(true, false);
 			return null;
 		}
 
@@ -899,20 +901,25 @@ public class NickiStarActivity extends Activity {
 			isToogle = false;
 			menuShown = false;
 			newsPosition = 0;
-			newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-					.get(newsPosition).getTitle()));
-			newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-					.get(newsPosition).getContent()));
-			newsImage.setOnClickListener(videoPlayListener);
-			newsDate.setText(Model.getInstance().getNews().get(newsPosition)
-					.getPubDate());
+			if (Model.getInstance().getNews().size() > 0) {
+				newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(newsPosition).getTitle()));
+				newsText.setText(Html.fromHtml(Model.getInstance().getNews()
+						.get(newsPosition).getContent()));
+				newsImage.setOnClickListener(videoPlayListener);
+				newsDate.setText(Model.getInstance().getNews()
+						.get(newsPosition).getPubDate());
+				new ImageLoaderTask(newsImage, Model.getInstance().getNews()
+						.get(newsPosition).getImagePath()).execute();
+				newsNextButton.setVisibility(View.VISIBLE);
+			}else {
+				newsNextButton.setVisibility(View.INVISIBLE);
+			}
 			newsBackButton.setVisibility(View.INVISIBLE);
-			new ImageLoaderTask(newsImage, Model.getInstance().getNews()
-					.get(newsPosition).getImagePath()).execute();
 		}
 
 	}
-	
+
 	private class UpdateContentTask extends AsyncTask<Integer, Void, Void> {
 		@Override
 		protected void onPreExecute() {
@@ -925,9 +932,9 @@ public class NickiStarActivity extends Activity {
 		protected Void doInBackground(Integer... params) {
 			getData("fact", true, true);
 			getData("quote", true, true);
-			getNews(true,true);
+			getNews(true, true);
 			Model.getInstance().loadVideos(params[0],
-					getString(R.string.app_name),true);
+					getString(R.string.app_name), true);
 			return null;
 		}
 
@@ -1014,7 +1021,7 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected Drawable doInBackground(Void... params) {
 			InputStream is = null;
-			if (url != null && url.length()>0) {
+			if (url != null && url.length() > 0) {
 				url = url.replaceAll(" ", "%20");
 
 				try {
@@ -1041,7 +1048,7 @@ public class NickiStarActivity extends Activity {
 					bitmap = null;
 					System.gc();
 					try {
-						if(is!=null)
+						if (is != null)
 							is.close();
 					} catch (IOException e) {
 						e.printStackTrace();

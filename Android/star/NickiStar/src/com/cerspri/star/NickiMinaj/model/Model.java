@@ -56,9 +56,13 @@ public class Model {
 	}
 
 	public String getNext(String type) {
-		int index = (currents.get(type) + 1) % texts.get(type).size();
-		currents.put(type, index);
-		return texts.get(type).get(index);
+		int size = texts.get(type).size();
+		if(size>0){
+			int index = (currents.get(type) + 1) % size;
+			currents.put(type, index);
+			return texts.get(type).get(index);
+		}
+		return "";
 	}
 
 	public int loadNews(Integer version, String name, boolean initial) {
