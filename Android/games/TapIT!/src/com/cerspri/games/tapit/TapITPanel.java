@@ -22,7 +22,8 @@ import com.cerspri.games.tapit.model.Coordinates;
 import com.cerspri.games.tapit.model.TapITGame;
 import com.cerspri.games.tapit.model.TapITObject;
 
-public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener {
+public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
+		MediaPlayer.OnPreparedListener {
 
 	private static final long START_GAME_TIME = 20000;
 
@@ -37,8 +38,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 	private long totalTime = 0;
 	private long lvlUP = 40000;
 	private long maxTime = 0;
-	private long lastTouch = 0;
-	private long tick = 0;
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
 	private MediaPlayer gameMusic;
@@ -46,17 +45,16 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 
 	public TapITPanel(Context context) {
 		super(context);
-		soundPool = new SoundPool(20,AudioManager.STREAM_MUSIC,100);
-		clickPos = soundPool.load(context, R.raw.click,0);
+		soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
+		clickPos = soundPool.load(context, R.raw.click, 0);
 		clickNeg = soundPool.load(context, R.raw.click_n, 0);
 		gameMusic = MediaPlayer.create(context, R.raw.game_play);
 		gameMusic.setLooping(true);
 		gameMusic.setVolume(1, 1);
 		gameMusic.start();
 		gameMusic.setOnPreparedListener(this);
-		progressDialog = ProgressDialog.show(context, "",
-				"Loading...");
-		
+		progressDialog = ProgressDialog.show(context, "", "Loading...");
+
 	}
 
 	public void pause() {
@@ -78,23 +76,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 	@Override
 	protected void onDraw(Canvas canvas) {
 		removeObjects();
-		
+
 		canvas.drawColor(Color.BLACK);
 		canvas.drawText("time: " + ((double) timer.getTime()) / 1000, 7, 22,
 				paint);
 		String scoreText = score + "";
-		if (tick > 0)
-			if (lastTouch > 0) {
-				scoreText += " + " + lastTouch;
-			} else if (lastTouch < 0) {
-				scoreText += " - " + Math.abs(lastTouch);
-			}
-		
-		if (Math.abs(tick - timer.getTime())> 5000){
-			tick = 0;
-		}
-		Bitmap score = BitmapFactory.decodeResource(getResources(), R.drawable.score);
-		canvas.drawBitmap(score, 125,2,null);
+		Bitmap score = BitmapFactory.decodeResource(getResources(),
+				R.drawable.score);
+		canvas.drawBitmap(score, 125, 2, null);
 		canvas.drawText(scoreText, 150, 22, paint);
 		Bitmap bitmap;
 		Coordinates coords;
@@ -104,36 +93,33 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 			canvas.drawBitmap(bitmap, coords.getXForDraw(),
 					coords.getYForDraw(), null);
 		}
-		
+
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int x = (int) event.getX();
 		int y = (int) event.getY();
 		synchronized (getHolder()) {
-			lastTouch = 0;
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {
 					object.click();
-					if(object.getTimeValue()>0)
+					if (object.getTimeValue() > 0)
 						soundPool.play(clickPos, 1, 1, 0, 0, 1);
-					else{
+					else {
 						soundPool.play(clickNeg, 1, 1, 0, 0, 1);
 					}
-					timer.updateTime(object.getTimeValue());
-					lastTouch += object.getTimeValue() / 1000;
+					timer.updateTime(object.getTimeValue() / 5 * 2);
 					long time = timer.getTime();
 					if (time > 0) {
 						score += object.getTimeValue() / 1000;
-						tick = time;
 						if (object.getTimeValue() > 0) {
-							totalTime += object.getTimeValue();
+							totalTime += object.getTimeValue() / 5 * 2;
 						}
 						if (time > START_GAME_TIME && time > maxTime) {
 							maxTime = time;
 						}
-						if (totalTime * 0.7 + score * 300 > lvlUP) {
+						if (totalTime * 0.5 + score * 500 > lvlUP) {
 							TapITGame.getInstance().lvlUp();
 							lvlUP += 40000;
 						}
@@ -161,13 +147,13 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 	}
 
 	public void endGame(boolean finishActivity, boolean wasSuspended) {
-		//if(gameMusic.isPlaying()){
-		//	gameMusic.stop();
-		//}
+		// if(gameMusic.isPlaying()){
+		// gameMusic.stop();
+		// }
 		System.out.println(gameMusic);
 		gameMusic.release();
 		System.out.println("*");
-		if(wasSuspended){
+		if (wasSuspended) {
 			thread.resume();
 			timer.resume();
 			creator.resume();
@@ -177,14 +163,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 		boolean retry = true;
 		thread.setRunning(false);
 		creator.setRunning(false);
-		if(wasSuspended){
+		if (wasSuspended) {
 			timer.setRunning(false);
 		}
 		while (retry) {
 			try {
 				runningThread.join();
 				generatorThread.join();
-				if(wasSuspended){
+				if (wasSuspended) {
 					timerThread.join();
 				}
 				retry = false;
@@ -192,7 +178,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 				e.printStackTrace();
 			}
 		}
-		if(finishActivity){
+		if (finishActivity) {
 			Activity activity = ((Activity) getContext());
 			Intent intent = new Intent();
 			intent.putExtra("score", score);
@@ -260,7 +246,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 	}
 
 	/****************************************************/
-	/*********continue app when media prepared***********/
+	/********* continue app when media prepared ***********/
 	/****************************************************/
 	@Override
 	public void onPrepared(MediaPlayer mp) {
@@ -269,8 +255,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback, M
 		creator = new TapITCreatorThread(this);
 		timer = new TapITTimer(START_GAME_TIME, this);
 		setFocusable(true);
-		WindowManager wm = (WindowManager) getContext()
-				.getSystemService(Context.WINDOW_SERVICE);
+		WindowManager wm = (WindowManager) getContext().getSystemService(
+				Context.WINDOW_SERVICE);
 		DisplayMetrics metrics = new DisplayMetrics();
 		wm.getDefaultDisplay().getMetrics(metrics);
 		width = metrics.widthPixels;

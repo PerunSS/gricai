@@ -12,6 +12,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class TapITGame {
+	
+	private Level levle;
 
 	private static final int POSITIVE_1 = 1, POSITIVE_2 = 2, POSITIVE_3 = 5;
 	private static final int NEGATIVE_1 = -2, NEGATIVE_2 = -5,

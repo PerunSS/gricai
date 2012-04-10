@@ -6,6 +6,8 @@ public class TapITObject {
 
 	private Bitmap bitmap;
 	private Coordinates coordinates;
+	
+	
 	private long lifeTime = 500;
 	private boolean clicked = false;
 	private long timeValue = 1000;
