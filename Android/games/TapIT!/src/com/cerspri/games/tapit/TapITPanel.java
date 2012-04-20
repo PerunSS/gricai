@@ -90,8 +90,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		for (TapITObject graphic : TapITGame.getInstance().getGraphics()) {
 			bitmap = graphic.getBitmap();
 			coords = graphic.getCoordinates();
-			canvas.drawBitmap(bitmap, coords.getXForDraw(),
-					coords.getYForDraw(), null);
+			canvas.drawBitmap(bitmap, coords.getX(), coords.getY(), null);
 		}
 
 	}
@@ -100,6 +99,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	public boolean onTouchEvent(MotionEvent event) {
 		int x = (int) event.getX();
 		int y = (int) event.getY();
+		System.out.println(x+","+y);
 		synchronized (getHolder()) {
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {
@@ -124,6 +124,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 							lvlUP += 40000;
 						}
 					}
+					return true;
 				}
 			}
 		}

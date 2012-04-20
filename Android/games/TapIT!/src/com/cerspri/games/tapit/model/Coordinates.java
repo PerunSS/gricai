@@ -4,44 +4,40 @@ public class Coordinates {
 	private int x;
 	private int y;
 	private int width, height;
-
+	
 	public Coordinates(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}
 
 	public int getX() {
-		return x + width / 2;
+		return x;
 	}
 
-	public void setX(int value) {
-		x = value - width / 2;
+	public void setX(int x) {
+		this.x = x;
 	}
 
 	public int getY() {
-		return y + height / 2;
-	}
-
-	public void setY(int value) {
-		y = value - height / 2;
-	}
-	
-	public int getXForDraw(){
-		return x;
-	}
-	
-	public int getYForDraw(){
 		return y;
 	}
 
+	public void setY(int y) {
+		this.y = y;
+	}
+	
 	public String toString() {
 		return "Coordinates: (" + x + "/" + y + ")";
 	}
 
 	public boolean contains(int x, int y) {
-		if (Math.abs(getX() - x) <= width / 2
-				&& Math.abs(getY() - y) <= height / 2)
+		
+		if (Math.abs(x - this.x) <= width +2
+				&& Math.abs(y - this.y) <= height+2){
+			System.out.println("("+this.x+" "+this.y+") <= ("+x+","+y+")");
 			return true;
+		}
 		return false;
 	}
+
 }

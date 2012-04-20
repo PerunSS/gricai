@@ -1,5 +1,7 @@
 package com.cerspri.games.tapit.model.effect;
 
+import android.graphics.Bitmap;
+
 public class DoubleScore extends Effect {
 
 	private static final int MAX_DURATION = 10;
@@ -18,6 +20,12 @@ public class DoubleScore extends Effect {
 	@Override
 	public int getModificator() {
 		return MODIFICATOR;
+	}
+
+	@Override
+	public Bitmap getBitmap() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

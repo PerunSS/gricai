@@ -1,5 +1,7 @@
 package com.cerspri.games.tapit.model.effect;
 
+import android.graphics.Bitmap;
+
 public abstract class Effect {
 
 	private long duration;
@@ -14,4 +16,5 @@ public abstract class Effect {
 	
 	public abstract void doTap();
 	public abstract int getModificator();
+	public abstract Bitmap getBitmap();
 }

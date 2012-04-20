@@ -2,12 +2,15 @@ package com.cerspri.games.tapit.model;
 
 import android.graphics.Bitmap;
 
+import com.cerspri.games.tapit.model.effect.Effect;
+
 public class TapITObject {
 
-	private Bitmap bitmap;
 	private Coordinates coordinates;
-	
-	
+
+	private Effect effect;
+	private Bitmap bitmap;
+
 	private long lifeTime = 500;
 	private boolean clicked = false;
 	private long timeValue = 1000;
@@ -28,6 +31,8 @@ public class TapITObject {
 	}
 
 	public Bitmap getBitmap() {
+		if (effect != null)
+			return effect.getBitmap();
 		return bitmap;
 	}
 
