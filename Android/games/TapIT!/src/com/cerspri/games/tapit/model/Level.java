@@ -54,30 +54,30 @@ public class Level {
 			random = Math.random();
 			if (random < negativeHigh) {
 				lifeTime += Math.random() * negativeHigh;
-				value = ImageConstants.NEGATIVE_10;
+				value = Constants.NEGATIVE_10;
 			} else if (random < negativeMedium) {
 				lifeTime += Math.random() * negativeMedium;
-				value = ImageConstants.NEGATIVE_5;
+				value = Constants.NEGATIVE_5;
 			} else {
 				lifeTime += Math.random();
-				value = ImageConstants.NEGATIVE_2;
+				value = Constants.NEGATIVE_2;
 			}
 		} else {
 			random = Math.random();
 			if (random < positiveHigh) {
 				lifeTime += Math.random() * positiveHigh;
-				value = ImageConstants.POSITIVE_5;
+				value = Constants.POSITIVE_5;
 			} else if (random < positiveMedium) {
 				lifeTime += Math.random() * positiveMedium;
-				value = ImageConstants.POSITIVE_2;
+				value = Constants.POSITIVE_2;
 			} else {
 				lifeTime += Math.random();
-				value = ImageConstants.POSITIVE_1;
+				value = Constants.POSITIVE_1;
 			}
 		}
 		long lifeTimeMiliseconds = (long) (lifeTime * MILISECONDS);
 
-		Bitmap icon = BitmapFactory.decodeResource(res, ImageConstants.getResource(level, value));
+		Bitmap icon = BitmapFactory.decodeResource(res, Constants.getResource(level, value));
 
 		int imageWidth = icon.getWidth();
 		int imageHeight = icon.getHeight();
@@ -96,5 +96,10 @@ public class Level {
 
 	public long getSpawnTime() {
 		return (long) ((spawn + Math.random() * minimumOdd) * MILISECONDS);
+	}
+	
+	@Override
+	public String toString() {
+		return "level: "+level+", neg: "+negativeOdd+", neg(m,h) = ("+negativeMedium+","+negativeHigh+"), pos(m,h) = ("+positiveMedium+","+positiveHigh+"), lt = "+lifeTime+", spawn = "+spawn;
 	}
 }

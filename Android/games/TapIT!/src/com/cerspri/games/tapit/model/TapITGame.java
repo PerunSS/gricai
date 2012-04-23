@@ -1,9 +1,7 @@
 package com.cerspri.games.tapit.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.content.res.Resources;
 
@@ -11,7 +9,7 @@ public class TapITGame {
 
 	private Level currentLevel;
 
-	private Map<Integer, Level> levels = new HashMap<Integer, Level>();
+	//private Map<Integer, Level> levels = new HashMap<Integer, Level>();
 
 	private List<TapITObject> graphics = new ArrayList<TapITObject>();
 	private static TapITGame instance = new TapITGame();
@@ -24,7 +22,7 @@ public class TapITGame {
 	}
 
 	private void generateLevels() {
-		int levelCount = 10;
+		/*int levelCount = 10;
 		double negativeBasic = 0.2;
 		double negativeChange = 0.1;
 		double changeStep = 0.01;
@@ -72,11 +70,11 @@ public class TapITGame {
 					negativeMedium, negativeHigh, positiveMedium, positiveHigh, lifeTime, spawn);
 			negativeBasic += negativeChange;
 			negativeChange -= changeStep;
-
+			System.out.println(level);
 			levels.put(i + 1, level);
-		}
+		}*/
 		
-		currentLevel = levels.get(lvl);
+		currentLevel = Constants.getLevel(lvl);
 	}
 
 	/**
@@ -114,7 +112,7 @@ public class TapITGame {
 		if(lvl > 10){
 			lvl = 10;
 		}
-		currentLevel = levels.get(lvl);
+		currentLevel = Constants.getLevel(lvl);
 	}
 
 	public long getSpawnTime() {
