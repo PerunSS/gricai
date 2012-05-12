@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/background">
+	<TextView 
+		style="@style/main_button"
+		android:text="Create Player"
+		android:gravity="center"/>
+	<EditText
+		android:id="@+id/playerName"
+		android:textSize="20dp"
+		style="@style/input_text_style"/>
+	<RadioGroup 
+		android:id="@+id/genderSelection"
+		style="@style/radio_group_style"
+		android:orientation="vertical">
+		<RadioButton 
+			android:id="@+id/male"
+			android:layout_width="fill_parent"
+			android:layout_height="40dp"
+			android:button="@drawable/checker"
+			android:text="Male"
+			android:layout_gravity="center"/>
+		<RadioButton 
+			android:id="@+id/female"
+			android:layout_width="fill_parent"
+			android:layout_height="40dp"
+			android:button="@drawable/checker"
+			android:text="Female"
+			android:layout_gravity="center"/>
+	</RadioGroup>
+</LinearLayout>
