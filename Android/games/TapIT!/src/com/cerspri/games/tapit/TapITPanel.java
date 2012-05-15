@@ -5,10 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -33,15 +33,15 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private int width;
 	private int height;
 	private TapITTimer timer;
-	private Paint paint;
 	private long score = 0;
 	private long totalTime = 0;
-	private long lvlUP = 40000;
+	private long lvlUP = 20000;
 	private long maxTime = 0;
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
 	private MediaPlayer gameMusic;
 	private ProgressDialog progressDialog;
+	private Paint fontPaint;
 
 	public TapITPanel(Context context) {
 		super(context);
@@ -54,7 +54,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		gameMusic.start();
 		gameMusic.setOnPreparedListener(this);
 		progressDialog = ProgressDialog.show(context, "", "Loading...");
-
 	}
 
 	public void pause() {
@@ -79,12 +78,9 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 
 		canvas.drawColor(Color.BLACK);
 		canvas.drawText("time: " + ((double) timer.getTime()) / 1000, 7, 22,
-				paint);
-		String scoreText = score + "";
-		Bitmap score = BitmapFactory.decodeResource(getResources(),
-				R.drawable.score);
-		canvas.drawBitmap(score, 125, 2, null);
-		canvas.drawText(scoreText, 150, 22, paint);
+				fontPaint);
+		canvas.drawText("score: "+ score, 150, 22, fontPaint);
+		canvas.drawText("level: "+ TapITGame.getInstance().getCurrentLevel(), 250, 22, fontPaint);
 		Bitmap bitmap;
 		Coordinates coords;
 		for (TapITObject graphic : TapITGame.getInstance().getGraphics()) {
@@ -99,7 +95,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	public boolean onTouchEvent(MotionEvent event) {
 		int x = (int) event.getX();
 		int y = (int) event.getY();
-		System.out.println(x+","+y);
+		//System.out.println(x + "," + y);
 		synchronized (getHolder()) {
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {
@@ -121,9 +117,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 						}
 						if (totalTime * 0.5 + score * 500 > lvlUP) {
 							TapITGame.getInstance().lvlUp();
-							lvlUP += 40000;
+							lvlUP += 20000;
 						}
 					}
+					removeObjects();
 					return true;
 				}
 			}
@@ -148,12 +145,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	}
 
 	public void endGame(boolean finishActivity, boolean wasSuspended) {
-		// if(gameMusic.isPlaying()){
-		// gameMusic.stop();
-		// }
-		System.out.println(gameMusic);
 		gameMusic.release();
-		System.out.println("*");
 		if (wasSuspended) {
 			thread.resume();
 			timer.resume();
@@ -247,7 +239,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	}
 
 	/****************************************************/
-	/********* continue app when media prepared ***********/
+	/********* continue app when media prepared *********/
 	/****************************************************/
 	@Override
 	public void onPrepared(MediaPlayer mp) {
@@ -263,8 +255,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		width = metrics.widthPixels;
 		height = metrics.heightPixels;
 		generateRandomObject();
-		paint = new Paint();
-		paint.setColor(Color.WHITE);
+		Typeface tf = Typeface.create("Helvetica", Typeface.BOLD);
+		fontPaint = new Paint();
+		fontPaint.setTypeface(tf);
+		fontPaint.setColor(Color.WHITE);
 		progressDialog.dismiss();
 	}
 

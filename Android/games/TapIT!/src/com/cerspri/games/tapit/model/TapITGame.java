@@ -127,5 +127,9 @@ public class TapITGame {
 		graphics.clear();
 		lvl = 1;
 	}
+	
+	public int getCurrentLevel(){
+		return lvl;
+	}
 
 }

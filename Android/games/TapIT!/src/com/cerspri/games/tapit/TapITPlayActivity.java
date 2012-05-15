@@ -45,7 +45,7 @@ public class TapITPlayActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		panel.pause();
-		dialog = new Dialog(this, android.R.style.Theme_Black){
+		dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen){
 			 @Override
 	            public boolean onKeyDown(int keyCode, KeyEvent event) {
 	                if(keyCode == KeyEvent.KEYCODE_BACK) {
@@ -58,7 +58,7 @@ public class TapITPlayActivity extends Activity {
 	            }
 		};
 		dialog.setContentView(R.layout.pause_dialog);
-		dialog.setTitle("PAUSE");
+		//dialog.setTitle("PAUSE");
 		TextView gameScoreVeiw = (TextView) dialog
 				.findViewById(R.id.game_score);
 		gameScoreVeiw.setText(panel.getScore() + ".0");

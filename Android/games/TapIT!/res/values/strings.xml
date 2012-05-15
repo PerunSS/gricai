@@ -5,7 +5,7 @@
     <string name="highscores">High scores</string>
     <string name="instructions">Instructions</string>
     <string name="submit">Submit score</string>
-    <string name="back">Back to menu</string>
+    <string name="back">Main Menu</string>
     <string name="game_score">game score:</string>
     <string name="max_time">max time:</string>
     <string name="total">TOTAL:</string>
@@ -13,11 +13,12 @@
     <string name="rules_1">Game is simple, don\'t run out of time! During game different boxes will appear randomly on screen - boxes with positive values and boxes with negative ones. By tapping box you will get amount of points and time written on box - e.g. +2 box will bring you 2 points and 2 more seconds, and -5 will take-away 5 points and subtract 5 seconds.</string>
     <string name="positive">"Positive Boxes: "</string>
     <string name="negative">Negative Boxes:</string>
-    <string name="rules_2">Also try to get as much time in one moment as possible, because that affects final score (e.g at one moment you have 93.2 s and value 923.2 will be added to your score as final score)</string>
+    <string name="rules_2">Also try to get as much time in one moment as possible, because that affects final score (e.g at one moment you have 33.2 s and value 33.2 will be added to your score as final score)</string>
     <string name="rules_3">One last thing - if boxes overlay and you tap there - you will tap BOTH boxes - so be careful! Good luck!</string>
-    <string name="continue_game">Continue Game</string>
+    <string name="continue_game">Resume</string>
     <string name="pause">Pause</string>
     <string name="game_score_pause">current game score:</string>
     <string name="max_time_pause">current max time:</string>
+    <string name="rate_us">Rate us!</string>
 
 </resources>

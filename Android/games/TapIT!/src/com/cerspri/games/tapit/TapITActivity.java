@@ -54,7 +54,7 @@ public class TapITActivity extends Activity {
 			displayScore.start();
 			long score = data.getExtras().getLong("score");
 			double max = data.getExtras().getDouble("max");
-			final Dialog dialog = new Dialog(this, android.R.style.Theme_Black){
+			final Dialog dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen){
 				@Override
 				public boolean onKeyDown(int keyCode, KeyEvent event) {
 					if(keyCode == KeyEvent.KEYCODE_BACK) {

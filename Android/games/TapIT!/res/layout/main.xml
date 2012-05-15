@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:background="@drawable/background_2" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/secondary_menu"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="#110e0f" >
-        
-         <Button
-            android:id="@+id/new_game"
-            android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/new_game"
-            android:textSize="40dip" />
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/highscores"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/highscores"
-            android:textSize="30dip" />
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent" />
 
-        <Button
-            android:id="@+id/instructions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/instructions"
-            android:textSize="28dip" />
+            <Button
+                android:id="@+id/highscores"
+                style="@style/main_button_small"
+                android:background="@drawable/menu_button"
+                android:text="@string/highscores" />
 
-       
-    </LinearLayout>
+            <Button
+                android:id="@+id/rate_us"
+                style="@style/main_button_small"
+                android:background="@drawable/menu_button"
+                android:text="@string/rate_us" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/instructions"
+                style="@style/main_button_small"
+                android:background="@drawable/menu_button"
+                android:text="@string/instructions" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/new_game"
+        style="@style/main_button"
+        android:background="@drawable/menu_button"
+        android:text="@string/new_game"
+        android:layout_above="@+id/secondary_menu" />
+
+</RelativeLayout>

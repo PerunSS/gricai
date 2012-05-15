@@ -22,6 +22,7 @@ public class Constants {
 	public static final String SPAWN_TIME = "spawnTime";
 
 	private static Map<Integer, Map<String, Double>> levelParameters;
+	private static Map<Integer, Map<Integer, Integer>> iconResources;
 
 	/* filling level data */
 	static {
@@ -138,8 +139,7 @@ public class Constants {
 		levelParameters.put(10, lvl);
 
 	}
-
-	private static Map<Integer, Map<Integer, Integer>> iconResources;
+	
 	// TODO fill with resources
 	static {
 		iconResources = new HashMap<Integer, Map<Integer, Integer>>();
@@ -164,5 +164,9 @@ public class Constants {
 
 	public static int getResource(int level, int value) {
 		return iconResources.get(level).get(value);
+	}
+	
+	public static int getEffectResource(Class<?> effect){
+		return 0;
 	}
 }
