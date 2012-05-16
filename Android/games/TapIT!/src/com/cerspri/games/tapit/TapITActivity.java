@@ -2,10 +2,12 @@ package com.cerspri.games.tapit;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -100,4 +102,29 @@ public class TapITActivity extends Activity {
 
 		}
 	}
+	
+	private class HighScoreFetcherTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			dialog = ProgressDialog.show(getApplicationContext(), "", "Loading...");
+		}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			dialog.dismiss();
+		}
+		
+	}
+	
+	private ProgressDialog dialog;
+	private static final String HIGH_SCORES_URL = "http://www.cerspri.com/api/tap_it/get_highscores.php";
 }

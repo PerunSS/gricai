@@ -26,6 +26,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		MediaPlayer.OnPreparedListener {
 
 	private static final long START_GAME_TIME = 20000;
+	private static final long LVL_STEP = 20000;
 
 	private TapITThread thread;
 	private TapITCreatorThread creator;
@@ -35,7 +36,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private TapITTimer timer;
 	private long score = 0;
 	private long totalTime = 0;
-	private long lvlUP = 20000;
+	private long lvlUP = LVL_STEP;
 	private long maxTime = 0;
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
@@ -117,7 +118,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 						}
 						if (totalTime * 0.5 + score * 500 > lvlUP) {
 							TapITGame.getInstance().lvlUp();
-							lvlUP += 20000;
+							lvlUP += LVL_STEP;
 						}
 					}
 					removeObjects();
