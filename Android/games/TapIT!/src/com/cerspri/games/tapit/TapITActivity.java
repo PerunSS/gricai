@@ -1,5 +1,13 @@
 package com.cerspri.games.tapit;
 
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.cerspri.games.tapit.model.HighScore;
+import com.cerspri.games.tapit.network.NetworkUtils;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -113,7 +121,13 @@ public class TapITActivity extends Activity {
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-			
+			StringBuilder networkData = NetworkUtils.readFromLink(HIGH_SCORES_URL);
+			try {
+				highScores = HighScore.parseScores(new JSONObject(networkData.toString()));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return null;
 		}
 		
@@ -127,4 +141,5 @@ public class TapITActivity extends Activity {
 	
 	private ProgressDialog dialog;
 	private static final String HIGH_SCORES_URL = "http://www.cerspri.com/api/tap_it/get_highscores.php";
+	private List<HighScore> highScores = null;
 }

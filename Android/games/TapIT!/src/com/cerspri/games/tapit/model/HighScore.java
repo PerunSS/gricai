@@ -3,6 +3,7 @@ package com.cerspri.games.tapit.model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HighScore {
+public class HighScore implements Comparable<HighScore> {
 
 	private String name;
 	private double value;
@@ -61,7 +62,17 @@ public class HighScore {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		Collections.sort(highScores);
 		return highScores;
+	}
+
+	@Override
+	public int compareTo(HighScore another) {
+		if(value - another.value < 0)
+			return -1;
+		else if (value - another.value > 0)
+			return 1;
+		return 0;
 	}
 
 }
