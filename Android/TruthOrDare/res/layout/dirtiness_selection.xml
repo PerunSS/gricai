@@ -49,29 +49,41 @@
 		style="@style/radio_group_style"
 		android:orientation="horizontal">
 		<RadioButton 
-			android:id="@+id/funny"
+			android:id="@+id/lvl1"
 			android:layout_width="40dp"
 			android:layout_height="40dp"
 			android:layout_weight="1"
-			android:button="@drawable/dirty_checker"/>
+			android:button="@drawable/dirty_checker"
+			android:textSize="0dp"
+			android:tag="1"/>
 		<RadioButton 
-			android:id="@+id/tempting"
+			android:id="@+id/lvl2"
 			android:layout_width="40dp"
 			android:layout_height="40dp"
 			android:layout_weight="1"
-			android:button="@drawable/dirty_checker"/>
+			android:button="@drawable/dirty_checker"
+			android:tag="2"/>
 		<RadioButton 
-			android:id="@+id/sexy"
+			android:id="@+id/lvl3"
 			android:layout_width="40dp"
 			android:layout_height="40dp"
 			android:layout_weight="1"
-			android:button="@drawable/dirty_checker"/>
+			android:button="@drawable/dirty_checker"
+			android:tag="3"/>
 		<RadioButton 
-			android:id="@+id/dirty"
+			android:id="@+id/lvl4"
 			android:layout_width="40dp"
 			android:layout_height="40dp"
 			android:layout_weight="1"
-			android:button="@drawable/dirty_checker"/>
+			android:button="@drawable/dirty_checker"
+			android:tag="4"/>
+		<RadioButton 
+			android:id="@+id/lvl5"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_weight="1"
+			android:button="@drawable/dirty_checker"
+			android:tag="5"/>
 	</RadioGroup>
     <Button 
 		android:id="@+id/selectDirtinessButton"

@@ -1,6 +1,7 @@
 package com.cerspri.games.tod.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
@@ -13,8 +14,14 @@ public class Game {
 	private Map<Integer,ToDQuery> dares;
 	private int currentPlayer;
 	private static Game game;
+	private int dirtiness;
+	private int dirtinessLevel;
 	
 	private Game(){
+		players = new ArrayList<Player>();
+		truths = new HashMap<Integer, ToDQuery>();
+		dares = new HashMap<Integer, ToDQuery>();
+		currentPlayer = 0;
 	}
 	
 	public static Game getInstance(){
@@ -87,5 +94,25 @@ public class Game {
 		this.startGame();
 		/*TODO but this above might not be good since maybe finish will completely destroy
 		 *  the game class and this should just reset the game in some way*/
+	}
+
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	public int getDirtiness() {
+		return dirtiness;
+	}
+
+	public void setDirtiness(int dirtiness) {
+		this.dirtiness = dirtiness;
+	}
+
+	public int getDirtinessLevel() {
+		return dirtinessLevel;
+	}
+
+	public void setDirtinessLevel(int dirtinessLevel) {
+		this.dirtinessLevel = dirtinessLevel;
 	}
 }
