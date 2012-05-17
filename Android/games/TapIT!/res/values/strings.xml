@@ -20,5 +20,11 @@
     <string name="game_score_pause">current game score:</string>
     <string name="max_time_pause">current max time:</string>
     <string name="rate_us">Rate us!</string>
+    <string name="value_p_1">+1</string>
+    <string name="value_p_2">+2</string>
+    <string name="value_p_5">+5</string>
+    <string name="value_n_2">-2</string>
+    <string name="value_n_5">-5</string>
+    <string name="value_n_10">-10</string>
 
 </resources>
