@@ -144,12 +144,12 @@ public class Constants {
 	static {
 		iconResources = new HashMap<Integer, Map<Integer, Integer>>();
 		Map<Integer, Integer> lvl1 = new HashMap<Integer, Integer>();
-		lvl1.put(NEGATIVE_10, R.drawable.value_n_10);
-		lvl1.put(NEGATIVE_5, R.drawable.value_n_5);
-		lvl1.put(NEGATIVE_2, R.drawable.value_n_2);
-		lvl1.put(POSITIVE_1, R.drawable.value_p_1);
-		lvl1.put(POSITIVE_2, R.drawable.value_p_2);
-		lvl1.put(POSITIVE_5, R.drawable.value_p_5);
+		lvl1.put(NEGATIVE_10, R.drawable.value01_n_10);
+		lvl1.put(NEGATIVE_5, R.drawable.value01_n_05);
+		lvl1.put(NEGATIVE_2, R.drawable.value01_n_02);
+		lvl1.put(POSITIVE_1, R.drawable.value01_p_01);
+		lvl1.put(POSITIVE_2, R.drawable.value01_p_02);
+		lvl1.put(POSITIVE_5, R.drawable.value01_p_05);
 		for (int i = 1; i <= 10; i++)
 			iconResources.put(i, lvl1);
 	}
