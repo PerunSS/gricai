@@ -69,9 +69,9 @@ public class HighScore implements Comparable<HighScore> {
 	@Override
 	public int compareTo(HighScore another) {
 		if(value - another.value < 0)
-			return -1;
-		else if (value - another.value > 0)
 			return 1;
+		else if (value - another.value > 0)
+			return -1;
 		return 0;
 	}
 

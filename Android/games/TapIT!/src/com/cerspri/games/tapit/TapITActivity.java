@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cerspri.games.tapit.adapter.HighScoreAdapter;
 import com.cerspri.games.tapit.model.HighScore;
 import com.cerspri.games.tapit.network.NetworkUtils;
 
@@ -21,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class TapITActivity extends Activity {
@@ -52,6 +54,15 @@ public class TapITActivity extends Activity {
 				infoDialog.setTitle(getString(R.string.title));
 				infoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
 				infoDialog.show();
+			}
+		});
+		
+		final Button highScoresButton = (Button) findViewById(R.id.highscores);
+		highScoresButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				new HighScoreFetcherTask().execute();
 			}
 		});
 	}
@@ -116,7 +127,7 @@ public class TapITActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			dialog = ProgressDialog.show(getApplicationContext(), "", "Loading...");
+			dialog = ProgressDialog.show(TapITActivity.this, "", "Loading...");
 		}
 		
 		@Override
@@ -135,6 +146,13 @@ public class TapITActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			dialog.dismiss();
+			System.out.println(highScores);
+			Dialog highScoresDialog = new Dialog(TapITActivity.this);
+			highScoresDialog.setTitle("HIGH SCORES");
+			highScoresDialog.setContentView(R.layout.high_score_dialog);
+			ListView view = (ListView) highScoresDialog.findViewById(R.id.high_scores_list);
+			view.setAdapter(new HighScoreAdapter(TapITActivity.this, R.id.high_scores_list, highScores));
+			highScoresDialog.show();
 		}
 		
 	}
