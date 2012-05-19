@@ -142,15 +142,23 @@ public class TapITActivity extends Activity {
 											int whichButton) {
 										String name = input.getText()
 												.toString();
-										Map<String, String> params = new HashMap<String, String>();
-										params.put("name", name);
-										params.put("score", total + "");
-										StringBuilder result = NetworkUtils
-												.updateToLink(
-														HIGH_SCORES_SUBMIT_URL,
-														params);
-										System.out.println(result.toString());
-										submited = true;
+										if(name.length()<2){
+											Toast.makeText(TapITActivity.this, "Minimal number of characters is 2!", Toast.LENGTH_LONG).show();
+										}else{
+											Map<String, String> params = new HashMap<String, String>();
+											params.put("name", name);
+											params.put("score", total + "");
+											StringBuilder result = NetworkUtils
+													.updateToLink(
+															HIGH_SCORES_SUBMIT_URL,
+															params);
+											if(result.toString().contains("ok")){
+												Toast.makeText(TapITActivity.this, "Score submited", Toast.LENGTH_LONG).show();
+												submited = true;
+											}else{
+												Toast.makeText(TapITActivity.this, "Server is down :(", Toast.LENGTH_LONG).show();
+											}
+										}
 									}
 								});
 
