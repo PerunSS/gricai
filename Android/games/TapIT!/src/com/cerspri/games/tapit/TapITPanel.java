@@ -80,7 +80,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		canvas.drawColor(Color.BLACK);
 		canvas.drawText("time: " + ((double) timer.getTime()) / 1000, 7, 22,
 				fontPaint);
-		canvas.drawText("score: "+ score, 150, 22, fontPaint);
+		canvas.drawText("score: "+ score, 125, 22, fontPaint);
 		canvas.drawText("level: "+ TapITGame.getInstance().getCurrentLevel(), 250, 22, fontPaint);
 		Bitmap bitmap;
 		Coordinates coords;

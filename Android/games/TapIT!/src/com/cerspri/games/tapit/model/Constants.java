@@ -150,8 +150,58 @@ public class Constants {
 		lvl1.put(POSITIVE_1, R.drawable.value01_p_01);
 		lvl1.put(POSITIVE_2, R.drawable.value01_p_02);
 		lvl1.put(POSITIVE_5, R.drawable.value01_p_05);
-		for (int i = 1; i <= 10; i++)
-			iconResources.put(i, lvl1);
+		
+		Map<Integer, Integer> lvl2 = new HashMap<Integer, Integer>();
+		lvl2.put(NEGATIVE_10, R.drawable.value02_n_10);
+		lvl2.put(NEGATIVE_5, R.drawable.value02_n_05);
+		lvl2.put(NEGATIVE_2, R.drawable.value02_n_02);
+		lvl2.put(POSITIVE_1, R.drawable.value02_p_01);
+		lvl2.put(POSITIVE_2, R.drawable.value02_p_02);
+		lvl2.put(POSITIVE_5, R.drawable.value02_p_05);
+		
+		Map<Integer, Integer> lvl3 = new HashMap<Integer, Integer>();
+		lvl3.put(NEGATIVE_10, R.drawable.value03_n_10);
+		lvl3.put(NEGATIVE_5, R.drawable.value03_n_05);
+		lvl3.put(NEGATIVE_2, R.drawable.value03_n_02);
+		lvl3.put(POSITIVE_1, R.drawable.value03_p_01);
+		lvl3.put(POSITIVE_2, R.drawable.value03_p_02);
+		lvl3.put(POSITIVE_5, R.drawable.value03_p_05);
+		
+		Map<Integer, Integer> lvl4 = new HashMap<Integer, Integer>();
+		lvl4.put(NEGATIVE_10, R.drawable.value04_n_10);
+		lvl4.put(NEGATIVE_5, R.drawable.value04_n_05);
+		lvl4.put(NEGATIVE_2, R.drawable.value04_n_02);
+		lvl4.put(POSITIVE_1, R.drawable.value04_p_01);
+		lvl4.put(POSITIVE_2, R.drawable.value04_p_02);
+		lvl4.put(POSITIVE_5, R.drawable.value04_p_05);
+		
+		Map<Integer, Integer> lvl5 = new HashMap<Integer, Integer>();
+		lvl5.put(NEGATIVE_10, R.drawable.value05_n_10);
+		lvl5.put(NEGATIVE_5, R.drawable.value05_n_05);
+		lvl5.put(NEGATIVE_2, R.drawable.value05_n_02);
+		lvl5.put(POSITIVE_1, R.drawable.value05_p_01);
+		lvl5.put(POSITIVE_2, R.drawable.value05_p_02);
+		lvl5.put(POSITIVE_5, R.drawable.value05_p_05);
+		
+		Map<Integer, Integer> lvl6 = new HashMap<Integer, Integer>();
+		lvl6.put(NEGATIVE_10, R.drawable.value06_n_10);
+		lvl6.put(NEGATIVE_5, R.drawable.value06_n_05);
+		lvl6.put(NEGATIVE_2, R.drawable.value06_n_02);
+		lvl6.put(POSITIVE_1, R.drawable.value06_p_01);
+		lvl6.put(POSITIVE_2, R.drawable.value06_p_02);
+		lvl6.put(POSITIVE_5, R.drawable.value06_p_05);
+		
+		iconResources.put(1, lvl1);
+		iconResources.put(2, lvl1);
+		iconResources.put(3, lvl2);
+		iconResources.put(4, lvl2);
+		iconResources.put(5, lvl3);
+		iconResources.put(6, lvl3);
+		iconResources.put(7, lvl4);
+		iconResources.put(8, lvl4);
+		iconResources.put(9, lvl5);
+		iconResources.put(10, lvl6);
+		
 	}
 
 	public static Level getLevel(int level) {
