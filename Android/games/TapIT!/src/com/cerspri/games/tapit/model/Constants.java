@@ -140,7 +140,6 @@ public class Constants {
 
 	}
 	
-	// TODO fill with resources
 	static {
 		iconResources = new HashMap<Integer, Map<Integer, Integer>>();
 		Map<Integer, Integer> lvl1 = new HashMap<Integer, Integer>();

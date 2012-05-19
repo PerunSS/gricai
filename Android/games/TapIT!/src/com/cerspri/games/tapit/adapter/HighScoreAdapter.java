@@ -1,6 +1,7 @@
 package com.cerspri.games.tapit.adapter;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -18,6 +19,7 @@ public class HighScoreAdapter extends ArrayAdapter<HighScore> {
 	private List<HighScore> data;
 	private LayoutInflater inflater;
 	private DecimalFormat format = new DecimalFormat("#,##0.0#");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	public HighScoreAdapter(Context context, int textViewResourceId,
 			List<HighScore> objects) {
@@ -35,6 +37,7 @@ public class HighScoreAdapter extends ArrayAdapter<HighScore> {
 		if(score!=null){
 			((TextView) convertView.findViewById(R.id.name)).setText(score.getName());
 			((TextView) convertView.findViewById(R.id.value)).setText(format.format(score.getValue()));
+			((TextView) convertView.findViewById(R.id.date)).setText(dateFormat.format(score.getDate()));
 		}
 		return convertView;
 	}

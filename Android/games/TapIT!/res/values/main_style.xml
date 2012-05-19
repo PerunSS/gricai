@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <style name="black_shadow">
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">1</item>
@@ -48,23 +48,46 @@
         <item name="android:padding">5dp</item>
     </style>
 
-    <style name="score_text"  parent="@style/black_shadow">
+    <style name="score" parent="@style/black_shadow">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentLeft">true</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">20dip</item>
+        <item name="android:textSize">20dp</item>
     </style>
 
-    <style name="score_value"  parent="@style/black_shadow">
+    <style name="score_text" parent="@style/score">
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="score_value" parent="@style/score">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="high_score" parent="@style/black_shadow">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentRight">true</item>
-        <item name="android:gravity">right</item>
-        <item name="android:paddingRight">5dp</item>
+        <item name="android:padding">5dp</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">20dip</item>
+        <item name="android:textSize">20dp</item>
     </style>
+
+    <style name="high_score_name" parent="@style/high_score">
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+    
+    <style name="high_score_value" parent="@style/high_score">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+    
+    <style name="high_score_date" parent="@style/high_score">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+    
 
 </resources>
