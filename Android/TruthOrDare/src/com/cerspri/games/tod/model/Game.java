@@ -22,6 +22,8 @@ public class Game {
 		truths = new HashMap<Integer, ToDQuery>();
 		dares = new HashMap<Integer, ToDQuery>();
 		currentPlayer = 0;
+		dirtiness = 1;
+		dirtinessLevel = 1;
 	}
 	
 	public static Game getInstance(){
@@ -107,7 +109,29 @@ public class Game {
 	public void setDirtiness(int dirtiness) {
 		this.dirtiness = dirtiness;
 	}
-
+	
+	public String getDirtinessString(){
+		
+        String dirtinessString;
+        switch(this.dirtiness){
+        	case 1 : 
+        		dirtinessString = "Funny";
+        		break;
+        	case 2 : 
+        		dirtinessString = "Tempting";
+        		break;
+        	case 3 : 
+        		dirtinessString = "Sexy";
+        		break;
+        	case 4 : 
+        		dirtinessString = "Dirty";
+        		break;
+        	default:
+        		dirtinessString = "Sexy";
+        }
+        return dirtinessString;
+	}
+	
 	public int getDirtinessLevel() {
 		return dirtinessLevel;
 	}
