@@ -8,7 +8,7 @@ public class Level {
 
 	public static final long MILISECONDS = 1000;
 
-
+	private final long nextLVL; 
 	private double negativeOdd;
 	private double negativeMedium, negativeHigh;
 	private double positiveMedium, positiveHigh;
@@ -19,7 +19,7 @@ public class Level {
 
 	public Level(double negativeOdd, int level, double negativeMedium,
 			double negativeHigh, double positiveMedium, double positiveHigh,
-			double lifeTime, double spawn) {
+			double lifeTime, double spawn, double nextLVL) {
 		super();
 		this.level = level;
 		this.negativeOdd = negativeOdd;
@@ -41,6 +41,7 @@ public class Level {
 		}
 		this.lifeTime = lifeTime;
 		this.spawn = spawn;
+		this.nextLVL = (long)nextLVL;
 	}
 
 	// length je trajanje jednog poena a racuna se kao lengthModificator +
@@ -102,4 +103,9 @@ public class Level {
 	public String toString() {
 		return "level: "+level+", neg: "+negativeOdd+", neg(m,h) = ("+negativeMedium+","+negativeHigh+"), pos(m,h) = ("+positiveMedium+","+positiveHigh+"), lt = "+lifeTime+", spawn = "+spawn;
 	}
+
+	public long getNextLVL() {
+		return nextLVL;
+	}
+
 }

@@ -26,7 +26,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		MediaPlayer.OnPreparedListener {
 
 	private static final long START_GAME_TIME = 20000;
-	private static final long LVL_STEP = 20000;
 
 	private TapITThread thread;
 	private TapITCreatorThread creator;
@@ -34,15 +33,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private int width;
 	private int height;
 	private TapITTimer timer;
-	private long score = 0;
-	private long totalTime = 0;
-	private long lvlUP = LVL_STEP;
 	private long maxTime = 0;
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
 	private MediaPlayer gameMusic;
 	private ProgressDialog progressDialog;
 	private Paint fontPaint;
+
+	private float soundVolume = 1;
 
 	public TapITPanel(Context context) {
 		super(context);
@@ -51,7 +49,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		clickNeg = soundPool.load(context, R.raw.click_n, 0);
 		gameMusic = MediaPlayer.create(context, R.raw.game_play);
 		gameMusic.setLooping(true);
-		gameMusic.setVolume(1, 1);
+		//gameMusic.setVolume(1, 1);
 		gameMusic.start();
 		gameMusic.setOnPreparedListener(this);
 		progressDialog = ProgressDialog.show(context, "", "Loading...");
@@ -73,6 +71,18 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 	}
 
+	public void setMusicVolume(float volume) {
+		if (gameMusic != null) {
+			gameMusic.setVolume(volume, volume);
+		}
+	}
+
+	public void setSoundVolume(float volume) {
+		if (soundPool != null) {
+			soundVolume = volume;
+		}
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		removeObjects();
@@ -80,8 +90,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		canvas.drawColor(Color.BLACK);
 		canvas.drawText("time: " + ((double) timer.getTime()) / 1000, 7, 22,
 				fontPaint);
-		canvas.drawText("score: "+ score, 125, 22, fontPaint);
-		canvas.drawText("level: "+ TapITGame.getInstance().getCurrentLevel(), 250, 22, fontPaint);
+		canvas.drawText("score: " + TapITGame.getInstance().getScore(), 125,
+				22, fontPaint);
+		canvas.drawText("level: " + TapITGame.getInstance().getCurrentLevel(),
+				250, 22, fontPaint);
 		Bitmap bitmap;
 		Coordinates coords;
 		for (TapITObject graphic : TapITGame.getInstance().getGraphics()) {
@@ -96,30 +108,27 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	public boolean onTouchEvent(MotionEvent event) {
 		int x = (int) event.getX();
 		int y = (int) event.getY();
-		//System.out.println(x + "," + y);
+		// System.out.println(x + "," + y);
 		synchronized (getHolder()) {
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {
 					object.click();
 					if (object.getTimeValue() > 0)
-						soundPool.play(clickPos, 1, 1, 0, 0, 1);
+						soundPool.play(clickPos, soundVolume, soundVolume, 0,
+								0, 1);
 					else {
-						soundPool.play(clickNeg, 1, 1, 0, 0, 1);
+						soundPool.play(clickNeg, soundVolume, soundVolume, 0,
+								0, 1);
 					}
 					timer.updateTime(object.getTimeValue() / 5 * 2);
 					long time = timer.getTime();
 					if (time > 0) {
-						score += object.getTimeValue() / 1000;
-						if (object.getTimeValue() > 0) {
-							totalTime += object.getTimeValue() / 5 * 2;
-						}
+						TapITGame.getInstance().updateScore(
+								object.getTimeValue() / 1000);
 						if (time > START_GAME_TIME && time > maxTime) {
 							maxTime = time;
 						}
-						if (totalTime * 0.5 + score * 500 > lvlUP) {
-							TapITGame.getInstance().lvlUp();
-							lvlUP += LVL_STEP;
-						}
+						TapITGame.getInstance().lvlUp();
 					}
 					removeObjects();
 					return true;
@@ -175,7 +184,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		if (finishActivity) {
 			Activity activity = ((Activity) getContext());
 			Intent intent = new Intent();
-			intent.putExtra("score", score);
+			intent.putExtra("score", TapITGame.getInstance().getScore());
 			intent.putExtra("max", maxTime / 1000.0);
 			activity.setResult(TapITActivity.CLICKIT_PLAY_CODE, intent);
 			activity.finish();
@@ -231,8 +240,11 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 	}
 
+	/**
+	 * @deprecated should use TapITGame.getInstance().getScore()
+	 */
 	public long getScore() {
-		return score;
+		return TapITGame.getInstance().getScore();
 	}
 
 	public long getMaxTime() {

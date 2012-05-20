@@ -20,6 +20,7 @@ public class Constants {
 	public static final String POSITIVE_HIGH = "positiveHigh";
 	public static final String LIFE_TIME = "lifeTime";
 	public static final String SPAWN_TIME = "spawnTime";
+	public static final String NEXT_LVL = "nextLvl";
 
 	private static Map<Integer, Map<String, Double>> levelParameters;
 	private static Map<Integer, Map<Integer, Integer>> iconResources;
@@ -37,6 +38,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.21);
 		lvl.put(LIFE_TIME, 1.00);
 		lvl.put(SPAWN_TIME, 0.500);
+		lvl.put(NEXT_LVL, 30.0);
 		levelParameters.put(1, lvl);
 		// level: 02, neg = 0.39, neg(m,h) = (0.26,0.000),
 		// pos(m,h) = (0.556,0.27), lt = 0.92, spawn = 0.465
@@ -48,6 +50,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.27);
 		lvl.put(LIFE_TIME, 0.92);
 		lvl.put(SPAWN_TIME, 0.465);
+		lvl.put(NEXT_LVL, 60.0);
 		levelParameters.put(2, lvl);
 		// level: 03, neg: 0.47, neg(m,h) = (0.32,0.000),
 		// pos(m,h) = (0.512,0.30), lt = 0.86, spawn = 0.430
@@ -59,6 +62,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.30);
 		lvl.put(LIFE_TIME, 0.86);
 		lvl.put(SPAWN_TIME, 0.430);
+		lvl.put(NEXT_LVL, 85.0);
 		levelParameters.put(3, lvl);
 		// level: 04, neg: 0.54, neg(m,h) = (0.38,0.085),
 		// pos(m,h) = (0.468,0.30), lt = 0.82, spawn = 0.395
@@ -71,6 +75,7 @@ public class Constants {
 		lvl.put(LIFE_TIME, 0.82);
 		lvl.put(SPAWN_TIME, 0.395);
 		levelParameters.put(4, lvl);
+		lvl.put(NEXT_LVL, 110.0);
 		// level: 05, neg: 0.60, neg(m,h) = (0.44,0.170),
 		// pos(m,h) = (0.424,0.27), lt = 0.80, spawn = 0.360
 		lvl = new HashMap<String, Double>();
@@ -82,6 +87,7 @@ public class Constants {
 		lvl.put(LIFE_TIME, 0.80);
 		lvl.put(SPAWN_TIME, 0.360);
 		levelParameters.put(5, lvl);
+		lvl.put(NEXT_LVL, 130.0);
 		// level: 06, neg: 0.65, neg(m,h) = (0.50,0.255),
 		// pos(m,h) = (0.380,0.21), lt = 0.80, spawn = 0.325
 		lvl = new HashMap<String, Double>();
@@ -93,6 +99,7 @@ public class Constants {
 		lvl.put(LIFE_TIME, 0.80);
 		lvl.put(SPAWN_TIME, 0.325);
 		levelParameters.put(6, lvl);
+		lvl.put(NEXT_LVL, 150.0);
 		// level: 07, neg: 0.69, neg(m,h) = (0.56,0.340),
 		// pos(m,h) = (0.336,0.12), lt = 0.82, spawn = 0.290
 		lvl = new HashMap<String, Double>();
@@ -103,6 +110,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.12);
 		lvl.put(LIFE_TIME, 0.82);
 		lvl.put(SPAWN_TIME, 0.290);
+		lvl.put(NEXT_LVL, 165.0);
 		levelParameters.put(7, lvl);
 		// level: 08, neg: 0.72, neg(m,h) = (0.62,0.425),
 		// pos(m,h) = (0.292,0.03), lt = 0.86, spawn = 0.255
@@ -114,6 +122,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.03);
 		lvl.put(LIFE_TIME, 0.86);
 		lvl.put(SPAWN_TIME, 0.255);
+		lvl.put(NEXT_LVL, 180.0);
 		levelParameters.put(8, lvl);
 		// level: 09, neg: 0.74, neg(m,h) = (0.68,0.510),
 		// pos(m,h) = (0.248,0.02), lt = 0.92, spawn = 0.220
@@ -125,6 +134,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.02);
 		lvl.put(LIFE_TIME, 0.92);
 		lvl.put(SPAWN_TIME, 0.220);
+		lvl.put(NEXT_LVL, 190.0);
 		levelParameters.put(9, lvl);
 		// level: 10, neg: 0.75, neg(m,h) = (0.74,0.595),
 		// pos(m,h) = (0.204,0.01), lt = 1.00, spawn = 0.150
@@ -136,6 +146,7 @@ public class Constants {
 		lvl.put(POSITIVE_HIGH, 0.01);
 		lvl.put(LIFE_TIME, 1.00);
 		lvl.put(SPAWN_TIME, 0.150);
+		lvl.put(NEXT_LVL, 100000.0);
 		levelParameters.put(10, lvl);
 
 	}
@@ -208,7 +219,7 @@ public class Constants {
 		return new Level(lvl.get(NEGATIVE_ODD), level,
 				lvl.get(NEGATIVE_MEDIUM), lvl.get(NEGATIVE_HIGH),
 				lvl.get(POSITIVE_MEDIUM), lvl.get(POSITIVE_HIGH),
-				lvl.get(LIFE_TIME), lvl.get(SPAWN_TIME));
+				lvl.get(LIFE_TIME), lvl.get(SPAWN_TIME), lvl.get(NEXT_LVL));
 	}
 
 	public static int getResource(int level, int value) {

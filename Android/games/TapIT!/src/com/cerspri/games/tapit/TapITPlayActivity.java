@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cerspri.games.tapit.model.SoundOptions;
 import com.cerspri.games.tapit.model.TapITGame;
 
 public class TapITPlayActivity extends Activity {
@@ -23,6 +24,16 @@ public class TapITPlayActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		TapITGame.getInstance().clear();
 		panel = new TapITPanel(this);
+		if (SoundOptions.getInstance().isPlayMusic()) {
+			panel.setMusicVolume(1f);
+		} else {
+			panel.setMusicVolume(0f);
+		}
+		if (SoundOptions.getInstance().isPlaySound()) {
+			panel.setSoundVolume(1f);
+		} else {
+			panel.setSoundVolume(0f);
+		}
 		setContentView(panel);
 	}
 
@@ -34,10 +45,10 @@ public class TapITPlayActivity extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 	@Override
 	protected void onPause() {
-		if(dialog!=null && dialog.isShowing())
+		if (dialog != null && dialog.isShowing())
 			dialog.dismiss();
 		super.onPause();
 	}
@@ -45,33 +56,34 @@ public class TapITPlayActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		panel.pause();
-		dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen){
-			 @Override
-	            public boolean onKeyDown(int keyCode, KeyEvent event) {
-	                if(keyCode == KeyEvent.KEYCODE_BACK) {
-	                	dismiss();
-	    				panel.continiue();
-	                    return true;
-	                }
+		dialog = new Dialog(this,
+				android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
+			@Override
+			public boolean onKeyDown(int keyCode, KeyEvent event) {
+				if (keyCode == KeyEvent.KEYCODE_BACK) {
+					dismiss();
+					panel.continiue();
+					return true;
+				}
 
-	                return super.onKeyDown(keyCode, event);
-	            }
+				return super.onKeyDown(keyCode, event);
+			}
 		};
 		dialog.setContentView(R.layout.pause_dialog);
-		//dialog.setTitle("PAUSE");
+		// dialog.setTitle("PAUSE");
 		TextView gameScoreVeiw = (TextView) dialog
 				.findViewById(R.id.game_score);
-		gameScoreVeiw.setText(panel.getScore() + ".0");
+		gameScoreVeiw.setText(TapITGame.getInstance().getScore() + ".0");
 		TextView maxTimeVeiw = (TextView) dialog.findViewById(R.id.max_time);
-		maxTimeVeiw.setText(panel.getMaxTime()/1000.0 + "");
+		maxTimeVeiw.setText(panel.getMaxTime() / 1000.0 + "");
 		Button dismissButton = (Button) dialog.findViewById(R.id.back);
 		dismissButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				TapITGame.getInstance().clear();
-				//panel.continiue();
-				panel.endGame(false,true);
+				// panel.continiue();
+				panel.endGame(false, true);
 				dialog.dismiss();
 				finish();
 			}
@@ -84,6 +96,36 @@ public class TapITPlayActivity extends Activity {
 			public void onClick(View v) {
 				dialog.dismiss();
 				panel.continiue();
+			}
+		});
+		final Button soundButton = (Button) dialog.findViewById(R.id.sound);
+		soundButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				SoundOptions.getInstance().tooglePlaySound();
+				//TODO change icons
+				if (SoundOptions.getInstance().isPlaySound()) {
+					panel.setSoundVolume(1f);
+				} else {
+					panel.setSoundVolume(0f);
+				}
+			}
+		});
+		
+		final Button musicButton = (Button) dialog.findViewById(R.id.music);
+		musicButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				SoundOptions.getInstance().tooglePlayMusic();
+				//TODO change icons
+				if (SoundOptions.getInstance().isPlayMusic()) {
+					panel.setMusicVolume(1f);
+				} else {
+					panel.setMusicVolume(0f);
+				}
+
 			}
 		});
 		dialog.show();

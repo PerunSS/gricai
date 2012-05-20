@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import com.cerspri.games.tapit.adapter.HighScoreAdapter;
 import com.cerspri.games.tapit.model.HighScore;
+import com.cerspri.games.tapit.model.SoundOptions;
 import com.cerspri.games.tapit.network.NetworkUtils;
 
 import android.app.Activity;
@@ -34,6 +35,7 @@ import android.widget.Toast;
 public class TapITActivity extends Activity {
 	public static final int CLICKIT_PLAY_CODE = 12345;
 	private MediaPlayer displayScore;
+	private Dialog dialog; // endGameDialog
 
 	/** Called when the activity is first created. */
 	@Override
@@ -73,113 +75,174 @@ public class TapITActivity extends Activity {
 				new HighScoreFetcherTask().execute();
 			}
 		});
+		
+		final Button soundButton = (Button) findViewById(R.id.sound);
+		soundButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				SoundOptions.getInstance().tooglePlaySound();
+				if(SoundOptions.getInstance().isPlaySound()){
+					//TODO set icon for sound playing
+				}else{
+					//TODO set icon for mute
+				}
+			}
+		});
+		
+		final Button musicButton = (Button) findViewById(R.id.music);
+		musicButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				SoundOptions.getInstance().tooglePlayMusic();
+				if(SoundOptions.getInstance().isPlayMusic()){
+					//TODO set icon for sound playing
+				}else{
+					//TODO set icon for mute
+				}
+			}
+		});
+	}
+
+	@Override
+	protected void onPause() {
+		System.out.println(displayScore);
+		if (displayScore != null) {
+			displayScore.stop();
+			displayScore.release();
+			displayScore = null;
+		}
+		// TODO save state, and on resume build state again
+		super.onPause();
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == CLICKIT_PLAY_CODE) {
-			displayScore = MediaPlayer.create(this, R.raw.display_score_end);
-			displayScore.setLooping(true);
-			displayScore.start();
-			long score = data.getExtras().getLong("score");
-			double max = data.getExtras().getDouble("max");
-			final Dialog dialog = new Dialog(this,
-					android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
-				@Override
-				public boolean onKeyDown(int keyCode, KeyEvent event) {
-					if (keyCode == KeyEvent.KEYCODE_BACK) {
+			displayEndGameDialog(data);
+		}
+	}
+
+	private void displayEndGameDialog(Intent data) {
+		displayScore = MediaPlayer.create(this, R.raw.display_score_end);
+		displayScore.setLooping(true);
+		if(!SoundOptions.getInstance().isPlayMusic()){
+			displayScore.setVolume(0f, 0f);
+		}else{
+			displayScore.setVolume(1f, 1f);
+		}
+		displayScore.start();
+		long score = data.getExtras().getLong("score");
+		double max = data.getExtras().getDouble("max");
+		dialog = new Dialog(this,
+				android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
+			@Override
+			public boolean onKeyDown(int keyCode, KeyEvent event) {
+				if (keyCode == KeyEvent.KEYCODE_BACK) {
+					if (displayScore != null) {
 						displayScore.stop();
 						displayScore.release();
-						dismiss();
-						return true;
+						displayScore = null;
 					}
-					return super.onKeyDown(keyCode, event);
+					dismiss();
+					return true;
 				}
-			};
-			dialog.setContentView(R.layout.game_over_dialog);
-			dialog.setTitle("SCORE");
-			TextView gameScoreVeiw = (TextView) dialog
-					.findViewById(R.id.game_score);
-			gameScoreVeiw.setText(score + ".0");
-			TextView maxTimeVeiw = (TextView) dialog
-					.findViewById(R.id.max_time);
-			maxTimeVeiw.setText(max + "");
-			TextView totalScoreVeiw = (TextView) dialog
-					.findViewById(R.id.total_score);
-			final double total = score + max;
-			totalScoreVeiw.setText(total + "");
-			Button dismissButton = (Button) dialog.findViewById(R.id.back);
-			dismissButton.setOnClickListener(new View.OnClickListener() {
+				return super.onKeyDown(keyCode, event);
+			}
+		};
+		dialog.setContentView(R.layout.game_over_dialog);
+		dialog.setTitle("SCORE");
+		TextView gameScoreVeiw = (TextView) dialog
+				.findViewById(R.id.game_score);
+		gameScoreVeiw.setText(score + ".0");
+		TextView maxTimeVeiw = (TextView) dialog.findViewById(R.id.max_time);
+		maxTimeVeiw.setText(max + "");
+		TextView totalScoreVeiw = (TextView) dialog
+				.findViewById(R.id.total_score);
+		final double total = score + max;
+		totalScoreVeiw.setText(total + "");
+		Button dismissButton = (Button) dialog.findViewById(R.id.back);
+		dismissButton.setOnClickListener(new View.OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
+			@Override
+			public void onClick(View v) {
+				if (displayScore != null) {
 					displayScore.stop();
 					displayScore.release();
-					dialog.dismiss();
+					displayScore = null;
 				}
-			});
-			Button submitScoreButton = (Button) dialog
-					.findViewById(R.id.submit_score);
-			submitScoreButton.setOnClickListener(new View.OnClickListener() {
+				dialog.dismiss();
+				dialog = null;
+			}
+		});
+		Button submitScoreButton = (Button) dialog
+				.findViewById(R.id.submit_score);
+		submitScoreButton.setOnClickListener(new View.OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
-					if (!submited) {
-						AlertDialog.Builder alert = new AlertDialog.Builder(
-								TapITActivity.this);
+			@Override
+			public void onClick(View v) {
+				if (!submited) {
+					AlertDialog.Builder alert = new AlertDialog.Builder(
+							TapITActivity.this);
 
-						alert.setTitle("Submit High Score");
-						alert.setMessage("Your Score is: " + total
-								+ ", enter Name below.");
+					alert.setTitle("Submit High Score");
+					alert.setMessage("Your Score is: " + total
+							+ ", enter Name below.");
 
-						// Set an EditText view to get user input
-						final EditText input = new EditText(TapITActivity.this);
-						alert.setView(input);
+					// Set an EditText view to get user input
+					final EditText input = new EditText(TapITActivity.this);
+					alert.setView(input);
 
-						alert.setPositiveButton(R.string.submit_dialog,
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int whichButton) {
-										String name = input.getText()
-												.toString();
-										if(name.length()<2){
-											Toast.makeText(TapITActivity.this, "Minimal number of characters is 2!", Toast.LENGTH_LONG).show();
-										}else{
-											Map<String, String> params = new HashMap<String, String>();
-											params.put("name", name);
-											params.put("score", total + "");
-											StringBuilder result = NetworkUtils
-													.updateToLink(
-															HIGH_SCORES_SUBMIT_URL,
-															params);
-											if(result.toString().contains("ok")){
-												Toast.makeText(TapITActivity.this, "Score submited", Toast.LENGTH_LONG).show();
-												submited = true;
-											}else{
-												Toast.makeText(TapITActivity.this, "Server is down :(", Toast.LENGTH_LONG).show();
-											}
+					alert.setPositiveButton(R.string.submit_dialog,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int whichButton) {
+									String name = input.getText().toString();
+									if (name.length() < 2) {
+										Toast.makeText(
+												TapITActivity.this,
+												"Minimal number of characters is 2!",
+												Toast.LENGTH_LONG).show();
+									} else {
+										Map<String, String> params = new HashMap<String, String>();
+										params.put("name", name);
+										params.put("score", total + "");
+										StringBuilder result = NetworkUtils
+												.updateToLink(
+														HIGH_SCORES_SUBMIT_URL,
+														params);
+										if (result.toString().contains("ok")) {
+											Toast.makeText(TapITActivity.this,
+													"Score submited",
+													Toast.LENGTH_LONG).show();
+											submited = true;
+										} else {
+											Toast.makeText(TapITActivity.this,
+													"No internet connection.",
+													Toast.LENGTH_LONG).show();
 										}
 									}
-								});
+								}
+							});
 
-						alert.setNegativeButton(R.string.cancel,
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int whichButton) {
-										// Canceled.
-									}
-								});
+					alert.setNegativeButton(R.string.cancel,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int whichButton) {
+									// Canceled.
+								}
+							});
 
-						alert.show();
-					}else{
-						Toast.makeText(TapITActivity.this, "This Score is allready submitted", Toast.LENGTH_LONG).show();
-					}
-					
+					alert.show();
+				} else {
+					Toast.makeText(TapITActivity.this,
+							"This Score is allready submitted",
+							Toast.LENGTH_LONG).show();
 				}
-			});
-			dialog.show();
-
-		}
+			}
+		});
+		dialog.show();
 	}
 
 	private class HighScoreFetcherTask extends AsyncTask<Void, Void, Void> {
@@ -187,7 +250,8 @@ public class TapITActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			dialog = ProgressDialog.show(TapITActivity.this, "", "Loading...");
+			progressDialog = ProgressDialog.show(TapITActivity.this, "",
+					"Loading...");
 		}
 
 		@Override
@@ -198,7 +262,6 @@ public class TapITActivity extends Activity {
 				highScores = HighScore.parseScores(new JSONObject(networkData
 						.toString()));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -207,7 +270,7 @@ public class TapITActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			dialog.dismiss();
+			progressDialog.dismiss();
 			System.out.println(highScores);
 			Dialog highScoresDialog = new Dialog(TapITActivity.this);
 			highScoresDialog.setTitle("HIGH SCORES");
@@ -221,7 +284,7 @@ public class TapITActivity extends Activity {
 
 	}
 
-	private ProgressDialog dialog;
+	private ProgressDialog progressDialog;
 	private static final String HIGH_SCORES_URL = "http://www.cerspri.com/api/tap_it/get_highscores.php";
 	private static final String HIGH_SCORES_SUBMIT_URL = "http://www.cerspri.com/api/tap_it/update_score.php";
 	private boolean submited = false;

@@ -34,8 +34,6 @@ public class Coordinates {
 
 		if (x - this.x >= 0 && x - this.x <= width && y - this.y >= 0
 				&& y - this.y <= height) {
-			System.out.println("(" + this.x + " " + this.y + ") <= (" + x + ","
-					+ y + ")");
 			return true;
 		}
 		return false;
