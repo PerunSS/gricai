@@ -99,6 +99,9 @@ public class TapITPlayActivity extends Activity {
 			}
 		});
 		final Button soundButton = (Button) dialog.findViewById(R.id.sound);
+		if(!SoundOptions.getInstance().isPlaySound()){
+			soundButton.setBackgroundResource(R.drawable.mute_sound);
+		}
 		soundButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -106,14 +109,19 @@ public class TapITPlayActivity extends Activity {
 				SoundOptions.getInstance().tooglePlaySound();
 				//TODO change icons
 				if (SoundOptions.getInstance().isPlaySound()) {
+					soundButton.setBackgroundResource(R.drawable.play_sound);
 					panel.setSoundVolume(1f);
 				} else {
+					soundButton.setBackgroundResource(R.drawable.mute_sound);
 					panel.setSoundVolume(0f);
 				}
 			}
 		});
 		
 		final Button musicButton = (Button) dialog.findViewById(R.id.music);
+		if(!SoundOptions.getInstance().isPlayMusic()){
+			musicButton.setBackgroundResource(R.drawable.mute_music);
+		}
 		musicButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -121,8 +129,10 @@ public class TapITPlayActivity extends Activity {
 				SoundOptions.getInstance().tooglePlayMusic();
 				//TODO change icons
 				if (SoundOptions.getInstance().isPlayMusic()) {
+					musicButton.setBackgroundResource(R.drawable.play_music);
 					panel.setMusicVolume(1f);
 				} else {
+					musicButton.setBackgroundResource(R.drawable.mute_music);
 					panel.setMusicVolume(0f);
 				}
 

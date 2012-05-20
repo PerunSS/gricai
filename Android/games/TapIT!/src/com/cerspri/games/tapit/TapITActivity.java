@@ -77,29 +77,35 @@ public class TapITActivity extends Activity {
 		});
 		
 		final Button soundButton = (Button) findViewById(R.id.sound);
+		if(!SoundOptions.getInstance().isPlaySound()){
+			soundButton.setBackgroundResource(R.drawable.mute_sound);
+		}
 		soundButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlaySound();
 				if(SoundOptions.getInstance().isPlaySound()){
-					//TODO set icon for sound playing
+					soundButton.setBackgroundResource(R.drawable.play_sound);
 				}else{
-					//TODO set icon for mute
+					soundButton.setBackgroundResource(R.drawable.mute_sound);
 				}
 			}
 		});
 		
 		final Button musicButton = (Button) findViewById(R.id.music);
+		if(!SoundOptions.getInstance().isPlayMusic()){
+			musicButton.setBackgroundResource(R.drawable.mute_music);
+		}
 		musicButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlayMusic();
 				if(SoundOptions.getInstance().isPlayMusic()){
-					//TODO set icon for sound playing
+					musicButton.setBackgroundResource(R.drawable.play_music);
 				}else{
-					//TODO set icon for mute
+					musicButton.setBackgroundResource(R.drawable.mute_music);
 				}
 			}
 		});
