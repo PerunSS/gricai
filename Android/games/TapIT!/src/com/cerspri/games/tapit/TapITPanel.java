@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -39,6 +40,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private MediaPlayer gameMusic;
 	private ProgressDialog progressDialog;
 	private Paint fontPaint;
+	private Bitmap scorebox;
 
 	private float soundVolume = 1;
 
@@ -53,6 +55,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		gameMusic.start();
 		gameMusic.setOnPreparedListener(this);
 		progressDialog = ProgressDialog.show(context, "", "Loading...");
+		scorebox = BitmapFactory.decodeResource(context.getResources(), R.drawable.score_box);
 	}
 
 	public void pause() {
@@ -88,12 +91,25 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		removeObjects();
 
 		canvas.drawColor(Color.BLACK);
-		canvas.drawText("time: " + ((double) timer.getTime()) / 1000, 7, 22,
+		canvas.drawBitmap(scorebox, 3, 3, null);
+		fontPaint.setTextAlign(Paint.Align.LEFT);
+		canvas.drawText("TIME:", 20, 25,
 				fontPaint);
-		canvas.drawText("score: " + TapITGame.getInstance().getScore(), 125,
-				22, fontPaint);
-		canvas.drawText("level: " + TapITGame.getInstance().getCurrentLevel(),
-				250, 22, fontPaint);
+		fontPaint.setTextAlign(Paint.Align.RIGHT);
+		canvas.drawText(""+ ((double) timer.getTime()) / 1000, 87, 25, fontPaint);
+		fontPaint.setTextAlign(Paint.Align.LEFT);
+		canvas.drawBitmap(scorebox, 113, 3, null);
+		canvas.drawText("SCORE:", 130,
+				25, fontPaint);
+		fontPaint.setTextAlign(Paint.Align.RIGHT);
+		canvas.drawText(""+ TapITGame.getInstance().getScore(), 200, 25, fontPaint);
+		fontPaint.setTextAlign(Paint.Align.LEFT);
+		canvas.drawBitmap(scorebox, 223, 3, null);
+		canvas.drawText("LEVEL:",
+				240, 25, fontPaint);
+		fontPaint.setTextAlign(Paint.Align.RIGHT);
+		canvas.drawText(""+ TapITGame.getInstance().getCurrentLevel(), 310, 25, fontPaint);
+		fontPaint.setTextAlign(Paint.Align.LEFT);
 		Bitmap bitmap;
 		Coordinates coords;
 		for (TapITObject graphic : TapITGame.getInstance().getGraphics()) {
@@ -268,9 +284,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		width = metrics.widthPixels;
 		height = metrics.heightPixels;
 		generateRandomObject();
-		Typeface tf = Typeface.create("Helvetica", Typeface.BOLD);
 		fontPaint = new Paint();
-		fontPaint.setTypeface(tf);
+		fontPaint.setTypeface(Typeface.DEFAULT_BOLD);
 		fontPaint.setColor(Color.WHITE);
 		progressDialog.dismiss();
 	}

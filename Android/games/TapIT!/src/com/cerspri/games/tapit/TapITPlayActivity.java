@@ -107,7 +107,6 @@ public class TapITPlayActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlaySound();
-				//TODO change icons
 				if (SoundOptions.getInstance().isPlaySound()) {
 					soundButton.setBackgroundResource(R.drawable.play_sound);
 					panel.setSoundVolume(1f);
@@ -127,7 +126,6 @@ public class TapITPlayActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlayMusic();
-				//TODO change icons
 				if (SoundOptions.getInstance().isPlayMusic()) {
 					musicButton.setBackgroundResource(R.drawable.play_music);
 					panel.setMusicVolume(1f);
