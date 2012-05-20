@@ -76,6 +76,7 @@ public class TapITGame {
 		graphics.clear();
 		lvl = 1;
 		score = 0;
+		currentLevel = Constants.getLevel(lvl);
 	}
 
 	public int getCurrentLevel() {
