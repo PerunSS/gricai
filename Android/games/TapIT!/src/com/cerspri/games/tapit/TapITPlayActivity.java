@@ -136,6 +136,8 @@ public class TapITPlayActivity extends Activity {
 
 			}
 		});
+		
+
 		dialog.show();
 	}
 

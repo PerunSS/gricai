@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background" >
+    android:background="@drawable/background"
+    android:id="@+id/pause_dialog">
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -38,7 +40,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/secondary_menu"
+        android:id="@+id/secondary_menu_pause"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -70,6 +72,16 @@
             android:layout_width="5dp"
             android:layout_height="fill_parent" />
     </LinearLayout>
+    
+    <!-- <com.google.ads.AdView android:id="@+id/adView"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14fbaad68b9db0"
+                         ads:adSize="BANNER"
+                         ads:testDevices = "TEST_EMULATOR"
+                         ads:loadAdOnCreate="true"
+                         android:layout_above="@+id/secondary_menu"
+                         android:layout_marginBottom="5dp"/> -->
     
     <RelativeLayout
         android:layout_width="fill_parent"
