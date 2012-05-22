@@ -60,7 +60,12 @@ public class Game {
 		/*TODO return random truth depending on the player mask and given dirtiness
 		 *also it needs some reorganization of how truths and dares are kept 
 		*/
-		return null;
+		String query = "You must stand behind #{DA}, wrap your arms tightly around #{DG} waist," +
+				" press your hips up against #{DG} buttocks, and hold that position for ten minutes.";
+		Player player = players.get(1);
+		Player target = players.get(0);
+		
+		return QueryParser.getInstance().parseQuery(query, player, target);
 	}
 	
 	public String getDare(int dirtiness){
@@ -68,7 +73,12 @@ public class Game {
 		/*TODO return random truth depending on the player mask and given dirtiness
 		 *also it needs some reorganization of how truths and dares are kept 
 		*/
-		return null;
+		String query = "You must stand behind #{DA}, wrap your arms tightly around #{DG} waist," +
+		" press your hips up against #{DG} buttocks, and hold that position for ten minutes.";
+		Player player = players.get(1);
+		Player target = players.get(0);
+
+		return QueryParser.getInstance().parseQuery(query, player, target);		
 	}
 	
 	public void prepareGame(Context context){
@@ -139,4 +149,5 @@ public class Game {
 	public void setDirtinessLevel(int dirtinessLevel) {
 		this.dirtinessLevel = dirtinessLevel;
 	}
+	
 }
