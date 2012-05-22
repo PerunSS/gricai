@@ -1,41 +1,33 @@
 package com.cerspri.games.tapit;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.cerspri.games.tapit.adapter.HighScoreAdapter;
-import com.cerspri.games.tapit.model.HighScore;
-import com.cerspri.games.tapit.model.SoundOptions;
-import com.cerspri.games.tapit.network.NetworkUtils;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.cerspri.games.tapit.adapter.HighScoreAdapter;
+import com.cerspri.games.tapit.model.HighScore;
+import com.cerspri.games.tapit.model.SoundOptions;
+import com.cerspri.games.tapit.network.NetworkUtils;
 
 public class TapITActivity extends Activity {
 	public static final int CLICKIT_PLAY_CODE = 12345;
 	private MediaPlayer displayScore;
-	private Dialog dialog; // endGameDialog
+//	private Dialog dialog; // endGameDialog
 
 	/** Called when the activity is first created. */
 	@Override
@@ -47,7 +39,7 @@ public class TapITActivity extends Activity {
 		newGameButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				submited = false;
+		//		submited = false;
 				Intent intent = new Intent(TapITActivity.this,
 						TapITPlayActivity.class);
 				startActivityForResult(intent, CLICKIT_PLAY_CODE);
@@ -126,10 +118,16 @@ public class TapITActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == CLICKIT_PLAY_CODE) {
-			displayEndGameDialog(data);
+			Intent intent = new Intent(TapITActivity.this,
+					TapITEndGameActivity.class);
+			intent.putExtra("score", data.getExtras().getLong("score"));
+			intent.putExtra("max", data.getExtras().getDouble("max") / 1000.0);
+			startActivity(intent);
+			//displayEndGameDialog(data);
 		}
 	}
 
+	/*
 	private void displayEndGameDialog(Intent data) {
 		displayScore = MediaPlayer.create(this, R.raw.display_score_end);
 		displayScore.setLooping(true);
@@ -249,7 +247,7 @@ public class TapITActivity extends Activity {
 			}
 		});
 		dialog.show();
-	}
+	}*/
 
 	private class HighScoreFetcherTask extends AsyncTask<Void, Void, Void> {
 
@@ -277,7 +275,6 @@ public class TapITActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			progressDialog.dismiss();
-			System.out.println(highScores);
 			Dialog highScoresDialog = new Dialog(TapITActivity.this);
 			highScoresDialog.setTitle("HIGH SCORES");
 			highScoresDialog.setContentView(R.layout.high_score_dialog);
@@ -292,7 +289,5 @@ public class TapITActivity extends Activity {
 
 	private ProgressDialog progressDialog;
 	private static final String HIGH_SCORES_URL = "http://www.cerspri.com/api/tap_it/get_highscores.php";
-	private static final String HIGH_SCORES_SUBMIT_URL = "http://www.cerspri.com/api/tap_it/update_score.php";
-	private boolean submited = false;
 	private List<HighScore> highScores = null;
 }
