@@ -2,6 +2,8 @@ package com.cerspri.games.tapit;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -132,6 +134,18 @@ public class TapITPlayActivity extends Activity {
 					panel.setMusicVolume(0f);
 				}
 
+			}
+		});
+		final Button rateButton = (Button) dialog.findViewById(R.id.rate_us);
+		
+		rateButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse("market://details?id=com.cerspri.games.tapit"));
+				startActivity(intent);
 			}
 		});
 

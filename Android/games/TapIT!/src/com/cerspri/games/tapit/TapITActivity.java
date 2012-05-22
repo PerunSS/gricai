@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -47,7 +48,7 @@ public class TapITActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				final Dialog infoDialog = new Dialog(TapITActivity.this,
-						android.R.style.Theme_Black);
+						android.R.style.Theme_Black_NoTitleBar_Fullscreen);
 				infoDialog.setContentView(R.layout.instructions);
 				infoDialog.setTitle(getString(R.string.title));
 				infoDialog.getWindow().setBackgroundDrawable(
@@ -96,6 +97,19 @@ public class TapITActivity extends Activity {
 				} else {
 					musicButton.setBackgroundResource(R.drawable.mute_music);
 				}
+			}
+		});
+		
+		final Button rateButton = (Button) findViewById(R.id.rate_us);
+		
+		rateButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse("market://details?id=com.cerspri.games.tapit"));
+				startActivity(intent);
 			}
 		});
 	}

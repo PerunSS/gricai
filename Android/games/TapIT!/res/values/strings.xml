@@ -12,10 +12,10 @@
     <string name="max_time">max time:</string>
     <string name="total">TOTAL:</string>
     <string name="title">TapIT! Instructions</string>
-    <string name="rules_1">Game is simple, don\'t run out of time! During game different boxes will appear randomly on screen - boxes with positive values and boxes with negative ones. By tapping box you will get amount of points and time written on box - e.g. +2 box will bring you 2 points and 2 more seconds, and -5 will take-away 5 points and subtract 5 seconds.</string>
+    <string name="rules_1">Game is simple, don\'t run out of time! During game different boxes will appear randomly on screen - boxes with positive values and boxes with negative ones. By tapping box you will get amount of points written on box and also some time - e.g. +2 box will bring you 2 points and allmost 1 second, but if you tap -5 it will take-away 5 points and subtract around 2 seconds.</string>
     <string name="positive">"Positive Boxes: "</string>
     <string name="negative">Negative Boxes:</string>
-    <string name="rules_2">Also try to get as much time in one moment as possible, because that affects final score (e.g at one moment you have 33.2 s and value 33.2 will be added to your score as final score)</string>
+    <string name="rules_2">Also try to get as much time in one moment as possible, because that affects final score (e.g at one moment you have 33.2 s and value 33.2 will be added to your score as final score). If yours maximum time is not bigger than 20 seconds you will not get any bonus.</string>
     <string name="rules_3">One last thing - if boxes overlay and you tap there - you will tap BOTH boxes - so be careful! Good luck!</string>
     <string name="continue_game">Resume</string>
     <string name="pause">Pause</string>
