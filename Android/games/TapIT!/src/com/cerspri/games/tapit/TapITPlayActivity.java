@@ -48,12 +48,12 @@ public class TapITPlayActivity extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 
-	@Override
-	protected void onPause() {
-		if (dialog != null && dialog.isShowing())
-			dialog.dismiss();
-		super.onPause();
-	}
+//	@Override
+//	protected void onPause() {
+//		if (dialog != null && dialog.isShowing())
+//			dialog.dismiss();
+//		super.onPause();
+//	}
 
 	@Override
 	public void onBackPressed() {
