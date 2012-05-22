@@ -23,7 +23,7 @@ import org.apache.http.message.BasicNameValuePair;
 public final class NetworkUtils {
 
 	public static final StringBuilder readFromLink(String url) {
-		StringBuilder builder = new StringBuilder();
+		StringBuilder builder = null;
 		HttpClient client = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
 		try {
@@ -36,41 +36,42 @@ public final class NetworkUtils {
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(content), 8192);
 				String line;
+				builder = new StringBuilder();
 				while ((line = reader.readLine()) != null) {
 					builder.append(line);
 				}
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
 		return builder;
 	}
-	
-	public static final StringBuilder updateToLink(String url, Map<String,String> params){
+
+	public static final StringBuilder updateToLink(String url,
+			Map<String, String> params) {
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(url);
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-			for(Map.Entry<String, String> entry: params.entrySet()){
-				nameValuePairs.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				nameValuePairs.add(new BasicNameValuePair(entry.getKey(), entry
+						.getValue()));
 			}
-	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse response = client.execute(httpPost);
-			//StatusLine statusLine = response.getStatusLine();
-			//int statusCode = statusLine.getStatusCode();
-			//if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
-				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(content), 8192);
-				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
-				}
-			//}
+			HttpEntity entity = response.getEntity();
+			InputStream content = entity.getContent();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					content), 8192);
+			String line;
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
+			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

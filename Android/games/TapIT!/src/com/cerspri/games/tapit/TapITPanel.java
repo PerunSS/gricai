@@ -51,11 +51,11 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		clickNeg = soundPool.load(context, R.raw.click_n, 0);
 		gameMusic = MediaPlayer.create(context, R.raw.game_play);
 		gameMusic.setLooping(true);
-		//gameMusic.setVolume(1, 1);
 		gameMusic.start();
 		gameMusic.setOnPreparedListener(this);
 		progressDialog = ProgressDialog.show(context, "", "Loading...");
-		scorebox = BitmapFactory.decodeResource(context.getResources(), R.drawable.score_box);
+		scorebox = BitmapFactory.decodeResource(context.getResources(),
+				R.drawable.score_box);
 	}
 
 	public void pause() {
@@ -93,22 +93,22 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		canvas.drawColor(Color.BLACK);
 		canvas.drawBitmap(scorebox, 3, 3, null);
 		fontPaint.setTextAlign(Paint.Align.LEFT);
-		canvas.drawText("TIME:", 20, 25,
-				fontPaint);
+		canvas.drawText("TIME:", 20, 25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.RIGHT);
-		canvas.drawText(""+ ((double) timer.getTime()) / 1000, 87, 25, fontPaint);
+		canvas.drawText("" + ((double) timer.getTime()) / 1000, 87, 25,
+				fontPaint);
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		canvas.drawBitmap(scorebox, 113, 3, null);
-		canvas.drawText("SCORE:", 130,
-				25, fontPaint);
+		canvas.drawText("SCORE:", 130, 25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.RIGHT);
-		canvas.drawText(""+ TapITGame.getInstance().getScore(), 200, 25, fontPaint);
+		canvas.drawText("" + TapITGame.getInstance().getScore(), 200, 25,
+				fontPaint);
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		canvas.drawBitmap(scorebox, 223, 3, null);
-		canvas.drawText("LEVEL:",
-				240, 25, fontPaint);
+		canvas.drawText("LEVEL:", 240, 25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.RIGHT);
-		canvas.drawText(""+ TapITGame.getInstance().getCurrentLevel(), 310, 25, fontPaint);
+		canvas.drawText("" + TapITGame.getInstance().getCurrentLevel(), 310,
+				25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		Bitmap bitmap;
 		Coordinates coords;
@@ -124,7 +124,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	public boolean onTouchEvent(MotionEvent event) {
 		int x = (int) event.getX();
 		int y = (int) event.getY();
-		// System.out.println(x + "," + y);
 		synchronized (getHolder()) {
 			for (TapITObject object : TapITGame.getInstance().getGraphics()) {
 				if (object.getCoordinates().contains(x, y)) {

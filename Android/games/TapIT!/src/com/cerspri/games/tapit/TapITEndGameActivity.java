@@ -19,26 +19,26 @@ import com.cerspri.games.tapit.model.SoundOptions;
 import com.cerspri.games.tapit.network.NetworkUtils;
 
 public class TapITEndGameActivity extends Activity {
-	
+
 	private MediaPlayer displayScore;
 	private static final String HIGH_SCORES_SUBMIT_URL = "http://www.cerspri.com/api/tap_it/update_score.php";
 	private boolean submited = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent data = getIntent();
 		displayScore = MediaPlayer.create(this, R.raw.display_score_end);
 		displayScore.setLooping(true);
-		if(!SoundOptions.getInstance().isPlayMusic()){
+		if (!SoundOptions.getInstance().isPlayMusic()) {
 			displayScore.setVolume(0f, 0f);
-		}else{
+		} else {
 			displayScore.setVolume(1f, 1f);
 		}
 		displayScore.start();
 		long score = data.getExtras().getLong("score");
 		double max = data.getExtras().getDouble("max");
-		setContentView(R.layout.game_over_dialog);
+		setContentView(R.layout.game_over);
 		setTitle("SCORE");
 		TextView gameScoreVeiw = (TextView) findViewById(R.id.game_score);
 		gameScoreVeiw.setText(score + ".0");
@@ -74,7 +74,8 @@ public class TapITEndGameActivity extends Activity {
 							+ ", enter Name below.");
 
 					// Set an EditText view to get user input
-					final EditText input = new EditText(TapITEndGameActivity.this);
+					final EditText input = new EditText(
+							TapITEndGameActivity.this);
 					alert.setView(input);
 
 					alert.setPositiveButton(R.string.submit_dialog,
@@ -95,13 +96,17 @@ public class TapITEndGameActivity extends Activity {
 												.updateToLink(
 														HIGH_SCORES_SUBMIT_URL,
 														params);
-										if (result.toString().contains("ok")) {
-											Toast.makeText(TapITEndGameActivity.this,
+										if (result != null
+												&& result.toString().contains(
+														"ok")) {
+											Toast.makeText(
+													TapITEndGameActivity.this,
 													"Score submited",
 													Toast.LENGTH_LONG).show();
 											submited = true;
 										} else {
-											Toast.makeText(TapITEndGameActivity.this,
+											Toast.makeText(
+													TapITEndGameActivity.this,
 													"No internet connection.",
 													Toast.LENGTH_LONG).show();
 										}

@@ -11,8 +11,6 @@ public class TapITGame {
 
 	private long score = 0;
 
-	// private Map<Integer, Level> levels = new HashMap<Integer, Level>();
-
 	private List<TapITObject> graphics = new ArrayList<TapITObject>();
 	private static TapITGame instance = new TapITGame();
 

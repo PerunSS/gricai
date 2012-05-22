@@ -11,13 +11,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cerspri.games.tapit.adapter.HighScoreAdapter;
 import com.cerspri.games.tapit.model.HighScore;
@@ -26,8 +26,6 @@ import com.cerspri.games.tapit.network.NetworkUtils;
 
 public class TapITActivity extends Activity {
 	public static final int CLICKIT_PLAY_CODE = 12345;
-	private MediaPlayer displayScore;
-//	private Dialog dialog; // endGameDialog
 
 	/** Called when the activity is first created. */
 	@Override
@@ -39,7 +37,6 @@ public class TapITActivity extends Activity {
 		newGameButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-		//		submited = false;
 				Intent intent = new Intent(TapITActivity.this,
 						TapITPlayActivity.class);
 				startActivityForResult(intent, CLICKIT_PLAY_CODE);
@@ -67,52 +64,40 @@ public class TapITActivity extends Activity {
 				new HighScoreFetcherTask().execute();
 			}
 		});
-		
+
 		final Button soundButton = (Button) findViewById(R.id.sound);
-		if(!SoundOptions.getInstance().isPlaySound()){
+		if (!SoundOptions.getInstance().isPlaySound()) {
 			soundButton.setBackgroundResource(R.drawable.mute_sound);
 		}
 		soundButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlaySound();
-				if(SoundOptions.getInstance().isPlaySound()){
+				if (SoundOptions.getInstance().isPlaySound()) {
 					soundButton.setBackgroundResource(R.drawable.play_sound);
-				}else{
+				} else {
 					soundButton.setBackgroundResource(R.drawable.mute_sound);
 				}
 			}
 		});
-		
+
 		final Button musicButton = (Button) findViewById(R.id.music);
-		if(!SoundOptions.getInstance().isPlayMusic()){
+		if (!SoundOptions.getInstance().isPlayMusic()) {
 			musicButton.setBackgroundResource(R.drawable.mute_music);
 		}
 		musicButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlayMusic();
-				if(SoundOptions.getInstance().isPlayMusic()){
+				if (SoundOptions.getInstance().isPlayMusic()) {
 					musicButton.setBackgroundResource(R.drawable.play_music);
-				}else{
+				} else {
 					musicButton.setBackgroundResource(R.drawable.mute_music);
 				}
 			}
 		});
-	}
-
-	@Override
-	protected void onPause() {
-		System.out.println(displayScore);
-		if (displayScore != null) {
-			displayScore.stop();
-			displayScore.release();
-			displayScore = null;
-		}
-		// TODO save state, and on resume build state again
-		super.onPause();
 	}
 
 	@Override
@@ -121,133 +106,10 @@ public class TapITActivity extends Activity {
 			Intent intent = new Intent(TapITActivity.this,
 					TapITEndGameActivity.class);
 			intent.putExtra("score", data.getExtras().getLong("score"));
-			intent.putExtra("max", data.getExtras().getDouble("max") / 1000.0);
+			intent.putExtra("max", data.getExtras().getDouble("max"));
 			startActivity(intent);
-			//displayEndGameDialog(data);
 		}
 	}
-
-	/*
-	private void displayEndGameDialog(Intent data) {
-		displayScore = MediaPlayer.create(this, R.raw.display_score_end);
-		displayScore.setLooping(true);
-		if(!SoundOptions.getInstance().isPlayMusic()){
-			displayScore.setVolume(0f, 0f);
-		}else{
-			displayScore.setVolume(1f, 1f);
-		}
-		displayScore.start();
-		long score = data.getExtras().getLong("score");
-		double max = data.getExtras().getDouble("max");
-		dialog = new Dialog(this,
-				android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
-			@Override
-			public boolean onKeyDown(int keyCode, KeyEvent event) {
-				if (keyCode == KeyEvent.KEYCODE_BACK) {
-					if (displayScore != null) {
-						displayScore.stop();
-						displayScore.release();
-						displayScore = null;
-					}
-					dismiss();
-					return true;
-				}
-				return super.onKeyDown(keyCode, event);
-			}
-		};
-		dialog.setContentView(R.layout.game_over_dialog);
-		dialog.setTitle("SCORE");
-		TextView gameScoreVeiw = (TextView) dialog
-				.findViewById(R.id.game_score);
-		gameScoreVeiw.setText(score + ".0");
-		TextView maxTimeVeiw = (TextView) dialog.findViewById(R.id.max_time);
-		maxTimeVeiw.setText(max + "");
-		TextView totalScoreVeiw = (TextView) dialog
-				.findViewById(R.id.total_score);
-		final double total = score + max;
-		totalScoreVeiw.setText(total + "");
-		Button dismissButton = (Button) dialog.findViewById(R.id.back);
-		dismissButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (displayScore != null) {
-					displayScore.stop();
-					displayScore.release();
-					displayScore = null;
-				}
-				dialog.dismiss();
-				dialog = null;
-			}
-		});
-		Button submitScoreButton = (Button) dialog
-				.findViewById(R.id.submit_score);
-		submitScoreButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (!submited) {
-					AlertDialog.Builder alert = new AlertDialog.Builder(
-							TapITActivity.this);
-
-					alert.setTitle("Submit High Score");
-					alert.setMessage("Your Score is: " + total
-							+ ", enter Name below.");
-
-					// Set an EditText view to get user input
-					final EditText input = new EditText(TapITActivity.this);
-					alert.setView(input);
-
-					alert.setPositiveButton(R.string.submit_dialog,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									String name = input.getText().toString();
-									if (name.length() < 2) {
-										Toast.makeText(
-												TapITActivity.this,
-												"Minimal number of characters is 2!",
-												Toast.LENGTH_LONG).show();
-									} else {
-										Map<String, String> params = new HashMap<String, String>();
-										params.put("name", name);
-										params.put("score", total + "");
-										StringBuilder result = NetworkUtils
-												.updateToLink(
-														HIGH_SCORES_SUBMIT_URL,
-														params);
-										if (result.toString().contains("ok")) {
-											Toast.makeText(TapITActivity.this,
-													"Score submited",
-													Toast.LENGTH_LONG).show();
-											submited = true;
-										} else {
-											Toast.makeText(TapITActivity.this,
-													"No internet connection.",
-													Toast.LENGTH_LONG).show();
-										}
-									}
-								}
-							});
-
-					alert.setNegativeButton(R.string.cancel,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									// Canceled.
-								}
-							});
-
-					alert.show();
-				} else {
-					Toast.makeText(TapITActivity.this,
-							"This Score is allready submitted",
-							Toast.LENGTH_LONG).show();
-				}
-			}
-		});
-		dialog.show();
-	}*/
 
 	private class HighScoreFetcherTask extends AsyncTask<Void, Void, Void> {
 
@@ -262,11 +124,16 @@ public class TapITActivity extends Activity {
 		protected Void doInBackground(Void... params) {
 			StringBuilder networkData = NetworkUtils
 					.readFromLink(HIGH_SCORES_URL);
-			try {
-				highScores = HighScore.parseScores(new JSONObject(networkData
-						.toString()));
-			} catch (JSONException e) {
-				e.printStackTrace();
+			badNetworkData = false;
+			if (networkData != null) {
+				try {
+					highScores = HighScore.parseScores(new JSONObject(
+							networkData.toString()));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			} else {
+				badNetworkData = true;
 			}
 			return null;
 		}
@@ -275,14 +142,22 @@ public class TapITActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			progressDialog.dismiss();
-			Dialog highScoresDialog = new Dialog(TapITActivity.this);
-			highScoresDialog.setTitle("HIGH SCORES");
-			highScoresDialog.setContentView(R.layout.high_score_dialog);
-			ListView view = (ListView) highScoresDialog
-					.findViewById(R.id.high_scores_list);
-			view.setAdapter(new HighScoreAdapter(TapITActivity.this,
-					R.id.high_scores_list, highScores));
-			highScoresDialog.show();
+			if (badNetworkData) {
+				Toast.makeText(TapITActivity.this, "No internet connection!",
+						Toast.LENGTH_LONG).show();
+			} else if (highScores != null && highScores.size() > 0) {
+				Dialog highScoresDialog = new Dialog(TapITActivity.this);
+				highScoresDialog.setTitle("HIGH SCORES");
+				highScoresDialog.setContentView(R.layout.high_score_dialog);
+				ListView view = (ListView) highScoresDialog
+						.findViewById(R.id.high_scores_list);
+				view.setAdapter(new HighScoreAdapter(TapITActivity.this,
+						R.id.high_scores_list, highScores));
+				highScoresDialog.show();
+			} else {
+				Toast.makeText(TapITActivity.this, "Server error!",
+						Toast.LENGTH_LONG).show();
+			}
 		}
 
 	}
@@ -290,4 +165,5 @@ public class TapITActivity extends Activity {
 	private ProgressDialog progressDialog;
 	private static final String HIGH_SCORES_URL = "http://www.cerspri.com/api/tap_it/get_highscores.php";
 	private List<HighScore> highScores = null;
+	private boolean badNetworkData = false;
 }

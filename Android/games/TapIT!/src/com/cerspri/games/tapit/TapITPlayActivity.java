@@ -70,7 +70,6 @@ public class TapITPlayActivity extends Activity {
 			}
 		};
 		dialog.setContentView(R.layout.pause_dialog);
-		// dialog.setTitle("PAUSE");
 		TextView gameScoreVeiw = (TextView) dialog
 				.findViewById(R.id.game_score);
 		gameScoreVeiw.setText(TapITGame.getInstance().getScore() + ".0");
@@ -82,7 +81,6 @@ public class TapITPlayActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				TapITGame.getInstance().clear();
-				// panel.continiue();
 				panel.endGame(false, true);
 				dialog.dismiss();
 				finish();
@@ -99,11 +97,11 @@ public class TapITPlayActivity extends Activity {
 			}
 		});
 		final Button soundButton = (Button) dialog.findViewById(R.id.sound);
-		if(!SoundOptions.getInstance().isPlaySound()){
+		if (!SoundOptions.getInstance().isPlaySound()) {
 			soundButton.setBackgroundResource(R.drawable.mute_sound);
 		}
 		soundButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlaySound();
@@ -116,13 +114,13 @@ public class TapITPlayActivity extends Activity {
 				}
 			}
 		});
-		
+
 		final Button musicButton = (Button) dialog.findViewById(R.id.music);
-		if(!SoundOptions.getInstance().isPlayMusic()){
+		if (!SoundOptions.getInstance().isPlayMusic()) {
 			musicButton.setBackgroundResource(R.drawable.mute_music);
 		}
 		musicButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				SoundOptions.getInstance().tooglePlayMusic();
@@ -136,7 +134,6 @@ public class TapITPlayActivity extends Activity {
 
 			}
 		});
-		
 
 		dialog.show();
 	}
