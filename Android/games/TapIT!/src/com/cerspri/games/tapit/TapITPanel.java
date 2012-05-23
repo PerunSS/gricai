@@ -206,6 +206,16 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 
 	}
+	
+	public void saveGameState(){
+		
+	}
+	
+	public static TapITPanel buildState(Context context){
+		TapITPanel panel = new TapITPanel(context);
+		
+		return panel;
+	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -213,6 +223,18 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		width = w;
 		height = h;
 	}
+	
+	/**
+	 * @deprecated should use TapITGame.getInstance().getScore()
+	 */
+	public long getScore() {
+		return TapITGame.getInstance().getScore();
+	}
+
+	public long getMaxTime() {
+		return maxTime;
+	}
+
 
 	/********************************************************/
 	/***************** SurfaceHolder.Callback *****************/
@@ -253,17 +275,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 				e.printStackTrace();
 			}
 		}
-	}
-
-	/**
-	 * @deprecated should use TapITGame.getInstance().getScore()
-	 */
-	public long getScore() {
-		return TapITGame.getInstance().getScore();
-	}
-
-	public long getMaxTime() {
-		return maxTime;
 	}
 
 	/****************************************************/
