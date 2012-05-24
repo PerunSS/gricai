@@ -66,6 +66,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	}
 	
 	public String saveState(){
+		pause();
 		JSONObject object = new JSONObject();
 		try {
 			object.put("elapsedTime", elapsedTime);
@@ -86,6 +87,28 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 			e.printStackTrace();
 		}
 		return object.toString();
+	}
+	
+	public static TapITPanel continueState(String json, Context context){
+		TapITPanel panel = new TapITPanel(context);
+		try {
+			JSONObject object = new JSONObject(json);
+			panel.elapsedTime = object.getLong("elapsedTime");
+			TapITGame.getInstance().setScore(object.getLong("score"));
+			TapITGame.getInstance().setTime(object.getLong("remainingTime"));
+			TapITGame.getInstance().setLevel(object.getInt("level"));
+			JSONArray visibleObjects = object.getJSONArray("visibleObjects");
+			for(int i = 0; i<visibleObjects.length();i++){
+				JSONObject element = visibleObjects.getJSONObject(i);
+				TapITObject tapItObject = new TapITObject(element.getLong("lifeTime"), element.getLong("timeValue"), panel.getResources());
+				tapItObject.getCoordinates().setX(element.getInt("x"));
+				tapItObject.getCoordinates().setY(element.getInt("y"));
+				TapITGame.getInstance().getGraphics().add(tapItObject);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return panel;
 	}
 
 	public void pause() {
@@ -239,16 +262,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 			activity.finish();
 		}
 
-	}
-
-	public void saveGameState() {
-
-	}
-
-	public static TapITPanel buildState(Context context) {
-		TapITPanel panel = new TapITPanel(context);
-
-		return panel;
 	}
 
 	@Override

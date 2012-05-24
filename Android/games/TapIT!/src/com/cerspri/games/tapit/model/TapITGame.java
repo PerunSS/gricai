@@ -92,6 +92,11 @@ public class TapITGame implements Serializable {
 	public int getCurrentLevel() {
 		return lvl;
 	}
+	
+	public void setLevel(int level){
+		lvl = level;
+		currentLevel = Constants.getLevel(lvl);
+	}
 
 	public void updateScore(long value) {
 		score += value;
@@ -100,6 +105,10 @@ public class TapITGame implements Serializable {
 	public long getScore() {
 		return score;
 	}
+	
+	public void setScore(long score){
+		this.score = score;
+	}
 
 	public synchronized void updateTime(long diff){
 		time += diff;
@@ -107,6 +116,10 @@ public class TapITGame implements Serializable {
 
 	public synchronized long getTime() {
 		return time;
+	}
+	
+	public synchronized void setTime(long time){
+		this.time = time;
 	}
 
 	public int getWidth() {
