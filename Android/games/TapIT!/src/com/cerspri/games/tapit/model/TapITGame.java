@@ -1,15 +1,26 @@
 package com.cerspri.games.tapit.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.content.res.Resources;
 
-public class TapITGame {
+public class TapITGame implements Serializable {
 
-	private Level currentLevel;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static final long START_GAME_TIME = 20000;
+
+	
+	private transient Level currentLevel;
+	private int width, height;
 
 	private long score = 0;
+	private long time = START_GAME_TIME;
 
 	private List<TapITObject> graphics = new ArrayList<TapITObject>();
 	private static TapITGame instance = new TapITGame();
@@ -28,8 +39,8 @@ public class TapITGame {
 	 *            - of screen
 	 * @param res
 	 */
-	public void generateRandomObject(int width, int height, Resources res) {
-		graphics.add(0, currentLevel.generateRandomObject(width, height, res));
+	public void generateRandomObject(Resources res) {
+		graphics.add(0, currentLevel.generateRandomObject(res));
 	}
 
 	public void removeObjects() {
@@ -75,6 +86,7 @@ public class TapITGame {
 		lvl = 1;
 		score = 0;
 		currentLevel = Constants.getLevel(lvl);
+		time = START_GAME_TIME;
 	}
 
 	public int getCurrentLevel() {
@@ -89,4 +101,27 @@ public class TapITGame {
 		return score;
 	}
 
+	public synchronized void updateTime(long diff){
+		time += diff;
+	}
+
+	public synchronized long getTime() {
+		return time;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 }

@@ -26,13 +26,10 @@ import com.cerspri.games.tapit.model.TapITObject;
 public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		MediaPlayer.OnPreparedListener {
 
-	private static final long START_GAME_TIME = 20000;
-
+	
 	private TapITThread thread;
 	private TapITCreatorThread creator;
 	private Thread runningThread, generatorThread, timerThread;
-	private int width;
-	private int height;
 	private TapITTimer timer;
 	private long maxTime = 0;
 	private SoundPool soundPool;
@@ -95,7 +92,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		canvas.drawText("TIME:", 20, 25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.RIGHT);
-		canvas.drawText("" + ((double) timer.getTime()) / 1000, 87, 25,
+		canvas.drawText("" + ((double) TapITGame.getInstance().getTime()) / 1000, 87, 25,
 				fontPaint);
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		canvas.drawBitmap(scorebox, 113, 3, null);
@@ -135,12 +132,12 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 						soundPool.play(clickNeg, soundVolume, soundVolume, 0,
 								0, 1);
 					}
-					timer.updateTime(object.getTimeValue() / 5 * 2);
-					long time = timer.getTime();
+					TapITGame.getInstance().updateTime(object.getTimeValue() / 5 * 2);
+					long time = TapITGame.getInstance().getTime();
 					if (time > 0) {
 						TapITGame.getInstance().updateScore(
 								object.getTimeValue() / 1000);
-						if (time > START_GAME_TIME && time > maxTime) {
+						if (time > TapITGame.START_GAME_TIME && time > maxTime) {
 							maxTime = time;
 						}
 						TapITGame.getInstance().lvlUp();
@@ -155,8 +152,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 
 	public void generateRandomObject() {
 		synchronized (getHolder()) {
-			TapITGame.getInstance().generateRandomObject(width, height,
-					getResources());
+			TapITGame.getInstance().generateRandomObject(getResources());
 		}
 	}
 
@@ -220,8 +216,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		width = w;
-		height = h;
+		TapITGame.getInstance().setWidth(w);
+		TapITGame.getInstance().setHeight(h);
 	}
 	
 	/**
@@ -285,14 +281,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		getHolder().addCallback(this);
 		thread = new TapITThread(getHolder(), this);
 		creator = new TapITCreatorThread(this);
-		timer = new TapITTimer(START_GAME_TIME, this);
+		timer = new TapITTimer(/*TapITGame.getInstance().getTime(),*/ this);
 		setFocusable(true);
 		WindowManager wm = (WindowManager) getContext().getSystemService(
 				Context.WINDOW_SERVICE);
 		DisplayMetrics metrics = new DisplayMetrics();
 		wm.getDefaultDisplay().getMetrics(metrics);
-		width = metrics.widthPixels;
-		height = metrics.heightPixels;
+		TapITGame.getInstance().setWidth(metrics.widthPixels);
+		TapITGame.getInstance().setHeight(metrics.heightPixels);
 		generateRandomObject();
 		fontPaint = new Paint();
 		fontPaint.setTypeface(Typeface.DEFAULT_BOLD);

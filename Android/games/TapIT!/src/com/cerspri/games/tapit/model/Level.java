@@ -1,8 +1,6 @@
 package com.cerspri.games.tapit.model;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 public class Level {
 
@@ -47,7 +45,7 @@ public class Level {
 	// length je trajanje jednog poena a racuna se kao lengthModificator +
 	// Math.random() * valueModificator pri cemu valueModificator zavisi od
 	// izvucenog broja (njegova verovatnoca pojavljivanja
-	public TapITObject generateRandomObject(int width, int height, Resources res) {
+	public TapITObject generateRandomObject(Resources res) {
 		double random = Math.random();
 		int value = 1;
 		double lifeTime = this.lifeTime;
@@ -78,20 +76,9 @@ public class Level {
 		}
 		long lifeTimeMiliseconds = (long) (lifeTime * MILISECONDS);
 
-		Bitmap icon = BitmapFactory.decodeResource(res, Constants.getResource(level, value));
-
-		int imageWidth = icon.getWidth();
-		int imageHeight = icon.getHeight();
-		int x = (int) (Math.random() * (width - imageWidth));
-		// dodajemo 50 zbog gornjeg dela ekrana (mesto gde ce se ispisivati
-				// score, itd.)
-		int y = 50
-				+ (int) (Math.random() * (height - imageHeight - 50));
 		
-		TapITObject object = new TapITObject(icon, lifeTimeMiliseconds,
-				(long) (MILISECONDS * value));
-		object.getCoordinates().setX(x);
-		object.getCoordinates().setY(y);
+		TapITObject object = new TapITObject(lifeTimeMiliseconds,
+				(long) (MILISECONDS * value),res);
 		return object;
 	}
 

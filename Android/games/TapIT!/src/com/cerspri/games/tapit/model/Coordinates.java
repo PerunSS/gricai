@@ -1,6 +1,12 @@
 package com.cerspri.games.tapit.model;
 
-public class Coordinates {
+import java.io.Serializable;
+
+public class Coordinates implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private int width, height;
