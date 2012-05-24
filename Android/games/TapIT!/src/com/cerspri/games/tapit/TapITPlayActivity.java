@@ -50,15 +50,15 @@ public class TapITPlayActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 	
 	@Override
 	protected void onPause() {
-		if (dialog != null && dialog.isShowing())
-			dialog.dismiss();
+//		if (dialog != null && dialog.isShowing())
+//			dialog.dismiss();
 		super.onPause();
+		
 	}
 
 	@Override

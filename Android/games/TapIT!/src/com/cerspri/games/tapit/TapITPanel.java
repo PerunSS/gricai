@@ -1,5 +1,9 @@
 package com.cerspri.games.tapit;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -26,7 +30,6 @@ import com.cerspri.games.tapit.model.TapITObject;
 public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		MediaPlayer.OnPreparedListener {
 
-	
 	private TapITThread thread;
 	private TapITCreatorThread creator;
 	private Thread runningThread, generatorThread, timerThread;
@@ -39,20 +42,50 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private Paint fontPaint;
 	private Bitmap scorebox;
 
+	private long elapsedTime = 0;
+
 	private float soundVolume = 1;
 
 	public TapITPanel(Context context) {
 		super(context);
-		soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
-		clickPos = soundPool.load(context, R.raw.click, 0);
-		clickNeg = soundPool.load(context, R.raw.click_n, 0);
-		gameMusic = MediaPlayer.create(context, R.raw.game_play);
-		gameMusic.setLooping(true);
+		initPanel();
+
 		gameMusic.start();
-		gameMusic.setOnPreparedListener(this);
-		progressDialog = ProgressDialog.show(context, "", "Loading...");
-		scorebox = BitmapFactory.decodeResource(context.getResources(),
+	}
+
+	private void initPanel() {
+		soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
+		clickPos = soundPool.load(getContext(), R.raw.click, 0);
+		clickNeg = soundPool.load(getContext(), R.raw.click_n, 0);
+		scorebox = BitmapFactory.decodeResource(getContext().getResources(),
 				R.drawable.score_box);
+		gameMusic = MediaPlayer.create(getContext(), R.raw.game_play);
+		gameMusic.setLooping(true);
+		progressDialog = ProgressDialog.show(getContext(), "", "Loading...");
+		gameMusic.setOnPreparedListener(this);
+	}
+	
+	public String saveState(){
+		JSONObject object = new JSONObject();
+		try {
+			object.put("elapsedTime", elapsedTime);
+			object.put("remainingTime", TapITGame.getInstance().getTime());
+			object.put("score", TapITGame.getInstance().getScore());
+			object.put("level", TapITGame.getInstance().getCurrentLevel());
+			JSONArray visibleObjects = new JSONArray();
+			for(TapITObject tapItObject: TapITGame.getInstance().getGraphics()){
+				JSONObject tapItObjectJson = new JSONObject();
+				tapItObjectJson.put("lifeTime", tapItObject.getLifeTime());
+				tapItObjectJson.put("timeValue", tapItObject.getTimeValue());
+				tapItObjectJson.put("x", tapItObject.getCoordinates().getX());
+				tapItObjectJson.put("y", tapItObject.getCoordinates().getY());
+				visibleObjects.put(tapItObjectJson);
+			}
+			object.put("visibleObjects", visibleObjects);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return object.toString();
 	}
 
 	public void pause() {
@@ -83,6 +116,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 	}
 
+	public void updateElapsedTime(float time) {
+		elapsedTime += time;
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		removeObjects();
@@ -92,8 +129,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		canvas.drawText("TIME:", 20, 25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.RIGHT);
-		canvas.drawText("" + ((double) TapITGame.getInstance().getTime()) / 1000, 87, 25,
-				fontPaint);
+		canvas.drawText("" + ((double) TapITGame.getInstance().getTime())
+				/ 1000, 87, 25, fontPaint);
 		fontPaint.setTextAlign(Paint.Align.LEFT);
 		canvas.drawBitmap(scorebox, 113, 3, null);
 		canvas.drawText("SCORE:", 130, 25, fontPaint);
@@ -132,7 +169,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 						soundPool.play(clickNeg, soundVolume, soundVolume, 0,
 								0, 1);
 					}
-					TapITGame.getInstance().updateTime(object.getTimeValue() / 5 * 2);
+					TapITGame.getInstance().updateTime(
+							object.getTimeValue() / 5 * 2);
 					long time = TapITGame.getInstance().getTime();
 					if (time > 0) {
 						TapITGame.getInstance().updateScore(
@@ -202,14 +240,14 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 
 	}
-	
-	public void saveGameState(){
-		
+
+	public void saveGameState() {
+
 	}
-	
-	public static TapITPanel buildState(Context context){
+
+	public static TapITPanel buildState(Context context) {
 		TapITPanel panel = new TapITPanel(context);
-		
+
 		return panel;
 	}
 
@@ -219,7 +257,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		TapITGame.getInstance().setWidth(w);
 		TapITGame.getInstance().setHeight(h);
 	}
-	
+
 	/**
 	 * @deprecated should use TapITGame.getInstance().getScore()
 	 */
@@ -230,7 +268,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	public long getMaxTime() {
 		return maxTime;
 	}
-
 
 	/********************************************************/
 	/***************** SurfaceHolder.Callback *****************/
@@ -281,7 +318,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		getHolder().addCallback(this);
 		thread = new TapITThread(getHolder(), this);
 		creator = new TapITCreatorThread(this);
-		timer = new TapITTimer(/*TapITGame.getInstance().getTime(),*/ this);
+		timer = new TapITTimer(/* TapITGame.getInstance().getTime(), */this);
 		setFocusable(true);
 		WindowManager wm = (WindowManager) getContext().getSystemService(
 				Context.WINDOW_SERVICE);

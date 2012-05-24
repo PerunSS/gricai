@@ -54,6 +54,7 @@ public class TapITTimer implements Runnable {
 				e.printStackTrace();
 			}
 			TapITGame.getInstance().updateTime(-STEP);
+			panel.updateElapsedTime(STEP);
 			//time -= STEP;
 			if (TapITGame.getInstance().getTime() <= 0) {
 				run = false;
