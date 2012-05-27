@@ -22,6 +22,17 @@ public class Constants {
 	public static final String SPAWN_TIME = "spawnTime";
 	public static final String NEXT_LVL = "nextLvl";
 
+	public static final String CURRENT_LEVEL = "currentLevel";
+	public static final String SCORE = "score";
+	public static final String MAX_TIME = "maxTime";
+	public static final String ELAPSED_TIME = "elapsedTime";
+	public static final String REMAINING_TIME = "remainingTime";
+	public static final String VISIBLE_OBJECTS = "visibleObjects";
+	public static final String TIME_VALUE = "timeValue";
+	public static final String X = "x";
+	public static final String Y = "y";
+	public static final String GAME_STATE = "gameState";
+
 	private static Map<Integer, Map<String, Double>> levelParameters;
 	private static Map<Integer, Map<Integer, Integer>> iconResources;
 

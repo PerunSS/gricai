@@ -14,13 +14,13 @@ public class TapITGame implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static final long START_GAME_TIME = 20000;
-
 	
 	private transient Level currentLevel;
 	private int width, height;
 
 	private long score = 0;
 	private long time = START_GAME_TIME;
+	private long maxTime = 0;
 
 	private List<TapITObject> graphics = new ArrayList<TapITObject>();
 	private static TapITGame instance = new TapITGame();
@@ -112,6 +112,10 @@ public class TapITGame implements Serializable {
 
 	public synchronized void updateTime(long diff){
 		time += diff;
+		if (time > TapITGame.START_GAME_TIME && time > maxTime) {
+			maxTime = time;
+		}
+
 	}
 
 	public synchronized long getTime() {
@@ -136,5 +140,13 @@ public class TapITGame implements Serializable {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public long getMaxTime() {
+		return maxTime;
+	}
+
+	public void setMaxTime(long maxTime) {
+		this.maxTime = maxTime;
 	}
 }

@@ -23,6 +23,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
 
+import com.cerspri.games.tapit.model.Constants;
 import com.cerspri.games.tapit.model.Coordinates;
 import com.cerspri.games.tapit.model.TapITGame;
 import com.cerspri.games.tapit.model.TapITObject;
@@ -34,7 +35,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private TapITCreatorThread creator;
 	private Thread runningThread, generatorThread, timerThread;
 	private TapITTimer timer;
-	private long maxTime = 0;
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
 	private MediaPlayer gameMusic;
@@ -69,20 +69,21 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		pause();
 		JSONObject object = new JSONObject();
 		try {
-			object.put("elapsedTime", elapsedTime);
-			object.put("remainingTime", TapITGame.getInstance().getTime());
-			object.put("score", TapITGame.getInstance().getScore());
-			object.put("level", TapITGame.getInstance().getCurrentLevel());
+			object.put(Constants.ELAPSED_TIME, elapsedTime);
+			object.put(Constants.REMAINING_TIME, TapITGame.getInstance().getTime());
+			object.put(Constants.SCORE, TapITGame.getInstance().getScore());
+			object.put(Constants.CURRENT_LEVEL, TapITGame.getInstance().getCurrentLevel());
+			object.put(Constants.MAX_TIME, TapITGame.getInstance().getMaxTime());
 			JSONArray visibleObjects = new JSONArray();
 			for(TapITObject tapItObject: TapITGame.getInstance().getGraphics()){
 				JSONObject tapItObjectJson = new JSONObject();
-				tapItObjectJson.put("lifeTime", tapItObject.getLifeTime());
-				tapItObjectJson.put("timeValue", tapItObject.getTimeValue());
-				tapItObjectJson.put("x", tapItObject.getCoordinates().getX());
-				tapItObjectJson.put("y", tapItObject.getCoordinates().getY());
+				tapItObjectJson.put(Constants.LIFE_TIME, tapItObject.getLifeTime());
+				tapItObjectJson.put(Constants.TIME_VALUE, tapItObject.getTimeValue());
+				tapItObjectJson.put(Constants.X, tapItObject.getCoordinates().getX());
+				tapItObjectJson.put(Constants.Y, tapItObject.getCoordinates().getY());
 				visibleObjects.put(tapItObjectJson);
 			}
-			object.put("visibleObjects", visibleObjects);
+			object.put(Constants.VISIBLE_OBJECTS, visibleObjects);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -93,16 +94,17 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		TapITPanel panel = new TapITPanel(context);
 		try {
 			JSONObject object = new JSONObject(json);
-			panel.elapsedTime = object.getLong("elapsedTime");
-			TapITGame.getInstance().setScore(object.getLong("score"));
-			TapITGame.getInstance().setTime(object.getLong("remainingTime"));
-			TapITGame.getInstance().setLevel(object.getInt("level"));
-			JSONArray visibleObjects = object.getJSONArray("visibleObjects");
+			panel.elapsedTime = object.getLong(Constants.ELAPSED_TIME);
+			TapITGame.getInstance().setScore(object.getLong(Constants.SCORE));
+			TapITGame.getInstance().setTime(object.getLong(Constants.REMAINING_TIME));
+			TapITGame.getInstance().setLevel(object.getInt(Constants.CURRENT_LEVEL));
+			TapITGame.getInstance().setMaxTime(object.getLong(Constants.MAX_TIME));
+			JSONArray visibleObjects = object.getJSONArray(Constants.VISIBLE_OBJECTS);
 			for(int i = 0; i<visibleObjects.length();i++){
 				JSONObject element = visibleObjects.getJSONObject(i);
-				TapITObject tapItObject = new TapITObject(element.getLong("lifeTime"), element.getLong("timeValue"), panel.getResources());
-				tapItObject.getCoordinates().setX(element.getInt("x"));
-				tapItObject.getCoordinates().setY(element.getInt("y"));
+				TapITObject tapItObject = new TapITObject(element.getLong(Constants.LIFE_TIME), element.getLong(Constants.TIME_VALUE), panel.getResources());
+				tapItObject.getCoordinates().setX(element.getInt(Constants.X));
+				tapItObject.getCoordinates().setY(element.getInt(Constants.Y));
 				TapITGame.getInstance().getGraphics().add(tapItObject);
 			}
 		} catch (JSONException e) {
@@ -194,14 +196,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 					}
 					TapITGame.getInstance().updateTime(
 							object.getTimeValue() / 5 * 2);
-					long time = TapITGame.getInstance().getTime();
-					if (time > 0) {
+					if (TapITGame.getInstance().getTime() > 0) {
 						TapITGame.getInstance().updateScore(
 								object.getTimeValue() / 1000);
-						if (time > TapITGame.START_GAME_TIME && time > maxTime) {
-							maxTime = time;
-						}
-						TapITGame.getInstance().lvlUp();
+												TapITGame.getInstance().lvlUp();
 					}
 					removeObjects();
 					return true;
@@ -257,7 +255,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 			Activity activity = ((Activity) getContext());
 			Intent intent = new Intent();
 			intent.putExtra("score", TapITGame.getInstance().getScore());
-			intent.putExtra("max", maxTime / 1000.0);
+			intent.putExtra("max", TapITGame.getInstance().getMaxTime() / 1000.0);
 			activity.setResult(TapITActivity.CLICKIT_PLAY_CODE, intent);
 			activity.finish();
 		}
@@ -276,10 +274,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	 */
 	public long getScore() {
 		return TapITGame.getInstance().getScore();
-	}
-
-	public long getMaxTime() {
-		return maxTime;
 	}
 
 	/********************************************************/
