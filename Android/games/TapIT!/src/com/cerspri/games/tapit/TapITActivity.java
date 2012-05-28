@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cerspri.games.tapit.adapter.HighScoreAdapter;
+import com.cerspri.games.tapit.model.Constants;
 import com.cerspri.games.tapit.model.HighScore;
 import com.cerspri.games.tapit.model.SoundOptions;
 import com.cerspri.games.tapit.network.NetworkUtils;
@@ -32,12 +34,18 @@ public class TapITActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		SharedPreferences.Editor editor = getSharedPreferences("tapit",
+				MODE_WORLD_WRITEABLE)
+				.edit();
+		editor.putString(Constants.GAME_STATE, "");
+		editor.commit();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		final Button newGameButton = (Button) findViewById(R.id.new_game);
 		newGameButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				Intent intent = new Intent(TapITActivity.this,
 						TapITPlayActivity.class);
 				startActivityForResult(intent, CLICKIT_PLAY_CODE);

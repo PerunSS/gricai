@@ -64,23 +64,30 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		progressDialog = ProgressDialog.show(getContext(), "", "Loading...");
 		gameMusic.setOnPreparedListener(this);
 	}
-	
-	public String saveState(){
+
+	public String saveState() {
 		pause();
 		JSONObject object = new JSONObject();
 		try {
 			object.put(Constants.ELAPSED_TIME, elapsedTime);
-			object.put(Constants.REMAINING_TIME, TapITGame.getInstance().getTime());
+			object.put(Constants.REMAINING_TIME, TapITGame.getInstance()
+					.getTime());
 			object.put(Constants.SCORE, TapITGame.getInstance().getScore());
-			object.put(Constants.CURRENT_LEVEL, TapITGame.getInstance().getCurrentLevel());
+			object.put(Constants.CURRENT_LEVEL, TapITGame.getInstance()
+					.getCurrentLevel());
 			object.put(Constants.MAX_TIME, TapITGame.getInstance().getMaxTime());
 			JSONArray visibleObjects = new JSONArray();
-			for(TapITObject tapItObject: TapITGame.getInstance().getGraphics()){
+			for (TapITObject tapItObject : TapITGame.getInstance()
+					.getGraphics()) {
 				JSONObject tapItObjectJson = new JSONObject();
-				tapItObjectJson.put(Constants.LIFE_TIME, tapItObject.getLifeTime());
-				tapItObjectJson.put(Constants.TIME_VALUE, tapItObject.getTimeValue());
-				tapItObjectJson.put(Constants.X, tapItObject.getCoordinates().getX());
-				tapItObjectJson.put(Constants.Y, tapItObject.getCoordinates().getY());
+				tapItObjectJson.put(Constants.LIFE_TIME,
+						tapItObject.getLifeTime());
+				tapItObjectJson.put(Constants.TIME_VALUE,
+						tapItObject.getTimeValue());
+				tapItObjectJson.put(Constants.X, tapItObject.getCoordinates()
+						.getX());
+				tapItObjectJson.put(Constants.Y, tapItObject.getCoordinates()
+						.getY());
 				visibleObjects.put(tapItObjectJson);
 			}
 			object.put(Constants.VISIBLE_OBJECTS, visibleObjects);
@@ -89,20 +96,27 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 		return object.toString();
 	}
-	
-	public static TapITPanel continueState(String json, Context context){
+
+	public static TapITPanel continueState(String json, Context context) {
 		TapITPanel panel = new TapITPanel(context);
 		try {
 			JSONObject object = new JSONObject(json);
 			panel.elapsedTime = object.getLong(Constants.ELAPSED_TIME);
 			TapITGame.getInstance().setScore(object.getLong(Constants.SCORE));
-			TapITGame.getInstance().setTime(object.getLong(Constants.REMAINING_TIME));
-			TapITGame.getInstance().setLevel(object.getInt(Constants.CURRENT_LEVEL));
-			TapITGame.getInstance().setMaxTime(object.getLong(Constants.MAX_TIME));
-			JSONArray visibleObjects = object.getJSONArray(Constants.VISIBLE_OBJECTS);
-			for(int i = 0; i<visibleObjects.length();i++){
+			TapITGame.getInstance().setTime(
+					object.getLong(Constants.REMAINING_TIME));
+			TapITGame.getInstance().setLevel(
+					object.getInt(Constants.CURRENT_LEVEL));
+			TapITGame.getInstance().setMaxTime(
+					object.getLong(Constants.MAX_TIME));
+			JSONArray visibleObjects = object
+					.getJSONArray(Constants.VISIBLE_OBJECTS);
+			for (int i = 0; i < visibleObjects.length(); i++) {
 				JSONObject element = visibleObjects.getJSONObject(i);
-				TapITObject tapItObject = new TapITObject(element.getLong(Constants.LIFE_TIME), element.getLong(Constants.TIME_VALUE), panel.getResources());
+				TapITObject tapItObject = new TapITObject(
+						element.getLong(Constants.LIFE_TIME),
+						element.getLong(Constants.TIME_VALUE),
+						panel.getResources());
 				tapItObject.getCoordinates().setX(element.getInt(Constants.X));
 				tapItObject.getCoordinates().setY(element.getInt(Constants.Y));
 				TapITGame.getInstance().getGraphics().add(tapItObject);
@@ -114,10 +128,12 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	}
 
 	public void pause() {
-		thread.suspend();
-		timer.suspend();
-		creator.suspend();
-		gameMusic.pause();
+		if (thread != null) {
+			thread.suspend();
+			timer.suspend();
+			creator.suspend();
+			gameMusic.pause();
+		}
 	}
 
 	public void continiue() {
@@ -125,6 +141,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 			thread.resume();
 			timer.resume();
 			creator.resume();
+			gameMusic.seekTo((int) elapsedTime);
 			gameMusic.start();
 		}
 	}
@@ -199,7 +216,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 					if (TapITGame.getInstance().getTime() > 0) {
 						TapITGame.getInstance().updateScore(
 								object.getTimeValue() / 1000);
-												TapITGame.getInstance().lvlUp();
+						TapITGame.getInstance().lvlUp();
 					}
 					removeObjects();
 					return true;
@@ -226,6 +243,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 
 	public void endGame(boolean finishActivity, boolean wasSuspended) {
 		gameMusic.release();
+		gameMusic = null;
 		if (wasSuspended) {
 			thread.resume();
 			timer.resume();
@@ -251,11 +269,18 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 				e.printStackTrace();
 			}
 		}
+		runningThread = null;
+		generatorThread = null;
+		timerThread = null;
+		thread = null;
+		creator = null;
+		timer = null;
 		if (finishActivity) {
 			Activity activity = ((Activity) getContext());
 			Intent intent = new Intent();
 			intent.putExtra("score", TapITGame.getInstance().getScore());
-			intent.putExtra("max", TapITGame.getInstance().getMaxTime() / 1000.0);
+			intent.putExtra("max",
+					TapITGame.getInstance().getMaxTime() / 1000.0);
 			activity.setResult(TapITActivity.CLICKIT_PLAY_CODE, intent);
 			activity.finish();
 		}
@@ -304,15 +329,17 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		boolean retry = true;
-		thread.setRunning(false);
-		creator.setRunning(false);
-		while (retry) {
-			try {
-				runningThread.join();
-				generatorThread.join();
-				retry = false;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		if (thread != null) {
+			thread.setRunning(false);
+			creator.setRunning(false);
+			while (retry) {
+				try {
+					runningThread.join();
+					generatorThread.join();
+					retry = false;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

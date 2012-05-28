@@ -7,7 +7,6 @@
     android:id="@+id/pause_dialog">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout1"
         style="@style/score_panel" >
 
         <RelativeLayout
@@ -73,18 +72,6 @@
             android:layout_height="fill_parent" />
     </LinearLayout>
     
-    <com.google.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/secondary_menu_pause"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        ads:adSize="BANNER"
-        ads:adUnitId="a14fbaad68b9db0"
-        ads:loadAdOnCreate="true"
-        ads:testDevices="TEST_EMULATOR" />
-    
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -116,4 +103,15 @@
         />
     </RelativeLayout>
 
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/secondary_menu_pause"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14fbaad68b9db0"
+        ads:loadAdOnCreate="true"
+        ads:testDevices="TEST_EMULATOR" />
 </RelativeLayout>

@@ -32,6 +32,12 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
+            android:name=".TapITPauseActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
             android:name=".TapITEndGameActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape"

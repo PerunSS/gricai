@@ -31,6 +31,7 @@ public class TapITPauseActivity extends Activity {
 			public void onClick(View v) {
 				TapITGame.getInstance().clear();
 				//panel.endGame(false, true);
+				setResult(TapITPlayActivity.CLICKIT_END_GAME_CODE);
 				finish();
 			}
 		});
