@@ -20,11 +20,11 @@ public class TapITPauseActivity extends Activity {
 		
 		
 		setContentView(R.layout.pause_dialog);
-		TextView gameScoreVeiw = (TextView) findViewById(R.id.game_score);
+		TextView gameScoreVeiw = (TextView) findViewById(R.id.game_score_pause);
 		gameScoreVeiw.setText(TapITGame.getInstance().getScore() + ".0");
-		TextView maxTimeVeiw = (TextView) findViewById(R.id.max_time);
+		TextView maxTimeVeiw = (TextView) findViewById(R.id.max_time_pause);
 		maxTimeVeiw.setText(TapITGame.getInstance().getMaxTime() / 1000.0 + "");
-		Button dismissButton = (Button) findViewById(R.id.back);
+		Button dismissButton = (Button) findViewById(R.id.back_pause);
 		dismissButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -35,7 +35,7 @@ public class TapITPauseActivity extends Activity {
 				finish();
 			}
 		});
-		Button continueButton = (Button) findViewById(R.id.continue_game_button);
+		Button continueButton = (Button) findViewById(R.id.continue_game_button_pause);
 		continueButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -44,7 +44,7 @@ public class TapITPauseActivity extends Activity {
 				//panel.continiue();
 			}
 		});
-		final Button soundButton = (Button) findViewById(R.id.sound);
+		final Button soundButton = (Button) findViewById(R.id.sound_pause);
 		if (!SoundOptions.getInstance().isPlaySound()) {
 			soundButton.setBackgroundResource(R.drawable.mute_sound);
 		}
@@ -63,7 +63,7 @@ public class TapITPauseActivity extends Activity {
 			}
 		});
 
-		final Button musicButton = (Button) findViewById(R.id.music);
+		final Button musicButton = (Button) findViewById(R.id.music_pause);
 		if (!SoundOptions.getInstance().isPlayMusic()) {
 			musicButton.setBackgroundResource(R.drawable.mute_music);
 		}
@@ -82,7 +82,7 @@ public class TapITPauseActivity extends Activity {
 
 			}
 		});
-		final Button rateButton = (Button) findViewById(R.id.rate_us);
+		final Button rateButton = (Button) findViewById(R.id.rate_us_pause);
 
 		rateButton.setOnClickListener(new View.OnClickListener() {
 

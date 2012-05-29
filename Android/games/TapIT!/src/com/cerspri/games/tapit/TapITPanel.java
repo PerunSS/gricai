@@ -46,14 +46,8 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 
 	private float soundVolume = 1;
 
-	public TapITPanel(Context context) {
+	public TapITPanel(Context context, int startTime) {
 		super(context);
-		initPanel();
-
-		gameMusic.start();
-	}
-
-	private void initPanel() {
 		soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
 		clickPos = soundPool.load(getContext(), R.raw.click, 0);
 		clickNeg = soundPool.load(getContext(), R.raw.click_n, 0);
@@ -63,6 +57,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		gameMusic.setLooping(true);
 		progressDialog = ProgressDialog.show(getContext(), "", "Loading...");
 		gameMusic.setOnPreparedListener(this);
+		if (gameMusic != null) {
+			gameMusic.seekTo(startTime);
+			gameMusic.start();
+		}
 	}
 
 	public String saveState() {
@@ -98,10 +96,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	}
 
 	public static TapITPanel continueState(String json, Context context) {
-		TapITPanel panel = new TapITPanel(context);
+		TapITPanel panel = null;
 		try {
 			JSONObject object = new JSONObject(json);
-			panel.elapsedTime = object.getLong(Constants.ELAPSED_TIME);
+			panel = new TapITPanel(context,(int)object.getLong(Constants.ELAPSED_TIME));
 			TapITGame.getInstance().setScore(object.getLong(Constants.SCORE));
 			TapITGame.getInstance().setTime(
 					object.getLong(Constants.REMAINING_TIME));

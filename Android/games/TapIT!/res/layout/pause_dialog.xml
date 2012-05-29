@@ -10,7 +10,7 @@
         style="@style/score_panel" >
 
         <RelativeLayout
-            android:id="@+id/game_score_panel"
+            android:id="@+id/game_score_panel_pause"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -19,21 +19,21 @@
                 android:text="@string/game_score_pause" />
 
             <TextView
-                android:id="@+id/game_score"
+                android:id="@+id/game_score_pause"
                 style="@style/score_value" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/game_score_panel" >
+            android:layout_below="@+id/game_score_panel_pause" >
 
             <TextView
                 style="@style/score_text"
                 android:text="@string/max_time_pause" />
 
             <TextView
-                android:id="@+id/max_time"
+                android:id="@+id/max_time_pause"
                 style="@style/score_value" />
         </RelativeLayout>
     </RelativeLayout>
@@ -50,19 +50,19 @@
             android:layout_height="fill_parent" />
 
         <Button
-            android:id="@+id/continue_game_button"
+            android:id="@+id/continue_game_button_pause"
             style="@style/main_button_small"
             android:background="@drawable/menu_button"
             android:text="@string/continue_game" />
 
         <Button
-            android:id="@+id/rate_us"
+            android:id="@+id/rate_us_pause"
             style="@style/main_button_small"
             android:background="@drawable/menu_button"
             android:text="@string/rate_us" />
 
         <Button
-            android:id="@+id/back"
+            android:id="@+id/back_pause"
             style="@style/main_button_small"
             android:background="@drawable/menu_button"
             android:text="@string/back" />
@@ -77,34 +77,34 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" >
          <View
-             android:id="@+id/right_space"
+             android:id="@+id/right_space_pause"
             android:layout_width="5dp"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true" />
 
         <Button
-            android:id="@+id/sound"
+            android:id="@+id/sound_pause"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginTop="3dp"
             android:padding="5dp"
-            android:layout_toLeftOf="@+id/right_space"
+            android:layout_toLeftOf="@+id/right_space_pause"
             android:background="@drawable/play_sound"
          />
 
         <Button
-            android:id="@+id/music"
+            android:id="@+id/music_pause"
             android:layout_width="39dp"
             android:layout_height="34dp"
             android:layout_marginTop="3dp"
             android:padding="5dp"
-            android:layout_toLeftOf="@+id/sound"
+            android:layout_toLeftOf="@+id/sound_pause"
             android:background="@drawable/play_music"
         />
     </RelativeLayout>
 
     <com.google.ads.AdView
-        android:id="@+id/adView"
+        android:id="@+id/adView_pause"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/secondary_menu_pause"
