@@ -3,11 +3,9 @@
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background"
-    android:id="@+id/pause_dialog">
+    android:background="@drawable/background" >
 
-    <RelativeLayout
-        style="@style/score_panel" >
+    <RelativeLayout style="@style/score_panel" >
 
         <RelativeLayout
             android:id="@+id/game_score_panel_pause"
@@ -71,13 +69,14 @@
             android:layout_width="5dp"
             android:layout_height="fill_parent" />
     </LinearLayout>
-    
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" >
-         <View
-             android:id="@+id/right_space_pause"
+
+        <View
+            android:id="@+id/right_space_pause"
             android:layout_width="5dp"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true" />
@@ -87,20 +86,18 @@
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginTop="3dp"
-            android:padding="5dp"
             android:layout_toLeftOf="@+id/right_space_pause"
             android:background="@drawable/play_sound"
-         />
+            android:padding="5dp" />
 
         <Button
             android:id="@+id/music_pause"
             android:layout_width="39dp"
             android:layout_height="34dp"
             android:layout_marginTop="3dp"
-            android:padding="5dp"
             android:layout_toLeftOf="@+id/sound_pause"
             android:background="@drawable/play_music"
-        />
+            android:padding="5dp" />
     </RelativeLayout>
 
     <com.google.ads.AdView
@@ -109,9 +106,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/secondary_menu_pause"
         android:layout_marginBottom="10dp"
-        android:gravity="center"
         ads:adSize="BANNER"
         ads:adUnitId="a14fbaad68b9db0"
         ads:loadAdOnCreate="true"
-        ads:testDevices="TEST_EMULATOR" />
+        ads:testDevices="TEST_EMULATOR"
+        android:gravity="center" />
+
 </RelativeLayout>

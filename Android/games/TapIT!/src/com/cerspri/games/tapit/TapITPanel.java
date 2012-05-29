@@ -1,9 +1,5 @@
 package com.cerspri.games.tapit;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,7 +19,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
 
-import com.cerspri.games.tapit.model.Constants;
 import com.cerspri.games.tapit.model.Coordinates;
 import com.cerspri.games.tapit.model.TapITGame;
 import com.cerspri.games.tapit.model.TapITObject;
@@ -62,7 +57,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 			gameMusic.start();
 		}
 	}
-
+/*
 	public String saveState() {
 		pause();
 		JSONObject object = new JSONObject();
@@ -124,24 +119,24 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		}
 		return panel;
 	}
-
+*/
 	public void pause() {
-		if (thread != null) {
+		//if (thread != null) {
 			thread.suspend();
 			timer.suspend();
 			creator.suspend();
 			gameMusic.pause();
-		}
+		//}
 	}
 
 	public void continiue() {
-		if (thread != null) {
+		//if (thread != null) {
 			thread.resume();
 			timer.resume();
 			creator.resume();
 			gameMusic.seekTo((int) elapsedTime);
 			gameMusic.start();
-		}
+		//}
 	}
 
 	public void setMusicVolume(float volume) {
@@ -267,12 +262,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 				e.printStackTrace();
 			}
 		}
-		runningThread = null;
-		generatorThread = null;
-		timerThread = null;
-		thread = null;
-		creator = null;
-		timer = null;
 		if (finishActivity) {
 			Activity activity = ((Activity) getContext());
 			Intent intent = new Intent();
