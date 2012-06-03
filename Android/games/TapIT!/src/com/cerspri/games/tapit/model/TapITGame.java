@@ -28,7 +28,7 @@ public class TapITGame implements Serializable {
 	private int lvl = 1;
 
 	private TapITGame() {
-		currentLevel = Constants.getLevel(lvl);
+		//currentLevel = Constants.getLevel(lvl);
 	}
 
 	/**

@@ -15,10 +15,6 @@ public class TapITPauseActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//mediaplayer.getcurrentposition
-		//mediaplayer.seekto
-		
-		
 		setContentView(R.layout.pause_dialog);
 		TextView gameScoreVeiw = (TextView) findViewById(R.id.game_score_pause);
 		gameScoreVeiw.setText(TapITGame.getInstance().getScore() + ".0");
@@ -40,6 +36,7 @@ public class TapITPauseActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				System.out.println("PAUSE: resumeButtonClicked");
 				finish();
 				//panel.continiue();
 			}
@@ -83,7 +80,6 @@ public class TapITPauseActivity extends Activity {
 			}
 		});
 		final Button rateButton = (Button) findViewById(R.id.rate_us_pause);
-
 		rateButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -94,5 +90,6 @@ public class TapITPauseActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
 	}
 }

@@ -13,8 +13,7 @@ public class TapITTimer implements Runnable {
 	private Object mutex = new Object();
 	private boolean backToMenu = false;
 
-	public TapITTimer(/*long time,*/ TapITPanel panel) {
-	//	this.time = time;
+	public TapITTimer( TapITPanel panel) {
 		this.panel = panel;
 	}
 
@@ -54,7 +53,6 @@ public class TapITTimer implements Runnable {
 				e.printStackTrace();
 			}
 			TapITGame.getInstance().updateTime(-STEP);
-			panel.updateElapsedTime(STEP);
 			//time -= STEP;
 			if (TapITGame.getInstance().getTime() <= 0) {
 				run = false;
@@ -63,13 +61,5 @@ public class TapITTimer implements Runnable {
 		if(!backToMenu)
 			panel.endGame(true,false);
 	}
-
-//	public synchronized void updateTime(long delay) {
-//		time += delay;
-//	}
-
-//	public synchronized long getTime() {
-//		return time;
-//	}
 
 }

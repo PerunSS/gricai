@@ -1,7 +1,6 @@
 package com.cerspri.games.tapit;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +12,7 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -33,15 +33,12 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private SoundPool soundPool;
 	private int clickPos, clickNeg;
 	private MediaPlayer gameMusic;
-	private ProgressDialog progressDialog;
 	private Paint fontPaint;
 	private Bitmap scorebox;
 
-	private long elapsedTime = 0;
-
 	private float soundVolume = 1;
 
-	public TapITPanel(Context context, int startTime) {
+	public TapITPanel(Context context) {
 		super(context);
 		soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
 		clickPos = soundPool.load(getContext(), R.raw.click, 0);
@@ -50,93 +47,27 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 				R.drawable.score_box);
 		gameMusic = MediaPlayer.create(getContext(), R.raw.game_play);
 		gameMusic.setLooping(true);
-		progressDialog = ProgressDialog.show(getContext(), "", "Loading...");
 		gameMusic.setOnPreparedListener(this);
-		if (gameMusic != null) {
-			gameMusic.seekTo(startTime);
-			gameMusic.start();
-		}
-	}
-/*
-	public String saveState() {
-		pause();
-		JSONObject object = new JSONObject();
-		try {
-			object.put(Constants.ELAPSED_TIME, elapsedTime);
-			object.put(Constants.REMAINING_TIME, TapITGame.getInstance()
-					.getTime());
-			object.put(Constants.SCORE, TapITGame.getInstance().getScore());
-			object.put(Constants.CURRENT_LEVEL, TapITGame.getInstance()
-					.getCurrentLevel());
-			object.put(Constants.MAX_TIME, TapITGame.getInstance().getMaxTime());
-			JSONArray visibleObjects = new JSONArray();
-			for (TapITObject tapItObject : TapITGame.getInstance()
-					.getGraphics()) {
-				JSONObject tapItObjectJson = new JSONObject();
-				tapItObjectJson.put(Constants.LIFE_TIME,
-						tapItObject.getLifeTime());
-				tapItObjectJson.put(Constants.TIME_VALUE,
-						tapItObject.getTimeValue());
-				tapItObjectJson.put(Constants.X, tapItObject.getCoordinates()
-						.getX());
-				tapItObjectJson.put(Constants.Y, tapItObject.getCoordinates()
-						.getY());
-				visibleObjects.put(tapItObjectJson);
-			}
-			object.put(Constants.VISIBLE_OBJECTS, visibleObjects);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return object.toString();
+		gameMusic.start();
 	}
 
-	public static TapITPanel continueState(String json, Context context) {
-		TapITPanel panel = null;
-		try {
-			JSONObject object = new JSONObject(json);
-			panel = new TapITPanel(context,(int)object.getLong(Constants.ELAPSED_TIME));
-			TapITGame.getInstance().setScore(object.getLong(Constants.SCORE));
-			TapITGame.getInstance().setTime(
-					object.getLong(Constants.REMAINING_TIME));
-			TapITGame.getInstance().setLevel(
-					object.getInt(Constants.CURRENT_LEVEL));
-			TapITGame.getInstance().setMaxTime(
-					object.getLong(Constants.MAX_TIME));
-			JSONArray visibleObjects = object
-					.getJSONArray(Constants.VISIBLE_OBJECTS);
-			for (int i = 0; i < visibleObjects.length(); i++) {
-				JSONObject element = visibleObjects.getJSONObject(i);
-				TapITObject tapItObject = new TapITObject(
-						element.getLong(Constants.LIFE_TIME),
-						element.getLong(Constants.TIME_VALUE),
-						panel.getResources());
-				tapItObject.getCoordinates().setX(element.getInt(Constants.X));
-				tapItObject.getCoordinates().setY(element.getInt(Constants.Y));
-				TapITGame.getInstance().getGraphics().add(tapItObject);
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return panel;
-	}
-*/
 	public void pause() {
-		//if (thread != null) {
-			thread.suspend();
-			timer.suspend();
-			creator.suspend();
+		// if (thread != null) {
+		thread.suspend();
+		timer.suspend();
+		creator.suspend();
+		if (gameMusic != null)
 			gameMusic.pause();
-		//}
+		// }
 	}
 
 	public void continiue() {
-		//if (thread != null) {
-			thread.resume();
-			timer.resume();
-			creator.resume();
-			gameMusic.seekTo((int) elapsedTime);
-			gameMusic.start();
-		//}
+		// if (thread != null) {
+		thread.resume();
+		timer.resume();
+		creator.resume();
+		gameMusic.start();
+		// }
 	}
 
 	public void setMusicVolume(float volume) {
@@ -149,10 +80,6 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		if (soundPool != null) {
 			soundVolume = volume;
 		}
-	}
-
-	public void updateElapsedTime(float time) {
-		elapsedTime += time;
 	}
 
 	@Override
@@ -279,6 +206,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		super.onSizeChanged(w, h, oldw, oldh);
 		TapITGame.getInstance().setWidth(w);
 		TapITGame.getInstance().setHeight(h);
+		System.out.println("PANEL ON SIZE CHANGED");
 	}
 
 	/**
@@ -294,7 +222,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
-
+		System.out.println("PANEL SURFACE CHANGED");
 	}
 
 	@Override
@@ -311,6 +239,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		// if (timerThread != null && !timerThread.isAlive())
 		timerThread = new Thread(timer);
 		timerThread.start();
+		System.out.println("PANEL SURFACE CREATED");
 	}
 
 	@Override
@@ -329,6 +258,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 				}
 			}
 		}
+		System.out.println("PANEL SURFACE DESTROYED");
 	}
 
 	/****************************************************/
@@ -339,7 +269,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		getHolder().addCallback(this);
 		thread = new TapITThread(getHolder(), this);
 		creator = new TapITCreatorThread(this);
-		timer = new TapITTimer(/* TapITGame.getInstance().getTime(), */this);
+		timer = new TapITTimer(this);
 		setFocusable(true);
 		WindowManager wm = (WindowManager) getContext().getSystemService(
 				Context.WINDOW_SERVICE);
@@ -351,7 +281,13 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		fontPaint = new Paint();
 		fontPaint.setTypeface(Typeface.DEFAULT_BOLD);
 		fontPaint.setColor(Color.WHITE);
-		progressDialog.dismiss();
+		System.out.println("PANEL MEDIA PREPARED");
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Parcelable state) {
+		super.onRestoreInstanceState(state);
+		System.out.println("PANEL RESTORE");
 	}
 
 }

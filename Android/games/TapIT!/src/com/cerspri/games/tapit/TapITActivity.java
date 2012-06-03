@@ -26,17 +26,12 @@ import com.cerspri.games.tapit.model.SoundOptions;
 import com.cerspri.games.tapit.network.NetworkUtils;
 
 public class TapITActivity extends Activity {
-	public static final int CLICKIT_PLAY_CODE = 12345;
+	public static final int CLICKIT_PLAY_CODE = 11111;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		SharedPreferences.Editor editor = getSharedPreferences("tapit",
-//				MODE_WORLD_WRITEABLE)
-//				.edit();
-//		editor.putString(Constants.GAME_STATE, "");
-//		editor.commit();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		final Button newGameButton = (Button) findViewById(R.id.new_game);
@@ -179,6 +174,12 @@ public class TapITActivity extends Activity {
 			}
 		}
 
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		System.out.println("MAIN ACTIVITY RESUMED");
 	}
 
 	private ProgressDialog progressDialog;
