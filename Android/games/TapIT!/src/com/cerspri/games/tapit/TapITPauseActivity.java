@@ -36,7 +36,7 @@ public class TapITPauseActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				System.out.println("PAUSE: resumeButtonClicked");
+				setResult(TapITPlayActivity.CLICKIT_CONTINUE_GAME_CODE);
 				finish();
 				//panel.continiue();
 			}

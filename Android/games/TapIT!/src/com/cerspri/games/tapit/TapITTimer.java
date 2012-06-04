@@ -12,6 +12,7 @@ public class TapITTimer implements Runnable {
 	private boolean paused = false;
 	private Object mutex = new Object();
 	private boolean backToMenu = false;
+	private boolean surfaceDestroyed = false;
 
 	public TapITTimer( TapITPanel panel) {
 		this.panel = panel;
@@ -34,6 +35,10 @@ public class TapITTimer implements Runnable {
 	
 	public void backToMenu(){
 		backToMenu = true;
+	}
+	
+	public void surfaceDestroyed(){
+		surfaceDestroyed = true;
 	}
 
 	@Override
@@ -58,7 +63,7 @@ public class TapITTimer implements Runnable {
 				run = false;
 			}
 		}
-		if(!backToMenu)
+		if(!surfaceDestroyed && !backToMenu)
 			panel.endGame(true,false);
 	}
 

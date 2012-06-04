@@ -1,15 +1,11 @@
 package com.cerspri.games.tapit;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.cerspri.games.tapit.model.SoundOptions;
 import com.cerspri.games.tapit.model.TapITGame;
@@ -17,50 +13,22 @@ import com.cerspri.games.tapit.model.TapITGame;
 public class TapITPlayActivity extends Activity {
 
 	private TapITPanel panel;
+	public static final int CLICKIT_CONTINUE_GAME_CODE = 11111;
 	public static final int CLICKIT_END_GAME_CODE = 11112;
 	private boolean paused = false;
-	private Dialog dialog;
-	private boolean dialogShowned = false;
+//	private Dialog dialog;
+//	private boolean dialogShowned = false;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		//TODO ovde samo ocistiti igru
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		if (!paused) {
 			TapITGame.getInstance().clear();
-			panel = new TapITPanel(this);
-			if (SoundOptions.getInstance().isPlayMusic()) {
-				panel.setMusicVolume(1f);
-			} else {
-				panel.setMusicVolume(0f);
-			}
-			if (SoundOptions.getInstance().isPlaySound()) {
-				panel.setSoundVolume(1f);
-			} else {
-				panel.setSoundVolume(0f);
-			}
-			setContentView(panel);
 		}
 		System.out.println("GAME CREATE");
-	}
-
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-		System.out.println("GAME RESTART");
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		System.out.println("GAME START");
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		System.out.println("GAME STOP");
 	}
 
 	@Override
@@ -73,54 +41,62 @@ public class TapITPlayActivity extends Activity {
 	}
 
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		System.out.println("GAME SAVE INSTANCE STATE");
-	}
-
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		System.out.println("GAME RESTORE INSTANCE STATE");
-	}
-
-	@Override
 	protected void onResume() {
+		//TODO rekreirati panel iz pocetka i nastaviti igru (ili ako tek pocinje igra onda je samo krenuti dalje)
 		super.onResume();
 		System.out.println("GAME RESUME");
-
-		if (dialogShowned) {
-			showDialog();
-		} else if (paused) {
-			panel.continiue();
-			paused = false;
+		
+		panel = new TapITPanel(this);
+		if (SoundOptions.getInstance().isPlayMusic()) {
+			panel.setMusicVolume(1f);
+		} else {
+			panel.setMusicVolume(0f);
 		}
+		if (SoundOptions.getInstance().isPlaySound()) {
+			panel.setSoundVolume(1f);
+		} else {
+			panel.setSoundVolume(0f);
+		}
+		setContentView(panel);
+
+//		*if (dialogShowned) {
+//			showDialog();
+//		} else*/ if (paused) {
+//			setContentView(panel);
+//			//panel.continiue();
+//			paused = false;
+//		}/
 	}
 
 	@Override
 	protected void onPause() {
-		// if (dialog != null && dialog.isShowing())
-		// dialog.dismiss();
+		//TODO zaustaviti panel kako valja
+//		if (dialog != null && dialog.isShowing())
+//			dialog.dismiss();
 		super.onPause();
-		if (!dialogShowned)
-			panel.pause();
-		paused = true;
-		System.out.println("GAME PAUSE");
-		if(isFinishing()){
-			System.out.println("GAME FINISHING");
-		}
-		//finish();
+//		if (!panel.isEndGame())
+//			if (!dialogShowned)
+		panel.pause();
+//		paused = true;
+//		System.out.println("GAME PAUSE");
+//		if (isFinishing()) {
+//			System.out.println("GAME FINISHING");
+//		}
+		setContentView(new View(this));
+		// finish();
 	}
 
 	@Override
 	public void onBackPressed() {
-		panel.pause();
-		showDialog();
-		// Intent intent = new Intent(this, TapITPauseActivity.class);
-		// startActivity(intent);
+//		panel.pause();
+		//showDialog();
+		Intent intent = new Intent(this, TapITPauseActivity.class);
+		startActivityForResult(intent,CLICKIT_CONTINUE_GAME_CODE);
 	}
 
+	/*
 	private void showDialog() {
+		setContentView(new View(this));
 		dialogShowned = true;
 		dialog = new Dialog(this,
 				android.R.style.Theme_Black_NoTitleBar_Fullscreen);
@@ -152,6 +128,7 @@ public class TapITPlayActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				panel.continiue();
+				setContentView(panel);
 				dialog.dismiss();
 				dialogShowned = false;
 			}
@@ -209,10 +186,12 @@ public class TapITPlayActivity extends Activity {
 			}
 		});
 		dialog.show();
-	}
+	}*/
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		//TODO posto ovde nece postojati panel onda samo zavrsiti aktiviti
+		System.out.println("GAME RESULT CODE: "+resultCode);
 		if (resultCode == CLICKIT_END_GAME_CODE) {
 			panel.endGame(false, true);
 			finish();

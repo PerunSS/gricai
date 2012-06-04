@@ -12,7 +12,6 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
-import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -35,6 +34,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	private MediaPlayer gameMusic;
 	private Paint fontPaint;
 	private Bitmap scorebox;
+	private boolean endGame = false;
 
 	private float soundVolume = 1;
 
@@ -162,7 +162,9 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 	}
 
 	public void endGame(boolean finishActivity, boolean wasSuspended) {
-		gameMusic.release();
+		System.out.println("END GAME");
+		if (gameMusic != null)
+			gameMusic.release();
 		gameMusic = null;
 		if (wasSuspended) {
 			thread.resume();
@@ -190,6 +192,7 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 			}
 		}
 		if (finishActivity) {
+			endGame = true;
 			Activity activity = ((Activity) getContext());
 			Intent intent = new Intent();
 			intent.putExtra("score", TapITGame.getInstance().getScore());
@@ -248,10 +251,13 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		if (thread != null) {
 			thread.setRunning(false);
 			creator.setRunning(false);
+			timer.surfaceDestroyed();
+			timer.setRunning(false);
 			while (retry) {
 				try {
 					runningThread.join();
 					generatorThread.join();
+					timerThread.join();
 					retry = false;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -283,11 +289,9 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		fontPaint.setColor(Color.WHITE);
 		System.out.println("PANEL MEDIA PREPARED");
 	}
-	
-	@Override
-	protected void onRestoreInstanceState(Parcelable state) {
-		super.onRestoreInstanceState(state);
-		System.out.println("PANEL RESTORE");
+
+	public boolean isEndGame() {
+		return endGame;
 	}
 
 }

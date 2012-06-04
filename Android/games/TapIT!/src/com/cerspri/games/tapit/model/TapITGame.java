@@ -87,6 +87,7 @@ public class TapITGame implements Serializable {
 		score = 0;
 		currentLevel = Constants.getLevel(lvl);
 		time = START_GAME_TIME;
+		maxTime = 0;
 	}
 
 	public int getCurrentLevel() {
