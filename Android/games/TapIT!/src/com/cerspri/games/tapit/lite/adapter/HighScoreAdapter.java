@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit.adapter;
+package com.cerspri.games.tapit.lite.adapter;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.cerspri.games.tapit.R;
-import com.cerspri.games.tapit.model.HighScore;
+import com.cerspri.games.tapit.lite.R;
+import com.cerspri.games.tapit.lite.model.HighScore;
 
 public class HighScoreAdapter extends ArrayAdapter<HighScore> {
 	

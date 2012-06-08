@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.cerspri.games.tapit.model.SoundOptions;
-import com.cerspri.games.tapit.model.TapITGame;
+import com.cerspri.games.tapit.lite.model.SoundOptions;
+import com.cerspri.games.tapit.lite.model.TapITGame;
 
 public class TapITPauseActivity extends Activity {
 	@Override

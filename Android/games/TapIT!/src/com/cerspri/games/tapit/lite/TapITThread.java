@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
 import java.util.Date;
 

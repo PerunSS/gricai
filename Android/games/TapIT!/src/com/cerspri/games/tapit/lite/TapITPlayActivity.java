@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 
-import com.cerspri.games.tapit.model.SoundOptions;
-import com.cerspri.games.tapit.model.TapITGame;
+import com.cerspri.games.tapit.lite.model.SoundOptions;
+import com.cerspri.games.tapit.lite.model.TapITGame;
 
 public class TapITPlayActivity extends Activity {
 
@@ -90,8 +90,8 @@ public class TapITPlayActivity extends Activity {
 	public void onBackPressed() {
 //		panel.pause();
 		//showDialog();
-		Intent intent = new Intent(this, TapITPauseActivity.class);
-		startActivityForResult(intent,CLICKIT_CONTINUE_GAME_CODE);
+//		Intent intent = new Intent(this, TapITPauseActivity.class);
+//		startActivityForResult(intent,CLICKIT_CONTINUE_GAME_CODE);
 	}
 
 	/*

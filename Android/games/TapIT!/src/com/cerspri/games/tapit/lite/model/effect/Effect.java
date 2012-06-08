@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit.model.effect;
+package com.cerspri.games.tapit.lite.model.effect;
 
 import android.graphics.Bitmap;
 

@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit.network;
+package com.cerspri.games.tapit.lite.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;

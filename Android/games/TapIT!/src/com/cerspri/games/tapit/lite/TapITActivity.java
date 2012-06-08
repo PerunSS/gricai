@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
 import java.util.List;
 
@@ -20,10 +20,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cerspri.games.tapit.adapter.HighScoreAdapter;
-import com.cerspri.games.tapit.model.HighScore;
-import com.cerspri.games.tapit.model.SoundOptions;
-import com.cerspri.games.tapit.network.NetworkUtils;
+import com.cerspri.games.tapit.lite.adapter.HighScoreAdapter;
+import com.cerspri.games.tapit.lite.model.HighScore;
+import com.cerspri.games.tapit.lite.model.SoundOptions;
+import com.cerspri.games.tapit.lite.network.NetworkUtils;
 
 public class TapITActivity extends Activity {
 	public static final int CLICKIT_PLAY_CODE = 11111;
@@ -108,7 +108,7 @@ public class TapITActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(Uri
-						.parse("market://details?id=com.cerspri.games.tapit"));
+						.parse("market://details?id=com.cerspri.games.tapit.lite"));
 				startActivity(intent);
 			}
 		});

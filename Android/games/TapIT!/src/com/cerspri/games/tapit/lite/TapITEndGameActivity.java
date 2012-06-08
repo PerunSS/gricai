@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cerspri.games.tapit.model.SoundOptions;
-import com.cerspri.games.tapit.network.NetworkUtils;
+import com.cerspri.games.tapit.lite.model.SoundOptions;
+import com.cerspri.games.tapit.lite.network.NetworkUtils;
 
 public class TapITEndGameActivity extends Activity {
 
@@ -140,7 +140,7 @@ public class TapITEndGameActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(Uri
-						.parse("market://details?id=com.cerspri.games.tapit"));
+						.parse("market://details?id=com.cerspri.games.tapit.lite"));
 				startActivity(intent);
 			}
 		});

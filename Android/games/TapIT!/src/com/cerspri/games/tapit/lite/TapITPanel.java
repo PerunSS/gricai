@@ -1,4 +1,4 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,9 +18,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
 
-import com.cerspri.games.tapit.model.Coordinates;
-import com.cerspri.games.tapit.model.TapITGame;
-import com.cerspri.games.tapit.model.TapITObject;
+import com.cerspri.games.tapit.lite.model.Coordinates;
+import com.cerspri.games.tapit.lite.model.TapITGame;
+import com.cerspri.games.tapit.lite.model.TapITObject;
 
 public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		MediaPlayer.OnPreparedListener {
@@ -49,6 +49,9 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		gameMusic.setLooping(true);
 		gameMusic.setOnPreparedListener(this);
 		gameMusic.start();
+		if(TapITGame.getInstance().getMusicTime() > 0){
+			gameMusic.seekTo(TapITGame.getInstance().getMusicTime());
+		}
 	}
 
 	public void pause() {
@@ -56,8 +59,10 @@ public class TapITPanel extends SurfaceView implements SurfaceHolder.Callback,
 		thread.suspend();
 		timer.suspend();
 		creator.suspend();
-		if (gameMusic != null)
+		if (gameMusic != null){
 			gameMusic.pause();
+			TapITGame.getInstance().setMusicTime(gameMusic.getCurrentPosition());
+		}
 		// }
 	}
 

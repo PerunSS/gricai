@@ -1,6 +1,6 @@
-package com.cerspri.games.tapit;
+package com.cerspri.games.tapit.lite;
 
-import com.cerspri.games.tapit.model.TapITGame;
+import com.cerspri.games.tapit.lite.model.TapITGame;
 
 public class TapITCreatorThread implements Runnable {
 
