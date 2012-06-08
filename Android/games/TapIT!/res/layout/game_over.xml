@@ -109,10 +109,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/secondary_menu"
         android:layout_marginBottom="10dp"
-        android:gravity="center"
         ads:adSize="BANNER"
         ads:adUnitId="a14fbaad68b9db0"
         ads:loadAdOnCreate="true"
-        ads:testDevices="TEST_EMULATOR" />
+        android:gravity="center" />
 
 </RelativeLayout>
