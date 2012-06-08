@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -81,6 +82,7 @@ public class TapITEndGameActivity extends Activity {
 
 					alert.setPositiveButton(R.string.submit_dialog,
 							new DialogInterface.OnClickListener() {
+								@SuppressWarnings("unchecked")
 								public void onClick(DialogInterface dialog,
 										int whichButton) {
 									String name = input.getText().toString();
@@ -93,24 +95,25 @@ public class TapITEndGameActivity extends Activity {
 										Map<String, String> params = new HashMap<String, String>();
 										params.put("name", name);
 										params.put("score", total + "");
-										StringBuilder result = NetworkUtils
-												.updateToLink(
-														HIGH_SCORES_SUBMIT_URL,
-														params);
-										if (result != null
-												&& result.toString().contains(
-														"ok")) {
-											Toast.makeText(
-													TapITEndGameActivity.this,
-													"Score submited",
-													Toast.LENGTH_LONG).show();
-											submited = true;
-										} else {
-											Toast.makeText(
-													TapITEndGameActivity.this,
-													"No internet connection.",
-													Toast.LENGTH_LONG).show();
-										}
+										new UpdateHighScore().execute(params);
+//										StringBuilder result = NetworkUtils
+//												.updateToLink(
+//														HIGH_SCORES_SUBMIT_URL,
+//														params);
+//										if (result != null
+//												&& result.toString().contains(
+//														"ok")) {
+//											Toast.makeText(
+//													TapITEndGameActivity.this,
+//													"Score submited",
+//													Toast.LENGTH_LONG).show();
+//											submited = true;
+//										} else {
+//											Toast.makeText(
+//													TapITEndGameActivity.this,
+//													"No internet connection.",
+//													Toast.LENGTH_LONG).show();
+//										}
 									}
 								}
 							});
@@ -154,5 +157,36 @@ public class TapITEndGameActivity extends Activity {
 			displayScore = null;
 		}
 		super.onPause();
+	}
+	
+	private class UpdateHighScore extends AsyncTask<Map<String, String>, Void, StringBuilder>{
+
+		@Override
+		protected StringBuilder doInBackground(Map<String, String>... params) {
+			StringBuilder result = NetworkUtils
+					.updateToLink(
+							HIGH_SCORES_SUBMIT_URL,
+							params[0]);
+			return result;
+		}
+		
+		@Override
+		protected void onPostExecute(StringBuilder result) {
+			if (result != null
+					&& result.toString().contains(
+							"ok")) {
+				Toast.makeText(
+						TapITEndGameActivity.this,
+						"Score submited",
+						Toast.LENGTH_LONG).show();
+				submited = true;
+			} else {
+				Toast.makeText(
+						TapITEndGameActivity.this,
+						"No internet connection.",
+						Toast.LENGTH_LONG).show();
+			}
+		}
+		
 	}
 }
