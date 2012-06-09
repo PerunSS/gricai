@@ -4,11 +4,13 @@ public class Cell {
 	
 	private Player player;
 	private Crate crate;
-	
+	private boolean destination;
+	private boolean wall;
 	
 	public Cell(){
 		
 	}
+	
 
 
 	public Player getPlayer() {
@@ -28,5 +30,29 @@ public class Cell {
 
 	public void setCrate(Crate crate) {
 		this.crate = crate;
+	}
+
+
+
+	public boolean isDestination() {
+		return destination;
+	}
+
+
+
+	public void setDestination(boolean destination) {
+		this.destination = destination;
+	}
+
+
+
+	public boolean isWall() {
+		return wall;
+	}
+
+
+
+	public void setWall(boolean wall) {
+		this.wall = wall;
 	}
 }
