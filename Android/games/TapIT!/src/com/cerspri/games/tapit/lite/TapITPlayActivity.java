@@ -1,11 +1,14 @@
 package com.cerspri.games.tapit.lite;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.cerspri.games.tapit.lite.model.SoundOptions;
 import com.cerspri.games.tapit.lite.model.TapITGame;
@@ -16,6 +19,7 @@ public class TapITPlayActivity extends Activity {
 	public static final int CLICKIT_CONTINUE_GAME_CODE = 11111;
 	public static final int CLICKIT_END_GAME_CODE = 11112;
 	private boolean paused = false;
+	private long backTime = 0;
 //	private Dialog dialog;
 //	private boolean dialogShowned = false;
 
@@ -92,6 +96,13 @@ public class TapITPlayActivity extends Activity {
 		//showDialog();
 //		Intent intent = new Intent(this, TapITPauseActivity.class);
 //		startActivityForResult(intent,CLICKIT_CONTINUE_GAME_CODE);
+		long time = new Date().getTime();
+		if(time - backTime < 1000){
+			finish();
+		}else {
+			backTime = time;
+			Toast.makeText(this, "Hit back one more time to exit", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	/*
