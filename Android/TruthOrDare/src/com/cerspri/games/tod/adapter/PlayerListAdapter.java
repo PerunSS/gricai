@@ -3,6 +3,7 @@ package com.cerspri.games.tod.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -47,6 +48,7 @@ public class PlayerListAdapter extends BaseAdapter {
 			textView = (TextView) convertView;
 		}
 		textView.setText(players.get(position).getName());
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
 		return textView;
 	}
 	

@@ -1,6 +1,7 @@
 package com.cerspri.games.tod.db.customManager;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
@@ -46,7 +47,6 @@ public class DBManager {
 		if (c != null){
 			if (c.moveToFirst()) {
 				do {
-					
 					String query = c.getString(c.getColumnIndex("text"));
 					int mask = c.getInt(c.getColumnIndex("mask"));
 					int dirtiness = c.getInt(c.getColumnIndex("dirtiness"));
@@ -59,6 +59,15 @@ public class DBManager {
 		return truths;
 	}
 	
+	public boolean insertTruths(List<String> truths){
+		adapter.openDataBase();
+		for (int i =0; i<truths.size(); i+=4){
+			Cursor c = adapter.executeSql("insert into tod.truths (dirtiness,text,mask,couples) " +
+					"values ("+truths.get(i)+","+truths.get(i+1)+","+truths.get(i+2)+","+truths.get(i+3)+","+")", null);
+			return true;
+		}
+		return true;
+	}
 //	public List<Fact> read() {
 //		adapter.openDataBase();
 //		List<Fact> result = new ArrayList<Fact>();
