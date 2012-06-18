@@ -78,7 +78,7 @@ public class NickiStarActivity extends Activity {
 	MultiDirectionSlidingDrawer factsDrawer;
 	MultiDirectionSlidingDrawer videoButtonsDrawer;
 	MultiDirectionSlidingDrawer newsDrawer;
-	Button quotesButton;
+	//Button quotesButton;
 	TextView scrollText;
 	TextView newsTitle;
 	TextView newsText;
@@ -125,8 +125,17 @@ public class NickiStarActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.disclaimer);
-		SharedPreferences sPrefs = this.getSharedPreferences("nikiStarPrefs",
+		setContentView(R.layout.main);
+		final Button quotesButton = (Button) findViewById(R.id.quotes);
+		quotesButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				state = State.QUOTES;
+				setContentView(R.layout.fq_view);
+			}
+		});
+		/*SharedPreferences sPrefs = this.getSharedPreferences("nikiStarPrefs",
 				MODE_WORLD_READABLE);
 		if (sPrefs.getInt("isFirstTime", 1) == 1) {
 			firstStart();
@@ -135,7 +144,7 @@ public class NickiStarActivity extends Activity {
 				newsVersion = sPrefs.getInt("newsVersion", 0);
 			}
 			startApp();
-		}
+		}*/
 	}
 
 	private void startApp() {
@@ -186,7 +195,7 @@ public class NickiStarActivity extends Activity {
 						break;
 					case QUOTES:
 						isToogle = true;
-						quotesButton.performClick();
+						//quotesButton.performClick();
 						break;
 					case VIDEOS:
 						isToogle = true;
@@ -239,24 +248,24 @@ public class NickiStarActivity extends Activity {
 			}
 		});
 		// listener for quotes button
-		quotesButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				mDrawer.animateClose();
-				factsDrawer.animateOpen();
-				state = State.QUOTES;
-				toggleMenuButton
-						.setBackgroundResource(R.drawable.open_menu_button);
-				if (!isToogle)
-					scrollText.setText(Model.getInstance().getNext("quote"));
-				final float scale = getResources().getDisplayMetrics().density;
-				int padding_5dp = (int) (20 * scale + 0.5f);
-				textLayout.setPadding(0, padding_5dp, 0, 0);
-				textLayout.setVisibility(View.VISIBLE);
-				isToogle = false;
-				menuShown = false;
-			}
-		});
+//		quotesButton.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				mDrawer.animateClose();
+//				factsDrawer.animateOpen();
+//				state = State.QUOTES;
+//				toggleMenuButton
+//						.setBackgroundResource(R.drawable.open_menu_button);
+//				if (!isToogle)
+//					scrollText.setText(Model.getInstance().getNext("quote"));
+//				final float scale = getResources().getDisplayMetrics().density;
+//				int padding_5dp = (int) (20 * scale + 0.5f);
+//				textLayout.setPadding(0, padding_5dp, 0, 0);
+//				textLayout.setVisibility(View.VISIBLE);
+//				isToogle = false;
+//				menuShown = false;
+//			}
+//		});
 
 		newsNextButton.setOnClickListener(new View.OnClickListener() {
 
@@ -481,7 +490,7 @@ public class NickiStarActivity extends Activity {
 		factsButton = (Button) findViewById(R.id.facts_button);
 		factsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.factsDrawer);
 		videoButtonsDrawer = (MultiDirectionSlidingDrawer) findViewById(R.id.videoButtonDrawer);
-		quotesButton = (Button) findViewById(R.id.quotes_button);
+		//quotesButton = (Button) findViewById(R.id.quotes_button);
 		newsButton = (Button) findViewById(R.id.news_button);
 		pictButton = (Button) findViewById(R.id.pict_button);
 		videosButton = (Button) findViewById(R.id.videos_button);

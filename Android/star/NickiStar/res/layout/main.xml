@@ -1,292 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="@drawable/background_blue" >   
-    <View 		
-		android:layout_width="fill_parent"
-		android:layout_height="0dip"
-		android:id="@+id/anchor_bottom"
-		android:layout_alignParentBottom="true"/>
-	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
-		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/factsDrawer"
-		my:direction="bottomToTop"
-		android:layout_width="fill_parent"
-		android:layout_height="120dip"
-		my:handle="@+id/handle"
-		my:content="@+id/content" 
-		android:layout_above="@id/anchor_bottom">
-		<include
-			android:id="@id/content"
-			layout="@layout/facts_buttons_drawer" />
-		<ImageView
-			android:id="@id/handle"
-			android:layout_width="wrap_content"
-			android:layout_height="0dip"
-			android:background="#FFFFFF"/>
-	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
-	<RelativeLayout 
-	    android:id="@+id/content_layout"
-		android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"		
-		android:layout_above="@id/factsDrawer">	
-		<LinearLayout 
-			android:orientation="horizontal"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/menu_bar"
-			android:gravity="top"
-			android:id="@+id/menu_bar">
-			<Button 
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:id="@+id/cerspri_home_button"
-				android:background="@drawable/cerspri_button"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
 
-			<TextView
-			    android:layout_width="0dip"
-			    android:layout_height="fill_parent"
-			    android:layout_weight="1"
-			    android:gravity="center|center_horizontal"
-			    android:paddingBottom="10dip"
-			    android:text="@string/app_name"
-			    android:textSize="20dip" 
-			    android:textColor="#ffcd32"
-			    android:paddingTop="5dp"
-			    android:textStyle="bold"/>
+    <View
+        android:id="@+id/bottom_empty"
+        android:layout_width="1dp"
+        android:layout_height="87dp"
+        android:layout_alignParentBottom="true" />
 
-			<LinearLayout 
-			    android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-				<Button
-				    android:id="@+id/toggle_menu"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:background="@drawable/close_menu_button" 
-				    android:layout_marginTop="10dip"
-				    android:layout_marginRight="20dip"/>
-			</LinearLayout>
-		</LinearLayout>
-		<ScrollView  
-		    android:id="@+id/data_scroll_view"
-		    android:layout_width="fill_parent" 
-		    android:layout_height="match_parent"
-		    android:layout_below="@id/menu_bar"
-		>
-			<LinearLayout 
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-			    android:id="@+id/content_inner_layout"
-			    android:orientation="vertical"
-			 >
-				<LinearLayout 
-					android:visibility="gone"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:id="@+id/news_layout"
-					android:orientation="vertical"
-					android:paddingLeft="7dip"
-					android:paddingRight="7dip">
-					<View 
-			    		android:layout_width="fill_parent"
-			    		android:layout_height="wrap_content"
-			    		android:background="@drawable/text_field_top"/>
-			    	<LinearLayout 
-			    	    android:layout_width="fill_parent"
-				    	android:layout_height="wrap_content"
-			    	    android:background="@drawable/text_field"
-			    	    android:orientation="vertical">
-			    	    <LinearLayout 
-			    	        android:layout_width="fill_parent"
-			    	        android:layout_height="wrap_content"
-			    	        android:orientation="horizontal"
-			    	        android:id="@+id/news_link_layout">
-			    	        <TextView
-						    	android:id="@+id/news_title"
-						    	android:layout_width="100dp"
-						    	android:layout_height="wrap_content"
-						    	android:layout_weight="1"
-						    	android:textSize="18dip" 
-						    	android:textColor="#244690"
-						    	android:textStyle="bold"
-						    	android:gravity="center"
-						    	android:paddingLeft="25dp"
-						    	android:paddingRight="5dp"
-						    />
-						    <ImageView android:id="@+id/news_picture_link"
-						    	android:layout_width="100dp"
-						    	android:layout_height="80dp"
-						    	android:paddingRight="25dp"/>
-					    </LinearLayout>
-					    <TextView
-					        android:id= "@+id/news_date"
-					        android:layout_width="fill_parent"
-					        android:layout_height="17dp"
-					        android:textSize="10dp"
-					        android:textColor="#687fb2"
-					        android:gravity="left"
-					        android:paddingLeft="25dp"
-					        android:paddingRight="25dp"
-					        android:paddingBottom="5dp"
-					    />
-					    <TextView
-					    	android:id="@+id/news_text"
-					    	android:layout_width="fill_parent"
-					    	android:layout_height="wrap_content"
-					    	android:textSize="14dip" 
-					    	android:textColor="#244690"
-					    	android:textStyle="bold"
-					    	android:gravity="center"
-					    	android:paddingLeft="25dp"
-					    	android:paddingRight="25dp"
-					    />
-				    </LinearLayout>
-				    <View
-				    	android:layout_width="fill_parent"
-			    		android:layout_height="wrap_content" 
-			    		android:background="@drawable/text_field_bottom"/>
-				</LinearLayout>
-				<LinearLayout 
-			    	android:visibility="gone"
-			    	android:layout_width="fill_parent"
-			    	android:layout_height="fill_parent"
-			    	android:id="@+id/videos_layout"
-			    	android:orientation="vertical">
-			    	<View 
-			    		android:layout_width="fill_parent"
-			    		android:layout_height="wrap_content"
-			    		android:background="@drawable/text_field_top"/>
-			    	<LinearLayout 
-			    	    android:layout_width="fill_parent"
-				    	android:layout_height="wrap_content"
-			    	    android:background="@drawable/text_field"
-			    	    android:orientation="vertical">
-					    <TextView
-					    	android:id="@+id/video_title"
-					    	android:layout_width="fill_parent"
-					    	android:layout_height="wrap_content"
-					    	android:textSize="18dip" 
-					    	android:textColor="#244690"
-					    	android:textStyle="bold"
-					    	android:gravity="center"
-					    	android:paddingLeft="25dp"
-					    	android:paddingRight="25dp"
-					    />
-					    <ImageView android:id="@+id/video_picture_link"
-					    	android:layout_width="fill_parent"
-					    	android:layout_height="160dp"
-					    	android:layout_centerHorizontal="true"
-					    	android:layout_centerInParent="true"
-					    	android:layout_gravity="center_horizontal"
-					    	android:paddingLeft="25dp"
-					    	android:paddingRight="25dp"/>
-					    <TextView
-					    	android:id="@+id/video_description"
-					    	android:layout_width="fill_parent"
-					    	android:layout_height="wrap_content"
-					    	android:textSize="13dip" 
-					    	android:textColor="#244690"
-					    	android:textStyle="bold"
-					    	android:gravity="center"
-					    	android:paddingLeft="25dp"
-					    	android:paddingRight="25dp"
-					    />
-				    </LinearLayout>
-				    <View
-				    	android:layout_width="fill_parent"
-			    		android:layout_height="wrap_content" 
-			    		android:background="@drawable/text_field_bottom"/>
-			    </LinearLayout>
-			    <LinearLayout 
-			    	android:visibility="gone"
-			    	android:layout_width="fill_parent"
-			    	android:layout_height="wrap_content"
-			    	android:id="@+id/text_layout"
-			    	android:orientation="vertical"
-			  		>
-			    	<View 
-			    		android:layout_width="fill_parent"
-			    		android:layout_height="wrap_content"
-			    		android:background="@drawable/text_field_top"/>
-				    <TextView
-				    	android:id="@+id/scroll_text"
-				    	android:layout_width="fill_parent"
-				    	android:layout_height="wrap_content"
-				    	android:textSize="25dip" 
-				    	android:textColor="#244690"
-				    	android:textStyle="bold"
-				    	android:gravity="center"
-				    	android:background="@drawable/text_field"
-				    	android:paddingLeft="25dp"
-				    	android:paddingRight="25dp"
-				    />
-				    <View
-				    	android:layout_width="fill_parent"
-			    		android:layout_height="wrap_content" 
-			    		android:background="@drawable/text_field_bottom"/>
-			    </LinearLayout>
-		    </LinearLayout>
-		</ScrollView>
-	</RelativeLayout>	
-	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
-		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/menuDrawer"
-		my:direction="topToBottom"
-		android:layout_width="fill_parent"
-		android:layout_height="360dip"
-		my:handle="@+id/handle"
-		my:content="@+id/content"
-		android:layout_marginTop="40dip">
-		<include
-			android:id="@id/content"
-			layout="@layout/menu_content" />
-		<ImageView
-			android:id="@id/handle"
-			android:layout_width="wrap_content"
-			android:layout_height="0dip"
-			android:background="#FFFFFF"/>
-	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer>    
+    <LinearLayout
+        android:id="@+id/right_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_empty"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical" >
 
-	
-	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
-		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/videoButtonDrawer"
-		my:direction="bottomToTop"
-		android:layout_width="fill_parent"
-		android:layout_height="120dip"
-		my:handle="@+id/handle"
-		my:content="@+id/content" 
-		android:layout_above="@id/anchor_bottom">
-		<include
-			android:id="@id/content"
-			layout="@layout/video_buttons_drawer" />
-		<ImageView
-			android:id="@id/handle"
-			android:layout_width="wrap_content"
-			android:layout_height="0dip"
-			android:background="#FFFFFF"/>
-	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
-	
-	<com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer
-		xmlns:my="http://schemas.android.com/apk/res/com.cerspri.star.NickiMinaj"
-		android:id="@+id/newsButtonDrawer"
-		my:direction="bottomToTop"
-		android:layout_width="fill_parent"
-		android:layout_height="120dip"
-		my:handle="@+id/handle"
-		my:content="@+id/content" 
-		android:layout_above="@id/anchor_bottom">
-		<include
-			android:id="@id/content"
-			layout="@layout/news_button_drawer" />
-		<ImageView
-			android:id="@id/handle"
-			android:layout_width="wrap_content"
-			android:layout_height="0dip"
-			android:background="#FFFFFF"/>
-	</com.cerspri.star.NickiMinaj.widget.MultiDirectionSlidingDrawer> 
+        <Button
+            android:id="@+id/quotes"
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Quotes"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+        <Button
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Test"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+        <Button
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Test"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+        <Button
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Test"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/middle_center_empty"
+        android:layout_width="1dp"
+        android:layout_height="47dp"
+        android:layout_above="@+id/bottom_empty"
+        android:layout_toLeftOf="@+id/right_buttons" />
+
+    <LinearLayout
+        android:id="@+id/middle_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/middle_center_empty"
+        android:layout_toLeftOf="@+id/right_buttons"
+        android:orientation="vertical" >
+
+        <Button
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Test"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+        <Button
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Test"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+        <Button
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
+            android:text="Test"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
+    </LinearLayout>
 
 </RelativeLayout>
