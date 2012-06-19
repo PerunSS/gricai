@@ -23,6 +23,7 @@ public class Video implements Serializable{
 	private String imagePath;
 	private int id;
 	private String videoTag;
+	private boolean loaded = false;
 
 	public boolean extractFromTag(String videoTag) {
 		this.videoTag = videoTag;
@@ -70,6 +71,7 @@ public class Video implements Serializable{
 				}
 				parserEvent = parser.next();
 			}
+			loaded = true;
 			return true;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -117,5 +119,9 @@ public class Video implements Serializable{
 	@Override
 	public String toString() {
 		return id+" "+videoTag+" "+title+" "+description+" "+imagePath;
+	}
+
+	public boolean isLoaded() {
+		return loaded;
 	}
 }

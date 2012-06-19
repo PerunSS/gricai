@@ -15,4 +15,8 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_width">127dp</item>
     </style>
+    
+    <style name="fqvn_button_small" parent="fqvn_button">
+        <item name="android:layout_width">63dp</item>
+    </style>
 </resources>

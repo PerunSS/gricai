@@ -73,16 +73,32 @@ public class Model {
 
 	public Video nextVideo() {
 		if (videos.size() > 0) {
+			currentVideo++;
 			currentVideo %= videos.size();
-			return videos.get(currentVideo++);
+			return videos.get(currentVideo);
 		}
 		return null;
 	}
 
 	public Video currentVideo() {
 		if (videos.size() > 0)
-			return videos.get((currentVideo - 1 + videos.size())
-					% videos.size());
+			return videos.get(currentVideo);
+		return null;
+	}
+	
+	public void putCurrentVideo(Video video){
+		videos.remove(currentVideo);
+		videos.add(currentVideo, video);
+	}
+	
+	public Video previousVideo(){
+		if(videos.size()>0){
+			currentVideo--;
+			if(currentVideo<0){
+				currentVideo += videos.size();
+			}
+			return videos.get(currentVideo);
+		}
 		return null;
 	}
 
@@ -173,6 +189,10 @@ public class Model {
 
 	public int getNewNews() {
 		return newNews;
+	}
+
+	public List<Video> getVideos() {
+		return videos;
 	}
 
 }
