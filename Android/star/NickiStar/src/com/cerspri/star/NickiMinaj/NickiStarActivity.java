@@ -47,6 +47,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cerspri.star.NickiMinaj.db.DBManager;
+import com.cerspri.star.NickiMinaj.model.Constants;
 import com.cerspri.star.NickiMinaj.model.Model;
 import com.cerspri.star.NickiMinaj.model.News;
 import com.cerspri.star.NickiMinaj.model.Video;
@@ -106,47 +108,196 @@ public class NickiStarActivity extends Activity {
 	private boolean isToogle = false;
 	private boolean menuShown = true;
 	private OnClickListener videoPlayListener;
-	private ImageLoaderTask imageTask;
+	//private ImageLoaderTask imageTask;
 
 	private enum State {
-		FACTS, QUOTES, VIDEOS, NEWS, NULL
+		MAIN, SECOND
 	}
+	
+	private DBManager manager;
 
-	private boolean loadData() {
-		initial = true;
-		new JSONLoaderTask().execute("quote", "fact");
-		if (Model.getInstance().getNumberOfChanges().size() > 0) {
-			return true;
-		}
-		return false;
+	private void loadData() {
+		manager = new DBManager(this);
+        boolean rated = false;
+        SharedPreferences preferences = getPreferences(MODE_WORLD_READABLE);
+        rated = preferences.getBoolean("isRated", false);
+        Model.getInstance().setManager(manager);
+        Model.getInstance().loadTextData(rated);
+        Model.getInstance().loadVideos();
+        getNews(false);
 	}
 
 	// Done on activity creation
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setMainView();
+		
+		loadData();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+			switch(state){
+			case MAIN:
+				return super.onKeyDown(keyCode, event);
+			case SECOND:
+				setMainView();
+				return false;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void setMainView() {
+		state = State.MAIN;
 		setContentView(R.layout.main);
+		
 		final Button quotesButton = (Button) findViewById(R.id.quotes);
 		quotesButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				setQuotesView();
+			}
+		});
+		final Button factsButton = (Button) findViewById(R.id.facts);
+		factsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				setFactsView();
+			}
+		});
+		final Button videosButton = (Button) findViewById(R.id.videos);
+		videosButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				state = State.QUOTES;
-				setContentView(R.layout.fq_view);
+				setVideoView();
+				
 			}
 		});
-		/*SharedPreferences sPrefs = this.getSharedPreferences("nikiStarPrefs",
-				MODE_WORLD_READABLE);
-		if (sPrefs.getInt("isFirstTime", 1) == 1) {
-			firstStart();
-		} else {
-			if (sPrefs.getInt("newsVersion", 0) > 0) {
-				newsVersion = sPrefs.getInt("newsVersion", 0);
+		final Button photosButton = (Button) findViewById(R.id.photos);
+		photosButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setPhotoView();
 			}
-			startApp();
-		}*/
+		});
+		
+		final Button newsButton = (Button) findViewById(R.id.news);
+		newsButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setNewsView();
+			}
+		});
+		
+		final Button rateUsButton = (Button) findViewById(R.id.rate_us);
+		rateUsButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				setRateView();
+				
+			}
+		});
+		
+		final Button refreshButton = (Button) findViewById(R.id.refresh);
+		refreshButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				refreshData();
+			}
+		});
 	}
+	
+	private void setQuotesView(){
+		state = State.SECOND;
+		setContentView(R.layout.fq_view);
+		final TextView view = (TextView)findViewById(R.id.text);
+		view.setText(Model.getInstance().nextQuote());
+		final Button randomButton = (Button)findViewById(R.id.random_button);
+		randomButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				view.setText(Model.getInstance().nextQuote());
+			}
+		});
+		final Button shareButton = (Button)findViewById(R.id.share_button);
+		shareButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				share(view.getText().toString(), "quote");
+			}
+		});
+	}
+	
+	private void setFactsView(){
+		state = State.SECOND;
+		setContentView(R.layout.fq_view);
+		final TextView view = (TextView)findViewById(R.id.text);
+		view.setText(Model.getInstance().nextFact());
+		final Button randomButton = (Button)findViewById(R.id.random_button);
+		randomButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				view.setText(Model.getInstance().nextFact());
+			}
+		});
+		final Button shareButton = (Button)findViewById(R.id.share_button);
+		shareButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				share(view.getText().toString(), "fact");
+			}
+		});
+	}
+	
+	private void share(String text, String type) {
+		String subject = " about " + getString(R.string.app_name);
+		subject = type + subject;
+		final Intent intent = new Intent(Intent.ACTION_SEND);
 
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+		intent.putExtra(Intent.EXTRA_TEXT, text);
+
+		startActivity(Intent.createChooser(intent, type + " about "
+				+ getString(R.string.app_name)));
+	}
+	
+	private void setVideoView(){
+		//TODO finish
+	}
+	
+	private void setPhotoView(){
+		Uri uriUrl = Uri.parse("http://www.google.rs/search?q="
+				+ getString(R.string.app_name).toLowerCase().replace(
+						' ', '+')
+				+ "&hl=sr&prmd=imvnso&source=lnms&tbm=isch");
+		Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+		startActivity(launchBrowser);
+	}
+	
+	private void setNewsView(){
+		//TODO finish obratiti paznju da slike imaju nesto ovako http:\/\/
+	}
+	
+	private void setRateView(){
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri
+				.parse("market://"+Constants.APPLICATION_QUERY));
+		startActivity(intent);
+	}
+	
+	private void refreshData(){
+		new UpdateContentTask().execute(newsVersion);
+	}
+/*
 	private void startApp() {
 		buildGUI();
 		Model.getInstance().createMaps();
@@ -157,11 +308,6 @@ public class NickiStarActivity extends Activity {
 			getNews(false, false);
 		}
 		addButtonActions();
-	}
-
-	private void firstStart() {
-		Intent myIntent = new Intent(this, Disclaimer.class);
-		startActivityForResult(myIntent, 0);
 	}
 
 	private void addButtonActions() {
@@ -559,17 +705,6 @@ public class NickiStarActivity extends Activity {
 		}, 2000);
 	}
 
-	private void share(String subject, String text, String type) {
-		final Intent intent = new Intent(Intent.ACTION_SEND);
-
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-		intent.putExtra(Intent.EXTRA_TEXT, text);
-
-		startActivity(Intent.createChooser(intent, type + " about "
-				+ getString(R.string.app_name)));
-	}
-
 	private void getData(String type, boolean shouldUpdate, boolean initial) {
 		List<String> data = new ArrayList<String>();
 		try {
@@ -625,8 +760,8 @@ public class NickiStarActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-
-	private void getNews(boolean shouldUpdate, boolean initial) {
+*/
+	private void getNews(boolean shouldUpdate) {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(openFileInput("news"));
 			boolean read = true;
@@ -652,14 +787,14 @@ public class NickiStarActivity extends Activity {
 				0);
 		if (shouldUpdate) {
 			int newNewsVersion = Model.getInstance().loadNews(newsVersion,
-					getString(R.string.app_name), initial);
+					getString(R.string.app_name));
 			if (newNewsVersion > newsVersion) {
 				newsVersion = newNewsVersion;
 				saveNewsToPhone();
 			}
 		}
 	}
-
+	
 	private void saveNewsToPhone() {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(
@@ -678,7 +813,7 @@ public class NickiStarActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-
+/*
 	private void saveVideoToPhone() {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(
@@ -787,13 +922,14 @@ public class NickiStarActivity extends Activity {
 		new ImageLoaderTask(newsImage, Model.getInstance().getNews()
 				.get(newsPosition).getImagePath()).execute();
 	}
-
+*/
 	/**
 	 * Task for getting facts and quotes from server
 	 * 
 	 * @author aleksandarvaricak
 	 * 
 	 */
+	/*
 	private class JSONLoaderTask extends AsyncTask<String, Void, Void> {
 
 		@Override
@@ -839,13 +975,14 @@ public class NickiStarActivity extends Activity {
 				updatePrefs();
 		}
 	}
-
+*/
 	/**
 	 * tasks request all video tags from cerspri.com
 	 * 
 	 * @author aleksandarvaricak
 	 * 
 	 */
+	/*
 	private class VideosLodaerTask extends AsyncTask<Integer, Void, Void> {
 
 		@Override
@@ -928,7 +1065,7 @@ public class NickiStarActivity extends Activity {
 		}
 
 	}
-
+*/
 	private class UpdateContentTask extends AsyncTask<Integer, Void, Void> {
 		@Override
 		protected void onPreExecute() {
@@ -939,39 +1076,18 @@ public class NickiStarActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
-			getData("fact", true, true);
-			getData("quote", true, true);
-			getNews(true, true);
-			Model.getInstance().loadVideos(params[0],
-					getString(R.string.app_name), true);
+			getNews(true);
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			saveVideoToPhone();
 			saveNewsToPhone();
 			progressDialog.dismiss();
-			String text = "";
-			int i = 0;
-			for (Map.Entry<String, Integer> entry : Model.getInstance()
-					.getNumberOfChanges().entrySet()) {
-				if (entry.getValue() > 0) {
-					text += entry.getValue() + " " + entry.getKey()
-							+ "s loaded";
-					if (i < Model.getInstance().getNumberOfChanges().size() - 1) {
-						text += "\n";
-					}
-					i++;
-				}
-			}
-			if (i == 0) {
-				text = "There is no new data";
-			}
-			newsPosition = 0;
-			videoPosition = 1;
-			new YoutubeMetadataLodaerTask().execute();
+			String text = "Nothing to fetch";
+			if(Model.getInstance().getNewNews()>0)
+				text = "Fetched "+Model.getInstance().getNewNews()+" news";
 			Toast toast = Toast.makeText(mContext, text, 1000);
 			toast.show();
 		}
@@ -983,6 +1099,7 @@ public class NickiStarActivity extends Activity {
 	 * @author aleksandarvaricak
 	 * 
 	 */
+	/*
 	private class YoutubeMetadataLodaerTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
@@ -1009,13 +1126,14 @@ public class NickiStarActivity extends Activity {
 		}
 
 	}
-
+*/
 	/**
 	 * Task for loading image
 	 * 
 	 * @author aleksandarvaricak
 	 * 
 	 */
+	/*
 	private class ImageLoaderTask extends AsyncTask<Void, Void, Drawable> {
 		private ImageView view;
 		private String url;
@@ -1082,5 +1200,5 @@ public class NickiStarActivity extends Activity {
 		}
 
 	}
-
+*/
 }

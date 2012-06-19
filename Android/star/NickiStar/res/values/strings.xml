@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Nicki Minaj</string>
+    <string name="quotes">Quotes</string>
+    <string name="facts">Facts</string>
+    <string name="videos">Videos</string>
+    <string name="photos">Photos</string>
+    <string name="news">News</string>
+    <string name="rate_us">Rate us</string>
+    <string name="refresh">Refresh</string>
+    <string name="random">Random</string>
+    <string name="share">Share</string>
 </resources>

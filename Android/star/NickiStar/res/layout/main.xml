@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background" >
+    android:background="@drawable/background_320" >
 
     <View
         android:id="@+id/bottom_empty"
@@ -16,50 +16,44 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_empty"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="-4dp"
         android:orientation="vertical" >
 
         <Button
             android:id="@+id/quotes"
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            style="@style/right_button"
             android:background="@drawable/button"
-            android:text="Quotes"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:text="@string/quotes" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp" />
 
         <Button
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            android:id="@+id/photos"
+            style="@style/right_button"
             android:background="@drawable/button"
-            android:text="Test"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
-         <View
+            android:text="@string/photos" />
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="1dp" />
 
         <Button
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            android:id="@+id/rate_us"
+            style="@style/right_button"
             android:background="@drawable/button"
-            android:text="Test"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
-         <View
+            android:text="@string/rate_us" />
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="1dp" />
 
         <Button
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            android:id="@+id/refresh"
+            style="@style/right_button"
             android:background="@drawable/button"
-            android:text="Test"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:text="@string/refresh" />
     </LinearLayout>
 
     <View
@@ -78,34 +72,30 @@
         android:orientation="vertical" >
 
         <Button
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            android:id="@+id/facts"
+            style="@style/center_button"
             android:background="@drawable/button"
-            android:text="Test"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
-         <View
+            android:text="@string/facts" />
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="1dp" />
 
         <Button
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            android:id="@+id/news"
+            style="@style/center_button"
             android:background="@drawable/button"
-            android:text="Test"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
-         <View
+            android:text="@string/news" />
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="1dp" />
 
         <Button
-            android:layout_width="114dp"
-            android:layout_height="46dp"
+            android:id="@+id/videos"
+            style="@style/center_button"
             android:background="@drawable/button"
-            android:text="Test"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:text="@string/videos" />
     </LinearLayout>
 
 </RelativeLayout>

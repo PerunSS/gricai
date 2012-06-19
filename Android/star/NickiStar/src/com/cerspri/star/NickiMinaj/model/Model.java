@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,64 +18,86 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cerspri.star.NickiMinaj.db.DBManager;
+
 public class Model {
 
 	private static Model instance = new Model();
-	private Map<String, Integer> currents;
-	private Map<String, List<String>> texts;
+	private int currentQuote = 0;
+	private int currentFact = 0;
+	private List<String> quotes;
+	private List<String> facts;
 	private NewsQueue news;
-	private Map<String, Integer> numberOfChanges;
-	private Map<Integer, Video> videos;
-	private int lastVideoID = 0;
+	private List<Video> videos;
+	private int currentVideo = 0;
 	private int version = 0;
+	private int newNews = 0;
+	private DBManager manager;
 
 	private Model() {
-	}
 
-	public void createMaps() {
-		if (currents == null) {
-			currents = new HashMap<String, Integer>();
-			currents.put("fact", 0);
-			currents.put("quote", 0);
-		}
-		if (texts == null)
-			texts = new HashMap<String, List<String>>();
-		if (numberOfChanges == null)
-			numberOfChanges = new HashMap<String, Integer>();
-		if (news == null)
-			news = new NewsQueue(20);
-		if (videos == null)
-			videos = new HashMap<Integer, Video>();
 	}
 
 	public static Model getInstance() {
 		return instance;
 	}
 
-	public String getNext(String type) {
-		int size = texts.get(type).size();
-		if(size>0){
-			int index = (currents.get(type) + 1) % size;
-			currents.put(type, index);
-			return texts.get(type).get(index);
+	public String nextQuote() {
+		if (quotes.size() > 0) {
+			currentQuote %= quotes.size();
+			return quotes.get(currentQuote++);
 		}
 		return "";
 	}
 
-	public int loadNews(Integer version, String name, boolean initial) {
+	public String currentQuote() {
+		if (quotes.size() > 0)
+			return quotes.get((currentQuote - 1 + quotes.size())
+					% quotes.size());
+		return "";
+	}
+
+	public String nextFact() {
+		if (facts.size() > 0) {
+			currentFact %= facts.size();
+			return facts.get(currentFact++);
+		}
+		return "";
+	}
+
+	public String currentFact() {
+		if (facts.size() > 0)
+			return facts.get((currentFact - 1 + facts.size()) % facts.size());
+		return "";
+	}
+
+	public Video nextVideo() {
+		if (videos.size() > 0) {
+			currentVideo %= videos.size();
+			return videos.get(currentVideo++);
+		}
+		return null;
+	}
+
+	public Video currentVideo() {
+		if (videos.size() > 0)
+			return videos.get((currentVideo - 1 + videos.size())
+					% videos.size());
+		return null;
+	}
+
+	public int loadNews(Integer version, String name) {
 		this.version = version;
 		// System.out.println("version: "+version);
 		if (news == null) {
 			news = new NewsQueue(20);
 		}
-		if(!initial)
-			numberOfChanges.clear();
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
 				+ name.toLowerCase().replace(' ', '+') + "&version=" + version);
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
 			JSONArray elements = jsonobj.getJSONArray("data");
-			numberOfChanges.put("new", elements.length());
+			newNews = elements.length();
 			for (int i = 0; i < elements.length(); i++) {
 				JSONObject elementobj = elements.getJSONObject(i);
 				if (elementobj.getInt("version") > this.version) {
@@ -98,71 +117,22 @@ public class Model {
 		return this.version;
 	}
 
-	public void loadVideos(Integer lastID, String name, boolean initial) {
-		// System.out.println("lastid: "+lastID);
-		if (videos == null) {
-			videos = new HashMap<Integer, Video>();
-		}
-		if(!initial)
-			numberOfChanges.clear();
-		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_videos.php?star="
-				+ name.toLowerCase().replace(' ', '+') + "&last=" + lastID);
-		try {
-			JSONObject jsonobj = new JSONObject(builder.toString());
-			JSONArray elements = jsonobj.getJSONArray("data");
-			numberOfChanges.put("video", elements.length());
-			for (int i = 0; i < elements.length(); i++) {
-				JSONObject elementobj = elements.getJSONObject(i);
-				String tag = elementobj.getString("video_tag");
-				int id = elementobj.getInt("video_number");
-				if (id > lastVideoID) {
-					lastVideoID = id;
-				}
-				Video holder = new Video();
-				holder.setId(id);
-				holder.setVideoTag(tag);
-				// holder.extractFromTag(tag);
-				videos.put(holder.getId(), holder);
-			}
-			// System.out.println(videos);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+	public void loadTextData(boolean rated) {
+		quotes = new ArrayList<String>();
+		facts = new ArrayList<String>();
+		if (manager == null)
+			return;
+		quotes = manager.read(rated, "quote");
+		System.out.println("quotes: "+quotes.size());
+		facts = manager.read(rated, "fact");
+		System.out.println("facts: "+facts.size());
 	}
 
-	public int loadData(String type, String name, Integer version, boolean initial) {
-		if(!initial)
-			numberOfChanges.clear();
-		List<String> data = texts.get(type);
-		if (data == null) {
-			data = new ArrayList<String>();
-		}
-		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_data.php?"
-				+ "star="
-				+ name.replaceAll(" ", "%20")
-				+ "&text_type="
-				+ type
-				+ "&version=" + version);
-		try {
-			JSONObject jsonobj = new JSONObject(builder.toString());
-			JSONArray elements = jsonobj.getJSONArray("data");
-			numberOfChanges.put(type, elements.length());
-			for (int i = 0; i < elements.length(); i++) {
-				JSONObject elementobj = elements.getJSONObject(i);
-				if (elementobj.getString("text_type").equalsIgnoreCase(type)) {
-					data.add(elementobj.getString("text_value"));
-					if (version < elementobj.getInt("text_version")) {
-						version = elementobj.getInt("text_version");
-					}
-
-				}
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		Collections.shuffle(data);
-		texts.put(type, data);
-		return version;
+	public void loadVideos() {
+		videos = new ArrayList<Video>();
+		if (manager == null)
+			return;
+		videos = manager.readVideos();
 	}
 
 	private StringBuilder readFromLink(String url) {
@@ -197,29 +167,12 @@ public class Model {
 		return null;
 	}
 
-	public Map<String, Integer> getCurrents() {
-		return currents;
+	public void setManager(DBManager manager) {
+		this.manager = manager;
 	}
 
-	public Map<String, List<String>> getTexts() {
-		return texts;
-	}
-
-	public Map<String, Integer> getNumberOfChanges() {
-		return numberOfChanges;
-	}
-
-	public Map<Integer, Video> getVideos() {
-		return videos;
-	}
-
-	public int getLastVideoID() {
-		return lastVideoID;
-	}
-
-	public void setLastVideoID(int lastVideoID) {
-		this.lastVideoID = lastVideoID;
-		// System.out.println(lastVideoID+" set");
+	public int getNewNews() {
+		return newNews;
 	}
 
 }
