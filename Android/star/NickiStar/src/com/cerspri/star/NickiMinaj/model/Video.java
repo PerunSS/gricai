@@ -1,31 +1,13 @@
 package com.cerspri.star.NickiMinaj.model;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Serializable;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-public class Video implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Video {
 	private String title;
 	private String description;
 	private String imagePath;
-	private int id;
 	private String videoTag;
-	private boolean loaded = false;
 
-	public boolean extractFromTag(String videoTag) {
+/*	public boolean extractFromTag(String videoTag) {
 		this.videoTag = videoTag;
 		try {
 			URL url = new URL("http://gdata.youtube.com/feeds/api/videos/"
@@ -87,7 +69,7 @@ public class Video implements Serializable{
 		}
 		return false;
 	}
-
+*/
 	public String getTitle() {
 		return title;
 	}
@@ -100,13 +82,6 @@ public class Video implements Serializable{
 		return imagePath;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getVideoTag() {
 		return videoTag;
@@ -115,13 +90,17 @@ public class Video implements Serializable{
 	public void setVideoTag(String videoTag) {
 		this.videoTag=videoTag;
 	}
-	
-	@Override
-	public String toString() {
-		return id+" "+videoTag+" "+title+" "+description+" "+imagePath;
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public boolean isLoaded() {
-		return loaded;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 }

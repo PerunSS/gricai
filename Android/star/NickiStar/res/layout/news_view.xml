@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/n_background_320" >
+
+    <com.google.ads.AdView
+        android:id="@+id/adView3"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14ee62dcb57886"
+        ads:loadAdOnCreate="true" />
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/adView3"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="-4dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/prev_button"
+            style="@style/fqvn_button_medium"
+            android:background="@drawable/button"
+            android:text="@string/prev" />
+
+        <Button
+            android:id="@+id/next_button"
+            style="@style/fqvn_button_medium"
+            android:background="@drawable/button"
+            android:text="@string/next" />
+
+        <Button
+            android:id="@+id/read_button"
+            style="@style/fqvn_button_medium"
+            android:background="@drawable/button"
+            android:text="@string/read" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/text_wrapper"
+        android:layout_width="235dp"
+        android:layout_height="160dp"
+        android:layout_above="@+id/buttons"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="5dp"
+        android:padding="3dp" >
+
+        <TextView
+            android:id="@+id/news_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="12dp" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/news_date"
+        android:layout_width="235dp"
+        android:layout_height="20dp"
+        android:layout_above="@+id/text_wrapper"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:textStyle="italic" />
+
+    <ImageView
+        android:id="@+id/news_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/news_date"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/news_image" />
+    
+    
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="155dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/news_date"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/news_image"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp" />
+
+</RelativeLayout>

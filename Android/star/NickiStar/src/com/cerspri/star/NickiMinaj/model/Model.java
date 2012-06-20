@@ -32,10 +32,11 @@ public class Model {
 	private int currentVideo = 0;
 	private int version = 0;
 	private int newNews = 0;
+	private int currentNews = 0;
 	private DBManager manager;
 
 	private Model() {
-
+		news = new NewsQueue(20);
 	}
 
 	public static Model getInstance() {
@@ -85,16 +86,16 @@ public class Model {
 			return videos.get(currentVideo);
 		return null;
 	}
-	
-	public void putCurrentVideo(Video video){
+
+	public void putCurrentVideo(Video video) {
 		videos.remove(currentVideo);
 		videos.add(currentVideo, video);
 	}
-	
-	public Video previousVideo(){
-		if(videos.size()>0){
+
+	public Video previousVideo() {
+		if (videos.size() > 0) {
 			currentVideo--;
-			if(currentVideo<0){
+			if (currentVideo < 0) {
 				currentVideo += videos.size();
 			}
 			return videos.get(currentVideo);
@@ -102,14 +103,38 @@ public class Model {
 		return null;
 	}
 
+	public News currentNews() {
+		if (news.list().size() > 0)
+			return news.list().get(currentNews);
+		return null;
+	}
+
+	public News nextNews() {
+		if (news.list().size() > 0) {
+			currentNews++;
+			currentNews %= news.list().size();
+			return news.list().get(currentNews);
+		}
+		return null;
+	}
+
+	public News prevoiusNews() {
+		if (news.list().size() > 0) {
+			currentNews--;
+			if (currentNews < 0)
+				currentNews += news.list().size();
+			return news.list().get(currentNews);
+		}
+		return null;
+	}
+
 	public int loadNews(Integer version, String name) {
 		this.version = version;
-		// System.out.println("version: "+version);
 		if (news == null) {
 			news = new NewsQueue(20);
 		}
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
-				+ name.toLowerCase().replace(' ', '+') + "&version=" + version);
+				+ name.toLowerCase().replace(' ', '+') + "&version=0"); //TODO remove version fix
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
 			JSONArray elements = jsonobj.getJSONArray("data");
@@ -127,6 +152,7 @@ public class Model {
 				holder.setTitle(elementobj.getString("title"));
 				news.add(holder);
 			}
+			System.out.println("NEWS FROM NET: "+news.list().size());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -139,9 +165,7 @@ public class Model {
 		if (manager == null)
 			return;
 		quotes = manager.read(rated, "quote");
-		System.out.println("quotes: "+quotes.size());
 		facts = manager.read(rated, "fact");
-		System.out.println("facts: "+facts.size());
 	}
 
 	public void loadVideos() {

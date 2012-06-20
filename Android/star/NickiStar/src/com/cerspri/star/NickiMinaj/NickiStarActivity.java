@@ -26,6 +26,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -48,20 +49,21 @@ import com.cerspri.star.NickiMinaj.model.Video;
 
 public class NickiStarActivity extends Activity {
 
-	State state;
-	ProgressDialog progressDialog;
-	Context mContext = this;
+	private State state;
+	private ProgressDialog progressDialog;
+	private Context mContext = this;
 
 	private int newsVersion = 0;
 	private ImageLoaderTask imageTask;
 
 	private ImageView videoMediaView;
+	private ImageView newsMediaView;
 
+	private DBManager manager;
+	
 	private enum State {
 		MAIN, SECOND
 	}
-
-	private DBManager manager;
 
 	private void loadData() {
 		manager = new DBManager(this);
@@ -79,7 +81,6 @@ public class NickiStarActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setMainView();
-
 		loadData();
 	}
 
@@ -222,20 +223,13 @@ public class NickiStarActivity extends Activity {
 		state = State.SECOND;
 		setContentView(R.layout.video_view);
 		Video v = Model.getInstance().currentVideo();
-		if (v.isLoaded()) {
-			showVideo(v);
-		} else {
-			new YoutubeMetadataLodaerTask().execute();
-		}
+		showVideo(v);
 		final Button nextVideoButton = (Button) findViewById(R.id.next_button);
 		nextVideoButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Video video = Model.getInstance().nextVideo();
-				if (video.isLoaded())
-					showVideo(video);
-				else
-					new YoutubeMetadataLodaerTask().execute();
+				showVideo(video);
 			}
 		});
 		final Button previousVideoButton = (Button) findViewById(R.id.prev_button);
@@ -243,10 +237,7 @@ public class NickiStarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Video video = Model.getInstance().previousVideo();
-				if (video.isLoaded())
-					showVideo(video);
-				else
-					new YoutubeMetadataLodaerTask().execute();
+				showVideo(video);
 			}
 		});
 		final Button playVideoButton = (Button) findViewById(R.id.play_button);
@@ -300,7 +291,63 @@ public class NickiStarActivity extends Activity {
 	}
 
 	private void setNewsView() {
-		// TODO finish obratiti paznju da slike imaju nesto ovako http:\/\/
+		state = State.SECOND;
+		setContentView(R.layout.news_view);
+		if (Model.getInstance().getNews() == null || Model.getInstance().getNews().size() == 0) {
+			new NewsLoaderTask().execute(newsVersion);
+		}else{
+			showNews(Model.getInstance().currentNews());
+		}
+		final Button nextVideoButton = (Button) findViewById(R.id.next_button);
+		nextVideoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showNews(Model.getInstance().nextNews());
+			}
+		});
+		final Button previousVideoButton = (Button) findViewById(R.id.prev_button);
+		previousVideoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showNews(Model.getInstance().prevoiusNews());
+			}
+		});
+		final Button readNewsButton = (Button) findViewById(R.id.read_button);
+		readNewsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Uri uriUrl = Uri.parse(Model.getInstance().currentNews()
+						.getNewsUrl());
+				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+				startActivity(launchBrowser);
+			}
+		});
+
+	}
+
+	private void showNews(News news) {
+		if (news != null && news.getTitle() != null) {
+			TextView newsTitle = (TextView) findViewById(R.id.news_title);
+			newsTitle.setText(Html.fromHtml(news.getTitle()));
+		}
+		if (news != null && news.getPubDate() != null) {
+			TextView newsPubDate = (TextView) findViewById(R.id.news_date);
+			newsPubDate.setText(news.getPubDate());
+		}
+		if (news != null && news.getContent() != null) {
+			TextView newsText = (TextView) findViewById(R.id.news_text);
+			newsText.setText(Html.fromHtml(news.getContent()));
+		}
+		newsMediaView = (ImageView) findViewById(R.id.news_image);
+		if (news != null && news.getImagePath() != null) {
+			if (imageTask != null
+					&& imageTask.getStatus() == ImageLoaderTask.Status.RUNNING) {
+				imageTask.cancel(true);
+				imageTask = null;
+			}
+			imageTask = new ImageLoaderTask(newsMediaView, news.getImagePath());
+			imageTask.execute();
+		}
 	}
 
 	private void setRateView() {
@@ -559,7 +606,7 @@ public class NickiStarActivity extends Activity {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(openFileInput("news"));
 			boolean read = true;
-
+			System.out.println("READ NEWS:");
 			while (read) {
 				try {
 					News news = (News) ois.readObject();
@@ -576,11 +623,13 @@ public class NickiStarActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//TODO remove
+		System.out.println(Model.getInstance().getNews().size());
 		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt("newsVersion",
 				0);
 		if (shouldUpdate) {
 			int newNewsVersion = Model.getInstance().loadNews(newsVersion,
-					getString(R.string.app_name));
+					Constants.STAR_NAME);
 			if (newNewsVersion > newsVersion) {
 				newsVersion = newNewsVersion;
 				saveNewsToPhone();
@@ -592,27 +641,13 @@ public class NickiStarActivity extends Activity {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(
 					"news", MODE_WORLD_WRITEABLE));
-			for (News entry : Model.getInstance().getNews()) {
-				oos.writeObject(entry);
+			System.out.println("SAVING NEWS: "+Model.getInstance().getNews().size());
+			for (News news : Model.getInstance().getNews()) {
+				oos.writeObject(news);
 				SharedPreferences preferences = getPreferences(MODE_WORLD_WRITEABLE);
 				SharedPreferences.Editor editor = preferences.edit();
 				editor.putInt("newsVersion", newsVersion);
 				editor.commit();
-			}
-			oos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void saveVideoToPhone() {
-		try {
-			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(
-					"videos", MODE_WORLD_WRITEABLE));
-			for (Video video : Model.getInstance().getVideos()) {
-				oos.writeObject(video);
 			}
 			oos.close();
 		} catch (FileNotFoundException e) {
@@ -675,39 +710,31 @@ public class NickiStarActivity extends Activity {
 	 * .get(newsPosition).getImagePath()).execute(); }
 	 */
 
-	/*
-	 * 
-	 * private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
-	 * 
-	 * @Override protected void onPreExecute() { super.onPreExecute();
-	 * progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
-	 * "Loading..."); }
-	 * 
-	 * @Override protected Void doInBackground(Integer... params) {
-	 * getNews(true, false); return null; }
-	 * 
-	 * @Override protected void onPostExecute(Void result) {
-	 * super.onPostExecute(result); saveNewsToPhone(); progressDialog.dismiss();
-	 * mDrawer.animateClose(); newsDrawer.animateOpen();
-	 * newsLayout.setVisibility(View.VISIBLE); state = State.NEWS;
-	 * toggleMenuButton.setBackgroundResource(R.drawable.open_menu_button);
-	 * isToogle = false; menuShown = false; newsPosition = 0; if
-	 * (Model.getInstance().getNews().size() > 0) {
-	 * newsTitle.setText(Html.fromHtml(Model.getInstance().getNews()
-	 * .get(newsPosition).getTitle()));
-	 * newsText.setText(Html.fromHtml(Model.getInstance().getNews()
-	 * .get(newsPosition).getContent()));
-	 * newsImage.setOnClickListener(videoPlayListener);
-	 * newsDate.setText(Model.getInstance().getNews()
-	 * .get(newsPosition).getPubDate()); new ImageLoaderTask(newsImage,
-	 * Model.getInstance().getNews()
-	 * .get(newsPosition).getImagePath()).execute();
-	 * newsNextButton.setVisibility(View.VISIBLE); }else {
-	 * newsNextButton.setVisibility(View.INVISIBLE); }
-	 * newsBackButton.setVisibility(View.INVISIBLE); }
-	 * 
-	 * }
-	 */
+	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
+					"Loading...");
+		}
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			getNews(true);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			saveNewsToPhone();
+			progressDialog.dismiss();
+			showNews(Model.getInstance().currentNews());
+		}
+
+	}
+
 	private class UpdateContentTask extends AsyncTask<Integer, Void, Void> {
 		@Override
 		protected void onPreExecute() {
@@ -736,41 +763,6 @@ public class NickiStarActivity extends Activity {
 	}
 
 	/**
-	 * task gets all data from youtube according to video tag
-	 * 
-	 * @author aleksandarvaricak
-	 * 
-	 */
-
-	private class YoutubeMetadataLodaerTask extends AsyncTask<Void, Void, Void> {
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			progressDialog = ProgressDialog.show(NickiStarActivity.this, "",
-					"Loading...");
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			Video video = Model.getInstance().currentVideo();
-			video.extractFromTag(video.getVideoTag());
-			Model.getInstance().putCurrentVideo(video);
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-			saveVideoToPhone();
-			progressDialog.dismiss();
-			Video video = Model.getInstance().currentVideo();
-			showVideo(video);
-		}
-
-	}
-
-	/**
 	 * Task for loading image
 	 * 
 	 * @author aleksandarvaricak
@@ -785,6 +777,7 @@ public class NickiStarActivity extends Activity {
 		ImageLoaderTask(ImageView view, String url) {
 			this.view = view;
 			this.url = url;
+			System.out.println(url);
 			this.view.setImageResource(R.drawable.loading);
 		}
 

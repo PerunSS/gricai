@@ -10,8 +10,10 @@
     <string name="refresh">Refresh</string>
     <string name="random">Random</string>
     <string name="share">Share</string>
-    <string name="prev">Prev</string>
+    <string name="prev">Prev.</string>
     <string name="next">Next</string>
     <string name="play">Play</string>
     <string name="video_image">Video Image</string>
+    <string name="read">Read</string>
+    <string name="news_image">News Image</string>
 </resources>

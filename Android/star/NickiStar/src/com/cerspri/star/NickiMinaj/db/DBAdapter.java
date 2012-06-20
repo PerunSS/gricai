@@ -94,20 +94,16 @@ public class DBAdapter extends SQLiteOpenHelper {
 	private void copyDataBase() throws IOException {
 		// Open your local db as the input stream
 		InputStream myInput = myContext.getAssets().open(dbName);
-		System.out.println("*");
 		// Path to the just created empty db
 		String outFileName = dbPath + dbName;
-		System.out.println("*");
 		// Open the empty db as the output stream
 		OutputStream myOutput = new FileOutputStream(outFileName);
-		System.out.println("*");
 		// transfer bytes from the inputfile to the outputfile
 		byte[] buffer = new byte[1024];
 		int length;
 		while ((length = myInput.read(buffer)) > 0) {
 			myOutput.write(buffer, 0, length);
 		}
-		System.out.println("*");
 		// Close the streams
 		Log.d("COPIED TO PATH:", outFileName);
 		myOutput.flush();

@@ -56,13 +56,17 @@ public class DBManager {
 		if(c!=null){
 			if(c.moveToFirst()){
 				do {
-					String tag = c.getString(c.getColumnIndex("video_tag"));
 					Video video = new Video();
-					video.setVideoTag(tag);
+					video.setVideoTag(c.getString(c.getColumnIndex("video_tag")));
+					video.setDescription(c.getString(c.getColumnIndex("video_description")));
+					video.setTitle(c.getString(c.getColumnIndex("video_title")));
+					video.setImagePath(c.getString(c.getColumnIndex("video_image_path")));
 					result.add(video);
 				}while(c.moveToNext());
 			}
 		}
+		c.close();
+		adapter.close();
 		return result;
 	}
 

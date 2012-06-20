@@ -19,4 +19,8 @@
     <style name="fqvn_button_small" parent="fqvn_button">
         <item name="android:layout_width">63dp</item>
     </style>
+    
+    <style name="fqvn_button_medium" parent="fqvn_button">
+        <item name="android:layout_width">85dp</item>
+    </style>
 </resources>
