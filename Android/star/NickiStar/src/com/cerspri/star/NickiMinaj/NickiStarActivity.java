@@ -1,11 +1,7 @@
 package com.cerspri.star.NickiMinaj;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -73,7 +69,7 @@ public class NickiStarActivity extends Activity {
 		Model.getInstance().setManager(manager);
 		Model.getInstance().loadTextData(rated);
 		Model.getInstance().loadVideos();
-		getNews(false);
+		Model.getInstance().loadNews();
 	}
 
 	// Done on activity creation
@@ -603,28 +599,7 @@ public class NickiStarActivity extends Activity {
 	 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); } }
 	 */
 	private void getNews(boolean shouldUpdate) {
-		try {
-			ObjectInputStream ois = new ObjectInputStream(openFileInput("news"));
-			boolean read = true;
-			System.out.println("READ NEWS:");
-			while (read) {
-				try {
-					News news = (News) ois.readObject();
-					Model.getInstance().getNews().add(news);
-				} catch (Exception e) {
-					read = false;
-				}
-			}
-			ois.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (StreamCorruptedException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//TODO remove
-		System.out.println(Model.getInstance().getNews().size());
+		Model.getInstance().loadNews();
 		newsVersion = getPreferences(MODE_WORLD_READABLE).getInt("newsVersion",
 				0);
 		if (shouldUpdate) {
@@ -632,28 +607,7 @@ public class NickiStarActivity extends Activity {
 					Constants.STAR_NAME);
 			if (newNewsVersion > newsVersion) {
 				newsVersion = newNewsVersion;
-				saveNewsToPhone();
 			}
-		}
-	}
-
-	private void saveNewsToPhone() {
-		try {
-			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(
-					"news", MODE_WORLD_WRITEABLE));
-			System.out.println("SAVING NEWS: "+Model.getInstance().getNews().size());
-			for (News news : Model.getInstance().getNews()) {
-				oos.writeObject(news);
-				SharedPreferences preferences = getPreferences(MODE_WORLD_WRITEABLE);
-				SharedPreferences.Editor editor = preferences.edit();
-				editor.putInt("newsVersion", newsVersion);
-				editor.commit();
-			}
-			oos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -728,7 +682,6 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			saveNewsToPhone();
 			progressDialog.dismiss();
 			showNews(Model.getInstance().currentNews());
 		}
@@ -752,7 +705,6 @@ public class NickiStarActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			saveNewsToPhone();
 			progressDialog.dismiss();
 			String text = "Nothing to fetch";
 			if (Model.getInstance().getNewNews() > 0)
@@ -777,7 +729,6 @@ public class NickiStarActivity extends Activity {
 		ImageLoaderTask(ImageView view, String url) {
 			this.view = view;
 			this.url = url;
-			System.out.println(url);
 			this.view.setImageResource(R.drawable.loading);
 		}
 

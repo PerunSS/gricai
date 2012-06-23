@@ -12,6 +12,7 @@ public class News implements Serializable{
 	private String imagePath;
 	private String pubDate;
 	private String newsUrl;
+	private String id;
 	
 	public String getTitle() {
 		return title;
@@ -42,6 +43,12 @@ public class News implements Serializable{
 	}
 	public void setNewsUrl(String newsUrl) {
 		this.newsUrl = newsUrl;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

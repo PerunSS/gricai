@@ -7,6 +7,7 @@ import java.io.OutputStream;
 
 import com.cerspri.star.NickiMinaj.model.Constants;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -142,5 +143,10 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	public void update(String sql) {
 		myDataBase.execSQL(sql);
+	}
+	
+	public void insert(String table, String nullColumnHack, ContentValues values){
+		//TODO remove syso
+		System.out.println("ROW INSERTED: "+myDataBase.insert(table, nullColumnHack, values));
 	}
 }

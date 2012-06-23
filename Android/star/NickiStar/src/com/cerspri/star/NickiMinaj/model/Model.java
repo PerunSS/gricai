@@ -27,7 +27,7 @@ public class Model {
 	private int currentFact = 0;
 	private List<String> quotes;
 	private List<String> facts;
-	private NewsQueue news;
+	private List<News> news;
 	private List<Video> videos;
 	private int currentVideo = 0;
 	private int version = 0;
@@ -36,7 +36,6 @@ public class Model {
 	private DBManager manager;
 
 	private Model() {
-		news = new NewsQueue(20);
 	}
 
 	public static Model getInstance() {
@@ -104,26 +103,26 @@ public class Model {
 	}
 
 	public News currentNews() {
-		if (news.list().size() > 0)
-			return news.list().get(currentNews);
+		if (news.size() > 0)
+			return news.get(currentNews);
 		return null;
 	}
 
 	public News nextNews() {
-		if (news.list().size() > 0) {
+		if (news.size() > 0) {
 			currentNews++;
-			currentNews %= news.list().size();
-			return news.list().get(currentNews);
+			currentNews %= news.size();
+			return news.get(currentNews);
 		}
 		return null;
 	}
 
 	public News prevoiusNews() {
-		if (news.list().size() > 0) {
+		if (news.size() > 0) {
 			currentNews--;
 			if (currentNews < 0)
-				currentNews += news.list().size();
-			return news.list().get(currentNews);
+				currentNews += news.size();
+			return news.get(currentNews);
 		}
 		return null;
 	}
@@ -131,10 +130,10 @@ public class Model {
 	public int loadNews(Integer version, String name) {
 		this.version = version;
 		if (news == null) {
-			news = new NewsQueue(20);
+			news = new ArrayList<News>();
 		}
 		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
-				+ name.toLowerCase().replace(' ', '+') + "&version=0"); //TODO remove version fix
+				+ name.toLowerCase().replace(' ', '+') + "&version="+(Constants.REWRITE_DB?0:version));
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
 			JSONArray elements = jsonobj.getJSONArray("data");
@@ -150,9 +149,13 @@ public class Model {
 				holder.setNewsUrl(elementobj.getString("url"));
 				holder.setPubDate(elementobj.getString("pub_date"));
 				holder.setTitle(elementobj.getString("title"));
+				holder.setId(elementobj.getString("news_id"));
 				news.add(holder);
+				if(manager != null)
+					manager.saveNews(holder);
 			}
-			System.out.println("NEWS FROM NET: "+news.list().size());
+			//TODO remove
+			System.out.println("NEWS FROM NET: "+news.size());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -173,6 +176,13 @@ public class Model {
 		if (manager == null)
 			return;
 		videos = manager.readVideos();
+	}
+	
+	public void loadNews(){
+		news = new ArrayList<News>();
+		if(manager == null)
+			return;
+		news = manager.readNews();
 	}
 
 	private StringBuilder readFromLink(String url) {
@@ -202,9 +212,7 @@ public class Model {
 	}
 
 	public List<News> getNews() {
-		if (news != null)
-			return news.list();
-		return null;
+		return news;
 	}
 
 	public void setManager(DBManager manager) {
