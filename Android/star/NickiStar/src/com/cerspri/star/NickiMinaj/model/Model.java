@@ -154,8 +154,6 @@ public class Model {
 				if(manager != null)
 					manager.saveNews(holder);
 			}
-			//TODO remove
-			System.out.println("NEWS FROM NET: "+news.size());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

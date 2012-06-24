@@ -16,7 +16,7 @@ public class Constants {
 	public static final String DB_NAME = "NickiMinaj";
 	public static final String TABLE_NAME = "Nicki_Minaj";
 	public static final String PROJECT_PATH = "com.cerspri.star."+DB_NAME;
-	public static final boolean REWRITE_DB = true;
+	public static final boolean REWRITE_DB = false;
 	public static final String LIMIT = "300";
 	public static final String APPLICATION_QUERY="details?id=com.cerspri.star."+DB_NAME;
 	public static final String DEVELOPER_QUERY="search?q=cerspri.star";

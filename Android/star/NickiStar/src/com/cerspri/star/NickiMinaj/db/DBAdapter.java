@@ -146,7 +146,6 @@ public class DBAdapter extends SQLiteOpenHelper {
 	}
 	
 	public void insert(String table, String nullColumnHack, ContentValues values){
-		//TODO remove syso
-		System.out.println("ROW INSERTED: "+myDataBase.insert(table, nullColumnHack, values));
+		myDataBase.insert(table, nullColumnHack, values);
 	}
 }
