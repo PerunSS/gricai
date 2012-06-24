@@ -81,8 +81,7 @@ public class NickiStarActivity extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK
-				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			switch (state) {
 			case MAIN:
 				return super.onKeyDown(keyCode, event);
@@ -163,7 +162,7 @@ public class NickiStarActivity extends Activity {
 		state = State.SECOND;
 		setContentView(R.layout.fq_view);
 		final TextView view = (TextView) findViewById(R.id.text);
-		view.setText(Model.getInstance().nextQuote());
+		view.setText(Model.getInstance().currentQuote());
 		final Button randomButton = (Button) findViewById(R.id.random_button);
 		randomButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -184,7 +183,7 @@ public class NickiStarActivity extends Activity {
 		state = State.SECOND;
 		setContentView(R.layout.fq_view);
 		final TextView view = (TextView) findViewById(R.id.text);
-		view.setText(Model.getInstance().nextFact());
+		view.setText(Model.getInstance().currentFact());
 		final Button randomButton = (Button) findViewById(R.id.random_button);
 		randomButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -364,6 +363,9 @@ public class NickiStarActivity extends Activity {
 					Constants.STAR_NAME);
 			if (newNewsVersion > newsVersion) {
 				newsVersion = newNewsVersion;
+				SharedPreferences.Editor editor = getPreferences(MODE_WORLD_WRITEABLE).edit();
+				editor.putInt("newsVersion", newNewsVersion);
+				editor.commit();
 			}
 		}
 	}

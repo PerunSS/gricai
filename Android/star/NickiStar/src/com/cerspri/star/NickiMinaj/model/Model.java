@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -44,30 +45,31 @@ public class Model {
 
 	public String nextQuote() {
 		if (quotes.size() > 0) {
+			currentQuote++;
 			currentQuote %= quotes.size();
-			return quotes.get(currentQuote++);
+			return quotes.get(currentQuote);
 		}
 		return "";
 	}
 
 	public String currentQuote() {
 		if (quotes.size() > 0)
-			return quotes.get((currentQuote - 1 + quotes.size())
-					% quotes.size());
+			return quotes.get(currentQuote);
 		return "";
 	}
 
 	public String nextFact() {
 		if (facts.size() > 0) {
+			currentFact++;
 			currentFact %= facts.size();
-			return facts.get(currentFact++);
+			return facts.get(currentFact);
 		}
 		return "";
 	}
 
 	public String currentFact() {
 		if (facts.size() > 0)
-			return facts.get((currentFact - 1 + facts.size()) % facts.size());
+			return facts.get(currentFact);
 		return "";
 	}
 
@@ -166,7 +168,9 @@ public class Model {
 		if (manager == null)
 			return;
 		quotes = manager.read(rated, "quote");
+		Collections.shuffle(quotes);
 		facts = manager.read(rated, "fact");
+		Collections.shuffle(facts);
 	}
 
 	public void loadVideos() {
