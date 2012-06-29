@@ -25,16 +25,14 @@ public class DBManager {
 	public List<String> read(boolean rated, String type) {
 		adapter.openDataBase();
 		List<String> result = new ArrayList<String>();
-		String sql = "select * from " + Constants.TABLE_NAME
-				+ " where text_type = ?";
+		String sql = "select * from " + type+"s";
 		if (!rated)
 			sql += " limit " + Constants.LIMIT;
-		String params[] = { type };
-		Cursor c = adapter.executeSql(sql, params);
+		Cursor c = adapter.executeSql(sql, null);
 		if (c != null) {
 			if (c.moveToFirst()) {
 				do {
-					String text = c.getString(c.getColumnIndex("text_value"));
+					String text = c.getString(c.getColumnIndex("text"));
 					result.add(text);
 				} while (c.moveToNext());
 			}
@@ -76,7 +74,7 @@ public class DBManager {
 		values.put("pub_date", news.getPubDate());
 		values.put("url", news.getNewsUrl());
 		values.put("image", news.getImagePath());
-		values.put("news_id", news.getId());
+		values.put("_id", news.getId());
 		adapter.insert("news", null, values);
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, -20);
@@ -100,7 +98,7 @@ public class DBManager {
 					news.setPubDate(c.getString(c.getColumnIndex("pub_date")));
 					news.setNewsUrl(c.getString(c.getColumnIndex("url")));
 					news.setImagePath(c.getString(c.getColumnIndex("image")));
-					news.setId(c.getString(c.getColumnIndex("news_id")));
+					news.setId(c.getString(c.getColumnIndex("_id")));
 					allNews.add(news);
 				} while (c.moveToNext());
 			}

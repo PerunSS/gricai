@@ -23,4 +23,16 @@
     <style name="fqvn_button_medium" parent="fqvn_button">
         <item name="android:layout_width">85dp</item>
     </style>
+    
+    <style name="center_button_hdpi">
+        <item name="android:layout_width">104dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">21dp</item>
+    </style>
+    
+    <style name="right_button_hdpi" parent="center_button_hdpi">
+        <item name="android:layout_width">112dp</item>
+    </style>
+    
 </resources>

@@ -30,7 +30,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	 * @param context
 	 */
 	public DBAdapter(Context context, String dbName, String projectPath) {
-		super(context, dbName, null, 1);
+		super(context, dbName, null, Constants.DB_VERSION);
 		this.dbName = dbName;
 		dbPath = "/data/data/" + projectPath + "/databases/";
 		this.myContext = context;
@@ -56,6 +56,11 @@ public class DBAdapter extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
+			try{
+				this.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 			this.getReadableDatabase();
 			try {
 				copyDataBase();
@@ -114,10 +119,14 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	public void openDataBase() throws SQLException {
 		// Open the database
-		String myPath = dbPath + dbName;
-		Log.d("PATH", myPath);
-		myDataBase = SQLiteDatabase.openDatabase(myPath, null,
-				SQLiteDatabase.OPEN_READWRITE);
+//		String myPath = dbPath + dbName;
+//		Log.d("PATH", myPath);
+		try{
+			close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		myDataBase = getReadableDatabase();//SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 	}
 
 	@Override
@@ -134,7 +143,12 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+		try {
+			copyDataBase();
+			Log.d("DATABASE", "upgraded from: "+oldVersion+" to: "+newVersion);
+		} catch (IOException e) {
+			Log.d("COPY ERROR", e.getMessage(), e);
+		}
 	}
 
 	public Cursor executeSql(String sql, String[] selectionArgs) {
