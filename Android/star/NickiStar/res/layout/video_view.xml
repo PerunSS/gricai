@@ -2,8 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/fqv_backgrounnd_320" >
+    android:layout_height="match_parent" >
+    <View 
+        android:id="@+id/bottom_purple"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_320"
+        android:layout_alignParentBottom="true"/>
+    
+    <View android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/fqv_background_320"
+        android:layout_above="@+id/bottom_purple"/>
 
     <com.google.ads.AdView
         android:id="@+id/adView1"

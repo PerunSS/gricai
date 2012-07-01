@@ -47,6 +47,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	 * */
 	public void createDataBase() throws IOException {
 		boolean dbExist = checkDataBase();
+		SQLiteDatabase dbRead = null;
 		if(Constants.REWRITE_DB)
 			dbExist = false;
 		if (dbExist) {
@@ -56,12 +57,8 @@ public class DBAdapter extends SQLiteOpenHelper {
 			// the default system path
 			// of your application so we are gonna be able to overwrite that
 			// database with our database.
-			try{
-				this.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-			this.getReadableDatabase();
+			dbRead = this.getReadableDatabase();
+			dbRead.close();
 			try {
 				copyDataBase();
 			} catch (IOException e) {
@@ -121,11 +118,6 @@ public class DBAdapter extends SQLiteOpenHelper {
 		// Open the database
 //		String myPath = dbPath + dbName;
 //		Log.d("PATH", myPath);
-		try{
-			close();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
 		myDataBase = getReadableDatabase();//SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 	}
 

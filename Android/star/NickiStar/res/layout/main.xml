@@ -2,13 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_320" >
-
+    >
+    <View 
+        android:id="@+id/bottom_purple"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_320"
+        android:layout_alignParentBottom="true"/>
+    
+    <View android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_320"
+        android:layout_above="@+id/bottom_purple"/>
+    
     <View
         android:id="@+id/bottom_empty"
         android:layout_width="1dp"
-        android:layout_height="87dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_height="37dp"
+        android:layout_above="@+id/bottom_purple" />
+    
+    <View
+        android:id="@+id/menu_buttons"
+        android:layout_width="236dp"
+        android:layout_height="202dp"
+        android:background="@drawable/main_buttons_background_320"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/bottom_empty"
+        android:layout_marginBottom="-12dp"
+    />
 
     <LinearLayout
         android:id="@+id/right_buttons"
