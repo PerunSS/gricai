@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -162,6 +161,14 @@ public class Model {
 		return this.version;
 	}
 
+	public void setTextData(String type, List<String> data){
+		if(type.equalsIgnoreCase("facts")){
+			facts = data;
+		}else if(type.equalsIgnoreCase("quotes")){
+			quotes = data;
+		}
+	}
+	/*
 	public void loadTextData(boolean rated) {
 		quotes = new ArrayList<String>();
 		facts = new ArrayList<String>();
@@ -171,15 +178,19 @@ public class Model {
 		Collections.shuffle(quotes);
 		facts = manager.read(rated, "fact");
 		Collections.shuffle(facts);
+	}*/
+	
+	public void setVideos(List<Video> videos){
+		this.videos = videos;
 	}
-
+/*
 	public void loadVideos() {
 		videos = new ArrayList<Video>();
 		if (manager == null)
 			return;
 		videos = manager.readVideos();
 	}
-	
+*/	
 	public void loadNews(){
 		news = new ArrayList<News>();
 		if(manager == null)

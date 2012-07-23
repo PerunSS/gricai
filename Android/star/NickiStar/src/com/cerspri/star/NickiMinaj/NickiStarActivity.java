@@ -2,6 +2,9 @@ package com.cerspri.star.NickiMinaj;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,20 +58,23 @@ public class NickiStarActivity extends Activity {
 	private ImageView videoMediaView;
 	private ImageView newsMediaView;
 
-	private DBManager manager;
-	
+	//private DBManager manager;
+
 	private enum State {
 		MAIN, SECOND
 	}
 
 	private void loadData() {
-		manager = new DBManager(this);
-		boolean rated = false;
-		SharedPreferences preferences = getPreferences(MODE_WORLD_READABLE);
-		rated = preferences.getBoolean("isRated", false);
-		Model.getInstance().setManager(manager);
-		Model.getInstance().loadTextData(rated);
-		Model.getInstance().loadVideos();
+		//manager = new DBManager(this);
+		// boolean rated = false;
+		// SharedPreferences preferences = getPreferences(MODE_WORLD_READABLE);
+		// rated = preferences.getBoolean("isRated", false);
+		//Model.getInstance().setManager(manager);
+		Model.getInstance().setTextData("facts", getData("facts"));
+		Model.getInstance().setTextData("quotes", getData("quotes"));
+		// Model.getInstance().loadTextData(rated);
+		Model.getInstance().setVideos(getVideos());
+		//Model.getInstance().loadVideos();
 		Model.getInstance().loadNews();
 	}
 
@@ -287,9 +293,10 @@ public class NickiStarActivity extends Activity {
 	private void setNewsView() {
 		state = State.SECOND;
 		setContentView(R.layout.news_view);
-		if (Model.getInstance().getNews() == null || Model.getInstance().getNews().size() == 0) {
+		if (Model.getInstance().getNews() == null
+				|| Model.getInstance().getNews().size() == 0) {
 			new NewsLoaderTask().execute(newsVersion);
-		}else{
+		} else {
 			showNews(Model.getInstance().currentNews());
 		}
 		final Button nextVideoButton = (Button) findViewById(R.id.next_button);
@@ -363,11 +370,44 @@ public class NickiStarActivity extends Activity {
 					Constants.STAR_NAME);
 			if (newNewsVersion > newsVersion) {
 				newsVersion = newNewsVersion;
-				SharedPreferences.Editor editor = getPreferences(MODE_WORLD_WRITEABLE).edit();
+				SharedPreferences.Editor editor = getPreferences(
+						MODE_WORLD_WRITEABLE).edit();
 				editor.putInt("newsVersion", newNewsVersion);
 				editor.commit();
 			}
 		}
+	}
+
+	private List<String> getData(String type) {
+		List<String> data = new ArrayList<String>();
+		int id = R.array.facts;
+		if (type.equalsIgnoreCase("quotes")) {
+			id = R.array.quotes;
+		}
+		for (String str : getResources().getStringArray(id)) {
+			data.add(str);
+		}
+		Collections.shuffle(data);
+		return data;
+	}
+	
+	private List<Video> getVideos(){
+		List<Video> data = new ArrayList<Video>();
+		int i = 0;
+		for (String str:getResources().getStringArray(R.array.videos)){
+			String tmp[] = str.split("|"); //tag|title|description|image_path
+			if(tmp.length!=4)
+				continue;
+			Video video = new Video();
+			video.setVideoTag(tmp[0]);
+			video.setTitle(tmp[1]);
+			video.setDescription(tmp[2]);
+			video.setImagePath(tmp[3]);
+			data.add(video);
+			i++;
+		}
+		System.out.println("Loaded videos: "+i);
+		return data;
 	}
 
 	private class NewsLoaderTask extends AsyncTask<Integer, Void, Void> {
