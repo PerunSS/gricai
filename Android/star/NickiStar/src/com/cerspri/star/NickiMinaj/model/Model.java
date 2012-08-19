@@ -133,7 +133,7 @@ public class Model {
 		if (news == null) {
 			news = new ArrayList<News>();
 		}
-		StringBuilder builder = readFromLink("http://www.cerspri.com/api/stars/get_news.php?star="
+		StringBuilder builder = readFromLink("http://cerspri.freeiz.com/get_news.php?star="
 				+ name.toLowerCase().replace(' ', '+') + "&version="+(Constants.REWRITE_DB?0:version));
 		try {
 			JSONObject jsonobj = new JSONObject(builder.toString());
@@ -150,7 +150,7 @@ public class Model {
 				holder.setNewsUrl(elementobj.getString("url"));
 				holder.setPubDate(elementobj.getString("pub_date"));
 				holder.setTitle(elementobj.getString("title"));
-				holder.setId(elementobj.getString("news_id"));
+				holder.setId(elementobj.getString("version"));
 				news.add(holder);
 				if(manager != null)
 					manager.saveNews(holder);

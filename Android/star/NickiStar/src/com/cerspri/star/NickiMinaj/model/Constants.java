@@ -22,4 +22,6 @@ public class Constants {
 	public static final String APPLICATION_QUERY="details?id=com.cerspri.star."+DB_NAME;
 	public static final String DEVELOPER_QUERY="search?q=cerspri.star";
 	public static final String STAR_NAME = "Nicki Minaj";
+	
+	public static final String CREATE_NEWS_TABLE = "CREATE TABLE IF NOT EXISTS news (title TEXT,content TEXT,pub_date DATETIME,url text,image text,_id INTEGER)";
 }

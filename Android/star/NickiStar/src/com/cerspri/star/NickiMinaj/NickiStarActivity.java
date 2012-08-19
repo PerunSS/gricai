@@ -58,23 +58,23 @@ public class NickiStarActivity extends Activity {
 	private ImageView videoMediaView;
 	private ImageView newsMediaView;
 
-	//private DBManager manager;
+	private DBManager manager;
 
 	private enum State {
 		MAIN, SECOND
 	}
 
 	private void loadData() {
-		//manager = new DBManager(this);
+		manager = new DBManager(this);
 		// boolean rated = false;
 		// SharedPreferences preferences = getPreferences(MODE_WORLD_READABLE);
 		// rated = preferences.getBoolean("isRated", false);
-		//Model.getInstance().setManager(manager);
+		Model.getInstance().setManager(manager);
 		Model.getInstance().setTextData("facts", getData("facts"));
 		Model.getInstance().setTextData("quotes", getData("quotes"));
 		// Model.getInstance().loadTextData(rated);
 		Model.getInstance().setVideos(getVideos());
-		//Model.getInstance().loadVideos();
+		// Model.getInstance().loadVideos();
 		Model.getInstance().loadNews();
 	}
 
@@ -265,10 +265,17 @@ public class NickiStarActivity extends Activity {
 		videoMediaView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri
-						.parse("http://www.youtube.com/watch?v="
-								+ Model.getInstance().currentVideo()
-										.getVideoTag())));
+				if (Model.getInstance().currentVideo() != null) {
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri
+							.parse("http://www.youtube.com/watch?v="
+									+ Model.getInstance().currentVideo()
+											.getVideoTag())));
+				} else {
+					Toast.makeText(
+							NickiStarActivity.this,
+							"Ooops, something is wrong, try to clear data, or if it does not help, reinstall Application!",
+							Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 		if (v != null && v.getImagePath() != null) {
@@ -299,15 +306,15 @@ public class NickiStarActivity extends Activity {
 		} else {
 			showNews(Model.getInstance().currentNews());
 		}
-		final Button nextVideoButton = (Button) findViewById(R.id.next_button);
-		nextVideoButton.setOnClickListener(new View.OnClickListener() {
+		final Button nextNewsButton = (Button) findViewById(R.id.next_button);
+		nextNewsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showNews(Model.getInstance().nextNews());
 			}
 		});
-		final Button previousVideoButton = (Button) findViewById(R.id.prev_button);
-		previousVideoButton.setOnClickListener(new View.OnClickListener() {
+		final Button previousNewsButton = (Button) findViewById(R.id.prev_button);
+		previousNewsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showNews(Model.getInstance().prevoiusNews());
@@ -317,10 +324,18 @@ public class NickiStarActivity extends Activity {
 		readNewsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Uri uriUrl = Uri.parse(Model.getInstance().currentNews()
-						.getNewsUrl());
-				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-				startActivity(launchBrowser);
+				if (Model.getInstance().currentNews() != null) {
+					Uri uriUrl = Uri.parse(Model.getInstance().currentNews()
+							.getNewsUrl());
+					Intent launchBrowser = new Intent(Intent.ACTION_VIEW,
+							uriUrl);
+					startActivity(launchBrowser);
+				} else {
+					Toast.makeText(
+							NickiStarActivity.this,
+							"Ooops, something is wrong, try to refresh from main menu!",
+							Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 
@@ -390,13 +405,12 @@ public class NickiStarActivity extends Activity {
 		Collections.shuffle(data);
 		return data;
 	}
-	
-	private List<Video> getVideos(){
+
+	private List<Video> getVideos() {
 		List<Video> data = new ArrayList<Video>();
-		int i = 0;
-		for (String str:getResources().getStringArray(R.array.videos)){
-			String tmp[] = str.split("|"); //tag|title|description|image_path
-			if(tmp.length!=4)
+		for (String str : getResources().getStringArray(R.array.videos)) {
+			String tmp[] = str.split("|"); // tag|title|description|image_path
+			if (tmp.length != 4)
 				continue;
 			Video video = new Video();
 			video.setVideoTag(tmp[0]);
@@ -404,9 +418,7 @@ public class NickiStarActivity extends Activity {
 			video.setDescription(tmp[2]);
 			video.setImagePath(tmp[3]);
 			data.add(video);
-			i++;
 		}
-		System.out.println("Loaded videos: "+i);
 		return data;
 	}
 
@@ -455,7 +467,7 @@ public class NickiStarActivity extends Activity {
 			String text = "Nothing to fetch";
 			if (Model.getInstance().getNewNews() > 0)
 				text = "Fetched " + Model.getInstance().getNewNews() + " news";
-			Toast toast = Toast.makeText(mContext, text, 1000);
+			Toast toast = Toast.makeText(mContext, text, Toast.LENGTH_LONG);
 			toast.show();
 		}
 	}

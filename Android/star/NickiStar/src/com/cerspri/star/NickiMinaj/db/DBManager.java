@@ -4,70 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import com.cerspri.star.NickiMinaj.model.Constants;
-import com.cerspri.star.NickiMinaj.model.News;
-import com.cerspri.star.NickiMinaj.model.Video;
+import java.util.Locale;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.cerspri.star.NickiMinaj.model.Constants;
+import com.cerspri.star.NickiMinaj.model.News;
 
 public class DBManager {
 
-	DBAdapter adapter;
+	//DBAdapter adapter;
+	SQLiteDatabase db;
+	Context context;
 
 	public DBManager(Context context) {
-		adapter = new DBAdapter(context, Constants.DB_NAME,
-				Constants.PROJECT_PATH);
-	}
-
-	public List<String> read(boolean rated, String type) {
-		adapter.openDataBase();
-		List<String> result = new ArrayList<String>();
-		String sql = "select * from " + type+"s";
-		if (!rated)
-			sql += " limit " + Constants.LIMIT;
-		Cursor c = adapter.executeSql(sql, null);
-		if (c != null) {
-			if (c.moveToFirst()) {
-				do {
-					String text = c.getString(c.getColumnIndex("text"));
-					result.add(text);
-				} while (c.moveToNext());
-			}
-		}
-		c.close();
-		adapter.close();
-		return result;
-	}
-
-	public List<Video> readVideos() {
-		adapter.openDataBase();
-		List<Video> result = new ArrayList<Video>();
-		String sql = "select * from videos";
-		Cursor c = adapter.executeSql(sql, null);
-		if (c != null) {
-			if (c.moveToFirst()) {
-				do {
-					Video video = new Video();
-					video.setVideoTag(c.getString(c.getColumnIndex("video_tag")));
-					video.setDescription(c.getString(c
-							.getColumnIndex("video_description")));
-					video.setTitle(c.getString(c.getColumnIndex("video_title")));
-					video.setImagePath(c.getString(c
-							.getColumnIndex("video_image_path")));
-					result.add(video);
-				} while (c.moveToNext());
-			}
-		}
-		c.close();
-		adapter.close();
-		return result;
+		this.context = context;
 	}
 
 	public void saveNews(News news) {
-		adapter.openDataBase();
+		openDatabase();
 		ContentValues values = new ContentValues();
 		values.put("title", news.getTitle());
 		values.put("content", news.getContent());
@@ -75,20 +33,20 @@ public class DBManager {
 		values.put("url", news.getNewsUrl());
 		values.put("image", news.getImagePath());
 		values.put("_id", news.getId());
-		adapter.insert("news", null, values);
+		db.insert("news", null, values);
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, -20);
-		adapter.executeSql("delete from news where pub_date<?",
+		db.execSQL("delete from news where pub_date<?",
 				new String[] { new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 						.format(calendar.getTime()) });
-		adapter.close();
+		db.close();
 	}
 
 	public List<News> readNews() {
+		openDatabase();
 		List<News> allNews = new ArrayList<News>();
-		adapter.openDataBase();
 		String sql = "select * from news order by pub_date desc";
-		Cursor c = adapter.executeSql(sql, null);
+		Cursor c = db.rawQuery(sql, null);
 		if (c != null) {
 			if (c.moveToFirst()) {
 				do {
@@ -104,8 +62,15 @@ public class DBManager {
 			}
 		}
 		c.close();
-		adapter.close();
+		db.close();
 		return allNews;
+	}
+	
+	private void openDatabase(){
+		db = context.openOrCreateDatabase(Constants.DB_NAME, SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		db.setVersion(Constants.DB_VERSION);
+		db.setLocale(Locale.getDefault());
+		db.execSQL(Constants.CREATE_NEWS_TABLE);
 	}
 
 }
