@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="a15069f19df0199"
+        ads:loadAdOnCreate="true" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/adView"
+        android:background="@drawable/bck_main" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/rate_us"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/text_button"
+                android:onClick="rateUs"
+                android:text="@string/rate_us"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/favorites"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/text_button"
+                android:onClick="showFavorites"
+                android:text="@string/favorites"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/all_faces"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linearLayout1"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="@dimen/padding_medium"
+            android:layout_marginRight="@dimen/padding_medium"
+            android:paddingBottom="40dp"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:id="@+id/michael_jackson"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:background="@drawable/okvir"
+                    android:clickable="true"
+                    android:contentDescription="@string/comming_next"
+                    android:onClick="michaelClick"
+                    android:paddingLeft="@dimen/padding_small"
+                    android:paddingRight="@dimen/padding_small" >
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:contentDescription="@string/comming_next"
+                        android:src="@drawable/jackson" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/abraham_lincoln"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:background="@drawable/okvir"
+                    android:clickable="true"
+                    android:contentDescription="@string/comming_next"
+                    android:onClick="lincolnClick"
+                    android:paddingLeft="@dimen/padding_small"
+                    android:paddingRight="@dimen/padding_small" >
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="@dimen/padding_medium"
+                        android:contentDescription="@string/comming_next"
+                        android:src="@drawable/lincoln" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/comming_soon"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:background="@drawable/okvir"
+                    android:clickable="true"
+                    android:contentDescription="@string/comming_next"
+                    android:onClick="comingSoonClick"
+                    android:paddingLeft="@dimen/padding_small"
+                    android:paddingRight="@dimen/padding_small" >
+                </RelativeLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+</RelativeLayout>
