@@ -1,0 +1,1 @@
+We hope we will be able to make in next few month really nice Board Game, with lot of modes, and different monsters!!!
